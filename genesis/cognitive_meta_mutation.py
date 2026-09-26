@@ -117,3 +117,28 @@ def enumerate_policy_descendants(
         if len(descendants) >= max_descendants:
             break
     return tuple(descendants)
+
+
+def validate_policy_mutation_record(
+    record: Mapping[str, Any],
+    *,
+    parent_policy: Mapping[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Re-execute a recorded meta-mutation from its exact parent and require byte-level identity."""
+    if not isinstance(record, Mapping) or record.get("schema") != META_MUTATION_SCHEMA:
+        raise CognitiveMetaMutationError("policy mutation record uses an unrecognized schema")
+    parent = cognitive_search.validate_policy(parent_policy)
+    if record.get("parent_policy_digest") != parent["policy_digest"]:
+        raise CognitiveMetaMutationError("policy mutation record names a different parent")
+    try:
+        ceiling = int(record.get("external_max_candidate_limit", 0))
+    except (TypeError, ValueError) as exc:
+        raise CognitiveMetaMutationError("policy mutation record carries an invalid external ceiling") from exc
+    child, rebuilt = apply_policy_mutation(
+        parent,
+        record.get("proposal") or {},
+        max_candidate_limit=ceiling,
+    )
+    if rebuilt != dict(record):
+        raise CognitiveMetaMutationError("policy mutation record does not reproduce from its parent")
+    return child, rebuilt
