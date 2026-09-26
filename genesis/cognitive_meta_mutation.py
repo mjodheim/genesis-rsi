@@ -81,3 +81,39 @@ def apply_policy_mutation(
         "external_max_candidate_limit": int(max_candidate_limit),
     }
     return child, {**payload, "mutation_record_digest": _digest(payload)}
+
+
+def enumerate_policy_descendants(
+    parent_policy: Mapping[str, Any],
+    *,
+    max_candidate_limit: int,
+    max_descendants: int,
+) -> tuple[tuple[dict[str, Any], dict[str, Any]], ...]:
+    """Enumerate a deterministic bounded neighborhood of mutation-machinery descendants."""
+    if max_descendants < 1:
+        raise CognitiveMetaMutationError("external meta-search descendant ceiling must be positive")
+    parent = cognitive_search.validate_policy(parent_policy)
+    proposals: list[dict[str, Any]] = []
+    for left in range(len(parent["mutation_kinds"])):
+        for right in range(left + 1, len(parent["mutation_kinds"])):
+            proposals.append({"kind": "swap_mutation_kinds", "left": left, "right": right})
+    for left in range(len(parent["primitive_order"])):
+        for right in range(left + 1, len(parent["primitive_order"])):
+            proposals.append({"kind": "swap_primitives", "left": left, "right": right})
+    for limit in sorted({1, parent["candidate_limit"], max_candidate_limit}):
+        if limit != parent["candidate_limit"] and limit <= max_candidate_limit:
+            proposals.append({"kind": "set_candidate_limit", "candidate_limit": limit})
+
+    descendants: list[tuple[dict[str, Any], dict[str, Any]]] = []
+    seen: set[str] = set()
+    for proposal in proposals:
+        child, record = apply_policy_mutation(
+            parent, proposal, max_candidate_limit=max_candidate_limit
+        )
+        if child["policy_digest"] in seen:
+            continue
+        seen.add(child["policy_digest"])
+        descendants.append((child, record))
+        if len(descendants) >= max_descendants:
+            break
+    return tuple(descendants)
