@@ -109,8 +109,16 @@ case sets or budgets and reports capability, node-execution and CPU-process-time
 an adoption verdict. CPU time remains explicitly a compute proxy.
 
 Energy stays unavailable by default. An energy value is admitted only together with the identity of a
-real measurement instrument; the framework does not derive joules from CPU time. The next slice is the
-external adoption/rollback record plus paired causal ablations that reuse these identities and budgets.
+real measurement instrument; the framework does not derive joules from CPU time.
+
+Matched comparison now also requires the exact identities of the cases actually evaluated, preventing
+two partial subsets from being compared merely because they claim the same case-set identity.
+`genesis/cognitive_adoption.py` adds content-addressed external adoption/rejection and rollback records
+plus paired causal-ablation evidence. Adoption binds an external authority, prospective rule and
+proposal identity to matched measurements; rollback restores the exact recorded parent. Ablation
+compares parent/candidate and parent/ablated measurements under the same evaluator, cases and budget,
+but deliberately emits no causal verdict. Scientific adjudication therefore remains outside mutable
+lineage machinery.
 
 ### Increment 5 — mutate the mutation machinery
 

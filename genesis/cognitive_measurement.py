@@ -117,6 +117,10 @@ def compare_matched(parent: Mapping[str, Any], candidate: Mapping[str, Any]) -> 
             raise CognitiveMeasurementError("comparison is not matched on %s" % field)
     if parent.get("architecture_digest") == candidate.get("architecture_digest"):
         raise CognitiveMeasurementError("comparison requires distinct architecture identities")
+    parent_cases = tuple(row.get("case_digest") for row in parent.get("case_results", ()))
+    candidate_cases = tuple(row.get("case_digest") for row in candidate.get("case_results", ()))
+    if parent_cases != candidate_cases:
+        raise CognitiveMeasurementError("comparison requires identical evaluated case identities")
     for record in (parent, candidate):
         expected = record.get("measurement_digest")
         payload = {key: value for key, value in record.items() if key != "measurement_digest"}

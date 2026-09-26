@@ -94,3 +94,20 @@ def test_comparison_rejects_tampered_measurement():
     child["capability"]["passed"] = 99
     with pytest.raises(CognitiveMeasurementError, match="does not reproduce"):
         compare_matched(parent, child)
+
+
+def test_comparison_rejects_different_evaluated_case_identities():
+    parent = measurement("parent", (True, False))
+    child = create_measurement(
+        architecture_digest="child",
+        evaluator_digest="eval-v1",
+        case_set_digest="cases-v1",
+        budget=BUDGET,
+        case_results=[
+            {"case_digest": "case-a", "passed": True, "node_executions": 2},
+            {"case_digest": "case-c", "passed": True, "node_executions": 3},
+        ],
+        cpu_process_time_ns=10,
+    )
+    with pytest.raises(CognitiveMeasurementError, match="identical evaluated case identities"):
+        compare_matched(parent, child)
