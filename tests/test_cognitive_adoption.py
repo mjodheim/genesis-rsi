@@ -7,6 +7,8 @@ from genesis.cognitive_adoption import (
     create_adoption_record,
     create_causal_ablation_record,
     create_rollback_record,
+    validate_adoption_record,
+    validate_rollback_record,
 )
 from genesis.cognitive_measurement import ExternalBudget, create_measurement
 
@@ -123,3 +125,32 @@ def test_causal_ablation_requires_three_distinct_architectures():
             proposal_digest="proposal",
             ablation_digest="ablation",
         )
+
+
+def test_transition_validators_reject_tampered_external_evidence():
+    parent = measurement("parent", (True, False))
+    child = measurement("child", (True, True))
+    adopted = create_adoption_record(
+        parent_measurement=parent,
+        candidate_measurement=child,
+        decision="adopt",
+        authority_digest="authority",
+        rule_digest="rule",
+        proposal_digest="proposal",
+    )
+    assert validate_adoption_record(adopted) == adopted
+    tampered = dict(adopted)
+    tampered["candidate_architecture_digest"] = "substitute"
+    with pytest.raises(CognitiveAdoptionError, match="does not reproduce"):
+        validate_adoption_record(tampered)
+
+    rollback = create_rollback_record(
+        adoption_record=adopted,
+        authority_digest="rollback-authority",
+        reason_evidence_digest="evidence",
+    )
+    assert validate_rollback_record(rollback, adoption_record=adopted) == rollback
+    tampered_rollback = dict(rollback)
+    tampered_rollback["restore_architecture_digest"] = "substitute"
+    with pytest.raises(CognitiveAdoptionError, match="does not reproduce"):
+        validate_rollback_record(tampered_rollback, adoption_record=adopted)

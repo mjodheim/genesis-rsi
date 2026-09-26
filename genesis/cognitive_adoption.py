@@ -65,6 +65,55 @@ def create_adoption_record(
     return {**payload, "adoption_digest": _digest(payload)}
 
 
+def validate_adoption_record(record: Mapping[str, Any]) -> dict[str, Any]:
+    """Reproduce one external adoption/rejection record before it can authorize a transition."""
+    if not isinstance(record, Mapping) or record.get("schema") != ADOPTION_SCHEMA:
+        raise CognitiveAdoptionError("adoption record uses an unrecognized schema")
+    payload = {k: v for k, v in record.items() if k != "adoption_digest"}
+    if record.get("adoption_digest") != _digest(payload):
+        raise CognitiveAdoptionError("adoption identity does not reproduce")
+    if record.get("decision") not in {"adopt", "reject"}:
+        raise CognitiveAdoptionError("adoption record carries an invalid external decision")
+    required = (
+        "authority_digest",
+        "rule_digest",
+        "proposal_digest",
+        "parent_architecture_digest",
+        "candidate_architecture_digest",
+        "parent_measurement_digest",
+        "candidate_measurement_digest",
+        "comparison_digest",
+    )
+    if any(not record.get(name) for name in required):
+        raise CognitiveAdoptionError("adoption record is missing a bound evidence identity")
+    if record["parent_architecture_digest"] == record["candidate_architecture_digest"]:
+        raise CognitiveAdoptionError("adoption record does not describe an architectural transition")
+    return dict(record)
+
+
+def validate_rollback_record(
+    record: Mapping[str, Any], *, adoption_record: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Reproduce rollback evidence and bind it to the exact adoption it reverses."""
+    adoption = validate_adoption_record(adoption_record)
+    if adoption["decision"] != "adopt":
+        raise CognitiveAdoptionError("rollback cannot bind to a rejected adoption")
+    if not isinstance(record, Mapping) or record.get("schema") != ROLLBACK_SCHEMA:
+        raise CognitiveAdoptionError("rollback record uses an unrecognized schema")
+    payload = {k: v for k, v in record.items() if k != "rollback_digest"}
+    if record.get("rollback_digest") != _digest(payload):
+        raise CognitiveAdoptionError("rollback identity does not reproduce")
+    if record.get("adoption_digest") != adoption["adoption_digest"]:
+        raise CognitiveAdoptionError("rollback refers to a different adoption")
+    if record.get("from_architecture_digest") != adoption["candidate_architecture_digest"]:
+        raise CognitiveAdoptionError("rollback does not start from the adopted architecture")
+    if record.get("restore_architecture_digest") != adoption["parent_architecture_digest"]:
+        raise CognitiveAdoptionError("rollback does not restore the adopted architecture's exact parent")
+    if not record.get("authority_digest") or not record.get("reason_evidence_digest"):
+        raise CognitiveAdoptionError("rollback authority and evidence identities are required")
+    return dict(record)
+
+
 def create_rollback_record(
     *,
     adoption_record: Mapping[str, Any],

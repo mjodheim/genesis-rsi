@@ -120,7 +120,24 @@ compares parent/candidate and parent/ablated measurements under the same evaluat
 but deliberately emits no causal verdict. Scientific adjudication therefore remains outside mutable
 lineage machinery.
 
-### Increment 5 — mutate the mutation machinery
+### Increment 4b — externally validated lineage transitions
+
+`genesis/cognitive_lineage_adoption.py` now lets a lineage **hold** the architecture selected by an
+external authority without moving selection into mutable machinery. A seed architecture is admitted
+prospectively; later replacement requires a content-addressed `adopt` record whose exact parent is
+the architecture currently held and whose candidate digest reproduces from the supplied genome.
+
+The lineage state stores the admitted architecture and the transition-evidence digest with external
+provenance. It does **not** receive evaluator outputs, measurement records, the prospective decision
+rule, or authority internals. Rejection records cannot mutate state. Rollback likewise requires a
+reproducible external rollback record and restores the exact parent architecture named by the
+adoption it reverses. Both transitions are appended to the descent journal and therefore survive
+checkpoint/restore through the existing content-addressed state and journal machinery.
+
+This is transition apparatus, not evidence that any architecture is better. Scientific selection
+remains external, CPU time remains only a compute proxy, and no energy claim is introduced.
+
+## Increment 5 — mutate the mutation machinery
 
 Only after architecture descent works, make the operators/search strategy themselves lineage-held and
 content-addressed. A descendant may then improve how Genesis changes architectures, while the trust
