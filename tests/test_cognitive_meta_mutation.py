@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from genesis.cognitive_meta_mutation import CognitiveMetaMutationError, apply_policy_mutation, enumerate_policy_descendants
+from genesis.cognitive_meta_mutation import CognitiveMetaMutationError, apply_policy_mutation, enumerate_policy_descendants, validate_policy_mutation_record
 from genesis.cognitive_search import create_policy
 
 
@@ -70,3 +70,32 @@ def test_meta_search_enumeration_is_deterministic_bounded_and_parent_linked():
 def test_meta_search_descendant_ceiling_is_external_and_required():
     with pytest.raises(CognitiveMetaMutationError, match="descendant ceiling"):
         enumerate_policy_descendants(policy(), max_candidate_limit=16, max_descendants=0)
+
+
+def test_meta_mutation_record_reexecutes_from_exact_parent():
+    parent = policy()
+    child, record = apply_policy_mutation(
+        parent, {"kind": "swap_primitives", "left": 0, "right": 1}, max_candidate_limit=16
+    )
+    reproduced, verified = validate_policy_mutation_record(record, parent_policy=parent)
+    assert reproduced == child
+    assert verified == record
+
+
+def test_meta_mutation_record_refuses_tampering_and_wrong_parent():
+    parent = policy()
+    _, record = apply_policy_mutation(
+        parent, {"kind": "set_candidate_limit", "candidate_limit": 12}, max_candidate_limit=16
+    )
+    tampered = dict(record)
+    tampered["external_max_candidate_limit"] = 32
+    with pytest.raises(CognitiveMetaMutationError, match="does not reproduce"):
+        validate_policy_mutation_record(tampered, parent_policy=parent)
+
+    other = create_policy(
+        mutation_kinds=["add_edge", "replace_primitive", "remove_edge"],
+        primitive_order=["identity", "sum", "sink"],
+        candidate_limit=8,
+    )
+    with pytest.raises(CognitiveMetaMutationError, match="different parent"):
+        validate_policy_mutation_record(record, parent_policy=other)
