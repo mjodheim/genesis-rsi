@@ -122,6 +122,58 @@ def test_external_rollback_restores_exact_recorded_parent():
     assert entry["payload"]["rollback_digest"] == rollback["rollback_digest"]
 
 
+def test_rollback_refuses_seeded_candidate_from_unapplied_adoption():
+    genesis = runtime()
+    parent, child = architecture("identity"), architecture("sum")
+    admit_seed_architecture(genesis, child)
+    adopted = adoption(parent, child)
+    rollback = create_rollback_record(
+        adoption_record=adopted,
+        authority_digest="rollback-authority",
+        reason_evidence_digest="regression-evidence",
+    )
+    before = genesis.state["state_digest"]
+
+    with pytest.raises(CognitiveLineageAdoptionError, match="installed"):
+        apply_external_rollback(
+            genesis, parent, adoption_record=adopted, rollback_record=rollback
+        )
+
+    assert genesis.state["state_digest"] == before
+    assert architecture_digest(held_architecture(genesis)) == architecture_digest(child)
+
+
+def test_rollback_refuses_same_candidate_installed_by_different_adoption():
+    genesis = runtime()
+    parent_a, parent_b, child = (
+        architecture("identity"),
+        architecture("sink"),
+        architecture("sum"),
+    )
+    admit_seed_architecture(genesis, parent_b)
+    actual_adoption = adoption(parent_b, child)
+    apply_external_adoption(genesis, child, adoption_record=actual_adoption)
+
+    unrelated_adoption = adoption(parent_a, child)
+    unrelated_rollback = create_rollback_record(
+        adoption_record=unrelated_adoption,
+        authority_digest="rollback-authority",
+        reason_evidence_digest="regression-evidence",
+    )
+    before = genesis.state["state_digest"]
+
+    with pytest.raises(CognitiveLineageAdoptionError, match="installed"):
+        apply_external_rollback(
+            genesis,
+            parent_a,
+            adoption_record=unrelated_adoption,
+            rollback_record=unrelated_rollback,
+        )
+
+    assert genesis.state["state_digest"] == before
+    assert architecture_digest(held_architecture(genesis)) == architecture_digest(child)
+
+
 def test_rollback_refuses_a_substitute_parent():
     genesis = runtime()
     parent, child, substitute = (
