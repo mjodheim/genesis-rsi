@@ -143,7 +143,19 @@ Only after architecture descent works, make the operators/search strategy themse
 content-addressed. A descendant may then improve how Genesis changes architectures, while the trust
 root still decides whether that meta-change produced better externally measured descendants.
 
-### Increment 6 — world/curriculum factory
+#### Increment 5 — mutation machinery as evolvable data
+
+`genesis/cognitive_meta_mutation.py` now permits bounded descendants of the lineage-held search
+policy itself. The current DEVELOPMENT operators can reorder architecture-mutation kinds, reorder
+the admitted primitive preference, or change the policy's candidate limit **within** an external
+ceiling. Every descendant names its exact parent policy and every meta-mutation is content-addressed.
+
+The interpreter, external ceilings, evaluator, adoption authority and trust root remain outside this
+mutable policy. In particular, there is no operator that rewrites the evaluator or grants the policy
+authority to select itself. These descendants are candidates for later external evaluation/adoption;
+their existence is not a claim that the mutation machinery improved.
+
+## Increment 6 — world/curriculum factory
 
 Add a separate environment generator that produces new externally verifiable pressures near the
 current capability frontier. Keep generation seeds, verifiers and hidden evaluation inaccessible to
