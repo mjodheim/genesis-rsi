@@ -87,9 +87,12 @@ def apply_external_policy_adoption(
         raise CognitivePolicyEvolutionError("lineage has no mutation machinery to evolve")
     if adoption["parent_policy_digest"] != parent["policy_digest"]:
         raise CognitivePolicyEvolutionError("external adoption was decided against another held policy")
-    child, reproduced = cognitive_meta_mutation.validate_policy_mutation_record(
-        mutation_record, parent_policy=parent
-    )
+    try:
+        child, reproduced = cognitive_meta_mutation.validate_policy_mutation_record(
+            mutation_record, parent_policy=parent
+        )
+    except cognitive_meta_mutation.CognitiveMetaMutationError as problem:
+        raise CognitivePolicyEvolutionError(str(problem)) from problem
     if reproduced["mutation_record_digest"] != adoption["mutation_record_digest"]:
         raise CognitivePolicyEvolutionError("external adoption names another meta-mutation")
     if child["policy_digest"] != adoption["candidate_policy_digest"]:
