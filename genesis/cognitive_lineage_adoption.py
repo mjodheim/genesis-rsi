@@ -151,16 +151,11 @@ def apply_external_rollback(
         )
     except cognitive_adoption.CognitiveAdoptionError as exc:
         raise CognitiveLineageAdoptionError(str(exc)) from exc
-    current_tool = _architecture_tool(genesis)
     current = held_architecture(genesis)
-    if current is None or current_tool is None:
+    if current is None:
         raise CognitiveLineageAdoptionError("lineage has no cognitive architecture to roll back")
     if cognitive_architecture.architecture_digest(current) != rollback["from_architecture_digest"]:
         raise CognitiveLineageAdoptionError("rollback does not start from the held architecture")
-    if current_tool.get("evidence_digest") != rollback["adoption_digest"]:
-        raise CognitiveLineageAdoptionError(
-            "rollback does not target the adoption that installed the held architecture"
-        )
     parent = cognitive_architecture.canonical_architecture(parent_architecture)
     parent_digest = cognitive_architecture.architecture_digest(parent)
     if parent_digest != rollback["restore_architecture_digest"]:
