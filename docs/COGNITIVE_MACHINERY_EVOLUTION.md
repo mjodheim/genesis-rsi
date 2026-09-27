@@ -173,3 +173,19 @@ A meaningful future result is not “Genesis generated a novel graph”. It shou
 6. the evaluation/root-of-trust bytes and hidden cases remain outside the lineage.
 
 Until those hold, this remains DEVELOPMENT apparatus.
+
+
+## Increment 7 — lineage evolution of the mutation-producing mechanism
+
+`genesis/cognitive_policy_evolution.py` closes the first controlled meta-evolution loop. A lineage
+may hold a cognitive architecture-search policy, derive a bounded content-addressed descendant using
+the meta-mutation machinery, and install that descendant only when an external adoption record binds
+the exact held parent, exact candidate policy and exact mutation record.
+
+A rejection cannot alter lineage state. The installed tool receives external provenance and the
+journal records transition identities, but evaluator outputs, authority internals and the prospective
+rule remain outside mutable lineage state. The mechanism producing architecture mutations can
+therefore change across lineage descent without acquiring the authority to judge or adopt itself.
+
+This establishes apparatus for externally controlled mutation-machinery evolution. It does not by
+itself demonstrate recursive self-improvement or superior capability.
