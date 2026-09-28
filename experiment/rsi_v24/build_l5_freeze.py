@@ -129,7 +129,12 @@ def verify_v23_predecessor() -> tuple[dict[str, Any], dict[str, Any]]:
 def required_files() -> list[Path]:
     paths: list[Path] = []
     for path in sorted(V24.rglob("*")):
-        if (\n            path.is_file()\n            and path.name != "V24_FREEZE.json"\n            and "__pycache__" not in path.parts\n            and path.suffix != ".pyc"\n        ):
+        if (
+            path.is_file()
+            and path.name != "V24_FREEZE.json"
+            and "__pycache__" not in path.parts
+            and path.suffix != ".pyc"
+        ):
             paths.append(path)
     for path in sorted((ROOT / "tests").glob("test_rsi_v24*.py")):
         if path.is_file():
@@ -304,7 +309,8 @@ def main() -> None:
 
     result = build(args.apparatus_commit)
     args.out.write_text(
-        json.dumps(result, indent=2, sort_keys=True) + "\n",
+        json.dumps(result, indent=2, sort_keys=True) + "
+",
         encoding="utf-8",
     )
     print(json.dumps(result, indent=2, sort_keys=True))
