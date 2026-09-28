@@ -4,6 +4,8 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT / "experiment" / "energy_frontier" / "e0_benchmark.py"
 
@@ -19,13 +21,17 @@ def _load():
 bench = _load()
 
 
-def test_e0_single_run_keeps_energy_unavailable():
+def test_e0_single_run_keeps_energy_unavailable_and_binds_identity():
     row = bench.run_once(8)
     assert row["resources"]["energy_joules"] is None
     assert row["resources"]["energy_measurement_available"] is False
     assert row["resources"]["cpu_time_is_compute_proxy"] is True
     assert row["resources"]["node_executions"] == 8
     assert row["capability"] == {"passed": 1, "evaluated": 1}
+    assert len(row["measurement_provenance"]["workload_sha256"]) == 64
+    assert len(row["measurement_provenance"]["evaluator_sha256"]) == 64
+    assert len(row["output_binding_digest"]) == 64
+    assert row["hardware_identity"]["cpu_model"]
 
 
 def test_e0_repeated_benchmark_records_separate_resource_dimensions():
@@ -33,6 +39,7 @@ def test_e0_repeated_benchmark_records_separate_resource_dimensions():
     assert result["energy_claim"] is False
     assert result["energy_joules"] is None
     assert result["repeats"] == 2
+    assert result["sampling_order"] == "rotating-interleaved"
     assert [row["work_units"] for row in result["rows"]] == [8, 64]
     for row in result["rows"]:
         assert len(row["samples"]) == 2
@@ -42,14 +49,24 @@ def test_e0_repeated_benchmark_records_separate_resource_dimensions():
             assert sample["resources"]["energy_joules"] is None
 
 
-def test_e0_evaluator_detects_corrupted_work(monkeypatch):
+def test_e0_evaluator_detects_corrupted_work_and_disables_dynamic_range(monkeypatch):
     monkeypatch.setattr(bench, "_work", lambda units: ("00" * 32, units))
+    row = bench.run_once(8)
+    assert row["capability"] == {"passed": 0, "evaluated": 1}
+    result = bench.run_benchmark(work_units=(8, 64), repeats=2)
+    assert result["dynamic_range_checks"]["all_samples_valid"] is False
+    assert result["dynamic_range_checks"]["cpu_proxy_has_resolved_dynamic_range"] is False
+    assert result["dynamic_range_checks"]["wall_latency_has_resolved_dynamic_range"] is False
+
+
+def test_e0_rejects_over_budget_node_execution(monkeypatch):
+    original = bench._work
+    monkeypatch.setattr(bench, "_work", lambda units: (original(units)[0], units + 1))
     row = bench.run_once(8)
     assert row["capability"] == {"passed": 0, "evaluated": 1}
 
 
 def test_e0_rejects_duplicate_or_unordered_work_levels():
-    import pytest
     with pytest.raises(ValueError, match="strictly increasing"):
         bench.run_benchmark(work_units=(8, 8), repeats=2)
     with pytest.raises(ValueError, match="strictly increasing"):
@@ -65,3 +82,17 @@ def test_e0_preserves_preexisting_tracemalloc_session():
         assert row["resources"]["peak_memory_bytes"] is None
     finally:
         tracemalloc.stop()
+
+
+def test_e0_stops_own_tracer_when_workload_raises(monkeypatch):
+    import tracemalloc
+    if tracemalloc.is_tracing():
+        tracemalloc.stop()
+
+    def boom(units):
+        raise RuntimeError("boom")
+
+    monkeypatch.setattr(bench, "_work", boom)
+    with pytest.raises(RuntimeError, match="boom"):
+        bench.run_once(8)
+    assert not tracemalloc.is_tracing()
