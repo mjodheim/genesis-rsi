@@ -72,9 +72,11 @@ Requirements:
 
 ### E2 — matched parent/descendant comparison
 
-Compare parent and descendant only when evaluator, cases, hardware class, resource budget and measurement method are matched prospectively.
+Compare parent and descendant only under a prospectively matched measurement design. The default E2 design requires equality of the exact physical device identity, hardware configuration, runtime and driver versions, power/performance settings, evaluator, cases, external resource budget, measurement instrument identity, measurement method, interval boundaries and idle/baseline treatment.
 
-Report deltas without automatically collapsing them into a winner.
+If exact physical-device identity cannot be held constant, E2 requires a prospectively frozen randomized or blocked design that explicitly controls device, instrument and operating-condition effects before any candidate outcome is observed. Merely matching a hardware class or measurement method is insufficient.
+
+Report deltas without automatically collapsing them into a winner. No E3 capability/resource or capability/joule improvement may be attributed to a descendant from an E2 comparison that does not satisfy one of these frozen matching designs.
 
 ### E3 — reproducible capability/resource improvement
 
