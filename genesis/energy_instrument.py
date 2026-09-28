@@ -1,10 +1,11 @@
 """External energy-instrument boundary for the Energy/Compute Frontier.
 
-This module records direct observations from a real instrument.  It deliberately does
+This module records direct observations from a real instrument. It deliberately does
 not estimate joules from CPU time, wall latency, TDP, node counts, or any other proxy.
 """
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Any, Mapping
 
@@ -23,12 +24,14 @@ class EnergyInstrumentObservation:
     baseline_treatment: str
 
     def __post_init__(self) -> None:
-        if self.energy_joules < 0:
-            raise EnergyInstrumentError("direct energy observation cannot be negative")
+        if isinstance(self.energy_joules, bool) or not isinstance(self.energy_joules, (int, float)):
+            raise EnergyInstrumentError("direct energy observation must be numeric")
+        if not math.isfinite(float(self.energy_joules)) or self.energy_joules < 0:
+            raise EnergyInstrumentError("direct energy observation must be finite and non-negative")
         if not isinstance(self.instrument_identity, Mapping) or not self.instrument_identity:
             raise EnergyInstrumentError("real instrument identity and provenance are required")
-        required = ("measurement_method", "interval_start", "interval_end", "baseline_treatment")
-        if any(not getattr(self, name) for name in required):
+        required = (self.measurement_method, self.interval_start, self.interval_end, self.baseline_treatment)
+        if any(not isinstance(value, str) or not value.strip() for value in required):
             raise EnergyInstrumentError("method, interval boundaries and baseline treatment are required")
 
     def provenance(self) -> dict[str, Any]:
@@ -47,11 +50,13 @@ def direct_energy_observation(
     baseline_treatment: str,
 ) -> EnergyInstrumentObservation:
     """Create an E1 observation from an already measured, direct instrument reading."""
+    # Validate raw metadata in EnergyInstrumentObservation; do not coerce missing values
+    # such as None into truthy strings.
     return EnergyInstrumentObservation(
-        energy_joules=float(energy_joules),
+        energy_joules=energy_joules,
         instrument_identity=instrument_identity,
-        measurement_method=str(measurement_method),
-        interval_start=str(interval_start),
-        interval_end=str(interval_end),
-        baseline_treatment=str(baseline_treatment),
+        measurement_method=measurement_method,
+        interval_start=interval_start,
+        interval_end=interval_end,
+        baseline_treatment=baseline_treatment,
     )
