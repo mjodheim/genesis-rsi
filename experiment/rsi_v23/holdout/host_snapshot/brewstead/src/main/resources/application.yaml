@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: mjodheim-brewstead
+
+  datasource:
+    url: "${DB_URL:jdbc:postgresql://${BREWSTEAD_DB_PGHOST_UNPOOLED}:${BREWSTEAD_DB_PGPORT:5432}/${BREWSTEAD_DB_PGDATABASE}?sslmode=require}"
+    username: "${DB_USERNAME:${BREWSTEAD_DB_PGUSER}}"
+    password: "${DB_PASSWORD:${BREWSTEAD_DB_PGPASSWORD}}"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        format_sql: true
+
+  # Chaque fichier statique est servi sous un nom qui contient l'empreinte de
+  # son contenu. Sans ça, un navigateur peut garder le JavaScript d'hier avec
+  # la feuille de style d'aujourd'hui : l'interface se casse à moitié, et
+  # personne ne comprend pourquoi. Le nom change quand le contenu change,
+  # donc un cache long devient sûr.
+  web:
+    resources:
+      chain:
+        strategy:
+          content:
+            enabled: true
+            paths: "/**"
+      cache:
+        cachecontrol:
+          max-age: 30d
+          cache-public: true
+
+server:
+  port: ${PORT:8081}
+  # L'état du domaine pèse deux cents kilo-octets de JSON, relus toutes les
+  # quinze secondes ; compressé, il en fait une vingtaine. Même chose pour le
+  # JavaScript et les feuilles de style au premier chargement.
+  compression:
+    enabled: true
+    mime-types: application/json,text/html,text/css,text/javascript,application/javascript,image/svg+xml
+    min-response-size: 1024
+  forward-headers-strategy: framework

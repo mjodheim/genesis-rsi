@@ -19,13 +19,9 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "21"
-      - name: Checkout exact frozen Brewstead host
-        uses: actions/checkout@v4
-        with:
-          repository: mjodheim/mjodheim-brewstead
-          ref: 84f6c2462b810a83870974068db1e12d7f1e3720
-          path: v24-hosts/brewstead
+          java-version: "26"
+      - name: Verify embedded frozen Brewstead snapshot identity
+        run: python experiment/rsi_v23/holdout/verify_brewstead_snapshot.py
       - name: Render exact observed policies
         run: |
           python - <<'PY'
@@ -50,7 +46,7 @@ jobs:
           set -euo pipefail
           mkdir -p v24-output
           BT="experiment/rsi_v23/holdout/host_snapshot/brewtrack"
-          BS="v24-hosts/brewstead"
+          BS="experiment/rsi_v23/holdout/host_snapshot/brewstead"
           for policy in g3 g2 g1meta; do
             for task in brewtrack-brewmath-precision brewtrack-recipemath-units-water; do
               python experiment/rsi_v23/holdout/run_task.py "$task" "v24-policies/$policy.py" --host-root "$BT" --apparatus-root . --out "v24-output/$policy-$task.json"
