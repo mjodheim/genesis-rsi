@@ -107,6 +107,7 @@ def test_v24_equal_external_meta_budgets_remain_v23_sized():
 
 
 def test_v24_scientific_arms_are_guarded_by_the_committed_freeze():
+    assert search.FREEZE_PATH == ROOT / "V24_FREEZE.json"
     if search.FREEZE_PATH.exists():
         freeze = search.require_freeze(verify_semantic_map=False)
         assert freeze["status"] == "FROZEN_BEFORE_ANY_V24_META_SEARCH"
