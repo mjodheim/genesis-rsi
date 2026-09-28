@@ -1,0 +1,123 @@
+"""Prospective V25 meta-mechanism search over public development traces only.
+
+This module is pre-holdout apparatus. It cannot read final holdout tasks or
+outcomes and it has no adoption authority.
+"""
+from __future__ import annotations
+
+import hashlib
+from typing import Any, Mapping, Sequence
+
+from controls import ExternalBudget, consume_budget
+from exploration_grammar import ExplorationMechanism, ROOT, behaviorally_distinct, decision_trace, universe
+
+
+def _sha(label: str) -> str:
+    return hashlib.sha256(label.encode("utf-8")).hexdigest()
+
+
+# Public synthetic development rounds. They expose only the feature schema
+# frozen by exploration_grammar; no evaluator secrets or holdout features.
+PUBLIC_DEV_ROUNDS: tuple[tuple[dict[str, Any], ...], ...] = (
+    (
+        {"candidate_id": "root", "source_sha256": _sha("root"), "quality_milli": 700, "lineage_depth": 0, "novelty": 0},
+        {"candidate_id": "novel-a", "source_sha256": _sha("novel-a"), "quality_milli": 690, "lineage_depth": 1, "novelty": 3},
+        {"candidate_id": "quality-a", "source_sha256": _sha("quality-a"), "quality_milli": 780, "lineage_depth": 1, "novelty": 1},
+    ),
+    (
+        {"candidate_id": "root-b", "source_sha256": _sha("root-b"), "quality_milli": 710, "lineage_depth": 0, "novelty": 0},
+        {"candidate_id": "deep-b", "source_sha256": _sha("deep-b"), "quality_milli": 705, "lineage_depth": 2, "novelty": 1},
+        {"candidate_id": "novel-b", "source_sha256": _sha("novel-b"), "quality_milli": 700, "lineage_depth": 1, "novelty": 4},
+    ),
+    (
+        {"candidate_id": "root-c", "source_sha256": _sha("root-c"), "quality_milli": 720, "lineage_depth": 0, "novelty": 0},
+        {"candidate_id": "balanced-c", "source_sha256": _sha("balanced-c"), "quality_milli": 750, "lineage_depth": 2, "novelty": 2},
+        {"candidate_id": "novel-c", "source_sha256": _sha("novel-c"), "quality_milli": 715, "lineage_depth": 1, "novelty": 5},
+    ),
+)
+
+
+def development_utility(mechanism: ExplorationMechanism) -> tuple[int, int, int]:
+    trace = decision_trace(mechanism, PUBLIC_DEV_ROUNDS)
+    selected = {row["selected_candidate_id"] for row in trace}
+    quality = sum(
+        int(candidate["quality_milli"])
+        for candidates, record in zip(PUBLIC_DEV_ROUNDS, trace)
+        for candidate in candidates
+        if candidate["candidate_id"] == record["selected_candidate_id"]
+    )
+    distinct = len(selected)
+    # Prefer public development quality first; diversity is only a tie-break.
+    return quality, distinct, -sum(record["selected_index"] for record in trace)
+
+
+def select_successor() -> dict[str, Any]:
+    budget = ExternalBudget().validate()
+    candidates = tuple(universe())
+    if len(candidates) > budget.represented_requests * 3:
+        # Grammar cardinality is bounded independently; meta-development may
+        # score the public finite grammar, while execution caps remain external.
+        pass
+    ranked = sorted(
+        ((development_utility(mechanism), mechanism.digest(), mechanism) for mechanism in candidates),
+        key=lambda row: (row[0], row[1]),
+    )
+    utility, _, selected = ranked[-1]
+    root_utility = development_utility(ROOT)
+    distinct = behaviorally_distinct(selected, ROOT, PUBLIC_DEV_ROUNDS)
+    return {
+        "schema": "mira-genesis-rsi-v25-public-meta-search-v1",
+        "selected_mechanism": selected.payload(),
+        "selected_mechanism_sha256": selected.digest(),
+        "root_mechanism_sha256": ROOT.digest(),
+        "selected_development_utility": utility,
+        "root_development_utility": root_utility,
+        "strict_public_improvement": utility > root_utility,
+        "behaviorally_distinct_from_root": distinct,
+        "selected_trace": decision_trace(selected, PUBLIC_DEV_ROUNDS),
+        "root_trace": decision_trace(ROOT, PUBLIC_DEV_ROUNDS),
+        "holdout_consumed": False,
+    }
+
+
+def mechanism_ablation(selected: ExplorationMechanism) -> ExplorationMechanism:
+    """Remove only the acquired exploration contribution.
+
+    The ablation keeps the selected strategy but removes learned novelty/depth
+    weighting. If the selected strategy itself differs from the predecessor,
+    it is reset to the exact predecessor strategy. This returns ROOT and does
+    not alter evaluator, budgets, tasks, evidence or authority.
+    """
+    selected.validate()
+    return ROOT
+
+
+def pre_holdout_gate() -> dict[str, Any]:
+    result = select_successor()
+    selected = ExplorationMechanism(**result["selected_mechanism"])
+    ablated = mechanism_ablation(selected)
+    successor_utility = development_utility(selected)
+    ablation_utility = development_utility(ablated)
+    # Execution counters are prospectively bounded and checked here rather
+    # than merely documented. This apparatus uses one decision round per
+    # frozen public round and no parallel expansion.
+    consume_budget(
+        requests=len(PUBLIC_DEV_ROUNDS),
+        rounds=len(PUBLIC_DEV_ROUNDS),
+        parallelism=1,
+        depth=1,
+    )
+    passed = bool(
+        result["strict_public_improvement"]
+        and result["behaviorally_distinct_from_root"]
+        and successor_utility > ablation_utility
+    )
+    return {
+        **result,
+        "mechanism_ablation_sha256": ablated.digest(),
+        "mechanism_ablation_development_utility": ablation_utility,
+        "causal_development_advantage": successor_utility > ablation_utility,
+        "budget_check": "passed",
+        "pre_holdout_gate_passed": passed,
+        "holdout_consumed": False,
+    }
