@@ -59,11 +59,20 @@ def test_e0_evaluator_detects_corrupted_work_and_disables_dynamic_range(monkeypa
     assert result["dynamic_range_checks"]["wall_latency_has_resolved_dynamic_range"] is False
 
 
-def test_e0_rejects_over_budget_node_execution(monkeypatch):
+def test_e0_does_not_trust_workload_reported_cost(monkeypatch):
     original = bench._work
-    monkeypatch.setattr(bench, "_work", lambda units: (original(units)[0], units + 1))
+    monkeypatch.setattr(bench, "_work", lambda units: (original(units)[0], 999999))
     row = bench.run_once(8)
-    assert row["capability"] == {"passed": 0, "evaluated": 1}
+    assert row["resources"]["node_executions"] == 8
+    assert row["capability"] == {"passed": 1, "evaluated": 1}
+
+
+def test_e0_records_runtime_backend_identity():
+    row = bench.run_once(8)
+    runtime = row["runtime_identity"]
+    assert runtime["python_build"]
+    assert runtime["openssl_version"]
+    assert runtime["hashlib_sha256"] == "sha256"
 
 
 def test_e0_rejects_duplicate_or_unordered_work_levels():
