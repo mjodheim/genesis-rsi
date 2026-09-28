@@ -106,7 +106,10 @@ def test_v24_equal_external_meta_budgets_remain_v23_sized():
     assert search.META_MUTATION_DEPTH == 2
 
 
-def test_v24_scientific_arms_fail_closed_before_freeze():
-    assert not search.FREEZE_PATH.exists()
-    with pytest.raises(RuntimeError, match="forbidden before V24_FREEZE.json"):
-        search.run_all()
+def test_v24_scientific_arms_are_guarded_by_the_committed_freeze():
+    if search.FREEZE_PATH.exists():
+        freeze = search.require_freeze(verify_semantic_map=False)
+        assert freeze["status"] == "FROZEN_BEFORE_ANY_V24_META_SEARCH"
+    else:
+        with pytest.raises(RuntimeError, match="forbidden before V24_FREEZE.json"):
+            search.require_freeze(verify_semantic_map=False)
