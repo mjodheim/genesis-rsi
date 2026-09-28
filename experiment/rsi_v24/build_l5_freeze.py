@@ -129,7 +129,7 @@ def verify_v23_predecessor() -> tuple[dict[str, Any], dict[str, Any]]:
 def required_files() -> list[Path]:
     paths: list[Path] = []
     for path in sorted(V24.rglob("*")):
-        if path.is_file() and path.name != "V24_FREEZE.json":
+        if (\n            path.is_file()\n            and path.name != "V24_FREEZE.json"\n            and "__pycache__" not in path.parts\n            and path.suffix != ".pyc"\n        ):
             paths.append(path)
     for path in sorted((ROOT / "tests").glob("test_rsi_v24*.py")):
         if path.is_file():
