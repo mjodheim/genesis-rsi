@@ -21,7 +21,7 @@ V23 = ROOT / "experiment" / "rsi_v23"
 FAMILY_PATH = V23 / "l5_policy_family.py"
 SANDBOX_PATH = V23 / "sandbox_policy.py"
 BRIDGE_PATH = HERE / "semantic_quality_bridge.py"
-FREEZE_PATH = ROOT / "V24_FREEZE.json"
+FREEZE_PATH = HERE / "V24_FREEZE.json"
 V23_FREEZE_PATH = V23 / "V23_FREEZE.json"
 V23_NEGATIVE_PATH = ROOT / "results" / "rsi-v23" / "l5-20260924" / "V23_L5_PRE_HOLDOUT_ADJUDICATION.json"
 
