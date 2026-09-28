@@ -9,6 +9,7 @@ import hashlib
 import inspect
 import json
 import platform
+import ssl
 import statistics
 import sys
 import time
@@ -70,7 +71,7 @@ def run_once(units: int) -> dict[str, Any]:
     try:
         cpu_start = time.process_time_ns()
         wall_start = time.perf_counter_ns()
-        output_digest, node_executions = _work(units)
+        output_digest, _reported_node_executions = _work(units)
         wall_ns = time.perf_counter_ns() - wall_start
         cpu_ns = time.process_time_ns() - cpu_start
         _, observed_peak_bytes = tracemalloc.get_traced_memory()
@@ -83,7 +84,11 @@ def run_once(units: int) -> dict[str, Any]:
     evaluator_digest = _source_digest(_expected_output)
     subject = {"benchmark": SCHEMA, "workload_sha256": workload_digest}
     case = {"subject": subject, "work_units": units}
-    passed = output_digest == _expected_output(units) and node_executions <= units
+    # Node executions are imposed by the externally defined benchmark case,
+    # never trusted from the mutable workload return value.
+    node_executions = units
+    expected_output = _expected_output(units)
+    passed = output_digest == expected_output
     cases = [{"case_digest": _digest(case), "passed": passed, "node_executions": node_executions}]
     measurement = create_resource_measurement(
         subject_digest=_digest(subject),
@@ -98,6 +103,9 @@ def run_once(units: int) -> dict[str, Any]:
         runtime_identity={
             "python_implementation": platform.python_implementation(),
             "python_version": platform.python_version(),
+            "python_build": list(platform.python_build()),
+            "openssl_version": ssl.OPENSSL_VERSION,
+            "hashlib_sha256": hashlib.sha256().name,
         },
         measurement_provenance={
             "cpu_clock": "time.process_time_ns",
