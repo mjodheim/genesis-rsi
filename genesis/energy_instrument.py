@@ -60,3 +60,18 @@ def direct_energy_observation(
         interval_end=interval_end,
         baseline_treatment=baseline_treatment,
     )
+
+
+def validate_energy_provenance(provenance: Mapping[str, Any]) -> None:
+    """Fail closed unless direct-instrument provenance is complete."""
+    if not isinstance(provenance, Mapping) or not provenance:
+        raise EnergyInstrumentError("real instrument identity and provenance are required")
+    required = ("measurement_method", "interval_start", "interval_end", "baseline_treatment")
+    if any(
+        not isinstance(provenance.get(name), str)
+        or not str(provenance.get(name)).strip()
+        for name in required
+    ):
+        raise EnergyInstrumentError(
+            "method, interval boundaries and baseline treatment are required"
+        )
