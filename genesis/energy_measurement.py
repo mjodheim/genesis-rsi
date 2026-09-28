@@ -7,9 +7,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from typing import Any, Mapping, Sequence
 
 RESOURCE_SCHEMA = "genesis-energy-resource-measurement-v1"
+ENERGY_PROVENANCE_FIELDS = (
+    "measurement_method", "interval_start", "interval_end", "baseline_treatment",
+)
 
 
 class EnergyMeasurementError(ValueError):
@@ -42,8 +46,21 @@ def create_resource_measurement(
         raise EnergyMeasurementError("peak memory cannot be negative")
     if (energy_joules is None) != (energy_instrument is None):
         raise EnergyMeasurementError("joules require an identified real energy instrument")
-    if energy_joules is not None and (energy_joules < 0 or not isinstance(energy_instrument, Mapping) or not energy_instrument):
-        raise EnergyMeasurementError("valid energy instrument provenance and non-negative joules are required")
+    if energy_joules is not None:
+        if isinstance(energy_joules, bool) or not isinstance(energy_joules, (int, float)):
+            raise EnergyMeasurementError("joules must be a direct numeric observation")
+        if not math.isfinite(float(energy_joules)) or energy_joules < 0:
+            raise EnergyMeasurementError("joules must be finite and non-negative")
+        if not isinstance(energy_instrument, Mapping) or not energy_instrument:
+            raise EnergyMeasurementError("valid energy instrument provenance is required")
+        if any(
+            not isinstance(energy_instrument.get(field), str)
+            or not str(energy_instrument.get(field)).strip()
+            for field in ENERGY_PROVENANCE_FIELDS
+        ):
+            raise EnergyMeasurementError(
+                "energy instrument provenance requires method, interval boundaries and baseline treatment"
+            )
 
     normalized = []
     seen = set()
@@ -52,10 +69,13 @@ def create_resource_measurement(
         if not case_digest or case_digest in seen:
             raise EnergyMeasurementError("case results require unique content identities")
         seen.add(case_digest)
-        calls = int(raw.get("node_executions", -1))
-        if calls < 0:
-            raise EnergyMeasurementError("node executions cannot be negative")
-        normalized.append({"case_digest": case_digest, "passed": bool(raw.get("passed", False)), "node_executions": calls})
+        passed = raw.get("passed")
+        if not isinstance(passed, bool):
+            raise EnergyMeasurementError("case passed must be a Boolean")
+        calls = raw.get("node_executions")
+        if isinstance(calls, bool) or not isinstance(calls, int) or calls < 0:
+            raise EnergyMeasurementError("node executions must be a non-negative integer")
+        normalized.append({"case_digest": case_digest, "passed": passed, "node_executions": calls})
     normalized.sort(key=lambda row: row["case_digest"])
 
     payload = {
