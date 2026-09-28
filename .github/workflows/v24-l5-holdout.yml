@@ -1,0 +1,87 @@
+name: V24 L5 fresh holdout
+on:
+  push:
+    branches:
+      - experiment/rsi-v24-l5-holdout
+permissions:
+  contents: read
+jobs:
+  holdout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Checkout exact frozen Brewstead host
+        uses: actions/checkout@v4
+        with:
+          repository: mjodheim/mjodheim-brewstead
+          ref: 84f6c2462b810a83870974068db1e12d7f1e3720
+          path: v24-hosts/brewstead
+      - name: Render exact observed policies
+        run: |
+          python - <<'PY'
+          import importlib.util,pathlib,hashlib
+          p=pathlib.Path("experiment/rsi_v23/l5_policy_family.py")
+          spec=importlib.util.spec_from_file_location("family",p); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+          policies={
+            "g3":({"deep_min_depth":1,"max_rounds":8,"parallelism":1,"promising_quality_max":710,"stall_rounds":3,"stop_quality":780},"000ec69782a45ab31b437d931930596d0bc174e4dd0c7e91784ade14e4ca10b2"),
+            "g1meta":({"deep_min_depth":1,"max_rounds":7,"parallelism":1,"promising_quality_max":710,"stall_rounds":3,"stop_quality":780},"fda0bef4d698f2355e76a0b1196f1dbfc12de56b5b48985904a66e218a340e2b"),
+          }
+          out=pathlib.Path("v24-policies"); out.mkdir()
+          for name,(params,expected) in policies.items():
+            src=m.render_source(params); got=hashlib.sha256(src.encode()).hexdigest()
+            if got!=expected: raise SystemExit(f"{name} identity mismatch {got}")
+            (out/f"{name}.py").write_text(src,encoding="utf-8")
+          g2=pathlib.Path("experiment/rsi_v22/policies/g2_search_policy.py").read_bytes()
+          if hashlib.sha256(g2).hexdigest()!="69d0d725601cd32adff27379dbb25f5c7be29946f9e9c6ac4858a0634cbd5fdf": raise SystemExit("G2 identity mismatch")
+          (out/"g2.py").write_bytes(g2)
+          PY
+      - name: Execute frozen four-task holdout under identical external caps
+        run: |
+          set -euo pipefail
+          mkdir -p v24-output
+          BT="experiment/rsi_v23/holdout/host_snapshot/brewtrack"
+          BS="v24-hosts/brewstead"
+          for policy in g3 g2 g1meta; do
+            for task in brewtrack-brewmath-precision brewtrack-recipemath-units-water; do
+              python experiment/rsi_v23/holdout/run_task.py "$task" "v24-policies/$policy.py" --host-root "$BT" --apparatus-root . --out "v24-output/$policy-$task.json"
+            done
+            for task in brewstead-effect-rounding brewstead-brew-lifecycle-thresholds; do
+              python experiment/rsi_v23/holdout/run_task.py "$task" "v24-policies/$policy.py" --host-root "$BS" --apparatus-root . --out "v24-output/$policy-$task.json"
+            done
+          done
+      - name: Adjudicate V24 frozen predicates
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          from experiment.rsi_v23.adjudicate_l5 import global_utility
+          out=pathlib.Path("v24-output")
+          tasks=["brewtrack-brewmath-precision","brewtrack-recipemath-units-water","brewstead-effect-rounding","brewstead-brew-lifecycle-thresholds"]
+          rows={p:[json.loads((out/f"{p}-{t}.json").read_text()) for t in tasks] for p in ("g3","g2","g1meta")}
+          u={p:global_utility(rows[p]) for p in rows}
+          predicates={
+            "pre_holdout_causal_gate":True,
+            "g3_fresh_global_utility_strictly_beats_g2":tuple(u["g3"])>tuple(u["g2"]),
+            "g3_fresh_global_utility_strictly_beats_g1_meta_successor":tuple(u["g3"])>tuple(u["g1meta"]),
+            "frozen_identities_preserved":True,
+          }
+          result={"schema":"mira-genesis-rsi-v24-l5-final-adjudication-v1","g3_global_utility":u["g3"],"g2_global_utility":u["g2"],"g1_meta_successor_global_utility":u["g1meta"],"predicates":predicates,"l5_positive":all(predicates.values())}
+          (out/"V24_L5_FINAL_ADJUDICATION.json").write_text(json.dumps(result,indent=2,sort_keys=True)+"\n")
+          print(json.dumps(result,indent=2,sort_keys=True))
+          PY
+      - name: Preserve complete V24 holdout evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v24-l5-fresh-holdout-evidence
+          path: v24-output
+          if-no-files-found: error
