@@ -1,0 +1,48 @@
+name: V24 L5 prospective freeze build
+
+on:
+  push:
+    branches:
+      - research/rsi-v24-l5-freeze
+    paths:
+      - experiment/rsi_v24/FREEZE_TRIGGER
+
+permissions:
+  contents: read
+
+jobs:
+  build-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout exact apparatus commit
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install project and development dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Run V24 structural and predecessor regressions
+        run: >-
+          python -m pytest -q
+          tests/test_rsi_v24_l5_apparatus.py
+          tests/test_rsi_v24_freeze_builder.py
+
+      - name: Build and validate the complete prospective freeze
+        run: >-
+          python experiment/rsi_v24/build_l5_freeze.py
+          --apparatus-commit "$GITHUB_SHA"
+          --out V24_FREEZE.json
+
+      - name: Upload prospective freeze record
+        uses: actions/upload-artifact@v4
+        with:
+          name: v24-l5-freeze-candidate
+          path: V24_FREEZE.json
+          if-no-files-found: error
+          retention-days: 30
