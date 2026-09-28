@@ -54,3 +54,9 @@ def test_v24_freeze_builder_forbids_result_contamination_before_freeze():
     assert "results/rsi-v24" in rels
     assert "experiment/rsi_v24/V24_META_SEARCH_RESULT.json" in rels
     assert "experiment/rsi_v24/G3_SELECTED.py" in rels
+
+
+def test_v24_freeze_builder_excludes_runtime_bytecode_artifacts():
+    rels = {str(path.relative_to(ROOT)) for path in builder.required_files()}
+    assert all("__pycache__" not in rel for rel in rels)
+    assert all(not rel.endswith(".pyc") for rel in rels)
