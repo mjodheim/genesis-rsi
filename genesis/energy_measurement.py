@@ -13,9 +13,6 @@ from typing import Any, Mapping, Sequence
 from genesis.energy_instrument import EnergyInstrumentError, validate_energy_provenance
 
 RESOURCE_SCHEMA = "genesis-energy-resource-measurement-v1"
-ENERGY_PROVENANCE_FIELDS = (
-    "measurement_method", "interval_start", "interval_end", "baseline_treatment",
-)
 
 
 class EnergyMeasurementError(ValueError):
@@ -53,16 +50,10 @@ def create_resource_measurement(
             raise EnergyMeasurementError("joules must be a direct numeric observation")
         if not math.isfinite(float(energy_joules)) or energy_joules < 0:
             raise EnergyMeasurementError("joules must be finite and non-negative")
-        if not isinstance(energy_instrument, Mapping) or not energy_instrument:
-            raise EnergyMeasurementError("valid energy instrument provenance is required")
-        if any(
-            not isinstance(energy_instrument.get(field), str)
-            or not str(energy_instrument.get(field)).strip()
-            for field in ENERGY_PROVENANCE_FIELDS
-        ):
-            raise EnergyMeasurementError(
-                "energy instrument provenance requires method, interval boundaries and baseline treatment"
-            )
+        try:
+            validate_energy_provenance(energy_instrument)
+        except EnergyInstrumentError as exc:
+            raise EnergyMeasurementError(f"energy instrument provenance invalid: {exc}") from exc
 
     normalized = []
     seen = set()
