@@ -40,3 +40,28 @@ def test_e0_repeated_benchmark_records_separate_resource_dimensions():
         assert "wall_latency_ns_median" in row["summary"]
         for sample in row["samples"]:
             assert sample["resources"]["energy_joules"] is None
+
+
+def test_e0_evaluator_detects_corrupted_work(monkeypatch):
+    monkeypatch.setattr(bench, "_work", lambda units: ("00" * 32, units))
+    row = bench.run_once(8)
+    assert row["capability"] == {"passed": 0, "evaluated": 1}
+
+
+def test_e0_rejects_duplicate_or_unordered_work_levels():
+    import pytest
+    with pytest.raises(ValueError, match="strictly increasing"):
+        bench.run_benchmark(work_units=(8, 8), repeats=2)
+    with pytest.raises(ValueError, match="strictly increasing"):
+        bench.run_benchmark(work_units=(64, 8), repeats=2)
+
+
+def test_e0_preserves_preexisting_tracemalloc_session():
+    import tracemalloc
+    tracemalloc.start()
+    try:
+        row = bench.run_once(8)
+        assert tracemalloc.is_tracing()
+        assert row["resources"]["peak_memory_bytes"] is None
+    finally:
+        tracemalloc.stop()

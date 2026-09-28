@@ -33,21 +33,33 @@ def _work(units: int) -> tuple[str, int]:
     return state.hex(), units
 
 
+def _expected_output(units: int) -> str:
+    expected = b"genesis-e0"
+    for index in range(units):
+        expected = hashlib.sha256(expected + index.to_bytes(8, "big")).digest()
+    return expected.hex()
+
+
 def run_once(units: int) -> dict[str, Any]:
     if isinstance(units, bool) or not isinstance(units, int) or units <= 0:
         raise ValueError("work units must be a positive integer")
 
-    tracemalloc.start()
+    tracing_was_active = tracemalloc.is_tracing()
+    if not tracing_was_active:
+        tracemalloc.start()
     cpu_start = time.process_time_ns()
     wall_start = time.perf_counter_ns()
     output_digest, node_executions = _work(units)
     wall_ns = time.perf_counter_ns() - wall_start
     cpu_ns = time.process_time_ns() - cpu_start
-    _, peak_bytes = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
+    _, observed_peak_bytes = tracemalloc.get_traced_memory()
+    if not tracing_was_active:
+        tracemalloc.stop()
+    peak_bytes = None if tracing_was_active else observed_peak_bytes
 
     subject = {"benchmark": SCHEMA, "work_units": units}
-    cases = [{"case_digest": _digest(subject), "passed": True, "node_executions": node_executions}]
+    passed = output_digest == _expected_output(units)
+    cases = [{"case_digest": _digest(subject), "passed": passed, "node_executions": node_executions}]
     return create_resource_measurement(
         subject_digest=_digest(subject),
         evaluator_digest=_digest({"evaluator": "exact-output-completion-v1"}),
@@ -65,7 +77,7 @@ def run_once(units: int) -> dict[str, Any]:
         measurement_provenance={
             "cpu_clock": "time.process_time_ns",
             "wall_clock": "time.perf_counter_ns",
-            "memory": "tracemalloc.get_traced_memory",
+            "memory": ("tracemalloc.get_traced_memory" if not tracing_was_active else "unavailable-preexisting-tracer-preserved"),
         },
         case_results=cases,
         cpu_process_time_ns=cpu_ns,
@@ -79,6 +91,8 @@ def run_benchmark(
 ) -> dict[str, Any]:
     if repeats < 2:
         raise ValueError("at least two repeats are required to characterize variance")
+    if len(work_units) < 2 or any(a >= b for a, b in zip(work_units, work_units[1:])):
+        raise ValueError("work units must contain at least two strictly increasing levels")
     rows = []
     for units in work_units:
         samples = [run_once(units) for _ in range(repeats)]
@@ -97,11 +111,12 @@ def run_benchmark(
             },
         })
 
-    cpu_medians = [row["summary"]["cpu_process_time_ns_median"] for row in rows]
-    wall_medians = [row["summary"]["wall_latency_ns_median"] for row in rows]
+    cpu_separated = all(a["summary"]["cpu_process_time_ns_max"] < b["summary"]["cpu_process_time_ns_min"] for a, b in zip(rows, rows[1:]))
+    wall_separated = all(a["summary"]["wall_latency_ns_max"] < b["summary"]["wall_latency_ns_min"] for a, b in zip(rows, rows[1:]))
     dynamic = {
-        "cpu_proxy_has_dynamic_range": max(cpu_medians) > min(cpu_medians),
-        "wall_latency_has_dynamic_range": max(wall_medians) > min(wall_medians),
+        "cpu_proxy_has_resolved_dynamic_range": cpu_separated,
+        "wall_latency_has_resolved_dynamic_range": wall_separated,
+        "criterion": "all adjacent workload sample ranges are strictly non-overlapping",
     }
     return {
         "schema": SCHEMA,
