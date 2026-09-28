@@ -1,0 +1,25 @@
+name: V24 L5 scientific meta-search execution
+on:
+  push:
+    branches:
+      - experiment/rsi-v24-l5-run
+permissions:
+  contents: read
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Execute frozen V24 public meta-search arms
+        run: |
+          mkdir -p v24-output
+          python experiment/rsi_v24/l5_meta_search.py | tee v24-output/V24_META_SEARCH_RESULT.json
+      - name: Preserve raw scientific result
+        uses: actions/upload-artifact@v4
+        with:
+          name: v24-l5-meta-search-result
+          path: v24-output/V24_META_SEARCH_RESULT.json
+          if-no-files-found: error
