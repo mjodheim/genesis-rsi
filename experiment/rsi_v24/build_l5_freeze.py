@@ -309,8 +309,7 @@ def main() -> None:
 
     result = build(args.apparatus_commit)
     args.out.write_text(
-        json.dumps(result, indent=2, sort_keys=True) + "
-",
+        json.dumps(result, indent=2, sort_keys=True) + "\\n",
         encoding="utf-8",
     )
     print(json.dumps(result, indent=2, sort_keys=True))
