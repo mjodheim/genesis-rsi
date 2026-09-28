@@ -8,8 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-from typing import Any, Mapping, Sequence
-
+from typing import Any, Mapping, Sequence\n\nfrom genesis.energy_instrument import EnergyInstrumentError, validate_energy_provenance\n
 RESOURCE_SCHEMA = "genesis-energy-resource-measurement-v1"
 ENERGY_PROVENANCE_FIELDS = (
     "measurement_method", "interval_start", "interval_end", "baseline_treatment",
