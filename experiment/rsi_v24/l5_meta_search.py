@@ -22,6 +22,8 @@ FAMILY_PATH = V23 / "l5_policy_family.py"
 SANDBOX_PATH = V23 / "sandbox_policy.py"
 BRIDGE_PATH = HERE / "semantic_quality_bridge.py"
 FREEZE_PATH = HERE / "V24_FREEZE.json"
+V23_FREEZE_PATH = V23 / "V23_FREEZE.json"
+V23_NEGATIVE_PATH = ROOT / "results" / "rsi-v23" / "l5-20260924" / "V23_L5_PRE_HOLDOUT_ADJUDICATION.json"
 
 META_REQUEST_BUDGET = 9
 META_ROUND_BUDGET = 8
@@ -45,6 +47,106 @@ bridge = _load("v24_l5_semantic_bridge", BRIDGE_PATH)
 
 def _sha(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _canonical_sha256(value: Any) -> str:
+    raw = json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
+
+
+def require_freeze(*, verify_semantic_map: bool = True) -> dict[str, Any]:
+    """Fail closed unless the committed V24 freeze matches this apparatus."""
+    if not FREEZE_PATH.is_file():
+        raise RuntimeError(
+            "V24 scientific meta-search is forbidden before V24_FREEZE.json exists"
+        )
+
+    freeze = json.loads(FREEZE_PATH.read_text(encoding="utf-8"))
+    if freeze.get("schema") != "mira-genesis-rsi-v24-l5-freeze-v1":
+        raise RuntimeError("invalid V24 freeze schema")
+    if freeze.get("status") != "FROZEN_BEFORE_ANY_V24_META_SEARCH":
+        raise RuntimeError("V24 freeze status does not authorize meta-search")
+
+    if freeze.get("g1_source_sha256") != _sha(controller_source("g1_meta")):
+        raise RuntimeError("frozen G1 identity does not match current G1")
+    if freeze.get("g2_source_sha256") != _sha(controller_source("g2_meta")):
+        raise RuntimeError("frozen G2 identity does not match current G2")
+    if freeze.get("g2_ablation_source_sha256") != _sha(g2_ablation_source()):
+        raise RuntimeError("frozen G2 ablation identity does not match current ablation")
+
+    predecessor = freeze.get("v23_predecessor", {})
+    if predecessor.get("fresh_holdout_consumed") is not False:
+        raise RuntimeError("V23 predecessor no longer certifies a fresh holdout")
+    if predecessor.get("eligible_for_fresh_holdout") is not False:
+        raise RuntimeError("V23 predecessor eligibility changed")
+
+    files = dict(freeze.get("files", {}))
+    critical = (
+        "experiment/rsi_v24/V24_L5_PREREGISTRATION.md",
+        "experiment/rsi_v24/build_l5_freeze.py",
+        "experiment/rsi_v24/l5_meta_search.py",
+        "experiment/rsi_v24/semantic_quality_bridge.py",
+        "experiment/rsi_v23/V23_FREEZE.json",
+        "results/rsi-v23/l5-20260924/V23_L5_PRE_HOLDOUT_ADJUDICATION.json",
+    )
+    for rel in critical:
+        expected = files.get(rel)
+        path = ROOT / rel
+        if not expected or not path.is_file():
+            raise RuntimeError(f"frozen critical file missing from V24 freeze: {rel}")
+        got = _file_sha256(path)
+        if got != expected:
+            raise RuntimeError(f"frozen critical file changed after V24 freeze: {rel}")
+
+    if _file_sha256(V23_NEGATIVE_PATH) != predecessor.get(
+        "negative_adjudication_sha256"
+    ):
+        raise RuntimeError("preserved V23 negative adjudication identity changed")
+
+    if verify_semantic_map:
+        rows = bridge.bridged_universe()
+        utility_to_quality: dict[tuple[int, ...], int] = {}
+        candidate_rows = []
+        for row in rows:
+            utility = tuple(int(x) for x in row["development_utility"])
+            quality = int(row["quality_milli"])
+            prior = utility_to_quality.get(utility)
+            if prior is not None and prior != quality:
+                raise RuntimeError("semantic bridge is not a function of utility")
+            utility_to_quality[utility] = quality
+            candidate_rows.append(
+                {
+                    "params_digest": str(row["params_digest"]),
+                    "source_sha256": str(row["source_sha256"]),
+                    "mutation_depth": int(row["mutation_depth"]),
+                    "development_utility": list(utility),
+                    "quality_milli": quality,
+                }
+            )
+
+        map_rows = [
+            {
+                "development_utility": list(utility),
+                "quality_milli": quality,
+            }
+            for utility, quality in sorted(utility_to_quality.items())
+        ]
+        bridge_record = dict(freeze.get("bridge", {}))
+        if _canonical_sha256(map_rows) != bridge_record.get(
+            "semantic_quality_map_sha256"
+        ):
+            raise RuntimeError("semantic quality map differs from V24 freeze")
+        candidate_rows.sort(key=lambda row: row["params_digest"])
+        if _canonical_sha256(candidate_rows) != bridge_record.get(
+            "bridged_candidate_manifest_sha256"
+        ):
+            raise RuntimeError("bridged candidate manifest differs from V24 freeze")
+
+    return freeze
 
 
 def g2_ablation_source() -> str:
@@ -322,8 +424,7 @@ def run_arm(arm: str) -> dict[str, Any]:
 
 
 def run_all() -> dict[str, Any]:
-    if not FREEZE_PATH.is_file():
-        raise RuntimeError("V24 scientific meta-search is forbidden before V24_FREEZE.json exists")
+    require_freeze(verify_semantic_map=True)
     arms = {arm: run_arm(arm) for arm in ("g2_meta", "g1_meta", "g2_ablation", "no_meta")}
     a = arms["g2_meta"]
     b = arms["g1_meta"]
