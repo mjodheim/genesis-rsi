@@ -1,22 +1,31 @@
-"""Bounded V25 exploration-mechanism grammar.
+"""Bounded V25 exploration-mechanism grammar and auditable decision traces.
 
-This module deliberately mutates only parent-selection/exploration choices.
-Evaluator identity, task populations, external budgets, trust root, evidence
-ledger and adoption authority remain outside this grammar.
+Only parent-selection/exploration choices are mutable here. Evaluators, task
+populations, budgets, trust root, evidence ledger, credentials and adoption
+authority remain external to this module.
 """
 from __future__ import annotations
 
 import hashlib
 import json
 from dataclasses import dataclass
-from typing import Iterable, Mapping, Sequence
+from typing import Any, Iterable, Mapping, Sequence
 
 STRATEGIES = ("fifo", "quality_first", "depth_first")
 NOVELTY_WEIGHTS = (0, 1, 2)
 DEPTH_WEIGHTS = (0, 1, 2)
+_REQUIRED_FEATURES = ("candidate_id", "source_sha256", "quality_milli", "lineage_depth", "novelty")
+
 
 class V25GrammarError(ValueError):
     pass
+
+
+def _digest(value: Any) -> str:
+    return hashlib.sha256(
+        json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+
 
 @dataclass(frozen=True)
 class ExplorationMechanism:
@@ -33,40 +42,116 @@ class ExplorationMechanism:
             raise V25GrammarError("depth_weight outside frozen grammar")
         return self
 
-    def digest(self) -> str:
+    def payload(self) -> dict[str, Any]:
         self.validate()
-        payload={"depth_weight":self.depth_weight,"novelty_weight":self.novelty_weight,"strategy":self.strategy}
-        return hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(",",":")).encode()).hexdigest()
+        return {
+            "depth_weight": self.depth_weight,
+            "novelty_weight": self.novelty_weight,
+            "strategy": self.strategy,
+        }
+
+    def digest(self) -> str:
+        return _digest(self.payload())
+
 
 ROOT = ExplorationMechanism("fifo", 0, 0)
 
+
 def universe() -> tuple[ExplorationMechanism, ...]:
     return tuple(
-        ExplorationMechanism(s,n,d)
-        for s in STRATEGIES for n in NOVELTY_WEIGHTS for d in DEPTH_WEIGHTS
+        ExplorationMechanism(strategy, novelty, depth)
+        for strategy in STRATEGIES
+        for novelty in NOVELTY_WEIGHTS
+        for depth in DEPTH_WEIGHTS
     )
 
-def choose_parent(mechanism: ExplorationMechanism, candidates: Sequence[Mapping[str, int]]) -> int:
+
+def _candidate(row: Mapping[str, Any]) -> dict[str, Any]:
+    if set(row) != set(_REQUIRED_FEATURES):
+        raise V25GrammarError("candidate view must contain only frozen observable features")
+    candidate = {
+        "candidate_id": str(row["candidate_id"]),
+        "source_sha256": str(row["source_sha256"]),
+        "quality_milli": int(row["quality_milli"]),
+        "lineage_depth": int(row["lineage_depth"]),
+        "novelty": int(row["novelty"]),
+    }
+    if not candidate["candidate_id"] or len(candidate["source_sha256"]) != 64:
+        raise V25GrammarError("invalid candidate identity")
+    return candidate
+
+
+def _key(mechanism: ExplorationMechanism, index: int, row: Mapping[str, Any]) -> tuple[int, int, int, int]:
+    quality = int(row["quality_milli"])
+    depth = int(row["lineage_depth"])
+    novelty = int(row["novelty"])
+    if mechanism.strategy == "fifo":
+        primary = -index
+    elif mechanism.strategy == "quality_first":
+        primary = quality
+    else:
+        primary = depth
+    return (
+        primary,
+        mechanism.novelty_weight * novelty,
+        mechanism.depth_weight * depth,
+        -index,
+    )
+
+
+def decision_record(
+    mechanism: ExplorationMechanism,
+    candidates: Sequence[Mapping[str, Any]],
+    *,
+    round_index: int,
+) -> dict[str, Any]:
     mechanism.validate()
-    if not candidates:
+    if isinstance(round_index, bool) or not isinstance(round_index, int) or round_index < 0:
+        raise V25GrammarError("round_index must be a non-negative integer")
+    frozen = tuple(_candidate(row) for row in candidates)
+    if not frozen:
         raise V25GrammarError("cannot select from empty candidates")
-    def key(item: tuple[int, Mapping[str,int]]) -> tuple[int,int,int,int]:
-        i,row=item
-        quality=int(row["quality_milli"])
-        depth=int(row["lineage_depth"])
-        novelty=int(row["novelty"])
-        if mechanism.strategy=="fifo":
-            primary=-i
-        elif mechanism.strategy=="quality_first":
-            primary=quality
-        else:
-            primary=depth
-        return (primary, mechanism.novelty_weight*novelty, mechanism.depth_weight*depth, -i)
-    return max(enumerate(candidates), key=key)[0]
+    ids = [row["candidate_id"] for row in frozen]
+    if len(ids) != len(set(ids)):
+        raise V25GrammarError("candidate identities must be unique")
+    selected_index = max(range(len(frozen)), key=lambda i: _key(mechanism, i, frozen[i]))
+    selected = frozen[selected_index]
+    return {
+        "schema": "mira-genesis-rsi-v25-decision-trace-v1",
+        "round_index": round_index,
+        "mechanism": mechanism.payload(),
+        "mechanism_sha256": mechanism.digest(),
+        "observable_features": list(_REQUIRED_FEATURES),
+        "tie_break": "stable-input-order-last-key=-index",
+        "candidate_set_sha256": _digest(frozen),
+        "candidate_ids": ids,
+        "candidate_source_sha256": [row["source_sha256"] for row in frozen],
+        "selected_index": selected_index,
+        "selected_candidate_id": selected["candidate_id"],
+        "selected_source_sha256": selected["source_sha256"],
+    }
 
-def decision_trace(mechanism: ExplorationMechanism, rounds: Iterable[Sequence[Mapping[str,int]]]) -> tuple[int,...]:
-    return tuple(choose_parent(mechanism, candidates) for candidates in rounds)
 
-def behaviorally_distinct(a: ExplorationMechanism, b: ExplorationMechanism, rounds: Iterable[Sequence[Mapping[str,int]]]) -> bool:
-    frozen=tuple(tuple(dict(row) for row in r) for r in rounds)
-    return decision_trace(a,frozen) != decision_trace(b,frozen)
+def choose_parent(mechanism: ExplorationMechanism, candidates: Sequence[Mapping[str, Any]]) -> int:
+    return int(decision_record(mechanism, candidates, round_index=0)["selected_index"])
+
+
+def decision_trace(
+    mechanism: ExplorationMechanism,
+    rounds: Iterable[Sequence[Mapping[str, Any]]],
+) -> tuple[dict[str, Any], ...]:
+    return tuple(
+        decision_record(mechanism, candidates, round_index=index)
+        for index, candidates in enumerate(rounds)
+    )
+
+
+def behaviorally_distinct(
+    a: ExplorationMechanism,
+    b: ExplorationMechanism,
+    rounds: Iterable[Sequence[Mapping[str, Any]]],
+) -> bool:
+    frozen = tuple(tuple(dict(row) for row in candidates) for candidates in rounds)
+    a_selected = tuple(row["selected_candidate_id"] for row in decision_trace(a, frozen))
+    b_selected = tuple(row["selected_candidate_id"] for row in decision_trace(b, frozen))
+    return a_selected != b_selected
