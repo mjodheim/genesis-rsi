@@ -1,0 +1,39 @@
+name: V24 L5 retention gate
+on:
+  push:
+    branches:
+      - experiment/rsi-v24-l5-run
+permissions:
+  contents: read
+jobs:
+  retention:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Render observed G2-meta successor and verify identity
+        run: |
+          python - <<'PY'
+          import importlib.util, pathlib, hashlib
+          p=pathlib.Path("experiment/rsi_v23/l5_policy_family.py")
+          spec=importlib.util.spec_from_file_location("family",p); m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+          params={"deep_min_depth":1,"max_rounds":8,"parallelism":1,"promising_quality_max":710,"stall_rounds":3,"stop_quality":780}
+          src=m.render_source(params)
+          got=hashlib.sha256(src.encode()).hexdigest()
+          expected="000ec69782a45ab31b437d931930596d0bc174e4dd0c7e91784ade14e4ca10b2"
+          if got != expected: raise SystemExit(f"observed successor identity mismatch: {got}")
+          pathlib.Path("v24-g3.py").write_text(src,encoding="utf-8")
+          PY
+      - name: Execute frozen zero-tolerance L4 retention gate
+        run: |
+          mkdir -p v24-output
+          python experiment/rsi_v23/l4_retention_gate.py v24-g3.py --out v24-output/V24_L4_RETENTION.json
+      - name: Preserve retention result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v24-l4-retention-result
+          path: v24-output/V24_L4_RETENTION.json
+          if-no-files-found: error
