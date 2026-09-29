@@ -33,7 +33,7 @@ def test_e0_single_run_keeps_energy_unavailable_and_binds_identity():
     assert len(row["output_binding_digest"]) == 64
     assert row["hardware_identity"]["cpu_model"]
     assert row["measurement_provenance"]["node_executions_semantics"] == (
-        "externally_imposed_work_budget_not_observed_execution_count"
+        "observed_sha256_primitive_calls"
     )
     assert row["measurement_provenance"]["oracle_timing"] == "precomputed_before_measured_interval"
     assert row["measurement_provenance"]["case_identity_subject_independent"] is True
@@ -55,7 +55,7 @@ def test_e0_repeated_benchmark_records_separate_resource_dimensions():
 
 
 def test_e0_evaluator_detects_corrupted_work_and_disables_dynamic_range(monkeypatch):
-    monkeypatch.setattr(bench, "_work", lambda units: ("00" * 32, units))
+    monkeypatch.setattr(bench, "_work", lambda units, **kwargs: "00" * 32)
     row = bench.run_once(8)
     assert row["capability"] == {"passed": 0, "evaluated": 1}
     result = bench.run_benchmark(work_units=(8, 64), repeats=2)
@@ -64,9 +64,7 @@ def test_e0_evaluator_detects_corrupted_work_and_disables_dynamic_range(monkeypa
     assert result["dynamic_range_checks"]["wall_latency_has_resolved_dynamic_range"] is False
 
 
-def test_e0_does_not_trust_workload_reported_cost(monkeypatch):
-    original = bench._work
-    monkeypatch.setattr(bench, "_work", lambda units: (original(units)[0], 999999))
+def test_e0_observes_primitive_calls_outside_workload_return_value():
     row = bench.run_once(8)
     assert row["resources"]["node_executions"] == 8
     assert row["capability"] == {"passed": 1, "evaluated": 1}
@@ -103,7 +101,7 @@ def test_e0_stops_own_tracer_when_workload_raises(monkeypatch):
     if tracemalloc.is_tracing():
         tracemalloc.stop()
 
-    def boom(units):
+    def boom(units, **kwargs):
         raise RuntimeError("boom")
 
     monkeypatch.setattr(bench, "_work", boom)
@@ -134,9 +132,9 @@ def test_e0_oracle_is_computed_before_measured_work(monkeypatch):
         events.append("oracle")
         return original_expected(units)
 
-    def work(units):
+    def work(units, **kwargs):
         events.append("work")
-        return original_work(units)
+        return original_work(units, **kwargs)
 
     monkeypatch.setattr(bench, "_expected_output", expected)
     monkeypatch.setattr(bench, "_work", work)
