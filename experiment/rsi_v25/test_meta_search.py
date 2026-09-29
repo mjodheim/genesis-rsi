@@ -4,7 +4,7 @@ from __future__ import annotations
 from meta_search import (
     PUBLIC_DEV_ROUNDS,
     development_utility,
-    mechanism_ablation,
+    mechanism_ablations,
     pre_holdout_gate,
     select_successor,
 )
@@ -26,10 +26,21 @@ def test_selected_mechanism_is_behaviorally_distinct_and_publicly_better():
     assert tuple(result["selected_development_utility"]) > tuple(result["root_development_utility"])
 
 
-def test_ablation_removes_only_acquired_mechanism_back_to_frozen_root():
+def test_ablations_remove_one_acquired_component_at_a_time():
     selected = ExplorationMechanism(**select_successor()["selected_mechanism"])
-    assert mechanism_ablation(selected) == ROOT
-    assert development_utility(mechanism_ablation(selected)) == development_utility(ROOT)
+    ablations = mechanism_ablations(selected)
+    assert ablations
+    for ablated in ablations:
+        changed = sum(
+            (
+                ablated.strategy != selected.strategy,
+                ablated.novelty_weight != selected.novelty_weight,
+                ablated.depth_weight != selected.depth_weight,
+            )
+        )
+        assert changed == 1
+        assert ablated != selected
+    assert all(development_utility(selected) > development_utility(ablated) for ablated in ablations)
 
 
 def test_pre_holdout_gate_is_causal_and_does_not_consume_holdout():
