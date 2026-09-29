@@ -52,12 +52,14 @@ def development_utility(mechanism: ExplorationMechanism) -> tuple[int, int, int]
 
 
 def select_successor() -> dict[str, Any]:
-    budget = ExternalBudget().validate()
+    ExternalBudget().validate()
     candidates = tuple(universe())
-    if len(candidates) > budget.represented_requests * 3:
-        # Grammar cardinality is bounded independently; meta-development may
-        # score the public finite grammar, while execution caps remain external.
-        pass
+    # Finite grammar enumeration is an offline public-development operation,
+    # not a represented execution request. Bind its cardinality explicitly so
+    # changing the search space requires a new prospective apparatus version.
+    expected_cardinality = 27
+    if len(candidates) != expected_cardinality:
+        raise RuntimeError("V25 frozen mechanism grammar cardinality changed")
     ranked = sorted(
         ((development_utility(mechanism), mechanism.digest(), mechanism) for mechanism in candidates),
         key=lambda row: (row[0], row[1]),
@@ -80,24 +82,28 @@ def select_successor() -> dict[str, Any]:
     }
 
 
-def mechanism_ablation(selected: ExplorationMechanism) -> ExplorationMechanism:
-    """Remove only the acquired exploration contribution.
-
-    The ablation keeps the selected strategy but removes learned novelty/depth
-    weighting. If the selected strategy itself differs from the predecessor,
-    it is reset to the exact predecessor strategy. This returns ROOT and does
-    not alter evaluator, budgets, tasks, evidence or authority.
-    """
+def mechanism_ablations(selected: ExplorationMechanism) -> tuple[ExplorationMechanism, ...]:
+    """Return matched single-component ablations of acquired mechanism changes."""
     selected.validate()
-    return ROOT
+    variants = []
+    if selected.strategy != ROOT.strategy:
+        variants.append(ExplorationMechanism(ROOT.strategy, selected.novelty_weight, selected.depth_weight))
+    if selected.novelty_weight != ROOT.novelty_weight:
+        variants.append(ExplorationMechanism(selected.strategy, ROOT.novelty_weight, selected.depth_weight))
+    if selected.depth_weight != ROOT.depth_weight:
+        variants.append(ExplorationMechanism(selected.strategy, selected.novelty_weight, ROOT.depth_weight))
+    return tuple(dict((item.digest(), item) for item in variants).values())
 
 
 def pre_holdout_gate() -> dict[str, Any]:
     result = select_successor()
     selected = ExplorationMechanism(**result["selected_mechanism"])
-    ablated = mechanism_ablation(selected)
+    ablations = mechanism_ablations(selected)
+    if not ablations:
+        raise RuntimeError("selected successor has no acquired component to ablate")
     successor_utility = development_utility(selected)
-    ablation_utility = development_utility(ablated)
+    ablation_utilities = tuple(development_utility(item) for item in ablations)
+    causal_advantage = all(successor_utility > utility for utility in ablation_utilities)
     # Execution counters are prospectively bounded and checked here rather
     # than merely documented. This apparatus uses one decision round per
     # frozen public round and no parallel expansion.
@@ -110,13 +116,13 @@ def pre_holdout_gate() -> dict[str, Any]:
     passed = bool(
         result["strict_public_improvement"]
         and result["behaviorally_distinct_from_root"]
-        and successor_utility > ablation_utility
+        and causal_advantage
     )
     return {
         **result,
-        "mechanism_ablation_sha256": ablated.digest(),
-        "mechanism_ablation_development_utility": ablation_utility,
-        "causal_development_advantage": successor_utility > ablation_utility,
+        "mechanism_ablation_sha256": [item.digest() for item in ablations],
+        "mechanism_ablation_development_utility": list(ablation_utilities),
+        "causal_development_advantage": causal_advantage,
         "budget_check": "passed",
         "pre_holdout_gate_passed": passed,
         "holdout_consumed": False,
