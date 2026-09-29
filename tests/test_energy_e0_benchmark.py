@@ -32,6 +32,11 @@ def test_e0_single_run_keeps_energy_unavailable_and_binds_identity():
     assert len(row["measurement_provenance"]["evaluator_sha256"]) == 64
     assert len(row["output_binding_digest"]) == 64
     assert row["hardware_identity"]["cpu_model"]
+    assert row["measurement_provenance"]["node_executions_semantics"] == (
+        "externally_imposed_work_budget_not_observed_execution_count"
+    )
+    assert row["measurement_provenance"]["oracle_timing"] == "precomputed_before_measured_interval"
+    assert row["measurement_provenance"]["case_identity_subject_independent"] is True
 
 
 def test_e0_repeated_benchmark_records_separate_resource_dimensions():
@@ -105,3 +110,36 @@ def test_e0_stops_own_tracer_when_workload_raises(monkeypatch):
     with pytest.raises(RuntimeError, match="boom"):
         bench.run_once(8)
     assert not tracemalloc.is_tracing()
+
+
+def test_e0_case_identity_is_independent_of_subject_identity(monkeypatch):
+    first = bench.run_once(8)
+    original_source_digest = bench._source_digest
+    monkeypatch.setattr(
+        bench,
+        "_source_digest",
+        lambda function: ("f" * 64 if function is bench._work else original_source_digest(function)),
+    )
+    second = bench.run_once(8)
+    assert first["subject_digest"] != second["subject_digest"]
+    assert first["case_set_digest"] == second["case_set_digest"]
+
+
+def test_e0_oracle_is_computed_before_measured_work(monkeypatch):
+    events = []
+    original_expected = bench._expected_output
+    original_work = bench._work
+
+    def expected(units):
+        events.append("oracle")
+        return original_expected(units)
+
+    def work(units):
+        events.append("work")
+        return original_work(units)
+
+    monkeypatch.setattr(bench, "_expected_output", expected)
+    monkeypatch.setattr(bench, "_work", work)
+    row = bench.run_once(8)
+    assert row["capability"] == {"passed": 1, "evaluated": 1}
+    assert events == ["oracle", "work"]
