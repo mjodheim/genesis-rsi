@@ -36,11 +36,11 @@ def _source_digest(function: Any) -> str:
     return hashlib.sha256(inspect.getsource(function).encode("utf-8")).hexdigest()
 
 
-def _work(units: int) -> tuple[str, int]:
+def _work(units: int, *, hash_fn: Any = hashlib.sha256) -> str:
     state = b"genesis-e0"
     for index in range(units):
-        state = hashlib.sha256(state + index.to_bytes(8, "big")).digest()
-    return state.hex(), units
+        state = hash_fn(state + index.to_bytes(8, "big")).digest()
+    return state.hex()
 
 
 def _expected_output(units: int) -> str:
@@ -73,9 +73,16 @@ def run_once(units: int) -> dict[str, Any]:
     if not tracing_was_active:
         tracemalloc.start()
     try:
+        observed_sha256_calls = 0
+
+        def observed_sha256(payload: bytes):
+            nonlocal observed_sha256_calls
+            observed_sha256_calls += 1
+            return hashlib.sha256(payload)
+
         cpu_start = time.process_time_ns()
         wall_start = time.perf_counter_ns()
-        output_digest, _reported_node_executions = _work(units)
+        output_digest = _work(units, hash_fn=observed_sha256)
         wall_ns = time.perf_counter_ns() - wall_start
         cpu_ns = time.process_time_ns() - cpu_start
         _, observed_peak_bytes = tracemalloc.get_traced_memory()
@@ -90,10 +97,9 @@ def run_once(units: int) -> dict[str, Any]:
     # Case identity is intentionally subject-independent: E2 parent/descendant
     # measurements must be able to prove they used the exact same case set.
     case = {"benchmark": SCHEMA, "work_units": units, "algorithm": "sha256-chain-v1"}
-    # This field is an externally imposed work budget, not an observed counter.
-    # Keep the legacy resource field for schema compatibility while making its
-    # semantics explicit in provenance.
-    node_executions = units
+    # The external case fixes the maximum work budget while this counter is
+    # independently observed through the injected SHA-256 primitive wrapper.
+    node_executions = observed_sha256_calls
     passed = output_digest == expected_output
     cases = [{"case_digest": _digest(case), "passed": passed, "node_executions": node_executions}]
     measurement = create_resource_measurement(
@@ -119,7 +125,7 @@ def run_once(units: int) -> dict[str, Any]:
             "memory": ("tracemalloc.get_traced_memory" if not tracing_was_active else "unavailable-preexisting-tracer-preserved"),
             "workload_sha256": workload_digest,
             "evaluator_sha256": evaluator_digest,
-            "node_executions_semantics": "externally_imposed_work_budget_not_observed_execution_count",
+            "node_executions_semantics": "observed_sha256_primitive_calls",
             "oracle_timing": "precomputed_before_measured_interval",
             "case_identity_subject_independent": True,
         },
