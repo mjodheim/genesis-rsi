@@ -65,6 +65,10 @@ def run_once(units: int) -> dict[str, Any]:
     if isinstance(units, bool) or not isinstance(units, int) or units <= 0:
         raise ValueError("work units must be a positive integer")
 
+    # Compute the external evaluator oracle before measurement so evaluator
+    # work cannot heat caches or perturb the measured workload interval.
+    expected_output = _expected_output(units)
+
     tracing_was_active = tracemalloc.is_tracing()
     if not tracing_was_active:
         tracemalloc.start()
@@ -83,11 +87,13 @@ def run_once(units: int) -> dict[str, Any]:
     workload_digest = _source_digest(_work)
     evaluator_digest = _source_digest(_expected_output)
     subject = {"benchmark": SCHEMA, "workload_sha256": workload_digest}
-    case = {"subject": subject, "work_units": units}
-    # Node executions are imposed by the externally defined benchmark case,
-    # never trusted from the mutable workload return value.
+    # Case identity is intentionally subject-independent: E2 parent/descendant
+    # measurements must be able to prove they used the exact same case set.
+    case = {"benchmark": SCHEMA, "work_units": units, "algorithm": "sha256-chain-v1"}
+    # This field is an externally imposed work budget, not an observed counter.
+    # Keep the legacy resource field for schema compatibility while making its
+    # semantics explicit in provenance.
     node_executions = units
-    expected_output = _expected_output(units)
     passed = output_digest == expected_output
     cases = [{"case_digest": _digest(case), "passed": passed, "node_executions": node_executions}]
     measurement = create_resource_measurement(
@@ -113,6 +119,9 @@ def run_once(units: int) -> dict[str, Any]:
             "memory": ("tracemalloc.get_traced_memory" if not tracing_was_active else "unavailable-preexisting-tracer-preserved"),
             "workload_sha256": workload_digest,
             "evaluator_sha256": evaluator_digest,
+            "node_executions_semantics": "externally_imposed_work_budget_not_observed_execution_count",
+            "oracle_timing": "precomputed_before_measured_interval",
+            "case_identity_subject_independent": True,
         },
         case_results=cases,
         cpu_process_time_ns=cpu_ns,
