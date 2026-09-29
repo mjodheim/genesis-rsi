@@ -1,77 +1,73 @@
-"""External energy-instrument boundary for the Energy/Compute Frontier.
+"""External E1 energy-instrument evidence contract.
 
-This module records direct observations from a real instrument. It deliberately does
-not estimate joules from CPU time, wall latency, TDP, node counts, or any other proxy.
+The mutable lineage never owns this interface. A joule observation is admissible
+only when a real external instrument provides identity, provenance and explicit
+measurement boundaries. This module performs validation only; it never estimates
+energy from CPU time, latency, node counts or hardware TDP.
 """
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
-from typing import Any, Mapping
+from math import isfinite
+from typing import Mapping, Protocol, runtime_checkable
 
 
 class EnergyInstrumentError(ValueError):
-    pass
+    """Raised when direct-energy evidence is incomplete or non-physical."""
 
 
 @dataclass(frozen=True)
-class EnergyInstrumentObservation:
+class EnergyObservation:
     energy_joules: float
-    instrument_identity: Mapping[str, Any]
-    measurement_method: str
-    interval_start: str
-    interval_end: str
+    instrument_id: str
+    instrument_method: str
+    provenance: str
+    interval_start_ns: int
+    interval_end_ns: int
     baseline_treatment: str
 
     def __post_init__(self) -> None:
-        if isinstance(self.energy_joules, bool) or not isinstance(self.energy_joules, (int, float)):
-            raise EnergyInstrumentError("direct energy observation must be numeric")
-        if not math.isfinite(float(self.energy_joules)) or self.energy_joules < 0:
-            raise EnergyInstrumentError("direct energy observation must be finite and non-negative")
-        if not isinstance(self.instrument_identity, Mapping) or not self.instrument_identity:
-            raise EnergyInstrumentError("real instrument identity and provenance are required")
-        required = (self.measurement_method, self.interval_start, self.interval_end, self.baseline_treatment)
-        if any(not isinstance(value, str) or not value.strip() for value in required):
-            raise EnergyInstrumentError("method, interval boundaries and baseline treatment are required")
+        if not isfinite(self.energy_joules) or self.energy_joules < 0:
+            raise EnergyInstrumentError("energy_joules must be a finite direct observation")
+        for value, label in (
+            (self.instrument_id, "instrument identity"),
+            (self.instrument_method, "instrument method"),
+            (self.provenance, "instrument provenance"),
+            (self.baseline_treatment, "baseline treatment"),
+        ):
+            if not value.strip():
+                raise EnergyInstrumentError(f"{label} is required")
+        if self.interval_start_ns < 0 or self.interval_end_ns <= self.interval_start_ns:
+            raise EnergyInstrumentError("measurement interval boundaries are invalid")
 
-    def provenance(self) -> dict[str, Any]:
+    def record(self) -> dict[str, object]:
         return {
-            **dict(self.instrument_identity),
-            "measurement_method": self.measurement_method,
-            "interval_start": self.interval_start,
-            "interval_end": self.interval_end,
+            "energy_joules": self.energy_joules,
+            "instrument_id": self.instrument_id,
+            "instrument_method": self.instrument_method,
+            "provenance": self.provenance,
+            "interval_start_ns": self.interval_start_ns,
+            "interval_end_ns": self.interval_end_ns,
             "baseline_treatment": self.baseline_treatment,
         }
 
 
-def direct_energy_observation(
-    *, energy_joules: float, instrument_identity: Mapping[str, Any],
-    measurement_method: str, interval_start: str, interval_end: str,
-    baseline_treatment: str,
-) -> EnergyInstrumentObservation:
-    """Create an E1 observation from an already measured, direct instrument reading."""
-    # Validate raw metadata in EnergyInstrumentObservation; do not coerce missing values
-    # such as None into truthy strings.
-    return EnergyInstrumentObservation(
-        energy_joules=energy_joules,
-        instrument_identity=instrument_identity,
-        measurement_method=measurement_method,
-        interval_start=interval_start,
-        interval_end=interval_end,
-        baseline_treatment=baseline_treatment,
-    )
+@runtime_checkable
+class EnergyInstrument(Protocol):
+    """External adapter for a real energy measurement instrument."""
+
+    @property
+    def identity(self) -> Mapping[str, str]:
+        ...
+
+    def measure(self) -> EnergyObservation:
+        ...
 
 
-def validate_energy_provenance(provenance: Mapping[str, Any]) -> None:
-    """Fail closed unless direct-instrument provenance is complete."""
-    if not isinstance(provenance, Mapping) or not provenance:
-        raise EnergyInstrumentError("real instrument identity and provenance are required")
-    required = ("measurement_method", "interval_start", "interval_end", "baseline_treatment")
-    if any(
-        not isinstance(provenance.get(name), str)
-        or not str(provenance.get(name)).strip()
-        for name in required
-    ):
-        raise EnergyInstrumentError(
-            "method, interval boundaries and baseline treatment are required"
-        )
+def require_real_observation(observation: EnergyObservation | None) -> EnergyObservation:
+    """Fail closed: absence of a real observation remains missing energy."""
+    if observation is None:
+        raise EnergyInstrumentError("energy is unavailable without a real instrument observation")
+    if not isinstance(observation, EnergyObservation):
+        raise EnergyInstrumentError("unrecognized energy observation type")
+    return observation
