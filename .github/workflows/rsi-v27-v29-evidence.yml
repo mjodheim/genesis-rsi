@@ -1,4 +1,4 @@
-name: RSI V27–V29 sealed evidence
+name: RSI V27–V30 sealed evidence
 on:
   push:
     branches: [main, research/rsi-v27-l6-l8]
@@ -21,7 +21,7 @@ jobs:
           python - <<'PY'
           import importlib
           from pathlib import Path
-          for version in (27, 28, 29):
+          for version in (27, 28, 29, 30):
               root = Path(f'experiment/rsi_v{version}')
               if not (root / 'campaign.py').exists():
                   print(f'V{version}: not yet implemented')
