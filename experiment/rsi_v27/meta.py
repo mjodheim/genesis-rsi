@@ -65,7 +65,10 @@ class Host:
         return self.row(family.genotype(self.base))
 
     def children(self, candidate, depth):
+        # Each transition is typed as acquisition of one new semantic component.
+        # This syntax constraint is independent of quality or eligibility outcomes.
         return tuple(self.row(r["genotype"]) for r in family.mutation_neighbors(candidate, locked=self.base)
+                     if len(family.components(r["genotype"]["params"], self.base)) <= 1
                      ) if depth < CAPS.mutation_depth else ()
 
     def action(self, row):
