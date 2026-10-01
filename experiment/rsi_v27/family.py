@@ -11,6 +11,9 @@ PARENT_SHA256 = "b0544067ae4fa93533d3b49f7e7cd9de0b101af4a9359c1bbca0760dae32baf
 AXES = {"plateau": (0, 1, 2), "ordering": (0, 1, 2),
         "scheduling": (0, 1, 2), "persistence": (0, 1, 2)}
 ROOT_PARAMS = dict.fromkeys(AXES, 0)
+LAYOUTS = (0, 1, 2, 3)
+# Metadata region precedes selector and appended proposal-ordering region in G3.
+REGION_ORDER = ("persistence", "plateau", "scheduling", "ordering")
 
 
 def validate(params):
@@ -93,3 +96,38 @@ def universe():
                   "source_sha256": digest_bytes(render(dict(zip(AXES, values))).encode()),
                   "params_sha256": digest(dict(zip(AXES, values)))}
                  for values in product(*AXES.values()))
+
+
+def genotype(params, layout=0):
+    if type(layout) is not int or layout not in LAYOUTS:
+        raise ValueError("Unknown source-layout variant")
+    return {"params": validate(params), "layout": layout}
+
+
+def render_genotype(candidate):
+    if set(candidate) != {"params", "layout"}:
+        raise ValueError("Invalid pipeline genotype envelope")
+    g = genotype(candidate["params"], candidate["layout"])
+    source = render(g["params"])
+    if g["layout"]:
+        source += "\n# Declared source-layout variant: " + str(g["layout"]) + "\n"
+    return source
+
+
+def mutation_neighbors(candidate, *, locked=ROOT_PARAMS):
+    g = genotype(candidate["params"], candidate["layout"])
+    result = []
+    for value in LAYOUTS:
+        if abs(value - g["layout"]) == 1:
+            result.append({"axis": "layout", "genotype": genotype(g["params"], value)})
+    semantic = sorted(neighbors(g["params"], locked=locked), key=lambda row: (
+        REGION_ORDER.index(row["axis"]), row["params"][row["axis"]]))
+    result.extend({"axis": row["axis"], "genotype": genotype(row["params"], g["layout"])}
+                  for row in semantic)
+    return tuple(result)
+
+
+def effective_universe():
+    return tuple({"genotype": genotype(row["params"], layout),
+                  "source_sha256": digest_bytes(render_genotype(genotype(row["params"], layout)).encode())}
+                 for row in universe() for layout in LAYOUTS)

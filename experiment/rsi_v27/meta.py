@@ -3,6 +3,7 @@ from experiment.rsi_v25.commitments import digest, digest_bytes
 from experiment.rsi_v27 import family
 from experiment.rsi_v27.engine import CAPS, run_search
 from experiment.rsi_v27.development import phase_episodes
+from experiment.rsi_v27.development import population as public_population
 
 
 def indexed(calibration):
@@ -16,6 +17,11 @@ def eligible(row, root, stage, rows):
         return False
     observed, previous = row["phases"][stage], root["phases"][stage]
     if tuple(observed["utility"]) <= tuple(previous["utility"]):
+        return False
+    # Improving an old partition alone cannot constitute the new transition.
+    count = len(public_population(stage))
+    from experiment.rsi_v25.search_engine import global_utility
+    if global_utility(phase_episodes(row, stage)[-count:]) <= global_utility(phase_episodes(root, stage)[-count:]):
         return False
     # Required prior capabilities are full-quality solved episodes, not cost claims.
     if any(old["best_quality_milli"] == 1000 and new["best_quality_milli"] != 1000
@@ -38,28 +44,30 @@ class Host:
         self.root_row = self.rows[digest(base)]
         self.utilities = sorted(set(tuple(r["phases"][stage]["utility"]) for r in self.rows.values()))
 
-    def row(self, params):
-        row = self.rows[digest(params)]
+    def row(self, candidate):
+        g = family.genotype(candidate["params"], candidate["layout"])
+        row = self.rows[digest(g["params"])]
         qualified = eligible(row, self.root_row, self.stage, self.rows)
         ordinal = self.utilities.index(tuple(row["phases"][self.stage]["utility"]))
         quality = 1000 if qualified else 500 + 499 * ordinal // max(1, len(self.utilities) - 1)
-        return {"candidate": params, "source_sha256": row["source_sha256"],
+        return {"candidate": g, "source_sha256": digest_bytes(family.render_genotype(g).encode()),
                 "quality_milli": quality, "qualified": qualified}
 
     def root(self):
-        return self.row(self.base)
+        return self.row(family.genotype(self.base))
 
-    def children(self, params, depth):
-        return tuple(self.row(r["params"]) for r in family.neighbors(params, locked=self.base)
+    def children(self, candidate, depth):
+        return tuple(self.row(r["genotype"]) for r in family.mutation_neighbors(candidate, locked=self.base)
                      ) if depth < CAPS.mutation_depth else ()
 
     def action(self, row):
-        axes = list(family.components(row["candidate"], self.base))
+        axes = [axis + ":" + str(row["candidate"]["params"][axis])
+                for axis in family.components(row["candidate"]["params"], self.base)]
         return {"family": "executable-pipeline", "target_axes": axes,
                 "mechanisms": axes or ["qualified-parent"], "changed_regions": axes}
 
     def evaluate(self, row):
-        evidence = self.rows[digest(row["candidate"])]
+        evidence = self.rows[digest(row["candidate"]["params"])]
         return {"accepted": True, "source_sha256": row["source_sha256"],
                 "quality_milli": row["quality_milli"], "qualified": row["qualified"],
                 "public_development_utility": evidence["phases"][self.stage]["utility"],
@@ -67,14 +75,15 @@ class Host:
 
 
 def choose(search, host):
-    rows = {row["source_sha256"]: row for row in host.rows.values()}
-    available = [rows[node["source_sha256"]] for node in search["nodes"].values()
-                 if eligible(rows[node["source_sha256"]], host.root_row, host.stage, host.rows)]
+    available = [{**host.rows[digest(node["candidate"]["params"])],
+                  "genotype": node["candidate"], "source_sha256": node["source_sha256"]}
+                 for node in search["nodes"].values()
+                 if eligible(host.rows[digest(node["candidate"]["params"])], host.root_row, host.stage, host.rows)]
     if not available:
-        return {"qualified_discovery": False, "params": host.base,
+        return {"qualified_discovery": False, "params": host.base, "genotype": family.genotype(host.base),
                 "source_sha256": digest_bytes(family.render(host.base).encode())}
     available.sort(key=lambda row: (tuple(-x for x in row["phases"][host.stage]["utility"]),
-                                   sum(row["params"].values()), row["source_sha256"]))
+                                   sum(row["params"].values()), row["genotype"]["layout"], row["source_sha256"]))
     return {"qualified_discovery": True, **available[0]}
 
 
@@ -86,10 +95,10 @@ def utility(selected, search, stage):
 
 
 def pilot(calibration):
-    base, phases = dict(family.ROOT_PARAMS), []
+    base, phases, candidate = dict(family.ROOT_PARAMS), [], family.genotype(family.ROOT_PARAMS)
     for stage in range(3):
         host = Host(calibration, base, stage)
-        search = run_search(family.render(base), host, isolated=False)
+        search = run_search(family.render_genotype(candidate), host, isolated=False)
         selected = choose(search, host)
         controls = []
         for axis in family.components(base):
@@ -105,6 +114,6 @@ def pilot(calibration):
                        "trace_sha256": digest(search), "search": search})
         if not selected["qualified_discovery"]:
             break
-        base = selected["params"]
+        base, candidate = selected["params"], selected["genotype"]
     return {"scope": "PUBLIC_DEVELOPMENT_PILOT_NOT_CANONICAL", "holdout_consumed": False,
             "phases": phases, "final_params": base}
