@@ -41,13 +41,15 @@ replayable**.
 For the detailed current snapshot, see
 [`docs/CURRENT_RESEARCH_FRONTIER.md`](docs/CURRENT_RESEARCH_FRONTIER.md).
 
-The separate RSI policy line now has a **positive bounded L5 result in V26**:
-the qualified G2 controller causally discovers G3, which solves four fresh native
-repair tasks versus two for G2 under the same external caps. Both acquired-component
-ablations lose utility, and represented L4 history retention has zero loss. This is a
-finite, project-authored experiment with zero external model calls during execution;
-it does not establish general RSI, independent-maintainer validation or AGI. V24 and
-V25 remain negative. See [the complete evidence and limits](results/rsi-v26/frontier-20261001/RESULT_SUMMARY.md).
+The separate RSI policy line now has **positive bounded L6, L7 and L8 results**
+in V28–V30, extending [V26's bounded L5](results/rsi-v26/frontier-20261001/RESULT_SUMMARY.md).
+The lineage completes three causal improvement transitions, transfers its unchanged
+policy across four actual algorithmic domains, then selects which part of its own
+faulted pipeline to repair from measured evidence. Adaptive target selection solves
+44/58 new cases against 38/58 for the best fixed target. All original trials,
+including V27's negative, are retained. These are finite project-authored experiments
+with zero external scientific model calls; independent task authorship, general RSI
+and AGI remain unestablished. See [the complete evidence and limits](docs/RSI_L6_L8_RESULTS_2026-10-01.md).
 
 ## What the project is trying to establish
 
