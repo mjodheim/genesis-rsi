@@ -223,6 +223,13 @@ jobs:
       - name: The M120 checker must report a clean state until a result exists
         run: python scripts/check_m120_result.py
 
+      # The prospective apparatus has no result. Once a canonical V25 record
+      # exists this recomputes every gate from preserved identities, isolated
+      # decisions and observed evaluator receipts; no new transfer case runs.
+      # A valid negative is preserved and must replay as readily as a positive.
+      - name: Any V25 executable L5 outcome must replay from preserved evidence
+        run: python -m experiment.rsi_v25.check_executable_result
+
       # The acceptance claim M119 had no test of: every candidate the generator contract permits
       # must decode into a carrier the frozen host accepts. Run here as well as in the test job,
       # because it is the single gate whose failure would repeat M119's outcome exactly.
