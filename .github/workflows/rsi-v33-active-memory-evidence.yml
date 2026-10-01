@@ -1,0 +1,28 @@
+name: RSI V33 active memory evidence
+on:
+  push:
+    branches: [main, research/rsi-v33-active-memory-probes]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original paid probes without another scientific attempt
+        run: |
+          python - <<'PY'
+          from experiment.rsi_v33 import campaign
+          result = campaign.check(require_result=campaign.COMPLETION.exists())
+          print({key: value for key, value in result.items() if key not in ('windows', 'summaries', 'paired_solved')})
+          assert result['l9_open_ended_passed'] is False
+          assert result['l10_independent_passed'] is False
+          PY
