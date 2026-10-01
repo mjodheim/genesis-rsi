@@ -230,6 +230,9 @@ jobs:
       - name: Any V25 executable L5 outcome must replay from preserved evidence
         run: python -m experiment.rsi_v25.check_executable_result
 
+      - name: Any V26 frontier L5 outcome must replay from preserved evidence
+        run: python -m experiment.rsi_v26.campaign --check
+
       # The acceptance claim M119 had no test of: every candidate the generator contract permits
       # must decode into a carrier the frozen host accepts. Run here as well as in the test job,
       # because it is the single gate whose failure would repeat M119's outcome exactly.

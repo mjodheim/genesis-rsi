@@ -203,7 +203,9 @@ def check_dependencies() -> list[str]:
     # third-party dependency.
     local = (
         set(PACKAGES)
-        | {"scripts", "tests"}
+        # Scientific entry points execute these repository-local namespaces
+        # from the checkout; they are not third-party distribution dependencies.
+        | {"scripts", "tests", "experiment"}
         | set(LOCAL_IMPORT_ALIASES)
         | {module_name(path) for path in source_files()}
     )

@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from scripts import replicate_v25_consumed_result as recovery
+import replicate_v25_consumed_result as recovery
 
 
 def observed():

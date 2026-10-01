@@ -1,0 +1,70 @@
+{
+  "development_assistance": "OpenAI Codex; upstream Vibe Arcade records Anthropic Claude",
+  "independent_external_maintainer": false,
+  "scope": "PUBLIC_PROJECT_CONTROLLED_FRESH_TARGETS_WITH_DECLARED_DEPENDENCIES",
+  "sources": [
+    {
+      "commit": "84c132bf09cd9a003525f1c86233602473a68e23",
+      "file": "Product.java",
+      "git_blob_sha1": "fe9cc3c5ca8790085d28bb2e02ae5dd6241f5efb",
+      "path": "src/main/java/be/mjodheim/cellar/catalog/internal/domain/Product.java",
+      "repository": "mjodheim/Cellar",
+      "role": "target",
+      "source_sha256": "ba8830e6041ffb674e9ec7688ebeeb603c414d62ed7bb812c000ee673a60de3e"
+    },
+    {
+      "commit": "84c132bf09cd9a003525f1c86233602473a68e23",
+      "file": "ProductType.java",
+      "git_blob_sha1": "3ebd493a60ab75d0f42badfb6492d75b3cc4476e",
+      "path": "src/main/java/be/mjodheim/cellar/catalog/internal/domain/ProductType.java",
+      "repository": "mjodheim/Cellar",
+      "role": "dependency",
+      "source_sha256": "a03f905b9d69aeff77c185ec0af0ec4071cdba5881b413198e860ab82055746b"
+    },
+    {
+      "commit": "84c132bf09cd9a003525f1c86233602473a68e23",
+      "file": "Order.java",
+      "git_blob_sha1": "352c8fedea3020af5aaaf3c7551a81a46b7bff85",
+      "path": "src/main/java/be/mjodheim/cellar/ordering/internal/domain/Order.java",
+      "repository": "mjodheim/Cellar",
+      "role": "target",
+      "source_sha256": "1dc7fc3a93ebd934ab3070bcbf95bd362f23285063b45f89eab14792b992fd08"
+    },
+    {
+      "commit": "84c132bf09cd9a003525f1c86233602473a68e23",
+      "file": "OrderStatus.java",
+      "git_blob_sha1": "fb7eb8fd55d46706bf26064698fcb2f9c4f3a918",
+      "path": "src/main/java/be/mjodheim/cellar/ordering/internal/domain/OrderStatus.java",
+      "repository": "mjodheim/Cellar",
+      "role": "dependency",
+      "source_sha256": "8ecce87e1e9d2c2994ee06ccdfd476694941f6157980547236646799a26dd21c"
+    },
+    {
+      "commit": "84c132bf09cd9a003525f1c86233602473a68e23",
+      "file": "OrderLine.java",
+      "git_blob_sha1": "7dcc18f08c7fb1917678cd06d38c2408ab424f8f",
+      "path": "src/main/java/be/mjodheim/cellar/ordering/internal/domain/OrderLine.java",
+      "repository": "mjodheim/Cellar",
+      "role": "unchanged-previously-consumed-dependency",
+      "source_sha256": "eef2872ebc46089e123d75fd7e9997331b6de532bdf4c2eeb6c3177e6255426e"
+    },
+    {
+      "commit": "7eb4df29eb22c57997555094670c2e3e7f81d739",
+      "file": "pigeon.js",
+      "git_blob_sha1": "06fa93b0888a2f154b0f5893ec54308744919b1c",
+      "path": "games/pigeon-control/public/logic.js",
+      "repository": "mjodheim/Vibe-Arcade",
+      "role": "target",
+      "source_sha256": "88798838a832a8c7f74cc26300086a5a1a32107c340dad21bd54bb46081ca357"
+    },
+    {
+      "commit": "7eb4df29eb22c57997555094670c2e3e7f81d739",
+      "file": "stack.js",
+      "git_blob_sha1": "952f9f0ee26341f57a336246ba4694084581f3dc",
+      "path": "games/stack-panic/public/core.js",
+      "repository": "mjodheim/Vibe-Arcade",
+      "role": "target",
+      "source_sha256": "b3ee2fac38dfcaf45b3543b26430efe1ecd0fe2649f43417b38bb170cf924679"
+    }
+  ]
+}
