@@ -31,7 +31,7 @@ def render(params):
     if p == ROOT_PARAMS:
         return source
     if p["persistence"]:
-        stall = (3, 5, 8)[p["persistence"]]
+        stall = (3, 7, 8)[p["persistence"]]
         source = source.replace("return (10, 6, 3, 5, 5, 4, 8, 2, 8, 3)",
                                 f"return (10, 6, 3, 5, 5, 4, 8, 2, 8, {stall})")
     if p["plateau"] or p["persistence"]:
