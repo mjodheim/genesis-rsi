@@ -48,6 +48,7 @@ PERMANENT_WORKFLOWS = frozenset({
     "rsi-v31-archive-evidence.yml",
     "rsi-v32-memory-evidence.yml",
     "rsi-v33-active-memory-evidence.yml",
+    "rsi-v34-continuing-evidence.yml",
 })
 ACTIVE_MILESTONE_WORKFLOWS: frozenset[str] = frozenset()
 FROZEN_PATH_WORKFLOWS = frozenset(

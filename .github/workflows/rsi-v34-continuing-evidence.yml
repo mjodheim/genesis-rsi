@@ -1,0 +1,28 @@
+name: RSI V34 continuing archive evidence
+on:
+  push:
+    branches: [main, research/rsi-v34-continuing-archive]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay committed epoch receipts without fresh continuation
+        run: |
+          python - <<'PY'
+          from experiment.rsi_v34 import campaign
+          result = campaign.check()
+          print({key: value for key, value in result.items() if key != 'epoch_verdicts'})
+          assert result['l9_open_ended_passed'] is False
+          assert result['l10_independent_passed'] is False
+          PY
