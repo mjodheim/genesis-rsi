@@ -46,6 +46,7 @@ PERMANENT_WORKFLOWS = frozenset({
     # This replays retained evidence; it never launches a new scientific attempt.
     "rsi-v27-v29-evidence.yml",
     "rsi-v31-archive-evidence.yml",
+    "rsi-v32-memory-evidence.yml",
 })
 ACTIVE_MILESTONE_WORKFLOWS: frozenset[str] = frozenset()
 FROZEN_PATH_WORKFLOWS = frozenset(
