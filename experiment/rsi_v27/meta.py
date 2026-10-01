@@ -42,13 +42,17 @@ class Host:
         self.rows = indexed(calibration)
         self.base, self.stage = family.validate(base), stage
         self.root_row = self.rows[digest(base)]
-        self.utilities = sorted(set(tuple(r["phases"][stage]["utility"]) for r in self.rows.values()))
+        from experiment.rsi_v25.search_engine import global_utility
+        count = len(public_population(stage))
+        self.active_utilities = {digest(r["params"]): global_utility(phase_episodes(r, stage)[-count:])
+                                 for r in self.rows.values()}
+        self.utilities = sorted(set(self.active_utilities.values()))
 
     def row(self, candidate):
         g = family.genotype(candidate["params"], candidate["layout"])
         row = self.rows[digest(g["params"])]
         qualified = eligible(row, self.root_row, self.stage, self.rows)
-        ordinal = self.utilities.index(tuple(row["phases"][self.stage]["utility"]))
+        ordinal = self.utilities.index(self.active_utilities[digest(g["params"])])
         quality = 1000 if qualified else 500 + 499 * ordinal // max(1, len(self.utilities) - 1)
         return {"candidate": g, "source_sha256": digest_bytes(family.render_genotype(g).encode()),
                 "quality_milli": quality, "qualified": qualified}

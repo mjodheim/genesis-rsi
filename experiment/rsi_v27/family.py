@@ -34,14 +34,17 @@ def render(params):
         stall = (3, 5, 8)[p["persistence"]]
         source = source.replace("return (10, 6, 3, 5, 5, 4, 8, 2, 8, 3)",
                                 f"return (10, 6, 3, 5, 5, 4, 8, 2, 8, {stall})")
-    if p["plateau"]:
+    if p["plateau"] or p["persistence"]:
         old = '            ranked.append((-int(row["outcome"]["quality_milli"]), -int(row["lineage_depth"]), index, row["node_id"]))'
         new = (
             '            quality = int(row["outcome"]["quality_milli"])\n'
             '            parent = by_id.get(row.get("parent_node_id", root), by_id[root])\n'
             '            gain = quality - int(parent["outcome"]["quality_milli"])\n'
-            f'            penalty = {400 * p["plateau"]} if int(row["lineage_depth"]) >= 2 and gain <= 0 else 0\n'
-            '            ranked.append((-quality + penalty, -int(row["lineage_depth"]), index, row["node_id"]))')
+            f'            penalty = {400 * p["plateau"]} if int(row["lineage_depth"]) >= 2 and quality > 0 and gain == 0 else 0\n'
+            '            signature = tuple(sorted(row["action"]["target_axes"]))\n'
+            '            repetitions = sum(tuple(sorted(other["action"]["target_axes"])) == signature for other in rows)\n'
+            f'            memory_penalty = {150 * p["persistence"]} * repetitions\n'
+            '            ranked.append((-quality + penalty + memory_penalty, -int(row["lineage_depth"]), index, row["node_id"]))')
         if source.count(old) != 1:
             raise ValueError("Qualified selector mutation anchor changed")
         source = source.replace(old, new)

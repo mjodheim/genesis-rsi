@@ -30,6 +30,14 @@ task bank is vendored. Project-authored faults, wrappers and final cases must re
 identified as project-authored. External runtime maintenance does not make those
 cases independent-author evidence or satisfy M085/L10.
 
+The public L6 development pilots exposed an additional mechanism requirement:
+persistence of search must use the revealed archive to distinguish repeated
+semantic configurations from new configurations. A finite archive-aware variant
+may couple a declared internal stall allowance to a pure parent-ranking term
+computed from already revealed action signatures. Source-layout aliases change
+comments only and are disclosed nuisance proposals, not additional acquired
+capabilities. This refinement remains under the same bounded public disposition.
+
 The global P-030 register snapshot is already a frozen V25/V26 input. This adjacent
 prospective review records the continuation without changing that historical
 snapshot. Original V24/V25 negatives and V26 positive evidence remain immutable.
