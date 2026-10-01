@@ -1,6 +1,20 @@
 # Mira Genesis — current authoritative project state
 
-**Updated: 6 September 2026 — M124/H69 closed without replay; H69 untested.**
+**Updated: 1 October 2026 — V24 negative for L5; V25 remains development apparatus.**
+
+## Current RSI frontier
+
+The V24 fresh comparison finished with identical successor and comparator aggregate
+utilities `(2, 2500, -17, -17)`. L5 is therefore **not validated**. The thirteen exact
+records are preserved in `results/rsi-v24/l5-20260928/` and bound by the V25 evidence manifest.
+
+V25's commit citation, test collection, equal-utility selection and evidence commitment
+checks have been corrected before any final V25 freeze. Its synthetic development gate
+does not authorize a holdout. Actual predecessor-bound descendant/control execution,
+selected-successor L4 retention and a genuinely new frozen evaluation population remain
+required. See [the L5 audit](docs/audits/RSI_L5_READINESS_2026-10-01.md).
+
+The carrier-line snapshot below remains a separate historical frontier, not the latest RSI status.
 
 This is the reader-facing navigation and interpretation snapshot. Frozen experiment records,
 immutable results, `DECISIONS.md`, experiment-local evidence and the machine-readable

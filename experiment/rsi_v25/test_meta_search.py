@@ -48,6 +48,8 @@ def test_pre_holdout_gate_is_causal_and_does_not_consume_holdout():
     assert result["budget_check"] == "passed"
     assert result["causal_development_advantage"] is True
     assert result["pre_holdout_gate_passed"] is True
+    assert result["gate_scope"] == "PUBLIC_DEVELOPMENT_MECHANISM_ONLY"
+    assert result["authorizes_fresh_holdout"] is False
     assert result["holdout_consumed"] is False
 
 

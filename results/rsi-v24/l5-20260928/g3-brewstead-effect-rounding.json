@@ -1,0 +1,166 @@
+{
+  "best_quality_milli": 0,
+  "nodes": {
+    "n-32aa04d2bbc401c9": {
+      "action": {
+        "changed_regions": [
+          "src/main/java/be/mjodheim/brewstead/service/EffectService.java"
+        ],
+        "family": "external-code-repair",
+        "mechanisms": [
+          "source-locus-mutation"
+        ],
+        "target_axes": [
+          "brewstead-effect-rounding"
+        ]
+      },
+      "evaluation": {
+        "phase": "public_test",
+        "public_guard_pass": false,
+        "quality_milli": 0,
+        "reserved_passed": 0,
+        "source_sha256": "184d86614c367565ffc56ba1cd74fab450c313ee48dcc0cdab0e4e6b91be3a9e"
+      },
+      "lineage_depth": 2,
+      "mutation_locus": "quality_semantics",
+      "node_id": "n-32aa04d2bbc401c9",
+      "outcome": {
+        "ever_champion": false,
+        "evolver_profile_generation": 0,
+        "quality_milli": 0,
+        "root_branch_node_id": "n-cbf942c71521a64d"
+      },
+      "parent_node_id": "n-cbf942c71521a64d",
+      "source_sha256": "184d86614c367565ffc56ba1cd74fab450c313ee48dcc0cdab0e4e6b91be3a9e"
+    },
+    "n-4a34500f511a9495": {
+      "action": {
+        "changed_regions": [
+          "src/main/java/be/mjodheim/brewstead/service/EffectService.java"
+        ],
+        "family": "external-code-repair",
+        "mechanisms": [
+          "source-locus-mutation"
+        ],
+        "target_axes": [
+          "brewstead-effect-rounding"
+        ]
+      },
+      "evaluation": {
+        "phase": "public_test",
+        "public_guard_pass": false,
+        "quality_milli": 0,
+        "reserved_passed": 0,
+        "source_sha256": "041a390cc8b691077d6737168c1b5056b944338837ed586ee92adf942aee8163"
+      },
+      "lineage_depth": 2,
+      "mutation_locus": "quality_semantics",
+      "node_id": "n-4a34500f511a9495",
+      "outcome": {
+        "ever_champion": false,
+        "evolver_profile_generation": 0,
+        "quality_milli": 0,
+        "root_branch_node_id": "n-cbf942c71521a64d"
+      },
+      "parent_node_id": "n-cbf942c71521a64d",
+      "source_sha256": "041a390cc8b691077d6737168c1b5056b944338837ed586ee92adf942aee8163"
+    },
+    "n-cbf942c71521a64d": {
+      "action": {
+        "changed_regions": [
+          "src/main/java/be/mjodheim/brewstead/service/EffectService.java"
+        ],
+        "family": "external-code-repair",
+        "mechanisms": [
+          "source-locus-mutation"
+        ],
+        "target_axes": [
+          "brewstead-effect-rounding"
+        ]
+      },
+      "evaluation": {
+        "phase": "complete",
+        "public_guard_pass": true,
+        "quality_milli": 0,
+        "reserved_passed": 0,
+        "source_sha256": "71b227a73059c7a66bbfc1d2c594f1840ce9eb83f34e88c7d68c7e2bdb802525"
+      },
+      "lineage_depth": 1,
+      "mutation_locus": "coin_semantics",
+      "node_id": "n-cbf942c71521a64d",
+      "outcome": {
+        "ever_champion": false,
+        "evolver_profile_generation": 0,
+        "quality_milli": 0,
+        "root_branch_node_id": "n-cbf942c71521a64d"
+      },
+      "parent_node_id": "root",
+      "source_sha256": "71b227a73059c7a66bbfc1d2c594f1840ce9eb83f34e88c7d68c7e2bdb802525"
+    },
+    "root": {
+      "action": {
+        "changed_regions": [
+          "src/main/java/be/mjodheim/brewstead/service/EffectService.java"
+        ],
+        "family": "defect-root",
+        "mechanisms": [
+          "seed-defect"
+        ],
+        "target_axes": [
+          "brewstead-effect-rounding"
+        ]
+      },
+      "lineage_depth": 0,
+      "node_id": "root",
+      "outcome": {
+        "ever_champion": true,
+        "evolver_profile_generation": 0,
+        "quality_milli": 0,
+        "root_branch_node_id": "root"
+      },
+      "parent_node_id": null,
+      "source_sha256": "6a7a81cb4b815f9c0bb2cc3fceea90dd3bf2a6a61fc006ef45de9b4e5e1014bf"
+    }
+  },
+  "observations": [
+    {
+      "parent_node_ids": [
+        "root"
+      ],
+      "result_node_ids": [
+        "n-cbf942c71521a64d"
+      ],
+      "round": 1
+    },
+    {
+      "parent_node_ids": [
+        "n-cbf942c71521a64d"
+      ],
+      "result_node_ids": [
+        "n-4a34500f511a9495"
+      ],
+      "round": 2
+    },
+    {
+      "parent_node_ids": [
+        "n-cbf942c71521a64d"
+      ],
+      "result_node_ids": [
+        "n-32aa04d2bbc401c9"
+      ],
+      "round": 3
+    }
+  ],
+  "policy_sha256": "000ec69782a45ab31b437d931930596d0bc174e4dd0c7e91784ade14e4ca10b2",
+  "represented_requests": 3,
+  "root_source_sha256": "6a7a81cb4b815f9c0bb2cc3fceea90dd3bf2a6a61fc006ef45de9b4e5e1014bf",
+  "rounds": 3,
+  "schema": "mira-genesis-rsi-v23-l5-holdout-task-result-v1",
+  "stop_reason": "policy_stall_rounds",
+  "task_id": "brewstead-effect-rounding",
+  "utility": [
+    0,
+    -3,
+    -3
+  ]
+}

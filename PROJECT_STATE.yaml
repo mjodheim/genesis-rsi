@@ -1,7 +1,21 @@
 project: Mira Genesis
-updated_at: 2026-09-06
+updated_at: 2026-10-01
 snapshot_kind: current_authoritative_navigation
-status: m124_closed_h69_untested_without_replay_next_carrier_successor_not_opened
+status: v24_l5_negative_v25_development_apparatus_only
+
+rsi_frontier:
+  l5_validated: false
+  v24:
+    verdict: negative
+    evidence_directory: results/rsi-v24/l5-20260928
+    aggregate_utility_all_three_arms: [2, 2500, -17, -17]
+    evidence_manifest: experiment/rsi_v25/V24_PRESERVED_EVIDENCE_MANIFEST.json
+  v25:
+    status: development_apparatus_only
+    final_holdout_consumed: false
+    final_holdout_authorized_by_development_gate: false
+    remaining: [predecessor_bound_executable_descent, selected_successor_l4_retention, prospective_new_population_and_evaluator]
+  audit: docs/audits/RSI_L5_READINESS_2026-10-01.md
 
 navigation_only: true
 frozen_experiments_are_authoritative: true
