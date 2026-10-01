@@ -28,3 +28,16 @@ A positive V25 result requires strict fresh global-utility improvement over both
 Energy/Compute measurements cannot rescore V25. V25 results cannot establish energy efficiency. Evaluator, task bank, hidden cases, budgets, credentials, trust root and evidence ledger remain external and immutable to the organism.
 
 No final holdout outcomes are authored, read, generated or consumed by this preregistration.
+
+## Development selection and commitment clarification — 1 October 2026
+
+Before any V25 final freeze or holdout, the finite public-development search selects by
+development utility, then by fewest acquired components, then by content digest. Equal
+utility does not justify acquiring behaviorally silent parameters. Every remaining acquired
+component must still survive the strict matched ablation gate; parsimony does not waive it.
+
+The synthetic trace gate covers development mechanism behavior only. It does not establish
+causal descent from the preserved executable predecessor, L4 retention or fresh transfer.
+`build_l5_freeze.py` therefore writes `V25_APPARATUS_COMMITMENT.json`, a commitment to
+committed development bytes and the thirteen verified V24 records, with no holdout authority.
+It must not be represented as the complete scientific V25 freeze required by gates 1–7.

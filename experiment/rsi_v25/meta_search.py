@@ -62,7 +62,9 @@ def select_successor() -> dict[str, Any]:
         raise RuntimeError("V25 frozen mechanism grammar cardinality changed")
     ranked = sorted(
         ((development_utility(mechanism), mechanism.digest(), mechanism) for mechanism in candidates),
-        key=lambda row: (row[0], row[1]),
+        # Equal utility does not justify acquiring behaviorally silent parameters.
+        # Prefer the smallest change before the content-addressed final tie-break.
+        key=lambda row: (row[0], -acquired_component_count(row[2]), row[1]),
     )
     utility, _, selected = ranked[-1]
     root_utility = development_utility(ROOT)
@@ -72,6 +74,7 @@ def select_successor() -> dict[str, Any]:
         "selected_mechanism": selected.payload(),
         "selected_mechanism_sha256": selected.digest(),
         "root_mechanism_sha256": ROOT.digest(),
+        "selection_rule": "development-utility_then-fewest-acquired-components_then-digest",
         "selected_development_utility": utility,
         "root_development_utility": root_utility,
         "strict_public_improvement": utility > root_utility,
@@ -80,6 +83,12 @@ def select_successor() -> dict[str, Any]:
         "root_trace": decision_trace(ROOT, PUBLIC_DEV_ROUNDS),
         "holdout_consumed": False,
     }
+
+
+def acquired_component_count(mechanism: ExplorationMechanism) -> int:
+    return sum((mechanism.strategy != ROOT.strategy,
+                mechanism.novelty_weight != ROOT.novelty_weight,
+                mechanism.depth_weight != ROOT.depth_weight))
 
 
 def mechanism_ablations(selected: ExplorationMechanism) -> tuple[ExplorationMechanism, ...]:
@@ -125,5 +134,7 @@ def pre_holdout_gate() -> dict[str, Any]:
         "causal_development_advantage": causal_advantage,
         "budget_check": "passed",
         "pre_holdout_gate_passed": passed,
+        "gate_scope": "PUBLIC_DEVELOPMENT_MECHANISM_ONLY",
+        "authorizes_fresh_holdout": False,
         "holdout_consumed": False,
     }

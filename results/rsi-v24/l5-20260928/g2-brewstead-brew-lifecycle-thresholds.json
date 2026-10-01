@@ -1,0 +1,125 @@
+{
+  "best_quality_milli": 1000,
+  "nodes": {
+    "n-39347ed85cc861ea": {
+      "action": {
+        "changed_regions": [
+          "src/main/java/be/mjodheim/brewstead/service/BrewService.java"
+        ],
+        "family": "external-code-repair",
+        "mechanisms": [
+          "source-locus-mutation"
+        ],
+        "target_axes": [
+          "brewstead-brew-lifecycle-thresholds"
+        ]
+      },
+      "evaluation": {
+        "phase": "complete",
+        "public_guard_pass": true,
+        "quality_milli": 1000,
+        "reserved_passed": 4,
+        "source_sha256": "7176fca40f34efacb426866533cff1115cbbf94aebe54047a61ebc3a1fcb4240"
+      },
+      "lineage_depth": 2,
+      "mutation_locus": "condition_threshold",
+      "node_id": "n-39347ed85cc861ea",
+      "outcome": {
+        "ever_champion": true,
+        "evolver_profile_generation": 0,
+        "quality_milli": 1000,
+        "root_branch_node_id": "n-984c3c078f55377f"
+      },
+      "parent_node_id": "n-984c3c078f55377f",
+      "source_sha256": "7176fca40f34efacb426866533cff1115cbbf94aebe54047a61ebc3a1fcb4240"
+    },
+    "n-984c3c078f55377f": {
+      "action": {
+        "changed_regions": [
+          "src/main/java/be/mjodheim/brewstead/service/BrewService.java"
+        ],
+        "family": "external-code-repair",
+        "mechanisms": [
+          "source-locus-mutation"
+        ],
+        "target_axes": [
+          "brewstead-brew-lifecycle-thresholds"
+        ]
+      },
+      "evaluation": {
+        "phase": "complete",
+        "public_guard_pass": true,
+        "quality_milli": 500,
+        "reserved_passed": 2,
+        "source_sha256": "2000b90e73b10417b9c8b18c5b0b29602e69e84ddb9d95f8134f1d4c2199d3e3"
+      },
+      "lineage_depth": 1,
+      "mutation_locus": "brew_threshold",
+      "node_id": "n-984c3c078f55377f",
+      "outcome": {
+        "ever_champion": true,
+        "evolver_profile_generation": 0,
+        "quality_milli": 500,
+        "root_branch_node_id": "n-984c3c078f55377f"
+      },
+      "parent_node_id": "root",
+      "source_sha256": "2000b90e73b10417b9c8b18c5b0b29602e69e84ddb9d95f8134f1d4c2199d3e3"
+    },
+    "root": {
+      "action": {
+        "changed_regions": [
+          "src/main/java/be/mjodheim/brewstead/service/BrewService.java"
+        ],
+        "family": "defect-root",
+        "mechanisms": [
+          "seed-defect"
+        ],
+        "target_axes": [
+          "brewstead-brew-lifecycle-thresholds"
+        ]
+      },
+      "lineage_depth": 0,
+      "node_id": "root",
+      "outcome": {
+        "ever_champion": true,
+        "evolver_profile_generation": 0,
+        "quality_milli": 0,
+        "root_branch_node_id": "root"
+      },
+      "parent_node_id": null,
+      "source_sha256": "cd69805ab5bf5022031f9f6d4f4fe6826b142db9a2d09ca642c5e2241e885224"
+    }
+  },
+  "observations": [
+    {
+      "parent_node_ids": [
+        "root"
+      ],
+      "result_node_ids": [
+        "n-984c3c078f55377f"
+      ],
+      "round": 1
+    },
+    {
+      "parent_node_ids": [
+        "n-984c3c078f55377f"
+      ],
+      "result_node_ids": [
+        "n-39347ed85cc861ea"
+      ],
+      "round": 2
+    }
+  ],
+  "policy_sha256": "69d0d725601cd32adff27379dbb25f5c7be29946f9e9c6ac4858a0634cbd5fdf",
+  "represented_requests": 2,
+  "root_source_sha256": "cd69805ab5bf5022031f9f6d4f4fe6826b142db9a2d09ca642c5e2241e885224",
+  "rounds": 2,
+  "schema": "mira-genesis-rsi-v23-l5-holdout-task-result-v1",
+  "stop_reason": "policy_empty_batch",
+  "task_id": "brewstead-brew-lifecycle-thresholds",
+  "utility": [
+    1000,
+    -2,
+    -2
+  ]
+}
