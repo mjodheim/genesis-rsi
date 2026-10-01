@@ -37,6 +37,7 @@ def validate_task(task):
     if (type(task["task_id"]) is not str or not task["task_id"] or len(task["task_id"]) > 128
             or type(task["window"]) is not int or task["window"] < 0
             or task["family"] not in ("xor", "rotation", "affine")
+            or type(task["width"]) is not int
             or task["width"] != task["target"]["width"]
             or type(task["inputs"]) is not list or not 1 <= len(task["inputs"]) <= 128
             or len(set(task["inputs"])) != len(task["inputs"])

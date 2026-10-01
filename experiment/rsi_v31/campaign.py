@@ -15,7 +15,7 @@ from experiment.rsi_v31.archive import Archive
 ATTEMPT = ROOT / "results/rsi-v31/archive-20261001/V31_ATTEMPT.json"
 RAW = ATTEMPT.with_name("V31_ATTEMPT_RAW.json.gz")
 VERDICT = ATTEMPT.with_name("V31_FINAL_ADJUDICATION.json")
-DEVELOPMENT = freeze.HERE / "DEVELOPMENT.json.gz"
+DEVELOPMENT = freeze.HERE / "DEVELOPMENT_002.json.gz"
 
 
 def preserve(record):
@@ -44,7 +44,9 @@ def read_attempt():
 def development():
     if DEVELOPMENT.exists():
         raise ValueError("Never overwrite development receipts")
-    result = {"scope": "COMPLETE_PROJECT_AUTHORED_DEVELOPMENT_NOT_FRESH", "streams": {}}
+    result = {"scope": "COMPLETE_PROJECT_AUTHORED_DEVELOPMENT_NOT_FRESH", "round": 2,
+              "implementation_sha256": {path.name: digest_bytes(path.read_bytes())
+                  for path in freeze.HERE.glob("*.py")}, "streams": {}}
     with tempfile.TemporaryDirectory(prefix="v31-development-") as temporary:
         for seed in bank.DEV_SEEDS:
             tasks = bank.stream(seed)
@@ -156,6 +158,8 @@ def run():
         return value
     except BaseException as error:
         record["status"], record["interruption"] = "INTERRUPTED", type(error).__name__
+        record["interrupted_journals"] = {path.name: path.read_text()
+            for path in ATTEMPT.parent.glob("s*-*.jsonl")}
         preserve(record)
         raise
 

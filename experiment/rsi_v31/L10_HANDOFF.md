@@ -87,6 +87,7 @@ python -m experiment.rsi_v31.independent verify \
   --project-pin /secure/PROJECT_PIN.json \
   --primary-report /secure/primary/REPORT.json \
   --reproduction-report /secure/reproduction/REPORT.json \
+  --maintainer-statement /secure/BANK_COMMITMENT.json \
   --reproducer-statement /secure/REPRODUCER_ATTESTATION.json \
   --auditor-statement /secure/AUDITOR_ATTESTATION.json \
   --allowed-signers /secure/allowed-signers \

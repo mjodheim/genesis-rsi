@@ -28,8 +28,10 @@ Each arm receives the same task stream and unchanged G7, with 12 candidate
 requests, eight rounds, parallelism two and mutation depth three. The measured
 identity root costs one additional evaluation for **every** arm. Re-evaluating
 an archived source on a new task also costs a request. Proposals and fixed archive
-retrieval are externally implemented; retrieval ranks only previously observed
-success and recency at matching width. G7 sees current revealed qualities, AST
+retrieval are externally implemented; retrieval exposes at most two already
+successful champions, ranked by observed recency then success at matching width.
+All other branches remain preserved for audit and later prospective extensions.
+G7 sees current revealed qualities, AST
 descriptors and budgets, never expected outputs, hidden target genotype, future
 qualities, task identifiers or author-provided family labels.
 
@@ -39,6 +41,11 @@ available for audit even for the pruning controls. Complete per-arm requests,
 root probes, rounds and source hashes are recorded. Report per-window discovery
 rates, coverage, archive size and rediscoveries for each seed and pooled arms.
 No seed, task, window or failure may be omitted. Negative comparisons are valid.
+
+The initial uncapped public retrieval regression is preserved in
+`DEVELOPMENT.json.gz` and its original source commit. A second complete pilot
+uses `DEVELOPMENT_002.json.gz`; both are committed in the scientific manifest.
+No fresh task is evaluated during this development change.
 
 ## Recovery, ledger and containment
 

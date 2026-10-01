@@ -4,7 +4,9 @@ Signature validity authenticates a configured key, not independence, identity,
 scientific adequacy or L10. Those need external human review.
 """
 import argparse
+import base64
 import json
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -97,6 +99,34 @@ def signed_statement(path, allowed_signers, identity):
     return value
 
 
+def separate_trusted_keys(allowed_signers, identities):
+    """Do not mistake three names on the same signing key for three roles."""
+    fingerprints = {}
+    lines = Path(allowed_signers).read_text().splitlines()
+    for role, identity in identities.items():
+        matches = []
+        for line in lines:
+            if not line.strip() or line.lstrip().startswith("#"):
+                continue
+            parts = shlex.split(line)
+            if not parts or identity not in parts[0].split(","):
+                continue
+            if any(char in parts[0] for char in "*?!"):
+                raise ValueError("External trust requires exact principals")
+            key_index = next((index for index, part in enumerate(parts[1:], 1)
+                              if part.startswith(("ssh-", "ecdsa-", "sk-"))), None)
+            if key_index is None or key_index + 1 >= len(parts):
+                raise ValueError("Invalid external allowed-signers key")
+            raw = base64.b64decode(parts[key_index + 1], validate=True)
+            matches.append(digest_bytes(raw))
+        if len(matches) != 1:
+            raise ValueError("Each external role requires exactly one configured key")
+        fingerprints[role] = matches[0]
+    if len(set(fingerprints.values())) != len(ROLES):
+        raise ValueError("External roles must use distinct independently owned keys")
+    return fingerprints
+
+
 def validate_bank_statement(statement, project, raw, tasks, identity):
     required = {"schema", "project_pin_sha256", "bank_bytes_sha256", "task_count", "identity",
                 "independently_authored", "committed_before_first_candidate_execution", "custody",
@@ -152,7 +182,7 @@ def run_private(project_path, bank_path, statement_path, allowed_signers, identi
 
 
 def validate_attestations(project, primary_report, reproduction_report, statements, identities):
-    if set(identities) != set(ROLES) or len(set(identities.values())) != 3 or set(statements) != {"reproducer", "auditor"}:
+    if set(identities) != set(ROLES) or len(set(identities.values())) != 3 or set(statements) != set(ROLES):
         raise ValueError("Three separately trusted external roles are required")
     for identity in identities.values():
         if not identity or identity.casefold().strip() in ("mjodheim", "anthony mets"):
@@ -164,6 +194,33 @@ def validate_attestations(project, primary_report, reproduction_report, statemen
             or primary_report.get("l9_open_ended_passed") is not False
             or primary_report.get("l10_independent_passed") is not False):
         raise ValueError("Independent evidence substituted the lineage, pin or scope")
+    maintainer = statements["maintainer"]
+    if (maintainer.get("schema") != "mira-genesis-l10-bank-commitment-v1"
+            or maintainer.get("identity") != identities["maintainer"]
+            or maintainer.get("project_pin_sha256") != project["project_pin_sha256"]
+            or maintainer.get("independently_authored") is not True
+            or maintainer.get("committed_before_first_candidate_execution") is not True
+            or maintainer.get("custody") != "EXTERNAL_PRIVATE"
+            or primary_report.get("bank_bytes_sha256") != maintainer.get("bank_bytes_sha256")
+            or primary_report.get("bank_commitment_sha256") != digest(maintainer)
+            or type(maintainer.get("task_count")) is not int or not 24 <= maintainer["task_count"] <= 1024
+            or type(maintainer.get("domain_description")) is not str or not maintainer["domain_description"].strip()
+            or type(maintainer.get("conflicts_disclosed")) is not str):
+        raise ValueError("Missing or inconsistent externally signed bank commitment")
+    if (primary_report.get("schema") != "mira-genesis-l10-private-replication-report-v1"
+            or primary_report.get("scope") != project["scope"]
+            or primary_report.get("python_version") != project["required_python_version"]
+            or type(primary_report.get("arms")) is not dict or set(primary_report["arms"]) != set(engine.ARMS)):
+        raise ValueError("Incomplete independent report or altered environment")
+    for arm in primary_report["arms"].values():
+        if (arm.get("task_count") != maintainer["task_count"] or type(arm.get("windows")) is not list
+                or not arm["windows"] or sum(row["tasks"] for row in arm["windows"]) != maintainer["task_count"]
+                or type(arm.get("evaluations")) is not int
+                or arm["evaluations"] != sum(row["evaluations"] for row in arm["windows"])
+                or not maintainer["task_count"] <= arm["evaluations"] <= maintainer["task_count"] * 13
+                or any(type(arm.get(key)) is not str or len(arm[key]) != 64
+                       for key in ("head_sha256", "episodes_sha256"))):
+            raise ValueError("Missing tasks, journal identity or invalid independent costs")
     report_sha = digest(primary_report)
     for role in ("reproducer", "auditor"):
         row = statements[role]
@@ -200,7 +257,7 @@ def main():
     for name in ("project-pin", "private-bank", "bank-statement", "allowed-signers", "identity", "output"):
         run.add_argument("--" + name, required=True)
     verify = commands.add_parser("verify")
-    for name in ("project-pin", "primary-report", "reproduction-report", "reproducer-statement", "auditor-statement",
+    for name in ("project-pin", "primary-report", "reproduction-report", "maintainer-statement", "reproducer-statement", "auditor-statement",
                  "allowed-signers", "maintainer-identity", "reproducer-identity", "auditor-identity"):
         verify.add_argument("--" + name, required=True)
     args = parser.parse_args()
@@ -220,8 +277,9 @@ def main():
         project = json.loads(Path(args.project_pin).read_text())
         verify_pin(project)
         identities = {role: getattr(args, role + "_identity") for role in ROLES}
+        separate_trusted_keys(args.allowed_signers, identities)
         statements = {role: signed_statement(getattr(args, role + "_statement"), args.allowed_signers, identities[role])
-                      for role in ("reproducer", "auditor")}
+                      for role in ROLES}
         result = validate_attestations(project, json.loads(Path(args.primary_report).read_text()),
                                       json.loads(Path(args.reproduction_report).read_text()), statements, identities)
     print(json.dumps(result, indent=2))

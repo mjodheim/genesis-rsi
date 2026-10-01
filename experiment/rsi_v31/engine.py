@@ -63,8 +63,12 @@ class Host:
         if genome == self.root_genome:
             # Retrieval is fixed engineering, using only already observed success/recency.
             # No current task family, target, input/output pair or future quality enters it.
-            rows.extend(self.row(row["genome"]) for row in sorted(self.history.values(),
-                        key=lambda row: (-row["successes"], -row["last_success_position"], row["source_sha256"])))
+            champions = [row for row in self.history.values() if row["successes"]]
+            # Preserve all branches, but expose at most two old champions per task.
+            # The initial uncapped public implementation overloaded candidate ordering.
+            ranked = sorted(champions, key=lambda row: (-row["last_success_position"],
+                                                       -row["successes"], row["source_sha256"]))
+            rows.extend(self.row(row["genome"]) for row in ranked[:2])
         rows.extend(self.row(row) for row in programs.neighbors(genome))
         unique = {}
         for row in rows:
@@ -165,8 +169,9 @@ def verify_stream(tasks, arm, rows, *, isolated=True):
     history = {}
     prefix = []
     for position, (task, row) in enumerate(zip(tasks, rows)):
+        evaluator = Host(task, {}, "cold", isolated=False)
         for program in row["programs"]:
-            expected = Host(task, {}, "cold", isolated=False).evaluate(Host.row(None, program["genome"]))
+            expected = evaluator.evaluate(evaluator.row(program["genome"]))
             if digest(expected) != digest(program["evaluation"]):
                 raise ValueError("Altered evaluator receipt")
         reconstructed = episode(task, position, history, arm, isolated=isolated, replay=row)

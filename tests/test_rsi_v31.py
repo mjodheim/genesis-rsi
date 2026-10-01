@@ -230,14 +230,25 @@ def test_task_commitment_hash_count_and_authorship_required(tasks):
 
 
 def test_internal_consistency_cannot_pass_l10():
-    project = {"project_pin_sha256": "fixture"}
-    report = {"status": "COMPLETED", "project_pin_sha256": "fixture", "policy_sha256": programs.PARENT_SHA256,
+    project = {"project_pin_sha256": "fixture", "scope": "fixture", "required_python_version": "fixture"}
+    maintainer = {"schema": "mira-genesis-l10-bank-commitment-v1", "project_pin_sha256": "fixture",
+                  "bank_bytes_sha256": "fixture", "task_count": 24, "identity": "external-maintainer",
+                  "independently_authored": True, "committed_before_first_candidate_execution": True,
+                  "custody": "EXTERNAL_PRIVATE", "domain_description": "fixture", "conflicts_disclosed": "fixture"}
+    report = {"schema": "mira-genesis-l10-private-replication-report-v1", "status": "COMPLETED",
+              "project_pin_sha256": "fixture", "policy_sha256": programs.PARENT_SHA256,
+              "scope": "fixture", "python_version": "fixture", "bank_bytes_sha256": "fixture",
+              "bank_commitment_sha256": digest(maintainer),
+              "arms": {arm: {"task_count": 24, "evaluations": 24, "head_sha256": "0" * 64,
+                             "episodes_sha256": "0" * 64, "windows": [{"tasks": 24, "evaluations": 24}]}
+                       for arm in engine.ARMS},
               "l9_open_ended_passed": False, "l10_independent_passed": False}
     identities = {role: "external-" + role for role in independent.ROLES}
     statements = {role: {"schema": "mira-genesis-l10-" + role + "-attestation-v1", "project_pin_sha256": "fixture",
                         "report_sha256": digest(report), "identity": identities[role],
                         "independent_of_project": True, "conflicts_disclosed": "fixture only"}
                   for role in ("reproducer", "auditor")}
+    statements["maintainer"] = maintainer
     statements["reproducer"]["reran_unchanged_lineage_and_private_bank"] = True
     statements["auditor"]["checks"] = {key: True for key in independent.AUDIT_CHECKS}
     result = independent.validate_attestations(project, report, report, statements, identities)
@@ -248,3 +259,25 @@ def test_internal_consistency_cannot_pass_l10():
         independent.validate_attestations(project, report, report, bad, identities)
     with pytest.raises(ValueError, match="roles"):
         independent.validate_attestations(project, report, report, statements, dict.fromkeys(independent.ROLES, "same"))
+
+
+def test_one_key_cannot_supply_three_independent_roles(tmp_path):
+    trust = tmp_path / "allowed-signers"
+    identities = {role: "outside-" + role for role in independent.ROLES}
+    trust.write_text("\n".join(identity + " ssh-ed25519 Zml4dHVyZQ==" for identity in identities.values()))
+    with pytest.raises(ValueError, match="distinct"):
+        independent.separate_trusted_keys(trust, identities)
+
+
+def test_pending_consumed_attempt_is_never_overwritten(tmp_path, monkeypatch):
+    import sys
+    path = tmp_path / "freeze.json"
+    path.write_text(json.dumps({"python_version": sys.version.split()[0], "freeze_sha256": "fixture"}))
+    attempt = tmp_path / "attempt.json"
+    attempt.write_text("already-consumed")
+    monkeypatch.setattr(freeze, "PATH", path)
+    monkeypatch.setattr(freeze, "verify", lambda value: True)
+    monkeypatch.setattr(campaign, "ATTEMPT", attempt)
+    with pytest.raises(FileExistsError):
+        campaign.run()
+    assert attempt.read_text() == "already-consumed"

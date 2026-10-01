@@ -18,6 +18,11 @@ class Archive:
             fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
             os.close(fd)
             self.append("header", binding)
+            directory = os.open(self.path.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
         events = self.read()
         if not events or events[0]["kind"] != "header" or events[0]["data"] != binding:
             raise ValueError("Archive binding differs from the pinned evaluator, stream or arm")
