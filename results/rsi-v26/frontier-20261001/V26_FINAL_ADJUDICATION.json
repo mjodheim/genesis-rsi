@@ -1,0 +1,84 @@
+{
+  "freeze_sha256": "b867308a42579e52ecdb7d950e4527f8b5298405722c28ac1ed20c722cb9bb05",
+  "fresh_global_utilities": {
+    "ablation_stop_quality": [
+      3,
+      3841,
+      -17,
+      -10
+    ],
+    "ablation_strategy": [
+      2,
+      3551,
+      -18,
+      -18
+    ],
+    "g1_meta_successor": [
+      2,
+      3466,
+      -14,
+      -14
+    ],
+    "g2": [
+      2,
+      3466,
+      -14,
+      -14
+    ],
+    "g3": [
+      4,
+      4000,
+      -24,
+      -14
+    ]
+  },
+  "holdout_consumed": true,
+  "meta_utilities": {
+    "g1_meta": [
+      0,
+      39,
+      75300,
+      -1,
+      -1
+    ],
+    "g2_ablation": [
+      1,
+      96,
+      98600,
+      -5,
+      -5
+    ],
+    "g2_meta": [
+      1,
+      96,
+      98600,
+      -2,
+      -2
+    ],
+    "no_meta": [
+      1,
+      96,
+      98600,
+      -8,
+      -8
+    ]
+  },
+  "predicates": {
+    "composed_exploration_and_full_quality_stop": true,
+    "fresh_transfer_completed": true,
+    "frozen_identities_track_and_one_attempt": true,
+    "isolated_parent_choice_witness": true,
+    "l4_zero_loss": true,
+    "meta_advantage_over_acquired_g2_ablation": true,
+    "qualified_parent_selected_descent": true,
+    "strict_development_gain": true,
+    "strict_every_development_ablation": true,
+    "strict_every_fresh_ablation": true,
+    "strict_fresh_gain_over_g1_meta": true,
+    "strict_fresh_gain_over_g2": true
+  },
+  "schema": "mira-genesis-rsi-v26-frontier-l5-adjudication-v1",
+  "scope": "BOUNDED_NATIVE_REPAIR_TRANSFER_ON_FOUR_PROJECT_AUTHORED_FRESH_TASKS",
+  "v26_l5_positive": true,
+  "verdict": "POSITIVE_BOUNDED_L5"
+}

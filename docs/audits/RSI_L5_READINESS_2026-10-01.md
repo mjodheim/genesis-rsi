@@ -1,6 +1,8 @@
 # RSI L5 readiness audit — 1 October 2026
 
-Status: V24 is a preserved negative L5 result. V25 is development apparatus, not an L5 result.
+Initial audit status: V24 was a preserved negative L5 result and V25 was development
+apparatus. The sections below preserve that pre-execution assessment; the completion
+addendum records V25's negative and V26's later positive bounded result.
 
 Anthony Mets asked to inspect Mira Genesis and advance L5. OpenAI Codex provided
 substantial repository inspection, implementation and test assistance under that direction.
@@ -56,3 +58,31 @@ apparatus commitment and cannot authorize a final holdout.
    identity, budget and no-leakage predicates passing.
 
 The public development gate passing or CI being green does not close these requirements.
+
+## Completion addendum — 1 October 2026
+
+The executable V25 campaign was prospectively frozen and consumed once. It passed
+its pre-gates but failed fresh exploration-component ablation: both G3 and that
+ablation scored `(0, 3110, -16, -16)`. V25 remains negative. A workspace reset lost
+its original raw traces before publication; the original observed terminal verdict
+was preserved first, then a separately committed recovery protocol authorized one
+diagnostic replication on the already consumed bank. That replication reproduced
+the observed verdict exactly. Its receipts are labelled replication evidence,
+not recovered original bytes or a new fresh experiment.
+
+V26 then committed a distinct frontier-exploration hypothesis, a complete 19-program
+family and 108-episode public development matrix, four new native production targets,
+external budgets and evaluator identities before canonical selection. The single
+frozen Track A attempt returned `POSITIVE_BOUNDED_L5`; its original raw traces and
+selected executable policies were published directly before navigation updates.
+The checker replays all twelve predicates true, including actual parent-selected
+descent, meta advantage over acquired-G2 ablation, zero-loss represented L4 histories,
+strict fresh gain over G2 and the G1-meta comparator, and strict loss for both G3
+component ablations. Full receipts, chronology and limits are in
+[`RESULT_SUMMARY.md`](../../results/rsi-v26/frontier-20261001/RESULT_SUMMARY.md).
+
+The result is bounded to the project-authored finite family and four native tasks.
+L4 retention is represented policy-history replay, not a private native-host or
+external-model rerun. G3 uses more native evaluations than G2, so the positive
+solved-task utility is not a general efficiency result. No independent M085,
+generality, completion, L6 or AGI claim is advanced.

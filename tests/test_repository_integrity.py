@@ -8,7 +8,7 @@ import check_repository_integrity as integrity
 from check_repository_integrity import check_citations, check_dependencies
 
 
-def test_repository_scripts_are_local_not_a_distribution_dependency() -> None:
+def test_repository_scripts_and_experiments_are_local_not_distribution_dependencies() -> None:
     assert check_dependencies() == []
 
 

@@ -1,18 +1,29 @@
 # Mira Genesis — current authoritative project state
 
-**Updated: 1 October 2026 — V24 negative for L5; V25 remains development apparatus.**
+**Updated: 1 October 2026 — V26 validates bounded L5; V24 and V25 remain negative.**
 
 ## Current RSI frontier
 
-The V24 fresh comparison finished with identical successor and comparator aggregate
-utilities `(2, 2500, -17, -17)`. L5 is therefore **not validated**. The thirteen exact
-records are preserved in `results/rsi-v24/l5-20260928/` and bound by the V25 evidence manifest.
+V26's single prospectively frozen Track A attempt returns **POSITIVE_BOUNDED_L5**.
+The qualified V22R G2 controller selects an executable two-component G3 descendant
+through actual parent-selected mutations. G3 solves all four fresh native Java/Node
+repair tasks; G2 and the G1-meta comparator solve two. Both acquired-component
+ablations lose fresh utility, and represented L4 policy-history retention has zero loss.
+All twelve frozen predicates replay true from the committed evidence.
 
-V25's commit citation, test collection, equal-utility selection and evidence commitment
-checks have been corrected before any final V25 freeze. Its synthetic development gate
-does not authorize a holdout. Actual predecessor-bound descendant/control execution,
-selected-successor L4 retention and a genuinely new frozen evaluation population remain
-required. See [the L5 audit](docs/audits/RSI_L5_READINESS_2026-10-01.md).
+This establishes causal recursive meta-improvement within V26's finite, project-authored
+policy and task families. It does not establish independent M085 validation, general
+RSI, a generality/completion gate or AGI. G3 spends 24 native evaluations against G2's
+14 under identical external caps; the positive utility prioritizes solved tasks, so this
+is not a general efficiency claim. Scientific execution makes zero external model calls.
+
+V24 retains its negative tie `(2, 2500, -17, -17)`. V25 also remains negative: its
+exploration ablation ties its selected successor. V25's original raw traces were lost
+in a workspace reset; its original terminal verdict and separately preregistered
+diagnostic replication are explicitly distinguished. V26 preserves its own original
+raw traces directly and uses four new mutation targets, not the consumed V24/V25 bank.
+See [the V26 result](results/rsi-v26/frontier-20261001/RESULT_SUMMARY.md) and
+[the readiness audit and completion addendum](docs/audits/RSI_L5_READINESS_2026-10-01.md).
 
 The carrier-line snapshot below remains a separate historical frontier, not the latest RSI status.
 

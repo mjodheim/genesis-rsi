@@ -120,6 +120,12 @@ Allowed dispositions:
 The disposition must describe reality. Do not retroactively mark already public information as
 secret.
 
+### Prospective RSI V25 review — 1 October 2026
+
+| ID | Mechanism / asset | Publication posture | Human provenance | Third-party review | Disposition | Decision date | Evidence / notes |
+|---|---|---|---|---|---|---|---|
+| P-030 | V25 / executable predecessor-bound L5 apparatus | Reviewed before enabling implementation; public preparation and a prospectively frozen one-shot attempt under the owner's instruction to continue toward L5 | Anthony Mets directs the work; OpenAI Codex assists as tooling | Python standard library and existing test tooling; exact public project-controlled Cellar/Vibe Arcade snapshots with source attribution; no private repository or vendor code | `PUBLIC_AGPL_COMMERCIAL_OPTION` under the standing public-research disposition | 2026-10-01 | `docs/IP_REVIEWS/V25_EXECUTABLE_L5_PUBLICATION_REVIEW.md`. No scientific result, independent-maintainer claim, new mutable authority or revision of V23/V24 evidence is licensed by this entry. |
+
 ## Alternative commercial licensing chain-of-title rule
 
 Alternative commercial licensing is only possible to the extent the project controls the rights
