@@ -93,11 +93,15 @@ This is a documented transport finalization, not a prospective protocol repair.
 
 ## L10 packet and remaining requirements
 
-See [the independent handoff](../experiment/rsi_v31/L10_HANDOFF.md) and the
-published project pin in the result directory. The pin fixes the exact checkout,
+See [the independent handoff](../experiment/rsi_v31/L10_HANDOFF.md) and
+[PROJECT_PIN.json](../results/rsi-v31/archive-20261001/PROJECT_PIN.json).
+The pin fixes the exact checkout,
 lineage, scientific manifest and runtime. Its checkout also contains the
 completion-index failure and finalization provenance; verify
 `python -m scripts.check_rsi_v31_transport_recovery` before external execution.
+Pinned checkout: `6208b39fb3049bc5bfed07d3551f9f114ebf0c65`.
+Project-pin SHA256:
+`dbcddb7e54933b8349c1da45840fd951531248cf92f4df49b32fc86a916af43e`.
 
 The implemented runner requires an externally signed private-bank commitment
 before any execution, all three controls, complete tasks/negatives and exact
@@ -128,3 +132,10 @@ candidate evaluation. Full project tests and the existing L6–L8 evidence workf
 also apply. Normal merge must preserve apparatus, freeze, original evidence and
 finalization ancestry. `IP_ASSET_REGISTER.md` and `.github/workflows/ci.yml`
 remain byte-exact.
+
+The 36 targeted archive/trust/transport tests pass. An internal CLI rehearsal
+uses 24 already consumed development tasks and three explicitly simulated roles
+with separate fixture keys. Primary and reproduction reports match byte for byte
+(digest `10443ee9c83d67d0cdaa40e6cf01a7e519cd75e7a73a5f0ae28f463111b8d4ba`),
+and signed packet verification still returns `l10_independent_passed: false`.
+This tests the handoff implementation, not real independent evidence.
