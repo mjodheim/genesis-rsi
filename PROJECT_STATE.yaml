@@ -1,20 +1,47 @@
 project: Mira Genesis
 updated_at: 2026-10-01
 snapshot_kind: current_authoritative_navigation
-status: v24_l5_negative_v25_development_apparatus_only
+status: v26_positive_bounded_l5_v24_v25_negative_preserved
 
 rsi_frontier:
-  l5_validated: false
+  l5_validated: true
+  l5_scope: bounded_v26_project_authored_native_repair_transfer
   v24:
     verdict: negative
     evidence_directory: results/rsi-v24/l5-20260928
     aggregate_utility_all_three_arms: [2, 2500, -17, -17]
     evidence_manifest: experiment/rsi_v25/V24_PRESERVED_EVIDENCE_MANIFEST.json
   v25:
-    status: development_apparatus_only
-    final_holdout_consumed: false
-    final_holdout_authorized_by_development_gate: false
-    remaining: [predecessor_bound_executable_descent, selected_successor_l4_retention, prospective_new_population_and_evaluator]
+    verdict: negative
+    final_holdout_consumed: true
+    evidence_directory: results/rsi-v25/executable-20261001
+    g3_utility: [0, 3110, -16, -16]
+    strategy_ablation_utility: [0, 3110, -16, -16]
+    original_terminal_verdict_preserved: true
+    original_raw_traces_lost_in_workspace_reset: true
+    diagnostic_replication_on_consumed_bank: true
+    diagnostic_replication_is_fresh_evidence: false
+  v26:
+    verdict: POSITIVE_BOUNDED_L5
+    canonical_attempts: 1
+    final_holdout_consumed: true
+    evidence_directory: results/rsi-v26/frontier-20261001
+    original_raw_traces_preserved: true
+    frozen_predicates_true: 12
+    g3_utility: [4, 4000, -24, -14]
+    g2_utility: [2, 3466, -14, -14]
+    g1_meta_successor_utility: [2, 3466, -14, -14]
+    exploration_ablation_utility: [2, 3551, -18, -18]
+    stopping_ablation_utility: [3, 3841, -17, -10]
+    l4_retention: zero_loss_represented_policy_history_replay
+    private_native_or_external_model_l4_rerun: false
+    track: A
+    scientific_external_model_calls: 0
+    equal_external_caps: {requests: 9, rounds: 8, parallelism: 2, mutation_depth: 2}
+    independent_maintainer_evidence: false
+    general_efficiency_claim: false
+    generality_or_completion_gate_closed: false
+    summary: results/rsi-v26/frontier-20261001/RESULT_SUMMARY.md
   audit: docs/audits/RSI_L5_READINESS_2026-10-01.md
 
 navigation_only: true

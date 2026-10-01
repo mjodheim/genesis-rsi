@@ -41,6 +41,14 @@ replayable**.
 For the detailed current snapshot, see
 [`docs/CURRENT_RESEARCH_FRONTIER.md`](docs/CURRENT_RESEARCH_FRONTIER.md).
 
+The separate RSI policy line now has a **positive bounded L5 result in V26**:
+the qualified G2 controller causally discovers G3, which solves four fresh native
+repair tasks versus two for G2 under the same external caps. Both acquired-component
+ablations lose utility, and represented L4 history retention has zero loss. This is a
+finite, project-authored experiment with zero external model calls during execution;
+it does not establish general RSI, independent-maintainer validation or AGI. V24 and
+V25 remain negative. See [the complete evidence and limits](results/rsi-v26/frontier-20261001/RESULT_SUMMARY.md).
+
 ## What the project is trying to establish
 
 The long-term research target is not “make the benchmark number go up”. It is a causal chain in

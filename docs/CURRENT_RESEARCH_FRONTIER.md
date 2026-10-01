@@ -1,19 +1,28 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 1 October 2026, V24 negative and V25 development apparatus.**
+**Reader-facing status snapshot — 1 October 2026, V26 positive bounded L5.**
 
 ## Active RSI frontier
 
-V24 completed its fresh comparison and failed L5 because its successor tied both required
-comparators at `(2, 2500, -17, -17)`. Its twelve task results and adjudication are preserved
-byte-for-byte in `results/rsi-v24/l5-20260928/`; the negative is not rescored.
+V26 validates **bounded causal recursive meta-improvement (L5)** in one prospectively
+frozen Track A attempt. Exact qualified V22R G2 discovers the composed G3 in two meta
+evaluations, against five after ablating G2's acquired early stop and eight for FIFO.
+G3 then solves 4/4 fresh native repair tasks, against 2/4 for G2 and the G1-meta
+comparator. Removing frontier exploration yields 2/4; removing full-quality stopping
+yields 3/4. All twelve predicates, including zero-loss represented L4 history replay,
+reproduce from the original committed traces.
 
-V25 development now includes the previously omitted causal tests and rejects uncommitted or
-altered predecessor evidence. Its public trace selection excludes unnecessary parameter
-acquisition at equal utility. These are preparation corrections, not a new L5 observation.
-Executable predecessor-bound meta-descent, selected-successor L4 retention and a new
-prospectively frozen population/evaluator are still required before final execution.
-See [the readiness audit](audits/RSI_L5_READINESS_2026-10-01.md).
+The task faults and finite policy family are project-authored, with four new production
+targets on two public hosts. G3 uses 24 native evaluations versus G2's 14 under equal
+external caps; the gain is solved-task utility, not general efficiency. This closes
+V26's bounded L5 criterion only, without closing M085 independence, L6 or any generality,
+completion or AGI gate. Scientific execution uses zero external model calls.
+
+V24's tie `(2, 2500, -17, -17)` and V25's failed strategy-ablation check remain negative.
+V25's lost original raw traces, preserved original terminal verdict and diagnostic
+replication on the consumed bank remain disclosed. V26 retains its own original raw
+evidence directly. See [the V26 result](../results/rsi-v26/frontier-20261001/RESULT_SUMMARY.md)
+and [the readiness audit's completion addendum](audits/RSI_L5_READINESS_2026-10-01.md).
 
 The following carrier-line record is retained as the separate September snapshot.
 
