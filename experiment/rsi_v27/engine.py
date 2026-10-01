@@ -47,6 +47,8 @@ def run_search(source, host, *, caps=CAPS, isolated=True):
         if len(metadata) != 10 or any(type(x) is not int for x in metadata) or min(metadata[7:]) <= 0:
             raise ValueError("Invalid policy ABI metadata")
         root = host.root()
+        if type(root.get("quality_milli")) is not int or not 0 <= root["quality_milli"] <= 1000:
+            raise ValueError("Invalid external root quality")
         nodes = {"root": {"node_id": "root", "parent_node_id": None, "lineage_depth": 0,
                           "candidate": root["candidate"], "source_sha256": root["source_sha256"],
                           "action": host.action(root), "outcome": {"quality_milli": root["quality_milli"],

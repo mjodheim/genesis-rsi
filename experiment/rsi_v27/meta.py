@@ -105,24 +105,27 @@ def utility(selected, search, stage):
             -search["represented_requests"], -search["rounds"])
 
 
-def pilot(calibration):
+def pilot(calibration, *, isolated=False, checkpoint=None):
     base, phases, candidate = dict(family.ROOT_PARAMS), [], family.genotype(family.ROOT_PARAMS)
     for stage in range(3):
         host = Host(calibration, base, stage)
-        search = run_search(family.render_genotype(candidate), host, isolated=False)
+        search = run_search(family.render_genotype(candidate), host, isolated=isolated)
         selected = choose(search, host)
         controls = []
         for axis in family.components(base):
             ablated = {**base, axis: 0}
-            comparison = run_search(family.render(ablated), host, isolated=False)
+            comparison = run_search(family.render(ablated), host, isolated=isolated)
             successor = choose(comparison, host)
             controls.append({"component": axis, "controller_params": ablated,
                              "selected_params": successor["params"],
-                             "utility": utility(successor, comparison, stage)})
+                             "utility": utility(successor, comparison, stage), "search": comparison})
         phases.append({"stage": stage, "parent_params": base, "selected_params": selected["params"],
                        "qualified_discovery": selected["qualified_discovery"],
+                       "selected_genotype": selected["genotype"], "selected_source_sha256": selected["source_sha256"],
                        "utility": utility(selected, search, stage), "controls": controls,
                        "trace_sha256": digest(search), "search": search})
+        if checkpoint:
+            checkpoint(phases)
         if not selected["qualified_discovery"]:
             break
         base, candidate = selected["params"], selected["genotype"]

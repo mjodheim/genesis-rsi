@@ -38,6 +38,12 @@ computed from already revealed action signatures. Source-layout aliases change
 comments only and are disclosed nuisance proposals, not additional acquired
 capabilities. This refinement remains under the same bounded public disposition.
 
+Static proposal descriptors may use a normalized Python AST hash and changed
+AST leaves, computed before evaluation, to identify comment-only aliases and
+describe executable edits. The per-transition generator enforces its declared
+one-new-component type constraint before reading any outcomes. These are public
+mechanism refinements, not evaluator changes or new authority.
+
 The global P-030 register snapshot is already a frozen V25/V26 input. This adjacent
 prospective review records the continuation without changing that historical
 snapshot. Original V24/V25 negatives and V26 positive evidence remain immutable.

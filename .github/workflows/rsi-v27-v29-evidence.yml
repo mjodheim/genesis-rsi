@@ -1,0 +1,31 @@
+name: RSI V27–V29 sealed evidence
+on:
+  push:
+    branches: [main, research/rsi-v27-l6-l8]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay retained evidence without fresh evaluators
+        run: |
+          python - <<'PY'
+          import importlib
+          from pathlib import Path
+          for version in (27, 28, 29):
+              root = Path(f'experiment/rsi_v{version}')
+              if not (root / 'campaign.py').exists():
+                  print(f'V{version}: not yet implemented')
+                  continue
+              module = importlib.import_module(f'experiment.rsi_v{version}.campaign')
+              print(f'V{version}:', module.check(require_result=module.freeze.PATH.exists()))
+          PY
