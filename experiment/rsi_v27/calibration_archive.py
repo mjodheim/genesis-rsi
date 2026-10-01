@@ -9,7 +9,7 @@ from experiment.rsi_v27.family import render
 HISTORY = Path(__file__).with_name("development_history")
 
 
-def load(name="PILOT_004", *, verify_current_family=True):
+def load(name="PILOT_005", *, verify_current_family=True):
     manifest = json.loads((HISTORY / (name + "_MANIFEST.json")).read_text())
     archive = (HISTORY / (name + "_CALIBRATION.json.gz")).read_bytes()
     if digest_bytes(archive) != manifest["gzip_sha256"]:

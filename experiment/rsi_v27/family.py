@@ -2,6 +2,7 @@
 
 This is public DEVELOPMENT apparatus until a separate scientific freeze exists.
 """
+import ast
 from itertools import product
 
 from experiment.rsi_v25.commitments import ROOT, digest, digest_bytes
@@ -61,17 +62,45 @@ def render(params):
         if source.count(marker) != 1:
             raise ValueError("Qualified batch mutation anchor changed")
         source = source.replace(marker, code + marker)
-    if p["ordering"]:
+    if p["ordering"] or p["persistence"]:
         source += '\n\ndef order_candidates(view, parent_id, candidates):\n'
         source += '    parent = next(row for row in view["revealed_nodes"] if row["node_id"] == parent_id)\n'
         source += '    previous = set(parent["action"]["target_axes"])\n    ranked = []\n'
+        source += '    seen = set(row["action"].get("structure_sha256", "") for row in view["revealed_nodes"])\n'
         source += '    for index, row in enumerate(candidates):\n        axes = set(row["action"]["target_axes"])\n'
+        source += '        repeated = int(row["action"].get("structure_sha256", row["source_sha256"]) in seen)\n'
         if p["ordering"] == 1:
-            source += '        key = (len(axes), -len(axes - previous), index, row["source_sha256"])\n'
+            source += f'        key = ({int(bool(p["persistence"]))} * repeated, len(axes), -len(axes - previous), index, row["source_sha256"])\n'
+        elif p["ordering"] == 2:
+            source += f'        key = ({int(bool(p["persistence"]))} * repeated, -len(axes - previous), -len(axes), index, row["source_sha256"])\n'
         else:
-            source += '        key = (-len(axes - previous), -len(axes), index, row["source_sha256"])\n'
-        source += '        ranked.append(key)\n    ranked.sort()\n    return [row[3] for row in ranked]\n'
+            source += '        key = (repeated, 0, 0, index, row["source_sha256"])\n'
+        source += '        ranked.append(key)\n    ranked.sort()\n    return [row[4] for row in ranked]\n'
     return source
+
+
+def structure(source):
+    """Static syntax identity: comments and layout contribute no new behavior."""
+    return digest_bytes(ast.dump(ast.parse(source), include_attributes=False).encode())
+
+
+def syntax_changes(source, base):
+    """Changed AST leaves relative to the exact current root, without evaluation."""
+    def leaves(node, path="module"):
+        if isinstance(node, ast.AST):
+            result = {}
+            for key, value in ast.iter_fields(node):
+                result.update(leaves(value, path + "." + key))
+            return result
+        if isinstance(node, list):
+            result = {}
+            for index, value in enumerate(node):
+                result.update(leaves(value, path + "." + str(index)))
+            return result
+        return {path: [type(node).__name__, node]}
+    after, before = leaves(ast.parse(source)), leaves(ast.parse(base))
+    return sorted(digest([path, after.get(path)])[:24] for path in set(after) | set(before)
+                  if after.get(path) != before.get(path))
 
 
 def components(params, base=ROOT_PARAMS):

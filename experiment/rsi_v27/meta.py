@@ -42,6 +42,10 @@ class Host:
         self.rows = indexed(calibration)
         self.base, self.stage = family.validate(base), stage
         self.root_row = self.rows[digest(base)]
+        self.root_source = family.render(base)
+        self.descriptors = {digest(r["params"]): {"structure_sha256": family.structure(family.render(r["params"])),
+                            "target_axes": family.syntax_changes(family.render(r["params"]), self.root_source)}
+                            for r in self.rows.values()}
         from experiment.rsi_v25.search_engine import global_utility
         count = len(public_population(stage))
         self.active_utilities = {digest(r["params"]): global_utility(phase_episodes(r, stage)[-count:])
@@ -67,7 +71,7 @@ class Host:
     def action(self, row):
         axes = [axis + ":" + str(row["candidate"]["params"][axis])
                 for axis in family.components(row["candidate"]["params"], self.base)]
-        return {"family": "executable-pipeline", "target_axes": axes,
+        return {"family": "executable-pipeline", **self.descriptors[digest(row["candidate"]["params"])],
                 "mechanisms": axes or ["qualified-parent"], "changed_regions": axes}
 
     def evaluate(self, row):
