@@ -20,6 +20,9 @@ jobs:
         run: |
           python - <<'PY'
           from experiment.rsi_v31 import campaign, independent
+          from scripts.check_rsi_v31_transport_recovery import check
+          if campaign.VERDICT.exists():
+              print(check())
           result = campaign.check(require_result=campaign.freeze.PATH.exists())
           print({key: value for key, value in result.items() if key != 'windows'})
           assert result['l9_open_ended_passed'] is False

@@ -51,6 +51,12 @@ including V27's negative, are retained. These are finite project-authored experi
 with zero external scientific model calls; independent task authorship, general RSI
 and AGI remain unestablished. See [the complete evidence and limits](docs/RSI_L6_L8_RESULTS_2026-10-01.md).
 
+V31 adds persistent branching, task-boundary recovery and rediscovery around
+unchanged G7, plus a pinned independent-replication packet. Its finite archive
+solves 99/144 new tasks versus 105/144 for cold start; **L9 open-endedness and L10
+independence remain unestablished**. See [the archive evidence, preserved transport
+fault and external handoff](docs/RSI_L9_L10_READINESS_2026-10-01.md).
+
 ## What the project is trying to establish
 
 The long-term research target is not “make the benchmark number go up”. It is a causal chain in

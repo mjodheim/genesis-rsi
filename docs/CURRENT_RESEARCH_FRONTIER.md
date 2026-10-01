@@ -1,6 +1,6 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 1 October 2026, V28–V30 positive bounded L6–L8.**
+**Reader-facing status snapshot — 1 October 2026, bounded L6–L8; L9 operations and L10 preparation.**
 
 ## Active RSI frontier
 
@@ -26,6 +26,17 @@ consumed receipts and is not new native evidence.
 These results are finite frozen assays with zero external scientific model calls.
 They do not close M085/L10 independence, open-ended RSI, AGI or a completion gate.
 See [the complete L6–L8 evidence and chronology](RSI_L6_L8_RESULTS_2026-10-01.md).
+
+V31 provides a **finite archive-operations precursor**, retaining executable
+branches around unchanged G7 and recovering at completed task boundaries.
+Its archive solves 99/144 new tasks, versus 92/144 for greedy retrieval and
+105/144 for cold start. New discoveries remain positive in four measured
+windows; rates decline on two seeds. Archive usefulness, open-ended L9 and a
+new G8 acquisition are not established. The exact original completion-index
+fault and its metadata-only finalization remain auditable. A pinned, signed
+private-bank replication packet is ready for genuine external maintainers,
+reproduction and adversarial audit; **L10 remains unpassed**.
+See [L9–L10 evidence and readiness](RSI_L9_L10_READINESS_2026-10-01.md).
 
 The preceding V26 result validates **bounded causal recursive meta-improvement (L5)** in one prospectively
 frozen Track A attempt. Exact qualified V22R G2 discovers the composed G3 in two meta
