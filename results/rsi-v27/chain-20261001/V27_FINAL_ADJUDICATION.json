@@ -1,0 +1,221 @@
+{
+  "bootstrap_utility": [
+    0,
+    0,
+    0,
+    -3,
+    -3
+  ],
+  "freeze_sha256": "8a1eae21c3657c628b13d8dd3fc6d9c82a84059a04c1e5674b7d6d3fd31711dc",
+  "fresh_native_transfer": false,
+  "fresh_utilities": [
+    {
+      "active_partition": {
+        "ablation_persistence": [
+          2,
+          10000,
+          -80,
+          -46
+        ],
+        "parent": [
+          2,
+          10000,
+          -80,
+          -46
+        ],
+        "successor": [
+          2,
+          10000,
+          -96,
+          -54
+        ]
+      },
+      "cumulative": {
+        "ablation_persistence": [
+          2,
+          10000,
+          -80,
+          -46
+        ],
+        "parent": [
+          2,
+          10000,
+          -80,
+          -46
+        ],
+        "successor": [
+          2,
+          10000,
+          -96,
+          -54
+        ]
+      },
+      "previous_solved_capabilities_retained": true,
+      "stage": 0
+    },
+    {
+      "active_partition": {
+        "ablation_ordering": [
+          4,
+          9000,
+          -108,
+          -60
+        ],
+        "ablation_persistence": [
+          12,
+          12000,
+          -60,
+          -36
+        ],
+        "parent": [
+          4,
+          9000,
+          -108,
+          -60
+        ],
+        "successor": [
+          12,
+          12000,
+          -60,
+          -36
+        ]
+      },
+      "cumulative": {
+        "ablation_ordering": [
+          6,
+          19000,
+          -204,
+          -114
+        ],
+        "ablation_persistence": [
+          14,
+          22000,
+          -140,
+          -82
+        ],
+        "parent": [
+          6,
+          19000,
+          -204,
+          -114
+        ],
+        "successor": [
+          14,
+          22000,
+          -156,
+          -90
+        ]
+      },
+      "previous_solved_capabilities_retained": true,
+      "stage": 1
+    },
+    {
+      "active_partition": {
+        "ablation_ordering": [
+          8,
+          11400,
+          -88,
+          -54
+        ],
+        "ablation_persistence": [
+          8,
+          11400,
+          -88,
+          -54
+        ],
+        "ablation_scheduling": [
+          8,
+          11400,
+          -96,
+          -54
+        ],
+        "parent": [
+          8,
+          11400,
+          -96,
+          -54
+        ],
+        "successor": [
+          8,
+          11400,
+          -88,
+          -54
+        ]
+      },
+      "cumulative": {
+        "ablation_ordering": [
+          14,
+          30400,
+          -292,
+          -168
+        ],
+        "ablation_persistence": [
+          22,
+          33400,
+          -228,
+          -136
+        ],
+        "ablation_scheduling": [
+          22,
+          33400,
+          -252,
+          -144
+        ],
+        "parent": [
+          22,
+          33400,
+          -252,
+          -144
+        ],
+        "successor": [
+          22,
+          33400,
+          -244,
+          -144
+        ]
+      },
+      "previous_solved_capabilities_retained": true,
+      "stage": 2
+    }
+  ],
+  "meta_utilities": [
+    [
+      1,
+      150,
+      190300,
+      -3,
+      -2
+    ],
+    [
+      1,
+      198,
+      238300,
+      -9,
+      -5
+    ],
+    [
+      1,
+      273,
+      363050,
+      -1,
+      -1
+    ]
+  ],
+  "new_holdout_consumed": true,
+  "older_ablation_ties_are_preserved": true,
+  "predicates": {
+    "all_prior_native_capabilities_retained": true,
+    "exact_frozen_identity_and_single_attempt": true,
+    "strict_bootstrap_causality": true,
+    "strict_causal_transition_2": true,
+    "strict_causal_transition_3": true,
+    "strict_fresh_transition_1": false,
+    "strict_fresh_transition_2": false,
+    "strict_fresh_transition_3": false,
+    "three_automatic_discoveries": true
+  },
+  "schema": "mira-genesis-v27-repeated-descent-adjudication-v1",
+  "scope": "THREE_AUTOMATIC_CAUSAL_TRANSITIONS_ON_FINITE_PROJECT_AUTHORED_REPRESENTED_TASKS",
+  "v27_l6_positive": false,
+  "verdict": "VALID_NEGATIVE_FRESH_TRANSFER"
+}
