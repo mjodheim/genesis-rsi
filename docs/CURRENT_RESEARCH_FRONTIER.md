@@ -38,6 +38,16 @@ private-bank replication packet is ready for genuine external maintainers,
 reproduction and adversarial audit; **L10 remains unpassed**.
 See [L9–L10 evidence and readiness](RSI_L9_L10_READINESS_2026-10-01.md).
 
+V32 extends the finite archive to six measured windows and compares five memory
+routes using unchanged G7. Adaptive solves 138/216 fresh tasks versus cold
+135/216 with 2,005 versus 2,195 evaluations; always closest-two solves 141/216
+with 1,970. The prospectively frozen all-control advantage fails, so the verdict
+is **valid negative finite memory usefulness**. The ranking can help this finite
+population, but the acquired selector's new routing use is not qualified. All
+raw trials, costs and declining discovery rates are retained. There is no new
+G8, open-ended L9 or independent L10; the V31 handoff remains pinned to V31.
+See [V32's complete comparison](RSI_V32_MEMORY_RESULTS_2026-10-01.md).
+
 The preceding V26 result validates **bounded causal recursive meta-improvement (L5)** in one prospectively
 frozen Track A attempt. Exact qualified V22R G2 discovers the composed G3 in two meta
 evaluations, against five after ablating G2's acquired early stop and eight for FIFO.
