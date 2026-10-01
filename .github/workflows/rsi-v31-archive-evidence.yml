@@ -1,0 +1,31 @@
+name: RSI V31 archive evidence and L10 readiness
+on:
+  push:
+    branches: [main, research/rsi-v31-l9-l10]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay retained archive evidence without fresh task execution
+        run: |
+          python - <<'PY'
+          from experiment.rsi_v31 import campaign, independent
+          from scripts.check_rsi_v31_transport_recovery import check
+          if campaign.VERDICT.exists():
+              print(check())
+          result = campaign.check(require_result=campaign.freeze.PATH.exists())
+          print({key: value for key, value in result.items() if key != 'windows'})
+          assert result['l9_open_ended_passed'] is False
+          assert result['l10_independent_passed'] is False
+          print(independent.readiness())
+          PY
