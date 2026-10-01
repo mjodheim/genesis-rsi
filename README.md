@@ -57,6 +57,12 @@ solves 99/144 new tasks versus 105/144 for cold start; **L9 open-endedness and L
 independence remain unestablished**. See [the archive evidence, preserved transport
 fault and external handoff](docs/RSI_L9_L10_READINESS_2026-10-01.md).
 
+V32 tests observed-quality memory ranking on 216 new tasks per arm. Adaptive
+retrieval solves 138/216 versus cold 135/216 with 8.7% fewer evaluations, but
+always retrieving the closest two solves 141/216: **the strict adaptive criterion
+is negative**. Every trial is preserved. L9 and L10 remain unpassed; see
+[the complete finite comparison and limits](docs/RSI_V32_MEMORY_RESULTS_2026-10-01.md).
+
 ## What the project is trying to establish
 
 The long-term research target is not “make the benchmark number go up”. It is a causal chain in
