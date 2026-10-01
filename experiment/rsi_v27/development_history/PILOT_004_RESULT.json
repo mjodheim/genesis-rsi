@@ -1,0 +1,2278 @@
+{
+  "final_params": {
+    "ordering": 0,
+    "persistence": 1,
+    "plateau": 0,
+    "scheduling": 0
+  },
+  "holdout_consumed": false,
+  "phases": [
+    {
+      "controls": [],
+      "parent_params": {
+        "ordering": 0,
+        "persistence": 0,
+        "plateau": 0,
+        "scheduling": 0
+      },
+      "qualified_discovery": true,
+      "search": {
+        "accepted": true,
+        "best_quality_milli": 1000,
+        "caps": {
+          "mutation_depth": 3,
+          "parallelism": 2,
+          "requests": 12,
+          "rounds": 8
+        },
+        "isolated_policy_processes": false,
+        "nodes": {
+          "n-06e322cbffca6c0b4d84bdc0": {
+            "action": {
+              "changed_regions": [],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "qualified-parent"
+              ],
+              "target_axes": []
+            },
+            "candidate": {
+              "layout": 1,
+              "params": {
+                "ordering": 0,
+                "persistence": 0,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                124,
+                179300,
+                -1104,
+                -658
+              ],
+              "public_receipt_sha256": "15476c5eadbaa09ac9e566e2093b4f086c551cbb0a693306461d799e44c5b1cc",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "e0b14a1a6f03d4db7a0d519722bcd3c30c16890b695e7b1816bab519a8af6c26"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-06e322cbffca6c0b4d84bdc0",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-06e322cbffca6c0b4d84bdc0"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "e0b14a1a6f03d4db7a0d519722bcd3c30c16890b695e7b1816bab519a8af6c26"
+          },
+          "n-2c08ee7e549a1641dd110405": {
+            "action": {
+              "changed_regions": [],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "qualified-parent"
+              ],
+              "target_axes": []
+            },
+            "candidate": {
+              "layout": 2,
+              "params": {
+                "ordering": 0,
+                "persistence": 0,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                124,
+                179300,
+                -1104,
+                -658
+              ],
+              "public_receipt_sha256": "15476c5eadbaa09ac9e566e2093b4f086c551cbb0a693306461d799e44c5b1cc",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "b16298cfaa45bde12986068c74a68fda0ff18d2cca74be4e2480b42cc4eeaa6c"
+            },
+            "lineage_depth": 2,
+            "node_id": "n-2c08ee7e549a1641dd110405",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-06e322cbffca6c0b4d84bdc0"
+            },
+            "parent_node_id": "n-06e322cbffca6c0b4d84bdc0",
+            "source_sha256": "b16298cfaa45bde12986068c74a68fda0ff18d2cca74be4e2480b42cc4eeaa6c"
+          },
+          "n-b2775e74dcc222febae4c41f": {
+            "action": {
+              "changed_regions": [
+                "persistence:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "persistence:1"
+              ],
+              "target_axes": [
+                "persistence:1"
+              ]
+            },
+            "candidate": {
+              "layout": 0,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                150,
+                190300,
+                -1247,
+                -730
+              ],
+              "public_receipt_sha256": "e5e94dc97fb5554baf3e41a23e564834473c22a281923dc99ac360ad7923d045",
+              "qualified": true,
+              "quality_milli": 1000,
+              "source_sha256": "6d45b992b221c0d50d4b2c0852d582d375b410468af51e0c295acd5b2f04e07d"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-b2775e74dcc222febae4c41f",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 1000,
+              "root_branch_node_id": "n-b2775e74dcc222febae4c41f"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "6d45b992b221c0d50d4b2c0852d582d375b410468af51e0c295acd5b2f04e07d"
+          },
+          "root": {
+            "action": {
+              "changed_regions": [],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "qualified-parent"
+              ],
+              "target_axes": []
+            },
+            "candidate": {
+              "layout": 0,
+              "params": {
+                "ordering": 0,
+                "persistence": 0,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "lineage_depth": 0,
+            "node_id": "root",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "root"
+            },
+            "parent_node_id": null,
+            "source_sha256": "b0544067ae4fa93533d3b49f7e7cd9de0b101af4a9359c1bbca0760dae32bafa"
+          }
+        },
+        "observations": [
+          {
+            "ordered_candidates": {
+              "root": [
+                "e0b14a1a6f03d4db7a0d519722bcd3c30c16890b695e7b1816bab519a8af6c26",
+                "6d45b992b221c0d50d4b2c0852d582d375b410468af51e0c295acd5b2f04e07d",
+                "22e6ecb36af6c8a15df69514cde36e6cb0aa0f41509975543735f67347d30882",
+                "7eb4db3ede60b6c12fe84e0047e1a17b503b2b3557fc69b7e122403ef41677a7",
+                "3a194b9a989d418e456d314863f1381bf237e95e9c51a7570844d605c1bf329e"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "root"
+            ],
+            "requests_after": 1,
+            "result_node_ids": [
+              "n-06e322cbffca6c0b4d84bdc0"
+            ],
+            "round": 1,
+            "view": {
+              "eligible_parent_ids": [
+                "root"
+              ],
+              "remaining_requests": 12,
+              "remaining_rounds": 8,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "029ad639d6384f5359d242c4834f8abbabf9c84ced3590e18dc9de99d975d826"
+          },
+          {
+            "ordered_candidates": {
+              "n-06e322cbffca6c0b4d84bdc0": [
+                "b16298cfaa45bde12986068c74a68fda0ff18d2cca74be4e2480b42cc4eeaa6c",
+                "b40865ebc18a4b50dd5e06ca7866defea5591d9ca2fd5ffd97c6a6494d0ca231",
+                "57661763bcc4e890c4b716dfdf8d9039dc1f9948e79f3bb6ebc9c4c76f08b834",
+                "11103a4504ad429bb796418a594143ad9149ef20f6db2abc70742dbb27960653",
+                "0f3baeefd1c908f8b63b94ed680b4b086fd6fa89b9b32785537b3a22d463e34e"
+              ],
+              "root": [
+                "6d45b992b221c0d50d4b2c0852d582d375b410468af51e0c295acd5b2f04e07d",
+                "22e6ecb36af6c8a15df69514cde36e6cb0aa0f41509975543735f67347d30882",
+                "7eb4db3ede60b6c12fe84e0047e1a17b503b2b3557fc69b7e122403ef41677a7",
+                "3a194b9a989d418e456d314863f1381bf237e95e9c51a7570844d605c1bf329e"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-06e322cbffca6c0b4d84bdc0",
+              "root"
+            ],
+            "requests_after": 3,
+            "result_node_ids": [
+              "n-2c08ee7e549a1641dd110405",
+              "n-b2775e74dcc222febae4c41f"
+            ],
+            "round": 2,
+            "view": {
+              "eligible_parent_ids": [
+                "n-06e322cbffca6c0b4d84bdc0",
+                "root"
+              ],
+              "remaining_requests": 11,
+              "remaining_rounds": 7,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-06e322cbffca6c0b4d84bdc0",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-06e322cbffca6c0b4d84bdc0"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "008600f910475041addb0eddc7e8e091c081ba6b7ce4e3189bc4d9a6c5c001f2"
+          }
+        ],
+        "policy_sha256": "b0544067ae4fa93533d3b49f7e7cd9de0b101af4a9359c1bbca0760dae32bafa",
+        "represented_requests": 3,
+        "rounds": 2,
+        "schema": "mira-genesis-v27-bounded-pipeline-search-v1",
+        "stop_reason": "policy_empty_batch"
+      },
+      "selected_params": {
+        "ordering": 0,
+        "persistence": 1,
+        "plateau": 0,
+        "scheduling": 0
+      },
+      "stage": 0,
+      "trace_sha256": "cf228460eb5aedb49ff4f3244e2157c444c8b66ea77290c4eb3e29268af698f9",
+      "utility": [
+        1,
+        150,
+        190300,
+        -3,
+        -2
+      ]
+    },
+    {
+      "controls": [
+        {
+          "component": "persistence",
+          "controller_params": {
+            "ordering": 0,
+            "persistence": 0,
+            "plateau": 0,
+            "scheduling": 0
+          },
+          "selected_params": {
+            "ordering": 0,
+            "persistence": 1,
+            "plateau": 0,
+            "scheduling": 0
+          },
+          "utility": [
+            0,
+            0,
+            0,
+            -5,
+            -3
+          ]
+        }
+      ],
+      "parent_params": {
+        "ordering": 0,
+        "persistence": 1,
+        "plateau": 0,
+        "scheduling": 0
+      },
+      "qualified_discovery": false,
+      "search": {
+        "accepted": true,
+        "best_quality_milli": 500,
+        "caps": {
+          "mutation_depth": 3,
+          "parallelism": 2,
+          "requests": 12,
+          "rounds": 8
+        },
+        "isolated_policy_processes": false,
+        "nodes": {
+          "n-2473a243ba409da2908d5437": {
+            "action": {
+              "changed_regions": [
+                "scheduling:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "scheduling:1"
+              ],
+              "target_axes": [
+                "scheduling:1"
+              ]
+            },
+            "candidate": {
+              "layout": 0,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 1
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "891cb84f2ce4604fcd75fa2354870a94338ade795e87c1f5920b9c2d43b2f4e0",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "921b1751eaa5356218a98d7df4952b5d9b12eadb53b82d7a87aee35256da85c7"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-2473a243ba409da2908d5437",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-2473a243ba409da2908d5437"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "921b1751eaa5356218a98d7df4952b5d9b12eadb53b82d7a87aee35256da85c7"
+          },
+          "n-39c642c7f4c78cedbcb76973": {
+            "action": {
+              "changed_regions": [
+                "plateau:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "plateau:1"
+              ],
+              "target_axes": [
+                "plateau:1"
+              ]
+            },
+            "candidate": {
+              "layout": 2,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 1,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                172,
+                225050,
+                -1630,
+                -950
+              ],
+              "public_receipt_sha256": "ede1e37b8a28f71547fe1cbfbf8974741978e2c4f2eb0319e356e6fccf449173",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "62f820eaf5f4b0bf17dd448c15fd7faa545a8a2cd86ab6a933589fa3b2a13389"
+            },
+            "lineage_depth": 3,
+            "node_id": "n-39c642c7f4c78cedbcb76973",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+            },
+            "parent_node_id": "n-9afd02930fe8c598bc27f1b9",
+            "source_sha256": "62f820eaf5f4b0bf17dd448c15fd7faa545a8a2cd86ab6a933589fa3b2a13389"
+          },
+          "n-43fd8d7fcf885bb99b5fa4a9": {
+            "action": {
+              "changed_regions": [
+                "scheduling:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "scheduling:1"
+              ],
+              "target_axes": [
+                "scheduling:1"
+              ]
+            },
+            "candidate": {
+              "layout": 1,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 1
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "891cb84f2ce4604fcd75fa2354870a94338ade795e87c1f5920b9c2d43b2f4e0",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "39ed559e86bb3c3a45edf0cb41e4f2f9fdc330f3382fad6e1b222274aa9950e9"
+            },
+            "lineage_depth": 2,
+            "node_id": "n-43fd8d7fcf885bb99b5fa4a9",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-2473a243ba409da2908d5437"
+            },
+            "parent_node_id": "n-2473a243ba409da2908d5437",
+            "source_sha256": "39ed559e86bb3c3a45edf0cb41e4f2f9fdc330f3382fad6e1b222274aa9950e9"
+          },
+          "n-4d22c3427a417a18c997df1c": {
+            "action": {
+              "changed_regions": [
+                "scheduling:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "scheduling:1"
+              ],
+              "target_axes": [
+                "scheduling:1"
+              ]
+            },
+            "candidate": {
+              "layout": 2,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 1
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "891cb84f2ce4604fcd75fa2354870a94338ade795e87c1f5920b9c2d43b2f4e0",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e"
+            },
+            "lineage_depth": 3,
+            "node_id": "n-4d22c3427a417a18c997df1c",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-2473a243ba409da2908d5437"
+            },
+            "parent_node_id": "n-43fd8d7fcf885bb99b5fa4a9",
+            "source_sha256": "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e"
+          },
+          "n-5a16be7d58a51ce7d1c48c1d": {
+            "action": {
+              "changed_regions": [
+                "ordering:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "ordering:1"
+              ],
+              "target_axes": [
+                "ordering:1"
+              ]
+            },
+            "candidate": {
+              "layout": 1,
+              "params": {
+                "ordering": 1,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "311a2b6f962a9292b2c98b44cc7532621e8fd50bcde8fbc9fc148d3443e08179",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "a1dfa28913463c2ef6e03bcd1beba5b202045a1840e90a06f40d74eb59394041"
+            },
+            "lineage_depth": 2,
+            "node_id": "n-5a16be7d58a51ce7d1c48c1d",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+            },
+            "parent_node_id": "n-bf3098f691478a5c1e01f96a",
+            "source_sha256": "a1dfa28913463c2ef6e03bcd1beba5b202045a1840e90a06f40d74eb59394041"
+          },
+          "n-60b5c7497bf7d6e8fae92022": {
+            "action": {
+              "changed_regions": [],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "qualified-parent"
+              ],
+              "target_axes": []
+            },
+            "candidate": {
+              "layout": 1,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "e5e94dc97fb5554baf3e41a23e564834473c22a281923dc99ac360ad7923d045",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "b40865ebc18a4b50dd5e06ca7866defea5591d9ca2fd5ffd97c6a6494d0ca231"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-60b5c7497bf7d6e8fae92022",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "b40865ebc18a4b50dd5e06ca7866defea5591d9ca2fd5ffd97c6a6494d0ca231"
+          },
+          "n-89e978dad8a0e9f2934defe2": {
+            "action": {
+              "changed_regions": [
+                "plateau:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "plateau:1"
+              ],
+              "target_axes": [
+                "plateau:1"
+              ]
+            },
+            "candidate": {
+              "layout": 0,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 1,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                172,
+                225050,
+                -1630,
+                -950
+              ],
+              "public_receipt_sha256": "ede1e37b8a28f71547fe1cbfbf8974741978e2c4f2eb0319e356e6fccf449173",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "1d5cd53963354b02a7eb7cb476c44a5ea3fb3c119bf90e218c8598031d94e0d6"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-89e978dad8a0e9f2934defe2",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "1d5cd53963354b02a7eb7cb476c44a5ea3fb3c119bf90e218c8598031d94e0d6"
+          },
+          "n-9afd02930fe8c598bc27f1b9": {
+            "action": {
+              "changed_regions": [
+                "plateau:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "plateau:1"
+              ],
+              "target_axes": [
+                "plateau:1"
+              ]
+            },
+            "candidate": {
+              "layout": 1,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 1,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                172,
+                225050,
+                -1630,
+                -950
+              ],
+              "public_receipt_sha256": "ede1e37b8a28f71547fe1cbfbf8974741978e2c4f2eb0319e356e6fccf449173",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "29fcf03807e166b55b7da505a69c8b68bfc1c858cd9ed0b96e5fe5b5ec2a419a"
+            },
+            "lineage_depth": 2,
+            "node_id": "n-9afd02930fe8c598bc27f1b9",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+            },
+            "parent_node_id": "n-89e978dad8a0e9f2934defe2",
+            "source_sha256": "29fcf03807e166b55b7da505a69c8b68bfc1c858cd9ed0b96e5fe5b5ec2a419a"
+          },
+          "n-af3a947dc9de825002bd530b": {
+            "action": {
+              "changed_regions": [
+                "ordering:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "ordering:1"
+              ],
+              "target_axes": [
+                "ordering:1"
+              ]
+            },
+            "candidate": {
+              "layout": 2,
+              "params": {
+                "ordering": 1,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "311a2b6f962a9292b2c98b44cc7532621e8fd50bcde8fbc9fc148d3443e08179",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "ec39b5b77ab983a88cae7ee1c02700c5c06f201fe311383dd44e5d90010fea59"
+            },
+            "lineage_depth": 3,
+            "node_id": "n-af3a947dc9de825002bd530b",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+            },
+            "parent_node_id": "n-5a16be7d58a51ce7d1c48c1d",
+            "source_sha256": "ec39b5b77ab983a88cae7ee1c02700c5c06f201fe311383dd44e5d90010fea59"
+          },
+          "n-bf3098f691478a5c1e01f96a": {
+            "action": {
+              "changed_regions": [
+                "ordering:1"
+              ],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "ordering:1"
+              ],
+              "target_axes": [
+                "ordering:1"
+              ]
+            },
+            "candidate": {
+              "layout": 0,
+              "params": {
+                "ordering": 1,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "311a2b6f962a9292b2c98b44cc7532621e8fd50bcde8fbc9fc148d3443e08179",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "1e8bdd8f1b301c4c23acc3eabd88423b092ff7e2534474d14baee0ff14a407c9"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-bf3098f691478a5c1e01f96a",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "1e8bdd8f1b301c4c23acc3eabd88423b092ff7e2534474d14baee0ff14a407c9"
+          },
+          "n-d2477b706714eb22264cd13a": {
+            "action": {
+              "changed_regions": [],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "qualified-parent"
+              ],
+              "target_axes": []
+            },
+            "candidate": {
+              "layout": 2,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "e5e94dc97fb5554baf3e41a23e564834473c22a281923dc99ac360ad7923d045",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "e889cf015c2c0cd99ee43445241f02cf52de5522f91d375bf4ca8db1c3d34ab4"
+            },
+            "lineage_depth": 2,
+            "node_id": "n-d2477b706714eb22264cd13a",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+            },
+            "parent_node_id": "n-60b5c7497bf7d6e8fae92022",
+            "source_sha256": "e889cf015c2c0cd99ee43445241f02cf52de5522f91d375bf4ca8db1c3d34ab4"
+          },
+          "n-dd20febf9081bb022c5b4fb6": {
+            "action": {
+              "changed_regions": [],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "qualified-parent"
+              ],
+              "target_axes": []
+            },
+            "candidate": {
+              "layout": 3,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_development_utility": [
+                166,
+                222700,
+                -1663,
+                -962
+              ],
+              "public_receipt_sha256": "e5e94dc97fb5554baf3e41a23e564834473c22a281923dc99ac360ad7923d045",
+              "qualified": false,
+              "quality_milli": 500,
+              "source_sha256": "907bb64b0ebafcb0aabc49493a9bcc2546e20572e353925ff01bad93244e60d5"
+            },
+            "lineage_depth": 3,
+            "node_id": "n-dd20febf9081bb022c5b4fb6",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+            },
+            "parent_node_id": "n-d2477b706714eb22264cd13a",
+            "source_sha256": "907bb64b0ebafcb0aabc49493a9bcc2546e20572e353925ff01bad93244e60d5"
+          },
+          "root": {
+            "action": {
+              "changed_regions": [],
+              "family": "executable-pipeline",
+              "mechanisms": [
+                "qualified-parent"
+              ],
+              "target_axes": []
+            },
+            "candidate": {
+              "layout": 0,
+              "params": {
+                "ordering": 0,
+                "persistence": 1,
+                "plateau": 0,
+                "scheduling": 0
+              }
+            },
+            "lineage_depth": 0,
+            "node_id": "root",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 500,
+              "root_branch_node_id": "root"
+            },
+            "parent_node_id": null,
+            "source_sha256": "6d45b992b221c0d50d4b2c0852d582d375b410468af51e0c295acd5b2f04e07d"
+          }
+        },
+        "observations": [
+          {
+            "ordered_candidates": {
+              "root": [
+                "b40865ebc18a4b50dd5e06ca7866defea5591d9ca2fd5ffd97c6a6494d0ca231",
+                "1d5cd53963354b02a7eb7cb476c44a5ea3fb3c119bf90e218c8598031d94e0d6",
+                "921b1751eaa5356218a98d7df4952b5d9b12eadb53b82d7a87aee35256da85c7",
+                "1e8bdd8f1b301c4c23acc3eabd88423b092ff7e2534474d14baee0ff14a407c9"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "root"
+            ],
+            "requests_after": 1,
+            "result_node_ids": [
+              "n-60b5c7497bf7d6e8fae92022"
+            ],
+            "round": 1,
+            "view": {
+              "eligible_parent_ids": [
+                "root"
+              ],
+              "remaining_requests": 12,
+              "remaining_rounds": 8,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "029ad639d6384f5359d242c4834f8abbabf9c84ced3590e18dc9de99d975d826"
+          },
+          {
+            "ordered_candidates": {
+              "n-60b5c7497bf7d6e8fae92022": [
+                "e889cf015c2c0cd99ee43445241f02cf52de5522f91d375bf4ca8db1c3d34ab4",
+                "29fcf03807e166b55b7da505a69c8b68bfc1c858cd9ed0b96e5fe5b5ec2a419a",
+                "39ed559e86bb3c3a45edf0cb41e4f2f9fdc330f3382fad6e1b222274aa9950e9",
+                "a1dfa28913463c2ef6e03bcd1beba5b202045a1840e90a06f40d74eb59394041"
+              ],
+              "root": [
+                "1d5cd53963354b02a7eb7cb476c44a5ea3fb3c119bf90e218c8598031d94e0d6",
+                "921b1751eaa5356218a98d7df4952b5d9b12eadb53b82d7a87aee35256da85c7",
+                "1e8bdd8f1b301c4c23acc3eabd88423b092ff7e2534474d14baee0ff14a407c9"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-60b5c7497bf7d6e8fae92022",
+              "root"
+            ],
+            "requests_after": 3,
+            "result_node_ids": [
+              "n-d2477b706714eb22264cd13a",
+              "n-89e978dad8a0e9f2934defe2"
+            ],
+            "round": 2,
+            "view": {
+              "eligible_parent_ids": [
+                "n-60b5c7497bf7d6e8fae92022",
+                "root"
+              ],
+              "remaining_requests": 11,
+              "remaining_rounds": 7,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-60b5c7497bf7d6e8fae92022",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "8824c71c47a6ba47f2c48efc010a693e70bbfda8e92e211940ac8cfd1533a7b9"
+          },
+          {
+            "ordered_candidates": {
+              "n-60b5c7497bf7d6e8fae92022": [
+                "29fcf03807e166b55b7da505a69c8b68bfc1c858cd9ed0b96e5fe5b5ec2a419a",
+                "39ed559e86bb3c3a45edf0cb41e4f2f9fdc330f3382fad6e1b222274aa9950e9",
+                "a1dfa28913463c2ef6e03bcd1beba5b202045a1840e90a06f40d74eb59394041"
+              ],
+              "n-89e978dad8a0e9f2934defe2": [
+                "29fcf03807e166b55b7da505a69c8b68bfc1c858cd9ed0b96e5fe5b5ec2a419a",
+                "157cd97d029ff6c0a66c49d974c139bd148cc40371c9db0ad62ee3f20aeefa83",
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37"
+              ],
+              "n-d2477b706714eb22264cd13a": [
+                "907bb64b0ebafcb0aabc49493a9bcc2546e20572e353925ff01bad93244e60d5",
+                "62f820eaf5f4b0bf17dd448c15fd7faa545a8a2cd86ab6a933589fa3b2a13389",
+                "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e",
+                "ec39b5b77ab983a88cae7ee1c02700c5c06f201fe311383dd44e5d90010fea59"
+              ],
+              "root": [
+                "921b1751eaa5356218a98d7df4952b5d9b12eadb53b82d7a87aee35256da85c7",
+                "1e8bdd8f1b301c4c23acc3eabd88423b092ff7e2534474d14baee0ff14a407c9"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-89e978dad8a0e9f2934defe2",
+              "root"
+            ],
+            "requests_after": 5,
+            "result_node_ids": [
+              "n-9afd02930fe8c598bc27f1b9",
+              "n-2473a243ba409da2908d5437"
+            ],
+            "round": 3,
+            "view": {
+              "eligible_parent_ids": [
+                "n-60b5c7497bf7d6e8fae92022",
+                "n-89e978dad8a0e9f2934defe2",
+                "n-d2477b706714eb22264cd13a",
+                "root"
+              ],
+              "remaining_requests": 9,
+              "remaining_rounds": 6,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-60b5c7497bf7d6e8fae92022",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-d2477b706714eb22264cd13a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "n-60b5c7497bf7d6e8fae92022"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-89e978dad8a0e9f2934defe2",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "20cdcab2fce2c081237b2780271be5f79458942635d8430ad80ca297af66eebf"
+          },
+          {
+            "ordered_candidates": {
+              "n-2473a243ba409da2908d5437": [
+                "39ed559e86bb3c3a45edf0cb41e4f2f9fdc330f3382fad6e1b222274aa9950e9",
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "68fed490b30d861bf7c414e72abfda0b4fad1d922ad1bb66bc72687832777c1b",
+                "bc57cf6c7bfac646dfbfb8900c0220a3b3d80f88f229e264f64bacc4d1db2a6f"
+              ],
+              "n-60b5c7497bf7d6e8fae92022": [
+                "39ed559e86bb3c3a45edf0cb41e4f2f9fdc330f3382fad6e1b222274aa9950e9",
+                "a1dfa28913463c2ef6e03bcd1beba5b202045a1840e90a06f40d74eb59394041"
+              ],
+              "n-89e978dad8a0e9f2934defe2": [
+                "157cd97d029ff6c0a66c49d974c139bd148cc40371c9db0ad62ee3f20aeefa83",
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37"
+              ],
+              "n-9afd02930fe8c598bc27f1b9": [
+                "62f820eaf5f4b0bf17dd448c15fd7faa545a8a2cd86ab6a933589fa3b2a13389",
+                "84e641420c1a7b751f158aa1c4b09a97c8e5d0ccb7c02c9dcf91c5faa0cc181c",
+                "021914b2dc98abc6e84352c7ba783a749f7b6834b8085e4c194fa1ebf99c6505",
+                "c2a0e128f84a43efc8cf807da74fed97635beae932e73614b49a9b9fe06fd6e7"
+              ],
+              "n-d2477b706714eb22264cd13a": [
+                "907bb64b0ebafcb0aabc49493a9bcc2546e20572e353925ff01bad93244e60d5",
+                "62f820eaf5f4b0bf17dd448c15fd7faa545a8a2cd86ab6a933589fa3b2a13389",
+                "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e",
+                "ec39b5b77ab983a88cae7ee1c02700c5c06f201fe311383dd44e5d90010fea59"
+              ],
+              "root": [
+                "1e8bdd8f1b301c4c23acc3eabd88423b092ff7e2534474d14baee0ff14a407c9"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-2473a243ba409da2908d5437",
+              "root"
+            ],
+            "requests_after": 7,
+            "result_node_ids": [
+              "n-43fd8d7fcf885bb99b5fa4a9",
+              "n-bf3098f691478a5c1e01f96a"
+            ],
+            "round": 4,
+            "view": {
+              "eligible_parent_ids": [
+                "n-2473a243ba409da2908d5437",
+                "n-60b5c7497bf7d6e8fae92022",
+                "n-89e978dad8a0e9f2934defe2",
+                "n-9afd02930fe8c598bc27f1b9",
+                "n-d2477b706714eb22264cd13a",
+                "root"
+              ],
+              "remaining_requests": 7,
+              "remaining_rounds": 5,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-60b5c7497bf7d6e8fae92022",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-d2477b706714eb22264cd13a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "n-60b5c7497bf7d6e8fae92022"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-89e978dad8a0e9f2934defe2",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-9afd02930fe8c598bc27f1b9",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "n-89e978dad8a0e9f2934defe2"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-2473a243ba409da2908d5437",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "e57e1fa7fb3cd928b3dfb49fa22792b3116de028559f269f0f45e491103b929e"
+          },
+          {
+            "ordered_candidates": {
+              "n-2473a243ba409da2908d5437": [
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "68fed490b30d861bf7c414e72abfda0b4fad1d922ad1bb66bc72687832777c1b",
+                "bc57cf6c7bfac646dfbfb8900c0220a3b3d80f88f229e264f64bacc4d1db2a6f"
+              ],
+              "n-43fd8d7fcf885bb99b5fa4a9": [
+                "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e",
+                "021914b2dc98abc6e84352c7ba783a749f7b6834b8085e4c194fa1ebf99c6505",
+                "874e2741decd3e363ccc9772eff8b2830af38570f8f087dc8eee37201d1d712f",
+                "38ddca1c1e4ab66e3486f9593f5db78b40079e5ac407944b03296b2abfd6ff9f"
+              ],
+              "n-60b5c7497bf7d6e8fae92022": [
+                "a1dfa28913463c2ef6e03bcd1beba5b202045a1840e90a06f40d74eb59394041"
+              ],
+              "n-89e978dad8a0e9f2934defe2": [
+                "157cd97d029ff6c0a66c49d974c139bd148cc40371c9db0ad62ee3f20aeefa83",
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37"
+              ],
+              "n-9afd02930fe8c598bc27f1b9": [
+                "62f820eaf5f4b0bf17dd448c15fd7faa545a8a2cd86ab6a933589fa3b2a13389",
+                "84e641420c1a7b751f158aa1c4b09a97c8e5d0ccb7c02c9dcf91c5faa0cc181c",
+                "021914b2dc98abc6e84352c7ba783a749f7b6834b8085e4c194fa1ebf99c6505",
+                "c2a0e128f84a43efc8cf807da74fed97635beae932e73614b49a9b9fe06fd6e7"
+              ],
+              "n-bf3098f691478a5c1e01f96a": [
+                "a1dfa28913463c2ef6e03bcd1beba5b202045a1840e90a06f40d74eb59394041",
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37",
+                "bc57cf6c7bfac646dfbfb8900c0220a3b3d80f88f229e264f64bacc4d1db2a6f",
+                "36601798de221ff1bce728aa57dab6d2d86e71464a49db2363390287359b42b7"
+              ],
+              "n-d2477b706714eb22264cd13a": [
+                "907bb64b0ebafcb0aabc49493a9bcc2546e20572e353925ff01bad93244e60d5",
+                "62f820eaf5f4b0bf17dd448c15fd7faa545a8a2cd86ab6a933589fa3b2a13389",
+                "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e",
+                "ec39b5b77ab983a88cae7ee1c02700c5c06f201fe311383dd44e5d90010fea59"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-bf3098f691478a5c1e01f96a",
+              "n-9afd02930fe8c598bc27f1b9"
+            ],
+            "requests_after": 9,
+            "result_node_ids": [
+              "n-5a16be7d58a51ce7d1c48c1d",
+              "n-39c642c7f4c78cedbcb76973"
+            ],
+            "round": 5,
+            "view": {
+              "eligible_parent_ids": [
+                "n-2473a243ba409da2908d5437",
+                "n-43fd8d7fcf885bb99b5fa4a9",
+                "n-60b5c7497bf7d6e8fae92022",
+                "n-89e978dad8a0e9f2934defe2",
+                "n-9afd02930fe8c598bc27f1b9",
+                "n-bf3098f691478a5c1e01f96a",
+                "n-d2477b706714eb22264cd13a"
+              ],
+              "remaining_requests": 5,
+              "remaining_rounds": 4,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-60b5c7497bf7d6e8fae92022",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-d2477b706714eb22264cd13a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "n-60b5c7497bf7d6e8fae92022"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-89e978dad8a0e9f2934defe2",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-9afd02930fe8c598bc27f1b9",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "n-89e978dad8a0e9f2934defe2"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-2473a243ba409da2908d5437",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-43fd8d7fcf885bb99b5fa4a9",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "n-2473a243ba409da2908d5437"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "ordering:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "ordering:1"
+                    ],
+                    "target_axes": [
+                      "ordering:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-bf3098f691478a5c1e01f96a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "226eb8014127909fcc1eda77f8da95f3648bc4133cf8136dff3237bc2dcf49f1"
+          },
+          {
+            "ordered_candidates": {
+              "n-2473a243ba409da2908d5437": [
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "68fed490b30d861bf7c414e72abfda0b4fad1d922ad1bb66bc72687832777c1b",
+                "bc57cf6c7bfac646dfbfb8900c0220a3b3d80f88f229e264f64bacc4d1db2a6f"
+              ],
+              "n-43fd8d7fcf885bb99b5fa4a9": [
+                "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e",
+                "021914b2dc98abc6e84352c7ba783a749f7b6834b8085e4c194fa1ebf99c6505",
+                "874e2741decd3e363ccc9772eff8b2830af38570f8f087dc8eee37201d1d712f",
+                "38ddca1c1e4ab66e3486f9593f5db78b40079e5ac407944b03296b2abfd6ff9f"
+              ],
+              "n-5a16be7d58a51ce7d1c48c1d": [
+                "ec39b5b77ab983a88cae7ee1c02700c5c06f201fe311383dd44e5d90010fea59",
+                "c2a0e128f84a43efc8cf807da74fed97635beae932e73614b49a9b9fe06fd6e7",
+                "38ddca1c1e4ab66e3486f9593f5db78b40079e5ac407944b03296b2abfd6ff9f",
+                "9a807fe947b05116ea4e17872ae7f01e4f49ce879ffee53567ba74c3401cf392"
+              ],
+              "n-89e978dad8a0e9f2934defe2": [
+                "157cd97d029ff6c0a66c49d974c139bd148cc40371c9db0ad62ee3f20aeefa83",
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37"
+              ],
+              "n-9afd02930fe8c598bc27f1b9": [
+                "84e641420c1a7b751f158aa1c4b09a97c8e5d0ccb7c02c9dcf91c5faa0cc181c",
+                "021914b2dc98abc6e84352c7ba783a749f7b6834b8085e4c194fa1ebf99c6505",
+                "c2a0e128f84a43efc8cf807da74fed97635beae932e73614b49a9b9fe06fd6e7"
+              ],
+              "n-bf3098f691478a5c1e01f96a": [
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37",
+                "bc57cf6c7bfac646dfbfb8900c0220a3b3d80f88f229e264f64bacc4d1db2a6f",
+                "36601798de221ff1bce728aa57dab6d2d86e71464a49db2363390287359b42b7"
+              ],
+              "n-d2477b706714eb22264cd13a": [
+                "907bb64b0ebafcb0aabc49493a9bcc2546e20572e353925ff01bad93244e60d5",
+                "457a27a4d6a3bc6f56e656ad62a5aff93bb9ddbb958426169ead388c3e05689e",
+                "ec39b5b77ab983a88cae7ee1c02700c5c06f201fe311383dd44e5d90010fea59"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-43fd8d7fcf885bb99b5fa4a9",
+              "n-5a16be7d58a51ce7d1c48c1d"
+            ],
+            "requests_after": 11,
+            "result_node_ids": [
+              "n-4d22c3427a417a18c997df1c",
+              "n-af3a947dc9de825002bd530b"
+            ],
+            "round": 6,
+            "view": {
+              "eligible_parent_ids": [
+                "n-2473a243ba409da2908d5437",
+                "n-43fd8d7fcf885bb99b5fa4a9",
+                "n-5a16be7d58a51ce7d1c48c1d",
+                "n-89e978dad8a0e9f2934defe2",
+                "n-9afd02930fe8c598bc27f1b9",
+                "n-bf3098f691478a5c1e01f96a",
+                "n-d2477b706714eb22264cd13a"
+              ],
+              "remaining_requests": 3,
+              "remaining_rounds": 3,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-60b5c7497bf7d6e8fae92022",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-d2477b706714eb22264cd13a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "n-60b5c7497bf7d6e8fae92022"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-89e978dad8a0e9f2934defe2",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-9afd02930fe8c598bc27f1b9",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "n-89e978dad8a0e9f2934defe2"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-2473a243ba409da2908d5437",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-43fd8d7fcf885bb99b5fa4a9",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "n-2473a243ba409da2908d5437"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "ordering:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "ordering:1"
+                    ],
+                    "target_axes": [
+                      "ordering:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-bf3098f691478a5c1e01f96a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "ordering:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "ordering:1"
+                    ],
+                    "target_axes": [
+                      "ordering:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-5a16be7d58a51ce7d1c48c1d",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+                  },
+                  "parent_node_id": "n-bf3098f691478a5c1e01f96a"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 3,
+                  "node_id": "n-39c642c7f4c78cedbcb76973",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "n-9afd02930fe8c598bc27f1b9"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "bfac30318c85e46c456178cabbfaf2f9f59bd0a935a0f3771baf3f47062c25f0"
+          },
+          {
+            "ordered_candidates": {
+              "n-2473a243ba409da2908d5437": [
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "68fed490b30d861bf7c414e72abfda0b4fad1d922ad1bb66bc72687832777c1b",
+                "bc57cf6c7bfac646dfbfb8900c0220a3b3d80f88f229e264f64bacc4d1db2a6f"
+              ],
+              "n-43fd8d7fcf885bb99b5fa4a9": [
+                "021914b2dc98abc6e84352c7ba783a749f7b6834b8085e4c194fa1ebf99c6505",
+                "874e2741decd3e363ccc9772eff8b2830af38570f8f087dc8eee37201d1d712f",
+                "38ddca1c1e4ab66e3486f9593f5db78b40079e5ac407944b03296b2abfd6ff9f"
+              ],
+              "n-5a16be7d58a51ce7d1c48c1d": [
+                "c2a0e128f84a43efc8cf807da74fed97635beae932e73614b49a9b9fe06fd6e7",
+                "38ddca1c1e4ab66e3486f9593f5db78b40079e5ac407944b03296b2abfd6ff9f",
+                "9a807fe947b05116ea4e17872ae7f01e4f49ce879ffee53567ba74c3401cf392"
+              ],
+              "n-89e978dad8a0e9f2934defe2": [
+                "157cd97d029ff6c0a66c49d974c139bd148cc40371c9db0ad62ee3f20aeefa83",
+                "abaab62c6b7a50148c105e753701cd7e5401579d2fcd29bf832b8d6fad69f1d2",
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37"
+              ],
+              "n-9afd02930fe8c598bc27f1b9": [
+                "84e641420c1a7b751f158aa1c4b09a97c8e5d0ccb7c02c9dcf91c5faa0cc181c",
+                "021914b2dc98abc6e84352c7ba783a749f7b6834b8085e4c194fa1ebf99c6505",
+                "c2a0e128f84a43efc8cf807da74fed97635beae932e73614b49a9b9fe06fd6e7"
+              ],
+              "n-bf3098f691478a5c1e01f96a": [
+                "b8929d18de6995881c6511e4cd5f7cbce18c99c8260ea61c7a27f365a0fadc37",
+                "bc57cf6c7bfac646dfbfb8900c0220a3b3d80f88f229e264f64bacc4d1db2a6f",
+                "36601798de221ff1bce728aa57dab6d2d86e71464a49db2363390287359b42b7"
+              ],
+              "n-d2477b706714eb22264cd13a": [
+                "907bb64b0ebafcb0aabc49493a9bcc2546e20572e353925ff01bad93244e60d5"
+              ]
+            },
+            "parallelism_cap": 1,
+            "parent_node_ids": [
+              "n-d2477b706714eb22264cd13a"
+            ],
+            "requests_after": 12,
+            "result_node_ids": [
+              "n-dd20febf9081bb022c5b4fb6"
+            ],
+            "round": 7,
+            "view": {
+              "eligible_parent_ids": [
+                "n-2473a243ba409da2908d5437",
+                "n-43fd8d7fcf885bb99b5fa4a9",
+                "n-5a16be7d58a51ce7d1c48c1d",
+                "n-89e978dad8a0e9f2934defe2",
+                "n-9afd02930fe8c598bc27f1b9",
+                "n-bf3098f691478a5c1e01f96a",
+                "n-d2477b706714eb22264cd13a"
+              ],
+              "remaining_requests": 1,
+              "remaining_rounds": 2,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-60b5c7497bf7d6e8fae92022",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "qualified-parent"
+                    ],
+                    "target_axes": []
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-d2477b706714eb22264cd13a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-60b5c7497bf7d6e8fae92022"
+                  },
+                  "parent_node_id": "n-60b5c7497bf7d6e8fae92022"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-89e978dad8a0e9f2934defe2",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-9afd02930fe8c598bc27f1b9",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "n-89e978dad8a0e9f2934defe2"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-2473a243ba409da2908d5437",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-43fd8d7fcf885bb99b5fa4a9",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "n-2473a243ba409da2908d5437"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "ordering:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "ordering:1"
+                    ],
+                    "target_axes": [
+                      "ordering:1"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-bf3098f691478a5c1e01f96a",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "ordering:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "ordering:1"
+                    ],
+                    "target_axes": [
+                      "ordering:1"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-5a16be7d58a51ce7d1c48c1d",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+                  },
+                  "parent_node_id": "n-bf3098f691478a5c1e01f96a"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "plateau:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "plateau:1"
+                    ],
+                    "target_axes": [
+                      "plateau:1"
+                    ]
+                  },
+                  "lineage_depth": 3,
+                  "node_id": "n-39c642c7f4c78cedbcb76973",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-89e978dad8a0e9f2934defe2"
+                  },
+                  "parent_node_id": "n-9afd02930fe8c598bc27f1b9"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "scheduling:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "scheduling:1"
+                    ],
+                    "target_axes": [
+                      "scheduling:1"
+                    ]
+                  },
+                  "lineage_depth": 3,
+                  "node_id": "n-4d22c3427a417a18c997df1c",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-2473a243ba409da2908d5437"
+                  },
+                  "parent_node_id": "n-43fd8d7fcf885bb99b5fa4a9"
+                },
+                {
+                  "action": {
+                    "changed_regions": [
+                      "ordering:1"
+                    ],
+                    "family": "executable-pipeline",
+                    "mechanisms": [
+                      "ordering:1"
+                    ],
+                    "target_axes": [
+                      "ordering:1"
+                    ]
+                  },
+                  "lineage_depth": 3,
+                  "node_id": "n-af3a947dc9de825002bd530b",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 500,
+                    "root_branch_node_id": "n-bf3098f691478a5c1e01f96a"
+                  },
+                  "parent_node_id": "n-5a16be7d58a51ce7d1c48c1d"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "fb8ea39c59e99787a1f702eda4ec30cfe5017dc173ce8b0e4f34c71406a8a903"
+          }
+        ],
+        "policy_sha256": "6d45b992b221c0d50d4b2c0852d582d375b410468af51e0c295acd5b2f04e07d",
+        "represented_requests": 12,
+        "rounds": 7,
+        "schema": "mira-genesis-v27-bounded-pipeline-search-v1",
+        "stop_reason": "external_request_budget"
+      },
+      "selected_params": {
+        "ordering": 0,
+        "persistence": 1,
+        "plateau": 0,
+        "scheduling": 0
+      },
+      "stage": 1,
+      "trace_sha256": "9c1171cfb624cff90f213727c016903f69cbd9d489a81e721d37ce99ed01d28e",
+      "utility": [
+        0,
+        0,
+        0,
+        -12,
+        -7
+      ]
+    }
+  ],
+  "scope": "PUBLIC_DEVELOPMENT_PILOT_NOT_CANONICAL"
+}

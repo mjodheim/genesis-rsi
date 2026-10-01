@@ -41,7 +41,11 @@ REQUIRED_DIRECTORIES = (
 # archived after use, but a small set is itself part of a frozen protocol: its exact historical
 # path under .github/workflows is committed by scientific hashes/tests.  Those files must remain
 # byte-exact at that path even when the milestone is no longer operational.
-PERMANENT_WORKFLOWS = frozenset({"ci.yml", "attribution-policy.yml", "v24-l5-freeze-build.yml"})
+PERMANENT_WORKFLOWS = frozenset({
+    "ci.yml", "attribution-policy.yml", "v24-l5-freeze-build.yml",
+    # This replays retained evidence; it never launches a new scientific attempt.
+    "rsi-v27-v29-evidence.yml",
+})
 ACTIVE_MILESTONE_WORKFLOWS: frozenset[str] = frozenset()
 FROZEN_PATH_WORKFLOWS = frozenset(
     {

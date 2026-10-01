@@ -1,0 +1,1808 @@
+{
+  "arms": {
+    "g6_scheduling_ablation": {
+      "search": {
+        "accepted": true,
+        "best_quality_milli": 1000,
+        "caps": {
+          "mutation_depth": 3,
+          "parallelism": 2,
+          "requests": 12,
+          "rounds": 8
+        },
+        "isolated_policy_processes": false,
+        "nodes": {
+          "n-0cc5bfb1ecccdad9b56977e1": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "010d378b05ea206377389bc6d575047a2e58f1cf956507848e67bc6d5f855a48",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "470280c957fa4e0b843376d8",
+                "4d2e12be1a92fb636be3f4c8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "53dfd1814acfbb19d140b233",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "73635cb2fe2be3658d0b4c72",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                0,
+                1,
+                0
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "b7b15ac5ed381f8dbfe913883be969ba19602333c8d7c2750bc3cff4725c9a40",
+              "qualified": false,
+              "quality_milli": 150,
+              "source_sha256": "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-0cc5bfb1ecccdad9b56977e1",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 150,
+              "root_branch_node_id": "n-0cc5bfb1ecccdad9b56977e1"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370"
+          },
+          "n-30e388bc9af514ab34d87485": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "9033619034b44214b0869ff8b5279433af4e618b6f279dea469fb2af1ee10ea7",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "45b1ba338aecb18a6957c596",
+                "470280c957fa4e0b843376d8",
+                "4d2e12be1a92fb636be3f4c8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "e281a4c472c7411df596f687",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                1,
+                1,
+                1
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "ae258faec51e69e260f74b10aca849c41437e0cb23b519930a784611bbc0475f",
+              "qualified": true,
+              "quality_milli": 1000,
+              "source_sha256": "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+            },
+            "lineage_depth": 3,
+            "node_id": "n-30e388bc9af514ab34d87485",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 1000,
+              "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+            },
+            "parent_node_id": "n-6d045cda9de138bcc8f6c70e",
+            "source_sha256": "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+          },
+          "n-6d045cda9de138bcc8f6c70e": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "693f7c8c9a48508b3da5ebeaf924e47f27809926c336676812a94b1cd2e63905",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "470280c957fa4e0b843376d8",
+                "4d2e12be1a92fb636be3f4c8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "53dfd1814acfbb19d140b233",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "e281a4c472c7411df596f687",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                1,
+                1,
+                0
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "5c949f17f5fc623af037d8dfeb76e6df1c9f6de0386b79404e3493e561f224fd",
+              "qualified": false,
+              "quality_milli": 950,
+              "source_sha256": "ad7a5ac2c504018e670d9e7bbdba8d7e841e8fda0dcd7d8bb0fe5385079085f5"
+            },
+            "lineage_depth": 2,
+            "node_id": "n-6d045cda9de138bcc8f6c70e",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 950,
+              "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+            },
+            "parent_node_id": "n-9325b1a88b0733d6dbdec48b",
+            "source_sha256": "ad7a5ac2c504018e670d9e7bbdba8d7e841e8fda0dcd7d8bb0fe5385079085f5"
+          },
+          "n-906e2bb68cc4996da50973fa": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "bb7acda77dedc462ef37afb7947acefac6fd1c4a6831ec9199b6a492f394807f",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "45b1ba338aecb18a6957c596",
+                "470280c957fa4e0b843376d8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "73635cb2fe2be3658d0b4c72",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "dfade8a3da84b2300a9bdf25",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                0,
+                0,
+                1
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "9375d2c5814cc24623be3dccd915954ef13360536644b1cd1bec1bbb38e0a9dd",
+              "qualified": false,
+              "quality_milli": 50,
+              "source_sha256": "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-906e2bb68cc4996da50973fa",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 50,
+              "root_branch_node_id": "n-906e2bb68cc4996da50973fa"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+          },
+          "n-9325b1a88b0733d6dbdec48b": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "94c4ed679ff59db400c3d6e8c7c227e9fcc7262c5c4ee1566616a40ba576c12c",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "470280c957fa4e0b843376d8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "53dfd1814acfbb19d140b233",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "dfade8a3da84b2300a9bdf25",
+                "e281a4c472c7411df596f687",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                1,
+                0,
+                0
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "39ea41c94eb2c390a797f8cc1ba7dcb17110a083c834b0654e6fcff3f06bdb5e",
+              "qualified": false,
+              "quality_milli": 800,
+              "source_sha256": "2017412c223334c0a025613238ae9cd69ac66789cb64bac203a5a27bf3bf0295"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-9325b1a88b0733d6dbdec48b",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 800,
+              "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "2017412c223334c0a025613238ae9cd69ac66789cb64bac203a5a27bf3bf0295"
+          },
+          "root": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+              "target_axes": []
+            },
+            "candidate": {
+              "flags": [
+                0,
+                0,
+                0
+              ]
+            },
+            "lineage_depth": 0,
+            "node_id": "root",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 0,
+              "root_branch_node_id": "root"
+            },
+            "parent_node_id": null,
+            "source_sha256": "154745c2f306c4e7ece2fd5bf4ce9fa8916e27df741711ec343d26ac653ca172"
+          }
+        },
+        "observations": [
+          {
+            "ordered_candidates": {
+              "root": [
+                "2017412c223334c0a025613238ae9cd69ac66789cb64bac203a5a27bf3bf0295",
+                "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370",
+                "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "root"
+            ],
+            "requests_after": 1,
+            "result_node_ids": [
+              "n-9325b1a88b0733d6dbdec48b"
+            ],
+            "round": 1,
+            "view": {
+              "eligible_parent_ids": [
+                "root"
+              ],
+              "remaining_requests": 12,
+              "remaining_rounds": 8,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 0,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "68fa7030f6e771a507a7e09cb07b76b483960f98c6f1d7aee5a8fd125f6c9158"
+          },
+          {
+            "ordered_candidates": {
+              "n-9325b1a88b0733d6dbdec48b": [
+                "ad7a5ac2c504018e670d9e7bbdba8d7e841e8fda0dcd7d8bb0fe5385079085f5",
+                "f11d04e696735a2e76d48d5ce5c25bcb0c2a4e87bf73c1ce896f368cf5b7fd99"
+              ],
+              "root": [
+                "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370",
+                "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-9325b1a88b0733d6dbdec48b",
+              "root"
+            ],
+            "requests_after": 3,
+            "result_node_ids": [
+              "n-6d045cda9de138bcc8f6c70e",
+              "n-0cc5bfb1ecccdad9b56977e1"
+            ],
+            "round": 2,
+            "view": {
+              "eligible_parent_ids": [
+                "n-9325b1a88b0733d6dbdec48b",
+                "root"
+              ],
+              "remaining_requests": 11,
+              "remaining_rounds": 7,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 0,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "94c4ed679ff59db400c3d6e8c7c227e9fcc7262c5c4ee1566616a40ba576c12c",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "dfade8a3da84b2300a9bdf25",
+                      "e281a4c472c7411df596f687",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-9325b1a88b0733d6dbdec48b",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 800,
+                    "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "b6bdfdb948f025fbd122ba27d3a42f64117cbafa6ca54cbc4ec10097ec2c878c"
+          },
+          {
+            "ordered_candidates": {
+              "n-0cc5bfb1ecccdad9b56977e1": [
+                "78339bdb535fa9611a9e2fa8ef23461dcfa94798062ec16da2b31ed4796d1445"
+              ],
+              "n-6d045cda9de138bcc8f6c70e": [
+                "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+              ],
+              "n-9325b1a88b0733d6dbdec48b": [
+                "f11d04e696735a2e76d48d5ce5c25bcb0c2a4e87bf73c1ce896f368cf5b7fd99"
+              ],
+              "root": [
+                "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-6d045cda9de138bcc8f6c70e",
+              "root"
+            ],
+            "requests_after": 5,
+            "result_node_ids": [
+              "n-30e388bc9af514ab34d87485",
+              "n-906e2bb68cc4996da50973fa"
+            ],
+            "round": 3,
+            "view": {
+              "eligible_parent_ids": [
+                "n-0cc5bfb1ecccdad9b56977e1",
+                "n-6d045cda9de138bcc8f6c70e",
+                "n-9325b1a88b0733d6dbdec48b",
+                "root"
+              ],
+              "remaining_requests": 9,
+              "remaining_rounds": 6,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 0,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "94c4ed679ff59db400c3d6e8c7c227e9fcc7262c5c4ee1566616a40ba576c12c",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "dfade8a3da84b2300a9bdf25",
+                      "e281a4c472c7411df596f687",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-9325b1a88b0733d6dbdec48b",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 800,
+                    "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "693f7c8c9a48508b3da5ebeaf924e47f27809926c336676812a94b1cd2e63905",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d2e12be1a92fb636be3f4c8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "e281a4c472c7411df596f687",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-6d045cda9de138bcc8f6c70e",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 950,
+                    "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+                  },
+                  "parent_node_id": "n-9325b1a88b0733d6dbdec48b"
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "010d378b05ea206377389bc6d575047a2e58f1cf956507848e67bc6d5f855a48",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d2e12be1a92fb636be3f4c8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "73635cb2fe2be3658d0b4c72",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-0cc5bfb1ecccdad9b56977e1",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 150,
+                    "root_branch_node_id": "n-0cc5bfb1ecccdad9b56977e1"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "baa6672fdfae2ba04dd02c1be0b5a010aabd9feb19eaff0bd37f40726dd2592b"
+          }
+        ],
+        "policy_sha256": "23b17f6b580429a9d4931b1be92ce4aad45680275f2fe32ba2ea52f9f4d3ae3a",
+        "represented_requests": 5,
+        "rounds": 3,
+        "schema": "mira-genesis-v27-bounded-pipeline-search-v1",
+        "stop_reason": "policy_empty_batch"
+      },
+      "selected": {
+        "flags": [
+          1,
+          1,
+          1
+        ],
+        "qualified_discovery": true,
+        "source_sha256": "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+      },
+      "utility": [
+        1,
+        1000,
+        -5,
+        -3
+      ]
+    },
+    "inherited_g6": {
+      "search": {
+        "accepted": true,
+        "best_quality_milli": 1000,
+        "caps": {
+          "mutation_depth": 3,
+          "parallelism": 2,
+          "requests": 12,
+          "rounds": 8
+        },
+        "isolated_policy_processes": false,
+        "nodes": {
+          "n-0cc5bfb1ecccdad9b56977e1": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "010d378b05ea206377389bc6d575047a2e58f1cf956507848e67bc6d5f855a48",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "470280c957fa4e0b843376d8",
+                "4d2e12be1a92fb636be3f4c8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "53dfd1814acfbb19d140b233",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "73635cb2fe2be3658d0b4c72",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                0,
+                1,
+                0
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "b7b15ac5ed381f8dbfe913883be969ba19602333c8d7c2750bc3cff4725c9a40",
+              "qualified": false,
+              "quality_milli": 150,
+              "source_sha256": "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-0cc5bfb1ecccdad9b56977e1",
+            "outcome": {
+              "ever_champion": false,
+              "evolver_profile_generation": 0,
+              "quality_milli": 150,
+              "root_branch_node_id": "n-0cc5bfb1ecccdad9b56977e1"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370"
+          },
+          "n-30e388bc9af514ab34d87485": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "9033619034b44214b0869ff8b5279433af4e618b6f279dea469fb2af1ee10ea7",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "45b1ba338aecb18a6957c596",
+                "470280c957fa4e0b843376d8",
+                "4d2e12be1a92fb636be3f4c8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "e281a4c472c7411df596f687",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                1,
+                1,
+                1
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "ae258faec51e69e260f74b10aca849c41437e0cb23b519930a784611bbc0475f",
+              "qualified": true,
+              "quality_milli": 1000,
+              "source_sha256": "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+            },
+            "lineage_depth": 3,
+            "node_id": "n-30e388bc9af514ab34d87485",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 1000,
+              "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+            },
+            "parent_node_id": "n-6d045cda9de138bcc8f6c70e",
+            "source_sha256": "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+          },
+          "n-6d045cda9de138bcc8f6c70e": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "693f7c8c9a48508b3da5ebeaf924e47f27809926c336676812a94b1cd2e63905",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "470280c957fa4e0b843376d8",
+                "4d2e12be1a92fb636be3f4c8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "53dfd1814acfbb19d140b233",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "e281a4c472c7411df596f687",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                1,
+                1,
+                0
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "5c949f17f5fc623af037d8dfeb76e6df1c9f6de0386b79404e3493e561f224fd",
+              "qualified": false,
+              "quality_milli": 950,
+              "source_sha256": "ad7a5ac2c504018e670d9e7bbdba8d7e841e8fda0dcd7d8bb0fe5385079085f5"
+            },
+            "lineage_depth": 2,
+            "node_id": "n-6d045cda9de138bcc8f6c70e",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 950,
+              "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+            },
+            "parent_node_id": "n-9325b1a88b0733d6dbdec48b",
+            "source_sha256": "ad7a5ac2c504018e670d9e7bbdba8d7e841e8fda0dcd7d8bb0fe5385079085f5"
+          },
+          "n-9325b1a88b0733d6dbdec48b": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "94c4ed679ff59db400c3d6e8c7c227e9fcc7262c5c4ee1566616a40ba576c12c",
+              "target_axes": [
+                "19c4e3e89eb638988d14d230",
+                "25264247d39f4458a8ad9306",
+                "259783aa5b04d743b95a3a97",
+                "26e876b562a2a22b279fce70",
+                "28dd42221b51f027e09a5196",
+                "3b55b711f5afcbae00e3aee3",
+                "3ba3e608394b72980697efa6",
+                "3e8a4bf3b01e5910035f6456",
+                "41c3b23fc0f2a372450974c5",
+                "470280c957fa4e0b843376d8",
+                "4d79965747638a6a46e9400f",
+                "4e060b803342b35d5caf18fc",
+                "51a3e5b5918381f14825a2f3",
+                "53dfd1814acfbb19d140b233",
+                "58c26a2c8ffc902a31656bc2",
+                "62c68818332cfd080fdf9f26",
+                "69b4b3cd4e491d8014f20378",
+                "6c59d74268a6a74847915c54",
+                "6ce0f89584d78dfda7d2a620",
+                "6f379ecc09a181a4a912a806",
+                "7898a774a3126b7a5229f753",
+                "78c1773ded264dd306f7073f",
+                "7cc45f69bb03c8faff7fba66",
+                "85813ad30d4d8514d8ca3414",
+                "8b92c5ca411564052f4df25c",
+                "8c020e024ae2551d0b82c8bd",
+                "98b65e19ab03a612ce697efd",
+                "9b18f0ac38ba9e076a5ff57e",
+                "a00d9ad2087f7c46ae1d652c",
+                "a0554172b003ab3b6ed9576c",
+                "a1e9c92ed233eddda5442652",
+                "a349d37ca4a28b0c16d9ae65",
+                "a60597da6c77e9e4fc289096",
+                "a66bdc2f9846fbc8bf734988",
+                "a6f0b3128842906d73c6ee31",
+                "a8a40adc2bb510ae3106a4cc",
+                "adfd329b853edc632261e952",
+                "b340bcc65b09a816f362bcdb",
+                "b6109a41e7a9b49c8c1da6a0",
+                "b722548efe5d6e9576d6ac24",
+                "c321ed4506601df305b0253e",
+                "c60479a3beccf73298137592",
+                "cf7f4e5884e872e1c49b038c",
+                "d1abdf9240a5f9bd8855f5fd",
+                "da1c82e62339b4dda7073108",
+                "dc05708615595626f78ee323",
+                "dfade8a3da84b2300a9bdf25",
+                "e281a4c472c7411df596f687",
+                "e3b2dd99a570c77b19ac9b3a",
+                "e4fdbbf2f588c3bf5196bc37",
+                "e68ae523526a19ef2a908350",
+                "e898e33be966f978d867baa1",
+                "e9d951f7bd88399b274c3f72",
+                "f40772cfdb6ff26a46e9ea84",
+                "f4a5944e9abe68cfbb4b3b11",
+                "fe9dbd9dea31196a84cb4cb3"
+              ]
+            },
+            "candidate": {
+              "flags": [
+                1,
+                0,
+                0
+              ]
+            },
+            "evaluation": {
+              "accepted": true,
+              "public_receipt_sha256": "39ea41c94eb2c390a797f8cc1ba7dcb17110a083c834b0654e6fcff3f06bdb5e",
+              "qualified": false,
+              "quality_milli": 800,
+              "source_sha256": "2017412c223334c0a025613238ae9cd69ac66789cb64bac203a5a27bf3bf0295"
+            },
+            "lineage_depth": 1,
+            "node_id": "n-9325b1a88b0733d6dbdec48b",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 800,
+              "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+            },
+            "parent_node_id": "root",
+            "source_sha256": "2017412c223334c0a025613238ae9cd69ac66789cb64bac203a5a27bf3bf0295"
+          },
+          "root": {
+            "action": {
+              "family": "executable-target-selector",
+              "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+              "target_axes": []
+            },
+            "candidate": {
+              "flags": [
+                0,
+                0,
+                0
+              ]
+            },
+            "lineage_depth": 0,
+            "node_id": "root",
+            "outcome": {
+              "ever_champion": true,
+              "evolver_profile_generation": 0,
+              "quality_milli": 0,
+              "root_branch_node_id": "root"
+            },
+            "parent_node_id": null,
+            "source_sha256": "154745c2f306c4e7ece2fd5bf4ce9fa8916e27df741711ec343d26ac653ca172"
+          }
+        },
+        "observations": [
+          {
+            "ordered_candidates": {
+              "root": [
+                "2017412c223334c0a025613238ae9cd69ac66789cb64bac203a5a27bf3bf0295",
+                "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370",
+                "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "root"
+            ],
+            "requests_after": 1,
+            "result_node_ids": [
+              "n-9325b1a88b0733d6dbdec48b"
+            ],
+            "round": 1,
+            "view": {
+              "eligible_parent_ids": [
+                "root"
+              ],
+              "remaining_requests": 12,
+              "remaining_rounds": 8,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 0,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "68fa7030f6e771a507a7e09cb07b76b483960f98c6f1d7aee5a8fd125f6c9158"
+          },
+          {
+            "ordered_candidates": {
+              "n-9325b1a88b0733d6dbdec48b": [
+                "ad7a5ac2c504018e670d9e7bbdba8d7e841e8fda0dcd7d8bb0fe5385079085f5",
+                "f11d04e696735a2e76d48d5ce5c25bcb0c2a4e87bf73c1ce896f368cf5b7fd99"
+              ],
+              "root": [
+                "744c487d6ca2d6721155c077b6ee9e8f5964d2bacdde7e3565334a1c437d7370",
+                "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-9325b1a88b0733d6dbdec48b",
+              "root"
+            ],
+            "requests_after": 3,
+            "result_node_ids": [
+              "n-6d045cda9de138bcc8f6c70e",
+              "n-0cc5bfb1ecccdad9b56977e1"
+            ],
+            "round": 2,
+            "view": {
+              "eligible_parent_ids": [
+                "n-9325b1a88b0733d6dbdec48b",
+                "root"
+              ],
+              "remaining_requests": 11,
+              "remaining_rounds": 7,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 0,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "94c4ed679ff59db400c3d6e8c7c227e9fcc7262c5c4ee1566616a40ba576c12c",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "dfade8a3da84b2300a9bdf25",
+                      "e281a4c472c7411df596f687",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-9325b1a88b0733d6dbdec48b",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 800,
+                    "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "b6bdfdb948f025fbd122ba27d3a42f64117cbafa6ca54cbc4ec10097ec2c878c"
+          },
+          {
+            "ordered_candidates": {
+              "n-0cc5bfb1ecccdad9b56977e1": [
+                "78339bdb535fa9611a9e2fa8ef23461dcfa94798062ec16da2b31ed4796d1445"
+              ],
+              "n-6d045cda9de138bcc8f6c70e": [
+                "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+              ],
+              "n-9325b1a88b0733d6dbdec48b": [
+                "f11d04e696735a2e76d48d5ce5c25bcb0c2a4e87bf73c1ce896f368cf5b7fd99"
+              ],
+              "root": [
+                "fd422980169e829fe22af41f28dd368c5aa716ff5a5a15dfd4d7ce482f30b508"
+              ]
+            },
+            "parallelism_cap": 2,
+            "parent_node_ids": [
+              "n-6d045cda9de138bcc8f6c70e"
+            ],
+            "requests_after": 4,
+            "result_node_ids": [
+              "n-30e388bc9af514ab34d87485"
+            ],
+            "round": 3,
+            "view": {
+              "eligible_parent_ids": [
+                "n-0cc5bfb1ecccdad9b56977e1",
+                "n-6d045cda9de138bcc8f6c70e",
+                "n-9325b1a88b0733d6dbdec48b",
+                "root"
+              ],
+              "remaining_requests": 9,
+              "remaining_rounds": 6,
+              "revealed_nodes": [
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "3c8fe9a5031bda2cc84962f7c5ae1a06288be9c8145d485ade499beef68302d3",
+                    "target_axes": []
+                  },
+                  "lineage_depth": 0,
+                  "node_id": "root",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 0,
+                    "root_branch_node_id": "root"
+                  },
+                  "parent_node_id": null
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "94c4ed679ff59db400c3d6e8c7c227e9fcc7262c5c4ee1566616a40ba576c12c",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "dfade8a3da84b2300a9bdf25",
+                      "e281a4c472c7411df596f687",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-9325b1a88b0733d6dbdec48b",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 800,
+                    "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+                  },
+                  "parent_node_id": "root"
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "693f7c8c9a48508b3da5ebeaf924e47f27809926c336676812a94b1cd2e63905",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d2e12be1a92fb636be3f4c8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "e281a4c472c7411df596f687",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 2,
+                  "node_id": "n-6d045cda9de138bcc8f6c70e",
+                  "outcome": {
+                    "ever_champion": true,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 950,
+                    "root_branch_node_id": "n-9325b1a88b0733d6dbdec48b"
+                  },
+                  "parent_node_id": "n-9325b1a88b0733d6dbdec48b"
+                },
+                {
+                  "action": {
+                    "family": "executable-target-selector",
+                    "structure_sha256": "010d378b05ea206377389bc6d575047a2e58f1cf956507848e67bc6d5f855a48",
+                    "target_axes": [
+                      "19c4e3e89eb638988d14d230",
+                      "25264247d39f4458a8ad9306",
+                      "259783aa5b04d743b95a3a97",
+                      "26e876b562a2a22b279fce70",
+                      "28dd42221b51f027e09a5196",
+                      "3b55b711f5afcbae00e3aee3",
+                      "3ba3e608394b72980697efa6",
+                      "3e8a4bf3b01e5910035f6456",
+                      "41c3b23fc0f2a372450974c5",
+                      "470280c957fa4e0b843376d8",
+                      "4d2e12be1a92fb636be3f4c8",
+                      "4d79965747638a6a46e9400f",
+                      "4e060b803342b35d5caf18fc",
+                      "51a3e5b5918381f14825a2f3",
+                      "53dfd1814acfbb19d140b233",
+                      "58c26a2c8ffc902a31656bc2",
+                      "62c68818332cfd080fdf9f26",
+                      "69b4b3cd4e491d8014f20378",
+                      "6c59d74268a6a74847915c54",
+                      "6ce0f89584d78dfda7d2a620",
+                      "6f379ecc09a181a4a912a806",
+                      "73635cb2fe2be3658d0b4c72",
+                      "7898a774a3126b7a5229f753",
+                      "78c1773ded264dd306f7073f",
+                      "7cc45f69bb03c8faff7fba66",
+                      "85813ad30d4d8514d8ca3414",
+                      "8b92c5ca411564052f4df25c",
+                      "8c020e024ae2551d0b82c8bd",
+                      "98b65e19ab03a612ce697efd",
+                      "9b18f0ac38ba9e076a5ff57e",
+                      "a00d9ad2087f7c46ae1d652c",
+                      "a0554172b003ab3b6ed9576c",
+                      "a1e9c92ed233eddda5442652",
+                      "a349d37ca4a28b0c16d9ae65",
+                      "a60597da6c77e9e4fc289096",
+                      "a66bdc2f9846fbc8bf734988",
+                      "a6f0b3128842906d73c6ee31",
+                      "a8a40adc2bb510ae3106a4cc",
+                      "adfd329b853edc632261e952",
+                      "b340bcc65b09a816f362bcdb",
+                      "b6109a41e7a9b49c8c1da6a0",
+                      "b722548efe5d6e9576d6ac24",
+                      "c321ed4506601df305b0253e",
+                      "c60479a3beccf73298137592",
+                      "cf7f4e5884e872e1c49b038c",
+                      "d1abdf9240a5f9bd8855f5fd",
+                      "da1c82e62339b4dda7073108",
+                      "dc05708615595626f78ee323",
+                      "e3b2dd99a570c77b19ac9b3a",
+                      "e4fdbbf2f588c3bf5196bc37",
+                      "e68ae523526a19ef2a908350",
+                      "e898e33be966f978d867baa1",
+                      "e9d951f7bd88399b274c3f72",
+                      "f40772cfdb6ff26a46e9ea84",
+                      "f4a5944e9abe68cfbb4b3b11",
+                      "fe9dbd9dea31196a84cb4cb3"
+                    ]
+                  },
+                  "lineage_depth": 1,
+                  "node_id": "n-0cc5bfb1ecccdad9b56977e1",
+                  "outcome": {
+                    "ever_champion": false,
+                    "evolver_profile_generation": 0,
+                    "quality_milli": 150,
+                    "root_branch_node_id": "n-0cc5bfb1ecccdad9b56977e1"
+                  },
+                  "parent_node_id": "root"
+                }
+              ],
+              "root_node_id": "root"
+            },
+            "view_sha256": "baa6672fdfae2ba04dd02c1be0b5a010aabd9feb19eaff0bd37f40726dd2592b"
+          }
+        ],
+        "policy_sha256": "154745c2f306c4e7ece2fd5bf4ce9fa8916e27df741711ec343d26ac653ca172",
+        "represented_requests": 4,
+        "rounds": 3,
+        "schema": "mira-genesis-v27-bounded-pipeline-search-v1",
+        "stop_reason": "policy_empty_batch"
+      },
+      "selected": {
+        "flags": [
+          1,
+          1,
+          1
+        ],
+        "qualified_discovery": true,
+        "source_sha256": "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4"
+      },
+      "utility": [
+        1,
+        1000,
+        -4,
+        -3
+      ]
+    }
+  },
+  "new_holdout_consumed": false,
+  "scope": "PUBLIC_DEVELOPMENT_PILOT_NOT_CANONICAL"
+}

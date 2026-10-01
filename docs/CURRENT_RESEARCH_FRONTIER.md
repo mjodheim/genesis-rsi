@@ -1,10 +1,33 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 1 October 2026, V26 positive bounded L5.**
+**Reader-facing status snapshot — 1 October 2026, V28–V30 positive bounded L6–L8.**
 
 ## Active RSI frontier
 
-V26 validates **bounded causal recursive meta-improvement (L5)** in one prospectively
+V28 validates **bounded L6 repeated meta-descent**: exact G3 automatically discovers
+G4, G5 and G6, with three causal transitions and fresh gains on a new 48-case
+population. All previously required solved capabilities are retained. V27's
+preceding fresh-transfer negative and every public pilot remain preserved.
+
+V29 validates **bounded L7 cross-domain transfer** of byte-exact G6 across actual
+SQLite, regular-expression, JSON and zlib algorithms. All 80 cases pass. The
+environments have three external maintenance groups; faults and tasks remain
+project-authored. Final authorship preceded first V29 transfer behavior, following
+already known public L6 development. Ordering is causal; other ablation ties remain.
+
+V30 validates **bounded L8 measured bottleneck selection** on disposable faulted
+copies of the inherited improvement pipeline. G6 discovers the adaptive target
+selector in four meta evaluations versus five after removing its latest scheduling
+acquisition. On all 58 new contexts, adaptive G7 solves 44 cases against 38 for the
+best fixed target. Every selector term has a causal effect; 14 unsolved cases and
+six identity choices remain in the record. Prior native capability retention uses
+consumed receipts and is not new native evidence.
+
+These results are finite frozen assays with zero external scientific model calls.
+They do not close M085/L10 independence, open-ended RSI, AGI or a completion gate.
+See [the complete L6–L8 evidence and chronology](RSI_L6_L8_RESULTS_2026-10-01.md).
+
+The preceding V26 result validates **bounded causal recursive meta-improvement (L5)** in one prospectively
 frozen Track A attempt. Exact qualified V22R G2 discovers the composed G3 in two meta
 evaluations, against five after ablating G2's acquired early stop and eight for FIFO.
 G3 then solves 4/4 fresh native repair tasks, against 2/4 for G2 and the G1-meta
@@ -15,7 +38,7 @@ reproduce from the original committed traces.
 The task faults and finite policy family are project-authored, with four new production
 targets on two public hosts. G3 uses 24 native evaluations versus G2's 14 under equal
 external caps; the gain is solved-task utility, not general efficiency. This closes
-V26's bounded L5 criterion only, without closing M085 independence, L6 or any generality,
+V26's bounded L5 criterion only, without itself closing M085 independence, L6 or any generality,
 completion or AGI gate. Scientific execution uses zero external model calls.
 
 V24's tie `(2, 2500, -17, -17)` and V25's failed strategy-ablation check remain negative.

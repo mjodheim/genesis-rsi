@@ -1,0 +1,970 @@
+[
+  {
+    "cases": [
+      {
+        "case_id": "a-0",
+        "data": {
+          "rows": [
+            [
+              "z",
+              1
+            ],
+            [
+              "z",
+              4
+            ],
+            [
+              "z",
+              -2
+            ]
+          ]
+        },
+        "expected": 3,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-1",
+        "data": {
+          "rows": [
+            [
+              "z",
+              2
+            ],
+            [
+              "z",
+              7
+            ],
+            [
+              "z",
+              -3
+            ]
+          ]
+        },
+        "expected": 6,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-2",
+        "data": {
+          "rows": [
+            [
+              "z",
+              3
+            ],
+            [
+              "z",
+              10
+            ],
+            [
+              "z",
+              -4
+            ]
+          ]
+        },
+        "expected": 9,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-3",
+        "data": {
+          "rows": [
+            [
+              "z",
+              4
+            ],
+            [
+              "z",
+              13
+            ],
+            [
+              "z",
+              -5
+            ]
+          ]
+        },
+        "expected": 12,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-4",
+        "data": {
+          "rows": [
+            [
+              "z",
+              5
+            ],
+            [
+              "z",
+              16
+            ],
+            [
+              "z",
+              -6
+            ]
+          ]
+        },
+        "expected": 15,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-5",
+        "data": {
+          "rows": [
+            [
+              "z",
+              6
+            ],
+            [
+              "z",
+              19
+            ],
+            [
+              "z",
+              -7
+            ]
+          ]
+        },
+        "expected": 18,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-6",
+        "data": {
+          "rows": [
+            [
+              "z",
+              7
+            ],
+            [
+              "z",
+              22
+            ],
+            [
+              "z",
+              -8
+            ]
+          ]
+        },
+        "expected": 21,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-7",
+        "data": {
+          "rows": [
+            [
+              "z",
+              8
+            ],
+            [
+              "z",
+              25
+            ],
+            [
+              "z",
+              -9
+            ]
+          ]
+        },
+        "expected": 24,
+        "operation": "a"
+      },
+      {
+        "case_id": "b-0",
+        "data": {
+          "rows": [
+            [
+              "z",
+              1
+            ],
+            [
+              "a",
+              2
+            ]
+          ],
+          "threshold": 1
+        },
+        "expected": 2,
+        "operation": "b"
+      },
+      {
+        "case_id": "b-1",
+        "data": {
+          "rows": [
+            [
+              "z",
+              2
+            ],
+            [
+              "a",
+              3
+            ]
+          ],
+          "threshold": 2
+        },
+        "expected": 2,
+        "operation": "b"
+      },
+      {
+        "case_id": "b-2",
+        "data": {
+          "rows": [
+            [
+              "z",
+              3
+            ],
+            [
+              "a",
+              4
+            ]
+          ],
+          "threshold": 3
+        },
+        "expected": 2,
+        "operation": "b"
+      },
+      {
+        "case_id": "b-3",
+        "data": {
+          "rows": [
+            [
+              "z",
+              4
+            ],
+            [
+              "a",
+              5
+            ]
+          ],
+          "threshold": 4
+        },
+        "expected": 2,
+        "operation": "b"
+      },
+      {
+        "case_id": "b-4",
+        "data": {
+          "rows": [
+            [
+              "z",
+              5
+            ],
+            [
+              "a",
+              6
+            ]
+          ],
+          "threshold": 5
+        },
+        "expected": 2,
+        "operation": "b"
+      },
+      {
+        "case_id": "b-5",
+        "data": {
+          "rows": [
+            [
+              "z",
+              6
+            ],
+            [
+              "a",
+              7
+            ]
+          ],
+          "threshold": 6
+        },
+        "expected": 2,
+        "operation": "b"
+      },
+      {
+        "case_id": "c-0",
+        "data": {
+          "rows": [
+            [
+              "z",
+              0
+            ],
+            [
+              "a",
+              3
+            ]
+          ]
+        },
+        "expected": "z",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-1",
+        "data": {
+          "rows": [
+            [
+              "z",
+              1
+            ],
+            [
+              "a",
+              4
+            ]
+          ]
+        },
+        "expected": "z",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-2",
+        "data": {
+          "rows": [
+            [
+              "z",
+              2
+            ],
+            [
+              "a",
+              5
+            ]
+          ]
+        },
+        "expected": "z",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-3",
+        "data": {
+          "rows": [
+            [
+              "z",
+              3
+            ],
+            [
+              "a",
+              6
+            ]
+          ]
+        },
+        "expected": "z",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-4",
+        "data": {
+          "rows": [
+            [
+              "z",
+              4
+            ],
+            [
+              "a",
+              7
+            ]
+          ]
+        },
+        "expected": "z",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-5",
+        "data": {
+          "rows": [
+            [
+              "z",
+              5
+            ],
+            [
+              "a",
+              8
+            ]
+          ]
+        },
+        "expected": "z",
+        "operation": "c"
+      }
+    ],
+    "domain": "relational-sql"
+  },
+  {
+    "cases": [
+      {
+        "case_id": "a-0",
+        "data": {
+          "text": "alpha-beta"
+        },
+        "expected": true,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-1",
+        "data": {
+          "text": "Gamma"
+        },
+        "expected": true,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-2",
+        "data": {
+          "text": "word-word"
+        },
+        "expected": true,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-3",
+        "data": {
+          "text": "Abc"
+        },
+        "expected": true,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-4",
+        "data": {
+          "text": "7alpha"
+        },
+        "expected": false,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-5",
+        "data": {
+          "text": "alpha7"
+        },
+        "expected": false,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-6",
+        "data": {
+          "text": "beta gamma"
+        },
+        "expected": false,
+        "operation": "a"
+      },
+      {
+        "case_id": "a-7",
+        "data": {
+          "text": "-alpha-"
+        },
+        "expected": false,
+        "operation": "a"
+      },
+      {
+        "case_id": "b-0",
+        "data": {
+          "separator": ".",
+          "text": "left0.middle.right"
+        },
+        "expected": [
+          "left0",
+          "middle",
+          "right"
+        ],
+        "operation": "b"
+      },
+      {
+        "case_id": "b-1",
+        "data": {
+          "separator": "|",
+          "text": "left1|middle|right"
+        },
+        "expected": [
+          "left1",
+          "middle",
+          "right"
+        ],
+        "operation": "b"
+      },
+      {
+        "case_id": "b-2",
+        "data": {
+          "separator": "+",
+          "text": "left2+middle+right"
+        },
+        "expected": [
+          "left2",
+          "middle",
+          "right"
+        ],
+        "operation": "b"
+      },
+      {
+        "case_id": "b-3",
+        "data": {
+          "separator": ".",
+          "text": "left3.middle.right"
+        },
+        "expected": [
+          "left3",
+          "middle",
+          "right"
+        ],
+        "operation": "b"
+      },
+      {
+        "case_id": "b-4",
+        "data": {
+          "separator": "|",
+          "text": "left4|middle|right"
+        },
+        "expected": [
+          "left4",
+          "middle",
+          "right"
+        ],
+        "operation": "b"
+      },
+      {
+        "case_id": "b-5",
+        "data": {
+          "separator": "+",
+          "text": "left5+middle+right"
+        },
+        "expected": [
+          "left5",
+          "middle",
+          "right"
+        ],
+        "operation": "b"
+      },
+      {
+        "case_id": "c-0",
+        "data": {
+          "text": "a$b$c0",
+          "token": "$"
+        },
+        "expected": "aXb$c0",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-1",
+        "data": {
+          "text": "a.b.c1",
+          "token": "."
+        },
+        "expected": "aXb.c1",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-2",
+        "data": {
+          "text": "a|b|c2",
+          "token": "|"
+        },
+        "expected": "aXb|c2",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-3",
+        "data": {
+          "text": "a$b$c3",
+          "token": "$"
+        },
+        "expected": "aXb$c3",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-4",
+        "data": {
+          "text": "a.b.c4",
+          "token": "."
+        },
+        "expected": "aXb.c4",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-5",
+        "data": {
+          "text": "a|b|c5",
+          "token": "|"
+        },
+        "expected": "aXb|c5",
+        "operation": "c"
+      }
+    ],
+    "domain": "regular-expressions"
+  },
+  {
+    "cases": [
+      {
+        "case_id": "a-0",
+        "data": {
+          "payload": "2.123456789012345678901"
+        },
+        "expected": "2.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-1",
+        "data": {
+          "payload": "3.123456789012345678901"
+        },
+        "expected": "3.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-2",
+        "data": {
+          "payload": "4.123456789012345678901"
+        },
+        "expected": "4.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-3",
+        "data": {
+          "payload": "5.123456789012345678901"
+        },
+        "expected": "5.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-4",
+        "data": {
+          "payload": "6.123456789012345678901"
+        },
+        "expected": "6.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-5",
+        "data": {
+          "payload": "7.123456789012345678901"
+        },
+        "expected": "7.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-6",
+        "data": {
+          "payload": "8.123456789012345678901"
+        },
+        "expected": "8.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-7",
+        "data": {
+          "payload": "9.123456789012345678901"
+        },
+        "expected": "9.123456789012345678901",
+        "operation": "a"
+      },
+      {
+        "case_id": "b-0",
+        "data": {
+          "payload": "{\"z\":0,\"a\":\"\u00e9\"}"
+        },
+        "expected": "{\"a\":\"\u00e9\",\"z\":0}",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-1",
+        "data": {
+          "payload": "{\"z\":1,\"a\":\"\u03a9\"}"
+        },
+        "expected": "{\"a\":\"\u03a9\",\"z\":1}",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-2",
+        "data": {
+          "payload": "{\"z\":2,\"a\":\"\u6f22\"}"
+        },
+        "expected": "{\"a\":\"\u6f22\",\"z\":2}",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-3",
+        "data": {
+          "payload": "{\"z\":3,\"a\":\"\u00e9\"}"
+        },
+        "expected": "{\"a\":\"\u00e9\",\"z\":3}",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-4",
+        "data": {
+          "payload": "{\"z\":4,\"a\":\"\u03a9\"}"
+        },
+        "expected": "{\"a\":\"\u03a9\",\"z\":4}",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-5",
+        "data": {
+          "payload": "{\"z\":5,\"a\":\"\u6f22\"}"
+        },
+        "expected": "{\"a\":\"\u6f22\",\"z\":5}",
+        "operation": "b"
+      },
+      {
+        "case_id": "c-0",
+        "data": {
+          "payload": "{\"k\":0,\"k\":1}"
+        },
+        "expected": [
+          [
+            "k",
+            0
+          ],
+          [
+            "k",
+            1
+          ]
+        ],
+        "operation": "c"
+      },
+      {
+        "case_id": "c-1",
+        "data": {
+          "payload": "{\"k\":1,\"k\":2}"
+        },
+        "expected": [
+          [
+            "k",
+            1
+          ],
+          [
+            "k",
+            2
+          ]
+        ],
+        "operation": "c"
+      },
+      {
+        "case_id": "c-2",
+        "data": {
+          "payload": "{\"k\":2,\"k\":3}"
+        },
+        "expected": [
+          [
+            "k",
+            2
+          ],
+          [
+            "k",
+            3
+          ]
+        ],
+        "operation": "c"
+      },
+      {
+        "case_id": "c-3",
+        "data": {
+          "payload": "{\"k\":3,\"k\":4}"
+        },
+        "expected": [
+          [
+            "k",
+            3
+          ],
+          [
+            "k",
+            4
+          ]
+        ],
+        "operation": "c"
+      },
+      {
+        "case_id": "c-4",
+        "data": {
+          "payload": "{\"k\":4,\"k\":5}"
+        },
+        "expected": [
+          [
+            "k",
+            4
+          ],
+          [
+            "k",
+            5
+          ]
+        ],
+        "operation": "c"
+      },
+      {
+        "case_id": "c-5",
+        "data": {
+          "payload": "{\"k\":5,\"k\":6}"
+        },
+        "expected": [
+          [
+            "k",
+            5
+          ],
+          [
+            "k",
+            6
+          ]
+        ],
+        "operation": "c"
+      }
+    ],
+    "domain": "structured-json"
+  },
+  {
+    "cases": [
+      {
+        "case_id": "a-0",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdCtAACwo26YDgAAAA=="
+        },
+        "expected": "677a69702d76616c75652d302d78",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-1",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdStqAAAyayZ/w8AAAA="
+        },
+        "expected": "677a69702d76616c75652d312d7878",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-2",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdKtqKgAAOuPOykQAAAA"
+        },
+        "expected": "677a69702d76616c75652d322d787878",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-3",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdatAAIAWcVxcBEAAAA="
+        },
+        "expected": "677a69702d76616c75652d332d78787878",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-4",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdGtAAEAmLC8WxIAAAA="
+        },
+        "expected": "677a69702d76616c75652d342d7878787878",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-5",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdWtAAMA27H5vhMAAAA="
+        },
+        "expected": "677a69702d76616c75652d352d787878787878",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-6",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdOtgAAAq9jupBQAAAA="
+        },
+        "expected": "677a69702d76616c75652d362d78787878787878",
+        "operation": "a"
+      },
+      {
+        "case_id": "a-7",
+        "data": {
+          "encoded": "H4sIAAAAAAACA0uvyizQLUvMKU3VNdetgAIABem+IhUAAAA="
+        },
+        "expected": "677a69702d76616c75652d372d7878787878787878",
+        "operation": "a"
+      },
+      {
+        "case_id": "b-0",
+        "data": {
+          "encoded": "K0os101JTctJLEnVNaiqAgA="
+        },
+        "expected": "7261772d6465666c6174652d307a7a",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-1",
+        "data": {
+          "encoded": "K0os101JTctJLEnVNayqqgIA"
+        },
+        "expected": "7261772d6465666c6174652d317a7a7a",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-2",
+        "data": {
+          "encoded": "K0os101JTctJLEnVNaoCAgA="
+        },
+        "expected": "7261772d6465666c6174652d327a7a7a7a",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-3",
+        "data": {
+          "encoded": "K0os101JTctJLEnVNa4CAQA="
+        },
+        "expected": "7261772d6465666c6174652d337a7a7a7a7a",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-4",
+        "data": {
+          "encoded": "K0os101JTctJLEnVNakCAwA="
+        },
+        "expected": "7261772d6465666c6174652d347a7a7a7a7a7a",
+        "operation": "b"
+      },
+      {
+        "case_id": "b-5",
+        "data": {
+          "encoded": "K0os101JTctJLEnVNa2CAAA="
+        },
+        "expected": "7261772d6465666c6174652d357a7a7a7a7a7a7a",
+        "operation": "b"
+      },
+      {
+        "case_id": "c-0",
+        "data": {
+          "encoded": "Y29tcGxldGUtc3RyZWFtLTBhYmM="
+        },
+        "expected": "636f6d706c6574652d73747265616d2d30616263",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-1",
+        "data": {
+          "encoded": "Y29tcGxldGUtc3RyZWFtLTFhYmNhYmM="
+        },
+        "expected": "636f6d706c6574652d73747265616d2d31616263616263",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-2",
+        "data": {
+          "encoded": "Y29tcGxldGUtc3RyZWFtLTJhYmNhYmNhYmM="
+        },
+        "expected": "636f6d706c6574652d73747265616d2d32616263616263616263",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-3",
+        "data": {
+          "encoded": "Y29tcGxldGUtc3RyZWFtLTNhYmNhYmNhYmNhYmM="
+        },
+        "expected": "636f6d706c6574652d73747265616d2d33616263616263616263616263",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-4",
+        "data": {
+          "encoded": "Y29tcGxldGUtc3RyZWFtLTRhYmNhYmNhYmNhYmNhYmM="
+        },
+        "expected": "636f6d706c6574652d73747265616d2d34616263616263616263616263616263",
+        "operation": "c"
+      },
+      {
+        "case_id": "c-5",
+        "data": {
+          "encoded": "Y29tcGxldGUtc3RyZWFtLTVhYmNhYmNhYmNhYmNhYmNhYmM="
+        },
+        "expected": "636f6d706c6574652d73747265616d2d35616263616263616263616263616263616263",
+        "operation": "c"
+      }
+    ],
+    "domain": "binary-compression"
+  }
+]

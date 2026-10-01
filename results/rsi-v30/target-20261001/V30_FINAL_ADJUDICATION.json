@@ -1,0 +1,156 @@
+{
+  "arm_utilities": {
+    "ablation_exploration": [
+      38,
+      54860,
+      -914,
+      -550
+    ],
+    "ablation_generation": [
+      24,
+      49570,
+      -998,
+      -592
+    ],
+    "ablation_scheduling": [
+      44,
+      55970,
+      -938,
+      -556
+    ],
+    "adaptive_g7": [
+      44,
+      55970,
+      -926,
+      -556
+    ],
+    "fixed_exploration": [
+      24,
+      49570,
+      -1010,
+      -592
+    ],
+    "fixed_generation": [
+      38,
+      54860,
+      -902,
+      -538
+    ],
+    "fixed_scheduling": [
+      18,
+      48460,
+      -986,
+      -586
+    ],
+    "parent_g6": [
+      18,
+      48460,
+      -998,
+      -586
+    ]
+  },
+  "freeze_sha256": "01921cf66ba3a104b9df73c5f59eb6ab86f2641b2e3e23afc2cacf1fd1fb55a5",
+  "fresh_context_count": 58,
+  "independent_task_authorship": false,
+  "meta_utilities": {
+    "g6_scheduling_ablation": [
+      1,
+      1000,
+      -5,
+      -3
+    ],
+    "inherited_g6": [
+      1,
+      1000,
+      -4,
+      -3
+    ]
+  },
+  "new_holdout_consumed": true,
+  "open_ended_self_modification": false,
+  "predicates": {
+    "every_selector_term_causal_on_fresh_population": true,
+    "exact_freeze_single_attempt_equal_caps_zero_external_models": true,
+    "fresh_adaptive_beats_parent_and_every_fixed_target": true,
+    "lineage_discovered_selector": true,
+    "multiple_pipeline_parts_selected_from_measured_evidence": true,
+    "previous_acquisition_causally_reduces_next_discovery_cost": true,
+    "qualified_l7_predecessor": true,
+    "unchanged_core_retains_prior_capabilities": true
+  },
+  "retention": {
+    "no_loss": true,
+    "rows": [
+      {
+        "best_quality_milli": 1000,
+        "domain": "relational-sql",
+        "retained_search_sha256": "8d008a43d20b3ba8fb56355a676fa52f52b09cc9c6f1d52eaf4a2e1e1db63df1",
+        "unchanged_core_receipt_replay": true
+      },
+      {
+        "best_quality_milli": 1000,
+        "domain": "regular-expressions",
+        "retained_search_sha256": "63ab54e2b2d2ccd20e60c6b8f0037643a05ece0a5ee73878e5856d1f8abf52b5",
+        "unchanged_core_receipt_replay": true
+      },
+      {
+        "best_quality_milli": 1000,
+        "domain": "structured-json",
+        "retained_search_sha256": "2957bf6a3b13fcd076bff35f6060c134ef6b308968cf8536aef5ba7bacc776c4",
+        "unchanged_core_receipt_replay": true
+      },
+      {
+        "best_quality_milli": 1000,
+        "domain": "binary-compression",
+        "retained_search_sha256": "679e42d22eee3000280d96c05ae68ab0b3ccd016b5c3f7ec3235a74560772a75",
+        "unchanged_core_receipt_replay": true
+      }
+    ],
+    "scope": "CONSUMED_L7_NATIVE_RECEIPT_RETENTION_NOT_FRESH_NATIVE_EXECUTION"
+  },
+  "schema": "mira-genesis-v30-bottleneck-adjudication-v1",
+  "scope": "FINITE_MEASURED_BOTTLENECK_SELECTION_ON_FAULTED_DISPOSABLE_PIPELINE_COPIES",
+  "selected_flags": [
+    1,
+    1,
+    1
+  ],
+  "selected_source_sha256": "2e43fde55b4d17f9ab48be14322acb3d7f65dec8d3663cde068837d6d68b9ff4",
+  "target_counts": {
+    "ablation_exploration": {
+      "generation": 20,
+      "identity": 26,
+      "scheduling": 12
+    },
+    "ablation_generation": {
+      "exploration": 20,
+      "identity": 26,
+      "scheduling": 12
+    },
+    "ablation_scheduling": {
+      "exploration": 20,
+      "generation": 20,
+      "identity": 18
+    },
+    "adaptive_g7": {
+      "exploration": 20,
+      "generation": 20,
+      "identity": 6,
+      "scheduling": 12
+    },
+    "fixed_exploration": {
+      "exploration": 58
+    },
+    "fixed_generation": {
+      "generation": 58
+    },
+    "fixed_scheduling": {
+      "scheduling": 58
+    },
+    "parent_g6": {
+      "identity": 58
+    }
+  },
+  "v30_l8_positive": true,
+  "verdict": "POSITIVE_BOUNDED_L8"
+}
