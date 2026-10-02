@@ -21,3 +21,11 @@ jobs:
       - run: pytest -q tests/test_rsi_v42.py
       - run: python -m experiment.rsi_v42.development | tee v42-public-development.log
       - run: python -c "from experiment.rsi_v42 import development; print(development.verify(replay=False))"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v42-public-development
+          path: |
+            experiment/rsi_v42/DEVELOPMENT.json.gz
+            experiment/rsi_v42/DEVELOPMENT_RESERVATION.json
+            v42-public-development.log
