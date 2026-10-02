@@ -1,0 +1,74 @@
+name: M142 V42 fresh continuing prefix
+on:
+  push:
+    branches:
+      - research/rsi-v42-last-chance-frontier-dev
+    paths:
+      - 'experiment/rsi_v42/FRESH_PREFIX_AUTHORIZED.md'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: v42-fresh-prefix
+  cancel-in-progress: false
+
+jobs:
+  fresh-prefix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: research/rsi-v42-last-chance-frontier-dev
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Verify committed prospective freeze
+        run: |
+          python - <<'PY'
+          from experiment.rsi_v33 import storage
+          from experiment.rsi_v42 import freeze
+          freeze.verify(storage.read_json(freeze.PATH))
+          print("V42 freeze verified before first fresh behavior")
+          PY
+      - name: Execute and externally commit each fresh epoch
+        run: |
+          git config user.name "Anthony Mets"
+          git config user.email "110968830+mjodheim@users.noreply.github.com"
+          for epoch in 0 1 2 3 4 5 6 7; do
+            padded=$(printf "%03d" "$epoch")
+            if git ls-files --error-unmatch "results/rsi-v42/continuing-20261002/epoch-$padded/COMPLETION.json" >/dev/null 2>&1; then
+              echo "epoch $epoch already externally committed"
+              continue
+            fi
+            python -m experiment.rsi_v42.campaign run --epoch "$epoch"
+            git add -f "results/rsi-v42/continuing-20261002/epoch-$padded"
+            git commit -m "research(v42): preserve fresh epoch $epoch
+
+            Preserve the complete reserved V42 epoch before continuation. This
+            is finite monitoring evidence and does not declare open-ended L9.
+
+            Signed-off-by: Anthony Mets <110968830+mjodheim@users.noreply.github.com>"
+            git push origin HEAD:research/rsi-v42-last-chance-frontier-dev
+          done
+      - name: Adjudicate complete finite prefix
+        run: |
+          python - <<'PY'
+          from experiment.rsi_v33 import storage
+          from experiment.rsi_v42 import campaign
+          report = campaign.check(require_prefix=True)
+          storage.publish_json(campaign.DIRECTORY / "PREFIX_REPORT.json", report)
+          print({k: v for k, v in report.items() if k != "epoch_verdicts"})
+          PY
+          git add -f results/rsi-v42/continuing-20261002/PREFIX_REPORT.json
+          git commit -m "research(v42): preserve complete fresh finite-prefix adjudication
+
+          Preserve the preregistered eight-epoch report. A positive finite prefix
+          remains a precursor only; open-ended L9 and independent L10 stay false.
+
+          Signed-off-by: Anthony Mets <110968830+mjodheim@users.noreply.github.com>"
+          git push origin HEAD:research/rsi-v42-last-chance-frontier-dev

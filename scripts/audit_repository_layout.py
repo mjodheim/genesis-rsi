@@ -50,7 +50,10 @@ PERMANENT_WORKFLOWS = frozenset({
     "rsi-v33-active-memory-evidence.yml",
     "rsi-v34-continuing-evidence.yml",
 })
-ACTIVE_MILESTONE_WORKFLOWS: frozenset[str] = frozenset()
+ACTIVE_MILESTONE_WORKFLOWS: frozenset[str] = frozenset({
+    "m141-v42-freeze.yml",
+    "m142-v42-fresh-prefix.yml",
+})
 FROZEN_PATH_WORKFLOWS = frozenset(
     {
         "m064-canonical.yml",

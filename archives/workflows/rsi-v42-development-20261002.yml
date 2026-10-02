@@ -1,0 +1,77 @@
+name: V42 public last-chance frontier development
+on:
+  pull_request:
+    paths:
+      - 'experiment/rsi_v42/**'
+      - 'tests/test_rsi_v42.py'
+      - '.github/workflows/rsi-v42-development.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Detect already preserved pilot
+        id: preserved
+        run: |
+          if git ls-files --error-unmatch experiment/rsi_v42/DEVELOPMENT.json.gz >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v6
+        if: steps.preserved.outputs.exists != 'true'
+        with:
+          python-version: '3.11'
+
+      - name: Install
+        if: steps.preserved.outputs.exists != 'true'
+        run: python -m pip install -e ".[dev]"
+
+      - name: V42 boundary tests
+        if: steps.preserved.outputs.exists != 'true'
+        run: pytest -q tests/test_rsi_v42.py
+
+      - name: Run consumed-data pilot
+        if: steps.preserved.outputs.exists != 'true'
+        run: python -m experiment.rsi_v42.development | tee v42-public-development.log
+
+      - name: Verify exact pilot
+        if: steps.preserved.outputs.exists != 'true'
+        run: python -c "from experiment.rsi_v42 import development; print(development.verify(replay=False))"
+
+      - uses: actions/upload-artifact@v4
+        if: steps.preserved.outputs.exists != 'true'
+        with:
+          name: v42-public-development
+          path: |
+            experiment/rsi_v42/DEVELOPMENT.json.gz
+            experiment/rsi_v42/DEVELOPMENT_RESERVATION.json
+            v42-public-development.log
+
+      - name: Preserve exact development evidence on the research branch
+        if: steps.preserved.outputs.exists != 'true' && github.event_name == 'pull_request'
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git config user.name "Anthony Mets"
+          git config user.email "110968830+mjodheim@users.noreply.github.com"
+          git add -f experiment/rsi_v42/DEVELOPMENT.json.gz experiment/rsi_v42/DEVELOPMENT_RESERVATION.json
+          git commit -m "research(v42): preserve exact consumed-data pilot evidence
+
+          Reproduces adaptive 96/120, cold 95/120, 34 versus 33 novel solving
+          behaviors and 903 versus 1043 charged evaluations. Development only;
+          no fresh V42 task has been consumed and L9/L10 remain unpassed.
+
+          Signed-off-by: Anthony Mets <110968830+mjodheim@users.noreply.github.com>"
+          git push origin HEAD:"$HEAD_REF"
