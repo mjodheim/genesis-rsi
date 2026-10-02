@@ -1,0 +1,32 @@
+name: V40 public stagnation-frontier development
+on:
+  pull_request:
+    paths:
+      - 'experiment/rsi_v40/**'
+      - 'tests/test_rsi_v40.py'
+      - '.github/workflows/rsi-v40-development.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e ".[dev]"
+      - run: pytest -q tests/test_rsi_v40.py
+      - run: python -m experiment.rsi_v40.development | tee v40-public-development.log
+      - run: python -c "from experiment.rsi_v40 import development; print(development.verify(replay=False))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v40-public-development
+          path: |
+            experiment/rsi_v40/DEVELOPMENT.json.gz
+            experiment/rsi_v40/DEVELOPMENT_RESERVATION.json
+            v40-public-development.log
