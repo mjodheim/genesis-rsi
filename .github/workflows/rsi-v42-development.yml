@@ -1,0 +1,23 @@
+name: V42 public last-chance frontier development
+on:
+  pull_request:
+    paths:
+      - 'experiment/rsi_v42/**'
+      - 'tests/test_rsi_v42.py'
+      - '.github/workflows/rsi-v42-development.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: '3.11'}
+      - run: python -m pip install -e ".[dev]"
+      - run: pytest -q tests/test_rsi_v42.py
+      - run: python -m experiment.rsi_v42.development | tee v42-public-development.log
+      - run: python -c "from experiment.rsi_v42 import development; print(development.verify(replay=False))"
