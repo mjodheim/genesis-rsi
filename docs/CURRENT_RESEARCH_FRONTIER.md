@@ -4,6 +4,20 @@
 
 ## Active RSI frontier
 
+V37's prospectively frozen **paid native-construction assay is positive** on
+whole-body recombinations. Its archive solves 384/384 fresh tasks, including
+192/192 rewrites with 2,718 charged calls against the point archive's 6,303.
+Point and cold controls also solve all tasks; the gain is construction efficiency.
+All five scoped predicates and full replay pass. V36's preceding development
+negative remains preserved, including final zero-discovery windows and exact
+depth/root/ordering diagnosis. V37 uses a new host-authored coordinate scheduler
+with prospectively dimensioned equal-arm caps, replacing G7 scheduling. Acquired
+fragment values do not qualify a new G8. Its conditional model permits arbitrary
+motif-position rewrites, but cost grows and the discovery/call bound tends to zero.
+The fixed primitive/fragment grammar, general L9 and independent L10 remain open.
+See [V37's fresh result](RSI_V37_FRESH_2026-10-04.md) and
+[V36's preserved negative](RSI_V36_RECOMBINATION_2026-10-04.md).
+
 V35's prospectively frozen **native sustained-archive assay is positive** on
 SQLite, regex, JSON and zlib append extensions. The four-branch archive solves
 4,608/4,608 tasks against greedy 1,736 and cold 880, using 23,665 charged
