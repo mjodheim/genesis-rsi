@@ -6,6 +6,7 @@ import pytest
 
 from experiment.rsi_v35 import bank as historical
 from experiment.rsi_v42 import bank as previous
+from experiment.rsi_v33 import storage
 from experiment.rsi_v48 import bank, campaign, freeze, proposer
 
 
@@ -36,7 +37,7 @@ def test_missing_freeze_cannot_authorize_fresh_work(tmp_path, monkeypatch):
 
 def test_started_attempt_never_retries(tmp_path, monkeypatch):
     frozen = tmp_path / "freeze.json"
-    frozen.write_text(json.dumps({"python_version": sys.version.split()[0]}))
+    storage.publish_json(frozen, {"python_version": sys.version.split()[0]})
     monkeypatch.setattr(freeze, "PATH", frozen)
     monkeypatch.setattr(freeze, "verify", lambda value: True)
     monkeypatch.setattr(campaign, "directory", lambda epoch: tmp_path)
@@ -49,7 +50,7 @@ def test_uncommitted_reservation_never_starts_behavior(tmp_path, monkeypatch):
     from experiment.rsi_v25.commitments import digest
     frozen = {"python_version": sys.version.split()[0], "freeze_sha256": "f" * 64}
     path = tmp_path / "freeze.json"
-    path.write_text(json.dumps(frozen))
+    storage.publish_json(path, frozen)
     monkeypatch.setattr(freeze, "PATH", path)
     monkeypatch.setattr(freeze, "verify", lambda value: True)
     monkeypatch.setattr(campaign, "directory", lambda epoch: tmp_path)
@@ -57,7 +58,7 @@ def test_uncommitted_reservation_never_starts_behavior(tmp_path, monkeypatch):
     identity = {"schema": "mira-genesis-v48-epoch-reservation-v1", "status": "RESERVED", "epoch": 0,
                 "freeze_sha256": frozen["freeze_sha256"], "previous_receipt_sha256": None,
                 "tasks_sha256": digest({str(seed): bank.stream(seed, 0) for seed in bank.FRESH_SEEDS})}
-    (tmp_path / "RESERVATION.json").write_text(json.dumps(identity))
+    storage.publish_json(tmp_path / "RESERVATION.json", identity)
     monkeypatch.setattr(freeze, "git", lambda *args: b"not the committed reservation")
     with pytest.raises(ValueError, match="publicly committed"):
         campaign.run_epoch(0)
