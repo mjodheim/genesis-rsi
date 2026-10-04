@@ -63,6 +63,13 @@ always retrieving the closest two solves 141/216: **the strict adaptive criterio
 is negative**. Every trial is preserved. L9 and L10 remain unpassed; see
 [the complete finite comparison and limits](docs/RSI_V32_MEMORY_RESULTS_2026-10-01.md).
 
+V42's complete eight-epoch archive prefix solves 254/468 tasks versus cold
+227/468, using 11.73% fewer evaluations. Its strict continuing criterion remains
+**negative**: one lineage loses a solved task to cold start and reaches zero new
+solving behaviors in its last epoch. All 1,872 original episodes and the takeover
+recovery are preserved. **L9 and L10 remain unpassed**; see
+[the complete V42 result and next boundary](docs/RSI_V42_RESULTS_2026-10-04.md).
+
 ## What the project is trying to establish
 
 The long-term research target is not “make the benchmark number go up”. It is a causal chain in

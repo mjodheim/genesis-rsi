@@ -1,8 +1,19 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 1 October 2026, bounded L6–L8; L9 operations and L10 preparation.**
+**Reader-facing status snapshot — 4 October 2026, bounded L6–L8; complete negative V42 precursor; L9/L10 open.**
 
 ## Active RSI frontier
+
+V42's prospective eight-epoch continuing archive is now complete. Adaptive solves
+254/468 tasks against cold 227/468, at 4,590 versus 5,200 charged evaluations.
+The strict criterion remains negative: seed 86028193 solves 81 versus cold 82 and
+produces no new solving behavior in epoch 7 despite 22 novelty-frontier activations.
+The previous discussion's unpublished epoch 6 was recovered and independently
+replayed; epoch 7 was executed once under the unchanged freeze. All 1,872 episodes
+and all failed predicates are preserved. This finite project-authored prefix
+does not establish open-ended L9 or independent L10. The next work must address
+discovery after saturation on consumed development data before a separate freeze.
+See [the complete V42 result and recovery](RSI_V42_RESULTS_2026-10-04.md).
 
 V28 validates **bounded L6 repeated meta-descent**: exact G3 automatically discovers
 G4, G5 and G6, with three causal transitions and fresh gains on a new 48-case
