@@ -54,6 +54,7 @@ def test_uncommitted_reservation_never_starts_behavior(tmp_path, monkeypatch):
     monkeypatch.setattr(freeze, "PATH", path)
     monkeypatch.setattr(freeze, "verify", lambda value: True)
     monkeypatch.setattr(campaign, "directory", lambda epoch: tmp_path)
+    monkeypatch.setattr(campaign, "ROOT", tmp_path)
     monkeypatch.setattr(campaign, "past", lambda *args, **kwargs: ({}, None, []))
     identity = {"schema": "mira-genesis-v48-epoch-reservation-v1", "status": "RESERVED", "epoch": 0,
                 "freeze_sha256": frozen["freeze_sha256"], "previous_receipt_sha256": None,
