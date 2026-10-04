@@ -94,6 +94,17 @@ ambiguous-witness rejection and completed-boundary recovery. These tests probe
 assumptions and counterexamples; finite tests do not prove induction by themselves.
 The proof obligation remains the stated argument and the pinned implementation.
 
+Additional assumption audits were written during the fresh campaign in the
+separate `tests/test_v35_continuation_counterexamples.py`; they do not modify the
+frozen apparatus tests or selection population. Native screening at length 2,001
+shows why raw matched counts are necessary: wrong and correct prefixes both have
+normalized quality 999, while their raw counts are 1,999 and 2,000. A direct
+byte-exact G7 test confirms that this floor tie cannot trigger its strict-gain
+root-dropping rule. An actual native prefix-rewrite counterexample retains all
+four branches yet solves no length-twelve task: at most four of twelve slots
+match under depth three. Thus the append-only assumption is a demonstrated
+restriction, not merely a hypothetical disclaimer.
+
 Consequently a positive V35 assay may establish sustained expanding archives in
 this append-extension model. It does not by itself discharge a general Genesis
 L9 gate that demands discovery outside the project-authored extension curriculum.
