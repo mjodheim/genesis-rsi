@@ -4,6 +4,20 @@
 
 ## Active RSI frontier
 
+V38's prospectively frozen **recursive-macro archive assay is positive** under a
+fixed twenty-six-call cap. Newly successful whole programs become the next
+generation's construction operators. The archive and ancestor-macro control each
+solve 576/576 fresh tasks; latest acquisitions use 4,838 versus 7,419 calls from
+level two onward. Greedy solves 207 and cold 192. All six scoped predicates and
+full replay pass. Every cohort adds four solved behaviors through nine levels and
+length 256, with branching, rediscovery and exact process recovery. A conditional
+symbolic induction supplies constant discovery/charged-call bound at arbitrary
+depth, replacing V37's declining bound. Native work and storage still grow;
+fixed worker limits ultimately constrain physical continuation. The host-authored
+composition curriculum/scheduler and fixed primitive kernels remain. General L9,
+a new G8 policy and independent L10 remain open. See
+[V38's exact result and remaining limits](RSI_V38_FRESH_2026-10-04.md).
+
 V37's prospectively frozen **paid native-construction assay is positive** on
 whole-body recombinations. Its archive solves 384/384 fresh tasks, including
 192/192 rewrites with 2,718 charged calls against the point archive's 6,303.
