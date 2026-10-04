@@ -293,6 +293,7 @@ contain.
 | If you want to know... | Read... |
 |---|---|
 | Where the active research stands today | [`docs/CURRENT_RESEARCH_FRONTIER.md`](docs/CURRENT_RESEARCH_FRONTIER.md) |
+| What the native sustained archive establishes toward L9 | [`docs/RSI_V35_FRESH_2026-10-04.md`](docs/RSI_V35_FRESH_2026-10-04.md) |
 | The long-form authoritative project record | [`PROJECT_STATE.md`](PROJECT_STATE.md) and [`PROJECT_STATE.yaml`](PROJECT_STATE.yaml) |
 | The historical construction path | [`ROADMAP.md`](ROADMAP.md) |
 | The bounded Genesis finish line | [`GENESIS_COMPLETION_CRITERIA.md`](GENESIS_COMPLETION_CRITERIA.md) |

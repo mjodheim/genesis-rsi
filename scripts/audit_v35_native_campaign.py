@@ -8,10 +8,23 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from experiment.rsi_v25.commitments import digest
+from experiment.rsi_v25.commitments import digest, digest_bytes
 from experiment.rsi_v31.archive import Archive
 from experiment.rsi_v32 import storage
 from experiment.rsi_v35 import campaign, engine
+
+TRANSITIVE = ("experiment/rsi_v23/policy_guard.py", "experiment/rsi_v23/sandbox_policy.py",
+              "experiment/rsi_v23/policy_worker.py")
+
+
+def audit_transitive(value):
+    observed = {}
+    for path in TRANSITIVE:
+        committed = subprocess.check_output(["git", "show", value["git_head"] + ":" + path], cwd=ROOT)
+        if (ROOT / path).read_bytes() != committed:
+            raise ValueError("Changed transitive guard/sandbox from the original apparatus commit: " + path)
+        observed[path] = digest_bytes(committed)
+    return observed
 
 
 def audit_header(root):
@@ -60,6 +73,7 @@ def audit_recovery(root, value):
 
 def check(root):
     value = audit_header(root)
+    transitive = audit_transitive(value)
     report = campaign.check(root)
     audit_recovery(root, value)
     if any(t["evaluations"] > value["tasks_per_arm"] * 14 or t["tasks"] != value["tasks_per_arm"]
@@ -67,6 +81,7 @@ def check(root):
         raise ValueError("Omitted arm tasks or global charged cap exceeded")
     return {"schema": "mira-genesis-v35-supplemental-ledger-audit-v1", "status": "VERIFIED",
             "manifest_sha256": digest(value), "report_sha256": digest(report),
+            "transitive_commit_files": transitive,
             "frozen_acceptance_rule_unchanged": True, "independent_replication": False,
             "scoped_sustained_assay_passed": report["scoped_sustained_assay_passed"],
             "l9_general_open_ended_passed": report["l9_general_open_ended_passed"]}

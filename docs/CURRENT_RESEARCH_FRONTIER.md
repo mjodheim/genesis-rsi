@@ -1,8 +1,28 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 1 October 2026, bounded L6–L8; L9 operations and L10 preparation.**
+**Reader-facing status snapshot — 4 October 2026, bounded L6–L8; scoped native sustained archives, general L9 and L10 open.**
 
 ## Active RSI frontier
+
+V35's prospectively frozen **native sustained-archive assay is positive** on
+SQLite, regex, JSON and zlib append extensions. The four-branch archive solves
+4,608/4,608 tasks against greedy 1,736 and cold 880, using 23,665 charged
+evaluations against cold 55,848. Twelve epochs in each seed/domain retain positive
+first-solving discovery, branching, rediscovery and actual process recovery.
+There are 576 cohort discovery events and 529 globally distinct solved semantic
+bodies. All seven scoped predicates and the supplemental full replay pass.
+The unchanged G7 policy, host-provided primitives and append-only curriculum limit
+the result. A conditional continuation argument accompanies the finite assay;
+general L9, a new G8 policy and independent L10 remain unpassed. The original
+checker and its retrospective audit gaps remain disclosed.
+See [V35's results, chronology and exact scope](RSI_V35_FRESH_2026-10-04.md).
+
+V33/V34 are separately preserved development diagnoses on consumed V31/V32
+populations. V33 omitted some paid successful probes; V34 corrects that accounting
+without editing V33. Always closest-two solves 331/456 against cold 287/456,
+while adaptive probing solves 291/456. These results qualify no new acquisition.
+See [V33](RSI_V33_DEVELOPMENT_2026-10-04.md) and
+[V34](RSI_V34_DEVELOPMENT_2026-10-04.md).
 
 V28 validates **bounded L6 repeated meta-descent**: exact G3 automatically discovers
 G4, G5 and G6, with three causal transitions and fresh gains on a new 48-case

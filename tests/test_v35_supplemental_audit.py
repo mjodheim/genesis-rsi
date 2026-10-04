@@ -59,3 +59,20 @@ def test_interruption_head_is_checked_against_actual_journal(tmp_path, monkeypat
             audit.audit_recovery(tmp_path, value)
     else:
         assert audit.audit_recovery(tmp_path, value) is None
+
+
+@pytest.mark.parametrize("altered", (False, True))
+def test_transitive_guard_is_bound_to_original_commit(tmp_path, monkeypatch, altered):
+    monkeypatch.setattr(audit, "ROOT", tmp_path)
+    committed = b"original committed guard bytes\n"
+    monkeypatch.setattr(audit.subprocess, "check_output", lambda *args, **kwargs: committed)
+    for name in audit.TRANSITIVE:
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(committed)
+    if altered:
+        (tmp_path / audit.TRANSITIVE[0]).write_bytes(b"permit everything\n")
+        with pytest.raises(ValueError, match="transitive guard"):
+            audit.audit_transitive({"git_head": "fixture"})
+    else:
+        assert set(audit.audit_transitive({"git_head": "fixture"})) == set(audit.TRANSITIVE)
