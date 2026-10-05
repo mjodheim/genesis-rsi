@@ -4,6 +4,16 @@
 
 ## Active RSI frontier
 
+V50 supplies a **proof-first exact codec-word model**, with 341/341 public native
+programs validated, 682 charged executions and original read-only replay. Native
+SQLite, regex, JSON and gzip encoders have invertible formats with disjoint output
+languages; actual outputs recover exact unhashed operator words. The specification
+model has unbounded behavior identity and a conditional 1/208 discovery/query
+bound for the closed recursive archive curriculum. Physical native/API limits,
+growing work and the host scheduler remain. This is DEVELOPMENT, with no fresh
+V50 archive assay, general L9, new G8 or independent L10 qualification. See
+[V50's exact proof, validation and remaining boundary](RSI_V50_MODEL_2026-10-05.md).
+
 V49's prospectively frozen **coupled native pipeline archive assay is positive**:
 448/448 fresh tasks, against latest-tool ablation 134, greedy 72 and cold 132.
 All six predicates and original full replay pass. Real SQLite, regex, JSON and
