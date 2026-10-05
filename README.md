@@ -297,6 +297,7 @@ contain.
 | How learned fragments support whole-body rewrites, and the remaining L9 limits | [`docs/RSI_V37_FRESH_2026-10-04.md`](docs/RSI_V37_FRESH_2026-10-04.md) |
 | How newly acquired programs construct later generations at fixed candidate cost | [`docs/RSI_V38_FRESH_2026-10-04.md`](docs/RSI_V38_FRESH_2026-10-04.md) |
 | What coupled native pipelines establish, with exact work and novelty limits | [`docs/RSI_V49_FRESH_2026-10-05.md`](docs/RSI_V49_FRESH_2026-10-05.md) |
+| How exact native codecs supply an unbounded semantic model, with remaining limits | [`docs/RSI_V50_MODEL_2026-10-05.md`](docs/RSI_V50_MODEL_2026-10-05.md) |
 | Where the parallel RSI development history remains preserved | [`docs/PARALLEL_RSI_ARCHIVE_2026-10-05.md`](docs/PARALLEL_RSI_ARCHIVE_2026-10-05.md) |
 | The long-form authoritative project record | [`PROJECT_STATE.md`](PROJECT_STATE.md) and [`PROJECT_STATE.yaml`](PROJECT_STATE.yaml) |
 | The historical construction path | [`ROADMAP.md`](ROADMAP.md) |

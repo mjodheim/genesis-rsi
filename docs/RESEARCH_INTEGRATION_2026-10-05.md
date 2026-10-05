@@ -5,46 +5,56 @@ assistance under the owner's explicit instruction to integrate validated work,
 clean merged branches and continue L9 research. This is an integration record,
 not an independent scientific evaluation.
 
-The native V35–V38 line at `9f1bf3d8` preserves V33/V34 accounting diagnoses,
-V36's negative and the prospectively frozen V35/V37/V38 scoped positives. Its
-original source, manifests, apparatus/freeze commits and negative evidence must
-remain unchanged. General L9 and independent L10 remain open.
+PR #375 registers the same owner's historical contact identity without rewriting
+scientific commits. PR #376 merges the native V33–V49 research and original
+parallel V33–V48 history into official main, preserving apparatus, freeze,
+negative, original-result and supplement ancestry. Both PRs passed their GitHub
+checks, including Python 3.11 and 3.13. Normal merges preserve cited commits;
+no branch-protection bypass, squash or history rewrite was used.
 
-A parallel remote line, retained at `f9929b31`, also uses names V33–V35 with
-different frozen files, then continues through V48. Its V42 negative and consumed
-V43–V47 development, including a positive V47 pilot, must not be overwritten by
-the native line. The tag `provenance/remote-v48-development-20261005` preserves its
-original history; its unmerged branches remain until a compatible integration is
-reviewed. New research uses V49 to avoid another numbering collision.
+The parallel line reuses names V33–V35 for different frozen experiments. Its
+complete original tree is retained by the optional pinned Git submodule at
+archives/parallel-rsi-v48, plus its original commits as merge ancestors. See
+[the parallel archive](PARALLEL_RSI_ARCHIVE_2026-10-05.md). Its V42 negative,
+consumed V43–V47 development and prospective V48 apparatus remain unchanged.
+The snapshot is deliberately not initialized automatically by cloud setup.
 
-Remote cleanup removed 33 branch tips that were actual ancestors of published
-main, with individual exact-tip deletion leases. The full branch/tip receipt is
-retained in `results/maintenance/merged-branches-20261005.json`. Unmerged research,
-experiments, reviews and all existing remote tags remain. No squash or history
-rewrite is permitted for frozen cited commits.
+Remote cleanup removed **44 branch tips** that were actual ancestors of
+published main: 33 before integration and 11 after PR #376. Each deletion used
+an individual exact-tip lease. The branch/tip receipts are retained in
+results/maintenance/merged-branches-20261005.json and
+results/maintenance/merged-branches-after-v49-20261005.json. Unmerged research,
+experiments, reviews and existing remote tags remain. GitHub closed the integrated
+parallel stack; the unrelated open PRs remain available.
 
-The GitHub API currently returns Forbidden for pull-request listing through both
-GraphQL and REST; native Git access works. Integration may therefore use a normal
-fast-forward push after required local checks. That push was refused by main's
-required **Human-only attribution** check, which runs on pull requests. No main
-merge has occurred. An API network-domain addition is saved in the cloud draft;
-its review/application remains necessary before retrying API operations. No
-branch-protection bypass or fabricated check is permitted.
-
-The integration commit uses the owner's existing public GitHub noreply identity.
-This leaves prior experimental commit identities and hashes unchanged. Source
-history is published on `research/rsi-v35-v38-native-archive` and retained by the
-remote tag `provenance/native-archive-integrated-20261005`. The twelve original
+GitHub API operations now work through platform authentication with the explicit
+api.github.com network allowance. No credential was copied into project files.
+New commits use the owner's public GitHub noreply identity. The twelve original
 native annotated tags were refused by GitHub's email-privacy protection and remain
-unchanged in the verified local bundles; all their target commits are ancestors
-of that published integration ref. The parallel V48 tip tag is also published.
+unchanged in the verified local bundles. Their target commits are now ancestors
+of official main and the published provenance/native-archive-integrated-20261005
+tag. The original parallel tip and new V49 apparatus/freeze/result tags are also
+published; no original tag was rewritten to evade the privacy check.
 
-Required local integration validation completed: 5,412 tests passed, 11 skipped,
-and all four repository-integrity checks passed. The local test plugin redirected
-only the demonstration checkpoint, preserving assertions. No new scientific
-behavior or gate closure follows from that engineering validation.
+Full local integration validation through V49 completed with **5,429 tests
+passed, 11 skipped**, and all four repository-integrity checks passed. The cloud
+test plugin redirects only the demonstration checkpoint; assertions remain
+unchanged. V50 subsequently adds 15 passing tests and a complete read-only
+validation of its public 341-program DEVELOPMENT record. No scientific gate
+closure follows from these engineering checks.
 
-Raw native evidence is retained outside Git in the byte-verified local archives
-documented by V35 and V38. Public receipts are not a substitute for those raw
-files. Remote publication of source/tags does not upload ignored evidence or
-establish restoration in another cloud task.
+V49's pilot and fresh original raw populations are published losslessly in
+results/rsi-v49, with exact per-file hashes and disjoint transport segments.
+The fresh assay solves 448/448 archive tasks within its scoped protocol; its
+finite semantic-hash space, growing native work and fixed grammar remain visible.
+V50 removes the finite-hash obstruction in a conditional mathematical model and
+validates 341 short native words with 682 paid executions. Actual native limits,
+fixed curriculum and the absence of a fresh V50 archive assay remain explicit.
+Neither result qualifies general L9, a new G8 or independent L10.
+
+Earlier native V35–V38 raw evidence remains outside Git in the byte-verified
+archives documented by those results. Public receipts are not a substitute for
+those original files. Publishing source and V49/V50 evidence does not establish
+restoration of the installed filesystem or ignored evidence in another cloud
+task; fresh-task restoration has not been independently verified. General L9
+and independent L10 remain open.
