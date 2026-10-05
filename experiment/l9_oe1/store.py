@@ -125,8 +125,7 @@ class ExperienceStore:
         cur = self.db.cursor()
         try:
             cur.execute(self._sql(sql), params)
-            rows = cur.fetchall()
-            return [dict(row) for row in rows]
+            return [dict(row) for row in cur.fetchall()]
         finally:
             cur.close()
 
@@ -195,8 +194,8 @@ class ExperienceStore:
         ).close()
         return improver_sha
 
-    def upsert_candidate(self, candidate):
-        candidate_sha = digest(candidate)
+    def upsert_candidate(self, candidate, *, candidate_sha256=None):
+        candidate_sha = candidate_sha256 or digest(candidate)
         self.execute(
             """INSERT INTO oe_candidates(candidate_sha256,genome_json)
                VALUES(?,?)
@@ -212,6 +211,7 @@ class ExperienceStore:
         task_sha256,
         improver_sha256,
         candidate,
+        candidate_sha256=None,
         parent_candidate_sha256,
         origin,
         quality_milli,
@@ -221,7 +221,9 @@ class ExperienceStore:
         window,
         descriptor=None,
     ):
-        candidate_sha = self.upsert_candidate(candidate)
+        candidate_sha = self.upsert_candidate(
+            candidate, candidate_sha256=candidate_sha256
+        )
         evaluation_id = str(uuid4())
         self.execute(
             """INSERT INTO oe_evaluations(
@@ -249,7 +251,6 @@ class ExperienceStore:
 
     def record_episode(self, *, run_id, improver_sha256, task, row):
         task_sha = self.upsert_task(task)
-        by_source = {p["source_sha256"]: p for p in row["programs"]}
         for program in row["programs"]:
             parent = program.get("search_parent_source_sha256")
             descriptor = {
@@ -265,6 +266,7 @@ class ExperienceStore:
                 task_sha256=task_sha,
                 improver_sha256=improver_sha256,
                 candidate=program["genome"],
+                candidate_sha256=program["source_sha256"],
                 parent_candidate_sha256=parent,
                 origin=program.get("candidate_origin", "search"),
                 quality_milli=program["quality_milli"],
@@ -289,7 +291,9 @@ class ExperienceStore:
     def all_task_ids(self):
         return [
             row["task_sha256"]
-            for row in self.fetchall("SELECT task_sha256 FROM oe_tasks ORDER BY task_sha256")
+            for row in self.fetchall(
+                "SELECT task_sha256 FROM oe_tasks ORDER BY task_sha256"
+            )
         ]
 
     def save_elite(
