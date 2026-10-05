@@ -68,6 +68,8 @@ class Host:
         )
 
     def children(self, genome, depth):
+        if depth >= 2:
+            return ()
         rows = {}
         if self.task["slots"] == 1 or not self.learned:
             for op in range(1, 5):
