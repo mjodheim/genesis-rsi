@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 
-from experiment.l9_oe1.development import _profile, load_graphs
+from experiment.l9_oe1.development import _profile, _task_metadata, load_graphs
 from experiment.l9_oe1.improver import ImproverGenome
 from experiment.l9_oe1.qd import QDArchive
 from experiment.l9_oe1.replay import replay_suite
@@ -25,6 +25,7 @@ def evolve(
     archive_size=64,
 ):
     graphs = load_graphs(store)
+    meta = _task_metadata(store)
     root = ImproverGenome()
 
     archive = QDArchive(max_size=archive_size)
@@ -40,7 +41,7 @@ def evolve(
             return sha, False
 
         result = replay_suite(graphs, genome)
-        profile = _profile(store, result)
+        profile = _profile(store, result, meta)
         progress = (
             profile.quality - profiles[parent_sha].quality
             if parent_sha in profiles else 0.0
