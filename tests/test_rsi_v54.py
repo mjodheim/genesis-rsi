@@ -42,6 +42,14 @@ def test_lineage_memory_credits_successful_scaffold_descendant(tmp_path):
     credit = lineage.credit_for(rotation)
     assert credit.recursive_successes == 1
     assert credit.max_depth >= 1
+
+    # Lineage identity must transfer across widths: source_width is provenance,
+    # not the identity of a rotation scaffold.
+    wider_rotation = dict(rotation)
+    wider_rotation["source_width"] = 14
+    wider_credit = lineage.credit_for(wider_rotation)
+    assert wider_credit.recursive_successes == 1
+    assert wider_credit.recipe_sha256 == credit.recipe_sha256
     lineage.close()
 
 
