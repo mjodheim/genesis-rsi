@@ -158,8 +158,8 @@ def replay_task(rows, genome, *, budget=None):
 def replay_suite(task_graphs, genome):
     results = {}
     solved = evaluations = quality = 0
-    for task_sha, rows in task_graphs.items():
-        outcome = replay_task(rows, genome)
+    for task_sha, graph in task_graphs.items():
+        outcome = replay_task(graph, genome)
         results[task_sha] = outcome
         solved += int(outcome["solved"])
         evaluations += outcome["evaluations"]
