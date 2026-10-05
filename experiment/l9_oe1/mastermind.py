@@ -27,20 +27,52 @@ ALPHABET = (1, 2, 3, 4)
 
 
 class State:
-    def __init__(self):
+    def __init__(self, retention="archive"):
+        if retention not in ("archive", "greedy", "cold"):
+            raise ValueError("Unknown OE1 retention arm")
+        self.retention = retention
         self.motifs = []
         self.solutions_by_slots = {}
 
     def remember(self, slots, ops):
         key = tuple(ops)
-        self.solutions_by_slots.setdefault(slots, [])
-        if key not in self.solutions_by_slots[slots]:
-            self.solutions_by_slots[slots].append(key)
         if slots == bank.BLOCK and all(ops) and key not in self.motifs:
             self.motifs.append(key)
 
+        if self.retention == "cold":
+            return
+
+        self.solutions_by_slots.setdefault(slots, [])
+        if self.retention == "greedy":
+            self.solutions_by_slots[slots] = [key]
+        elif key not in self.solutions_by_slots[slots]:
+            self.solutions_by_slots[slots].append(key)
+
     def preferred(self, slots):
         return tuple(self.solutions_by_slots.get(slots, ()))
+
+    def exact_branches(self):
+        return sum(len(values) for values in self.solutions_by_slots.values())
+
+    def snapshot(self):
+        return {
+            "retention": self.retention,
+            "motifs": [list(value) for value in self.motifs],
+            "solutions_by_slots": {
+                str(slots): [list(value) for value in values]
+                for slots, values in sorted(self.solutions_by_slots.items())
+            },
+        }
+
+    @classmethod
+    def restore(cls, value):
+        state = cls(value["retention"])
+        state.motifs = [tuple(row) for row in value["motifs"]]
+        state.solutions_by_slots = {
+            int(slots): [tuple(row) for row in values]
+            for slots, values in value["solutions_by_slots"].items()
+        }
+        return state
 
 
 def _hypotheses(symbol_count, units):
