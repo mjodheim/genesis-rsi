@@ -14,6 +14,13 @@ growing work and the host scheduler remain. This is DEVELOPMENT, with no fresh
 V50 archive assay, general L9, new G8 or independent L10 qualification. See
 [V50's exact proof, validation and remaining boundary](RSI_V50_MODEL_2026-10-05.md).
 
+A separate [open-world search diagnosis](L9_OPEN_WORLD_SEARCH_BOUND_2026-10-05.md)
+shows why that sixteen-product guarantee cannot be transferred to uniformly
+unseen arbitrary codec words with exact feedback: at most q queries cover q/U
+of a U-target population. This conditional argument spends no fresh attempt and
+changes no frozen result. The next mechanism must exploit reusable task structure
+with causal evidence; increasing closed-codec body lengths alone does not supply it.
+
 V49's prospectively frozen **coupled native pipeline archive assay is positive**:
 448/448 fresh tasks, against latest-tool ablation 134, greedy 72 and cold 132.
 All six predicates and original full replay pass. Real SQLite, regex, JSON and
