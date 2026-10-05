@@ -47,6 +47,12 @@ def test_store_persists_graph_edges_in_sqlite(tmp_path):
     assert {node["candidate_sha256"] for node in graph} == {"root", "child"}
     child = next(node for node in graph if node["candidate_sha256"] == "child")
     assert child["parent_candidate_sha256"] == "root"
+    edges = store.task_edges(task_sha)
+    assert any(
+        edge["parent_candidate_sha256"] == "root"
+        and edge["child_candidate_sha256"] == "child"
+        for edge in edges
+    )
     store.close()
 
 
@@ -105,3 +111,49 @@ def test_curriculum_moves_to_competence_frontier():
     tasks = propose(rows, seed=123, count=4)
     assert all(task["family"] == "rotation" for task in tasks)
     assert all(task["width"] == 9 for task in tasks)
+
+
+def test_replay_honours_extra_multi_parent_edges():
+    genome = ImproverGenome(replay_budget=2)
+    graph = {
+        "nodes": [
+            {
+                "candidate_sha256": "root",
+                "parent_candidate_sha256": None,
+                "origin": "search",
+                "quality_milli": 500,
+                "genome_json": '{"width":4,"rotation":0,"mask":0}',
+            },
+            {
+                "candidate_sha256": "a",
+                "parent_candidate_sha256": "root",
+                "origin": "search",
+                "quality_milli": 550,
+                "genome_json": '{"width":4,"rotation":1,"mask":0}',
+            },
+            {
+                "candidate_sha256": "b",
+                "parent_candidate_sha256": "root",
+                "origin": "scaffold",
+                "quality_milli": 900,
+                "genome_json": '{"width":4,"rotation":2,"mask":0}',
+            },
+            {
+                "candidate_sha256": "child",
+                "parent_candidate_sha256": "a",
+                "origin": "counterfactual",
+                "quality_milli": 1000,
+                "genome_json": '{"width":4,"rotation":2,"mask":1}',
+            },
+        ],
+        "edges": [
+            {
+                "parent_candidate_sha256": "b",
+                "child_candidate_sha256": "child",
+                "relation": "counterfactual",
+            }
+        ],
+    }
+    outcome = replay_task(graph, genome)
+    assert outcome["evaluated_candidates"] == ["b", "child"]
+    assert outcome["solved"] is True
