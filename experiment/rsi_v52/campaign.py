@@ -1,5 +1,3 @@
-[Reading 111 lines from start (total: 111 lines, 0 remaining)]
-
 """One prospective V52 sustained abstraction-memory development assay."""
 import argparse
 import json
@@ -111,5 +109,3 @@ def main(argv=None):
 
 if __name__ == "__main__":
     main()
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
