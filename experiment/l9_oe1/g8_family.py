@@ -15,6 +15,8 @@ AXES = {
     "new_axes_weight": (0, 1, 2, 3),
     "axis_count_weight": (0, 1, 2),
     "mechanism_weight": (0, 1, 2),
+    "commit_depth": (1, 2),
+    "commit_quality": (400, 500, 700, 900),
 }
 ROOT_PARAMS = {
     "strategy": "inherited",
@@ -22,6 +24,8 @@ ROOT_PARAMS = {
     "new_axes_weight": 1,
     "axis_count_weight": 1,
     "mechanism_weight": 0,
+    "commit_depth": 2,
+    "commit_quality": 900,
 }
 
 
@@ -49,6 +53,17 @@ def render_source(params):
     source = parent_source()
     if p == ROOT_PARAMS:
         return source
+
+    commitment = 'if int(lead["lineage_depth"]) >= 2 and quality >= 900 and quality > int(previous["outcome"]["quality_milli"]):'
+    replacement_commitment = (
+        f'if int(lead["lineage_depth"]) >= {p["commit_depth"]} '
+        f'and quality >= {p["commit_quality"]} '
+        'and quality > int(previous["outcome"]["quality_milli"]):'
+    )
+    if source.count(commitment) != 1:
+        raise ValueError("Qualified G7 commitment boundary changed")
+    source = source.replace(commitment, replacement_commitment)
+
     if p["strategy"] == "inherited":
         return source
 
