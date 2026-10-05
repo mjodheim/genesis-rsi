@@ -1,5 +1,3 @@
-[Reading 155 lines from start (total: 155 lines, 0 remaining)]
-
 """V52 search: exact structured memory plus cross-width abstractions."""
 from experiment.rsi_v25.commitments import digest, digest_bytes
 from experiment.rsi_v27.engine import run_search
@@ -155,5 +153,3 @@ def summary(rows):
         "abstract_routes": sum(bool(row["routing"]["abstract_sources"]) for row in rows),
         "abstract_candidates_evaluated": sum(len(row["evaluated_abstract_sources"]) for row in rows),
     }
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
