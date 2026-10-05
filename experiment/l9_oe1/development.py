@@ -7,7 +7,7 @@ from hashlib import sha256
 
 from experiment.l9_oe1.improver import ImproverGenome
 from experiment.l9_oe1.qd import BehaviorProfile, QDArchive
-from experiment.l9_oe1.replay import rank_mutations, replay_suite
+from experiment.l9_oe1.replay import prepare_graph, rank_mutations, replay_suite
 from experiment.l9_oe1.store import ExperienceStore
 
 
@@ -18,8 +18,8 @@ def _task_metadata(store):
     return {row["task_sha256"]: row for row in rows}
 
 
-def _profile(store, replay_result):
-    meta = _task_metadata(store)
+def _profile(store, replay_result, meta=None):
+    meta = _task_metadata(store) if meta is None else meta
     solved = frozenset(
         task_sha
         for task_sha, outcome in replay_result["results"].items()
@@ -60,16 +60,17 @@ def load_graphs(store):
     for task_sha in store.all_task_ids():
         graph = store.replay_graph(task_sha)
         if graph["nodes"]:
-            graphs[task_sha] = graph
+            graphs[task_sha] = prepare_graph(graph)
     return graphs
 
 
 def search(store, *, top_k=8):
     graphs = load_graphs(store)
+    meta = _task_metadata(store)
     root = ImproverGenome()
     root_sha = store.upsert_improver(root, generation=0)
     baseline = replay_suite(graphs, root)
-    root_profile = _profile(store, baseline)
+    root_profile = _profile(store, baseline, meta)
 
     archive = QDArchive(max_size=64)
     archive.add(root_sha, root_profile, learning_progress=0.0)
@@ -78,7 +79,7 @@ def search(store, *, top_k=8):
     rows = []
     for genome, score in ranked:
         result = replay_suite(graphs, genome)
-        profile = _profile(store, result)
+        profile = _profile(store, result, meta)
         progress = profile.quality - root_profile.quality
         sha = store.upsert_improver(
             genome, parent_sha256=root_sha, generation=1
