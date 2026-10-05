@@ -28,7 +28,7 @@ Example DSN:
 
 Install PostgreSQL support with:
 
-`pip install -e ".[dev,oe]"`
+`pip install -e ".[dev]"`\n\nThen install the experiment-local PostgreSQL adapter with:\n\n`pip install -r deploy/oe1/requirements.txt`
 
 The database is **experience**, not evidence. Prospective populations and their freeze
 files remain immutable repository artefacts. A fresh evaluation may read only the
