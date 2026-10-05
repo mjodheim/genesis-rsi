@@ -10,6 +10,15 @@ from experiment.rsi_v25.commitments import digest
 from experiment.rsi_v52.abstractions import derive_recipes
 
 
+def lineage_key(recipe):
+    """Canonical cross-width identity for a reusable scaffold component."""
+    if recipe["mode"] == "rotation":
+        # source_width is provenance, not component identity: rotation=2 remains
+        # the same transferable scaffold when rediscovered at a later width.
+        return digest({"mode": "rotation", "rotation": recipe["rotation"]})
+    return digest(recipe)
+
+
 @dataclass(frozen=True)
 class LineageCredit:
     recipe_sha256: str
@@ -53,7 +62,7 @@ class LineageMemory:
         self.db.close()
 
     def credit_for(self, recipe):
-        sha = digest(recipe)
+        sha = lineage_key(recipe)
         row = self.db.execute(
             "SELECT * FROM lineage_recipes WHERE recipe_sha256=?", (sha,)
         ).fetchone()
@@ -67,7 +76,6 @@ class LineageMemory:
         )
 
     def remember_episode(self, row):
-        programs = {program["source_sha256"]: program for program in row["programs"]}
         parent = {
             program["source_sha256"]: program["search_parent_source_sha256"]
             for program in row["programs"]
@@ -101,7 +109,7 @@ class LineageMemory:
                 # V54 recursion is specifically about future scaffold material.
                 if recipe["mode"] != "rotation":
                     continue
-                sha = digest(recipe)
+                sha = lineage_key(recipe)
                 payload = json.dumps(recipe, sort_keys=True, separators=(",", ":"))
                 with self.db:
                     self.db.execute(
