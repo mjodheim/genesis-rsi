@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-import math
+
+DOMINANCE_RADIUS = 0.35
 
 
 @dataclass(frozen=True)
@@ -63,6 +64,10 @@ def novelty(profile, archive, *, k=5):
 
 
 def dominates(a: Elite, b: Elite):
+    # Quality dominance is only meaningful inside a local behavioural neighbourhood.
+    # Distant behaviours are retained as stepping stones even when slightly weaker.
+    if behavior_distance(a.profile, b.profile) > DOMINANCE_RADIUS:
+        return False
     not_worse = (
         a.profile.quality >= b.profile.quality
         and a.novelty >= b.novelty
@@ -99,8 +104,6 @@ class QDArchive:
         self.elites.append(candidate)
 
         if len(self.elites) > self.max_size:
-            # Retain a blend of quality, novelty and progress without requiring
-            # hand-authored MAP-Elites axes.
             self.elites.sort(
                 key=lambda elite: (
                     elite.profile.quality
