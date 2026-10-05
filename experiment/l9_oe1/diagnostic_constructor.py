@@ -274,6 +274,18 @@ def episode(task, position, history, *, isolated=False):
         if entry["successes"]
     }
     program = row["programs"][0]
+    old_entry = history.get(program["source_sha256"])
+    program["previously_observed"] = old_entry is not None
+    rediscovered = (
+        [program["semantic_sha256"]]
+        if (
+            row["solved"]
+            and old_entry is not None
+            and old_entry["successes"]
+            and old_entry["last_success_position"] < position - 1
+        )
+        else []
+    )
     row.update({
         "search": {
             "best_quality_milli": program["evaluation"]["quality_milli"],
@@ -296,7 +308,7 @@ def episode(task, position, history, *, isolated=False):
             if row["solved"] and program["source_sha256"] not in history
             else []
         ),
-        "rediscovered": [],
+        "rediscovered": rediscovered,
     })
     return row
 
@@ -329,6 +341,12 @@ def summary(rows, history_before=None):
         "archive_size": len(full),
         "solved_semantic_size": len({
             entry["semantic_sha256"] for entry in solved
+        }),
+        "new_source_solves": sum(len(row["new_source_solves"]) for row in rows),
+        "branches": len({
+            entry["genome"]["ops"][0]
+            for entry in solved
+            if entry["genome"]["ops"]
         }),
         "rediscoveries": sum(len(row["rediscovered"]) for row in rows),
         "max_solved_length": max(
