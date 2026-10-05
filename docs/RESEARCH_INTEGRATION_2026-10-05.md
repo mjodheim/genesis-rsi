@@ -36,10 +36,10 @@ of official main and the published provenance/native-archive-integrated-20261005
 tag. The original parallel tip and new V49 apparatus/freeze/result tags are also
 published; no original tag was rewritten to evade the privacy check.
 
-Full local integration validation through V49 completed with **5,429 tests
+Full local integration validation through V50 completed with **5,444 tests
 passed, 11 skipped**, and all four repository-integrity checks passed. The cloud
 test plugin redirects only the demonstration checkpoint; assertions remain
-unchanged. V50 subsequently adds 15 passing tests and a complete read-only
+unchanged. V50 adds 15 passing tests and a complete read-only
 validation of its public 341-program DEVELOPMENT record. No scientific gate
 closure follows from these engineering checks.
 
