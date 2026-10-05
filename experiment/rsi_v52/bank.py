@@ -1,5 +1,3 @@
-[Reading 48 lines from start (total: 48 lines, 0 remaining)]
-
 """Prospective V52 sustained abstraction-memory population.
 
 Committed before any V52 prospective behavioral execution. This remains a finite,
@@ -48,5 +46,3 @@ def stream(seed):
 
 def population_sha256():
     return digest([stream(seed) for seed in FRESH_SEEDS])
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
