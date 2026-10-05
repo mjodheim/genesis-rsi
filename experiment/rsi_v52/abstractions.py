@@ -1,5 +1,3 @@
-[Reading 266 lines from start (total: 266 lines, 0 remaining)]
-
 """Cross-width abstraction memory for V52 development."""
 from __future__ import annotations
 
@@ -266,5 +264,3 @@ class AbstractionMemory:
             "usage": self.db.execute("SELECT COUNT(*) FROM usage").fetchone()[0],
             "width_policy": self.db.execute("SELECT COUNT(*) FROM width_policy").fetchone()[0],
         }
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
