@@ -3,7 +3,7 @@ from experiment.l9_oe1.curriculum import frontier, propose
 from experiment.l9_oe1.improver import ImproverGenome
 from experiment.l9_oe1.qd import BehaviorProfile, DOMINANCE_RADIUS, QDArchive, behavior_distance
 from experiment.l9_oe1.replay import replay_task
-from experiment.l9_oe1 import online, native_online
+from experiment.l9_oe1 import diagnostic_constructor, online, native_online
 from experiment.rsi_v51.memory import ExperimentalMemory
 from experiment.rsi_v52.abstractions import AbstractionMemory
 from experiment.rsi_v53 import bank as v53_bank
@@ -192,3 +192,58 @@ def test_native_online_keeps_fourteen_call_cap():
     )
     assert row["charged_evaluations"] <= native_online.MAX_EVALUATIONS
     assert row["oe1"]["max_depth"] == 12
+
+
+def test_diagnostic_queries_ignore_task_identity():
+    import numpy as np
+
+    hypotheses = diagnostic_constructor._hypotheses(4)
+    motifs = (
+        [1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3],
+        [4, 4, 4],
+    )
+    matrix = diagnostic_constructor._match_matrix(motifs)
+    first = diagnostic_constructor._choose_query(
+        hypotheses, matrix, 4, 0
+    )
+    second = diagnostic_constructor._choose_query(
+        hypotheses.copy(), matrix.copy(), 4, 0
+    )
+    assert first == second
+
+
+def test_diagnostic_constructor_solves_consumed_v36_horizon():
+    from experiment.rsi_v35 import native
+    from experiment.rsi_v36 import bank as v36_bank, engine as v36_engine
+
+    history = {}
+    rows = []
+    tasks = v36_bank.stream(
+        v36_bank.DEV_SEEDS[0],
+        native.DOMAINS[0],
+        epochs=10,
+        tasks_per_epoch=4,
+    )
+    for position, task in enumerate(tasks):
+        row = diagnostic_constructor.episode(
+            task,
+            position,
+            history,
+            isolated=False,
+        )
+        diagnostic_constructor.verify_episode(
+            task,
+            position,
+            history,
+            row,
+            isolated=False,
+        )
+        assert row["charged_evaluations"] <= 14
+        assert row["solved"] is True
+        rows.append(row)
+        history = v36_engine.history_from([row], history)
+
+    assert len(rows) == 40
+    assert all(row["solved"] for row in rows)
