@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from hashlib import sha256
 
 from experiment.l9_oe1.improver import ImproverGenome
 from experiment.l9_oe1.qd import BehaviorProfile, QDArchive
@@ -40,9 +41,18 @@ def _profile(store, replay_result):
         sum(replay_result["results"][t]["solved"] for t in late) / len(late)
         if late else 0.0
     )
+    trajectory_tokens = frozenset(
+        task_sha + ":" + sha256(
+            "|".join(replay_result["results"][task_sha]["evaluated_candidates"]).encode()
+        ).hexdigest()[:16]
+        for task_sha in tasks
+    )
     solve_rate = len(solved) / len(tasks) if tasks else 0.0
     quality = solve_rate + 0.05 / max(1.0, mean_cost) + 0.10 * late_rate
-    return BehaviorProfile(solved, mean_cost, late_rate, quality)
+    return BehaviorProfile(
+        solved, mean_cost, late_rate, quality,
+        trajectory_tokens=trajectory_tokens,
+    )
 
 
 def load_graphs(store):
