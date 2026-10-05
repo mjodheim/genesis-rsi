@@ -3,10 +3,11 @@ from experiment.l9_oe1.curriculum import frontier, propose
 from experiment.l9_oe1.improver import ImproverGenome
 from experiment.l9_oe1.qd import BehaviorProfile, DOMINANCE_RADIUS, QDArchive, behavior_distance
 from experiment.l9_oe1.replay import replay_task
-from experiment.l9_oe1 import online
+from experiment.l9_oe1 import online, native_online
 from experiment.rsi_v51.memory import ExperimentalMemory
 from experiment.rsi_v52.abstractions import AbstractionMemory
 from experiment.rsi_v53 import bank as v53_bank
+from experiment.rsi_v36 import bank as v36_bank
 from experiment.l9_oe1.store import ExperienceStore
 
 
@@ -173,3 +174,21 @@ def test_online_oe1_keeps_real_evaluator_cap(tmp_path):
     assert row["programs"][0]["candidate_origin"] == "root"
     exact.close()
     abstract.close()
+
+
+def test_native_online_keeps_fourteen_call_cap():
+    task = v36_bank.stream(
+        v36_bank.DEV_SEEDS[0],
+        "relational-sql",
+        epochs=1,
+        tasks_per_epoch=4,
+    )[0]
+    row = native_online.episode(
+        task,
+        0,
+        {},
+        arm="archive",
+        isolated=False,
+    )
+    assert row["charged_evaluations"] <= native_online.MAX_EVALUATIONS
+    assert row["oe1"]["max_depth"] == 12
