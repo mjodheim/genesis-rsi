@@ -1,5 +1,3 @@
-[Reading 99 lines from start (total: 99 lines, 0 remaining)]
-
 """V52 cross-width abstraction-memory tests."""
 from experiment.rsi_v25.commitments import digest
 from experiment.rsi_v32 import engine as v32
@@ -99,5 +97,3 @@ def test_scoped_adjudication_requires_every_seed_window_positive():
     negative = campaign.adjudicate(rows)
     assert not negative["scoped_sustained_abstraction_assay_passed"]
     assert not negative["l9_general_open_ended_passed"]
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
