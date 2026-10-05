@@ -12,6 +12,7 @@ class BehaviorProfile:
     mean_cost: float
     late_discovery_rate: float
     quality: float
+    trajectory_tokens: frozenset[str] = frozenset()
 
     def descriptor(self):
         return {
@@ -19,6 +20,7 @@ class BehaviorProfile:
             "mean_cost": self.mean_cost,
             "late_discovery_rate": self.late_discovery_rate,
             "quality": self.quality,
+            "trajectory_tokens": sorted(self.trajectory_tokens),
         }
 
 
@@ -49,10 +51,11 @@ def _jaccard_distance(a, b):
 
 def behavior_distance(a: BehaviorProfile, b: BehaviorProfile):
     solve = _jaccard_distance(a.solved_task_ids, b.solved_task_ids)
+    trajectory = _jaccard_distance(a.trajectory_tokens, b.trajectory_tokens)
     cost_scale = max(1.0, a.mean_cost, b.mean_cost)
     cost = min(1.0, abs(a.mean_cost - b.mean_cost) / cost_scale)
     tail = min(1.0, abs(a.late_discovery_rate - b.late_discovery_rate))
-    return 0.70 * solve + 0.15 * cost + 0.15 * tail
+    return 0.45 * solve + 0.35 * trajectory + 0.10 * cost + 0.10 * tail
 
 
 def novelty(profile, archive, *, k=5):
