@@ -1,0 +1,28 @@
+{
+  "schema": "mira-genesis-v55-feedback-diagnostic-development-v1",
+  "scope": "CONSUMED_V53_PROSPECTIVE_DEVELOPMENT",
+  "prospective": false,
+  "seeds": [530061, 530062, 530063],
+  "aggregate": {
+    "tasks": 504,
+    "v53_solved": 191,
+    "v55_solved": 251,
+    "v53_evaluations": 5538,
+    "v55_evaluations": 5004,
+    "cold_solved": 171,
+    "diagnostic_routes": 42,
+    "diagnostic_tasks_solved": 42,
+    "diagnostic_probes_evaluated": 178,
+    "diagnostic_aborts": 0,
+    "direct_solve_gains_vs_v53": 30,
+    "direct_solve_regressions_vs_v53": 0
+  },
+  "per_seed": [
+    {"seed": 530061, "v53_solved": 65, "v55_solved": 81, "v53_evaluations": 1824, "v55_evaluations": 1693},
+    {"seed": 530062, "v53_solved": 59, "v55_solved": 85, "v53_evaluations": 1885, "v55_evaluations": 1661},
+    {"seed": 530063, "v53_solved": 67, "v55_solved": 85, "v53_evaluations": 1829, "v55_evaluations": 1650}
+  ],
+  "all_consumed_seed_windows_positive": true,
+  "verdict": "POSITIVE_CONSUMED_DATA_FEEDBACK_DIAGNOSTIC_DEVELOPMENT",
+  "l9_general_open_ended_passed": false
+}
