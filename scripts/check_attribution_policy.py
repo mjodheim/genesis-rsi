@@ -15,6 +15,9 @@ BLOCKED_IDENTITY_FRAGMENTS = (
 )
 REGISTERED_HUMAN_IDENTITIES = {
     ("Anthony Mets", "110968830+mjodheim@users.noreply.github.com"),
+    # Historical owner-authored scientific commits must retain their frozen hashes.
+    # This is the same registered human, not a second contributor or wildcard.
+    ("Anthony Mets", "contact@mjodheim.be"),
 }
 REGISTERED_PULL_REQUEST_AUTHORS = {"mjodheim"}
 COAUTHOR_PATTERN = re.compile(r"^co-authored-by:\s*(.+)$", re.IGNORECASE | re.MULTILINE)
