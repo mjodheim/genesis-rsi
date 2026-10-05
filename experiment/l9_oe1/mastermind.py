@@ -173,9 +173,17 @@ def _choose_probe(hypotheses, similarity, rng, tried, preferred=()):
     return tuple(int(x) for x in hypotheses[0])
 
 
-def _evaluate(task, ops, calls, kind, *, isolated):
+def _evaluate(task, ops, calls, kind, *, isolated, replay):
     genome = native.genome(task["domain"], ops)
-    evaluation = native.evaluate(task, genome, isolated=isolated)
+    if replay is None:
+        evaluation = native.evaluate(task, genome, isolated=isolated)
+    else:
+        if len(calls) >= len(replay):
+            raise ValueError("OE1 replay requested an unobserved native call")
+        old = replay[len(calls)]
+        if old["kind"] != kind or old["genome"] != genome:
+            raise ValueError("OE1 replay changed probe order or candidate")
+        evaluation = old["evaluation"]
     calls.append({
         "kind": kind,
         "genome": genome,
@@ -185,7 +193,7 @@ def _evaluate(task, ops, calls, kind, *, isolated):
     return evaluation
 
 
-def solve(task, state, *, seed, isolated=False):
+def solve(task, state, *, seed, isolated=False, replay=None):
     if len(state.motifs) >= 4 and task["slots"] % bank.BLOCK == 0:
         symbols = [list(motif) for motif in state.motifs[:4]]
         units = task["slots"] // bank.BLOCK
@@ -227,7 +235,7 @@ def solve(task, state, *, seed, isolated=False):
         )
         tried.add(probe)
         ops = _ops(probe, symbols)
-        evaluation = _evaluate(task, ops, calls, "probe", isolated=isolated)
+        evaluation = _evaluate(task, ops, calls, "probe", isolated=isolated, replay=replay)
         observed = evaluation["matched_slots"]
 
         if observed == task["slots"]:
@@ -245,20 +253,23 @@ def solve(task, state, *, seed, isolated=False):
                 break
             if len(calls) >= MAX_CALLS - VERIFY_RESERVE:
                 break
-            evaluation = _evaluate(task, final_ops, calls, "deduced", isolated=isolated)
+            evaluation = _evaluate(task, final_ops, calls, "deduced", isolated=isolated, replay=replay)
             if evaluation["matched_slots"] == task["slots"]:
                 solved_ops = final_ops
             break
 
     verified = False
     if solved_ops is not None and len(calls) < MAX_CALLS:
-        verification = _evaluate(task, solved_ops, calls, "verify", isolated=isolated)
+        verification = _evaluate(task, solved_ops, calls, "verify", isolated=isolated, replay=replay)
         verified = verification["matched_slots"] == task["slots"]
 
     if verified:
         state.remember(task["slots"], solved_ops)
         if task["slots"] == bank.BLOCK:
             state.remember(bank.BLOCK, solved_ops)
+
+    if replay is not None and len(calls) != len(replay):
+        raise ValueError("OE1 replay omitted a paid native call")
 
     return {
         "solved": verified,
