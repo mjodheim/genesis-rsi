@@ -173,9 +173,9 @@ def _choose_probe(hypotheses, similarity, rng, tried, preferred=()):
     return tuple(int(x) for x in hypotheses[0])
 
 
-def _evaluate(task, ops, calls, kind):
+def _evaluate(task, ops, calls, kind, *, isolated):
     genome = native.genome(task["domain"], ops)
-    evaluation = native.evaluate(task, genome, isolated=False)
+    evaluation = native.evaluate(task, genome, isolated=isolated)
     calls.append({
         "kind": kind,
         "genome": genome,
@@ -185,7 +185,7 @@ def _evaluate(task, ops, calls, kind):
     return evaluation
 
 
-def solve(task, state, *, seed):
+def solve(task, state, *, seed, isolated=False):
     if len(state.motifs) >= 4 and task["slots"] % bank.BLOCK == 0:
         symbols = [list(motif) for motif in state.motifs[:4]]
         units = task["slots"] // bank.BLOCK
@@ -227,7 +227,7 @@ def solve(task, state, *, seed):
         )
         tried.add(probe)
         ops = _ops(probe, symbols)
-        evaluation = _evaluate(task, ops, calls, "probe")
+        evaluation = _evaluate(task, ops, calls, "probe", isolated=isolated)
         observed = evaluation["matched_slots"]
 
         if observed == task["slots"]:
@@ -245,14 +245,14 @@ def solve(task, state, *, seed):
                 break
             if len(calls) >= MAX_CALLS - VERIFY_RESERVE:
                 break
-            evaluation = _evaluate(task, final_ops, calls, "deduced")
+            evaluation = _evaluate(task, final_ops, calls, "deduced", isolated=isolated)
             if evaluation["matched_slots"] == task["slots"]:
                 solved_ops = final_ops
             break
 
     verified = False
     if solved_ops is not None and len(calls) < MAX_CALLS:
-        verification = _evaluate(task, solved_ops, calls, "verify")
+        verification = _evaluate(task, solved_ops, calls, "verify", isolated=isolated)
         verified = verification["matched_slots"] == task["slots"]
 
     if verified:
