@@ -47,6 +47,7 @@ def _origin_priority(origin, genome):
         "scaffold": genome.replay_scaffold_priority,
         "abstract": genome.replay_abstract_priority,
         "search": genome.replay_search_priority,
+        "counterfactual": genome.replay_search_priority,
     }.get(origin, genome.replay_search_priority)
 
 
@@ -68,7 +69,7 @@ def _policy_score(
     )
 
 
-def replay_task(rows, genome, *, budget=None):
+def replay_task(graph, genome, *, budget=None):
     """Replay one recorded graph under a new target-blind search policy.
 
     Candidate quality is revealed only after the candidate is selected. The policy may
@@ -76,29 +77,53 @@ def replay_task(rows, genome, *, budget=None):
     structure that is available before execution.
     """
     budget = genome.replay_budget if budget is None else budget
+    if isinstance(graph, dict):
+        rows = graph.get("nodes", ())
+        extra_edges = graph.get("edges", ())
+    else:
+        rows = graph
+        extra_edges = ()
+
     unique = {}
     for row in rows:
         unique.setdefault(row["candidate_sha256"], row)
     nodes = unique
 
-    children = defaultdict(list)
-    roots = []
-    depth = {}
+    child_sets = defaultdict(set)
+    parent_sets = defaultdict(set)
     for sha, row in nodes.items():
         parent = row.get("parent_candidate_sha256")
         if parent and parent in nodes:
-            children[parent].append(sha)
-        else:
-            roots.append(sha)
+            child_sets[parent].add(sha)
+            parent_sets[sha].add(parent)
 
-    # Compute structural depth only from graph topology, never candidate quality.
+    for edge in extra_edges:
+        parent = edge["parent_candidate_sha256"]
+        child = edge["child_candidate_sha256"]
+        if parent in nodes and child in nodes:
+            child_sets[parent].add(child)
+            parent_sets[child].add(parent)
+
+    children = {
+        parent: tuple(sorted(values))
+        for parent, values in child_sets.items()
+    }
+    roots = sorted(
+        sha for sha in nodes
+        if not parent_sets.get(sha)
+    )
+
+    depth = {}
     queue = [(sha, 0) for sha in roots]
     while queue:
         sha, d = queue.pop(0)
         if sha in depth and depth[sha] <= d:
             continue
         depth[sha] = d
-        queue.extend((child, d + 1) for child in children.get(sha, ()))
+        queue.extend(
+            (child, d + 1)
+            for child in children.get(sha, ())
+        )
 
     evaluated = set()
     quality = {}
@@ -116,7 +141,7 @@ def replay_task(rows, genome, *, budget=None):
     order = []
     while spent < budget and not solved:
         evaluated_rows = [nodes[sha] for sha in evaluated]
-        frontier = []
+        frontier = {}
         for parent_sha in evaluated:
             parent_quality = quality[parent_sha]
             for child_sha in children.get(parent_sha, ()):
@@ -124,21 +149,26 @@ def replay_task(rows, genome, *, budget=None):
                     continue
                 child = nodes[child_sha]
                 novelty = _candidate_novelty(child, evaluated_rows)
-                frontier.append((
-                    _policy_score(
-                        child,
-                        parent_quality=parent_quality,
-                        depth=depth.get(child_sha, 1),
-                        candidate_novelty=novelty,
-                        genome=genome,
-                    ),
-                    child_sha,
-                ))
+                score = _policy_score(
+                    child,
+                    parent_quality=parent_quality,
+                    depth=depth.get(child_sha, 1),
+                    candidate_novelty=novelty,
+                    genome=genome,
+                )
+                # With multiple evaluated parents, use the best admissible score.
+                frontier[child_sha] = max(
+                    frontier.get(child_sha, float("-inf")),
+                    score,
+                )
+
         if not frontier:
             break
 
-        frontier.sort(key=lambda item: (-item[0], item[1]))
-        _, chosen = frontier[0]
+        chosen = min(
+            frontier,
+            key=lambda sha: (-frontier[sha], sha),
+        )
         evaluated.add(chosen)
         order.append(chosen)
         q = int(nodes[chosen]["quality_milli"])
