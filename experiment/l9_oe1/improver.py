@@ -23,6 +23,14 @@ class ImproverGenome:
     parent_child_penalty: float = 0.5
 
     replay_budget: int = 12
+    replay_exact_priority: float = 0.60
+    replay_scaffold_priority: float = 0.45
+    replay_abstract_priority: float = 0.35
+    replay_search_priority: float = 0.10
+    replay_parent_quality_weight: float = 0.35
+    replay_depth_penalty: float = 0.03
+    replay_candidate_novelty_weight: float = 0.20
+
     frontier_low: float = 0.20
     frontier_high: float = 0.80
 
@@ -46,6 +54,13 @@ class ImproverGenome:
             "parent_progress_weight": (0.4, 0.8, 1.2),
             "parent_child_penalty": (0.25, 0.5, 0.75),
             "replay_budget": (8, 12, 16),
+            "replay_exact_priority": (0.35, 0.60, 0.85),
+            "replay_scaffold_priority": (0.20, 0.45, 0.70),
+            "replay_abstract_priority": (0.15, 0.35, 0.55),
+            "replay_search_priority": (0.00, 0.10, 0.30),
+            "replay_parent_quality_weight": (0.15, 0.35, 0.60),
+            "replay_depth_penalty": (0.00, 0.03, 0.08),
+            "replay_candidate_novelty_weight": (0.00, 0.20, 0.50),
         }
         for field, values in knobs.items():
             current = getattr(self, field)
