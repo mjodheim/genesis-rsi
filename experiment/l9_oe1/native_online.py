@@ -9,6 +9,7 @@ from __future__ import annotations
 from experiment.l9_oe1.improver import ImproverGenome
 from experiment.rsi_v25.commitments import digest
 from experiment.rsi_v35 import native
+from experiment.rsi_v36 import bank as v36_bank
 from experiment.rsi_v36 import engine as v36
 
 MAX_EVALUATIONS = v36.MAX_EVALUATIONS
@@ -31,6 +32,44 @@ def _novelty(candidate, evaluated, slots):
     return sum(nearest) / len(nearest)
 
 
+def _children(host, genome):
+    """Generate the V36 proposal grammar without V36's depth-three cutoff."""
+    current = genome["ops"] + [0] * (host.task["slots"] - len(genome["ops"]))
+    rows = {}
+
+    def admit(ops, construction):
+        row = host.row(native.genome(host.task["domain"], ops))
+        if row["candidate"] == genome:
+            return
+        row["construction"] = construction
+        rows.setdefault(row["source_sha256"], row)
+
+    for index in range(0, len(current) - v36_bank.BLOCK + 1, v36_bank.BLOCK):
+        for fragment in host.learned:
+            admit(
+                [
+                    *current[:index],
+                    *fragment["ops"],
+                    *current[index + v36_bank.BLOCK:],
+                ],
+                {
+                    "kind": "learned-splice",
+                    "block_start": index,
+                    **fragment,
+                },
+            )
+
+    for index in range(len(current)):
+        for op in range(5):
+            if op != current[index]:
+                admit(
+                    [*current[:index], op, *current[index + 1:]],
+                    {"kind": "point", "slot": index, "operator": op},
+                )
+
+    return tuple(rows.values())
+
+
 def episode(
     task,
     global_position,
@@ -46,17 +85,12 @@ def episode(
 
     selected = host.selected["candidate"]
     selected_sha = host.selected["source_sha256"]
-    max_depth = (
-        improver.replay_budget
-        if max_depth is None
-        else int(max_depth)
-    )
+    max_depth = improver.replay_budget if max_depth is None else int(max_depth)
 
-    # Host construction already charged null-root and archive screens.
     paid_before_search = len(host.calls)
     search_budget = max(
         0,
-        MAX_EVALUATIONS - paid_before_search - 1,  # reserve verification
+        MAX_EVALUATIONS - paid_before_search - 1,  # reserve confirmation
     )
 
     evaluated = {
@@ -64,6 +98,8 @@ def episode(
             "genome": selected,
             "quality_milli": host.initial["quality_milli"],
             "depth": 0,
+            "parent_sha": None,
+            "construction": {"kind": "selected-root"},
         }
     }
     frontier = {}
@@ -89,7 +125,7 @@ def episode(
         )
 
     if max_depth > 0:
-        for child in host.children(selected, 0):
+        for child in _children(host, selected):
             offer(child, selected_sha, 1)
 
     spent = 0
@@ -110,6 +146,7 @@ def episode(
             ]
             if not parents:
                 continue
+
             best_parent = max(
                 parents,
                 key=lambda parent: (
@@ -129,11 +166,13 @@ def episode(
 
         if not scored:
             break
+
         scored.sort(key=lambda row: (-row[0], row[1]))
         _, chosen_sha, parent_sha = scored[0]
         item = frontier.pop(chosen_sha)
         row = dict(item["row"])
-        row["construction"] = item["construction_by_parent"][parent_sha]
+        construction = item["construction_by_parent"][parent_sha]
+        row["construction"] = construction
 
         evaluation = host.evaluate(row)
         spent += 1
@@ -141,6 +180,8 @@ def episode(
             "genome": row["candidate"],
             "quality_milli": evaluation["quality_milli"],
             "depth": item["depth"],
+            "parent_sha": parent_sha,
+            "construction": construction,
         }
 
         if evaluation["matched_slots"] == task["slots"]:
@@ -148,7 +189,7 @@ def episode(
             break
 
         if item["depth"] < max_depth:
-            for child in host.children(row["candidate"], item["depth"]):
+            for child in _children(host, row["candidate"]):
                 offer(child, chosen_sha, item["depth"] + 1)
 
     if solved_call is not None:
@@ -161,52 +202,20 @@ def episode(
         raise ValueError("OE1 native search escaped fourteen-evaluation cap")
 
     programs = {}
-    # Root/screens may not have search ancestry; selected search descendants do.
-    search_parent = {}
-    for sha, item in evaluated.items():
-        if sha == selected_sha:
-            continue
-        # Evaluated descendants were removed from frontier; ancestry is retained
-        # through the call construction only in the evaluated map below.
-    # Reconstruct ancestry from selected calls by matching candidate source. The
-    # selected root remains an archive screen/root with no search parent.
-    evaluated_search = {
-        native.descriptor(row["genome"])["source_sha256"]: row
-        for row in [
-            {
-                "genome": value["genome"],
-                "parent": None,
-            }
-            for value in []
-        ]
-    }
-
-    # We retain explicit ancestry separately while walking calls.
-    chosen_parent = {}
-    chosen_depth = {}
-    # Recover from evaluated candidates by matching the only evaluated parent that
-    # generated them. For multi-parent candidates choose highest observed quality.
-    # Rebuild cheaply from candidate neighborhoods.
-    for parent_sha, parent in evaluated.items():
-        depth = parent["depth"]
-        if depth >= max_depth:
-            continue
-        for child in host.children(parent["genome"], depth):
-            sha = child["source_sha256"]
-            if sha not in evaluated or sha == selected_sha:
-                continue
-            prior = chosen_parent.get(sha)
-            if prior is None or evaluated[parent_sha]["quality_milli"] > evaluated[prior]["quality_milli"]:
-                chosen_parent[sha] = parent_sha
-                chosen_depth[sha] = depth + 1
-
     for call in host.calls:
         genome = call["genome"]
         sha = native.descriptor(genome)["source_sha256"]
         if sha in programs:
             continue
+
         old = history.get(sha)
-        parent_sha = chosen_parent.get(sha)
+        search_row = evaluated.get(sha)
+        parent_sha = search_row["parent_sha"] if search_row else None
+        construction = (
+            search_row["construction"]
+            if search_row
+            else call.get("construction", {"kind": call["kind"]})
+        )
         programs[sha] = {
             "genome": genome,
             "source_sha256": sha,
@@ -217,10 +226,8 @@ def episode(
             "search_parent_source_sha256": parent_sha,
             "evaluation": call["evaluation"],
             "previously_observed": old is not None,
-            "construction": call.get("construction", {"kind": call["kind"]}),
-            "donor_source_sha256": call.get(
-                "construction", {}
-            ).get("donor_source_sha256"),
+            "construction": construction,
+            "donor_source_sha256": construction.get("donor_source_sha256"),
         }
 
     solved = [
