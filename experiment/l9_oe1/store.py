@@ -66,6 +66,16 @@ SCHEMA = (
     )
     """,
     """
+    CREATE TABLE IF NOT EXISTS oe_edges(
+        edge_id TEXT PRIMARY KEY,
+        run_id TEXT NOT NULL,
+        task_sha256 TEXT NOT NULL,
+        parent_candidate_sha256 TEXT NOT NULL,
+        child_candidate_sha256 TEXT NOT NULL,
+        relation TEXT NOT NULL
+    )
+    """,
+    """
     CREATE TABLE IF NOT EXISTS oe_archive(
         niche_key TEXT PRIMARY KEY,
         improver_sha256 TEXT NOT NULL,
@@ -204,6 +214,40 @@ class ExperienceStore:
         ).close()
         return candidate_sha
 
+    def record_edge(
+        self,
+        *,
+        run_id,
+        task_sha256,
+        parent_candidate_sha256,
+        child_candidate_sha256,
+        relation,
+    ):
+        if not parent_candidate_sha256:
+            return None
+        edge_id = digest([
+            task_sha256,
+            parent_candidate_sha256,
+            child_candidate_sha256,
+            relation,
+        ])
+        self.execute(
+            """INSERT INTO oe_edges(
+                 edge_id,run_id,task_sha256,parent_candidate_sha256,
+                 child_candidate_sha256,relation
+               ) VALUES(?,?,?,?,?,?)
+               ON CONFLICT(edge_id) DO NOTHING""",
+            (
+                edge_id,
+                run_id,
+                task_sha256,
+                parent_candidate_sha256,
+                child_candidate_sha256,
+                relation,
+            ),
+        ).close()
+        return edge_id
+
     def record_evaluation(
         self,
         *,
@@ -276,7 +320,104 @@ class ExperienceStore:
                 window=task.get("window"),
                 descriptor=descriptor,
             )
+            if parent:
+                self.record_edge(
+                    run_id=run_id,
+                    task_sha256=task_sha,
+                    parent_candidate_sha256=parent,
+                    child_candidate_sha256=program["source_sha256"],
+                    relation="observed",
+                )
         return task_sha
+
+    def record_counterfactual_batch(
+        self,
+        *,
+        run_id,
+        task_sha256,
+        improver_sha256,
+        position,
+        window,
+        records,
+    ):
+        """Persist one task's counterfactual frontier with one transaction."""
+        if not records:
+            return 0
+        cur = self.db.cursor()
+        try:
+            cur.executemany(
+                self._sql(
+                    """INSERT INTO oe_candidates(candidate_sha256,genome_json)
+                       VALUES(?,?)
+                       ON CONFLICT(candidate_sha256) DO NOTHING"""
+                ),
+                [
+                    (record["candidate_sha256"], _json(record["candidate"]))
+                    for record in records
+                ],
+            )
+            cur.executemany(
+                self._sql(
+                    """INSERT INTO oe_evaluations(
+                         evaluation_id,run_id,task_sha256,improver_sha256,
+                         candidate_sha256,parent_candidate_sha256,origin,
+                         quality_milli,solved,charged_cost,position,task_window,descriptor_json
+                       ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"""
+                ),
+                [
+                    (
+                        str(uuid4()),
+                        run_id,
+                        task_sha256,
+                        improver_sha256,
+                        record["candidate_sha256"],
+                        record["parent_shas"][0] if record["parent_shas"] else None,
+                        "counterfactual",
+                        int(record["quality_milli"]),
+                        int(record["quality_milli"] == 1000),
+                        1,
+                        int(position),
+                        window,
+                        _json(record.get("descriptor", {})),
+                    )
+                    for record in records
+                ],
+            )
+            edges = []
+            for record in records:
+                for parent_sha in record["parent_shas"]:
+                    edge_id = digest([
+                        task_sha256,
+                        parent_sha,
+                        record["candidate_sha256"],
+                        "counterfactual",
+                    ])
+                    edges.append((
+                        edge_id,
+                        run_id,
+                        task_sha256,
+                        parent_sha,
+                        record["candidate_sha256"],
+                        "counterfactual",
+                    ))
+            if edges:
+                cur.executemany(
+                    self._sql(
+                        """INSERT INTO oe_edges(
+                             edge_id,run_id,task_sha256,parent_candidate_sha256,
+                             child_candidate_sha256,relation
+                           ) VALUES(?,?,?,?,?,?)
+                           ON CONFLICT(edge_id) DO NOTHING"""
+                    ),
+                    edges,
+                )
+            self.db.commit()
+            return len(records)
+        except Exception:
+            self.db.rollback()
+            raise
+        finally:
+            cur.close()
 
     def task_graph(self, task_sha256):
         return self.fetchall(
@@ -287,6 +428,19 @@ class ExperienceStore:
                ORDER BY e.position, e.evaluation_id""",
             (task_sha256,),
         )
+
+    def task_edges(self, task_sha256):
+        return self.fetchall(
+            """SELECT parent_candidate_sha256,child_candidate_sha256,relation
+               FROM oe_edges WHERE task_sha256=?""",
+            (task_sha256,),
+        )
+
+    def replay_graph(self, task_sha256):
+        return {
+            "nodes": self.task_graph(task_sha256),
+            "edges": self.task_edges(task_sha256),
+        }
 
     def all_task_ids(self):
         return [
