@@ -1,4 +1,4 @@
-[Reading 110 lines from start (total: 110 lines, 0 remaining)]
+[Reading 111 lines from start (total: 111 lines, 0 remaining)]
 
 """One prospective V52 sustained abstraction-memory development assay."""
 import argparse
@@ -7,7 +7,7 @@ import tempfile
 from pathlib import Path
 
 from experiment.rsi_v25.commitments import ROOT
-from experiment.rsi_v52 import bank, benchmark
+from experiment.rsi_v52 import bank, benchmark, freeze
 
 DIRECTORY = ROOT / "results/rsi-v52/prospective-abstraction-20261005"
 DEFAULT_OUTPUT = DIRECTORY / "REPORT.json"
@@ -61,6 +61,7 @@ def adjudicate(results):
 
 
 def run(*, isolated=False):
+    freeze.verify()
     with tempfile.TemporaryDirectory(prefix="v52-prospective-") as temporary:
         root = Path(temporary)
         results = [
