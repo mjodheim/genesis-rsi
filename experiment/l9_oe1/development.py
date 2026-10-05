@@ -58,8 +58,8 @@ def _profile(store, replay_result):
 def load_graphs(store):
     graphs = {}
     for task_sha in store.all_task_ids():
-        graph = store.task_graph(task_sha)
-        if graph:
+        graph = store.replay_graph(task_sha)
+        if graph["nodes"]:
             graphs[task_sha] = graph
     return graphs
 
