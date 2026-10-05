@@ -1,5 +1,3 @@
-[Reading 196 lines from start (total: 196 lines, 0 remaining)]
-
 """Matched V52 development: abstractions vs V51 exact DB vs archive vs cold."""
 from __future__ import annotations
 
@@ -196,5 +194,3 @@ def aggregate(results):
         ),
         "l9_general_open_ended_passed": False,
     }
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
