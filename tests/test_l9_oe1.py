@@ -3,6 +3,10 @@ from experiment.l9_oe1.curriculum import frontier, propose
 from experiment.l9_oe1.improver import ImproverGenome
 from experiment.l9_oe1.qd import BehaviorProfile, DOMINANCE_RADIUS, QDArchive, behavior_distance
 from experiment.l9_oe1.replay import replay_task
+from experiment.l9_oe1 import online
+from experiment.rsi_v51.memory import ExperimentalMemory
+from experiment.rsi_v52.abstractions import AbstractionMemory
+from experiment.rsi_v53 import bank as v53_bank
 from experiment.l9_oe1.store import ExperienceStore
 
 
@@ -157,3 +161,15 @@ def test_replay_honours_extra_multi_parent_edges():
     outcome = replay_task(graph, genome)
     assert outcome["evaluated_candidates"] == ["b", "child"]
     assert outcome["solved"] is True
+
+
+def test_online_oe1_keeps_real_evaluator_cap(tmp_path):
+    exact = ExperimentalMemory(tmp_path / "oe1-exact.db")
+    abstract = AbstractionMemory(tmp_path / "oe1-abstract.db")
+    task = v53_bank.stream(v53_bank.FRESH_SEEDS[0])[0]
+    row = online.episode(task, 0, exact, abstract, isolated=False)
+    assert row["charged_evaluations"] <= online.MAX_EVALUATIONS
+    assert row["oe1"]["search_budget"] == online.SEARCH_BUDGET
+    assert row["programs"][0]["candidate_origin"] == "root"
+    exact.close()
+    abstract.close()
