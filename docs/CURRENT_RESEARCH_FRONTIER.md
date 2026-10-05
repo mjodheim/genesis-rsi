@@ -1,8 +1,25 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 4 October 2026, bounded L6–L8; scoped native sustained archives, general L9 and L10 open.**
+**Reader-facing status snapshot — 5 October 2026, bounded L6–L8; scoped coupled native archives, general L9 and L10 open.**
 
 ## Active RSI frontier
+
+V49's prospectively frozen **coupled native pipeline archive assay is positive**:
+448/448 fresh tasks, against latest-tool ablation 134, greedy 72 and cold 132.
+All six predicates and original full replay pass. Real SQLite, regex, JSON and
+zlib steps consume the previous step's result, replacing independent-slot feedback.
+All calls, native primitive visits and transformed bytes are retained; complete raw
+evidence is publicly packaged. Positive conservative cohort discovery persists
+through length 64, but discovery per native visit declines about 133-fold. A
+work-sensitive argument bounds it above by 1/(32n), and finite SHA-256 diagnostic
+space cannot guarantee indefinite novelty. The closed host curriculum, fixed
+kernels and scheduler remain. General L9, new G8 and independent L10 remain open.
+See [V49's fresh result and work/novelty boundary](RSI_V49_FRESH_2026-10-05.md).
+
+The parallel V33–V48 development line is preserved without source-path collision
+in a pinned optional research snapshot. Its original V42 negative and V43–V47
+development are unchanged; its V48 fresh population is unspent here. See
+[the two-line archive integration](PARALLEL_RSI_ARCHIVE_2026-10-05.md).
 
 V38's prospectively frozen **recursive-macro archive assay is positive** under a
 fixed twenty-six-call cap. Newly successful whole programs become the next
