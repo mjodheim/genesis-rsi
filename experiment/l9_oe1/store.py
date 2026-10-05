@@ -29,7 +29,7 @@ SCHEMA = (
         task_sha256 TEXT PRIMARY KEY,
         family TEXT,
         width INTEGER,
-        window INTEGER,
+        task_window INTEGER,
         payload_json TEXT NOT NULL
     )
     """,
@@ -61,7 +61,7 @@ SCHEMA = (
         solved INTEGER NOT NULL,
         charged_cost INTEGER NOT NULL,
         position INTEGER NOT NULL,
-        window INTEGER,
+        task_window INTEGER,
         descriptor_json TEXT NOT NULL
     )
     """,
@@ -160,12 +160,12 @@ class ExperienceStore:
     def upsert_task(self, task):
         task_sha = digest(task)
         self.execute(
-            """INSERT INTO oe_tasks(task_sha256,family,width,window,payload_json)
+            """INSERT INTO oe_tasks(task_sha256,family,width,task_window,payload_json)
                VALUES(?,?,?,?,?)
                ON CONFLICT(task_sha256) DO UPDATE SET
                  family=excluded.family,
                  width=excluded.width,
-                 window=excluded.window,
+                 task_window=excluded.task_window,
                  payload_json=excluded.payload_json""",
             (
                 task_sha,
@@ -229,7 +229,7 @@ class ExperienceStore:
             """INSERT INTO oe_evaluations(
                  evaluation_id,run_id,task_sha256,improver_sha256,
                  candidate_sha256,parent_candidate_sha256,origin,
-                 quality_milli,solved,charged_cost,position,window,descriptor_json
+                 quality_milli,solved,charged_cost,position,task_window,descriptor_json
                ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (
                 evaluation_id,
