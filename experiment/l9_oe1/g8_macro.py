@@ -13,11 +13,14 @@ CAP = 26
 
 
 class Host:
-    def __init__(self, task, history, *, isolated=False):
+    def __init__(self, task, history, *, isolated=False, call_cap=CAP):
         v38_bank.validate_task(task)
         self.task = task
         self.history = history
         self.isolated = isolated
+        self.call_cap = int(call_cap)
+        if self.call_cap < 3 or self.call_cap > CAP:
+            raise ValueError("Invalid externally governed G8 call cap")
         self.calls = []
         self.forbidden_tokens = [task["task_id"], task["domain"]]
         self.width = max(1, task["slots"] // 2)
@@ -101,7 +104,7 @@ class Host:
         return tuple(rows.values())
 
     def evaluate(self, row):
-        if len(self.calls) >= CAP - 1:
+        if len(self.calls) >= self.call_cap - 1:
             raise ValueError("G8 macro search exhausted verification reserve")
         value = native.evaluate(
             self.task, row["candidate"], isolated=self.isolated
@@ -114,10 +117,10 @@ class Host:
         return value
 
 
-def episode(task, position, history, policy_source, *, isolated=False):
-    host = Host(task, history, isolated=isolated)
+def episode(task, position, history, policy_source, *, isolated=False, call_cap=CAP):
+    host = Host(task, history, isolated=isolated, call_cap=call_cap)
     caps = Caps(
-        requests=CAP - 2,
+        requests=call_cap - 2,
         rounds=12,
         parallelism=2,
         mutation_depth=2,
@@ -154,7 +157,7 @@ def episode(task, position, history, policy_source, *, isolated=False):
             raise ValueError("G8 macro winner failed independent confirmation")
         verification = value
 
-    if len(host.calls) > CAP:
+    if len(host.calls) > call_cap:
         raise ValueError("G8 macro policy escaped fixed call cap")
 
     node_by_source = {
@@ -209,6 +212,7 @@ def episode(task, position, history, policy_source, *, isolated=False):
         "programs": list(programs.values()),
         "calls": host.calls,
         "charged_evaluations": len(host.calls),
+        "call_cap": call_cap,
         "solved": bool(solved),
         "new_first_solving_semantics": [
             p["semantic_sha256"]
