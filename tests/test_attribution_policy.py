@@ -25,6 +25,19 @@ def test_human_commit_identity_passes():
     assert audit_commit_records([_record()]) == []
 
 
+def test_historical_owner_identity_preserves_frozen_commit_attribution():
+    assert audit_commit_records([_record(
+        author_email="contact@mjodheim.be", committer_email="contact@mjodheim.be"
+    )]) == []
+
+
+def test_historical_owner_email_does_not_register_another_person():
+    problems = audit_commit_records([_record(
+        author_name="Another Person", author_email="contact@mjodheim.be"
+    )])
+    assert problems == ["abc123: author is not a registered human identity"]
+
+
 def test_service_author_is_rejected():
     problems = audit_commit_records([_record(author_name="release[bot]")])
     assert problems == [
