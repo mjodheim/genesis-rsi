@@ -2,6 +2,14 @@
   "schema": "commit-citations-v1",
   "purpose": "Every commit the tracked scientific record cites by SHA, and the ref that keeps it reachable. Checked by scripts/check_repository_integrity.py --citations. A citation that stops resolving makes a recorded result unverifiable, so this file exists to make that failure loud instead of silent.",
   "commits": {
+    "0023641c2b44e68eafd14be44114e068ea57e0e1": {
+      "subject": "test(v25): lock prospective causal development gate",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "007ab867f6a32ca7f4104e2de00858d33fb66793": {
       "subject": "science(m112): authorize the single reveal, and say plainly what the gate is not",
       "preserved_by": "main",
@@ -20,6 +28,15 @@
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "results/M040_DEVELOPMENT_007.md"
+      ]
+    },
+    "02961d4d40b8a75d3c7c4aee5f775a364c512c50": {
+      "subject": "Merge pull request #367: preserve V32 memory evidence and its adaptive negative",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json",
+        "results/rsi-v35/native-pilot-20261004/MANIFEST.json"
       ]
     },
     "02df1fab0bc589d7563c6d9293073751220185f3": {
@@ -89,6 +106,14 @@
         "experiments/M071/DEVELOPMENT_QUALIFICATION.md"
       ]
     },
+    "08fb65e51e0763c9c50546ed4184f0cd5fa75a32": {
+      "subject": "test(v25): lock narrow causal ablation semantics",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "09ed0d3c4b7427e8f6e6ef7d17a893d14ba5e5fe": {
       "subject": "feat: freeze the M086-C protocol before any harness, bank or holdout",
       "preserved_by": "main",
@@ -148,6 +173,14 @@
         "experiments/M094/PROTOCOL.json"
       ]
     },
+    "0d6e2a8c49c7f296f6fbea0eec94cf13f9f79735": {
+      "subject": "docs: record V26 bounded L5 acceptance and preserved negative provenance",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "0dfd822ac1c81692abe45f9499ece420a947fd0f": {
       "subject": "fix: expose verified M048 checkpoint digest",
       "preserved_by": "main",
@@ -178,6 +211,14 @@
         "docs/COMMIT_CITATIONS.json",
         "experiment/rsi_v23/V23_FREEZE.json",
         "experiment/rsi_v23/build_l5_freeze.py"
+      ]
+    },
+    "1071772484dc451e3d07de1fdf6b74a7c1d4bd0c": {
+      "subject": "fix(v24): install committed freeze at frozen executor path",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "1081ed1276d5d5048ec78cb3c3348b6ba7c4ac08": {
@@ -228,7 +269,7 @@
     },
     "14131340299001127702e94cd5d2e7b90657bc4b": {
       "subject": "feat(v32): prepare observed-memory routing with unchanged G7 and preserve every consumed-data variant",
-      "preserved_by": "research/rsi-v32-memory-compatibility",
+      "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "docs/RSI_V32_MEMORY_RESULTS_2026-10-01.md",
@@ -251,6 +292,24 @@
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "docs/state-history/PROJECT_STATE_2026-08-24.yaml"
+      ]
+    },
+    "18abb6839733db568be354e20f79565b3b41084a": {
+      "subject": "Preserve positive V37 development assay and conditional scaling limits",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V37_FRESH_2026-10-04.md",
+        "experiment/rsi_v37/FRESH_FREEZE.json",
+        "results/rsi-v37/construction-fresh-20261004/MANIFEST.json"
+      ]
+    },
+    "1a1c9f624b59c19f57255816efeb07ee0723cfb9": {
+      "subject": "Document external cognitive adoption and causal ablation boundary",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "1a696e17a6ae176c837ce844891e29535d145803": {
@@ -558,6 +617,13 @@
         "docs/state-history/PROJECT_STATE_2026-08-24.md"
       ]
     },
+    "31069e18d05bd93ef2fb99a23c3fac0fb561da70": {
+      "subject": "Freeze V49 fresh coupled native populations before first candidate behavior",
+      "preserved_by": "provenance/v49-freeze-20261005",
+      "cited_in": [
+        "docs/RSI_V49_FRESH_2026-10-05.md"
+      ]
+    },
     "312bbb145af6e11473dde5cd21bcb0602ddc41d1": {
       "subject": "docs(m094): record the freeze commit",
       "preserved_by": "main",
@@ -664,7 +730,8 @@
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "docs/audits/RSI_L5_READINESS_2026-10-01.md",
-        "experiment/rsi_v25/V24_PRESERVED_EVIDENCE_MANIFEST.json"
+        "experiment/rsi_v25/V24_PRESERVED_EVIDENCE_MANIFEST.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "360cc6a6396d4174b00dcb83eeb3a893b7ffa772": {
@@ -733,6 +800,14 @@
       "cited_in": [
         "DECISIONS.md",
         "docs/COMMIT_CITATIONS.json"
+      ]
+    },
+    "3f8096687bb0a1062565531894a82976c36ceecd": {
+      "subject": "test(v25): enforce matched controls and budgets",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "3fa79d264c125be3e73f2751298cbd430109eb8a": {
@@ -1016,6 +1091,14 @@
         "experiments/M081/STATUS.md"
       ]
     },
+    "54f5167fc41ae563a880b0dee1889cbcf4a166c9": {
+      "subject": "test(rsi-v25): align causal ablation tests",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "552ab5ec4b4e279a13e22c47418876af7f61a848": {
       "subject": "M050: bounded composition of migration primitives",
       "preserved_by": "main",
@@ -1039,6 +1122,14 @@
       "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json"
+      ]
+    },
+    "56a318e1ee6015c20922934c452ab686b5e14ad0": {
+      "subject": "guard(v24): enforce freeze before scientific meta-search",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "571f9954533e8177412563d4f3f4de30e0a98454": {
@@ -1065,6 +1156,14 @@
         "docs/COMMIT_CITATIONS.json",
         "docs/state-history/PROJECT_STATE_2026-08-24.md",
         "docs/state-history/PROJECT_STATE_2026-08-24.yaml"
+      ]
+    },
+    "5770232dc4fdcb8601c983ba23ed3596d83545f1": {
+      "subject": "docs(research): record bounded L6 L7 L8 evidence, preserved negatives and exact scientific limits",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "58449266787257c24e1a22a1a3b91f92dd178211": {
@@ -1158,6 +1257,16 @@
         "experiments/M101/RESULT.md"
       ]
     },
+    "5da8851660d30c84bdd85a92b317a0828ad180a3": {
+      "subject": "Add prospective recursive macro archive with latest-acquisition ablation",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V38_FRESH_2026-10-04.md",
+        "docs/RSI_V38_PILOT_2026-10-04.md",
+        "results/rsi-v38/recursive-macro-pilot-20261004/MANIFEST.json"
+      ]
+    },
     "5e4a0feebbb44aa73309d40eca1e88e0833e6756": {
       "subject": "feat(m091): freeze the protocol, the invariant proof and the assembly substrate",
       "preserved_by": "main",
@@ -1180,6 +1289,22 @@
         "experiments/M012/STATUS.md",
         "results/M012_raw/README.md",
         "results/M012_raw/summary.json"
+      ]
+    },
+    "5f2e3d9e69a7dc11bf15bb9af52d1772bc3c5780": {
+      "subject": "feat(cognition): add bounded node mutations and lineage records",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
+    "5fbf2e162a9ad66dec7b3fa6332f031b191dc163": {
+      "subject": "Merge main after cognitive lineage adoption",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "5fdf7b42a7b7acf855f51bd6d0712da0dd6abc1a": {
@@ -1289,6 +1414,14 @@
         "docs/state-history/PROJECT_STATE_2026-08-24.yaml"
       ]
     },
+    "66b6acded289aa6dec709625b2f877936b49c13d": {
+      "subject": "fix E0 benchmark review findings",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "6717c354e2c75df3cfe3f1b5ecbcab44e53cc7f8": {
       "subject": "research(v31): prepare governed archive and independent replication packet",
       "preserved_by": "main",
@@ -1296,6 +1429,14 @@
         "docs/COMMIT_CITATIONS.json",
         "docs/RSI_L9_L10_READINESS_2026-10-01.md",
         "experiment/rsi_v31/PUBLIC_DEVELOPMENT_ROUNDS.md"
+      ]
+    },
+    "675e06063e649f3d359eae54da2babcc20a07100": {
+      "subject": "Commit prospective V24 L5 freeze (#353)",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "6928cf2abf714864c69f0571879af424ed09c741": {
@@ -1340,6 +1481,14 @@
         "results/M038_FREEZE.md"
       ]
     },
+    "6c1467c66ee5f9975507f42b80eaf3e1f6a123e4": {
+      "subject": "docs: register V23 L5 baseline merge citation",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "6c404f7fce00087048dcb7d6e346bd5c84308cf8": {
       "subject": "m041(canonical): arm first immutable completion run",
       "preserved_by": "main",
@@ -1365,6 +1514,14 @@
         "docs/COMMIT_CITATIONS.json",
         "experiments/M071/EXTERNAL_RESULT.json",
         "experiments/M071/EXTERNAL_RESULT.md"
+      ]
+    },
+    "6d790268a55a8f6aa27d56e47cb5a2dd5566742d": {
+      "subject": "Freeze V35 native archive populations before fresh behavior",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V35_FRESH_2026-10-04.md"
       ]
     },
     "6f4db16d8f41de4e2b5f768f63e359d2f9a16213": {
@@ -1420,6 +1577,22 @@
         "docs/state-history/PROJECT_STATE_2026-08-24.yaml",
         "experiments/M077/RESULT.md",
         "experiments/M077/STATUS.md"
+      ]
+    },
+    "7243cffa82076df9ee1988a6e7246db168bb1bec": {
+      "subject": "docs(v31): publish the pinned independent handoff and complete readiness evidence",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
+    "73138f22e11e3a77fa7d3b99663f531b6074f6c1": {
+      "subject": "docs: register V23 L5 result lineage citations",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "74689ca456f22f563a06de9bda8b739ab4b255aa": {
@@ -1485,9 +1658,18 @@
     },
     "7ad05ae0d35b9a066ab04e7a5da9b8e9a72adca7": {
       "subject": "research(v32): preserve the complete one-shot trial and its strict finite-usefulness negative",
-      "preserved_by": "research/rsi-v32-memory-compatibility",
+      "preserved_by": "main",
       "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
         "docs/RSI_V32_MEMORY_RESULTS_2026-10-01.md"
+      ]
+    },
+    "7b1b3773a69fb6c73ae1d3fd73757aa9ada2f7d1": {
+      "subject": "fix(v25): preserve V24 evidence and enforce development readiness",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "7b80f1e6a623b1b0312b142d5ebe30f39f917a79": {
@@ -1530,6 +1712,16 @@
         "experiments/M099/PROTOCOL.json"
       ]
     },
+    "80efcd2056d750c6c72f95c8561122f83e1e8043": {
+      "subject": "Add prospective V37 paid coordinate constructor and dimensioned controls",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V37_FRESH_2026-10-04.md",
+        "docs/RSI_V37_PILOT_2026-10-04.md",
+        "results/rsi-v37/construction-pilot-20261004/MANIFEST.json"
+      ]
+    },
     "8176c537fef5f646398a9b8ae7254326aa66a3b2": {
       "subject": "Merge pull request #211 from mjodheim/science/m112-blind-materialization",
       "preserved_by": "main",
@@ -1538,6 +1730,24 @@
         "papers/genesis-ii-preprint/POST_PUBLICATION.md",
         "papers/genesis-ii-preprint/README.md",
         "papers/genesis-ii-preprint/SUBMISSION_METADATA.md"
+      ]
+    },
+    "81fde8d3353da67b00e9c946d245f31a28942a9b": {
+      "subject": "Add native sustained archive apparatus and preserve development evidence",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V35_FRESH_2026-10-04.md",
+        "experiment/rsi_v35/FRESH_FREEZE.json",
+        "results/rsi-v35/native-fresh-20261004/MANIFEST.json"
+      ]
+    },
+    "82507035dc6b01b1f154d0d00fae522e74d8031a": {
+      "subject": "Document externally validated lineage architecture transitions",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "8270b7825bbc7af2295da4804fac23d8ebc1e974": {
@@ -1678,6 +1888,14 @@
         "results/M040_DEVELOPMENT_004.md"
       ]
     },
+    "8d3d9aaf8fab6cf5d80d0bc9a0300f003e25885d": {
+      "subject": "Freeze V38 recursive macro populations before fresh native behavior",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V38_FRESH_2026-10-04.md"
+      ]
+    },
     "8fd829269b2b18e207917ef7dcf71a963f28ef8e": {
       "subject": "m038(canonical): arm first immutable run",
       "preserved_by": "main",
@@ -1755,7 +1973,8 @@
       "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
-        "docs/rsi-v22/V22_R1_PREFLIGHT_FAILURE_2026-09-24.json"
+        "docs/rsi-v22/V22_R1_PREFLIGHT_FAILURE_2026-09-24.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "96c8a3a695b37caee3aa77f8e4fb3da856948c40": {
@@ -1786,6 +2005,14 @@
         "docs/COMMIT_CITATIONS.json"
       ]
     },
+    "97a9cbb645bab561a6091afde6ab14f2e71134f1": {
+      "subject": "docs(v32): report every fresh control, the adaptive negative and unchanged L9-L10 limits",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "9837d0b88e8f06d191040347ac6d820f34c538c1": {
       "subject": "result(m111): preserve the unique canonical first result",
       "preserved_by": "main",
@@ -1793,6 +2020,14 @@
         "DECISIONS.md",
         "docs/COMMIT_CITATIONS.json",
         "docs/state-history/PROJECT_STATE_2026-08-24.md"
+      ]
+    },
+    "98643bc7cce792df794c8b2d2fca77b0d237026c": {
+      "subject": "experiment(v24): execute frozen L4 retention gate",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "9acff7900e057629f61217c1b481993ea8726449": {
@@ -1915,6 +2150,14 @@
         "docs/state-history/PROJECT_STATE_2026-08-24.yaml"
       ]
     },
+    "9f1bf3d8f50396fd3b5c0fa870b66632b57e863e": {
+      "subject": "Record verified V38 recursive macro archive and conditional L9 continuation",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RESEARCH_INTEGRATION_2026-10-05.md"
+      ]
+    },
     "a1409bfd56aea7216b049ff53ef9ed06d07d5f5a": {
       "subject": "feat: freeze M083 GUI desktop protocol and image recipe before harness",
       "preserved_by": "main",
@@ -1926,12 +2169,32 @@
         "experiments/M083/STATUS.md"
       ]
     },
+    "a18192ba57325e356e68e4d33f0c2a6d783efaaf": {
+      "subject": "Preserve positive V49 coupled pilot with complete raw evidence and native-work boundary",
+      "preserved_by": "provenance/v49-freeze-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V49_FRESH_2026-10-05.md",
+        "experiment/rsi_v49/FRESH_FREEZE.json",
+        "results/rsi-v49/coupled-fresh-20261005/MANIFEST.json"
+      ]
+    },
     "a2d8948246a0ceeebe88496e860695760dbe16e1": {
       "subject": "ci(m040): run focused post-migration development integration",
       "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "results/M040_DEVELOPMENT_000.md"
+      ]
+    },
+    "a3dcd40f6da8dbca897eaf04e2ff75bc1a431917": {
+      "subject": "Add prospective coupled native dataflow archive and preserve completed branch cleanup",
+      "preserved_by": "provenance/v49-apparatus-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V49_FRESH_2026-10-05.md",
+        "docs/RSI_V49_PILOT_2026-10-05.md",
+        "results/rsi-v49/coupled-pilot-20261005/MANIFEST.json"
       ]
     },
     "a517e6bb76e8476ab6aca8c0a68c5bcfc3501d57": {
@@ -1967,7 +2230,7 @@
       ]
     },
     "a9cdaaf391d2f3a77a1f39738303964fbae87021": {
-      "subject": "feat(m094): generic AST-driven synthesis engine (P6) feat(m094): experiment runner orchestrating diagnosis\u2192synthesis\u2192adoption feat(docker): sandbox isolation Dockerfile",
+      "subject": "feat(m094): generic AST-driven synthesis engine (P6) feat(m094): experiment runner orchestrating diagnosis→synthesis→adoption feat(docker): sandbox isolation Dockerfile",
       "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
@@ -1998,8 +2261,9 @@
     },
     "ac848e7320be6197d291a3276af3fb887ef057a9": {
       "subject": "research(v32): commit the exact memory apparatus, selected tolerance and fresh population before execution",
-      "preserved_by": "research/rsi-v32-memory-compatibility",
+      "preserved_by": "main",
       "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
         "docs/RSI_V32_MEMORY_RESULTS_2026-10-01.md"
       ]
     },
@@ -2053,6 +2317,14 @@
         "experiments/M065/CANONICAL_ARMED.json",
         "experiments/M065/DEVELOPMENT_RESULT.md",
         "experiments/M066/PROTOCOL.md"
+      ]
+    },
+    "b1565d22f0e86e54dc748912bee11e3d3c739287": {
+      "subject": "Merge main into research/energy-compute-e0-e1",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "b1f920b44707b5da3c90f99a6b51a9b070fbbf10": {
@@ -2209,6 +2481,22 @@
         "experiments/M102/README.md"
       ]
     },
+    "bde00b168597e45fe20b062ec13d19fab6563771": {
+      "subject": "docs: register V22/V22R cited commits",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
+    "c0ab64db0ef1a6f2445219c7bc3daa296ec94ea1": {
+      "subject": "docs(cognition): record lineage-held search proposal path",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "c1e8f3cd30c314f55d511dc2409324ac7df343b8": {
       "subject": "feat(genesis): select bounded form transition from lineage evidence",
       "preserved_by": "main",
@@ -2296,6 +2584,14 @@
         "results/M012b.md",
         "results/M012b_raw/REPRODUCIBILITY.md",
         "results/M012b_raw/summary.json"
+      ]
+    },
+    "c6b5ec9be881f2a7f114e6d5b0c6be2bc13c008e": {
+      "subject": "Evolve lineage-held mutation machinery under external control (#350)",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "c75e57cfb23bcaccab98f449bfef0d83fe530ad4": {
@@ -2531,6 +2827,14 @@
         "experiments/M103/CHECKER_FAILURE.json"
       ]
     },
+    "dd51043f2eeaf9766171e0c9493000778c8267aa": {
+      "subject": "chore(v22r): remove completed one-shot workflow one-shot-v22r-r1-evaluate-20260924.yml",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "dd74e17531e9845556bd9877c16cdbfb3a2b34ff": {
       "subject": "test: lock M072 preregistration invariants",
       "preserved_by": "main",
@@ -2621,6 +2925,14 @@
         "experiments/M075/MODEL_DEVELOPMENT_RESULT.md"
       ]
     },
+    "e1c35bb03184dbd87d8be5a626cc0915e86d6fcc": {
+      "subject": "results(v22r): restore exact progression R2 s2 transcript bytes",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "e309169b4edf8a508ec60990e68ba079fd032f2c": {
       "subject": "docs(m013e): record M013d development failure",
       "preserved_by": "provenance/26c8671",
@@ -2648,6 +2960,14 @@
         "docs/COMMIT_CITATIONS.json",
         "docs/RSI_L6_L8_RESULTS_2026-10-01.md",
         "experiment/rsi_v30/V30_SCIENTIFIC_FREEZE.json"
+      ]
+    },
+    "e6447bf0551af72616a18df38cd53ce1b2f94982": {
+      "subject": "test(v25): lock bounded exploration and diversity trace",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "e68b85ea43653fdeeb5ada4847a7a57f235eefc7": {
@@ -2723,6 +3043,15 @@
         "experiments/M084/STATUS.md"
       ]
     },
+    "ed5f3fd11435033dd99ce750b567ececed764c32": {
+      "subject": "Add prospective learned-block recombination diagnosis with matched archive ablation",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V36_RECOMBINATION_2026-10-04.md",
+        "results/rsi-v36/recombination-pilot-20261004/MANIFEST.json"
+      ]
+    },
     "ee0079f814fb8df7ec3d1feddc8fe1ab3155b324": {
       "subject": "research(v29): preserve original bounded L7 result and every native control receipt",
       "preserved_by": "main",
@@ -2731,12 +3060,28 @@
         "docs/RSI_L6_L8_RESULTS_2026-10-01.md"
       ]
     },
+    "eed8a2399b0fada782f7da06bf79277d97bf67b4": {
+      "subject": "Document matched cognitive measurement boundary",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
+      ]
+    },
     "ef7a0945ede28128ebde956effc032aaa85011af": {
       "subject": "science(m101): freeze stable-process protocol v3",
       "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "experiments/M101/PRE_RUN_AMENDMENT_003.md"
+      ]
+    },
+    "f004e835e5a16c672224feebad2c68ca5e7d0e2f": {
+      "subject": "merge: update post-L4 preregistration onto canonical V22 main",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "f033ac70628e79550e6263ac2bb60a6769bca42e": {
@@ -2773,6 +3118,14 @@
         "docs/RSI_L9_L10_READINESS_2026-10-01.md",
         "experiment/rsi_v31/V31_SCIENTIFIC_FREEZE.json",
         "results/rsi-v31/archive-20261001/PROJECT_PIN.json"
+      ]
+    },
+    "f30d19087a7daf752eacc91d87d615687133c35f": {
+      "subject": "Freeze V37 native construction population before fresh behavior",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V37_FRESH_2026-10-04.md"
       ]
     },
     "f336d7128377aa7f7d866f5e3c190989c79b0570": {
@@ -2867,6 +3220,25 @@
         "metamorphosis/m068_open_command_induction.py"
       ]
     },
+    "f8eb86cb23ae277aa8b59e30f4f779a0fe61c650": {
+      "subject": "Preserve positive V38 pilot and fixed-call recursive continuation model",
+      "preserved_by": "provenance/native-archive-integrated-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/RSI_V38_FRESH_2026-10-04.md",
+        "experiment/rsi_v38/FRESH_FREEZE.json",
+        "results/rsi-v38/recursive-macro-fresh-20261004/MANIFEST.json"
+      ]
+    },
+    "f9929b318f2dd91f82e649107ae78605e7c321b5": {
+      "subject": "Vérifier la barrière de réservation dans une racine de test isolée",
+      "preserved_by": "provenance/remote-v48-development-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/PARALLEL_RSI_ARCHIVE_2026-10-05.md",
+        "docs/RESEARCH_INTEGRATION_2026-10-05.md"
+      ]
+    },
     "fa5d8962bce1659831f98938a194a226883d347c": {
       "subject": "test: freeze M071 fresh task selection rule",
       "preserved_by": "main",
@@ -2879,6 +3251,14 @@
         "experiments/M071/TASK_SELECTION.json",
         "experiments/M071/TASK_SELECTION.md",
         "tests/test_m071_external_task_selection.py"
+      ]
+    },
+    "fb00d15f7de983d4505047b70ad032db223155f2": {
+      "subject": "Bind cognitive rollback to installed transition provenance",
+      "preserved_by": "main",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/maintenance/merged-branches-20261005.json"
       ]
     },
     "fc460059650f747e866c08e55844b236b9c3aabf": {

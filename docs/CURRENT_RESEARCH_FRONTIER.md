@@ -1,8 +1,73 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 1 October 2026, bounded L6–L8; L9 operations and L10 preparation.**
+**Reader-facing status snapshot — 5 October 2026, bounded L6–L8; scoped coupled native archives, general L9 and L10 open.**
 
 ## Active RSI frontier
+
+V49's prospectively frozen **coupled native pipeline archive assay is positive**:
+448/448 fresh tasks, against latest-tool ablation 134, greedy 72 and cold 132.
+All six predicates and original full replay pass. Real SQLite, regex, JSON and
+zlib steps consume the previous step's result, replacing independent-slot feedback.
+All calls, native primitive visits and transformed bytes are retained; complete raw
+evidence is publicly packaged. Positive conservative cohort discovery persists
+through length 64, but discovery per native visit declines about 133-fold. A
+work-sensitive argument bounds it above by 1/(32n), and finite SHA-256 diagnostic
+space cannot guarantee indefinite novelty. The closed host curriculum, fixed
+kernels and scheduler remain. General L9, new G8 and independent L10 remain open.
+See [V49's fresh result and work/novelty boundary](RSI_V49_FRESH_2026-10-05.md).
+
+The parallel V33–V48 development line is preserved without source-path collision
+in a pinned optional research snapshot. Its original V42 negative and V43–V47
+development are unchanged; its V48 fresh population is unspent here. See
+[the two-line archive integration](PARALLEL_RSI_ARCHIVE_2026-10-05.md).
+
+V38's prospectively frozen **recursive-macro archive assay is positive** under a
+fixed twenty-six-call cap. Newly successful whole programs become the next
+generation's construction operators. The archive and ancestor-macro control each
+solve 576/576 fresh tasks; latest acquisitions use 4,838 versus 7,419 calls from
+level two onward. Greedy solves 207 and cold 192. All six scoped predicates and
+full replay pass. Every cohort adds four solved behaviors through nine levels and
+length 256, with branching, rediscovery and exact process recovery. A conditional
+symbolic induction supplies constant discovery/charged-call bound at arbitrary
+depth, replacing V37's declining bound. Native work and storage still grow;
+fixed worker limits ultimately constrain physical continuation. The host-authored
+composition curriculum/scheduler and fixed primitive kernels remain. General L9,
+a new G8 policy and independent L10 remain open. See
+[V38's exact result and remaining limits](RSI_V38_FRESH_2026-10-04.md).
+
+V37's prospectively frozen **paid native-construction assay is positive** on
+whole-body recombinations. Its archive solves 384/384 fresh tasks, including
+192/192 rewrites with 2,718 charged calls against the point archive's 6,303.
+Point and cold controls also solve all tasks; the gain is construction efficiency.
+All five scoped predicates and full replay pass. V36's preceding development
+negative remains preserved, including final zero-discovery windows and exact
+depth/root/ordering diagnosis. V37 uses a new host-authored coordinate scheduler
+with prospectively dimensioned equal-arm caps, replacing G7 scheduling. Acquired
+fragment values do not qualify a new G8. Its conditional model permits arbitrary
+motif-position rewrites, but cost grows and the discovery/call bound tends to zero.
+The fixed primitive/fragment grammar, general L9 and independent L10 remain open.
+See [V37's fresh result](RSI_V37_FRESH_2026-10-04.md) and
+[V36's preserved negative](RSI_V36_RECOMBINATION_2026-10-04.md).
+
+V35's prospectively frozen **native sustained-archive assay is positive** on
+SQLite, regex, JSON and zlib append extensions. The four-branch archive solves
+4,608/4,608 tasks against greedy 1,736 and cold 880, using 23,665 charged
+evaluations against cold 55,848. Twelve epochs in each seed/domain retain positive
+first-solving discovery, branching, rediscovery and actual process recovery.
+There are 576 cohort discovery events and 529 globally distinct solved semantic
+bodies. All seven scoped predicates and the supplemental full replay pass.
+The unchanged G7 policy, host-provided primitives and append-only curriculum limit
+the result. A conditional continuation argument accompanies the finite assay;
+general L9, a new G8 policy and independent L10 remain unpassed. The original
+checker and its retrospective audit gaps remain disclosed.
+See [V35's results, chronology and exact scope](RSI_V35_FRESH_2026-10-04.md).
+
+V33/V34 are separately preserved development diagnoses on consumed V31/V32
+populations. V33 omitted some paid successful probes; V34 corrects that accounting
+without editing V33. Always closest-two solves 331/456 against cold 287/456,
+while adaptive probing solves 291/456. These results qualify no new acquisition.
+See [V33](RSI_V33_DEVELOPMENT_2026-10-04.md) and
+[V34](RSI_V34_DEVELOPMENT_2026-10-04.md).
 
 V28 validates **bounded L6 repeated meta-descent**: exact G3 automatically discovers
 G4, G5 and G6, with three causal transitions and fresh gains on a new 48-case
