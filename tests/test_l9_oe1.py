@@ -1,7 +1,7 @@
 """OE1 persistent open-ended research tests."""
 from experiment.l9_oe1.curriculum import frontier, propose
 from experiment.l9_oe1.improver import ImproverGenome
-from experiment.l9_oe1.qd import BehaviorProfile, QDArchive, behavior_distance
+from experiment.l9_oe1.qd import BehaviorProfile, DOMINANCE_RADIUS, QDArchive, behavior_distance
 from experiment.l9_oe1.replay import replay_task
 from experiment.l9_oe1.store import ExperienceStore
 
@@ -85,7 +85,7 @@ def test_replay_never_uses_candidate_quality_for_priority():
 def test_qd_archive_preserves_behavioural_stepping_stones():
     a = BehaviorProfile(frozenset({"a", "b"}), 10.0, 0.2, 0.50)
     b = BehaviorProfile(frozenset({"c", "d"}), 10.0, 0.2, 0.49)
-    assert behavior_distance(a, b) > 0.5
+    assert behavior_distance(a, b) > DOMINANCE_RADIUS
     archive = QDArchive(max_size=8)
     ok_a, _ = archive.add("a", a, learning_progress=0.1)
     ok_b, _ = archive.add("b", b, learning_progress=0.1)
