@@ -1,5 +1,3 @@
-[Reading 80 lines from start (total: 80 lines, 0 remaining)]
-
 # V52 — abstraction memory and prospective sustained assay
 
 V52 follows V51's structured experimental memory. V51 showed that persistent,
@@ -80,5 +78,3 @@ L9. The population is finite, project-authored and remains inside the bounded bi
 transducer grammar. General L9 still requires evidence that the positive discovery
 process survives materially broader task diversity under fixed external
 governance; L10 independently maintained replication remains separate.
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
