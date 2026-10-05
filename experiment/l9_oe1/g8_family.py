@@ -102,7 +102,7 @@ def neighbors(params):
     rows = []
     for axis, values in AXES.items():
         current = p[axis]
-        if axis == "strategy":
+        if axis in ("strategy", "commit_quality"):
             targets = [value for value in values if value != current]
         else:
             index = values.index(current)
