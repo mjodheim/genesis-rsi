@@ -1,5 +1,3 @@
-[Reading 65 lines from start (total: 65 lines, 0 remaining)]
-
 """Prospective V52 freeze verification."""
 import json
 from pathlib import Path
@@ -65,5 +63,3 @@ def verify(value=None):
     if value != expected:
         raise ValueError("V52 prospective freeze differs from committed apparatus or population")
     return True
-
-[executed on device: Mjodheim-Ubuntu-cx33 (915d6eb6-54f1-400c-8c12-a1e043b0a356)]
