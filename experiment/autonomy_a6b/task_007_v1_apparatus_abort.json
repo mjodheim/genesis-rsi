@@ -1,0 +1,11 @@
+{
+  "schema": "mira-genesis-a6b-task007-apparatus-abort-v1",
+  "task_id": 7,
+  "status": "ABORTED_BEFORE_CANDIDATE_EVALUATION",
+  "frozen_evaluator_commit": "7c1cbab0",
+  "reason": "The frozen evaluator imported joblib, which is unavailable in the fixed research Python environment. The baseline therefore failed at evaluator startup before any candidate was generated or evaluated.",
+  "candidate_generation_started": false,
+  "outcome_observed": false,
+  "external_model_calls": 0,
+  "replacement_rule": "Preserve the same mapping and unrelated-source criteria using Python stdlib AST only, then freeze a new evaluator before any candidate evaluation."
+}
