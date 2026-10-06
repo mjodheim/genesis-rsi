@@ -1,0 +1,17 @@
+{
+  "schema": "mira-genesis-autonomy-a4-evaluator-v2",
+  "status": "FROZEN_BEFORE_V2_CANDIDATE_EVALUATION",
+  "supersedes": "experiment/autonomy_a4/EVALUATOR.json",
+  "revision_reason": "V1 react-scripts/Jest could not execute due an upstream Babel dependency-version mismatch. V2 loads the same frozen GridState source through Node vm after deterministic module-syntax adaptation and executes explicit primary-index and regression checks.",
+  "carrier_repository": "chris-monahan/tictactoe",
+  "carrier_commit": "27a43cee5087decc8bab2d349a223ce9b70c2d20",
+  "evaluator_program": "experiment/autonomy_a4/DIRECT_EVALUATOR.mjs",
+  "command": ["node", "experiment/autonomy_a4/DIRECT_EVALUATOR.mjs", "<workspace>/src/GridState.js"],
+  "network_required": false,
+  "objective_semantics_changed_since_v1": false,
+  "candidate_generator_changed_since_v1": false,
+  "baseline_must_fail_primary_objective": true,
+  "candidate_pass_rule": "direct evaluator exit code 0 with objective_ok=true and regression_ok=true",
+  "external_model_calls": 0,
+  "manual_candidate_repair_allowed": false
+}
