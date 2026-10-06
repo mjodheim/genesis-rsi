@@ -1,0 +1,12 @@
+{
+  "schema": "mira-genesis-a6-task005-protocol-v1",
+  "status": "FROZEN_BEFORE_BASELINE_OR_CANDIDATE_EVALUATION",
+  "carrier": "astragenie/astramem-local#280",
+  "carrier_commit": "096d1fd5742ab81feb1c0d71e9b91660e393ec56",
+  "objective": "A matches_gold verdict with matched_gold_index==goldCount and a reason explicitly identifying valid gold index 3 must not silently leave gold index 3 unmatched.",
+  "target_path": "scripts/eval/extraction-bench/lib/judge.ts",
+  "memory_generation": 4,
+  "candidate_budget": 256,
+  "fallback_on_autonomous_failure": true,
+  "external_model_calls_before_evaluation": 0
+}
