@@ -1,0 +1,20 @@
+{
+  "schema": "mira-genesis-autonomy-a2-abort-v1",
+  "run": 1,
+  "date": "2026-10-06",
+  "pid": 1463854,
+  "candidate_generator_freeze_commit": "d5ef0781",
+  "protocol_freeze_commit": "b278b08e",
+  "charged_candidate_executions": 2030,
+  "candidate_loop_completed_before_abort": true,
+  "candidate_outcomes_persisted": false,
+  "candidate_outcomes_inspected_before_revision": false,
+  "abort_stage": "post-evaluation result serialization",
+  "error": "NameError: name 'false' is not defined",
+  "cause": "Python runner used JSON literal false instead of Python False in the final result payload.",
+  "candidate_code_changed": false,
+  "objective_changed": false,
+  "candidate_generator_changed": false,
+  "classification": "APPARATUS_ABORT",
+  "policy": "The run is retained as an abort. It is not silently overwritten or counted as an A2 result."
+}
