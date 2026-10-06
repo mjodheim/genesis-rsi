@@ -1,0 +1,13 @@
+{
+  "schema": "mira-genesis-a6v2-carrier-exclusion-v1",
+  "candidate_index": 5,
+  "queue_index": 6,
+  "carrier": "CEES-STELLAR-COTERIE/cee-stellar-stream-api#5",
+  "carrier_commit": "ea2b70324de130ec8d360f1050c99b4baf4b223b",
+  "classification": "NO_CONFIRMED_REPRODUCIBLE_FAILURE",
+  "reason": "The issue is explicitly a request to double-check whether tx_ledger and the contract's end_ledger pinning can disagree. The frozen repository contains the API/indexer but not the referenced contracts/stream source, so the suspected off-by-one cannot be established as a failing local baseline.",
+  "candidate_evaluations": 0,
+  "fallback_model_calls": 0,
+  "counts_as_runnable_task": false,
+  "policy": "Preserved as a pre-outcome qualification exclusion; no synthetic bug or assumption is introduced."
+}
