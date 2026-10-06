@@ -1,0 +1,13 @@
+{
+  "schema": "mira-genesis-a6v2-carrier-exclusion-v1",
+  "candidate_index": 3,
+  "queue_index": 4,
+  "carrier": "artemis-sbs/LegendaryMissions#680",
+  "carrier_commit": "b36151b483b9ef5aa66d85118f7424bda2fe4985",
+  "classification": "BASELINE_NOT_LOCAL_TO_CARRIER_REPOSITORY",
+  "reason": "The issue reports behavior of FrameContext.context.sbs.get_text_block_height supplied by the external Artemis Cosmos engine. The frozen LegendaryMissions repository contains no implementation or local test target for get_text_block_height, so the public failure cannot be reproduced or repaired inside this carrier.",
+  "candidate_evaluations": 0,
+  "fallback_model_calls": 0,
+  "counts_as_runnable_task": false,
+  "policy": "Preserved pre-outcome qualification exclusion; advance to the next item in the frozen metadata queue."
+}
