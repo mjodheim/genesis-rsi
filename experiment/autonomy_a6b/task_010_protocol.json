@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6b-task010-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_033_freeze.json",
+  "carrier": "caorantaoyao/mm-truncate#1",
+  "carrier_commit": "53bdc652b0e8c5879158b9cc3927e9bddbba3a00",
+  "task_id": 10,
+  "target_language": "Python",
+  "qualification": "truncate() slices to max_len + 1 when truncation is required, returning one extra source character.",
+  "target_source": ["textutil.py"],
+  "memory": "experiment/autonomy_a6b/MEMORY_019.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_010_eval.py",
+  "pass_rule": "truncate must return exactly max_len source characters plus the ellipsis when truncating and preserve shorter/equal strings. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
