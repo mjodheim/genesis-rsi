@@ -1,0 +1,11 @@
+{
+  "schema": "mira-genesis-a6-task006-fallback-apparatus-abort-v1",
+  "stage": "post-model pre-evaluation proposal import",
+  "classification": "ABSOLUTE_PATH_IMPORT_REJECTED",
+  "model_calls_consumed": 1,
+  "model_retry_allowed": false,
+  "semantic_candidate_evaluations": 0,
+  "reason": "The frozen fallback processor accepted only repository-relative edit paths. The one allowed model call returned an absolute path that points inside the frozen source repository. V2 changes only path transport by mapping an absolute path under the frozen source root to its repository-relative path; edit old/new content is unchanged.",
+  "external_model_calls": 1,
+  "manual_candidate_repair": false
+}
