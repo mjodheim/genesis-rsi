@@ -1,0 +1,64 @@
+{
+  "autonomous_passed": false,
+  "baseline": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_008_eval.py",
+      "/home/anthony/experiments/a6b-c031"
+    ],
+    "elapsed_ms": 66,
+    "exit_code": 1,
+    "parsed": {
+      "core_default_skill_present": false,
+      "external_model_calls": 0,
+      "external_skill_ready_broadcasts_present": true,
+      "objective_ok": false,
+      "schema": "mira-genesis-a6b-task008-evaluator-v2",
+      "unrelated_config_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"core_default_skill_present\": false, \"external_model_calls\": 0, \"external_skill_ready_broadcasts_present\": true, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task008-evaluator-v2\", \"unrelated_config_preserved\": true}\n"
+  },
+  "candidate_budget": 256,
+  "carrier": "andlo/haos-ovos-addons#8",
+  "charged_candidate_executions": 0,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 18,
+  "records": [],
+  "report_digest": "d28c8cb26a0b91a2d8264814e591d2a4b448e091ada80955bfbc5d4b5e1640f6",
+  "retry_count": 0,
+  "schedule": {
+    "family_input_counts": {
+      "coordinated": 0,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 0,
+      "scalar": 0
+    },
+    "family_scheduled_counts": {
+      "coordinated": 0,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 0,
+      "scalar": 0
+    },
+    "schedule_digest": "7e6cfd6d76f470ba631344fccf34edc0c0d65b61d04038d6936e478069834daa",
+    "scheduled_count": 0,
+    "schema": "genesis-fair-candidate-schedule-v1",
+    "weights": {
+      "coordinated": 1,
+      "exemplar": 1,
+      "learned": 1,
+      "learned_coordinated": 3,
+      "retained": 1,
+      "scalar": 4
+    }
+  },
+  "schema": "mira-genesis-a6b-autonomous-task-result-v1",
+  "task_id": 8,
+  "winner": null,
+  "winner_replay": null
+}
