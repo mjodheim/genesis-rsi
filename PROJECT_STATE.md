@@ -1,6 +1,6 @@
 # Genesis — current authoritative project state
 
-**Updated: 6 October 2026 — OE1-v3 passes the project-defined finite operational L9 gate; L10 independent replication remains open; Genesis v2 efficiency-first architecture reset is DEVELOPMENT navigation and changes no scientific gate.**
+**Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; the Genesis v2 project-defined G5 autonomous-experiment-generation gate is now passed in a bounded preregistered qualification; L10 independent replication and general RSI remain open.**
 
 Genesis is the renamed continuation of **Mira Genesis**. Historical records keep their original project name; the rename changes neither authorship nor frozen evidence.
 
@@ -17,6 +17,14 @@ This is a finite operational L9 closure under the project's precommitted criteri
 It does **not** establish asymptotic open-endedness, general RSI, AGI, or L10. L10
 remains separately open and requires genuine external governance, reproduction and
 adversarial audit.
+
+### Genesis v2 G5 qualification
+
+The project-defined G5 autonomous-experiment-generation gate is now **PASSED** under the prospectively frozen qualification committed before holdout reveal. A separate C# calibration miss was attributed by G3 to `operator`; G4 preserved both `structural_operator_engine` and `universal_operator_ir` as plausible mutable components; G5 then generated a five-arm matched-budget experiment using only the SHA-256 identity of a six-case hidden holdout. The preregistration was frozen in commit `cb33aef4` before reveal.
+
+On the revealed holdout, the unchanged parent and both structural-operator arms solved **0/6**, while both `universal_operator_ir` arms solved **5/6** with **zero external model calls**. Removing the winning component reduced the result to **0/6**, satisfying the frozen causal-ablation predicate. All seven preregistered qualification predicates returned true and the frozen verdict is **`G5_SCIENTIFIC_GATE_PASSED`**. The positive result was frozen separately in commit `e0a7e07c`; exact identities and claim boundaries are recorded in [`docs/G5_QUALIFICATION_2026-10-07.md`](docs/G5_QUALIFICATION_2026-10-07.md).
+
+This is bounded, project-created evidence with an evaluator external to mutable Genesis. It is **not** independent third-party validation and does not close G6, G4's strongest static-control criterion, general RSI, AGI or ASI.
 
 V26's single prospectively frozen Track A attempt returns **POSITIVE_BOUNDED_L5**.
 The qualified V22R G2 controller selects an executable two-component G3 descendant
