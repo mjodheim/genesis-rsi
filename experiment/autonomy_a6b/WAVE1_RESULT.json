@@ -1,0 +1,59 @@
+{
+  "autonomous_successes": 1,
+  "causal_reuse_successes": 1,
+  "fallback_rate": 0.75,
+  "fallback_required": 3,
+  "model_calls": 3,
+  "model_calls_per_solved": 1.0,
+  "note": "Task 3 is conservatively counted as a pipeline miss; its post-outcome evaluator mismatch is preserved separately and was not repaired or retried.",
+  "schema": "mira-genesis-a6b-wave-result-v1",
+  "solved": 3,
+  "tasks": [
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "109c4dec40f31eddf24cd363d80ea64a3099ab5060d9c57ddf9e2a7160c5a3e1",
+      "carrier": "vjuliaife/TariffShield#492",
+      "fallback_passed": true,
+      "fallback_report_digest": "69c1d46bad4f811275eae3fd5fadb3f65515b2f389f3c2c8a7977aa9001fdcf9",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": true,
+      "task_id": 1
+    },
+    {
+      "autonomous_passed": true,
+      "autonomous_report_digest": "8a67819b04565df84cc67550f956182cac71723c8ac2c696db79f9bdfc272fdb",
+      "carrier": "yaso09/tengiz#1161",
+      "fallback_passed": null,
+      "fallback_report_digest": null,
+      "fallback_required": false,
+      "model_calls": 0,
+      "solved": true,
+      "task_id": 2
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "d46d702499b335a875a43d7acee85f17056e33dd62789684225bc505d7bec667",
+      "carrier": "lafuan/Sribuu#1405",
+      "fallback_passed": false,
+      "fallback_report_digest": "631ff62cc40214111fadd9d56b2e415abef5b0adb925f88a5d4a7a8ee55ee7d4",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": false,
+      "task_id": 3
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "ef49fe06b29fdad83b0a8d8bbf64bed2068e82c5e839ca129c56f40c2c4407cb",
+      "carrier": "Analyst-Harsh/triage-bot-test#28",
+      "fallback_passed": true,
+      "fallback_report_digest": "5b248eff1e8d8c71fddbbf76691077098760fee9707ca5366a362427f81cdca9",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": true,
+      "task_id": 4
+    }
+  ],
+  "wave": 1,
+  "within_a6b_prior_task_reuses": 0
+}
