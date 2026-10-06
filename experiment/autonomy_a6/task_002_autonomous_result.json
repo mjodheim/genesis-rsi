@@ -1,0 +1,383 @@
+{
+  "autonomous_passed": true,
+  "baseline": {
+    "argv": [
+      "node",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_002_eval.mjs",
+      "/home/anthony/experiments/a6v2-c002"
+    ],
+    "elapsed_ms": 71,
+    "exit_code": 1,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": false,
+      "results": [
+        {
+          "actual": "he",
+          "expected": "hel",
+          "maxLen": 3,
+          "ok": false,
+          "value": "hello"
+        },
+        {
+          "actual": "",
+          "expected": "a",
+          "maxLen": 1,
+          "ok": false,
+          "value": "abcdef"
+        },
+        {
+          "actual": "abcde",
+          "expected": "abcdef",
+          "maxLen": 6,
+          "ok": false,
+          "value": "abcdef"
+        },
+        {
+          "actual": "",
+          "expected": "",
+          "maxLen": 0,
+          "ok": true,
+          "value": ""
+        }
+      ],
+      "schema": "mira-genesis-a6-task002-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"schema\":\"mira-genesis-a6-task002-evaluator-v1\",\"objective_ok\":false,\"results\":[{\"value\":\"hello\",\"maxLen\":3,\"expected\":\"hel\",\"actual\":\"he\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":1,\"expected\":\"a\",\"actual\":\"\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":6,\"expected\":\"abcdef\",\"actual\":\"abcde\",\"ok\":false},{\"value\":\"\",\"maxLen\":0,\"expected\":\"\",\"actual\":\"\",\"ok\":true}],\"external_model_calls\":0}\n"
+  },
+  "candidate_budget": 256,
+  "candidate_pool_size": 12,
+  "carrier": "linnin233-l/spica-test-2#11",
+  "charged_candidate_executions": 4,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 1,
+  "records": [
+    {
+      "candidate_digest": "4884402820bddd855487157c852a120721657f92a4185dc2602c731fb59efbb7",
+      "evaluation": {
+        "argv": [
+          "node",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_002_eval.mjs",
+          "/tmp/genesis-a6-auto-ino3umvs/candidate-001"
+        ],
+        "elapsed_ms": 43,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "actual": "he",
+              "expected": "hel",
+              "maxLen": 3,
+              "ok": false,
+              "value": "hello"
+            },
+            {
+              "actual": "",
+              "expected": "a",
+              "maxLen": 1,
+              "ok": false,
+              "value": "abcdef"
+            },
+            {
+              "actual": "abcde",
+              "expected": "abcdef",
+              "maxLen": 6,
+              "ok": false,
+              "value": "abcdef"
+            },
+            {
+              "actual": "",
+              "expected": "",
+              "maxLen": 0,
+              "ok": true,
+              "value": ""
+            }
+          ],
+          "schema": "mira-genesis-a6-task002-evaluator-v1"
+        },
+        "stderr": "",
+        "stdout": "{\"schema\":\"mira-genesis-a6-task002-evaluator-v1\",\"objective_ok\":false,\"results\":[{\"value\":\"hello\",\"maxLen\":3,\"expected\":\"hel\",\"actual\":\"he\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":1,\"expected\":\"a\",\"actual\":\"\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":6,\"expected\":\"abcdef\",\"actual\":\"abcde\",\"ok\":false},{\"value\":\"\",\"maxLen\":0,\"expected\":\"\",\"actual\":\"\",\"ok\":true}],\"external_model_calls\":0}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-4884402820bddd85",
+      "label": "integer_delta:utils.js:55",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 1
+    },
+    {
+      "candidate_digest": "049bda8424866e67d1022f33964ab8ed790f279ba4108b693d684f4f8be3be3b",
+      "evaluation": {
+        "argv": [
+          "node",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_002_eval.mjs",
+          "/tmp/genesis-a6-auto-ino3umvs/candidate-002"
+        ],
+        "elapsed_ms": 43,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "actual": "he",
+              "expected": "hel",
+              "maxLen": 3,
+              "ok": false,
+              "value": "hello"
+            },
+            {
+              "actual": "",
+              "expected": "a",
+              "maxLen": 1,
+              "ok": false,
+              "value": "abcdef"
+            },
+            {
+              "actual": "abcde",
+              "expected": "abcdef",
+              "maxLen": 6,
+              "ok": false,
+              "value": "abcdef"
+            },
+            {
+              "actual": "",
+              "expected": "",
+              "maxLen": 0,
+              "ok": true,
+              "value": ""
+            }
+          ],
+          "schema": "mira-genesis-a6-task002-evaluator-v1"
+        },
+        "stderr": "",
+        "stdout": "{\"schema\":\"mira-genesis-a6-task002-evaluator-v1\",\"objective_ok\":false,\"results\":[{\"value\":\"hello\",\"maxLen\":3,\"expected\":\"hel\",\"actual\":\"he\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":1,\"expected\":\"a\",\"actual\":\"\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":6,\"expected\":\"abcdef\",\"actual\":\"abcde\",\"ok\":false},{\"value\":\"\",\"maxLen\":0,\"expected\":\"\",\"actual\":\"\",\"ok\":true}],\"external_model_calls\":0}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-049bda8424866e67",
+      "label": "integer_delta:utils.js:55",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 2
+    },
+    {
+      "candidate_digest": "36b1ad08ce2596aa8f14acfd041075abd650f308a64f3ada4783f513963a8313",
+      "evaluation": {
+        "argv": [
+          "node",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_002_eval.mjs",
+          "/tmp/genesis-a6-auto-ino3umvs/candidate-003"
+        ],
+        "elapsed_ms": 51,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "actual": "e",
+              "expected": "hel",
+              "maxLen": 3,
+              "ok": false,
+              "value": "hello"
+            },
+            {
+              "actual": "",
+              "expected": "a",
+              "maxLen": 1,
+              "ok": false,
+              "value": "abcdef"
+            },
+            {
+              "actual": "bcde",
+              "expected": "abcdef",
+              "maxLen": 6,
+              "ok": false,
+              "value": "abcdef"
+            },
+            {
+              "actual": "",
+              "expected": "",
+              "maxLen": 0,
+              "ok": true,
+              "value": ""
+            }
+          ],
+          "schema": "mira-genesis-a6-task002-evaluator-v1"
+        },
+        "stderr": "",
+        "stdout": "{\"schema\":\"mira-genesis-a6-task002-evaluator-v1\",\"objective_ok\":false,\"results\":[{\"value\":\"hello\",\"maxLen\":3,\"expected\":\"hel\",\"actual\":\"e\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":1,\"expected\":\"a\",\"actual\":\"\",\"ok\":false},{\"value\":\"abcdef\",\"maxLen\":6,\"expected\":\"abcdef\",\"actual\":\"bcde\",\"ok\":false},{\"value\":\"\",\"maxLen\":0,\"expected\":\"\",\"actual\":\"\",\"ok\":true}],\"external_model_calls\":0}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-36b1ad08ce2596aa",
+      "label": "integer_delta:utils.js:153",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 3
+    },
+    {
+      "candidate_digest": "8dc071c5cab43d8305822b5d4bbdacd9189aeb5a4b708f57e6787366eb5b52a5",
+      "evaluation": {
+        "argv": [
+          "node",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_002_eval.mjs",
+          "/tmp/genesis-a6-auto-ino3umvs/candidate-004"
+        ],
+        "elapsed_ms": 42,
+        "exit_code": 0,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": true,
+          "results": [
+            {
+              "actual": "hel",
+              "expected": "hel",
+              "maxLen": 3,
+              "ok": true,
+              "value": "hello"
+            },
+            {
+              "actual": "a",
+              "expected": "a",
+              "maxLen": 1,
+              "ok": true,
+              "value": "abcdef"
+            },
+            {
+              "actual": "abcdef",
+              "expected": "abcdef",
+              "maxLen": 6,
+              "ok": true,
+              "value": "abcdef"
+            },
+            {
+              "actual": "",
+              "expected": "",
+              "maxLen": 0,
+              "ok": true,
+              "value": ""
+            }
+          ],
+          "schema": "mira-genesis-a6-task002-evaluator-v1"
+        },
+        "stderr": "",
+        "stdout": "{\"schema\":\"mira-genesis-a6-task002-evaluator-v1\",\"objective_ok\":true,\"results\":[{\"value\":\"hello\",\"maxLen\":3,\"expected\":\"hel\",\"actual\":\"hel\",\"ok\":true},{\"value\":\"abcdef\",\"maxLen\":1,\"expected\":\"a\",\"actual\":\"a\",\"ok\":true},{\"value\":\"abcdef\",\"maxLen\":6,\"expected\":\"abcdef\",\"actual\":\"abcdef\",\"ok\":true},{\"value\":\"\",\"maxLen\":0,\"expected\":\"\",\"actual\":\"\",\"ok\":true}],\"external_model_calls\":0}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-8dc071c5cab43d83",
+      "label": "integer_delta:utils.js:165",
+      "operator": "integer_delta",
+      "passed": true,
+      "rank": 4
+    }
+  ],
+  "report_digest": "925386e7af5c1e29364def8a1edc997cc19ab260a0b7cb18ae995a66382c8280",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-autonomous-task-result-v1",
+  "task_id": 2,
+  "winner": {
+    "candidate_digest": "8dc071c5cab43d8305822b5d4bbdacd9189aeb5a4b708f57e6787366eb5b52a5",
+    "evaluation": {
+      "argv": [
+        "node",
+        "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_002_eval.mjs",
+        "/tmp/genesis-a6-auto-ino3umvs/candidate-004"
+      ],
+      "elapsed_ms": 42,
+      "exit_code": 0,
+      "parsed": {
+        "external_model_calls": 0,
+        "objective_ok": true,
+        "results": [
+          {
+            "actual": "hel",
+            "expected": "hel",
+            "maxLen": 3,
+            "ok": true,
+            "value": "hello"
+          },
+          {
+            "actual": "a",
+            "expected": "a",
+            "maxLen": 1,
+            "ok": true,
+            "value": "abcdef"
+          },
+          {
+            "actual": "abcdef",
+            "expected": "abcdef",
+            "maxLen": 6,
+            "ok": true,
+            "value": "abcdef"
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "maxLen": 0,
+            "ok": true,
+            "value": ""
+          }
+        ],
+        "schema": "mira-genesis-a6-task002-evaluator-v1"
+      },
+      "stderr": "",
+      "stdout": "{\"schema\":\"mira-genesis-a6-task002-evaluator-v1\",\"objective_ok\":true,\"results\":[{\"value\":\"hello\",\"maxLen\":3,\"expected\":\"hel\",\"actual\":\"hel\",\"ok\":true},{\"value\":\"abcdef\",\"maxLen\":1,\"expected\":\"a\",\"actual\":\"a\",\"ok\":true},{\"value\":\"abcdef\",\"maxLen\":6,\"expected\":\"abcdef\",\"actual\":\"abcdef\",\"ok\":true},{\"value\":\"\",\"maxLen\":0,\"expected\":\"\",\"actual\":\"\",\"ok\":true}],\"external_model_calls\":0}\n"
+    },
+    "generator": "generic_scalar_mutations",
+    "id": "scalar-8dc071c5cab43d83",
+    "label": "integer_delta:utils.js:165",
+    "operator": "integer_delta",
+    "passed": true,
+    "rank": 4
+  },
+  "winner_replay": {
+    "argv": [
+      "node",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_002_eval.mjs",
+      "/tmp/genesis-a6-auto-replay-igbimahw/workspace"
+    ],
+    "elapsed_ms": 38,
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "results": [
+        {
+          "actual": "hel",
+          "expected": "hel",
+          "maxLen": 3,
+          "ok": true,
+          "value": "hello"
+        },
+        {
+          "actual": "a",
+          "expected": "a",
+          "maxLen": 1,
+          "ok": true,
+          "value": "abcdef"
+        },
+        {
+          "actual": "abcdef",
+          "expected": "abcdef",
+          "maxLen": 6,
+          "ok": true,
+          "value": "abcdef"
+        },
+        {
+          "actual": "",
+          "expected": "",
+          "maxLen": 0,
+          "ok": true,
+          "value": ""
+        }
+      ],
+      "schema": "mira-genesis-a6-task002-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"schema\":\"mira-genesis-a6-task002-evaluator-v1\",\"objective_ok\":true,\"results\":[{\"value\":\"hello\",\"maxLen\":3,\"expected\":\"hel\",\"actual\":\"hel\",\"ok\":true},{\"value\":\"abcdef\",\"maxLen\":1,\"expected\":\"a\",\"actual\":\"a\",\"ok\":true},{\"value\":\"abcdef\",\"maxLen\":6,\"expected\":\"abcdef\",\"actual\":\"abcdef\",\"ok\":true},{\"value\":\"\",\"maxLen\":0,\"expected\":\"\",\"actual\":\"\",\"ok\":true}],\"external_model_calls\":0}\n"
+  }
+}
