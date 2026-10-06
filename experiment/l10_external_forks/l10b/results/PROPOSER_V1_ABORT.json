@@ -1,0 +1,24 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-proposer-v1-abort",
+  "proposer_freeze_commit": "73e25fc57d379feca1107ed0c2900466124578bc",
+  "cli": "codex-cli 0.154.0",
+  "model": "gpt-5.6-sol",
+  "invocation_count": 1,
+  "exit_code": 1,
+  "final_response_exists": false,
+  "candidate_patch_exists": false,
+  "model_response_observed": false,
+  "classification": "PROPOSER_TRANSPORT_AUTH_ABORT",
+  "cause": [
+    "HTTP 401 token_expired",
+    "refresh_token_reused"
+  ],
+  "raw_artifact_sha256": {
+    "events_jsonl": "5259eba9ae5572cb33fec4bc00f5d0c19b5bee574278c17a0f70f2c28d865b9e",
+    "stderr": "7e8c56e0cb684a1936badbf1f24519c463c6cda9adf2453a96cdc1a1b3d20fb4",
+    "exit_code": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "started_at": "c9b0ac22447f6d80988ff3bad28d22fca7f060503026fcbd66aec7e1d67dae0d",
+    "finished_at": "22a17453b9a844caaf8462720de3fd8d42923afc147f8aa4ef828c7d921bd0e4"
+  },
+  "successor_allowed": "A separately frozen successor may change only the proposer backend because no model response or candidate behavior existed."
+}
