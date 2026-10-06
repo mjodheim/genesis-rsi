@@ -1,0 +1,8 @@
+{
+  "schema": "mira-genesis-a6-task009-apparatus-abort-v1",
+  "stage": "candidate import before first task-009 candidate evaluation",
+  "classification": "CRLF_HASH_NORMALIZATION_MISMATCH",
+  "semantic_candidate_evaluations": 0,
+  "external_model_calls": 0,
+  "reason": "The generic candidate generators hash UTF-8 text after Python universal-newline normalization. The v1 campaign runner compared that digest against raw file bytes. A CRLF Python file matched a learned template before the Go target candidates, so import failed before evaluation. V2 changes only candidate base-hash verification to hash decoded UTF-8 text using the same normalization as the frozen generators."
+}
