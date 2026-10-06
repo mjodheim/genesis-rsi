@@ -1,0 +1,588 @@
+{
+  "acquired_strategy": {
+    "acquired_from_candidate_digest": "d18642a7102ea5880a96b78c4228b06317f1e72306c994acfc8d9ff7e1a66fda",
+    "acquired_from_candidate_id": "exemplar-d18642a7102ea588",
+    "acquired_from_result_digest": "1637393300f8d95691619b67935a3da0ef80b640e1f926fa21cadf1bce86e771",
+    "delta": -1,
+    "external_model_calls": 0,
+    "host_issue_specific_recipe": false,
+    "kind": "subscript_identifier_delta",
+    "schema": "genesis-acquired-edit-strategy-v1",
+    "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+    "strategy_digest": "709d7b24a453bf28e9b4bdba03ecf2637d4039bbae57cce4a1f929076fd9032b",
+    "template_after": "[$IDENT - 1]",
+    "template_before": "[$IDENT]"
+  },
+  "baseline": {
+    "elapsed_ms": 51,
+    "exit_code": 1,
+    "parsed": {
+      "checks": [
+        {
+          "actual": [
+            12,
+            22,
+            32
+          ],
+          "expected": [
+            11,
+            21,
+            31
+          ],
+          "name": "objective-column-1",
+          "ok": false
+        },
+        {
+          "actual": [
+            null,
+            null,
+            null
+          ],
+          "expected": [
+            14,
+            24,
+            34
+          ],
+          "name": "objective-column-4",
+          "ok": false
+        },
+        {
+          "actual": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "expected": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "name": "regression-row-1",
+          "ok": true
+        },
+        {
+          "actual": 22,
+          "expected": 22,
+          "name": "regression-square-2-2",
+          "ok": true
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "name": "regression-coordinate-low",
+          "ok": true
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "name": "regression-coordinate-high",
+          "ok": true
+        },
+        {
+          "actual": true,
+          "expected": true,
+          "name": "regression-coordinate-valid",
+          "ok": true
+        },
+        {
+          "actual": 99,
+          "expected": 99,
+          "name": "regression-set-square",
+          "ok": true
+        },
+        {
+          "actual": [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "d",
+              "e",
+              "f"
+            ],
+            [
+              "g",
+              "h",
+              "i"
+            ]
+          ],
+          "expected": [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "d",
+              "e",
+              "f"
+            ],
+            [
+              "g",
+              "h",
+              "i"
+            ]
+          ],
+          "name": "regression-grid-roundtrip",
+          "ok": true
+        }
+      ],
+      "objective_ok": false,
+      "overall_ok": false,
+      "parse_or_load_ok": true,
+      "regression_ok": true
+    },
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "{\"parse_or_load_ok\":true,\"objective_ok\":false,\"regression_ok\":true,\"overall_ok\":false,\"checks\":[{\"name\":\"objective-column-1\",\"actual\":[12,22,32],\"expected\":[11,21,31],\"ok\":false},{\"name\":\"objective-column-4\",\"actual\":[null,null,null],\"expected\":[14,24,34],\"ok\":false},{\"name\":\"regression-row-1\",\"actual\":[11,12,13,14],\"expected\":[11,12,13,14],\"ok\":true},{\"name\":\"regression-square-2-2\",\"actual\":22,\"expected\":22,\"ok\":true},{\"name\":\"regression-coordinate-low\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-high\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-valid\",\"actual\":true,\"expected\":true,\"ok\":true},{\"name\":\"regression-set-square\",\"actual\":99,\"expected\":99,\"ok\":true},{\"name\":\"regression-grid-roundtrip\",\"actual\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"expected\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"ok\":true}]}\n",
+    "stdout_sha256": "aaa99f6e12103cdbd8f4697af5e0a1fc54de599d1c1edbce6db01eb25252f185"
+  },
+  "carrier_commit": "27a43cee5087decc8bab2d349a223ce9b70c2d20",
+  "charged_candidate_executions": 1,
+  "claim": "A4_REPOSITORY_EVIDENCE_STRATEGY_ACQUISITION",
+  "exemplar_generation": {
+    "candidate_count": 1,
+    "external_model_calls": 0,
+    "schema": "genesis-repository-exemplar-mutations-v1",
+    "target_site_count": 1,
+    "truncated": false
+  },
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "old_scalar_grammar_ablation": {
+    "can_express_required_edit": false,
+    "candidate_count": 970,
+    "external_model_calls": 0,
+    "matching_required_edit_ids": []
+  },
+  "passed": true,
+  "records": [
+    {
+      "candidate_digest": "d18642a7102ea5880a96b78c4228b06317f1e72306c994acfc8d9ff7e1a66fda",
+      "evaluation": {
+        "elapsed_ms": 71,
+        "exit_code": 0,
+        "parsed": {
+          "checks": [
+            {
+              "actual": [
+                11,
+                21,
+                31
+              ],
+              "expected": [
+                11,
+                21,
+                31
+              ],
+              "name": "objective-column-1",
+              "ok": true
+            },
+            {
+              "actual": [
+                14,
+                24,
+                34
+              ],
+              "expected": [
+                14,
+                24,
+                34
+              ],
+              "name": "objective-column-4",
+              "ok": true
+            },
+            {
+              "actual": [
+                11,
+                12,
+                13,
+                14
+              ],
+              "expected": [
+                11,
+                12,
+                13,
+                14
+              ],
+              "name": "regression-row-1",
+              "ok": true
+            },
+            {
+              "actual": 22,
+              "expected": 22,
+              "name": "regression-square-2-2",
+              "ok": true
+            },
+            {
+              "actual": false,
+              "expected": false,
+              "name": "regression-coordinate-low",
+              "ok": true
+            },
+            {
+              "actual": false,
+              "expected": false,
+              "name": "regression-coordinate-high",
+              "ok": true
+            },
+            {
+              "actual": true,
+              "expected": true,
+              "name": "regression-coordinate-valid",
+              "ok": true
+            },
+            {
+              "actual": 99,
+              "expected": 99,
+              "name": "regression-set-square",
+              "ok": true
+            },
+            {
+              "actual": [
+                [
+                  "a",
+                  "b",
+                  "c"
+                ],
+                [
+                  "d",
+                  "e",
+                  "f"
+                ],
+                [
+                  "g",
+                  "h",
+                  "i"
+                ]
+              ],
+              "expected": [
+                [
+                  "a",
+                  "b",
+                  "c"
+                ],
+                [
+                  "d",
+                  "e",
+                  "f"
+                ],
+                [
+                  "g",
+                  "h",
+                  "i"
+                ]
+              ],
+              "name": "regression-grid-roundtrip",
+              "ok": true
+            }
+          ],
+          "objective_ok": true,
+          "overall_ok": true,
+          "parse_or_load_ok": true,
+          "regression_ok": true
+        },
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "{\"parse_or_load_ok\":true,\"objective_ok\":true,\"regression_ok\":true,\"overall_ok\":true,\"checks\":[{\"name\":\"objective-column-1\",\"actual\":[11,21,31],\"expected\":[11,21,31],\"ok\":true},{\"name\":\"objective-column-4\",\"actual\":[14,24,34],\"expected\":[14,24,34],\"ok\":true},{\"name\":\"regression-row-1\",\"actual\":[11,12,13,14],\"expected\":[11,12,13,14],\"ok\":true},{\"name\":\"regression-square-2-2\",\"actual\":22,\"expected\":22,\"ok\":true},{\"name\":\"regression-coordinate-low\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-high\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-valid\",\"actual\":true,\"expected\":true,\"ok\":true},{\"name\":\"regression-set-square\",\"actual\":99,\"expected\":99,\"ok\":true},{\"name\":\"regression-grid-roundtrip\",\"actual\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"expected\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"ok\":true}]}\n",
+        "stdout_sha256": "f75de1318508bd8e59f837b84d9a8a19c31a68ef11030fe6aca17d5d75161b0b"
+      },
+      "id": "exemplar-d18642a7102ea588",
+      "label": "observed_subscript_delta:src/GridState.js:7206:-1",
+      "passed": true,
+      "provenance": {
+        "delta": -1,
+        "exemplar_path": "src/GridState.js",
+        "exemplar_start": 7678,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "xPos",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      },
+      "rank": 1
+    }
+  ],
+  "report_digest": "b0eb7064ffea38f618bdca26ec37dd5dca523321e929dd953c9152b3d102ef82",
+  "retry_count": 0,
+  "schema": "mira-genesis-autonomy-a4-result-v2",
+  "seed": "A3A primary one-based-index expressivity failure",
+  "v1_apparatus_abort": "experiment/autonomy_a4/ABORTED_RUN_1.json",
+  "winner": {
+    "candidate_digest": "d18642a7102ea5880a96b78c4228b06317f1e72306c994acfc8d9ff7e1a66fda",
+    "evaluation": {
+      "elapsed_ms": 71,
+      "exit_code": 0,
+      "parsed": {
+        "checks": [
+          {
+            "actual": [
+              11,
+              21,
+              31
+            ],
+            "expected": [
+              11,
+              21,
+              31
+            ],
+            "name": "objective-column-1",
+            "ok": true
+          },
+          {
+            "actual": [
+              14,
+              24,
+              34
+            ],
+            "expected": [
+              14,
+              24,
+              34
+            ],
+            "name": "objective-column-4",
+            "ok": true
+          },
+          {
+            "actual": [
+              11,
+              12,
+              13,
+              14
+            ],
+            "expected": [
+              11,
+              12,
+              13,
+              14
+            ],
+            "name": "regression-row-1",
+            "ok": true
+          },
+          {
+            "actual": 22,
+            "expected": 22,
+            "name": "regression-square-2-2",
+            "ok": true
+          },
+          {
+            "actual": false,
+            "expected": false,
+            "name": "regression-coordinate-low",
+            "ok": true
+          },
+          {
+            "actual": false,
+            "expected": false,
+            "name": "regression-coordinate-high",
+            "ok": true
+          },
+          {
+            "actual": true,
+            "expected": true,
+            "name": "regression-coordinate-valid",
+            "ok": true
+          },
+          {
+            "actual": 99,
+            "expected": 99,
+            "name": "regression-set-square",
+            "ok": true
+          },
+          {
+            "actual": [
+              [
+                "a",
+                "b",
+                "c"
+              ],
+              [
+                "d",
+                "e",
+                "f"
+              ],
+              [
+                "g",
+                "h",
+                "i"
+              ]
+            ],
+            "expected": [
+              [
+                "a",
+                "b",
+                "c"
+              ],
+              [
+                "d",
+                "e",
+                "f"
+              ],
+              [
+                "g",
+                "h",
+                "i"
+              ]
+            ],
+            "name": "regression-grid-roundtrip",
+            "ok": true
+          }
+        ],
+        "objective_ok": true,
+        "overall_ok": true,
+        "parse_or_load_ok": true,
+        "regression_ok": true
+      },
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"parse_or_load_ok\":true,\"objective_ok\":true,\"regression_ok\":true,\"overall_ok\":true,\"checks\":[{\"name\":\"objective-column-1\",\"actual\":[11,21,31],\"expected\":[11,21,31],\"ok\":true},{\"name\":\"objective-column-4\",\"actual\":[14,24,34],\"expected\":[14,24,34],\"ok\":true},{\"name\":\"regression-row-1\",\"actual\":[11,12,13,14],\"expected\":[11,12,13,14],\"ok\":true},{\"name\":\"regression-square-2-2\",\"actual\":22,\"expected\":22,\"ok\":true},{\"name\":\"regression-coordinate-low\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-high\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-valid\",\"actual\":true,\"expected\":true,\"ok\":true},{\"name\":\"regression-set-square\",\"actual\":99,\"expected\":99,\"ok\":true},{\"name\":\"regression-grid-roundtrip\",\"actual\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"expected\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"ok\":true}]}\n",
+      "stdout_sha256": "f75de1318508bd8e59f837b84d9a8a19c31a68ef11030fe6aca17d5d75161b0b"
+    },
+    "id": "exemplar-d18642a7102ea588",
+    "label": "observed_subscript_delta:src/GridState.js:7206:-1",
+    "passed": true,
+    "provenance": {
+      "delta": -1,
+      "exemplar_path": "src/GridState.js",
+      "exemplar_start": 7678,
+      "external_model_calls": 0,
+      "generator": "repository_exemplar_mutations",
+      "identifier": "xPos",
+      "operator": "observed_subscript_delta",
+      "strategy_origin": "repository_observation"
+    },
+    "rank": 1
+  },
+  "winner_replay": {
+    "elapsed_ms": 54,
+    "exit_code": 0,
+    "parsed": {
+      "checks": [
+        {
+          "actual": [
+            11,
+            21,
+            31
+          ],
+          "expected": [
+            11,
+            21,
+            31
+          ],
+          "name": "objective-column-1",
+          "ok": true
+        },
+        {
+          "actual": [
+            14,
+            24,
+            34
+          ],
+          "expected": [
+            14,
+            24,
+            34
+          ],
+          "name": "objective-column-4",
+          "ok": true
+        },
+        {
+          "actual": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "expected": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "name": "regression-row-1",
+          "ok": true
+        },
+        {
+          "actual": 22,
+          "expected": 22,
+          "name": "regression-square-2-2",
+          "ok": true
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "name": "regression-coordinate-low",
+          "ok": true
+        },
+        {
+          "actual": false,
+          "expected": false,
+          "name": "regression-coordinate-high",
+          "ok": true
+        },
+        {
+          "actual": true,
+          "expected": true,
+          "name": "regression-coordinate-valid",
+          "ok": true
+        },
+        {
+          "actual": 99,
+          "expected": 99,
+          "name": "regression-set-square",
+          "ok": true
+        },
+        {
+          "actual": [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "d",
+              "e",
+              "f"
+            ],
+            [
+              "g",
+              "h",
+              "i"
+            ]
+          ],
+          "expected": [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "d",
+              "e",
+              "f"
+            ],
+            [
+              "g",
+              "h",
+              "i"
+            ]
+          ],
+          "name": "regression-grid-roundtrip",
+          "ok": true
+        }
+      ],
+      "objective_ok": true,
+      "overall_ok": true,
+      "parse_or_load_ok": true,
+      "regression_ok": true
+    },
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "{\"parse_or_load_ok\":true,\"objective_ok\":true,\"regression_ok\":true,\"overall_ok\":true,\"checks\":[{\"name\":\"objective-column-1\",\"actual\":[11,21,31],\"expected\":[11,21,31],\"ok\":true},{\"name\":\"objective-column-4\",\"actual\":[14,24,34],\"expected\":[14,24,34],\"ok\":true},{\"name\":\"regression-row-1\",\"actual\":[11,12,13,14],\"expected\":[11,12,13,14],\"ok\":true},{\"name\":\"regression-square-2-2\",\"actual\":22,\"expected\":22,\"ok\":true},{\"name\":\"regression-coordinate-low\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-high\",\"actual\":false,\"expected\":false,\"ok\":true},{\"name\":\"regression-coordinate-valid\",\"actual\":true,\"expected\":true,\"ok\":true},{\"name\":\"regression-set-square\",\"actual\":99,\"expected\":99,\"ok\":true},{\"name\":\"regression-grid-roundtrip\",\"actual\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"expected\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"],[\"g\",\"h\",\"i\"]],\"ok\":true}]}\n",
+    "stdout_sha256": "f75de1318508bd8e59f837b84d9a8a19c31a68ef11030fe6aca17d5d75161b0b"
+  }
+}

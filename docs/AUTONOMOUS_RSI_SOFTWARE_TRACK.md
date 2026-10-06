@@ -53,7 +53,7 @@ The initial toolchain implementation lives in
 | A1 | Execute bounded diagnosis/verification loops using native tools. | **DEVELOPMENT PASS** |
 | A2 | Generate useful candidate mutations without an external LLM for at least one real bug family. | **DEVELOPMENT PASS** |
 | A3 | Retain a successful strategy and causally reuse it on a fresh external task. | **DEVELOPMENT PASS** |
-| A4 | Acquire new transformation strategies from failures/results rather than host-authored recipes. | open |
+| A4 | Acquire new transformation strategies from failures/results rather than host-authored recipes. | **DEVELOPMENT PASS** |
 | A5 | Transfer retained strategies across at least three language families. | open |
 | A6 | Frozen multi-repository campaign with an LLM fallback arm shows decreasing fallback demand. | open |
 | A7 | Frozen multi-language campaign completes with **0 external model calls** while retaining useful repair performance. | open |
