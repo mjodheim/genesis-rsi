@@ -1,0 +1,43 @@
+{
+  "apparatus_commit": "541889eb301f9901b63bd38a7bc18389665bd035",
+  "claim_boundary": "Bounded project-defined G6 component-evolution qualification only; not G7, general RSI, AGI, ASI, or independent third-party validation.",
+  "evolution_apparatus": {
+    "external_model_calls": 0,
+    "path": "genesis/evolution/component_evolution.py",
+    "source_sha256": "fb09a3644b61d5527bcb89e0c8d944474d77738a38bcb2f43cf579ae84246ae0"
+  },
+  "holdout": {
+    "case_count": 8,
+    "contents_visible_to_lineage_before_descendant_freeze": false,
+    "location_at_freeze": "external_to_repository",
+    "sha256": "735544022af38bf94cbee1e3a1aa7f5ae3a1d1ffb61b67775d1eed59a5109418"
+  },
+  "parent_component": {
+    "component_id": "universal_operator_ir",
+    "path": "genesis/operators/universal.py",
+    "source_sha256": "a294e8fb47ff3a138667463610df25121c33aa2190308231b2116492e8eb4309"
+  },
+  "preregistration_digest": "ec189455185d331509abdf7de96a4d6af6b377e90200a094f713fc79bee08747",
+  "prior_training_evidence": {
+    "allowed_source": "revealed G5 evidence plus deterministic safety decoys only",
+    "g5_result_commit": "e0a7e07c",
+    "g5_result_digest": "5569175e477279c31f3cc4aec04dd515b4772a7299920ee395ac290b2dc696e0"
+  },
+  "qualification_rule": {
+    "fail_label": "G6_SCIENTIFIC_GATE_OPEN",
+    "pass_label": "G6_SCIENTIFIC_GATE_PASSED",
+    "required": [
+      "holdout_sha256_matches_preregistered_identity",
+      "descendant_source_differs_from_parent",
+      "descendant_generated_by_frozen_evolution_apparatus",
+      "descendant_frozen_before_holdout_reveal",
+      "descendant_success_rate_exceeds_parent",
+      "descendant_preserves_every_parent_success",
+      "descendant_solves_at_least_7_of_8_hidden_cases",
+      "descendant_uses_zero_external_model_calls",
+      "descendant_stays_within_equal_candidate_budget",
+      "reverting_winning_mutation_removes_gain"
+    ]
+  },
+  "schema": "genesis-g6-qualification-preregistration-v1"
+}

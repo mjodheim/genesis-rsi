@@ -1,5 +1,5 @@
 """Experiment design and descendant evolution for Genesis v2."""
 
-from . import experiment_design
+from . import component_evolution, experiment_design
 
-__all__ = ["experiment_design"]
+__all__ = ["component_evolution", "experiment_design"]
