@@ -55,8 +55,10 @@ The initial toolchain implementation lives in
 | A3 | Retain a successful strategy and causally reuse it on a fresh external task. | **DEVELOPMENT PASS** |
 | A4 | Acquire new transformation strategies from failures/results rather than host-authored recipes. | **DEVELOPMENT PASS** |
 | A5 | Transfer retained strategies across at least three language families. | **DEVELOPMENT PASS** |
-| A6 | Frozen multi-repository campaign with an LLM fallback arm shows decreasing fallback demand. | **DEVELOPMENT FAIL — A6b required** |
-| A7 | Frozen multi-language campaign completes with **0 external model calls** while retaining useful repair performance. | open |
+| A6 | Frozen multi-repository campaign with an LLM fallback arm shows decreasing fallback demand. | **DEVELOPMENT FAIL — A6 and A6b failed; A6c apparatus in development** |
+| A7 | Frozen multi-language campaign completes with **0 external model calls** while retaining useful repair performance. | **blocked pending A6c** |
+
+A6b completed on 2026-10-06 as a preserved negative result: 3/12 autonomous successes, 75% fallback demand, and no within-A6b causal reuse. See docs/A6B_CAMPAIGN_2026-10-06.md. A6c is a new apparatus revision focused on self-extension of the transformation repertoire; it cannot retroactively alter A6b.
 
 A7 is the operational "100% autonomous" target. It is intentionally independent
 of L10: L10 measures external validation; this track measures who actually

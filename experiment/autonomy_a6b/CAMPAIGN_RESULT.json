@@ -1,0 +1,72 @@
+{
+  "a6_reference_fallback_rate": 0.75,
+  "autonomous_successes": 3,
+  "causal_reuse_successes": 1,
+  "claim_boundary": "A6b DEVELOPMENT negative result; A7 remains blocked.",
+  "external_model_calls": 9,
+  "external_model_calls_per_solved_task": 1.0,
+  "failure_reasons": [
+    "overall_fallback_rate_lower_than_a6",
+    "minimum_5_autonomous_successes",
+    "minimum_2_causal_reuse_successes",
+    "minimum_1_within_a6b_reuse"
+  ],
+  "fallback_rate": 0.75,
+  "fallback_required": 9,
+  "interpretation": [
+    "Wave 3 improved fallback demand versus wave 1, but the campaign did not reduce overall fallback rate below A6.",
+    "Only three of twelve runnable tasks were solved autonomously, below the preregistered minimum of five.",
+    "No winner causally reused experience learned during an earlier A6b task.",
+    "Observed misses include unsupported/no-candidate transformations (C and YAML/config), unexpressed structural edits, and candidate-space/search limitations.",
+    "A6c must be a new apparatus version; A6b evidence remains immutable and cannot be retroactively repaired."
+  ],
+  "observed_language_families": [
+    "C",
+    "Go",
+    "JavaScript/TypeScript",
+    "Python",
+    "Rust",
+    "YAML/config"
+  ],
+  "pass_rule_checks": {
+    "minimum_1_within_a6b_reuse": false,
+    "minimum_2_causal_reuse_successes": false,
+    "minimum_3_language_families": true,
+    "minimum_5_autonomous_successes": false,
+    "overall_fallback_rate_lower_than_a6": false,
+    "wave3_fallback_rate_lower_than_wave1": true,
+    "wave3_model_calls_per_solved_lower_than_wave1": true
+  },
+  "pipeline_solved": 9,
+  "pipeline_success_rate": 0.75,
+  "schema": "mira-genesis-a6b-campaign-result-v1",
+  "status": "FAIL",
+  "tasks_runnable": 12,
+  "wave_summaries": [
+    {
+      "autonomous_successes": 1,
+      "fallback_rate": 0.75,
+      "model_calls": 3,
+      "model_calls_per_solved": 1.0,
+      "solved": 3,
+      "wave": 1
+    },
+    {
+      "autonomous_successes": 0,
+      "fallback_rate": 1.0,
+      "model_calls": 4,
+      "model_calls_per_solved": 1.3333333333333333,
+      "solved": 3,
+      "wave": 2
+    },
+    {
+      "autonomous_successes": 2,
+      "fallback_rate": 0.5,
+      "model_calls": 2,
+      "model_calls_per_solved": 0.6666666666666666,
+      "solved": 3,
+      "wave": 3
+    }
+  ],
+  "within_a6b_prior_task_reuses": 0
+}
