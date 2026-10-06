@@ -1,0 +1,13 @@
+{
+  "schema": "mira-genesis-autonomy-a5-carrier-rejection-v1",
+  "carrier": "FuelLabs/fuelup#836",
+  "carrier_commit": "be317609a8364ffa095d8c5786a02c9e77f35e82",
+  "selection_freeze_commit": "5f1f0e10",
+  "stage": "post-freeze source/issue inspection, before candidate evaluation",
+  "classification": "SINGLE_SITE_RETAINED_OPERATOR_INSUFFICIENT",
+  "reason": "The issue affects two distinct retry loops. A correct fix requires coordinated range changes in both loops (e.g. 1.. to 0.. or inclusive ranges). The frozen single-site scalar generator cannot update both sites in one candidate. Changing RETRY_ATTEMPTS from 4 to 5 would make the constant disagree with the actual configured attempt count and is therefore not an acceptable semantic repair.",
+  "candidate_evaluations": 0,
+  "external_model_calls": 0,
+  "manual_repair_attempted": false,
+  "policy": "Retained as a negative A5 transfer carrier; no post-inspection multi-site extension is introduced for this task."
+}

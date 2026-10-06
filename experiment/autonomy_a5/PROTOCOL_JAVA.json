@@ -1,0 +1,23 @@
+{
+  "schema": "mira-genesis-autonomy-a5-java-protocol-v1",
+  "status": "FROZEN_BEFORE_ISSUE_BODY_OR_SOURCE_INSPECTION",
+  "carrier_repository": "knorquist-enterprise-cloud-testing/ledger-lite",
+  "carrier_commit": "176cffa31749cd135bc66ed5ef98ec8064bc0bef",
+  "issue_number": 3,
+  "retained_strategy": "experiment/autonomy_a3/RETAINED_STRATEGY.json",
+  "retained_strategy_digest": "9be25ef2ab02a706934d0744d68e4065df060677d0327d8a26648319497fdc79",
+  "retained_operator": "integer_delta",
+  "candidate_generator_freeze_commit": "d5ef0781",
+  "candidate_generator": "genesis.scalar_mutations.generate",
+  "target_language": "java",
+  "localization_rule": "After freeze, exact source paths explicitly named in the public issue body may be used to restrict candidate generation; otherwise use all eligible non-test Java source.",
+  "candidate_limit": 10000,
+  "search_budget": 128,
+  "memory_order": "stable sort by retained operator score descending, then frozen generator order",
+  "pass_rule": "Frozen baseline reproduces the issue; a zero-LLM candidate with winning operator integer_delta passes the frozen issue objective and regressions; exact replay passes.",
+  "transfer_rule": "A positive Java result with the same retained integer_delta strategy, together with JavaScript A2 and Python A3, establishes the three-language A5 DEVELOPMENT threshold.",
+  "manual_candidate_repair_allowed": false,
+  "silent_retry_allowed": false,
+  "external_model_allowed": false,
+  "external_model_calls": 0
+}
