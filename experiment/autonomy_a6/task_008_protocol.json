@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6-task008-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_011_freeze.json",
+  "carrier": "taskiq-python/taskiq#647",
+  "carrier_commit": "a00e4b0030f5ada13068da8644048867967aeda4",
+  "task_id": 8,
+  "language": "Python",
+  "qualification": "Frozen source implements hardkill_counter > args.hardkill_count before increment, which makes hardkill-count 3 trigger on signal 5 instead of signal 4.",
+  "target_source": ["taskiq/cli/worker/run.py"],
+  "memory": "experiment/autonomy_a6/MEMORY_007.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6/task_008_eval.py",
+  "pass_rule": "The interrupt handler preserves zero initialization and +1 increment, uses the boundary that causes hardkill-count 3 to trigger on signal 4, and exact winner replay passes.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
