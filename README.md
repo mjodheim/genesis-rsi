@@ -51,17 +51,17 @@ including V27's negative, are retained. These are finite project-authored experi
 with zero external scientific model calls; independent task authorship, general RSI
 and AGI remain unestablished. See [the complete evidence and limits](docs/RSI_L6_L8_RESULTS_2026-10-01.md).
 
-V31 adds persistent branching, task-boundary recovery and rediscovery around
-unchanged G7, plus a pinned independent-replication packet. Its finite archive
-solves 99/144 new tasks versus 105/144 for cold start; **L9 open-endedness and L10
-independence remain unestablished**. See [the archive evidence, preserved transport
-fault and external handoff](docs/RSI_L9_L10_READINESS_2026-10-01.md).
+V31 and V32 remain preserved finite precursor/negative results, but the later
+prospectively frozen **OE1-v3 qualification now passes the project-defined finite
+operational L9 gate**. All 16/16 frozen predicates are true; the coded archive
+solves 576/576 transfer tasks and the frozen audit independently re-executes
+33,215 retained candidate receipts with no mismatch. See
+[the authoritative L9-v3 record](docs/L9_OE1_V3_QUALIFICATION_2026-10-06.md).
 
-V32 tests observed-quality memory ranking on 216 new tasks per arm. Adaptive
-retrieval solves 138/216 versus cold 135/216 with 8.7% fewer evaluations, but
-always retrieving the closest two solves 141/216: **the strict adaptive criterion
-is negative**. Every trial is preserved. L9 and L10 remain unpassed; see
-[the complete finite comparison and limits](docs/RSI_V32_MEMORY_RESULTS_2026-10-01.md).
+This is deliberately not presented as a theorem of asymptotic open-endedness,
+general RSI or AGI. **L10 remains open** and requires separately governed external
+task authorship/maintenance, independent reproduction and adversarial audit. The
+V31 handoff remains useful infrastructure for that independent ceiling.
 
 ## What the project is trying to establish
 
