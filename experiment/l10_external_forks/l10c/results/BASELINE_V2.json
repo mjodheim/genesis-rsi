@@ -1,0 +1,34 @@
+{
+  "schema": "mira-genesis-l10c-bat-4039-baseline-v2-result-v1",
+  "evaluator_v2_freeze_commit": "ef8773e6ce9b69b2db6b8246c25918bb4f32162f",
+  "carrier_commit": "4608fc959aa8abf80d32198836511a570b7ae9ea",
+  "candidate_executions": 0,
+  "regression": {
+    "exit_code": 0,
+    "prior_observed_test_count": 147,
+    "classification": "BASELINE_REGRESSION_PASS"
+  },
+  "objective": {
+    "exit_code": 1,
+    "control": {
+      "range": ":-2",
+      "returncode": 0,
+      "stdout": "line1\n",
+      "stderr": "",
+      "control_ok": true
+    },
+    "issue_case": {
+      "range": ":-999999999999999999",
+      "returncode": 101,
+      "stdout": "",
+      "stderr_contains": [
+        "thread 'main' panicked",
+        "capacity overflow"
+      ],
+      "huge_no_panic": false,
+      "huge_graceful": false
+    },
+    "classification": "BASELINE_BUG_REPRODUCED"
+  },
+  "verdict": "RUNNABLE_FAILING_EXTERNAL_BASELINE_READY_FOR_SINGLE_CANDIDATE"
+}
