@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6b-task006-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_029_freeze.json",
+  "carrier": "FuelLabs/fuelup#836",
+  "carrier_commit": "be317609a8364ffa095d8c5786a02c9e77f35e82",
+  "task_id": 6,
+  "target_language": "Rust",
+  "qualification": "Both downloader retry loops use 1..RETRY_ATTEMPTS while RETRY_ATTEMPTS is 4, yielding only three HTTP attempts.",
+  "target_source": ["src/download.rs"],
+  "memory": "experiment/autonomy_a6b/MEMORY_016.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_006_eval.py",
+  "pass_rule": "Both retry loops must execute exactly four iterations while the configured RETRY_ATTEMPTS constants remain 4. The legacy 1..RETRY_ATTEMPTS form must be absent and all source outside the two loop headers must remain unchanged. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
