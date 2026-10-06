@@ -1,0 +1,48 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-2970-freeze-v1",
+  "status": "FROZEN_BEFORE_BASELINE_OR_CANDIDATE_EXECUTION",
+  "protocol_b_commit": "3fba5ee47f1ee9370c7f7e4a55870c1ea76e127e",
+  "selection_commit": "2cd72ed67010ffe4b59fedf56d2c0cd00d620a86",
+  "issue_payload_commit": "1c69996210744dedf778f6659f0afc5cf43df91e",
+  "apparatus_commit": "0ac5982ac3a68708838b7e3686a864964efb6ce7",
+  "carrier": {
+    "upstream": "sherlock-project/sherlock",
+    "fork": "mjodheim/sherlock",
+    "frozen_commit": "e40a45ec2a074b90703b3b4b842c8a3adbd6ada3",
+    "issue_number": 2970,
+    "issue_payload_sha256": "3b3f71021672b1f96b034e534a93b281f364507dbba27b064a3d5239e510468a"
+  },
+  "evaluator": {
+    "script": "experiment/l10_external_forks/l10b/eval_sherlock_2970.py",
+    "script_sha256": "999a3a45681d60970ba283282286a39ed002c0fc10a893185e118b8b391c9010",
+    "dockerfile_sha256": "e02a106d6825842965158174efe4e84632a88c9aeb29c2cd029b5721321e5ce9",
+    "requirements_sha256": "efbcb98b7b319f051912ed9149170e0c98f90cdd8777570c6415624860ef912e",
+    "image_id": "sha256:0c1ab1954c9dd3b8a1f229346b5d5a105d4ed24dbb21657bc0615309d6d0d97b",
+    "base_image": "python@sha256:ddb0207ae1f0356c2b724d740769b0c5f5f51cc54a0525178f721825f78fe74c",
+    "network_mode": "none",
+    "workspace_mount": "read_only",
+    "regression": "python -m pytest -q -m \"not online and not validate_targets\" -p no:cacheprovider",
+    "objective": "Inject the reported urllib3 LocationParseError at Sherlock's request-future boundary for username alice. on Empretienda AR; require normal QueryStatus.UNKNOWN return and preserved user URL instead of exception propagation."
+  },
+  "candidate_generation": {
+    "proposer": "official Codex CLI 0.154.0",
+    "model": "gpt-5.6-sol",
+    "invocations": 1,
+    "proposer_may_read": [
+      "frozen carrier checkout",
+      "frozen public issue payload"
+    ],
+    "proposer_may_not_read": [
+      "external evaluator source",
+      "baseline output",
+      "candidate evaluation output",
+      "hidden expected outcome details beyond the public issue"
+    ],
+    "candidate_diff_frozen_before_evaluation": true,
+    "retries_after_candidate_result": 0
+  },
+  "candidate_executions_before_freeze": 0,
+  "baseline_executions_before_freeze": 0,
+  "strict_l10_independent_pass_possible": false,
+  "claim_boundary": "PUBLIC_EXTERNAL_TRANSFER_EVIDENCE_ONLY"
+}
