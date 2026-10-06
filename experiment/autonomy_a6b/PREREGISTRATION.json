@@ -1,0 +1,59 @@
+{
+  "schema": "mira-genesis-autonomy-a6b-preregistration-v1",
+  "status": "PRE_REGISTERED_BEFORE_A6B_FRESH_TASK_INSPECTION",
+  "date": "2026-10-06",
+  "apparatus_freeze_commit": "d131b731",
+  "predecessor_result": "experiment/autonomy_a6/CAMPAIGN_RESULT.json",
+  "predecessor_result_digest": "63807d8e53cae87a535f0a14ad2743463c9fad057c5034d199082a748637586d",
+  "seed_memory": "experiment/autonomy_a6/MEMORY_012.json",
+  "candidate_queue": "experiment/autonomy_a6/CANDIDATE_QUEUE_METADATA.json",
+  "fresh_queue_rule": {
+    "start_queue_index": 17,
+    "advance_in_ascending_queue_index": true,
+    "issue_body_or_source_must_not_have_been_inspected_before_freeze": true,
+    "preserve_pre_outcome_qualification_exclusions": true,
+    "never_replace_a_runnable_task_after_outcome": true
+  },
+  "campaign": {
+    "target_runnable_tasks": 12,
+    "waves": 3,
+    "runnable_tasks_per_wave": 4,
+    "minimum_language_families": 3,
+    "candidate_budget": 256
+  },
+  "autonomous_apparatus": {
+    "runner": "experiment/autonomy_a6b/run_autonomous_task_v3.py",
+    "target_aware_memory_filtering": true,
+    "fair_weighted_scheduler": true,
+    "coordinated_scalar_pairs": true,
+    "coordinated_prior_learned_template_pairs_across_files": true,
+    "manual_candidate_repair": false,
+    "external_model_calls": 0
+  },
+  "fallback": {
+    "trigger": "autonomous budget exhausted without a passing candidate",
+    "provider_tool": "Claude Code",
+    "cli_version": "2.1.289",
+    "model": "claude-sonnet-5-5",
+    "maximum_calls_per_runnable_task": 1,
+    "no_retry": true,
+    "no_model_switch": true,
+    "fallback_success_is_not_autonomous_success": true
+  },
+  "memory": {
+    "successful_autonomous_and_fallback_patches_may_add_templates": true,
+    "updates_only_after_passing_frozen_evaluation": true,
+    "record_template_source_result_digest": true,
+    "causal_reuse_requires_winner_provenance_to_reference_prior_frozen_experience": true
+  },
+  "a6b_pass_rule": {
+    "wave3_fallback_rate_strictly_lower_than_wave1_or_both_zero": true,
+    "wave3_model_calls_per_solved_task_strictly_lower_than_wave1_or_both_zero": true,
+    "overall_fallback_rate_strictly_lower_than_a6": true,
+    "minimum_autonomous_successes_total": 5,
+    "minimum_causal_reuse_successes": 2,
+    "minimum_within_a6b_prior_task_reuses": 1,
+    "minimum_language_families_observed": 3
+  },
+  "claim_boundary": "A6b DEVELOPMENT only. Retrospective A6 calibration cannot count as evidence. A7 remains blocked until A6b prospectively demonstrates reduced external-model dependence."
+}
