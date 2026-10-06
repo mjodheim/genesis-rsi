@@ -1,0 +1,193 @@
+{
+  "applied": [
+    {
+      "new_sha256": "187ac9b6036fbdf962d1d3c1303d59e553c9c3f757427d2741ec57b347e30798",
+      "old_sha256": "ca1d017991a2f42945212dfb5410f6c68e6e1960557d6f472567b6bbc074e2d5",
+      "path": "internal/health/health.go",
+      "supplied_path": "internal/health/health.go"
+    },
+    {
+      "new_sha256": "fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822",
+      "old_sha256": "a8b06e93f5daa3628ec63b923bd0a74af2b18568478c33777c6fef2907c9ee5c",
+      "path": "internal/runtime/docker.go",
+      "supplied_path": "internal/runtime/docker.go"
+    }
+  ],
+  "autonomous_result_digest": "a53a6348975616af72bf1d6fecc31f18d28bffaf431391cf6aae4696dd62d294",
+  "cost_usd": 0.0921088,
+  "evaluation": {
+    "elapsed_ms": 53,
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "results": [
+        {
+          "attempts_for_3": 3,
+          "default_logic_ok": true,
+          "name": "WaitForHealth",
+          "ok": true,
+          "operator": "<"
+        },
+        {
+          "attempts_for_3": 3,
+          "default_logic_ok": true,
+          "name": "doHTTPCheck",
+          "ok": true,
+          "operator": "<"
+        }
+      ],
+      "schema": "mira-genesis-a6-task010-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"objective_ok\": true, \"results\": [{\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"WaitForHealth\", \"ok\": true, \"operator\": \"<\"}, {\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"doHTTPCheck\", \"ok\": true, \"operator\": \"<\"}], \"schema\": \"mira-genesis-a6-task010-evaluator-v1\"}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 1,
+  "learned_template_digests": [
+    "ccb6ea42d1b0c3ee7985e4287581b3bde13a0ce0d7c5955bbb727783c69ed05c"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "<"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "<="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "1afb198b30ca60dd95af2d186aba8bb11611fa2ffc2e78f81b402f3a83189f41",
+      "template_digest": "ccb6ea42d1b0c3ee7985e4287581b3bde13a0ce0d7c5955bbb727783c69ed05c"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "1afb198b30ca60dd95af2d186aba8bb11611fa2ffc2e78f81b402f3a83189f41",
+  "proposal": {
+    "edits": [
+      {
+        "new": "for i := 0; i < retries; i++ {",
+        "old": "for i := 0; i <= retries; i++ {",
+        "path": "internal/health/health.go"
+      },
+      {
+        "new": "for i := 0; i < retries; i++ {",
+        "old": "for i := 0; i <= retries; i++ {",
+        "path": "internal/runtime/docker.go"
+      }
+    ],
+    "summary": "Change both retry loops from `i <= retries` to `i < retries` so the configured count yields exactly that many attempts (retries=3 \u2192 3 attempts)."
+  },
+  "report_digest": "d644816fcf6c83b01752204b1eabf4ead208fa8fa0535a50dccc61734b62c410",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task010-fallback-result-v1"
+}
