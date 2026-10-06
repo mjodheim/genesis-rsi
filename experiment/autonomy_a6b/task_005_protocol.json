@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6b-task005-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_026_freeze.json",
+  "carrier": "vrischmann/tree-sitter-templ#152",
+  "carrier_commit": "2c0a72e907d2a95a7b6dd29703e38c95818e956a",
+  "task_id": 5,
+  "target_language": "C",
+  "qualification": "lookahead_buffer_find_keyword mutates the keyword length while comparing buffered bytes, causing genuine matches to fail once the buffered prefix exceeds half the keyword and mishandling complete-buffer cases.",
+  "target_source": ["src/scanner.c"],
+  "memory": "experiment/autonomy_a6b/MEMORY_015.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_005_eval.py",
+  "pass_rule": "An extracted copy of the helper must compile and pass frozen executable cases for empty, partial, more-than-half, complete, buffered-mismatch, stream-mismatch, and buffer-longer-than-keyword states. All source outside the target helper must remain byte-equivalent under placeholder hashing. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
