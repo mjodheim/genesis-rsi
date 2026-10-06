@@ -1,0 +1,63 @@
+{
+  "applied": [
+    {
+      "new_sha256": "6717f71d3998ba0ab3c68bae7d8928a845639bb7b75d8afd0e1ad7a02fed7f25",
+      "old_sha256": "8cfcd2d70c0a7440b3f39c64a1dfa416593a33ef284f89875bec45a589ad5fcc",
+      "path": "ovos-core/config.yaml"
+    },
+    {
+      "new_sha256": "ce964c3d53b5881c880ba35aa9f7df7fd2934d686ee5d1edc2c1ca2e57835717",
+      "old_sha256": "6717f71d3998ba0ab3c68bae7d8928a845639bb7b75d8afd0e1ad7a02fed7f25",
+      "path": "ovos-core/config.yaml"
+    }
+  ],
+  "autonomous_result_digest": "d28c8cb26a0b91a2d8264814e591d2a4b448e091ada80955bfbc5d4b5e1640f6",
+  "carrier": "andlo/haos-ovos-addons#8",
+  "cost_usd": 0.05904260000000001,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_008_eval.py",
+      "/tmp/genesis-a6b-fallback-fwxzsqi9/workspace"
+    ],
+    "elapsed_ms": 37,
+    "exit_code": 1,
+    "parsed": {
+      "core_default_skill_present": true,
+      "external_model_calls": 0,
+      "external_skill_ready_broadcasts_present": true,
+      "objective_ok": false,
+      "schema": "mira-genesis-a6b-task008-evaluator-v2",
+      "unrelated_config_preserved": false
+    },
+    "stderr": "",
+    "stdout": "{\"core_default_skill_present\": true, \"external_model_calls\": 0, \"external_skill_ready_broadcasts_present\": true, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task008-evaluator-v2\", \"unrelated_config_preserved\": false}\n"
+  },
+  "fallback_passed": false,
+  "learned_template_count": 0,
+  "learned_template_digests": [],
+  "learned_templates": [],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "8e07837e46f2c15452393ca902c9f926ad18e05dcb1c01230a1f5ea8110cb484",
+  "proposal": {
+    "edits": [
+      {
+        "new": "  extra_pip_packages: \"skill-ovos-date-time\"\n",
+        "old": "  extra_pip_packages: \"\"\n",
+        "path": "ovos-core/config.yaml"
+      },
+      {
+        "new": "version: \"0.0.26\"",
+        "old": "version: \"0.0.25\"",
+        "path": "ovos-core/config.yaml"
+      }
+    ],
+    "summary": "Default extra_pip_packages to skill-ovos-date-time so ovos-core has at least one core-local skill and SkillManager reaches ready. Version bumped 0.0.25 -> 0.0.26. Nothing else changed. I did not run tests."
+  },
+  "report_digest": "9a91eee14befd2a531958bec3fce94462ed52f202199f1eb11ed5262f1935ed0",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 8
+}
