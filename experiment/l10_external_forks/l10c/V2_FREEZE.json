@@ -1,0 +1,24 @@
+{
+  "schema": "mira-genesis-l10c-bat-4039-evaluator-v2-freeze-v1",
+  "status": "FROZEN_BEFORE_V2_REGRESSION_OR_OBJECTIVE_REPLAY_AND_BEFORE_ANY_CANDIDATE",
+  "parent_evaluator_freeze": "047c2af9297f6ea63751426847dd2c1f414347c9",
+  "baseline_v1_result_commit": "03e66079b818c83b97412424effe63084eede927",
+  "v2_evaluator_commit": "182e0640e58bc4e0b8b280935e501a0893c3f251",
+  "v1_evaluator_sha256": "13223af74b81098a47c335faaa911e186254b972f5fbfd6fa9625acb4b850884",
+  "v2_evaluator_sha256": "bf821db0b081f5f144f7e227ad9571e6b50378bc1183de0a8694afe4ef9e6454",
+  "baseline_v1_result_sha256": "1e465cbf3742ab2e1c3fbb69bd4b412de601e304af8e735984378bcf07012b1b",
+  "allowed_change": "Restore ownership of the disposable Docker /target tree to the host uid/gid after each Cargo process so TemporaryDirectory cleanup can complete.",
+  "unchanged": [
+    "carrier sharkdp/bat@4608fc959aa8abf80d32198836511a570b7ae9ea",
+    "issue #4039 payload and objective semantics",
+    "regression command cargo test --locked --offline --lib",
+    "control range :-2 and huge range :-999999999999999999",
+    "panic markers and graceful-outcome rule",
+    "evaluator image sha256:e37db5048d151226b42e51e9382d5837c879f18cfca90e05c713b3b0da2bbe7f",
+    "network_mode=none and Cargo offline",
+    "candidate workspace read-only",
+    "candidate_executions=0"
+  ],
+  "prior_observation": "v1 Cargo regression returned 0 with 147/147 tests; the outer evaluator aborted only during cleanup. The #4039 objective has not yet been executed.",
+  "candidate_executions_before_freeze": 0
+}
