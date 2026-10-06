@@ -1,0 +1,60 @@
+{
+  "applied": [
+    {
+      "new_sha256": "50b904b08bad8284f18e25dde517e95b3019fdc2cea415d9021ba974f041fcca",
+      "old_sha256": "17ecad946983f634568a33e84491d5cf860c634390e24fe3016a06b28688bf04",
+      "path": "canoe_commercial/weather_mapping.py"
+    },
+    {
+      "new_sha256": "eff398f71d13978873ae1891b47cea47d3ab30342d1d8c335accc206c9186302",
+      "old_sha256": "6bc128aded952c07e51ddb9ff6c852639897e85e407a155ebe5cb444e6f3c8d3",
+      "path": "canoe_commercial/weather_mapping.py"
+    }
+  ],
+  "autonomous_result_digest": "2e782734c02caa4689e44f595af69c0aa36bddf60e87162930bc6e5080cc5cec",
+  "cli": "Claude Code 2.1.289",
+  "cost_usd": 0.1123174,
+  "evaluation": {
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "finite_ok": true,
+      "max_abs_error": 0.0,
+      "objective_ok": true,
+      "schema": "mira-genesis-a6-task001-evaluator-v1",
+      "shape_ok": true
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"finite_ok\": true, \"max_abs_error\": 0.0, \"objective_ok\": true, \"schema\": \"mira-genesis-a6-task001-evaluator-v1\", \"shape_ok\": true}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 2,
+  "learned_template_digests": [
+    "30f468b9a89e7d2a23639342b7a1d0af42d481afba2fbfe9de87018191d9ab38",
+    "e2ed9163a217a9d8279faaf1f1aff41d1a7ca892ec9bf1726e31c99df146349a"
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "6ff9ddd38f8078fb6bdfedbf5bb4f8db307227c5d540db36b8a2feaff1892287",
+  "proposal": {
+    "edits": [
+      {
+        "new": "data[24 * d:24 * d + 24]",
+        "old": "data[24 * d:24 * d + 23]",
+        "path": "canoe_commercial/weather_mapping.py"
+      },
+      {
+        "new": "data[7 * 24 * w:7 * 24 * w + 7 * 24]",
+        "old": "data[7 * 24 * w:7 * 24 * w + 7 * 24 - 1]",
+        "path": "canoe_commercial/weather_mapping.py"
+      }
+    ],
+    "summary": "Make both slice endpoints exclusive-end so each day covers 24 hours and each week covers 168 hours."
+  },
+  "report_digest": "33352e579f5c500f5d8a7588b60e7093cf96f1ac2327b9ed9ce10d16abb991d3",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task001-fallback-result-v1",
+  "web_fetch_requests": 0,
+  "web_search_requests": 0
+}
