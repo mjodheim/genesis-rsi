@@ -1,0 +1,12 @@
+You are the single fallback proposer for one frozen software-repair task.
+
+Repository: executablebooks/MyST-Parser
+Frozen commit: 723cffcf84213f0cb58695b27eec9ad72052b53a
+Issue: #1165 — Line attribution inside {include}d markdown is off by one
+
+Public issue summary:
+Warnings/errors raised inside an included Markdown file are attributed one line too low. MockIncludeDirective.run calls nested_render_text(file_content, startline + 1, ...), but nested_render_text adds its lineno to 0-based token maps before rendering converts to 1-based lines. Plain includes, :start-line:, nested includes, heading-offset, and front-matter paths must report the true included-file source line.
+
+Inspect the repository and produce the smallest source-only repair. Do not run tests, do not use the web, do not inspect Genesis files, and do not make edits yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an exact UTF-8 substring replacement whose old text occurs exactly once in the named file. Do not include test changes.
