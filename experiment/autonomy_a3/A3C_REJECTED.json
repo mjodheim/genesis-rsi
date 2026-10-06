@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-autonomy-a3-carrier-rejection-v1",
+  "carrier": "BenjaminSRussell/cozy-game#112",
+  "carrier_commit": "c516f0d9b9fd0f7466b5258642362b84d810a463",
+  "selection_freeze_commit": "13bf4196",
+  "stage": "post-freeze baseline/source inspection, before candidate evaluation",
+  "classification": "BASELINE_NOT_REPRODUCIBLE_AT_FROZEN_CARRIER",
+  "reason": "The frozen carrier has no getTimeString() method in src/systems/TimeSystem.ts. Its public formatter already applies modulo to minutes and the source does not match the issue's stated failing implementation. The requested baseline cannot be honestly reproduced at the frozen commit.",
+  "candidate_evaluations": 0,
+  "objective_evaluations": 0,
+  "external_model_calls": 0,
+  "manual_repair_attempted": false,
+  "policy": "Retained as a negative carrier result. No attempt is made to manufacture the issue into the codebase."
+}
