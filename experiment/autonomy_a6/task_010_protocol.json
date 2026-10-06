@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6-task010-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_014_freeze.json",
+  "carrier": "yaso09/tengiz#337",
+  "carrier_commit": "061c493d9ac653039370f84c4986947908162ba3",
+  "task_id": 10,
+  "language": "Go",
+  "qualification": "The public issue identifies the same <= retry-boundary defect in both WaitForHealth and doHTTPCheck; both are present in the frozen carrier.",
+  "target_source": ["internal/runtime/docker.go", "internal/health/health.go"],
+  "memory": "experiment/autonomy_a6/MEMORY_009.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6/task_010_eval.py",
+  "pass_rule": "Both named loops use the exact-three-attempt boundary for retries=3 while preserving the frozen default-retry initialization; exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
