@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-autonomy-a6b-preregistration-amendment-v1",
+  "date": "2026-10-06",
+  "parent_preregistration": "experiment/autonomy_a6b/PREREGISTRATION.json",
+  "reason": "Queue index 17 is the already-observed A6 task 12 carrier, so it cannot satisfy the preregistered fresh-task rule. Metadata-only inspection also revealed later duplicate repositories. This amendment is frozen before any A6b issue-body or source inspection.",
+  "freshness_clarification": {
+    "exclude_all_issues_previously_inspected_in_a0_through_a6": true,
+    "exclude_repository_if_its_source_was_previously_inspected_in_a0_through_a6": true,
+    "after_a_repository_is_used_or_source-inspected_in_a6b_exclude_later_queue_items_from_that_repository": true,
+    "first_operational_queue_index": 18,
+    "advance_in_ascending_queue_index": true
+  },
+  "claim_boundary": "This is a pre-outcome freshness correction, not a performance-driven task replacement."
+}
