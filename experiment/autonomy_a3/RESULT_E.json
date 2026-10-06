@@ -1,0 +1,186 @@
+{
+  "baseline": {
+    "elapsed_ms": 264,
+    "exit_code": 1,
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "F.                                                                       [100%]\n=================================== FAILURES ===================================\n______________________________ test_truncate_long ______________________________\n\n    def test_truncate_long():\n>       assert truncate(\"hello world\", 5) == \"hello...\"\nE       AssertionError: assert 'hello ...' == 'hello...'\nE         \nE         - hello...\nE         + hello ...\nE         ?      +\n\ntests/test_textutil.py:5: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_textutil.py::test_truncate_long - AssertionError: assert 'h...\n1 failed, 1 passed in 0.02s\n",
+    "stdout_sha256": "eb7304f1c9b63f5ff1abd0df590afb74e4dbeaf9aa02c422844488ab0d94232d"
+  },
+  "candidate_generation": {
+    "candidate_count": 6,
+    "external_model_calls": 0,
+    "schema": "genesis-generic-scalar-mutation-set-v1",
+    "truncated": false
+  },
+  "carrier_commit": "53bdc652b0e8c5879158b9cc3927e9bddbba3a00",
+  "claim": "A3_CAUSAL_RETAINED_STRATEGY_REUSE",
+  "control": {
+    "arm": "control_no_memory",
+    "budget": 16,
+    "charged_candidate_executions": 5,
+    "first_pass": {
+      "base_index": 4,
+      "candidate_digest": "92d8f22aaa401eb717617ea55e69404184b22a02b6035247f6599c242ca42d2e",
+      "id": "scalar-92d8f22aaa401eb7",
+      "label": "integer_delta:textutil.py:159",
+      "operator": "integer_delta",
+      "passed": true,
+      "rank": 5,
+      "tests": {
+        "elapsed_ms": 224,
+        "exit_code": 0,
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "..                                                                       [100%]\n2 passed in 0.01s\n",
+        "stdout_sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e"
+      }
+    },
+    "records": [
+      {
+        "base_index": 0,
+        "candidate_digest": "6bf3448bd181600ccbdfcf563a4cea42d46220ea6dfbc879e8b429aec35b3269",
+        "id": "scalar-6bf3448bd181600c",
+        "label": "comparison_boundary:textutil.py:75",
+        "operator": "comparison_boundary",
+        "passed": false,
+        "rank": 1,
+        "tests": {
+          "elapsed_ms": 357,
+          "exit_code": 2,
+          "stderr": "",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "\n==================================== ERRORS ====================================\n___________________ ERROR collecting tests/test_textutil.py ____________________\n/home/anthony/mira-genesis-oe1/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule\n    mod = import_path(\n/home/anthony/mira-genesis-oe1/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path\n    importlib.import_module(module_name)\n/usr/lib/python3.12/importlib/__init__.py:90: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1387: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1360: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:935: in _load_unlocked\n    ???\n/home/anthony/mira-genesis-oe1/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module\n    exec(co, module.__dict__)\ntests/test_textutil.py:2: in <module>\n    from textutil import *\nE     File \"/tmp/genesis-a3e-control_no_memory-99e_to9j/candidate-001/textutil.py\", line 3\nE       def truncate(text: str, max_len: int) -< str:\nE                                             ^\nE   SyntaxError: expected ':'\n=========================== short test summary info ============================\nERROR tests/test_textutil.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.15s\n",
+          "stdout_sha256": "bd9e7c027081e4b2e1c505d74f88b6a682a0c31bd683e31ed51df8dce1f8621f"
+        }
+      },
+      {
+        "base_index": 1,
+        "candidate_digest": "e4fc86855ef26a4a427e75c7660dca12709e2a9e2362a42b628a0c3aead338c2",
+        "id": "scalar-e4fc86855ef26a4a",
+        "label": "comparison_boundary:textutil.py:75",
+        "operator": "comparison_boundary",
+        "passed": false,
+        "rank": 2,
+        "tests": {
+          "elapsed_ms": 370,
+          "exit_code": 2,
+          "stderr": "",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "\n==================================== ERRORS ====================================\n___________________ ERROR collecting tests/test_textutil.py ____________________\n/home/anthony/mira-genesis-oe1/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule\n    mod = import_path(\n/home/anthony/mira-genesis-oe1/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path\n    importlib.import_module(module_name)\n/usr/lib/python3.12/importlib/__init__.py:90: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n<frozen importlib._bootstrap>:1387: in _gcd_import\n    ???\n<frozen importlib._bootstrap>:1360: in _find_and_load\n    ???\n<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked\n    ???\n<frozen importlib._bootstrap>:935: in _load_unlocked\n    ???\n/home/anthony/mira-genesis-oe1/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module\n    exec(co, module.__dict__)\ntests/test_textutil.py:2: in <module>\n    from textutil import *\nE     File \"/tmp/genesis-a3e-control_no_memory-99e_to9j/candidate-002/textutil.py\", line 3\nE       def truncate(text: str, max_len: int) ->= str:\nE                                             ^^\nE   SyntaxError: expected ':'\n=========================== short test summary info ============================\nERROR tests/test_textutil.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.16s\n",
+          "stdout_sha256": "1575daa7c7861dd55e922d5851c16ec6e4696ffa170a39d2852accc0cac8fabd"
+        }
+      },
+      {
+        "base_index": 2,
+        "candidate_digest": "ed3490988d6fb52f00e6851742253986e7d321c67cd007cd7fa6e74fc4990ecf",
+        "id": "scalar-ed3490988d6fb52f",
+        "label": "comparison_boundary:textutil.py:99",
+        "operator": "comparison_boundary",
+        "passed": false,
+        "rank": 3,
+        "tests": {
+          "elapsed_ms": 246,
+          "exit_code": 1,
+          "stderr": "",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "F.                                                                       [100%]\n=================================== FAILURES ===================================\n______________________________ test_truncate_long ______________________________\n\n    def test_truncate_long():\n>       assert truncate(\"hello world\", 5) == \"hello...\"\nE       AssertionError: assert 'hello ...' == 'hello...'\nE         \nE         - hello...\nE         + hello ...\nE         ?      +\n\ntests/test_textutil.py:5: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_textutil.py::test_truncate_long - AssertionError: assert 'h...\n1 failed, 1 passed in 0.02s\n",
+          "stdout_sha256": "eb7304f1c9b63f5ff1abd0df590afb74e4dbeaf9aa02c422844488ab0d94232d"
+        }
+      },
+      {
+        "base_index": 3,
+        "candidate_digest": "6491f27c4b45c65718628f3a8cf191141c1845f87c7a328c05095c637666b06e",
+        "id": "scalar-6491f27c4b45c657",
+        "label": "comparison_boundary:textutil.py:99",
+        "operator": "comparison_boundary",
+        "passed": false,
+        "rank": 4,
+        "tests": {
+          "elapsed_ms": 229,
+          "exit_code": 1,
+          "stderr": "",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "FF                                                                       [100%]\n=================================== FAILURES ===================================\n______________________________ test_truncate_long ______________________________\n\n    def test_truncate_long():\n>       assert truncate(\"hello world\", 5) == \"hello...\"\nE       AssertionError: assert 'hello world' == 'hello...'\nE         \nE         - hello...\nE         + hello world\n\ntests/test_textutil.py:5: AssertionError\n_____________________________ test_truncate_short ______________________________\n\n    def test_truncate_short():\n>       assert truncate(\"hi\", 10) == \"hi\"\nE       AssertionError: assert 'hi...' == 'hi'\nE         \nE         - hi\nE         + hi...\n\ntests/test_textutil.py:8: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_textutil.py::test_truncate_long - AssertionError: assert 'h...\nFAILED tests/test_textutil.py::test_truncate_short - AssertionError: assert '...\n2 failed in 0.02s\n",
+          "stdout_sha256": "87fd30b5b3b53cc77405f74375998ad5b4f44ca4ef880211592bd52b74da7db8"
+        }
+      },
+      {
+        "base_index": 4,
+        "candidate_digest": "92d8f22aaa401eb717617ea55e69404184b22a02b6035247f6599c242ca42d2e",
+        "id": "scalar-92d8f22aaa401eb7",
+        "label": "integer_delta:textutil.py:159",
+        "operator": "integer_delta",
+        "passed": true,
+        "rank": 5,
+        "tests": {
+          "elapsed_ms": 224,
+          "exit_code": 0,
+          "stderr": "",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "..                                                                       [100%]\n2 passed in 0.01s\n",
+          "stdout_sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e"
+        }
+      }
+    ]
+  },
+  "external_model_calls": 0,
+  "issue_number": 1,
+  "manual_candidate_repair": false,
+  "memory_digest": "9be25ef2ab02a706934d0744d68e4065df060677d0327d8a26648319497fdc79",
+  "memory_ranking_digest": "3a2adde8113cb6b316dc3af84f33bf9cd39c4cb269a1fbcc8ab5add236e47358",
+  "passed": true,
+  "report_digest": "1956f8c7ff25d4f452025c488c1bff744e5546ea64fce1265d938410eae40464",
+  "retained_memory": {
+    "arm": "retained_memory",
+    "budget": 16,
+    "charged_candidate_executions": 1,
+    "first_pass": {
+      "base_index": 4,
+      "candidate_digest": "92d8f22aaa401eb717617ea55e69404184b22a02b6035247f6599c242ca42d2e",
+      "id": "scalar-92d8f22aaa401eb7",
+      "label": "integer_delta:textutil.py:159",
+      "operator": "integer_delta",
+      "passed": true,
+      "rank": 1,
+      "tests": {
+        "elapsed_ms": 231,
+        "exit_code": 0,
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "..                                                                       [100%]\n2 passed in 0.01s\n",
+        "stdout_sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e"
+      }
+    },
+    "records": [
+      {
+        "base_index": 4,
+        "candidate_digest": "92d8f22aaa401eb717617ea55e69404184b22a02b6035247f6599c242ca42d2e",
+        "id": "scalar-92d8f22aaa401eb7",
+        "label": "integer_delta:textutil.py:159",
+        "operator": "integer_delta",
+        "passed": true,
+        "rank": 1,
+        "tests": {
+          "elapsed_ms": 231,
+          "exit_code": 0,
+          "stderr": "",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "..                                                                       [100%]\n2 passed in 0.01s\n",
+          "stdout_sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e"
+        }
+      }
+    ]
+  },
+  "retry_count": 0,
+  "same_treatment_winner_control_rank": 5,
+  "schema": "mira-genesis-autonomy-a3e-result-v1",
+  "winner_replay": {
+    "elapsed_ms": 238,
+    "exit_code": 0,
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "..                                                                       [100%]\n2 passed in 0.01s\n",
+    "stdout_sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e"
+  }
+}
