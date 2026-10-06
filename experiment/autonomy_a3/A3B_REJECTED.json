@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-autonomy-a3-carrier-rejection-v1",
+  "carrier": "Pranav-Singh-Devloper/harness-demo-bookshop#1",
+  "carrier_commit": "33c964c661119b1bf36432caa970da59c7496889",
+  "selection_freeze_commit": "5ab84cc9",
+  "stage": "post-freeze source expressibility check, before candidate evaluation",
+  "classification": "FROZEN_GRAMMAR_CANNOT_FIX_WITHOUT_REGRESSION",
+  "reason": "The bug is total_pages = len(items) // per_page + 1. Changing the literal 1 to 0 fixes exact multiples but breaks the existing partial-last-page case (25 items at 10/page must remain 3 pages). A correct fix requires a structural ceil-style expression, outside the frozen single-site scalar grammar.",
+  "candidate_evaluations": 0,
+  "objective_evaluations": 0,
+  "external_model_calls": 0,
+  "manual_repair_attempted": false,
+  "policy": "Retained as a negative carrier-selection result. No task-specific grammar extension is introduced after seeing the source."
+}
