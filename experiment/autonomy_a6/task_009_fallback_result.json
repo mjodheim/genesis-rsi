@@ -1,0 +1,171 @@
+{
+  "applied": [
+    {
+      "new_sha256": "fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822",
+      "old_sha256": "a8b06e93f5daa3628ec63b923bd0a74af2b18568478c33777c6fef2907c9ee5c",
+      "path": "internal/runtime/docker.go",
+      "supplied_path": "internal/runtime/docker.go"
+    }
+  ],
+  "autonomous_result_digest": "f0fad5e212a3bb49e9100c2abb785dbdd542a5d4d636a06ce86b88fc56628749",
+  "cost_usd": 0.0947418,
+  "evaluation": {
+    "elapsed_ms": 51,
+    "exit_code": 0,
+    "parsed": {
+      "attempts_for_retries_3": 3,
+      "default_logic_ok": true,
+      "expected_attempts": 3,
+      "external_model_calls": 0,
+      "message_ok": true,
+      "objective_ok": true,
+      "operator": "<",
+      "schema": "mira-genesis-a6-task009-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"attempts_for_retries_3\": 3, \"default_logic_ok\": true, \"expected_attempts\": 3, \"external_model_calls\": 0, \"message_ok\": true, \"objective_ok\": true, \"operator\": \"<\", \"schema\": \"mira-genesis-a6-task009-evaluator-v1\"}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 1,
+  "learned_template_digests": [
+    "1f8811a279e9f984cefd0ba2e48ba060ccb8b594f51c85a71eca89e21f98b95e"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "<"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "<="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "b6b57c42ec775a5b56e823f2c4f105abeed383def58fa537a74b6b73028fc73e",
+      "template_digest": "1f8811a279e9f984cefd0ba2e48ba060ccb8b594f51c85a71eca89e21f98b95e"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "b6b57c42ec775a5b56e823f2c4f105abeed383def58fa537a74b6b73028fc73e",
+  "proposal": {
+    "edits": [
+      {
+        "new": "for i := 0; i < retries; i++ {",
+        "old": "for i := 0; i <= retries; i++ {",
+        "path": "internal/runtime/docker.go"
+      }
+    ],
+    "summary": "Change the WaitForHealth loop condition from i <= retries to i < retries so retries=3 yields exactly three attempts."
+  },
+  "report_digest": "54d01971cfc163c9f81b0c6b2d81739b4650d28fdb77dea57bbf4846a24e600f",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task009-fallback-result-v1"
+}
