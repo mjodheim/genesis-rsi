@@ -1,0 +1,250 @@
+{
+  "applied": [
+    {
+      "new_sha256": "2af9634d7ecebd8c272ccbeb7fc6c5a6ebf7d66d581ca2570a1d017cd088f3e4",
+      "old_sha256": "c9d7144a0387ac3261250866c3c3b30708a7a6357d95e6b2d01bb718a52e885b",
+      "path": "lib/DateTimeUtils.ts"
+    }
+  ],
+  "autonomous_result_digest": "9a0cb613262c6008728cef879abe41df283d95dedf5168f3b281d18bf5ec4d9f",
+  "cost_usd": 0.0750956,
+  "evaluation": {
+    "elapsed_ms": 345,
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "results": [
+        {
+          "expectedRendered": "00:00:00",
+          "expectedSeconds": 0,
+          "input": "01000000",
+          "ok": true,
+          "rendered": "00:00:00",
+          "seconds": 0
+        },
+        {
+          "expectedRendered": "12:30:45",
+          "expectedSeconds": 45045,
+          "input": "01123045",
+          "ok": true,
+          "rendered": "12:30:45",
+          "seconds": 45045
+        },
+        {
+          "expectedRendered": "YYYY-MM-15T10:00:00",
+          "expectedSeconds": 1245600,
+          "input": "15100000",
+          "ok": true,
+          "rendered": "YYYY-MM-15T10:00:00",
+          "seconds": 1245600
+        },
+        {
+          "expectedRendered": "YYYY-MM-31T10:00:00",
+          "expectedSeconds": 2628000,
+          "input": "31100000",
+          "ok": true,
+          "rendered": "YYYY-MM-31T10:00:00",
+          "seconds": 2628000
+        }
+      ],
+      "schema": "mira-genesis-a6-task011-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"schema\":\"mira-genesis-a6-task011-evaluator-v1\",\"objective_ok\":true,\"results\":[{\"input\":\"01000000\",\"expectedSeconds\":0,\"seconds\":0,\"expectedRendered\":\"00:00:00\",\"rendered\":\"00:00:00\",\"ok\":true},{\"input\":\"01123045\",\"expectedSeconds\":45045,\"seconds\":45045,\"expectedRendered\":\"12:30:45\",\"rendered\":\"12:30:45\",\"ok\":true},{\"input\":\"15100000\",\"expectedSeconds\":1245600,\"seconds\":1245600,\"expectedRendered\":\"YYYY-MM-15T10:00:00\",\"rendered\":\"YYYY-MM-15T10:00:00\",\"ok\":true},{\"input\":\"31100000\",\"expectedSeconds\":2628000,\"seconds\":2628000,\"expectedRendered\":\"YYYY-MM-31T10:00:00\",\"rendered\":\"YYYY-MM-31T10:00:00\",\"ok\":true}],\"external_model_calls\":0}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 1,
+  "learned_template_digests": [
+    "0ae84fc258c404f2980f730b501cc1c79d9835c9eefe9790ee0f008576f01092"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "literal",
+          "value": "1"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "057ded7a391bbdf470535b6240732678176964ca0612c6e4b240c7de3c5375ff",
+      "template_digest": "0ae84fc258c404f2980f730b501cc1c79d9835c9eefe9790ee0f008576f01092"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "057ded7a391bbdf470535b6240732678176964ca0612c6e4b240c7de3c5375ff",
+  "proposal": {
+    "edits": [
+      {
+        "new": "const tod = (d - 1) * 86400 + h * 3600 + m * 60 + s;",
+        "old": "const tod = d * 86400 + h * 3600 + m * 60 + s;",
+        "path": "lib/DateTimeUtils.ts"
+      }
+    ],
+    "summary": "Days are one-indexed, so subtract 1 from the day when computing the offset from the start of the month (Jan 1 = offset 0). Day 15 now yields 14*86400 and renders as the 15th; day 31 yields 30*86400, which stays inside January."
+  },
+  "report_digest": "f7a168b4226558186bfc9a3a13e77e1ceb5a5ea2a16442cd62a5bebb1f46244c",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task011-fallback-result-v1"
+}
