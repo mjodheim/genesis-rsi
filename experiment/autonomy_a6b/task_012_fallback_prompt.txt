@@ -1,0 +1,20 @@
+You are the single frozen fallback proposer for A6b task 12.
+
+Repository: davidhealey/waistline
+Frozen commit: 772a591c0a37be50be0580851bf95806a20e5f39
+Issue: #979 — Date range off by one in Statistics screen
+
+Public task contract:
+- HTML date inputs contain YYYY-MM-DD calendar dates.
+- statistics.js re-parses those strings with new Date(value).
+- JavaScript interprets YYYY-MM-DD as UTC midnight, so in timezones behind UTC the local calendar date becomes the previous day.
+- Both initial Statistics loading and later custom date-range updates must preserve the selected local calendar day.
+- Preserve unrelated behavior and source.
+
+Inspect only the frozen repository and return the smallest source-only repair.
+Do not run tests. Do not use the web. Do not inspect Genesis files. Do not
+modify files yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an
+exact UTF-8 substring replacement whose old text occurs exactly once. Do not
+include tests or generated files.
