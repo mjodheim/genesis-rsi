@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-autonomy-a5-carrier-rejection-v1",
+  "carrier": "knorquist-enterprise-cloud-testing/ledger-lite#3",
+  "carrier_commit": "176cffa31749cd135bc66ed5ef98ec8064bc0bef",
+  "selection_freeze_commit": "d2ccf53a",
+  "stage": "post-freeze source/issue inspection, before candidate evaluation",
+  "classification": "RETAINED_INTEGER_DELTA_INSUFFICIENT",
+  "reason": "The frozen defect uses double arithmetic plus Math.floor and must be replaced by BigDecimal-only percentage/fixed-fee arithmetic with scale 2 and RoundingMode.HALF_EVEN. The retained integer_delta strategy cannot express that structural rewrite. Mutating a numeric literal would not satisfy the public acceptance criteria.",
+  "candidate_evaluations": 0,
+  "objective_evaluations": 0,
+  "external_model_calls": 0,
+  "manual_repair_attempted": false,
+  "policy": "Retained as a negative A5 transfer carrier. No task-specific structural operator is added after inspecting this issue."
+}
