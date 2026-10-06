@@ -1,0 +1,284 @@
+{
+  "autonomous_passed": true,
+  "baseline": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_009_eval.py",
+      "/home/anthony/experiments/a6b-c032"
+    ],
+    "elapsed_ms": 88,
+    "exit_code": 1,
+    "parsed": {
+      "cases": [
+        {
+          "actual": "hello ...",
+          "expected": "hello...",
+          "max_len": 5,
+          "ok": false,
+          "text": "hello world"
+        },
+        {
+          "actual": "ab...",
+          "expected": "a...",
+          "max_len": 1,
+          "ok": false,
+          "text": "abcdef"
+        },
+        {
+          "actual": "abcdef",
+          "expected": "abcdef",
+          "max_len": 6,
+          "ok": true,
+          "text": "abcdef"
+        },
+        {
+          "actual": "hi",
+          "expected": "hi",
+          "max_len": 10,
+          "ok": true,
+          "text": "hi"
+        },
+        {
+          "actual": "",
+          "expected": "",
+          "max_len": 0,
+          "ok": true,
+          "text": ""
+        }
+      ],
+      "external_model_calls": 0,
+      "objective_ok": false,
+      "schema": "mira-genesis-a6b-task009-evaluator-v1",
+      "semantics_ok": false,
+      "unrelated_functions_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"cases\": [{\"actual\": \"hello ...\", \"expected\": \"hello...\", \"max_len\": 5, \"ok\": false, \"text\": \"hello world\"}, {\"actual\": \"ab...\", \"expected\": \"a...\", \"max_len\": 1, \"ok\": false, \"text\": \"abcdef\"}, {\"actual\": \"abcdef\", \"expected\": \"abcdef\", \"max_len\": 6, \"ok\": true, \"text\": \"abcdef\"}, {\"actual\": \"hi\", \"expected\": \"hi\", \"max_len\": 10, \"ok\": true, \"text\": \"hi\"}, {\"actual\": \"\", \"expected\": \"\", \"max_len\": 0, \"ok\": true, \"text\": \"\"}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task009-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": true}\n"
+  },
+  "candidate_budget": 256,
+  "carrier": "caorantaoyao/maintainermesh-demo-lib#1",
+  "charged_candidate_executions": 1,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 18,
+  "records": [
+    {
+      "candidate_digest": "d92f9e9fdaf63d311c9a892f85c3ad04f81a2432aba9109ad89bcfa16ef26cf6",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_009_eval.py",
+          "/tmp/genesis-a6b-auto-g66ba_q7/candidate-001"
+        ],
+        "elapsed_ms": 76,
+        "exit_code": 0,
+        "parsed": {
+          "cases": [
+            {
+              "actual": "hello...",
+              "expected": "hello...",
+              "max_len": 5,
+              "ok": true,
+              "text": "hello world"
+            },
+            {
+              "actual": "a...",
+              "expected": "a...",
+              "max_len": 1,
+              "ok": true,
+              "text": "abcdef"
+            },
+            {
+              "actual": "abcdef",
+              "expected": "abcdef",
+              "max_len": 6,
+              "ok": true,
+              "text": "abcdef"
+            },
+            {
+              "actual": "hi",
+              "expected": "hi",
+              "max_len": 10,
+              "ok": true,
+              "text": "hi"
+            },
+            {
+              "actual": "",
+              "expected": "",
+              "max_len": 0,
+              "ok": true,
+              "text": ""
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": true,
+          "schema": "mira-genesis-a6b-task009-evaluator-v1",
+          "semantics_ok": true,
+          "unrelated_functions_preserved": true
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": \"hello...\", \"expected\": \"hello...\", \"max_len\": 5, \"ok\": true, \"text\": \"hello world\"}, {\"actual\": \"a...\", \"expected\": \"a...\", \"max_len\": 1, \"ok\": true, \"text\": \"abcdef\"}, {\"actual\": \"abcdef\", \"expected\": \"abcdef\", \"max_len\": 6, \"ok\": true, \"text\": \"abcdef\"}, {\"actual\": \"hi\", \"expected\": \"hi\", \"max_len\": 10, \"ok\": true, \"text\": \"hi\"}, {\"actual\": \"\", \"expected\": \"\", \"max_len\": 0, \"ok\": true, \"text\": \"\"}], \"external_model_calls\": 0, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task009-evaluator-v1\", \"semantics_ok\": true, \"unrelated_functions_preserved\": true}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-d92f9e9fdaf63d31",
+      "label": "integer_delta:string_utils.py:160",
+      "operator": "integer_delta",
+      "passed": true,
+      "rank": 1
+    }
+  ],
+  "report_digest": "4c79c18d78acf275a506692bf38f039ab38c236221611f2dde715660f02ac0ff",
+  "retry_count": 0,
+  "schedule": {
+    "family_input_counts": {
+      "coordinated": 7,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 2,
+      "scalar": 16
+    },
+    "family_scheduled_counts": {
+      "coordinated": 7,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 2,
+      "scalar": 16
+    },
+    "schedule_digest": "f01f111380a3bde25220d5daed160d7e805be405d23c50716fe23bd621b8f6d0",
+    "scheduled_count": 25,
+    "schema": "genesis-fair-candidate-schedule-v1",
+    "weights": {
+      "coordinated": 1,
+      "exemplar": 1,
+      "learned": 1,
+      "learned_coordinated": 3,
+      "retained": 1,
+      "scalar": 4
+    }
+  },
+  "schema": "mira-genesis-a6b-autonomous-task-result-v1",
+  "task_id": 9,
+  "winner": {
+    "candidate_digest": "d92f9e9fdaf63d311c9a892f85c3ad04f81a2432aba9109ad89bcfa16ef26cf6",
+    "coordination_size": 1,
+    "evaluation": {
+      "argv": [
+        "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+        "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_009_eval.py",
+        "/tmp/genesis-a6b-auto-g66ba_q7/candidate-001"
+      ],
+      "elapsed_ms": 76,
+      "exit_code": 0,
+      "parsed": {
+        "cases": [
+          {
+            "actual": "hello...",
+            "expected": "hello...",
+            "max_len": 5,
+            "ok": true,
+            "text": "hello world"
+          },
+          {
+            "actual": "a...",
+            "expected": "a...",
+            "max_len": 1,
+            "ok": true,
+            "text": "abcdef"
+          },
+          {
+            "actual": "abcdef",
+            "expected": "abcdef",
+            "max_len": 6,
+            "ok": true,
+            "text": "abcdef"
+          },
+          {
+            "actual": "hi",
+            "expected": "hi",
+            "max_len": 10,
+            "ok": true,
+            "text": "hi"
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "max_len": 0,
+            "ok": true,
+            "text": ""
+          }
+        ],
+        "external_model_calls": 0,
+        "objective_ok": true,
+        "schema": "mira-genesis-a6b-task009-evaluator-v1",
+        "semantics_ok": true,
+        "unrelated_functions_preserved": true
+      },
+      "stderr": "",
+      "stdout": "{\"cases\": [{\"actual\": \"hello...\", \"expected\": \"hello...\", \"max_len\": 5, \"ok\": true, \"text\": \"hello world\"}, {\"actual\": \"a...\", \"expected\": \"a...\", \"max_len\": 1, \"ok\": true, \"text\": \"abcdef\"}, {\"actual\": \"abcdef\", \"expected\": \"abcdef\", \"max_len\": 6, \"ok\": true, \"text\": \"abcdef\"}, {\"actual\": \"hi\", \"expected\": \"hi\", \"max_len\": 10, \"ok\": true, \"text\": \"hi\"}, {\"actual\": \"\", \"expected\": \"\", \"max_len\": 0, \"ok\": true, \"text\": \"\"}], \"external_model_calls\": 0, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task009-evaluator-v1\", \"semantics_ok\": true, \"unrelated_functions_preserved\": true}\n"
+    },
+    "generator": "generic_scalar_mutations",
+    "id": "scalar-d92f9e9fdaf63d31",
+    "label": "integer_delta:string_utils.py:160",
+    "operator": "integer_delta",
+    "passed": true,
+    "rank": 1
+  },
+  "winner_replay": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_009_eval.py",
+      "/tmp/genesis-a6b-auto-replay-ph8ny47m/workspace"
+    ],
+    "elapsed_ms": 47,
+    "exit_code": 0,
+    "parsed": {
+      "cases": [
+        {
+          "actual": "hello...",
+          "expected": "hello...",
+          "max_len": 5,
+          "ok": true,
+          "text": "hello world"
+        },
+        {
+          "actual": "a...",
+          "expected": "a...",
+          "max_len": 1,
+          "ok": true,
+          "text": "abcdef"
+        },
+        {
+          "actual": "abcdef",
+          "expected": "abcdef",
+          "max_len": 6,
+          "ok": true,
+          "text": "abcdef"
+        },
+        {
+          "actual": "hi",
+          "expected": "hi",
+          "max_len": 10,
+          "ok": true,
+          "text": "hi"
+        },
+        {
+          "actual": "",
+          "expected": "",
+          "max_len": 0,
+          "ok": true,
+          "text": ""
+        }
+      ],
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "schema": "mira-genesis-a6b-task009-evaluator-v1",
+      "semantics_ok": true,
+      "unrelated_functions_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"cases\": [{\"actual\": \"hello...\", \"expected\": \"hello...\", \"max_len\": 5, \"ok\": true, \"text\": \"hello world\"}, {\"actual\": \"a...\", \"expected\": \"a...\", \"max_len\": 1, \"ok\": true, \"text\": \"abcdef\"}, {\"actual\": \"abcdef\", \"expected\": \"abcdef\", \"max_len\": 6, \"ok\": true, \"text\": \"abcdef\"}, {\"actual\": \"hi\", \"expected\": \"hi\", \"max_len\": 10, \"ok\": true, \"text\": \"hi\"}, {\"actual\": \"\", \"expected\": \"\", \"max_len\": 0, \"ok\": true, \"text\": \"\"}], \"external_model_calls\": 0, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task009-evaluator-v1\", \"semantics_ok\": true, \"unrelated_functions_preserved\": true}\n"
+  }
+}
