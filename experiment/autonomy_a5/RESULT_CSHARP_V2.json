@@ -1,0 +1,1106 @@
+{
+  "baseline": {
+    "argv": [
+      "/home/anthony/.dotnet9/dotnet",
+      "test",
+      "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+      "--no-restore",
+      "--filter",
+      "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+      "--verbosity",
+      "quiet"
+    ],
+    "elapsed_ms": 32138,
+    "exit_code": 1,
+    "stderr": "[xUnit.net 00:00:01.19]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+    "stderr_sha256": "3fd01da300ba5cba11df2e1897b4200cf2826c03471c97f8f7d11b915f7e8705",
+    "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 253 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+    "stdout_sha256": "40c5ae993a8b10d0d58c880f5a30707bf19ee171abcdb481a01cf7e041b95b12"
+  },
+  "candidate_generation": {
+    "candidate_count": 105,
+    "external_model_calls": 0,
+    "schema": "genesis-generic-scalar-mutation-set-v1",
+    "truncated": false
+  },
+  "carrier_commit": "46f6fe0bc96e845d5b5cae2318cbf8d335d9b4e3",
+  "charged_candidate_executions": 37,
+  "claim": "A5_THREE_LANGUAGE_RETAINED_STRATEGY_TRANSFER",
+  "external_model_calls": 0,
+  "issue_number": 724,
+  "language_transfer_chain": [
+    "javascript",
+    "python",
+    "csharp"
+  ],
+  "manual_candidate_repair": false,
+  "memory_digest": "9be25ef2ab02a706934d0744d68e4065df060677d0327d8a26648319497fdc79",
+  "memory_ranking_digest": "d48dd1d99f27779bd260b2816c6afdddc799808ce83cf6ee55b1807e5945e372",
+  "passed": true,
+  "records": [
+    {
+      "base_index": 16,
+      "candidate_digest": "21a3a28600d2c9efb953a750a8f0f430a8e6b50f3969e82ba6af752b098f967a",
+      "id": "scalar-21a3a28600d2c9ef",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:637",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 1,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 8105,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.15]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "c8cc25e5fcf23b8f2954403d895197cb144d8e40ce0cc8b2e87b2aed76230c31",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 286 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "86de75408ebb360833d42639cd387ac1b7ac920ed40aed495bc0df6cddada8e5"
+      }
+    },
+    {
+      "base_index": 17,
+      "candidate_digest": "50d43d33ccd48f7e2b9de60ff9fe1a339095bd41a9c62d06536e77637619b103",
+      "id": "scalar-50d43d33ccd48f7e",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:637",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 2,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 7030,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.06]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "d541e757658b0d9936a7723302c49a840ab0d4786662582e142f5f364d1a3706",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 258 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "0357d851b10d931a70857ccb5cb03e990995c39bcf54ae0ede01ed47889fd56a"
+      }
+    },
+    {
+      "base_index": 18,
+      "candidate_digest": "28abcd4cc9e32fe5bac5c2de70148835005291e039bb329c71c12f82b0a20cee",
+      "id": "scalar-28abcd4cc9e32fe5",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:691",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 3,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6380,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.11]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "961c0923fd226456457414e824f2c2adb3cdb02d99b57383ecabd7fedf5efc52",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 273 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "979ed31df809e45a76881f1a8470fe60965b26d7864e359cba733c4f22c32733"
+      }
+    },
+    {
+      "base_index": 19,
+      "candidate_digest": "7573e3effcb445874cfc6d9d3f1967cd4edeb347f04c63c5dc66740ca61f792d",
+      "id": "scalar-7573e3effcb44587",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:691",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 4,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6177,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.10]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "9afdc54b2a6a89b032efc1ada20cec3e9ca54150b4104ce952706ad6ff91b559",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 274 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "726e85e93a5cb79f8c4582ab29ee8b3b268bff2b0cd44d76614044839fc23fb4"
+      }
+    },
+    {
+      "base_index": 20,
+      "candidate_digest": "c18415106786bce796b9de742fedcf32883e2c140fad2c6bdda2bf07205ca8a7",
+      "id": "scalar-c18415106786bce7",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:938",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 5,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6415,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.21]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "a0357599f31009fe2dae9b99208661fcb3683606c1277dc28034617b2ee4cb3c",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 283 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "7f097770d5f8802bf7e422233a1daed52a0fe7f6ed656ba03022e7bf0df5559a"
+      }
+    },
+    {
+      "base_index": 21,
+      "candidate_digest": "554c207eea798354c51b1dd9dbfda2c0c25d94a6cb6f7bb68a11ea34ac28777c",
+      "id": "scalar-554c207eea798354",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:938",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 6,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6383,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.15]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "c8cc25e5fcf23b8f2954403d895197cb144d8e40ce0cc8b2e87b2aed76230c31",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 263 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e535ff9fc8c25deebdcbc9d45289759bc657ad3a052e1d0c02451a362cfe4fb6"
+      }
+    },
+    {
+      "base_index": 22,
+      "candidate_digest": "a79d9ce62c5fba9360b6e8c0d845d067d55d611b9aaad03cf9995055155e8630",
+      "id": "scalar-a79d9ce62c5fba93",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:985",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 7,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6241,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.14]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "d08bc03d664a0aab50a4970b9c953f01dbe776ed959b4af4c0072bd84bfae2b1",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 272 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "734537bd92630b2529cf4ec572b77d61815762fd22fc329d77fe6a44122865a7"
+      }
+    },
+    {
+      "base_index": 23,
+      "candidate_digest": "21397f21c1b43162b7ae1b6cd295dadb0f5213768aac6a088397bd48a508426b",
+      "id": "scalar-21397f21c1b43162",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:985",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 8,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6695,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.18]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "86cd75543788e9b91993e7aa6fa009369b6d5694317085685ec689c7adb465e8",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 276 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "dcb55d15ab84a1234106179a86df3c2aac28910132e4de43e62041b5ae1785cb"
+      }
+    },
+    {
+      "base_index": 24,
+      "candidate_digest": "e0a3ddc9fe937a3398b143c903912e9c88c5ef08fc2fd444b6d0724a00237c01",
+      "id": "scalar-e0a3ddc9fe937a33",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1030",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 9,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6551,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.16]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "50f108ce5e9ce409096c3bcffdca54b09df05cd5d1568b20eee4ac92d0a6e065",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 295 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "accd17c176f9849d262a79553bacdfcc3dbdd21453323b3816d37a44e7cd0b7c"
+      }
+    },
+    {
+      "base_index": 25,
+      "candidate_digest": "dcf7219d048670130a9f7ea66695c95dd1a2ee7d3c931268ca6c48dbe4e59650",
+      "id": "scalar-dcf7219d04867013",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1030",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 10,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6412,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.20]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "6089dbd21db3f7377d8f3b8f3607d419a58876155de1a1ae90c44824681acbc5",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 265 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "0052a44285aa21bc51491d3021def1971e6926d388fd410da41aa082efb3c15a"
+      }
+    },
+    {
+      "base_index": 26,
+      "candidate_digest": "a04c618bddbe7c4c3f1e24ee4ca0dd871895cc6556c77cf613d54009a9f8bb87",
+      "id": "scalar-a04c618bddbe7c4c",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1079",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 11,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6438,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.20]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "6089dbd21db3f7377d8f3b8f3607d419a58876155de1a1ae90c44824681acbc5",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 250 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e0a0a96ad3e63af839f80af710cec3c917ee0ab0b744d3282d102fdc7fdc76e8"
+      }
+    },
+    {
+      "base_index": 27,
+      "candidate_digest": "01abec4f8d7d41fa2e76f10a1773ef9f9ba6bb60db2278f325709061802b71b6",
+      "id": "scalar-01abec4f8d7d41fa",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1079",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 12,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6266,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.18]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "86cd75543788e9b91993e7aa6fa009369b6d5694317085685ec689c7adb465e8",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 277 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "38da3d76bbcbb01ff44d6af8837b37e6db8eec4ea4ff323823f2829c0a906b20"
+      }
+    },
+    {
+      "base_index": 28,
+      "candidate_digest": "3d6d8e8060c7f9338079dfe60957f8cb046eb898a2c96cebc0ab1e0a174698b9",
+      "id": "scalar-3d6d8e8060c7f933",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1127",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 13,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6278,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.07]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "57172a96c44bd2a01069167df4dc522724a5da66fb0e66aa22360ebe2a894682",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 263 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e535ff9fc8c25deebdcbc9d45289759bc657ad3a052e1d0c02451a362cfe4fb6"
+      }
+    },
+    {
+      "base_index": 29,
+      "candidate_digest": "dae7407aa6e2af883f861d3a95b8cde255b6203dd61adeceebc5743212beabfe",
+      "id": "scalar-dae7407aa6e2af88",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1127",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 14,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6125,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.10]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "9afdc54b2a6a89b032efc1ada20cec3e9ca54150b4104ce952706ad6ff91b559",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 260 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "63537de62bcc7da5e5f297d51bab4b93b9e9e7b17977b7ed069813144acbbaeb"
+      }
+    },
+    {
+      "base_index": 30,
+      "candidate_digest": "fa1afbfcb734dce638a6bbf66a7720ca6ed3a081bdaaae5a2491c2b3631f31da",
+      "id": "scalar-fa1afbfcb734dce6",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1182",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 15,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6463,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.15]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "c8cc25e5fcf23b8f2954403d895197cb144d8e40ce0cc8b2e87b2aed76230c31",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 288 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "9cd9fded7eaab14a6bf3f6a96c9fbeb704c9c763a553e0018e2c642fb44de6f8"
+      }
+    },
+    {
+      "base_index": 31,
+      "candidate_digest": "701cf3d70d9ead638cdc33c6715884ee82b1dc3bcafba61513e62372528dcbed",
+      "id": "scalar-701cf3d70d9ead63",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1182",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 16,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6205,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.10]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "9afdc54b2a6a89b032efc1ada20cec3e9ca54150b4104ce952706ad6ff91b559",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 275 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "4b3b282013d644e8e529c9ff4098cac4c7edaad9a55ea06cfb4c5b8cb6ea0b8d"
+      }
+    },
+    {
+      "base_index": 32,
+      "candidate_digest": "4c0dfe9cf6e4c4fa8fcbcc74e873719eda0a0b7e5fb3a4d89a0f8fa13debf468",
+      "id": "scalar-4c0dfe9cf6e4c4fa",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1234",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 17,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6322,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.24]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "01eaacd253a10c7361e9aae53e4f63b0379866b0296a48eb25a58f508ae1c38e",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 284 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "87979491748455f48b2a8207558fd21aef92322ca611b565b971f79111de6c92"
+      }
+    },
+    {
+      "base_index": 33,
+      "candidate_digest": "f61f63b762cb24cb32ba56902c016088bb0ba7f82cc0eeead3c4da6f62614bde",
+      "id": "scalar-f61f63b762cb24cb",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1234",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 18,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6473,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.20]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "6089dbd21db3f7377d8f3b8f3607d419a58876155de1a1ae90c44824681acbc5",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 281 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "41a56809e3a4b2cbe4ac1bf3e47a185fe8912055d7f25d70836d30e27a0e27aa"
+      }
+    },
+    {
+      "base_index": 34,
+      "candidate_digest": "10e8669feeb0141769476d4df617e13e1b5702a128d1adca9b36f008e855d2e5",
+      "id": "scalar-10e8669feeb01417",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1278",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 19,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6265,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.15]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "c8cc25e5fcf23b8f2954403d895197cb144d8e40ce0cc8b2e87b2aed76230c31",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 254 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "92d41a0c01b0469d29fda2db6b59e15039d3dbc06d01e976fb961a15aef1a08b"
+      }
+    },
+    {
+      "base_index": 35,
+      "candidate_digest": "1ddfeaeefaafad2c702b9c66aec08e5e648be9987b1413698e835d6da26a8dd8",
+      "id": "scalar-1ddfeaeefaafad2c",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1278",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 20,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6598,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.17]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "385bd94690a593e83bdb5409dd62cb554410aeb7b3ac7aea68cbc39d818ee495",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 271 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "dd7c4827f737e72a7b9ef9bc7cacd000d485aa7c2b33f9e79417b3294ae7cbc5"
+      }
+    },
+    {
+      "base_index": 36,
+      "candidate_digest": "740cf4811f77d4304b84f2abadd243976a11aa2cdef1d7b5aab3aab7cf33e49e",
+      "id": "scalar-740cf4811f77d430",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1332",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 21,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6120,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.16]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "50f108ce5e9ce409096c3bcffdca54b09df05cd5d1568b20eee4ac92d0a6e065",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 249 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "94d20402bba698108f4e2dcb4bccd9ced2504ea35dd7a85fad37d44b7abbc2dd"
+      }
+    },
+    {
+      "base_index": 37,
+      "candidate_digest": "449c29251fecf84715cec22b2307e9e92a8f9615fee39a26a1c58017ee63ff3d",
+      "id": "scalar-449c29251fecf847",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1332",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 22,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6460,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.20]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "6089dbd21db3f7377d8f3b8f3607d419a58876155de1a1ae90c44824681acbc5",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 263 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e535ff9fc8c25deebdcbc9d45289759bc657ad3a052e1d0c02451a362cfe4fb6"
+      }
+    },
+    {
+      "base_index": 38,
+      "candidate_digest": "1abf99ac8735bee8a0507a5fe669bf23879c06fd61fc7389e60e786b20150247",
+      "id": "scalar-1abf99ac8735bee8",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:1360",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 23,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6267,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.18]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "86cd75543788e9b91993e7aa6fa009369b6d5694317085685ec689c7adb465e8",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 269 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "940290d64ce70fc9e486ad2ae3eb6994385e0f2d497b81482bb5e7d4c78d5f9c"
+      }
+    },
+    {
+      "base_index": 50,
+      "candidate_digest": "2278595751320866e7227293404bdf328fca6b1b64d801b5c33c4c540e91bcc6",
+      "id": "scalar-2278595751320866",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2058",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 24,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6468,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.17]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "385bd94690a593e83bdb5409dd62cb554410aeb7b3ac7aea68cbc39d818ee495",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 288 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "9cd9fded7eaab14a6bf3f6a96c9fbeb704c9c763a553e0018e2c642fb44de6f8"
+      }
+    },
+    {
+      "base_index": 55,
+      "candidate_digest": "e51c1ad5477fa03b2b4dd7462ea5bb4713cdd21b6ada94b875ca350fba987aef",
+      "id": "scalar-e51c1ad5477fa03b",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2474",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 25,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6203,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.10]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "9afdc54b2a6a89b032efc1ada20cec3e9ca54150b4104ce952706ad6ff91b559",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 247 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "9083142514955f8bafd5f9173f53404ae7f08a7ffda30c77d1871175b17fd29f"
+      }
+    },
+    {
+      "base_index": 56,
+      "candidate_digest": "67da9bd9767bb67431348426af08d24537d2288351b75b109a61902e3185b603",
+      "id": "scalar-67da9bd9767bb674",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2478",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 26,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6549,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.13]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "d49e945651d28895e10b1bc0c52e382f67f6d1cdf7ae445e2d86421740c4adb8",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 245 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e7c1158afd507cf58cbae06312ae2d54e4804652a812e1385d5249d161889a33"
+      }
+    },
+    {
+      "base_index": 57,
+      "candidate_digest": "81172707114110deaec776a7de3bb2e70789aa9e67ab895307771cb443d10d67",
+      "id": "scalar-81172707114110de",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2478",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 27,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6448,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.13]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "d49e945651d28895e10b1bc0c52e382f67f6d1cdf7ae445e2d86421740c4adb8",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 280 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "36f20a16524f55368d40b4a98b371e30da1259ea40197b85589ac3804b7142d2"
+      }
+    },
+    {
+      "base_index": 58,
+      "candidate_digest": "3fb7b79371c0928f8695a92906e0c40c66c6abce8af5ea5ba4508e7d58687ab2",
+      "id": "scalar-3fb7b79371c0928f",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2529",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 28,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6584,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.16]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "50f108ce5e9ce409096c3bcffdca54b09df05cd5d1568b20eee4ac92d0a6e065",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 288 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "9cd9fded7eaab14a6bf3f6a96c9fbeb704c9c763a553e0018e2c642fb44de6f8"
+      }
+    },
+    {
+      "base_index": 59,
+      "candidate_digest": "ec1bc71aceba976f68940ae4b589a52df349e029ac525e105c595f75b84bb02d",
+      "id": "scalar-ec1bc71aceba976f",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2529",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 29,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6195,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.11]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "961c0923fd226456457414e824f2c2adb3cdb02d99b57383ecabd7fedf5efc52",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 263 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e535ff9fc8c25deebdcbc9d45289759bc657ad3a052e1d0c02451a362cfe4fb6"
+      }
+    },
+    {
+      "base_index": 60,
+      "candidate_digest": "18be8f06f502c8094f8f4f77caa07c078e94ccbf41f028d9043cb896ba34ace3",
+      "id": "scalar-18be8f06f502c809",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2535",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 30,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6314,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.14]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "d08bc03d664a0aab50a4970b9c953f01dbe776ed959b4af4c0072bd84bfae2b1",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 292 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e3e8e4dbfa195161b847296ce3180251f9df5fc1fa0e856c6a084100303411be"
+      }
+    },
+    {
+      "base_index": 61,
+      "candidate_digest": "fbd01899301d8c8c4f74cdcd7aab51deb88695e63e42fcb5172e80b501189286",
+      "id": "scalar-fbd01899301d8c8c",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2535",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 31,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6468,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.15]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "c8cc25e5fcf23b8f2954403d895197cb144d8e40ce0cc8b2e87b2aed76230c31",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 263 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "e535ff9fc8c25deebdcbc9d45289759bc657ad3a052e1d0c02451a362cfe4fb6"
+      }
+    },
+    {
+      "base_index": 68,
+      "candidate_digest": "7842b9d75a2ba7a5fe171cf16393e27c9d43136268aeb87bb4ad980363136c88",
+      "id": "scalar-7842b9d75a2ba7a5",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2748",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 32,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6025,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.08]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "4cdb54b2c395f130822b7ff536e1b21e149af8705eb2458b48f9f5e86d713d26",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 256 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "68d17ce0c71ddf70c659aeb6c0d873a3df6b1b6a8d2a76478894bb4f65705a1c"
+      }
+    },
+    {
+      "base_index": 69,
+      "candidate_digest": "c9c67f2a85bc89ee011adeaeacdcf031923503955a566bac063ef488458b9c98",
+      "id": "scalar-c9c67f2a85bc89ee",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2770",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 33,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6270,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.12]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "acd549bb156fc12c7929bc732ba724f69a89b93539d15ce3a8d84583af478ec3",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 269 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "940290d64ce70fc9e486ad2ae3eb6994385e0f2d497b81482bb5e7d4c78d5f9c"
+      }
+    },
+    {
+      "base_index": 70,
+      "candidate_digest": "cdecfff0f69cb4d5efdb740c6ddecb7b061620271f347d2626c09394e731c330",
+      "id": "scalar-cdecfff0f69cb4d5",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:2770",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 34,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6324,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.13]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "d49e945651d28895e10b1bc0c52e382f67f6d1cdf7ae445e2d86421740c4adb8",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 268 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "b5fabe55093bf803bb5822354a57f561c46a3377660d7924539b1f1939321cc8"
+      }
+    },
+    {
+      "base_index": 71,
+      "candidate_digest": "a9273f5b42634ab386e6774861280cd47c20cbd6a2d52f6a70d08dc99f3a3279",
+      "id": "scalar-a9273f5b42634ab3",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:3058",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 35,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 5983,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.04]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "bb1f379ebe1aa95ef17d5658254c0caef910bb4b57dafdcc97bf9a71f07f198e",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 265 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "0052a44285aa21bc51491d3021def1971e6926d388fd410da41aa082efb3c15a"
+      }
+    },
+    {
+      "base_index": 101,
+      "candidate_digest": "29840b6c0a4186429f1873d26664685931f221a08d581f91f4a6d780c25ac6d7",
+      "id": "scalar-29840b6c0a418642",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:4594",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 36,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6320,
+        "exit_code": 1,
+        "stderr": "[xUnit.net 00:00:01.13]     RoslynMcp.Core.Tests.Query.Utilities.GenesisA5DepthOfInheritanceTests.CountsObjectRootAcrossClassStructAndDeeperChain [FAIL]\n",
+        "stderr_sha256": "d49e945651d28895e10b1bc0c52e382f67f6d1cdf7ae445e2d86421740c4adb8",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nFailed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 293 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "206134de51d7945f73126b3bf9589a01be37dacb5ceef100db64e35df10aa2ba"
+      }
+    },
+    {
+      "base_index": 102,
+      "candidate_digest": "35a14e4b56eaccbb4d4462e74eb197490f1dbe0901eeca2c9d0b727108ab46cb",
+      "id": "scalar-35a14e4b56eaccbb",
+      "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:4618",
+      "operator": "integer_delta",
+      "passed": true,
+      "rank": 37,
+      "test": {
+        "argv": [
+          "/home/anthony/.dotnet9/dotnet",
+          "test",
+          "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+          "--no-restore",
+          "--filter",
+          "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+          "--verbosity",
+          "quiet"
+        ],
+        "elapsed_ms": 6479,
+        "exit_code": 0,
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nPassed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: 358 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+        "stdout_sha256": "f3efb984b56dd51b56be2b01ff656b988d829dd5ad5fa4b2b2c2484ef5af40e1"
+      }
+    }
+  ],
+  "report_digest": "d40fe24cff8f7fa901b4f6ca30a4fd58266fb203293d40dd7bb941665c717e68",
+  "restore": {
+    "argv": [
+      "/home/anthony/.dotnet9/dotnet",
+      "restore",
+      "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+      "--verbosity",
+      "quiet"
+    ],
+    "elapsed_ms": 4267,
+    "exit_code": 0,
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "retry_count": 0,
+  "schema": "mira-genesis-autonomy-a5-csharp-result-v1",
+  "search_budget": 256,
+  "target_language": "csharp",
+  "winner": {
+    "base_index": 102,
+    "candidate_digest": "35a14e4b56eaccbb4d4462e74eb197490f1dbe0901eeca2c9d0b727108ab46cb",
+    "id": "scalar-35a14e4b56eaccbb",
+    "label": "integer_delta:src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs:4618",
+    "operator": "integer_delta",
+    "passed": true,
+    "rank": 37,
+    "test": {
+      "argv": [
+        "/home/anthony/.dotnet9/dotnet",
+        "test",
+        "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+        "--no-restore",
+        "--filter",
+        "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+        "--verbosity",
+        "quiet"
+      ],
+      "elapsed_ms": 6479,
+      "exit_code": 0,
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nPassed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: 358 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+      "stdout_sha256": "f3efb984b56dd51b56be2b01ff656b988d829dd5ad5fa4b2b2c2484ef5af40e1"
+    }
+  },
+  "winner_replay": {
+    "argv": [
+      "/home/anthony/.dotnet9/dotnet",
+      "test",
+      "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+      "--no-restore",
+      "--filter",
+      "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+      "--verbosity",
+      "quiet"
+    ],
+    "elapsed_ms": 6696,
+    "exit_code": 0,
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "Test run for /tmp/genesis-a5-csharp-h8yb8j66/workspace/tests/RoslynMcp.Core.Tests/bin/Debug/net9.0/RoslynMcp.Core.Tests.dll (.NETCoreApp,Version=v9.0)\nVSTest version 17.14.1 (x64)\n\nStarting test execution, please wait...\nA total of 1 test files matched the specified pattern.\n\nPassed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: 391 ms - RoslynMcp.Core.Tests.dll (net9.0)\n",
+    "stdout_sha256": "1ca46018a71747e3f89f4690e7908ac931e397771462697a6f63f5640e76112a"
+  }
+}
