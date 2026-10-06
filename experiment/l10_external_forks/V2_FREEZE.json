@@ -1,0 +1,29 @@
+{
+  "schema": "mira-genesis-l10a-v2-freeze-v1",
+  "status": "FROZEN_BEFORE_V2_GSON_BASELINE_OR_ANY_CANDIDATE",
+  "parent_v1_freeze": "d5376b14f11653cdc7517a28be7da1ed4749d5fa",
+  "v1_result_commit": "d879de57bdcf61a3e3af20e04c83013c69e6071a",
+  "correction_commit": "1bd387858956d931547b7fc5cb2be8c19c79e245",
+  "blobs": {
+    "experiment/l10_external_forks/PROTOCOL.md": "02826903600221b0bf5f65abd4deb37f6f8dd016",
+    "experiment/l10_external_forks/TASKS.json": "f21ad23e86952601e277187232a84f2d82a7bcd1",
+    "experiment/l10_external_forks/CANDIDATE_GENERATION.md": "f89a45477cf0b555c360adc583858c68abbe17fe",
+    "experiment/l10_external_forks/eval_ripgrep_278.py": "4aa50bf8292ad65243e8e6ecf69274152746452c",
+    "experiment/l10_external_forks/eval_gson_453_v2.py": "9dcdcf9734b52e35c6ba675723b7facfc18f5c90",
+    "experiment/l10_external_forks/V2_CORRECTION.md": "34962db1536259a3ba4760bf153f12abc0fda5e9",
+    "experiment/l10_external_forks/results/V1_BASELINE_RESULT.json": "17f8c35fb29f928de812879b1250717e57ea102f"
+  },
+  "changed_from_v1": [
+    "experiment/l10_external_forks/eval_gson_453_v2.py"
+  ],
+  "allowed_change": "javac output directory moved from read-only /authority to /tmp/l10-authority-classes",
+  "frozen_task": {
+    "upstream": "google/gson",
+    "commit": "845664ba1c307e6c1910d07cfed2f622e0ad8df1",
+    "issue": 453,
+    "issue_payload_sha256": "8837e6e8b20021b735147f3355ae3326b7bebaa60f1184f2bcdf9334671e4a44"
+  },
+  "toolchain": "maven@sha256:6fdc855a6ed81d288ca7ca37ac6ff5e9308b612485c0801d70b25a858c83d237",
+  "candidate_executions_before_freeze": 0,
+  "strict_l10_independent_pass_possible_from_this_pilot": false
+}
