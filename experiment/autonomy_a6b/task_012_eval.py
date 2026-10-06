@@ -58,6 +58,7 @@ HARNESS = r"""
 const fs = require('fs');
 const source = fs.readFileSync(process.argv[2], 'utf8');
 global.app = {};
+global.document = { addEventListener: function() {} };
 eval(source);
 
 function fields() {
@@ -168,7 +169,7 @@ def main() -> int:
     )
 
     result = {
-        "schema": "mira-genesis-a6b-task012-evaluator-v1",
+        "schema": "mira-genesis-a6b-task012-evaluator-v2",
         "objective_ok": unrelated_ok and behavior_ok and all(invariants.values()),
         "selected_date_preserved_as_local_calendar_day": behavior_ok,
         "unrelated_source_preserved": unrelated_ok,

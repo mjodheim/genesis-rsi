@@ -1,0 +1,11 @@
+{
+  "schema": "mira-genesis-a6b-task012-apparatus-abort-v1",
+  "task_id": 12,
+  "status": "ABORTED_BEFORE_CANDIDATE_EVALUATION",
+  "frozen_evaluator_commit": "1827e2aa",
+  "reason": "The behavioral Node harness did not define document, so evaluating statistics.js failed at its top-level document.addEventListener registration before the date behavior could be measured.",
+  "candidate_generation_started": false,
+  "outcome_observed": false,
+  "external_model_calls": 0,
+  "replacement_rule": "Add only a minimal no-op document.addEventListener stub; preserve the same frozen behavioral and unrelated-source criteria."
+}

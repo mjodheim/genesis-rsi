@@ -1,0 +1,20 @@
+{
+  "schema": "mira-genesis-a6b-task012-protocol-v2",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "supersedes_protocol": "experiment/autonomy_a6b/task_012_protocol.json@1827e2aa",
+  "apparatus_abort": "experiment/autonomy_a6b/task_012_v1_apparatus_abort.json",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_039_freeze.json",
+  "carrier": "davidhealey/waistline#979",
+  "carrier_commit": "772a591c0a37be50be0580851bf95806a20e5f39",
+  "task_id": 12,
+  "target_language": "JavaScript",
+  "qualification": "The Statistics screen re-parses HTML date-input strings through new Date('YYYY-MM-DD'), which is UTC midnight; in timezones behind UTC that becomes the previous local calendar day before the database range is constructed.",
+  "target_source": ["www/activities/statistics/js/statistics.js"],
+  "memory": "experiment/autonomy_a6b/MEMORY_021.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_012_eval.py",
+  "pass_rule": "For a selected 2026-08-16 date, both init and custom updateRange must pass local calendar date 2026-08-16 to getDataFromDb in America/New_York and Asia/Tokyo. Existing custom-range/settings/database invariants and all source outside init/updateRange must remain unchanged. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
