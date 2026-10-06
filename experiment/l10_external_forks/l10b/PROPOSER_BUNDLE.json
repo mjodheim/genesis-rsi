@@ -1,0 +1,54 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-proposer-bundle-v1",
+  "status": "FROZEN_BEFORE_EXTERNAL_PROPOSER_INVOCATION",
+  "carrier_commit": "e40a45ec2a074b90703b3b4b842c8a3adbd6ada3",
+  "issue_payload_sha256": "3b3f71021672b1f96b034e534a93b281f364507dbba27b064a3d5239e510468a",
+  "files": [
+    {
+      "path": "sherlock_project/sherlock.py",
+      "sha256": "228733a29ffe77d440ace119291e9dc0434c5987ba4cf0f58a2a8ba7257a4662",
+      "bytes": 34664
+    },
+    {
+      "path": "sherlock_project/result.py",
+      "sha256": "450d622049bf42ff2c2195e5f21454f70de4b987414c5491a32278e5af0337d7",
+      "bytes": 3169
+    },
+    {
+      "path": "sherlock_project/notify.py",
+      "sha256": "ad99be36eb42669bdcff782d436642ade9e82ea358980d8d1e9921a1316f0f01",
+      "bytes": 9141
+    },
+    {
+      "path": "sherlock_project/resources/data.json",
+      "sha256": "3fdfc6694c5cd99798881215554b09e617c6d5284a6219fae309882566a9fb30",
+      "bytes": 104039
+    },
+    {
+      "path": "tests/test_probes.py",
+      "sha256": "dda1f0ef204855e93a724e9a9e4ba51c2d23e090434729fe99e9abc5c67b8dab",
+      "bytes": 4654
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "a130a3f030543e4830ed5d1c3c5ee3b12a706cb7fdcfea53216354e87c5efca5",
+      "bytes": 1910
+    }
+  ],
+  "excluded": [
+    "Mira Genesis repository",
+    "external evaluator source",
+    "baseline output",
+    "candidate outcomes",
+    "credentials",
+    "private files"
+  ],
+  "proposer": {
+    "cli": "codex-cli 0.154.0",
+    "model": "gpt-5.6-sol",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "invocations": 1,
+    "command_log_required": true
+  }
+}
