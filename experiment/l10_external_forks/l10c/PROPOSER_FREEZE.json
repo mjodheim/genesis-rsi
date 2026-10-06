@@ -1,0 +1,43 @@
+{
+  "schema": "mira-genesis-l10c-bat-proposer-freeze-v1",
+  "status": "FROZEN_BEFORE_EXTERNAL_PROPOSER_INVOCATION",
+  "carrier_commit": "4608fc959aa8abf80d32198836511a570b7ae9ea",
+  "issue_payload_sha256": "33a89861828c3a6f60055790a3da5a2192f8b54268112e5714d4f6bf049ee05e",
+  "baseline_result_commit": "30f2d4dfa8a876037d153d1334264cce29391a22",
+  "proposer_bundle_sha256": "3ecc0ab252bea68ecf40ad7f221d8628ded69f2387a46dd68cf2a00172213517",
+  "proposer_prompt_sha256": "d965748406dde0b1fcdbe53a39503a0d326c43fd23df8ebc6d05313899ca3ac8",
+  "proposer_output_schema_sha256": "7f4cb57fd5514793c1a9bb5ecb344db66acfc685438d1da775355e6657022baa",
+  "source_files": {
+    "src/controller.rs": "4992f1422520fe824c5197351e0b77d1fe49df6204673b6ee441c666f13b77cc",
+    "src/line_range.rs": "7b1e86ccd62b37253a88632d2b8725ef3996633b0a9811dd07a7948f342585a3",
+    "src/config.rs": "39423fc9f95576f8cdad4ad2b8babf71de1bc9c076598cef1947fd56263d9789",
+    "src/input.rs": "fb2c72029a7907d06268a0c33c93b7b72bd70577ec8cae6277377d33969c1e45",
+    "Cargo.toml": "d494847ac2b7206873b44c29afaf18f864ac0c94a7a34a79d0b89e7eb5e971ef"
+  },
+  "proposer": {
+    "cli": "Claude Code 2.1.289",
+    "model": "claude-sonnet-5-5",
+    "session_persistence": false,
+    "permission_mode": "plan",
+    "permission_prompts": "none",
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "max_budget_usd": 1,
+    "invocation_count": 1,
+    "no_retry_after_result": true
+  },
+  "structured_edit_importer": {
+    "exact_utf8_substring": true,
+    "required_occurrences": 1,
+    "ordered_application": true,
+    "no_fuzzy_matching": true,
+    "no_manual_repair": true,
+    "no_file_create_delete_rename": true
+  },
+  "evaluator_visible_to_proposer": false,
+  "baseline_output_visible_to_proposer": false,
+  "candidate_executions_before_freeze": 0
+}
