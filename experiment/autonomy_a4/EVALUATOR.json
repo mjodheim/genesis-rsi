@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-autonomy-a4-evaluator-v1",
+  "status": "FROZEN_BEFORE_A4_CANDIDATE_EVALUATION",
+  "carrier_repository": "chris-monahan/tictactoe",
+  "carrier_commit": "27a43cee5087decc8bab2d349a223ce9b70c2d20",
+  "objective_file": "experiment/autonomy_a4/PRIMARY_INDEX_OBJECTIVE.test.js",
+  "injected_workspace_path": "src/__genesis_a4_primary_index.test.js",
+  "command": ["npm", "test", "--", "--watchAll=false", "--runInBand", "src/GridState.test.js", "src/__genesis_a4_primary_index.test.js"],
+  "baseline_must_fail": true,
+  "existing_regression_file": "src/GridState.test.js",
+  "dependency_bootstrap": "npm ci on frozen carrier before evaluation; candidate evaluation performs no dependency install",
+  "network_during_candidate_evaluation": false,
+  "external_model_calls": 0
+}
