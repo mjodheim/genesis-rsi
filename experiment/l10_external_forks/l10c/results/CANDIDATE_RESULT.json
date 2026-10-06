@@ -1,0 +1,48 @@
+{
+  "schema": "mira-genesis-l10c-bat-4039-candidate-result-v1",
+  "candidate_freeze_commit": "6987e68c90feae28b9f2f99aac40aae8b962c28a",
+  "carrier_commit": "4608fc959aa8abf80d32198836511a570b7ae9ea",
+  "candidate_tree": "ff26b2985facb5c97468801295c8bf61a95ff939",
+  "evaluator_v2_freeze": "ef8773e6ce9b69b2db6b8246c25918bb4f32162f",
+  "baseline_result_commit": "30f2d4dfa8a876037d153d1334264cce29391a22",
+  "objective": {
+    "baseline_exit_code": 1,
+    "baseline_issue_returncode": 101,
+    "baseline_panic": true,
+    "candidate_exit_code": 0,
+    "control_returncode": 0,
+    "control_stdout": "line1\n",
+    "control_ok": true,
+    "issue_returncode": 0,
+    "issue_stdout": "",
+    "issue_stderr": "",
+    "issue_no_panic": true,
+    "issue_graceful": true,
+    "classification": "OBJECTIVE_PASS"
+  },
+  "regression": {
+    "exit_code": 0,
+    "tests_passed": 147,
+    "tests_failed": 0,
+    "tests_ignored": 0,
+    "classification": "REGRESSION_PASS"
+  },
+  "proposer": {
+    "model": "claude-sonnet-5-5",
+    "cli": "Claude Code 2.1.289",
+    "invocation_count": 1,
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "web_search_requests": 0,
+    "web_fetch_requests": 0,
+    "evaluator_visible": false,
+    "baseline_output_visible": false
+  },
+  "verdict": "L10C_PUBLIC_EXTERNAL_TRANSFER_PASS",
+  "operational_implication": "A prospectively selected, recent public bug in an independently maintained Rust repository was reproduced on the frozen upstream baseline, repaired by a single blind external proposer invocation under deterministic structured-edit import, and passed both the frozen issue objective and 147/147 frozen library regression tests.",
+  "l10_independent_passed": false,
+  "claim_boundary": "This is strong public external-transfer evidence for the composed proposer + Genesis governance/evaluation pipeline. It is not strict independently governed L10 because task selection, evaluator construction and adjudication remain project-controlled."
+}
