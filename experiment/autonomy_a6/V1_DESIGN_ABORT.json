@@ -1,0 +1,13 @@
+{
+  "schema": "mira-genesis-autonomy-a6-design-abort-v1",
+  "status": "ABORTED_BEFORE_ANY_CANDIDATE_EVALUATION",
+  "date": "2026-10-06",
+  "preregistration_commit": "d960a546",
+  "first_carrier_freeze_commit": "c4e37935",
+  "candidate_evaluations": 0,
+  "fallback_model_calls": 0,
+  "reason": "The v1 campaign preregistered a fallback arm but did not freeze a generic mechanism that converts a successful fallback patch into reusable strategy memory. Without that mechanism, a decreasing fallback curve could not be causally attributed to Genesis learning. This design gap was identified after inspecting task 001 but before running any candidate or fallback evaluation.",
+  "task_001_body_and_source_inspected": true,
+  "task_001_may_not_be_reused_in_v2": true,
+  "policy": "Preserve v1 as a design abort. Build a generic patch-to-strategy learner before selecting any v2 task, then freeze a fresh metadata queue excluding all v1-inspected carriers."
+}

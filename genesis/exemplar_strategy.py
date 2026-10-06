@@ -215,3 +215,100 @@ def acquire_strategy(candidate: dict[str, Any], *, result_digest: str) -> dict[s
         "host_issue_specific_recipe": False,
     }
     return {**payload, "strategy_digest": digest_of(payload)}
+
+
+
+def generate_from_acquired(
+    root: str | Path,
+    strategies: Sequence[Mapping[str, Any]],
+    *,
+    max_candidates: int = 256,
+) -> dict[str, Any]:
+    """Apply previously acquired identifier-delta subscript strategies.
+
+    Unlike :func:`generate`, this path does not require the target repository
+    to contain a fresh exemplar. The transformation itself must already exist
+    as a retained strategy artifact produced by prior evaluated work.
+    """
+    if max_candidates < 1 or max_candidates > 10_000:
+        raise ValueError("max_candidates must be in [1, 10000]")
+    base = Path(root).resolve()
+    if not base.is_dir():
+        raise ValueError(f"project root does not exist or is not a directory: {base}")
+
+    admitted: list[dict[str, Any]] = []
+    for raw in strategies:
+        strategy = dict(raw)
+        if strategy.get("schema") != ACQUIRED_STRATEGY_SCHEMA:
+            continue
+        if strategy.get("kind") != "subscript_identifier_delta":
+            continue
+        if strategy.get("host_issue_specific_recipe") is not False:
+            continue
+        admitted.append(strategy)
+
+    candidates: list[dict[str, Any]] = []
+    for path in _eligible_files(base):
+        relative = path.relative_to(base).as_posix()
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        expected = _sha256_text(text)
+        for match in _PLAIN_SUBSCRIPT.finditer(text):
+            identifier = match.group(1)
+            for strategy in admitted:
+                delta = int(strategy["delta"])
+                sign = "+" if delta >= 0 else "-"
+                amount = abs(delta)
+                replacement = f"[{identifier} {sign} {amount}]"
+                mutated = text[:match.start()] + replacement + text[match.end():]
+                payload = {
+                    "path": relative,
+                    "start": match.start(),
+                    "end": match.end(),
+                    "before": match.group(0),
+                    "after": replacement,
+                    "strategy_digest": strategy["strategy_digest"],
+                    "expected_sha256": expected,
+                }
+                candidate_digest = digest_of(payload)
+                candidates.append(
+                    {
+                        "id": f"retained-{candidate_digest[:16]}",
+                        "label": f"retained_subscript_delta:{relative}:{match.start()}:{delta:+d}",
+                        "provenance": {
+                            "generator": "retained_acquired_strategy",
+                            "operator": "retained_subscript_delta",
+                            "strategy_digest": strategy["strategy_digest"],
+                            "strategy_origin": "prior_evaluated_acquisition",
+                            "delta": delta,
+                            "external_model_calls": 0,
+                        },
+                        "mutations": [
+                            {
+                                "path": relative,
+                                "expected_sha256": expected,
+                                "expected_absent": False,
+                                "content_utf8": mutated,
+                            }
+                        ],
+                        "candidate_digest": candidate_digest,
+                    }
+                )
+                if len(candidates) >= max_candidates:
+                    return {
+                        "schema": "genesis-retained-acquired-strategy-candidates-v1",
+                        "candidate_count": len(candidates),
+                        "truncated": True,
+                        "external_model_calls": 0,
+                        "candidates": candidates,
+                    }
+
+    return {
+        "schema": "genesis-retained-acquired-strategy-candidates-v1",
+        "candidate_count": len(candidates),
+        "truncated": False,
+        "external_model_calls": 0,
+        "candidates": candidates,
+    }

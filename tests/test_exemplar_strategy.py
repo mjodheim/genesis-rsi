@@ -55,3 +55,32 @@ def test_acquires_identifier_agnostic_strategy_from_winner(tmp_path: Path) -> No
     assert acquired["source_of_transformation"] == "repository_observed_exemplar_plus_evaluator_selection"
     assert acquired["host_issue_specific_recipe"] is False
     assert len(acquired["strategy_digest"]) == 64
+
+
+
+def test_retained_acquired_strategy_applies_without_new_exemplar(tmp_path: Path) -> None:
+    (tmp_path / "grid.js").write_text(
+        "const value = rows[index];\n",
+        encoding="utf-8",
+    )
+    strategy = {
+        "schema": exemplar_strategy.ACQUIRED_STRATEGY_SCHEMA,
+        "kind": "subscript_identifier_delta",
+        "template_before": "[$IDENT]",
+        "template_after": "[$IDENT - 1]",
+        "delta": -1,
+        "acquired_from_candidate_id": "c",
+        "acquired_from_candidate_digest": "d",
+        "acquired_from_result_digest": "r",
+        "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+        "external_model_calls": 0,
+        "host_issue_specific_recipe": False,
+        "strategy_digest": "strategy-1",
+    }
+
+    result = exemplar_strategy.generate_from_acquired(tmp_path, [strategy])
+
+    assert result["candidate_count"] == 1
+    mutation = result["candidates"][0]["mutations"][0]["content_utf8"]
+    assert "rows[index - 1]" in mutation
+    assert result["candidates"][0]["provenance"]["strategy_origin"] == "prior_evaluated_acquisition"
