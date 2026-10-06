@@ -1,0 +1,22 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-2970-regression-v2-freeze-v1",
+  "status": "FROZEN_BEFORE_V2_REGRESSION_REPLAY_AND_BEFORE_ANY_CANDIDATE",
+  "parent_freeze": "517670839136ab0d08c0940bb5c64cc05922c224",
+  "baseline_v1_result_commit": "90a596ae9ea41522790e0dd77bf0a40e455b5d23",
+  "v2_evaluator_commit": "f520d35e67db642ae266116fb5d6ea427ed1edf6",
+  "v1_evaluator_sha256": "999a3a45681d60970ba283282286a39ed002c0fc10a893185e118b8b391c9010",
+  "v2_evaluator_sha256": "31cea36766366d49ada3839b2b993784523e99c685b3bdf2dde376f4b2bbc677",
+  "baseline_v1_result_sha256": "15f4bb94fff63e0dd94d76313076d2748d49ca57e8adf10b69ef5e075fcf943a",
+  "allowed_change": "Regression harness only: add an ephemeral /tmp/l10bin/sherlock shim equivalent to python -m sherlock_project so upstream UX/version tests can invoke the expected console command.",
+  "unchanged": [
+    "Sherlock upstream commit e40a45ec2a074b90703b3b4b842c8a3adbd6ada3",
+    "Issue #2970 payload and objective semantics",
+    "OBJECTIVE source bytes inside evaluator",
+    "Docker image ID and pinned dependencies",
+    "network_mode=none",
+    "candidate generation policy",
+    "candidate_executions=0"
+  ],
+  "prior_semantic_baseline_observation": "LocationParseError reproduced; v2 does not claim this is a blind re-observation.",
+  "candidate_executions_before_freeze": 0
+}
