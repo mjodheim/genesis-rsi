@@ -1,0 +1,40 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-proposer-v2-freeze",
+  "status": "FROZEN_BEFORE_V2_PROPOSER_INVOCATION",
+  "parent_proposer_freeze": "73e25fc57d379feca1107ed0c2900466124578bc",
+  "v1_abort_commit": "34708f5b35bbd34c966354a461e963e0df6bf85f",
+  "reason_for_successor": "Codex CLI authentication failed before any model response or candidate patch existed.",
+  "unchanged": {
+    "carrier_commit": "e40a45ec2a074b90703b3b4b842c8a3adbd6ada3",
+    "issue_payload_sha256": "3b3f71021672b1f96b034e534a93b281f364507dbba27b064a3d5239e510468a",
+    "proposer_bundle_sha256": "7f3464821154f14b6b7eea74caa8903e8686b405f637312fd271c0ea03108c5d",
+    "proposer_prompt_sha256": "7cf6e6fd28d2cf42f405620a4daafcf65de8bd1e5b783f69b3e6bab3fe24f6c7",
+    "proposer_output_schema_sha256": "513e712b04035e8bbcbabd0a939100fda24f49602a092a74e0550322458f8cf1",
+    "evaluator_freeze": "517670839136ab0d08c0940bb5c64cc05922c224",
+    "regression_v2_freeze": "a95f3f28fb2b54ef3c473be491774d16bc5152bd"
+  },
+  "changed_only": "external proposer backend",
+  "proposer": {
+    "cli": "Claude Code 2.1.289",
+    "model": "claude-sonnet-5-5",
+    "model_resolution_basis": "Pre-freeze neutral smoke returned canonicalModel=claude-sonnet-5-5.",
+    "mode": "non-interactive print",
+    "output_format": "json",
+    "json_schema": "PROPOSER_OUTPUT_SCHEMA.json",
+    "session_persistence": false,
+    "permission_mode": "plan",
+    "permission_prompts": "none",
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "max_budget_usd": 1,
+    "invocation_count": 1,
+    "no_retry_after_result": true
+  },
+  "smoke_test_task_content_visible": false,
+  "candidate_executions_before_freeze": 0,
+  "evaluator_visible_to_proposer": false,
+  "baseline_output_visible_to_proposer": false
+}
