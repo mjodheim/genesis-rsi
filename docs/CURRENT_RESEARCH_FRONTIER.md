@@ -1,8 +1,27 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 5 October 2026, bounded L6–L8; scoped coupled native archives, general L9 and L10 open.**
+**Reader-facing status snapshot — 6 October 2026. The project-defined finite operational L9 gate is passed under the prospectively frozen OE1-v3 criterion; L10 independent replication remains open.**
 
 ## Active RSI frontier
+
+## L9 operational closure — OE1 v3
+
+On 6 October 2026, the prospectively frozen OE1-v3 qualification returned
+**L9_OPERATIONAL_GATE_PASSED** with all **16/16 frozen predicates true**. The
+coded archive solved **576/576 transfer tasks (100%)**, versus 69/576 for archive-G7
+(11.98%), 8/576 for greedy-G7 (1.39%) and 0/576 for cold-G7, while using fewer
+charged evaluations than each control. The already-frozen independent audit then
+re-executed **33,215 retained candidate receipts** and rebuilt their evaluator
+receipts with no mismatch, returning **L9_OE1_V3_ARCHIVE_OK**.
+
+The authoritative evidence is
+[`L9_OE1_V3_QUALIFICATION_2026-10-06.md`](L9_OE1_V3_QUALIFICATION_2026-10-06.md).
+This closes only Genesis' **finite operational L9 definition**. It is empirical,
+project-authored evidence, not a theorem of asymptotic open-endedness, general RSI
+or AGI. **L10 remains open** and requires separately governed external task
+authorship/maintenance, independent reproduction and adversarial audit. A distinct
+L10-A public-fork pilot may collect external-transfer evidence but cannot substitute
+for that independence ceiling.
 
 V50 supplies a **proof-first exact codec-word model**, with 341/341 public native
 programs validated, 682 charged executions and original read-only replay. Native
