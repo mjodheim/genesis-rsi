@@ -1,0 +1,15 @@
+{
+  "edits": [
+    {
+      "path": "src/controller.rs",
+      "old": "let buffer_size: usize = line_ranges.largest_offset_from_end() + 1;",
+      "new": "let buffer_size: usize = line_ranges.largest_offset_from_end().saturating_add(1);"
+    },
+    {
+      "path": "src/controller.rs",
+      "old": "VecDeque::with_capacity(buffer_size);",
+      "new": "VecDeque::with_capacity(buffer_size.min(1024));"
+    }
+  ],
+  "rationale": "A huge offset like ':-999999999999999999' made VecDeque::with_capacity panic with capacity overflow. Capping the preallocation at 1024 stops the panic. The logical buffer_size is unchanged, so the buffer still grows on demand and ordinary --line-range behavior is preserved. saturating_add(1) also guards against overflow when the offset is usize::MAX. I did this from source inspection only and did not build or run anything."
+}
