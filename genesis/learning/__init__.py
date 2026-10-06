@@ -1,5 +1,5 @@
-"""Genesis learning architecture surface.
+"""Learning and capability-acquisition substrate for Genesis v2."""
 
-Compatibility-first Genesis v2 namespace. Active components migrate here
-incrementally while historical flat modules remain valid.
-"""
+from . import capability_gaps, self_extension
+
+__all__ = ["capability_gaps", "self_extension"]

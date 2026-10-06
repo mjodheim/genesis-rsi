@@ -182,7 +182,8 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 - [x] Publish efficiency-first principles.
 - [x] Publish modular architecture.
 - [x] Replace the historical reader-facing roadmap.
-- [ ] Complete public package namespace migration.
+- [x] Migrate the first active autonomy modules into the Genesis v2 package surfaces with compatibility imports.
+- [ ] Complete the remaining historical flat-module migration incrementally.
 - [ ] Consolidate experiment navigation without rewriting frozen evidence.
 - [ ] Update repository identity and metadata.
 

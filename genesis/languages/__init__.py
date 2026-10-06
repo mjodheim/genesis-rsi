@@ -1,5 +1,5 @@
-"""Genesis languages architecture surface.
+"""Language substrate for Genesis v2."""
 
-Compatibility-first Genesis v2 namespace. Active components migrate here
-incrementally while historical flat modules remain valid.
-"""
+from . import native_diagnosis, toolchains
+
+__all__ = ["native_diagnosis", "toolchains"]
