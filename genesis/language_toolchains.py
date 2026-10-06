@@ -1,12 +1,12 @@
 """Language/toolchain capability registry for autonomous Genesis software work.
 
-The registry deliberately exposes *tools*, not solutions.  Compilers, linters,
-formatters and test runners are treated as observable environment capabilities.
-Nothing in this module calls an LLM or encodes bug-specific repair recipes.
+The registry deliberately exposes *tools*, not solutions. Compilers, linters,
+formatters and test runners are observable environment capabilities. Nothing in
+this module calls an LLM or encodes bug-specific repair recipes.
 
-This is DEVELOPMENT apparatus for the autonomy track: Genesis may use the
-reported capabilities as sensors/evaluators while learned transformation
-strategies remain lineage-owned and subject to the normal trust root.
+This is DEVELOPMENT apparatus for the autonomy track: Genesis may use reported
+capabilities as sensors/evaluators while learned transformation strategies remain
+lineage-owned and subject to the normal trust root.
 """
 from __future__ import annotations
 
@@ -24,6 +24,7 @@ _IGNORED_DIRS = {
     ".mypy_cache",
     ".pytest_cache",
     ".venv",
+    "__pycache__",
     "bin",
     "build",
     "coverage",
@@ -42,6 +43,7 @@ class LanguagePack:
     glob_markers: tuple[str, ...]
     core_tools: tuple[str, ...]
     optional_tools: tuple[str, ...]
+    diagnostic_commands: tuple[tuple[str, ...], ...]
     verify_commands: tuple[tuple[str, ...], ...]
 
     def record(self) -> dict[str, object]:
@@ -51,6 +53,7 @@ class LanguagePack:
             "glob_markers": list(self.glob_markers),
             "core_tools": list(self.core_tools),
             "optional_tools": list(self.optional_tools),
+            "diagnostic_commands": [list(command) for command in self.diagnostic_commands],
             "verify_commands": [list(command) for command in self.verify_commands],
         }
 
@@ -62,6 +65,7 @@ PACKS: dict[str, LanguagePack] = {
         glob_markers=("*.py",),
         core_tools=("python3",),
         optional_tools=("pytest", "ruff", "mypy"),
+        diagnostic_commands=(("python3", "-m", "compileall", "-q", "."),),
         verify_commands=(("python3", "-m", "pytest"),),
     ),
     "rust": LanguagePack(
@@ -70,7 +74,8 @@ PACKS: dict[str, LanguagePack] = {
         glob_markers=("*.rs",),
         core_tools=("cargo", "rustc"),
         optional_tools=("rustfmt", "clippy-driver"),
-        verify_commands=(("cargo", "test", "--locked"), ("cargo", "check", "--locked")),
+        diagnostic_commands=(("cargo", "check", "--locked", "--offline"),),
+        verify_commands=(("cargo", "test", "--locked", "--offline"),),
     ),
     "java": LanguagePack(
         name="java",
@@ -78,7 +83,8 @@ PACKS: dict[str, LanguagePack] = {
         glob_markers=("*.java",),
         core_tools=("java",),
         optional_tools=("javac", "mvn", "gradle"),
-        verify_commands=(("mvn", "test"), ("gradle", "test")),
+        diagnostic_commands=(("mvn", "-o", "-q", "-DskipTests", "compile"), ("gradle", "--offline", "classes")),
+        verify_commands=(("mvn", "-o", "test"), ("gradle", "--offline", "test")),
     ),
     "csharp": LanguagePack(
         name="csharp",
@@ -86,7 +92,8 @@ PACKS: dict[str, LanguagePack] = {
         glob_markers=("*.csproj", "*.sln", "*.cs"),
         core_tools=("dotnet",),
         optional_tools=(),
-        verify_commands=(("dotnet", "test"),),
+        diagnostic_commands=(("dotnet", "build", "--no-restore", "--nologo"),),
+        verify_commands=(("dotnet", "test", "--no-restore", "--nologo"),),
     ),
     "go": LanguagePack(
         name="go",
@@ -94,6 +101,7 @@ PACKS: dict[str, LanguagePack] = {
         glob_markers=("*.go",),
         core_tools=("go",),
         optional_tools=("gofmt",),
+        diagnostic_commands=(("go", "test", "-run", "^$", "./..."),),
         verify_commands=(("go", "test", "./..."),),
     ),
     "typescript": LanguagePack(
@@ -102,7 +110,8 @@ PACKS: dict[str, LanguagePack] = {
         glob_markers=("*.ts", "*.tsx", "*.js", "*.jsx"),
         core_tools=("node",),
         optional_tools=("npm", "npx", "tsc"),
-        verify_commands=(("npm", "test"), ("npx", "tsc", "--noEmit")),
+        diagnostic_commands=(("npx", "--no-install", "tsc", "--noEmit"),),
+        verify_commands=(("npm", "test", "--", "--runInBand"),),
     ),
 }
 
@@ -173,6 +182,9 @@ def capability_report(root: str | Path) -> dict[str, object]:
                 "core_tools": core,
                 "optional_tools": optional,
                 "core_ready": all(bool(item["available"]) for item in core),
+                "diagnostic_commands": [
+                    list(command) for command in language_pack.diagnostic_commands
+                ],
                 "verify_commands": [
                     list(command) for command in language_pack.verify_commands
                 ],

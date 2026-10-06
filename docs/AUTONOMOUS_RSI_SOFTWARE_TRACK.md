@@ -1,7 +1,7 @@
 # Autonomous RSI software track
 
-**Status: DEVELOPMENT. This document defines a target; it claims no autonomous
-software-engineering result.**
+**Status: DEVELOPMENT. This document defines a target and records engineering
+milestones; it claims no general autonomous software-engineering result.**
 
 ## Objective
 
@@ -42,24 +42,55 @@ The first supported families are:
 - Go
 - TypeScript/JavaScript
 
-The initial implementation lives in `genesis/language_toolchains.py`.
+The initial toolchain implementation lives in
+`genesis/language_toolchains.py`.
 
 ## Autonomy ladder
 
-| Level | Requirement |
-| --- | --- |
-| A0 | Detect languages and available toolchains without an LLM. |
-| A1 | Execute bounded diagnosis/verification loops using native tools. |
-| A2 | Generate useful candidate mutations without an external LLM for at least one real bug family. |
-| A3 | Retain a successful strategy and causally reuse it on a fresh external task. |
-| A4 | Acquire new transformation strategies from failures/results rather than host-authored recipes. |
-| A5 | Transfer retained strategies across at least three language families. |
-| A6 | Frozen multi-repository campaign with an LLM fallback arm shows decreasing fallback demand. |
-| A7 | Frozen multi-language campaign completes with **0 external model calls** while retaining useful repair performance. |
+| Level | Requirement | Status |
+| --- | --- | --- |
+| A0 | Detect languages and available toolchains without an LLM. | **DEVELOPMENT PASS** |
+| A1 | Execute bounded diagnosis/verification loops using native tools. | **DEVELOPMENT PASS** |
+| A2 | Generate useful candidate mutations without an external LLM for at least one real bug family. | open |
+| A3 | Retain a successful strategy and causally reuse it on a fresh external task. | open |
+| A4 | Acquire new transformation strategies from failures/results rather than host-authored recipes. | open |
+| A5 | Transfer retained strategies across at least three language families. | open |
+| A6 | Frozen multi-repository campaign with an LLM fallback arm shows decreasing fallback demand. | open |
+| A7 | Frozen multi-language campaign completes with **0 external model calls** while retaining useful repair performance. | open |
 
 A7 is the operational "100% autonomous" target. It is intentionally independent
 of L10: L10 measures external validation; this track measures who actually
 generates the software solution.
+
+## A0 — language/toolchain sensors
+
+`genesis.language_toolchains` detects the six initial language families and
+reports native compiler/test tooling without invoking repository code or an
+external model. Language packs declare diagnostic and verification argv arrays;
+they contain no issue-specific repair rules.
+
+## A1 — bounded native diagnosis
+
+`genesis.native_diagnosis` now executes a zero-LLM diagnosis pass with these
+constraints:
+
+- fixed argv probes from the detected language packs;
+- no shell execution;
+- a hard probe budget and timeout;
+- no automatic retry;
+- offline-oriented environment defaults;
+- execution in a disposable repository copy, never the source tree;
+- normalized diagnostic classes plus exact stdout/stderr hashes;
+- explicit `external_model_calls: 0` in every report.
+
+The first DEVELOPMENT validation uses a clean Python fixture and an independently
+failing Python syntax fixture. The clean fixture is classified `clean`; the
+broken fixture is observed as a nonzero native-tool failure and classified
+`python_syntax_error`. Source-tree non-mutation, hard budget and no-retry
+properties are separately tested.
+
+This closes only the A1 **apparatus milestone**. It does not yet show that Genesis
+can create a repair; A2 is deliberately separate.
 
 ## Measurement
 
