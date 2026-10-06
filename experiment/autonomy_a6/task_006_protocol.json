@@ -1,0 +1,19 @@
+{
+  "schema": "mira-genesis-a6-task006-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_009_freeze.json",
+  "carrier": "executablebooks/MyST-Parser#1165",
+  "carrier_commit": "723cffcf84213f0cb58695b27eec9ad72052b53a",
+  "task_id": 6,
+  "language": "Python",
+  "qualification": "Baseline warning attribution reproduced one line too low for plain include, start-line, nested include, heading-offset, and front-matter paths.",
+  "target_source": ["myst_parser/mocking.py"],
+  "memory": "experiment/autonomy_a6/MEMORY_005.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6/task_006_eval.py",
+  "evaluator_python": "/home/anthony/a6-myst-venv/bin/python",
+  "pass_rule": "All five included-file role warnings report the actual one-based source line; exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
