@@ -1,0 +1,2856 @@
+{
+  "acquired_strategies": [
+    {
+      "acquired_from_candidate_digest": "d18642a7102ea5880a96b78c4228b06317f1e72306c994acfc8d9ff7e1a66fda",
+      "acquired_from_candidate_id": "exemplar-d18642a7102ea588",
+      "acquired_from_result_digest": "1637393300f8d95691619b67935a3da0ef80b640e1f926fa21cadf1bce86e771",
+      "delta": -1,
+      "external_model_calls": 0,
+      "host_issue_specific_recipe": false,
+      "kind": "subscript_identifier_delta",
+      "schema": "genesis-acquired-edit-strategy-v1",
+      "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+      "strategy_digest": "709d7b24a453bf28e9b4bdba03ecf2637d4039bbae57cce4a1f929076fd9032b",
+      "template_after": "[$IDENT - 1]",
+      "template_before": "[$IDENT]"
+    }
+  ],
+  "external_model_calls_used_to_build_memory": 14,
+  "generation": 21,
+  "learned_line_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "I5"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "I5"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I5"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "copy",
+          "name": "I6"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "capture",
+          "name": "I6",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "6ff9ddd38f8078fb6bdfedbf5bb4f8db307227c5d540db36b8a2feaff1892287",
+      "template_digest": "30f468b9a89e7d2a23639342b7a1d0af42d481afba2fbfe9de87018191d9ab38"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "I5"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "I5"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I5"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "copy",
+          "name": "I6"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "N3"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "capture",
+          "name": "I6",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "N3",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "6ff9ddd38f8078fb6bdfedbf5bb4f8db307227c5d540db36b8a2feaff1892287",
+      "template_digest": "e2ed9163a217a9d8279faaf1f1aff41d1a7ca892ec9bf1726e31c99df146349a"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "return"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "return"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "925386e7af5c1e29364def8a1edc997cc19ab260a0b7cb18ae995a66382c8280",
+      "template_digest": "ab260e465732250a53b8c3d1904efd1da7803a12818b47cc88bd4e0792a44b11"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "delta": -1,
+          "kind": "number_delta",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ">="
+        },
+        {
+          "kind": "copy",
+          "name": "I5"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I6"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ">="
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I6",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "b13f362297af81260f2a7f949a79dd0daa1c353451e3cba88dd47fabeea5ede7",
+      "template_digest": "555910b77cd79b659677b579ad6e12ec2bb1073b39ebbc68247a27e4a9fa1cf7"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "delta": 1,
+          "kind": "number_delta",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": ">"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ">"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "58c6dfd9eb2ab7e32cd41228dd444dce4eb947249bcb178b2125f850a19d6e7d",
+      "template_digest": "f0813b3371d43fe44748314538208cdaa69161f413ba9f712a0a9999bba3b224"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "743dbc3ae504d09191607accd411b4ed23131a5993c8d4154aeb4b75731e65df",
+      "template_digest": "2a61ce999805074e6c8f3a8e5573914e8cd3a853a69989070633685d938e7655"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": ">="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ">"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "972830618e769b36ad5856e598e1b9122ada4a814c59314e4ca829d4a3330254",
+      "template_digest": "700aaac2715b51c7dc37e8b23d26f7bbd0a0b998ed7cf34d2a85b52efa54a211"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "<"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "<="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "b6b57c42ec775a5b56e823f2c4f105abeed383def58fa537a74b6b73028fc73e",
+      "template_digest": "1f8811a279e9f984cefd0ba2e48ba060ccb8b594f51c85a71eca89e21f98b95e"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "<"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "<="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "++"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "1afb198b30ca60dd95af2d186aba8bb11611fa2ffc2e78f81b402f3a83189f41",
+      "template_digest": "ccb6ea42d1b0c3ee7985e4287581b3bde13a0ce0d7c5955bbb727783c69ed05c"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "literal",
+          "value": "1"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "057ded7a391bbdf470535b6240732678176964ca0612c6e4b240c7de3c5375ff",
+      "template_digest": "0ae84fc258c404f2980f730b501cc1c79d9835c9eefe9790ee0f008576f01092"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "literal",
+          "value": "prevCommit"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "Chronologically"
+        },
+        {
+          "kind": "literal",
+          "value": "earlier"
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": "git"
+        },
+        {
+          "kind": "literal",
+          "value": "log"
+        },
+        {
+          "kind": "literal",
+          "value": "is"
+        },
+        {
+          "kind": "literal",
+          "value": "newest"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "literal",
+          "value": "first"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "9b7bc1993b2a420da5ed5039c405c3056fcf368dfbf7ad3a0a179eba75f667c4"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "from"
+        },
+        {
+          "kind": "literal",
+          "value": "the"
+        },
+        {
+          "kind": "literal",
+          "value": "earlier"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I6"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "copy",
+          "name": "I7"
+        },
+        {
+          "kind": "literal",
+          "value": "before"
+        },
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "literal",
+          "value": "oldest"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "from"
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "I6",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "capture",
+          "name": "I7",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "capture",
+          "name": "I8",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "31e46c1e62eb38db095264981c8285df3bc31ddd3500a9fceac0fb24f7a61e16"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "literal",
+          "value": "endTime"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "520a821db9fcacf8baba0b8721c51f22d13e857040e8f9aa70d4c471beb55e01"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "literal",
+          "value": "prevCommit"
+        },
+        {
+          "kind": "literal",
+          "value": "?"
+        },
+        {
+          "kind": "literal",
+          "value": "prevCommit"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "?"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "3c905c48eef119d4f5244059ceb4f1bea5f38be52a8074cff478b1e88d7d2300"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ">="
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ">"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "e6db1ec7cc4ce1b1cdc7c5d5a046bc9370094e428449d2dc676c7b589dd7f9da",
+      "template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "b5b9ffb44d3ec883cae7cb3eb0d206bcea44e8798f3d94b195852a7608ddd793",
+      "template_digest": "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "delta": -1,
+          "kind": "number_delta",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ".."
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ".."
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "d709d6419d1ab893c4cd87b53d8215eea7e5ef2cb4f4c7344d9f7b0bb937577d",
+      "template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "16"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "S0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "S0",
+          "type": "string"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "19c0b23592b8741763a9e8a25937c65399005de39dcc91a96133d37afc7d130d",
+      "template_digest": "afcd966047e46070d072ab5894a36ed43dd3643c878e7d4a7870285601681d72"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "23"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "S0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "S0",
+          "type": "string"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "19c0b23592b8741763a9e8a25937c65399005de39dcc91a96133d37afc7d130d",
+      "template_digest": "f6d0c266fdfddd6d5f30dad160a105e1a7ce5eac0d76c22cbe1415a35646dd19"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "return"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "delta": -1,
+          "kind": "number_delta",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "S0"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "return"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "S0",
+          "type": "string"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "4c79c18d78acf275a506692bf38f039ab38c236221611f2dde715660f02ac0ff",
+      "template_digest": "529741ed0b68e34c5bfa7a49821b94b306e20c01ed2c8803fe131908f70988a5"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "delta": -1,
+          "kind": "number_delta",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "7495629cdf9c8ee840caf97a92b91e923475fb32fad0818b4f9fd122d8c812a9",
+      "template_digest": "39f3b6d11ff216875c2dc37052da02d7b6d16253e017b5c6b5eac079937fc842"
+    }
+  ],
+  "operator_success_counts": {
+    "comparison_boundary": 1,
+    "integer_delta": 5,
+    "learned_template": 1
+  },
+  "schema": "mira-genesis-a6-campaign-memory-v1",
+  "source_result_digests": [
+    "f36ca5c56023e5cabbe1b23ef489a18a949438ea50268eb3edd08ce3b4eaf6aa",
+    "1637393300f8d95691619b67935a3da0ef80b640e1f926fa21cadf1bce86e771",
+    "33352e579f5c500f5d8a7588b60e7093cf96f1ac2327b9ed9ce10d16abb991d3",
+    "925386e7af5c1e29364def8a1edc997cc19ab260a0b7cb18ae995a66382c8280",
+    "b13f362297af81260f2a7f949a79dd0daa1c353451e3cba88dd47fabeea5ede7",
+    "36dc5dd4ba539e4de29b6723a11e13c53cee171186925b84f91a8b0a4c3a6428",
+    "743dbc3ae504d09191607accd411b4ed23131a5993c8d4154aeb4b75731e65df",
+    "13d6987312ffdc5587e8ef8f38799ec316320b0477007f2c4d9f097446a671e4",
+    "972830618e769b36ad5856e598e1b9122ada4a814c59314e4ca829d4a3330254",
+    "54d01971cfc163c9f81b0c6b2d81739b4650d28fdb77dea57bbf4846a24e600f",
+    "d644816fcf6c83b01752204b1eabf4ead208fa8fa0535a50dccc61734b62c410",
+    "f7a168b4226558186bfc9a3a13e77e1ceb5a5ea2a16442cd62a5bebb1f46244c",
+    "6b57284910263fe1962ec014fda9077dfa6db4b236e062eacd138fe15ea3c61b",
+    "69c1d46bad4f811275eae3fd5fadb3f65515b2f389f3c2c8a7977aa9001fdcf9",
+    "8a67819b04565df84cc67550f956182cac71723c8ac2c696db79f9bdfc272fdb",
+    "5b248eff1e8d8c71fddbbf76691077098760fee9707ca5366a362427f81cdca9",
+    "6fbe8a7c62b9d961e714f9f494d862813a5683fa0a791bb9150e5a9c4015cc5f",
+    "a556ffe67a5ada69927b6f3272547864aaa5c7aba7e87b2c44fa96df20165806",
+    "e6ed31a15ac1a34c0f799f8b7c76b4cddbd5821cb600ed8c88b8933841b650f9",
+    "4c79c18d78acf275a506692bf38f039ab38c236221611f2dde715660f02ac0ff",
+    "284e352c481bee8cff5cc1dbe64ced51f09e6d7d9cea1dcd3d2028a3717cbe24",
+    "b274c564894de81f0b9587d2e7132d13b88899f301f56584e79718dabf3dca78"
+  ]
+}
