@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6b-task-spec-v1",
+  "task_id": 3,
+  "carrier": "lafuan/Sribuu#1405",
+  "source_root": "/home/anthony/experiments/a6b-c020",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/MEMORY_014.json",
+  "target_prefixes": [
+    "_worker.ts"
+  ],
+  "candidate_budget": 256,
+  "evaluator_argv": [
+    "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+    "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_003_eval.py",
+    "{workspace}"
+  ],
+  "evaluator_timeout_seconds": 20,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_003_autonomous_result.json"
+}

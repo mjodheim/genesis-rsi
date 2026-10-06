@@ -1,0 +1,20 @@
+{
+  "schema": "mira-genesis-a6b-task003-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_020_freeze.json",
+  "carrier": "lafuan/Sribuu#1405",
+  "carrier_commit": "1d7df13c744dcf09f0dfb519b3ff27d669cded2f",
+  "task_id": 3,
+  "target_language": "TypeScript",
+  "qualification": "The transaction POST route defaults a missing client date with new Date().toISOString().split('T')[0], which uses UTC and can select the wrong local calendar day. The repository has no persisted user timezone, while the client already supplies transaction_date.",
+  "target_source": [
+    "_worker.ts"
+  ],
+  "memory": "experiment/autonomy_a6b/MEMORY_014.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_003_eval.py",
+  "pass_rule": "The UTC ISO fallback must be absent. The route must either require and directly use client-provided transaction_date, or derive a default through an explicit timezone-aware formatter. Existing insert, amount validation, category lookup and finalDate binding behavior must remain present. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
