@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6-task011-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_015_freeze.json",
+  "carrier": "airframesio/acars-decoder-typescript#473",
+  "carrier_commit": "51c912e75deb211403fe2f984fdefa1114766dce",
+  "task_id": 11,
+  "language": "TypeScript",
+  "qualification": "Frozen convertDayTimeToTod maps one-based day numbers directly to d*86400, making day 15 render as day 16 and day 31 overflow into February.",
+  "target_source": ["lib/DateTimeUtils.ts"],
+  "memory": "experiment/autonomy_a6/MEMORY_010.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6/task_011_eval.cjs",
+  "pass_rule": "Day 1, day 15 and day 31 map to their correct zero-based epoch-second offsets and render back to the same calendar day; exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}

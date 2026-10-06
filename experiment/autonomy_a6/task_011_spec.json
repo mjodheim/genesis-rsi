@@ -1,0 +1,13 @@
+{
+  "schema": "mira-genesis-a6-task-spec-v2",
+  "task_id": 11,
+  "carrier": "airframesio/acars-decoder-typescript#473",
+  "source_root": "/home/anthony/experiments/a6v2-c015",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/MEMORY_010.json",
+  "target_prefixes": ["lib/DateTimeUtils.ts"],
+  "candidate_budget": 256,
+  "evaluator_argv": ["node", "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_011_eval.cjs", "{workspace}"],
+  "evaluator_timeout_seconds": 20,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_011_autonomous_result.json",
+  "runner": "experiment/autonomy_a6/run_autonomous_task_v2.py"
+}
