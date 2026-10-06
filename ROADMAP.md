@@ -26,6 +26,8 @@ Genesis is explicitly not a programme for scaling a monolithic Transformer.
 
 ## G1 — Language substrate
 
+**Development status (2026-10-06): FOUNDATION IMPLEMENTED.** The common six-family substrate is working; Python uses CPython AST while the other initial families currently use conservative structural parsing. Compiler-grade semantic adapters remain pending.
+
 **Goal:** understand unfamiliar software structurally without embedding bug-specific human recipes.
 
 Deliverables:
@@ -43,6 +45,8 @@ Exit evidence:
 
 ## G2 — Universal operator IR
 
+**Development status (2026-10-06): FOUNDATION IMPLEMENTED.** A Python-derived subscript-index operator transfers to Java, TypeScript and C# with zero model calls in the development demo. A frozen external causal campaign remains pending.
+
 **Goal:** retained transformations become portable concepts.
 
 Deliverables:
@@ -58,6 +62,8 @@ Exit evidence:
 
 ## G3 — Failure model
 
+**Development status (2026-10-06): FOUNDATION IMPLEMENTED.** Evidence-backed attribution now distinguishes knowledge, representation, operator, search, retrieval, toolchain, planner, evaluation, unknown and underdetermined classes. Prospective attribution validation remains pending.
+
 **Goal:** distinguish could-not-solve from why-the-machinery-could-not-solve.
 
 Deliverables:
@@ -67,13 +73,16 @@ Deliverables:
 - explicit unknown/underdetermined outcome;
 - retained capability-gap events.
 
-Current seed:
-- `genesis/capability_gaps.py`
-- `genesis/failure_driven_self_extension.py`
+Current implementation:
+- `genesis/learning/failure_model.py`
+- `genesis/learning/capability_gaps.py`
+- `genesis/learning/self_extension.py`
 
 Exit evidence: prospective failures are separated into representation, operator, search, retrieval, toolchain and budget classes often enough to improve later intervention choice.
 
 ## G4 — Self model
+
+**Development status (2026-10-06): FOUNDATION IMPLEMENTED.** Genesis can build a content-addressed map of mutable machinery and trust-root boundaries, preserve component ambiguity, and map attributed failures to intervention candidates. Static-control validation remains pending.
 
 **Goal:** Genesis has a causal, machine-readable model of its own active architecture.
 
@@ -87,6 +96,8 @@ Deliverables:
 Exit evidence: Genesis selects a limiting internal component from observed evidence and outperforms static always-change-X controls.
 
 ## G5 — Autonomous experiment generation
+
+**Development status (2026-10-06): FOUNDATION IMPLEMENTED.** Genesis can generate frozen matched-budget self-experiment plans with controls, competing component interventions, hidden holdout identity and external verdict authority. Autonomous discovery of a useful improvement remains pending.
 
 **Goal:** Genesis designs experiments about its own hypotheses.
 

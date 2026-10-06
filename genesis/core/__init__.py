@@ -1,5 +1,5 @@
-"""Genesis core architecture surface.
+"""Core self-description and lineage architecture for Genesis v2."""
 
-Compatibility-first Genesis v2 namespace. Active components migrate here
-incrementally while historical flat modules remain valid.
-"""
+from . import self_model
+
+__all__ = ["self_model"]

@@ -1,0 +1,59 @@
+{
+  "claim_boundary": "development apparatus composition only; no G1-G5 scientific exit criterion or general RSI claim",
+  "demo_digest": "1f132ed3d71420a1098a36dd8026b22bb4698c68000851588f5c87df13095981",
+  "external_model_calls": 0,
+  "g1": {
+    "document_digest": "8277f701dc29290a7352fb49c45867325a1b46d2e29023b941c575672d7b0a48",
+    "language": "python",
+    "parser_backend": "cpython_ast+genesis_lexical_v1"
+  },
+  "g2": {
+    "operator_digest": "79d005a17bc7300093b8728109665676f37173c52e294e5fb27ecee7025ebdc0",
+    "semantic_role": "subscript_index",
+    "source_language": "python",
+    "transfers": [
+      {
+        "candidate_count": 1,
+        "language": "java",
+        "output_digest": "165bdb7908caba9c61ef8bc101747eaadbd17d347577138b5c155cdca549020a",
+        "path": "A.java"
+      },
+      {
+        "candidate_count": 1,
+        "language": "typescript",
+        "output_digest": "92625626d9101af43ab964b40484328f76da8d06d078edd2bafbc5f04236bb8a",
+        "path": "a.ts"
+      },
+      {
+        "candidate_count": 1,
+        "language": "csharp",
+        "output_digest": "82fe67d33fdc6251f5cca6dd6c578412b652c3a430a006bd948cc010f9a4026b",
+        "path": "A.cs"
+      }
+    ]
+  },
+  "g3": {
+    "failure_model_digest": "85646ba755c45d6a15c73125bba590c9f7dd26e6a488e7fc8a6045d46aac4793",
+    "primary_failure_class": "operator"
+  },
+  "g4": {
+    "candidate_component_ids": [
+      "structural_operator_engine",
+      "universal_operator_ir"
+    ],
+    "reason": "multiple_mutable_components_match_failure",
+    "selected_component_id": null,
+    "self_model_digest": "e6aa01dc40847c2815d67aa46c09fce57df674e118c1d1fa6c39d7188baaf381"
+  },
+  "g5": {
+    "arm_count": 5,
+    "fresh_case_contents_visible_to_lineage": false,
+    "mutable_lineage_owns_verdict": false,
+    "plan_digest": "291e55b34c23753a0dfa77aa834a360027146b7ab4e35dc4f7bc808dd5aa1d8a",
+    "target_component_ids": [
+      "structural_operator_engine",
+      "universal_operator_ir"
+    ]
+  },
+  "schema": "genesis-g1-g5-foundation-demo-v1"
+}

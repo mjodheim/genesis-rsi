@@ -1,8 +1,13 @@
-"""Deterministic capability-gap diagnosis for A6c.
+"""Deterministic capability-gap diagnosis for A6c / Genesis G3.
 
 This module does not propose a repair.  It classifies *why* the frozen
 autonomous search could not express or reach one, so the post-outcome
 acquisition layer knows whether a new operator class is warranted.
+
+The legacy A6c reasons are preserved for compatibility.  Genesis G3 adds a
+richer internal failure-model record so later machinery changes can target the
+limiting component instead of collapsing everything into "expressivity or
+search".
 """
 from __future__ import annotations
 
@@ -10,6 +15,7 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from genesis import patch_templates, scalar_mutations
+from genesis.learning import failure_model
 from genesis.trust_root import digest_of
 
 GAP_SCHEMA = "genesis-capability-gap-diagnosis-v1"
@@ -73,6 +79,13 @@ def diagnose(
         if scheduled > 0 and not unsupported_by_legacy:
             reasons.append("expressivity_or_search_gap")
 
+    internal_failure = failure_model.diagnose(
+        base,
+        autonomous_result,
+        target_prefixes=target_prefixes,
+    )
+    primary_failure = str(internal_failure.get("primary_failure_class", "unknown"))
+
     acquisition_recommended = winner is None and any(
         reason in reasons
         for reason in (
@@ -82,7 +95,18 @@ def diagnose(
             "budget_exhausted_without_passing_candidate",
             "expressivity_or_search_gap",
         )
-    )
+    ) and primary_failure not in {"toolchain", "evaluation", "retrieval", "planner"}
+
+    recommended_mode = "none"
+    if acquisition_recommended:
+        if primary_failure == "search":
+            recommended_mode = "change_search_before_learning_new_operator"
+        elif primary_failure == "representation":
+            recommended_mode = "extend_representation_then_synthesize_operator"
+        else:
+            recommended_mode = (
+                "synthesize_replay_verified_structural_operator_from_next_passing_outcome"
+            )
 
     payload = {
         "schema": GAP_SCHEMA,
@@ -96,12 +120,10 @@ def diagnose(
         "family_input_counts": family_inputs,
         "family_scheduled_counts": family_scheduled,
         "reasons": reasons,
+        "failure_model": internal_failure,
+        "primary_failure_class": primary_failure,
         "operator_acquisition_recommended": acquisition_recommended,
-        "recommended_mode": (
-            "synthesize_replay_verified_structural_operator_from_next_passing_outcome"
-            if acquisition_recommended
-            else "none"
-        ),
+        "recommended_mode": recommended_mode,
         "external_model_calls": 0,
     }
     return {**payload, "diagnosis_digest": digest_of(payload)}
