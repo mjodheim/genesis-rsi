@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "patch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "touched_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "patch",
+    "rationale",
+    "touched_paths"
+  ],
+  "additionalProperties": false
+}
