@@ -115,6 +115,10 @@ Exit evidence: at least one useful internal improvement is discovered through an
 
 ## G6 — Component evolution
 
+**Scientific status (2026-10-07): PROJECT-DEFINED GATE PASSED.** Genesis diagnosed an over-specific internal matcher from prior G5 evidence, generated three source-level descendants of `universal_operator_ir`, selected the smallest variant that retained 9/9 prior/safety behaviors, froze it before a fresh eight-case C# holdout reveal, and improved from 2/8 parent to 8/8 descendant under the same candidate budget with zero external model calls. Reverting the selected machinery mutation reduced performance back to 2/8. See `docs/G6_QUALIFICATION_2026-10-07.md`.
+
+The result is bounded and project-created; it does not establish G7, independent third-party validation or general RSI.
+
 **Goal:** mutable machinery can produce materially different descendants.
 
 Candidate mutable families: retrieval, memory policy, planner, scheduler, operator generation, representation, routing, specialist mechanisms and mutation/search policy.

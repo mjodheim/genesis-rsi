@@ -4,7 +4,7 @@ updated_at: 2026-10-07
 architecture_generation: genesis_v2_efficiency_first
 architecture_reset_changes_scientific_gate: false
 snapshot_kind: current_authoritative_navigation
-status: genesis_v2_g5_gate_passed_bounded_l9_operational_pass_l10_open
+status: genesis_v2_g6_gate_passed_bounded_l9_operational_pass_l10_open
 
 rsi_frontier:
   operational_l9_gate_passed: true
@@ -24,8 +24,27 @@ rsi_frontier:
     ablation_solved: 0
     external_model_calls: 0
     independent_third_party_validation: false
-    g6_closed: false
+    g6_closed: true
     evidence: docs/G5_QUALIFICATION_2026-10-07.md
+  genesis_v2_g6:
+    verdict: G6_SCIENTIFIC_GATE_PASSED
+    scope: bounded_project_defined_component_evolution
+    apparatus_commit: 541889eb
+    preregistration_commit: 057d2764
+    descendant_commit: 2d69d22b
+    evaluator_commit: 68d49591
+    result_commit: 649af5b3
+    holdout_sha256: 735544022af38bf94cbee1e3a1aa7f5ae3a1d1ffb61b67775d1eed59a5109418
+    holdout_cases: 8
+    parent_solved: 2
+    descendant_solved: 8
+    selected_mutation: structural_delimiter_anchors
+    external_model_calls: 0
+    parent_successes_preserved: true
+    revert_ablation_solved: 2
+    independent_third_party_validation: false
+    g7_closed: false
+    evidence: docs/G6_QUALIFICATION_2026-10-07.md
   l5_validated: true
   l5_scope: bounded_v26_project_authored_native_repair_transfer
   v24:

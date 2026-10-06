@@ -12,6 +12,8 @@ Current implementation lines that feed the new architecture include:
 
 - G1-G5 foundation: `docs/G1_G5_FOUNDATION_2026-10-06.md`
 - G5 scientific qualification: `docs/G5_QUALIFICATION_2026-10-07.md`
+- G6 scientific qualification: `docs/G6_QUALIFICATION_2026-10-07.md`
+- component evolution: `genesis/evolution/component_evolution.py`
 - software autonomy: `docs/AUTONOMOUS_RSI_SOFTWARE_TRACK.md`
 - failure-driven self-extension: `genesis/learning/self_extension.py`
 - capability-gap diagnosis: `genesis/learning/capability_gaps.py`

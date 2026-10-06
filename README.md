@@ -29,9 +29,10 @@ The repository contains several generations of bounded experiments. Important cu
 - the A6/A6b autonomy campaigns preserved negative evidence showing that the dominant limitation is often **expressivity**, not simply more search;
 - the A6c development line now contains a failure-driven self-extension prototype that diagnoses an expressivity gap, retains the diagnosis before seeing the solution, acquires a generic structural operator from validated evidence and later reuses it with zero model calls;
 - the Genesis v2 G1-G5 foundation now composes a six-family language substrate, cross-language universal operator IR, evidence-backed failure attribution, a content-addressed self model and prospective matched-budget self-experiment design;
-- the project-defined **G5 scientific gate passed on 7 October 2026**: a G5-generated preregistered experiment selected `universal_operator_ir` as the useful internal mechanism on a sealed six-case C# holdout (5/6 versus 0/6 parent, 0/6 after ablation, zero external model calls).
+- the project-defined **G5 scientific gate passed on 7 October 2026**: a G5-generated preregistered experiment selected `universal_operator_ir` as the useful internal mechanism on a sealed six-case C# holdout (5/6 versus 0/6 parent, 0/6 after ablation, zero external model calls);
+- the project-defined **G6 scientific gate passed on 7 October 2026**: Genesis generated three source-level descendants of its own universal operator matcher from prior G5 evidence, froze the selected descendant before a new eight-case holdout, and improved from 2/8 parent to 8/8 descendant while preserving all parent successes, using the same candidate budget and zero external model calls. Reverting the machinery change returned performance to 2/8.
 
-These results do **not** establish general RSI. They establish bounded pieces of the machinery needed to test it. See [docs/G1_G5_FOUNDATION_2026-10-06.md](docs/G1_G5_FOUNDATION_2026-10-06.md) and [docs/G5_QUALIFICATION_2026-10-07.md](docs/G5_QUALIFICATION_2026-10-07.md) for the exact boundaries.
+These results do **not** establish general RSI. They establish bounded pieces of the machinery needed to test it. See [docs/G1_G5_FOUNDATION_2026-10-06.md](docs/G1_G5_FOUNDATION_2026-10-06.md), [docs/G5_QUALIFICATION_2026-10-07.md](docs/G5_QUALIFICATION_2026-10-07.md) and [docs/G6_QUALIFICATION_2026-10-07.md](docs/G6_QUALIFICATION_2026-10-07.md) for the exact boundaries.
 
 Historical claims remain governed by their frozen experiment records.
 
