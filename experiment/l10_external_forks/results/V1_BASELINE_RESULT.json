@@ -1,0 +1,29 @@
+{
+  "schema": "mira-genesis-l10a-v1-baseline-result-v1",
+  "freeze_commit": "d5376b14f11653cdc7517a28be7da1ed4749d5fa",
+  "candidate_executions": 0,
+  "carriers": {
+    "google/gson#453": {
+      "frozen_commit": "845664ba1c307e6c1910d07cfed2f622e0ad8df1",
+      "regression_exit": 0,
+      "objective_exit": 1,
+      "classification": "INSTRUMENT_ABORT",
+      "cause": "frozen evaluator mounted authority source read-only and javac attempted to emit class files beside it",
+      "semantic_task_outcome_observed": false
+    },
+    "BurntSushi/ripgrep#278": {
+      "frozen_commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "regression_exit": 0,
+      "objective_exit": 0,
+      "classification": "BASELINE_ALREADY_SATISFIES_OBJECTIVE",
+      "observed": {
+        "first_returncode": 0,
+        "second_returncode": 0,
+        "first_found": true,
+        "second_found": true
+      },
+      "candidate_scoring_authorized": false
+    }
+  },
+  "interpretation": "V1 is not repaired or relabelled. Gson produced no semantic objective result; a separately frozen v2 may correct only the evaluator plumbing before candidate execution. Ripgrep remains baseline-satisfied and is not replaced."
+}
