@@ -1,6 +1,6 @@
-# Contributing to Mira Genesis
+# Contributing to Genesis
 
-Thank you for your interest in Mira Genesis. Mira Genesis treats provenance, negative results and
+Thank you for your interest in Genesis (formerly Mira Genesis). Genesis treats provenance, negative results and
 experimental boundaries as part of the research output, so contribution history must remain
 auditable.
 
@@ -12,7 +12,7 @@ separate written contributor-rights agreement has first been approved for that c
 This includes substantive external code, tests, executable specifications, documentation, diagrams
 and other copyrightable project material.
 
-The reason is chain-of-title clarity. Mira Genesis intends to keep its research software public under
+The reason is chain-of-title clarity. Genesis intends to keep its research software public under
 AGPL while preserving the project owner's ability to grant separate commercial permissions for
 controlled material and to assign/acquire those rights later. A Developer Certificate of Origin is
 useful provenance, but it is not a copyright assignment and by itself does not preserve that
@@ -60,7 +60,7 @@ assignment and does not override the external-contribution boundary above.**
 - Disclose substantial use of generative tools when it affects the provenance of code, evidence,
   analysis or prose.
 - Confirm that submitted AI-assisted material can be used under the applicable project terms.
-- Do not present a fork or derivative as the official Mira Genesis project.
+- Do not present a fork or derivative as the official Genesis project; Mira Genesis remains the historical project identity.
 - Record human design, selection, review, editing and integration decisions when material to
   provenance or later rights diligence.
 

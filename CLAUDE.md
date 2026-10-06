@@ -1,4 +1,4 @@
-# Claude instructions — Mira Genesis public repository
+# Claude instructions — Genesis public repository (formerly Mira Genesis)
 
 This repository is **public**. Before changing it, read and follow [`AGENTS.md`](AGENTS.md), especially
 the publication/licensing boundary.

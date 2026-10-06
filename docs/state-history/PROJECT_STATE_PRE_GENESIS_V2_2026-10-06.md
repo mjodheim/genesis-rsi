@@ -1,8 +1,6 @@
-# Genesis — current authoritative project state
+# Mira Genesis — current authoritative project state
 
-**Updated: 6 October 2026 — OE1-v3 passes the project-defined finite operational L9 gate; L10 independent replication remains open; Genesis v2 efficiency-first architecture reset is DEVELOPMENT navigation and changes no scientific gate.**
-
-Genesis is the renamed continuation of **Mira Genesis**. Historical records keep their original project name; the rename changes neither authorship nor frozen evidence.
+**Updated: 6 October 2026 — OE1-v3 passes the project-defined finite operational L9 gate; L10 independent replication remains open.**
 
 ## Current RSI frontier
 
@@ -169,7 +167,7 @@ separate canonical gates listed above.
 
 ## Claim boundary
 
-Genesis (formerly Mira Genesis) does **not** currently claim AGI, general intelligence, consciousness, unrestricted
+Mira Genesis does **not** currently claim AGI, general intelligence, consciousness, unrestricted
 self-rewrite, open-ended evolution, open-ended recursive self-improvement, unrestricted repository
 authority or unrestricted network authority. Positive results remain bounded results under their
 frozen contracts.

@@ -49,7 +49,7 @@ experimental result records **when published in this repository under this polic
 under the **Creative Commons Attribution 4.0 International licence** (`CC-BY-4.0`), whose complete
 text is in [`LICENSES/CC-BY-4.0.txt`](LICENSES/CC-BY-4.0.txt).
 
-Attribution should identify **Anthony Mets**, the title **Mira Genesis**, the official repository URL
+Attribution should identify **Anthony Mets**, the title **Genesis (formerly Mira Genesis)**, the official repository URL
 and the applicable licence, and should indicate whether changes were made. The preferred
 machine-readable citation is in [`CITATION.cff`](CITATION.cff).
 
@@ -65,7 +65,7 @@ Nothing in this policy relicenses third-party work beyond the permissions grante
 
 ## Prospective R&D and publication review
 
-Mira Genesis remains **public-research-first**. Starting with M086, a materially new research
+Genesis (formerly Mira Genesis) remains **public-research-first**. Starting with M086, a materially new research
 mechanism is not private merely because it is new or commercially valuable.
 
 Before enabling public disclosure of a materially new core mechanism, perform the short review in
@@ -86,7 +86,7 @@ The licences applicable to public material permit forks and derivative works, in
 use where the licence permits it, but do not transfer authorship of the original work. Existing
 notices must not be removed where the applicable licence requires their preservation, and changes
 must not be misrepresented as part of the original project. The licences do not grant trademark
-rights in the Mira Genesis name or visual identity; see [`TRADEMARKS.md`](TRADEMARKS.md).
+rights in the Genesis or Mira Genesis name or visual identity; see [`TRADEMARKS.md`](TRADEMARKS.md).
 
 The official provenance record is [`PROVENANCE.md`](PROVENANCE.md), together with the signed or
 hash-addressed Git history and canonical evidence artifacts.

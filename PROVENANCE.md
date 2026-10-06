@@ -1,11 +1,12 @@
 # Project provenance
 
 This record identifies the public origin, authorship process and canonical evidence lineage of
-Mira Genesis. It complements, but does not replace, the complete Git history.
+Genesis, originally published as Mira Genesis. It complements, but does not replace, the complete Git history.
 
 ## Official origin
 
-- Official repository: <https://github.com/mjodheim/mira-genesis>
+- Current official repository: <https://github.com/mjodheim/genesis-rsi>
+- Historical repository identity: <https://github.com/mjodheim/mira-genesis>
 - Repository owner: `mjodheim`
 - Project author and research director: **Anthony Mets**
 - Public repository created: `2026-07-31T08:57:46Z`
@@ -47,4 +48,4 @@ property filing.
 
 Forks and derivative works should preserve this record and add, rather than replace, their own
 authors, modifications and release lineage. They must not represent themselves as the official
-Mira Genesis repository or attribute the original work to a downstream distributor.
+Genesis repository (historically Mira Genesis) or attribute the original work to a downstream distributor.

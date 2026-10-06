@@ -8,9 +8,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mira-genesis"
-version = "0.44.0"
-description = "Auditable adaptive-embodiment and trans-substrate continuity research"
+name = "genesis-rsi"
+version = "0.50.0"
+description = "Experimental efficient recursive self-improvement through causal learning and evolvable software machinery"
 readme = "README.md"
 license = "AGPL-3.0-only"
 license-files = ["LICENSE", "NOTICE", "LICENSES/CC-BY-4.0.txt"]
@@ -30,10 +30,8 @@ dependencies = [
 # growing repository-wide suite can be run concurrently with `-n 10 --dist loadscope`.
 dev = ["pytest", "pytest-xdist"]
 
-[tool.setuptools]
-# `scripts/` contains repository entry points executed from the project root rather
-# than an installable package; `pytest.ini_options.pythonpath` exposes it to tests.
-packages = ["genesis", "metamorphosis", "mira_core"]
+[tool.setuptools.packages.find]
+include = ["genesis*", "metamorphosis*", "mira_core*"]
 
 [tool.pytest.ini_options]
 pythonpath = [".", "scripts"]

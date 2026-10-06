@@ -16,3 +16,17 @@ mechanism receives the frozen `LineageContext` and returns a declarative intent;
 runs no probe, touches no journal and commits no state. That boundary is why the demonstration script
 is a launcher rather than the architecture.
 """
+
+# Genesis v2 architecture surfaces. These imports make the compatibility-first
+# namespace explicit while historical flat modules migrate incrementally.
+from . import core, evolution, languages, learning, memory, operators, runtime
+
+__all__ = [
+    "core",
+    "evolution",
+    "languages",
+    "learning",
+    "memory",
+    "operators",
+    "runtime",
+]

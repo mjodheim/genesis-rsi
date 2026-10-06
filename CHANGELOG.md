@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Genesis v2 foundation reset — efficiency-first recursive machinery research.** The active public identity is now **Genesis** (formerly Mira Genesis). The reader-facing README, principles, architecture and roadmap now center capability-per-resource, language-neutral structural understanding, failure attribution, self-modeling, autonomous experiment generation, component evolution, causal promotion, distillation and repeated successor generation. Historical frozen evidence remains in place and the pre-reset README, roadmap and project-state snapshots are preserved under `docs/history/` and `docs/state-history/`. The reset makes **no new RSI/AGI claim and changes no frozen scientific verdict**. Repository-integrity maintenance performed during the reset also classifies 40 autonomy `carrier_commit` values as external-repository objects and adds provenance tags for 21 recent cited Genesis commits that had been reachable but unprotected from future branch cleanup.
+
+
 - **M114 = `instrument-aborted`. Three delivery attempts, three HTTP 429s, zero banks, H59
   untested.** The frozen sequence ran to the end of its budget on 27 August 2026: requests at
   13:02:39Z, 13:03:40Z and 13:04:41Z, each an explicit capacity rejection carrying no completion and
