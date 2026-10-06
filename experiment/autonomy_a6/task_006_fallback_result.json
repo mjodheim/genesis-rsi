@@ -1,0 +1,251 @@
+{
+  "applied": [
+    {
+      "new_sha256": "93062b60dbda6fa74ce6ac764d6a6ede4121c322bd7381adb43c9f30201363c7",
+      "old_sha256": "bbfe9b658646d7a13f0a5c81d8bd6b3c2ce2148bb83d9009d73d4d041050391b",
+      "path": "myst_parser/mocking.py",
+      "supplied_path": "/home/anthony/experiments/a6v2-c009/myst_parser/mocking.py"
+    },
+    {
+      "new_sha256": "8054bd6316b60e2178566934cc121c5032fe27b00d8ff41f451faf651a1c588b",
+      "old_sha256": "93062b60dbda6fa74ce6ac764d6a6ede4121c322bd7381adb43c9f30201363c7",
+      "path": "myst_parser/mocking.py",
+      "supplied_path": "/home/anthony/experiments/a6v2-c009/myst_parser/mocking.py"
+    }
+  ],
+  "autonomous_result_digest": "7177e2f109eef890715dcd4ecdafcf331bc3db0d51f771dfcd278752edb47b9e",
+  "cost_usd": 0.1253436,
+  "evaluation": {
+    "elapsed_ms": 361,
+    "exit_code": 0,
+    "parsed": {
+      "case_count": 5,
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "results": [
+        {
+          "actual_line": 3,
+          "expected_line": 3,
+          "name": "plain-include",
+          "ok": true
+        },
+        {
+          "actual_line": 5,
+          "expected_line": 5,
+          "name": "start-line",
+          "ok": true
+        },
+        {
+          "actual_line": 3,
+          "expected_line": 3,
+          "name": "nested-include",
+          "ok": true
+        },
+        {
+          "actual_line": 3,
+          "expected_line": 3,
+          "name": "heading-offset",
+          "ok": true
+        },
+        {
+          "actual_line": 5,
+          "expected_line": 5,
+          "name": "front-matter",
+          "ok": true
+        }
+      ],
+      "schema": "mira-genesis-a6-task006-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"case_count\": 5, \"external_model_calls\": 0, \"objective_ok\": true, \"results\": [{\"actual_line\": 3, \"expected_line\": 3, \"name\": \"plain-include\", \"ok\": true}, {\"actual_line\": 5, \"expected_line\": 5, \"name\": \"start-line\", \"ok\": true}, {\"actual_line\": 3, \"expected_line\": 3, \"name\": \"nested-include\", \"ok\": true}, {\"actual_line\": 3, \"expected_line\": 3, \"name\": \"heading-offset\", \"ok\": true}, {\"actual_line\": 5, \"expected_line\": 5, \"name\": \"front-matter\", \"ok\": true}], \"schema\": \"mira-genesis-a6-task006-evaluator-v1\"}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 2,
+  "learned_template_digests": [
+    "0a987f5128698d1afe5c3d2a5f3158d6385b91a2be35c4aa3c470fb9f27d97a2",
+    "37c745eef5e3108d88d487ad43dab7a95bcf09dda9d4f70d4d4883266f6824f2"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "f04d451f6d3ed066f8383663be7e059673f5b9c8a7f5c2a990e9e2d6879526c8",
+      "template_digest": "0a987f5128698d1afe5c3d2a5f3158d6385b91a2be35c4aa3c470fb9f27d97a2"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "literal",
+          "value": "file_content"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "literal",
+          "value": "count"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": "\"\\n\""
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "f04d451f6d3ed066f8383663be7e059673f5b9c8a7f5c2a990e9e2d6879526c8",
+      "template_digest": "37c745eef5e3108d88d487ad43dab7a95bcf09dda9d4f70d4d4883266f6824f2"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "f04d451f6d3ed066f8383663be7e059673f5b9c8a7f5c2a990e9e2d6879526c8",
+  "processor_revision": "v2 absolute-under-frozen-source path normalization only",
+  "proposal": {
+    "edits": [
+      {
+        "new": "                file_content,\n                startline,\n",
+        "old": "                file_content,\n                startline + 1,\n",
+        "path": "/home/anthony/experiments/a6v2-c009/myst_parser/mocking.py"
+      },
+      {
+        "new": "                startline += file_content[: split_index + len(split_on)].count(\"\\n\")\n",
+        "old": "                startline += split_index + len(split_on)\n",
+        "path": "/home/anthony/experiments/a6v2-c009/myst_parser/mocking.py"
+      }
+    ],
+    "summary": "nested_render_text expects a 0-based line offset, since token maps stay 0-based until _render_tokens converts them to 1-based. The include directive passed startline + 1, so every line was reported one too high. This passes startline directly. I also fixed start-after, which added a character count to the line offset instead of the number of newlines skipped. Not run, as instructed."
+  },
+  "report_digest": "743dbc3ae504d09191607accd411b4ed23131a5993c8d4154aeb4b75731e65df",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task006-fallback-result-v2"
+}

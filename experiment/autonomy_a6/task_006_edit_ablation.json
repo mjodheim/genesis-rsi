@@ -1,0 +1,20 @@
+{
+  "external_model_calls": 0,
+  "results": [
+    {
+      "edit_index": 1,
+      "exit_code": 0,
+      "passes_frozen_evaluator": true,
+      "stderr": "",
+      "stdout": "{\"case_count\": 5, \"external_model_calls\": 0, \"objective_ok\": true, \"results\": [{\"actual_line\": 3, \"expected_line\": 3, \"name\": \"plain-include\", \"ok\": true}, {\"actual_line\": 5, \"expected_line\": 5, \"name\": \"start-line\", \"ok\": true}, {\"actual_line\": 3, \"expected_line\": 3, \"name\": \"nested-include\", \"ok\": true}, {\"actual_line\": 3, \"expected_line\": 3, \"name\": \"heading-offset\", \"ok\": true}, {\"actual_line\": 5, \"expected_line\": 5, \"name\": \"front-matter\", \"ok\": true}], \"schema\": \"mira-genesis-a6-task006-evaluator-v1\"}\n"
+    },
+    {
+      "edit_index": 2,
+      "exit_code": 1,
+      "passes_frozen_evaluator": false,
+      "stderr": "",
+      "stdout": "{\"case_count\": 5, \"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"actual_line\": 4, \"expected_line\": 3, \"name\": \"plain-include\", \"ok\": false}, {\"actual_line\": 6, \"expected_line\": 5, \"name\": \"start-line\", \"ok\": false}, {\"actual_line\": 4, \"expected_line\": 3, \"name\": \"nested-include\", \"ok\": false}, {\"actual_line\": 4, \"expected_line\": 3, \"name\": \"heading-offset\", \"ok\": false}, {\"actual_line\": 6, \"expected_line\": 5, \"name\": \"front-matter\", \"ok\": false}], \"schema\": \"mira-genesis-a6-task006-evaluator-v1\"}\n"
+    }
+  ],
+  "schema": "mira-genesis-a6-task006-edit-ablation-v1"
+}
