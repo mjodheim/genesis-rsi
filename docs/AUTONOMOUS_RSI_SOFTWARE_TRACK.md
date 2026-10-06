@@ -43,7 +43,7 @@ The first supported families are:
 - TypeScript/JavaScript
 
 The initial toolchain implementation lives in
-`genesis/language_toolchains.py`.
+`genesis/languages/toolchains.py` (with `genesis/language_toolchains.py` retained as a compatibility import).
 
 ## Autonomy ladder
 

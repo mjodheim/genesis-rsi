@@ -1,5 +1,5 @@
-"""Genesis runtime architecture surface.
+"""Runtime and scheduling substrate for Genesis v2."""
 
-Compatibility-first Genesis v2 namespace. Active components migrate here
-incrementally while historical flat modules remain valid.
-"""
+from . import candidate_scheduler
+
+__all__ = ["candidate_scheduler"]
