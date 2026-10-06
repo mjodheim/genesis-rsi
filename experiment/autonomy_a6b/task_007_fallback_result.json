@@ -1,0 +1,272 @@
+{
+  "applied": [
+    {
+      "new_sha256": "423bf24fc5f811b5831ca9b34ac45c72ff0a6f340422bd9d6e5d79e5972c3d58",
+      "old_sha256": "697df921e0a7209a2a04b3d73060768aa438753cb931a69364de7c90e908aa16",
+      "path": "robotica/validate.py"
+    }
+  ],
+  "autonomous_result_digest": "67c87b4aec0acf90e4955729ef715d62bbc1e68d1bb2feb75011d513753afcf9",
+  "carrier": "bushuyeu/iolani-g1-workshop#27",
+  "cost_usd": 0.05283700000000001,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_007_eval.py",
+      "/tmp/genesis-a6b-fallback-vikp7vbf/workspace"
+    ],
+    "elapsed_ms": 79,
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "mapping": {
+        "16": [
+          "left_shoulder_roll",
+          -0.75,
+          2.2515
+        ],
+        "23": [
+          "right_shoulder_roll",
+          -2.2515,
+          0.75
+        ]
+      },
+      "mapping_ok": true,
+      "objective_ok": true,
+      "schema": "mira-genesis-a6b-task007-evaluator-v2",
+      "unrelated_source_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"mapping\": {\"16\": [\"left_shoulder_roll\", -0.75, 2.2515], \"23\": [\"right_shoulder_roll\", -2.2515, 0.75]}, \"mapping_ok\": true, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task007-evaluator-v2\", \"unrelated_source_preserved\": true}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 2,
+  "learned_template_digests": [
+    "afcd966047e46070d072ab5894a36ed43dd3643c878e7d4a7870285601681d72",
+    "f6d0c266fdfddd6d5f30dad160a105e1a7ce5eac0d76c22cbe1415a35646dd19"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "16"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "S0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "S0",
+          "type": "string"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "19c0b23592b8741763a9e8a25937c65399005de39dcc91a96133d37afc7d130d",
+      "template_digest": "afcd966047e46070d072ab5894a36ed43dd3643c878e7d4a7870285601681d72"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "23"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "S0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "S0",
+          "type": "string"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "19c0b23592b8741763a9e8a25937c65399005de39dcc91a96133d37afc7d130d",
+      "template_digest": "f6d0c266fdfddd6d5f30dad160a105e1a7ce5eac0d76c22cbe1415a35646dd19"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "19c0b23592b8741763a9e8a25937c65399005de39dcc91a96133d37afc7d130d",
+  "proposal": {
+    "edits": [
+      {
+        "new": "    16: (\"left_shoulder_roll\", -0.75, 2.2515),\n    23: (\"right_shoulder_roll\", -2.2515, 0.75),",
+        "old": "    15: (\"left_shoulder_roll\", -0.75, 2.2515),\n    22: (\"right_shoulder_roll\", -2.2515, 0.75),",
+        "path": "robotica/validate.py"
+      }
+    ],
+    "summary": "Move shoulder-roll limits to the correct G1 29-DOF indices (16 and 23); names and bounds unchanged."
+  },
+  "report_digest": "e6ed31a15ac1a34c0f799f8b7c76b4cddbd5821cb600ed8c88b8933841b650f9",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 7
+}
