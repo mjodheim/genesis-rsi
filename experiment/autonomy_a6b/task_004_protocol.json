@@ -1,0 +1,20 @@
+{
+  "schema": "mira-genesis-a6b-task004-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_025_freeze.json",
+  "carrier": "Analyst-Harsh/triage-bot-test#28",
+  "carrier_commit": "0a4f7c32acc47120efb07aebaacef59d5815f192",
+  "task_id": 4,
+  "target_language": "Python",
+  "qualification": "factorial(n) uses range(1, n), so every positive n computes (n-1)! rather than n!. Other intentionally broken calculator functions are outside this task.",
+  "target_source": [
+    "src/calculator/calculator.py"
+  ],
+  "memory": "experiment/autonomy_a6b/MEMORY_014.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_004_eval.py",
+  "pass_rule": "factorial must match Python math.factorial for n=0 through n=7 while every non-factorial function AST in calculator.py remains identical to the frozen baseline. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
