@@ -1,0 +1,19 @@
+{
+  "schema": "mira-genesis-a6-task007-protocol-v2",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "previous_apparatus_abort": "experiment/autonomy_a6/task_007_v1_apparatus_abort.json",
+  "revision_reason": "Evaluator transport only: async-main wrapper for tsx dynamic import.",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_010_freeze.json",
+  "carrier": "mitmartin/bluehorizon-excursions-api#1",
+  "carrier_commit": "b9a6edb4611cef957d79b2091a86694b510f74c1",
+  "task_id": 7,
+  "language": "TypeScript",
+  "target_source": ["src/services/excursionService.ts"],
+  "memory": "experiment/autonomy_a6/MEMORY_006.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6/task_007_eval_v2.py",
+  "pass_rule": "Search returns the same three Nassau excursions for UTC, America/Nassau, and Pacific/Honolulu; exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}

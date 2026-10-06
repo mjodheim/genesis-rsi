@@ -1,0 +1,8 @@
+{
+  "schema": "mira-genesis-a6-task007-apparatus-abort-v1",
+  "stage": "baseline evaluator qualification",
+  "classification": "TSX_TOP_LEVEL_AWAIT_TRANSPORT_ERROR",
+  "candidate_evaluations": 0,
+  "external_model_calls": 0,
+  "reason": "The first probe used top-level await and tsx emitted CommonJS for the external evaluator file, so the probe failed before importing or evaluating the carrier. V2 wraps the same dynamic import and objective in an async main function. No task semantics or candidate machinery change."
+}

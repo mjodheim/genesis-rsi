@@ -1,0 +1,12 @@
+{
+  "schema": "mira-genesis-a6-task-spec-v1",
+  "task_id": 7,
+  "carrier": "mitmartin/bluehorizon-excursions-api#1",
+  "source_root": "/home/anthony/experiments/a6v2-c010",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/MEMORY_006.json",
+  "target_prefixes": ["src/services/excursionService.ts"],
+  "candidate_budget": 256,
+  "evaluator_argv": ["/home/anthony/mira-genesis-oe1/.venv/bin/python", "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py", "{workspace}"],
+  "evaluator_timeout_seconds": 30,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_autonomous_result_v2.json"
+}
