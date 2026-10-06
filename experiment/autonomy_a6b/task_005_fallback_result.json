@@ -1,0 +1,55 @@
+{
+  "applied": [
+    {
+      "new_sha256": "e771c353ee7ff4ff2d77060d0a06f8f138a9699e3855255044bc9873ba3b4706",
+      "old_sha256": "ad016f0cb03db834e60e383af04f66a9686d91dffba4f866648f19efea1a45cd",
+      "path": "src/scanner.c"
+    }
+  ],
+  "autonomous_result_digest": "ba862d1f7e0191115fa83d3d50c4bfaa148bf483ac19e51c8d509982291fd7b0",
+  "carrier": "vrischmann/tree-sitter-templ#152",
+  "cost_usd": 0.0461608,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_005_eval.py",
+      "/tmp/genesis-a6b-fallback-5mdid16k/workspace"
+    ],
+    "elapsed_ms": 151,
+    "exit_code": 0,
+    "parsed": {
+      "compile_exit_code": 0,
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "run_exit_code": 0,
+      "schema": "mira-genesis-a6b-task005-evaluator-v1",
+      "stderr": "",
+      "stdout": "empty got=1 expected=1 consumed=2 expected_consumed=2 ok=1\npartial got=1 expected=1 consumed=9 expected_consumed=9 ok=1\nmore_than_half got=1 expected=1 consumed=4 expected_consumed=4 ok=1\ncomplete got=1 expected=1 consumed=0 expected_consumed=0 ok=1\nbuffer_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\nstream_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\nbuffer_longer_than_keyword got=0 expected=0 consumed=0 expected_consumed=0 ok=1\n",
+      "unrelated_source_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"compile_exit_code\": 0, \"external_model_calls\": 0, \"objective_ok\": true, \"run_exit_code\": 0, \"schema\": \"mira-genesis-a6b-task005-evaluator-v1\", \"stderr\": \"\", \"stdout\": \"empty got=1 expected=1 consumed=2 expected_consumed=2 ok=1\\npartial got=1 expected=1 consumed=9 expected_consumed=9 ok=1\\nmore_than_half got=1 expected=1 consumed=4 expected_consumed=4 ok=1\\ncomplete got=1 expected=1 consumed=0 expected_consumed=0 ok=1\\nbuffer_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\\nstream_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\\nbuffer_longer_than_keyword got=0 expected=0 consumed=0 expected_consumed=0 ok=1\\n\", \"unrelated_source_preserved\": true}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 0,
+  "learned_template_digests": [],
+  "learned_templates": [],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "0a43e6fbae134013d22abb54f884fd5231e6ab1bffeaf2d8acd1bd5900bba872",
+  "proposal": {
+    "edits": [
+      {
+        "new": "  if (buffer->write_pos > length) {\n    return false;\n  }\n\n  // First look in the buffer\n  for (size_t i = 0; i < buffer->write_pos; i++) {\n    if (buffer->buf[i] != str[i]) {\n      return false;\n    }\n  }\n\n  const char *str_remaining = &str[buffer->write_pos];\n  size_t remaining = length - buffer->write_pos;\n\n  // Otherwise fetch data from the lexer\n  for (size_t i = 0; i < remaining; i++) {",
+        "old": "  // First look in the buffer\n  for (size_t i = 0; i < buffer->write_pos && i < length; i++) {\n    if (buffer->buf[i] != str[i]) {\n      return false;\n    }\n\n    length--;\n  }\n\n  const char *str_remaining = &str[buffer->write_pos];\n\n  // Otherwise fetch data from the lexer\n  for (size_t i = 0; i < length; i++) {",
+        "path": "src/scanner.c"
+      }
+    ],
+    "summary": "Keep keyword length immutable; reject buffers longer than the keyword; compare all buffered bytes against the keyword prefix; then consume only the remaining keyword bytes (length - write_pos) from the lexer."
+  },
+  "report_digest": "6fbe8a7c62b9d961e714f9f494d862813a5683fa0a791bb9150e5a9c4015cc5f",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 5
+}
