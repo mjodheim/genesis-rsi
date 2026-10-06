@@ -1,0 +1,12 @@
+You are the single fallback proposer for one frozen software-repair task.
+
+Repository: yaso09/tengiz
+Frozen commit: 061c493d9ac653039370f84c4986947908162ba3
+Issue: #185 — LOW: Off-by-one in WaitForHealth retry loop — does retries+1 attempts
+
+Public issue summary:
+internal/runtime/docker.go has a WaitForHealth retry loop using "for i := 0; i <= retries; i++". With retries=3 it performs four attempts, while users expect three and the error message reports three retries. The requested behavior is exactly three attempts for retries=3.
+
+Inspect the repository and produce the smallest source-only repair for this issue. Do not run tests, do not use the web, do not inspect Genesis files, and do not make edits yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an exact UTF-8 substring replacement whose old text occurs exactly once in the named file. Do not include test changes.
