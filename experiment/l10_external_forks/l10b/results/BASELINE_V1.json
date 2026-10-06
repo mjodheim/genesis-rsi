@@ -1,0 +1,23 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-2970-baseline-v1",
+  "freeze_commit": "517670839136ab0d08c0940bb5c64cc05922c224",
+  "carrier_commit": "e40a45ec2a074b90703b3b4b842c8a3adbd6ada3",
+  "candidate_executions": 0,
+  "objective": {
+    "exit_code": 1,
+    "classification": "BASELINE_BUG_REPRODUCED",
+    "exception": "urllib3.exceptions.LocationParseError",
+    "observed_message": "Failed to parse: 'alice..empretienda.com.ar', label empty or too long"
+  },
+  "regression": {
+    "exit_code": 1,
+    "passed": 10,
+    "failed": 4,
+    "deselected": 975,
+    "classification": "INSTRUMENT_ABORT",
+    "cause": "Four UX/version tests invoke the installed console command `sherlock`; the frozen evaluator image had dependencies but no console-script shim/package install.",
+    "failures_are_not_product_regressions": true
+  },
+  "verdict": "VALID_SEMANTIC_BASELINE_WITH_REGRESSION_INSTRUMENT_ABORT",
+  "successor_rule": "A v2 may change only regression harness plumbing to provide the `sherlock` console entry point. The issue objective, carrier commit, issue payload, image dependencies, no-network boundary and candidate-generation rule remain unchanged."
+}
