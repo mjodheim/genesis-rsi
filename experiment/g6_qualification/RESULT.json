@@ -1,0 +1,289 @@
+{
+  "claim_boundary": "Bounded project-defined G6 component-evolution qualification only; not G7, general RSI, AGI, ASI, or independent third-party validation.",
+  "descendant": {
+    "candidate_budget": 8,
+    "candidate_executions": 8,
+    "case_count": 8,
+    "cases": [
+      {
+        "candidate_count": 1,
+        "case_id": "direct-array",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.522255
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "direct-string",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.501906
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "method-array",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.593975
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "method-string",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.638413
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "parenthesized",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.584972
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "conditional",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.599584
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "cast",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.584756
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "nested-index",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.603411
+        },
+        "passed": true,
+        "status": "evaluated"
+      }
+    ],
+    "evaluation_digest": "e06df0eccd75e95967f9bc222e3ceb0d6a7cba1d509041c42e67f9b22f0b5532",
+    "external_model_calls": 0,
+    "solved": 8,
+    "success_rate": 1.0,
+    "wall_time_seconds": 20.654299,
+    "within_candidate_budget": true
+  },
+  "descendant_commit": "2d69d22b",
+  "descendant_record_digest": "f4bb522c12d5a6bbe88b276384e9b5da5bdd54727bb9afbe1a6f615443d5ef55",
+  "descendant_source_sha256": "3451b476a319846df00ffe3984da8fb760a6a4c9f68313ebf4f4fb464f5954be",
+  "external_model_calls": 0,
+  "gate_passed": true,
+  "holdout": {
+    "baseline_all_fail": true,
+    "baseline_cases": [
+      {
+        "case_id": "direct-array",
+        "passed": false,
+        "returncode": 21,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 6.23434
+      },
+      {
+        "case_id": "direct-string",
+        "passed": false,
+        "returncode": 22,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.723822
+      },
+      {
+        "case_id": "method-array",
+        "passed": false,
+        "returncode": 23,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.50518
+      },
+      {
+        "case_id": "method-string",
+        "passed": false,
+        "returncode": 24,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.618782
+      },
+      {
+        "case_id": "parenthesized",
+        "passed": false,
+        "returncode": 25,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.626461
+      },
+      {
+        "case_id": "conditional",
+        "passed": false,
+        "returncode": 26,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.580677
+      },
+      {
+        "case_id": "cast",
+        "passed": false,
+        "returncode": 27,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.606349
+      },
+      {
+        "case_id": "nested-index",
+        "passed": false,
+        "returncode": 28,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.684563
+      }
+    ],
+    "case_count": 8,
+    "sha256": "735544022af38bf94cbee1e3a1aa7f5ae3a1d1ffb61b67775d1eed59a5109418"
+  },
+  "parent": {
+    "candidate_budget": 8,
+    "candidate_executions": 2,
+    "case_count": 8,
+    "cases": [
+      {
+        "candidate_count": 1,
+        "case_id": "direct-array",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.599655
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 1,
+        "case_id": "direct-string",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.581831
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "method-array",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "method-string",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "parenthesized",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "conditional",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "cast",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "nested-index",
+        "passed": false,
+        "status": "no_candidate"
+      }
+    ],
+    "evaluation_digest": "db2c8ee24b85e25bcdad06995d5cd8d74bed1fb444cbb0d234cd591aa9733f3f",
+    "external_model_calls": 0,
+    "solved": 2,
+    "success_rate": 0.25,
+    "wall_time_seconds": 5.192604,
+    "within_candidate_budget": true
+  },
+  "parent_source_sha256": "a294e8fb47ff3a138667463610df25121c33aa2190308231b2116492e8eb4309",
+  "preregistration_digest": "ec189455185d331509abdf7de96a4d6af6b377e90200a094f713fc79bee08747",
+  "requirements": {
+    "descendant_frozen_before_holdout_reveal": true,
+    "descendant_generated_by_frozen_evolution_apparatus": true,
+    "descendant_preserves_every_parent_success": true,
+    "descendant_solves_at_least_7_of_8_hidden_cases": true,
+    "descendant_source_differs_from_parent": true,
+    "descendant_stays_within_equal_candidate_budget": true,
+    "descendant_success_rate_exceeds_parent": true,
+    "descendant_uses_zero_external_model_calls": true,
+    "holdout_sha256_matches_preregistered_identity": true,
+    "reverting_winning_mutation_removes_gain": true
+  },
+  "result_digest": "c0aec6a3b7bacc401c271c0a91d98c3df1761dca19d8d8c428ea09eed7104080",
+  "schema": "genesis-g6-qualification-result-v1",
+  "selected_mutation_id": "structural_delimiter_anchors",
+  "verdict": "G6_SCIENTIFIC_GATE_PASSED"
+}
