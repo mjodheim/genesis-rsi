@@ -1,0 +1,59 @@
+{
+  "autonomous_successes": 2,
+  "causal_reuse_successes": 0,
+  "fallback_rate": 0.5,
+  "fallback_required": 2,
+  "model_calls": 2,
+  "model_calls_per_solved": 0.6666666666666666,
+  "note": "Tasks 9 and 10 were first-candidate zero-model scalar wins. Task 11 exhausted budget then passed its one-call fallback. Task 12 exhausted budget; its fallback was semantically plausible but violated the frozen unrelated-source boundary by adding a helper outside init/updateRange, so it remains a pipeline miss.",
+  "schema": "mira-genesis-a6b-wave-result-v1",
+  "solved": 3,
+  "tasks": [
+    {
+      "autonomous_passed": true,
+      "autonomous_report_digest": "4c79c18d78acf275a506692bf38f039ab38c236221611f2dde715660f02ac0ff",
+      "carrier": "caorantaoyao/maintainermesh-demo-lib#1",
+      "fallback_passed": null,
+      "fallback_report_digest": null,
+      "fallback_required": false,
+      "model_calls": 0,
+      "solved": true,
+      "task_id": 9
+    },
+    {
+      "autonomous_passed": true,
+      "autonomous_report_digest": "284e352c481bee8cff5cc1dbe64ced51f09e6d7d9cea1dcd3d2028a3717cbe24",
+      "carrier": "caorantaoyao/mm-truncate#1",
+      "fallback_passed": null,
+      "fallback_report_digest": null,
+      "fallback_required": false,
+      "model_calls": 0,
+      "solved": true,
+      "task_id": 10
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "c9547be28ab7dac9980ebe189a6f2aff6da0bab0a2d228c0bd76a31255d0f62e",
+      "carrier": "okihita/portfolio#2",
+      "fallback_passed": true,
+      "fallback_report_digest": "b274c564894de81f0b9587d2e7132d13b88899f301f56584e79718dabf3dca78",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": true,
+      "task_id": 11
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "4700b7363a433327797b4f9d3a5cff99e588e9ba2698ea2d9dcd370e358c226f",
+      "carrier": "davidhealey/waistline#979",
+      "fallback_passed": false,
+      "fallback_report_digest": "ed887cb4a6b7c04f9727cfaae78778a84fd670b8cd0c6811ef4bbe1532d51fcd",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": false,
+      "task_id": 12
+    }
+  ],
+  "wave": 3,
+  "within_a6b_prior_task_reuses": 0
+}

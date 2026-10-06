@@ -1,0 +1,151 @@
+{
+  "applied": [
+    {
+      "new_sha256": "ab62e50b412b6a5cb4d7c19a8fa82389864d45f151288e2675e61730ae1be752",
+      "old_sha256": "4e9e7ad434e1a2314eb5c5ee4534c33960fd396872a50a78174d0c6140534fb4",
+      "path": "www/activities/statistics/js/statistics.js"
+    },
+    {
+      "new_sha256": "2c056d3adff63a0ab0ed9458aae83d04f81fca5843887c38dceb264b5118da23",
+      "old_sha256": "ab62e50b412b6a5cb4d7c19a8fa82389864d45f151288e2675e61730ae1be752",
+      "path": "www/activities/statistics/js/statistics.js"
+    },
+    {
+      "new_sha256": "20719f2377883c0cce70304a3287e68ea02f33e516e94a6bd8f8cb6edf13d142",
+      "old_sha256": "2c056d3adff63a0ab0ed9458aae83d04f81fca5843887c38dceb264b5118da23",
+      "path": "www/activities/statistics/js/statistics.js"
+    },
+    {
+      "new_sha256": "0c730138d39aae4e0a07427d03fc65b93948fea6191b3a98f52f68f7d3bfb92f",
+      "old_sha256": "20719f2377883c0cce70304a3287e68ea02f33e516e94a6bd8f8cb6edf13d142",
+      "path": "www/activities/statistics/js/statistics.js"
+    }
+  ],
+  "autonomous_result_digest": "4700b7363a433327797b4f9d3a5cff99e588e9ba2698ea2d9dcd370e358c226f",
+  "carrier": "davidhealey/waistline#979",
+  "cost_usd": 0.1067616,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_012_eval.py",
+      "/tmp/genesis-a6b-fallback-rjo5izrk/workspace"
+    ],
+    "elapsed_ms": 191,
+    "exit_code": 1,
+    "parsed": {
+      "external_model_calls": 0,
+      "invariants": {
+        "custom_range_still_supported": true,
+        "database_path_still_used": true,
+        "range_settings_still_saved": true
+      },
+      "objective_ok": false,
+      "schema": "mira-genesis-a6b-task012-evaluator-v2",
+      "selected_date_preserved_as_local_calendar_day": true,
+      "timezone_runs": [
+        {
+          "exit_code": 0,
+          "parsed": {
+            "init": [
+              [
+                2026,
+                8,
+                16
+              ],
+              [
+                2026,
+                8,
+                16
+              ]
+            ],
+            "updateRange": [
+              [
+                2026,
+                8,
+                16
+              ],
+              [
+                2026,
+                8,
+                16
+              ]
+            ]
+          },
+          "stderr": "",
+          "timezone": "America/New_York"
+        },
+        {
+          "exit_code": 0,
+          "parsed": {
+            "init": [
+              [
+                2026,
+                8,
+                16
+              ],
+              [
+                2026,
+                8,
+                16
+              ]
+            ],
+            "updateRange": [
+              [
+                2026,
+                8,
+                16
+              ],
+              [
+                2026,
+                8,
+                16
+              ]
+            ]
+          },
+          "stderr": "",
+          "timezone": "Asia/Tokyo"
+        }
+      ],
+      "unrelated_source_preserved": false
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"invariants\": {\"custom_range_still_supported\": true, \"database_path_still_used\": true, \"range_settings_still_saved\": true}, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task012-evaluator-v2\", \"selected_date_preserved_as_local_calendar_day\": true, \"timezone_runs\": [{\"exit_code\": 0, \"parsed\": {\"init\": [[2026, 8, 16], [2026, 8, 16]], \"updateRange\": [[2026, 8, 16], [2026, 8, 16]]}, \"stderr\": \"\", \"timezone\": \"America/New_York\"}, {\"exit_code\": 0, \"parsed\": {\"init\": [[2026, 8, 16], [2026, 8, 16]], \"updateRange\": [[2026, 8, 16], [2026, 8, 16]]}, \"stderr\": \"\", \"timezone\": \"Asia/Tokyo\"}], \"unrelated_source_preserved\": false}\n"
+  },
+  "fallback_passed": false,
+  "learned_template_count": 0,
+  "learned_template_digests": [],
+  "learned_templates": [],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "cbadcb3e689bcc1e9383a9141d7b0ceefb35868be8afd83d21473366420820ab",
+  "proposal": {
+    "edits": [
+      {
+        "new": "    this.dbData = await this.getDataFromDb(this.stringToDate(app.Stats.el.rangestart.value), this.stringToDate(app.Stats.el.rangeend.value));",
+        "old": "    this.dbData = await this.getDataFromDb(new Date(app.Stats.el.rangestart.value), new Date(app.Stats.el.rangeend.value));",
+        "path": "www/activities/statistics/js/statistics.js"
+      },
+      {
+        "new": "    app.Stats.dbData = await this.getDataFromDb(this.stringToDate(app.Stats.el.rangestart.value), this.stringToDate(app.Stats.el.rangeend.value));",
+        "old": "    app.Stats.dbData = await this.getDataFromDb(new Date(app.Stats.el.rangestart.value), new Date(app.Stats.el.rangeend.value));",
+        "path": "www/activities/statistics/js/statistics.js"
+      },
+      {
+        "new": "      if (app.Stats.el.rangeend.value == this.dateToString(new Date())) {",
+        "old": "      if (this.dateToString(new Date(app.Stats.el.rangeend.value)) == this.dateToString(new Date())) {",
+        "path": "www/activities/statistics/js/statistics.js"
+      },
+      {
+        "new": "  stringToDate: function(value) {\n    // Parse a type=date value (yyyy-mm-dd) as a local calendar date\n    let [y, m, d] = value.split(\"-\").map(Number);\n    return new Date(y, m - 1, d);\n  },\n\n  datesFromRange: function(range) {",
+        "old": "  datesFromRange: function(range) {",
+        "path": "www/activities/statistics/js/statistics.js"
+      }
+    ],
+    "summary": "Add a stringToDate helper that parses YYYY-MM-DD as a local calendar date (not UTC midnight) and use it in initial load, updateRange, and the \"today\" comparison."
+  },
+  "report_digest": "ed887cb4a6b7c04f9727cfaae78778a84fd670b8cd0c6811ef4bbe1532d51fcd",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 12
+}
