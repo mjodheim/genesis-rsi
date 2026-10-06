@@ -1,0 +1,11 @@
+{
+  "schema": "mira-genesis-a6b-task003-evaluator-mismatch-v1",
+  "status": "POST_OUTCOME_APPARATUS_OBSERVATION",
+  "task_id": 3,
+  "frozen_evaluator_verdict": "FAIL",
+  "campaign_treatment": "COUNT_AS_PIPELINE_MISS_NO_RETRY_NO_MEMORY_LEARNING",
+  "observation": "The one-call fallback removed the UTC default, directly used transaction_date, and added a 400 guard using typeof transaction_date !== 'string'. The frozen written pass rule allows a required client-provided date, but the evaluator implementation only recognizes narrower null/falsy guard spellings and therefore returned false.",
+  "rule_or_evaluator_changed_after_outcome": false,
+  "fallback_retried": false,
+  "memory_updated_from_failed_evaluation": false
+}

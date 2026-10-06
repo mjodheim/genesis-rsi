@@ -1,0 +1,70 @@
+{
+  "applied": [
+    {
+      "new_sha256": "c45fbd415fd8f0376cbe441f90c666633413e061b0cc4273e6c6ba4fbef10920",
+      "old_sha256": "0aa57f1095bd88ceaf4cf38d890a22a794c5a2430f87396aa2b2aafbae1c7ce2",
+      "path": "_worker.ts"
+    },
+    {
+      "new_sha256": "2b0d8ffa91adb7f87282dec0080741c346e3dd6da6c30a6aca17bb565a57ba39",
+      "old_sha256": "c45fbd415fd8f0376cbe441f90c666633413e061b0cc4273e6c6ba4fbef10920",
+      "path": "_worker.ts"
+    }
+  ],
+  "autonomous_result_digest": "d46d702499b335a875a43d7acee85f17056e33dd62789684225bc505d7bec667",
+  "carrier": "lafuan/Sribuu#1405",
+  "cost_usd": 0.2362376,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_003_eval.py",
+      "/tmp/genesis-a6b-fallback-zux9fgfi/workspace"
+    ],
+    "elapsed_ms": 60,
+    "exit_code": 1,
+    "parsed": {
+      "direct_client_date": true,
+      "external_model_calls": 0,
+      "invariants": {
+        "amount_validation_preserved": true,
+        "default_category_lookup_preserved": true,
+        "insert_sql_preserved": true,
+        "transaction_date_binding_preserved": true
+      },
+      "objective_ok": false,
+      "required_client_date_guard": false,
+      "schema": "mira-genesis-a6b-task003-evaluator-v1",
+      "timezone_aware_default": false,
+      "utc_default_present": false
+    },
+    "stderr": "",
+    "stdout": "{\"direct_client_date\": true, \"external_model_calls\": 0, \"invariants\": {\"amount_validation_preserved\": true, \"default_category_lookup_preserved\": true, \"insert_sql_preserved\": true, \"transaction_date_binding_preserved\": true}, \"objective_ok\": false, \"required_client_date_guard\": false, \"schema\": \"mira-genesis-a6b-task003-evaluator-v1\", \"timezone_aware_default\": false, \"utc_default_present\": false}\n"
+  },
+  "fallback_passed": false,
+  "learned_template_count": 0,
+  "learned_template_digests": [],
+  "learned_templates": [],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "dc6d1af202492b5bb2a82dd1a92b3efee057477345be0b0ba7fea5cf4a63d290",
+  "proposal": {
+    "edits": [
+      {
+        "new": "    const finalDate = transaction_date\n",
+        "old": "    const finalDate = transaction_date ?? new Date().toISOString().split('T')[0]\n",
+        "path": "_worker.ts"
+      },
+      {
+        "new": "    if (typeof transaction_date !== 'string' || !/^\\d{4}-\\d{2}-\\d{2}$/.test(transaction_date)) return c.json({ error: 'transaction_date is required (YYYY-MM-DD, client local date)' }, 400)\n\n    // Look up the user's default category instead of hardcoding 1\n",
+        "old": "    \n    // Look up the user's default category instead of hardcoding 1\n",
+        "path": "_worker.ts"
+      }
+    ],
+    "summary": "Stop defaulting a missing transaction_date to the UTC calendar day. With no persisted user timezone, the server cannot derive the correct local date, so the POST route now returns 400 when transaction_date is missing or not a YYYY-MM-DD string. The existing client already sends transaction_date. The insert, amount validation and default-category lookup are unchanged. Nothing was run or tested."
+  },
+  "report_digest": "631ff62cc40214111fadd9d56b2e415abef5b0adb925f88a5d4a7a8ee55ee7d4",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 3
+}
