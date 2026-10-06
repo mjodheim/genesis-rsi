@@ -1,0 +1,19 @@
+{
+  "schema": "mira-genesis-a6-task009-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_012_freeze.json",
+  "carrier": "yaso09/tengiz#185",
+  "carrier_commit": "061c493d9ac653039370f84c4986947908162ba3",
+  "task_id": 9,
+  "language": "Go",
+  "qualification": "Frozen WaitForHealth loop uses i <= retries and performs four attempts for retries=3 while reporting three retries.",
+  "target_source": ["internal/runtime/docker.go"],
+  "memory": "experiment/autonomy_a6/MEMORY_008.json",
+  "counterfactual_memory_for_causal_rank": "experiment/autonomy_a6/MEMORY_007.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6/task_009_eval.py",
+  "pass_rule": "WaitForHealth performs exactly three loop attempts for retries=3, preserves default retry initialization and error-message contract, and exact winner replay passes.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
