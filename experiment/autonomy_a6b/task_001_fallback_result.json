@@ -1,0 +1,203 @@
+{
+  "applied": [
+    {
+      "new_sha256": "7a60dc488c1f0081dc2a77ef572bf6079e5a1919082d8e31752f356c3902ec25",
+      "old_sha256": "1a7b7cf456085b26d2de7db45020be3a193d1559061ffcf3870d017bef98a829",
+      "path": "contracts/tariff-shield/src/lib.rs"
+    }
+  ],
+  "autonomous_result_digest": "109c4dec40f31eddf24cd363d80ea64a3099ab5060d9c57ddf9e2a7160c5a3e1",
+  "carrier": "vjuliaife/TariffShield#492",
+  "cost_usd": 0.1215606,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_001_eval.py",
+      "/tmp/genesis-a6b-fallback-yrut7xi5/workspace"
+    ],
+    "elapsed_ms": 40,
+    "exit_code": 0,
+    "parsed": {
+      "cancel_checks": {
+        "function_present": true,
+        "no_expiry_boundary_added": true,
+        "not_found_guard": true,
+        "removes_proposal": true,
+        "requires_admin": true,
+        "requires_auth": true
+      },
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "operator": ">=",
+      "proposal_horizon_ok": true,
+      "schema": "mira-genesis-a6b-task001-evaluator-v1",
+      "semantics": {
+        "at_expiry_rejected": true,
+        "before_expiry_valid": true,
+        "past_expiry_rejected": true
+      }
+    },
+    "stderr": "",
+    "stdout": "{\"cancel_checks\": {\"function_present\": true, \"no_expiry_boundary_added\": true, \"not_found_guard\": true, \"removes_proposal\": true, \"requires_admin\": true, \"requires_auth\": true}, \"external_model_calls\": 0, \"objective_ok\": true, \"operator\": \">=\", \"proposal_horizon_ok\": true, \"schema\": \"mira-genesis-a6b-task001-evaluator-v1\", \"semantics\": {\"at_expiry_rejected\": true, \"before_expiry_valid\": true, \"past_expiry_rejected\": true}}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 1,
+  "learned_template_digests": [
+    "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ">="
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ">"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "e6db1ec7cc4ce1b1cdc7c5d5a046bc9370094e428449d2dc676c7b589dd7f9da",
+      "template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "e6db1ec7cc4ce1b1cdc7c5d5a046bc9370094e428449d2dc676c7b589dd7f9da",
+  "proposal": {
+    "edits": [
+      {
+        "new": "if env.ledger().sequence() >= proposal.expiry_ledger {",
+        "old": "if env.ledger().sequence() > proposal.expiry_ledger {",
+        "path": "contracts/tariff-shield/src/lib.rs"
+      }
+    ],
+    "summary": "In approve_upgrade, change the expiry comparison from `>` to `>=` so a proposal is expired when the current ledger equals expiry_ledger. One ledger before expiry stays valid, and one ledger after stays expired. cancel_upgrade is untouched. I did not run tests."
+  },
+  "report_digest": "69c1d46bad4f811275eae3fd5fadb3f65515b2f389f3c2c8a7977aa9001fdcf9",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 1
+}
