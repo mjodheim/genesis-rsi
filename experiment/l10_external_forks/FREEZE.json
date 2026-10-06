@@ -1,0 +1,42 @@
+{
+  "schema": "mira-genesis-l10a-external-fork-freeze-v1",
+  "status": "FROZEN_BEFORE_BASELINE_OR_CANDIDATE_EVALUATION",
+  "protocol_commit": "9707ea78c39cebc66e978a1185a8dc79c544ac5b",
+  "apparatus_commit": "0f2177e7684c02d385561ee809efec25e93ff315",
+  "blobs": {
+    "experiment/l10_external_forks/PROTOCOL.md": "02826903600221b0bf5f65abd4deb37f6f8dd016",
+    "experiment/l10_external_forks/TASKS.json": "f21ad23e86952601e277187232a84f2d82a7bcd1",
+    "experiment/l10_external_forks/eval_gson_453.py": "0360732c38c3c27e9c5be7efb90aca6194690519",
+    "experiment/l10_external_forks/eval_ripgrep_278.py": "4aa50bf8292ad65243e8e6ecf69274152746452c",
+    "experiment/l10_external_forks/CANDIDATE_GENERATION.md": "f89a45477cf0b555c360adc583858c68abbe17fe"
+  },
+  "selected_carriers": [
+    {
+      "upstream": "google/gson",
+      "commit": "845664ba1c307e6c1910d07cfed2f622e0ad8df1",
+      "issue": 453
+    },
+    {
+      "upstream": "BurntSushi/ripgrep",
+      "commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "issue": 278
+    }
+  ],
+  "no_eligible_task": [
+    "pallets/click@2247b35ea1c47c727d7a06e51fa280e12a863ff6",
+    "spectreconsole/spectre.console@0de1831405299575419a9cb17d5e7349a3ae61f5",
+    "sindresorhus/p-map@2c0934b8312b637f933b752c6054845c2d2d5533"
+  ],
+  "toolchains": {
+    "gson": "maven@sha256:6fdc855a6ed81d288ca7ca37ac6ff5e9308b612485c0801d70b25a858c83d237",
+    "ripgrep": "rust@sha256:1f0dbad1df66647807e6952d1db85d0b2bda7606cb2139d82517e4f009967376"
+  },
+  "candidate_proposer": {
+    "cli": "codex-cli 0.154.0",
+    "model": "gpt-5.6-sol",
+    "calls_per_carrier": 1,
+    "evaluator_feedback_visible": false
+  },
+  "strict_l10_independent_pass_possible_from_this_pilot": false,
+  "claim_boundary": "PUBLIC_EXTERNAL_FORK_TRANSFER_PILOT_NOT_INDEPENDENT_L10"
+}
