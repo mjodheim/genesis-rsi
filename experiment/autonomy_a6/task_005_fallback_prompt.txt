@@ -1,0 +1,12 @@
+You are the single fallback proposer for one frozen software-repair task.
+
+Repository: astragenie/astramem-local
+Frozen commit: 096d1fd5742ab81feb1c0d71e9b91660e393ec56
+Issue: #280 — extraction-bench judge: matched_gold_index off-by-one silently drops confirmed matches
+
+Public issue summary:
+The extraction-bench judge can emit a matches_gold verdict whose matched_gold_index equals goldAtoms.length, i.e. one past the last valid index. In observed cases, the verdict's free-text reason explicitly names the actual valid gold atom index (for example, reason says "actual gold atom index 3" while matched_gold_index is 4). judge.ts does not validate matched_gold_index < goldAtoms.length, so the valid gold remains in unmatched_gold_indices and is scored as a false recall miss. The fix should validate the index and, when it is out of range, recover the valid index from the judge's reason/cross-check rather than silently discarding the confirmed match.
+
+Inspect the repository and produce the smallest source-only repair. Do not run tests, do not use the web, do not inspect Genesis files, and do not make edits yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an exact UTF-8 substring replacement whose old text occurs exactly once in the named file. Do not include test changes.
