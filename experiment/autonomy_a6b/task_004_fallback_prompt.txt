@@ -1,0 +1,20 @@
+You are the single frozen fallback proposer for A6b task 4.
+
+Repository: Analyst-Harsh/triage-bot-test
+Frozen commit: 0a4f7c32acc47120efb07aebaacef59d5815f192
+Issue: #28 — factorial(n) returns wrong result for all positive n due to an off-by-one loop range
+
+Public task contract:
+- src/calculator/calculator.py defines factorial(n).
+- The loop currently stops before n, so every positive n computes (n - 1)!.
+- factorial(0) must remain 1.
+- factorial(n) must return n! for normal positive integer inputs.
+- Other intentionally broken calculator functions are outside this issue and must not be changed.
+
+Inspect only the frozen repository and return the smallest source-only repair.
+Do not run tests. Do not use the web. Do not inspect Genesis files. Do not
+modify files yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an
+exact UTF-8 substring replacement whose old text occurs exactly once. Do not
+include tests or generated files.

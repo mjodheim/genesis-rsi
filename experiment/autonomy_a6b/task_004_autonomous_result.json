@@ -1,0 +1,1908 @@
+{
+  "autonomous_passed": false,
+  "baseline": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+      "/home/anthony/experiments/a6b-c025"
+    ],
+    "elapsed_ms": 70,
+    "exit_code": 1,
+    "parsed": {
+      "cases": [
+        {
+          "actual": 1,
+          "expected": 1,
+          "n": 0,
+          "ok": true
+        },
+        {
+          "actual": 1,
+          "expected": 1,
+          "n": 1,
+          "ok": true
+        },
+        {
+          "actual": 1,
+          "expected": 2,
+          "n": 2,
+          "ok": false
+        },
+        {
+          "actual": 2,
+          "expected": 6,
+          "n": 3,
+          "ok": false
+        },
+        {
+          "actual": 6,
+          "expected": 24,
+          "n": 4,
+          "ok": false
+        },
+        {
+          "actual": 24,
+          "expected": 120,
+          "n": 5,
+          "ok": false
+        },
+        {
+          "actual": 120,
+          "expected": 720,
+          "n": 6,
+          "ok": false
+        },
+        {
+          "actual": 720,
+          "expected": 5040,
+          "n": 7,
+          "ok": false
+        }
+      ],
+      "external_model_calls": 0,
+      "objective_ok": false,
+      "schema": "mira-genesis-a6b-task004-evaluator-v1",
+      "semantics_ok": false,
+      "unrelated_functions_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": true}\n"
+  },
+  "candidate_budget": 256,
+  "carrier": "Analyst-Harsh/triage-bot-test#28",
+  "charged_candidate_executions": 23,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 14,
+  "records": [
+    {
+      "candidate_digest": "10ad411da8a7de8358e07178f4c97661e1567bb843335fb7525aa9e4173ca393",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-001"
+        ],
+        "elapsed_ms": 65,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-10ad411da8a7de83",
+      "label": "integer_delta:src/calculator/calculator.py:470",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 1
+    },
+    {
+      "candidate_digest": "56f9f957e1b5cc98f2db137ed113cc46d207cdb0e58acc8a2fc5ad9ce7a662ae",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-002"
+        ],
+        "elapsed_ms": 36,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-56f9f957e1b5cc98",
+      "label": "integer_delta:src/calculator/calculator.py:470",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 2
+    },
+    {
+      "candidate_digest": "766d394a5e47bde615903981d4f72d6651aa606a9c99dca54a47b0c64986936d",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-003"
+        ],
+        "elapsed_ms": 73,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-766d394a5e47bde6",
+      "label": "integer_delta:src/calculator/calculator.py:598",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 3
+    },
+    {
+      "candidate_digest": "b1a4c0ae41472e99a0d013574701131f3fc5c44fbe7eeb91777d7a889ff5815f",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-004"
+        ],
+        "elapsed_ms": 51,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-b1a4c0ae41472e99",
+      "label": "integer_delta:src/calculator/calculator.py:598",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 4
+    },
+    {
+      "candidate_digest": "720bb0d44722913d6c416bb77e9f9fb87ff0c9a78c305f44d7cca2278c0e3e5c",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-005"
+        ],
+        "elapsed_ms": 42,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "coordinated_scalar_mutations",
+      "id": "coordinated-720bb0d44722913d",
+      "label": "coordinated_integer_delta:1->0:2sites:broad",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 5
+    },
+    {
+      "candidate_digest": "442df6169f4e3251f25143d322d3c440dc4dccc91238163ff54f66b7a9cc768b",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-006"
+        ],
+        "elapsed_ms": 34,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-442df6169f4e3251",
+      "label": "integer_delta:src/calculator/calculator.py:687",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 6
+    },
+    {
+      "candidate_digest": "b0d68deca6ef04fa151cc1f502d9f404a682a38737f329985a23387bde7667b6",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-007"
+        ],
+        "elapsed_ms": 73,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-b0d68deca6ef04fa",
+      "label": "integer_delta:src/calculator/calculator.py:687",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 7
+    },
+    {
+      "candidate_digest": "08a9b91725c043160559457826d3cba60b1d4c3d86f2b0b0928294c7b8dcf7d6",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-008"
+        ],
+        "elapsed_ms": 48,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-08a9b91725c04316",
+      "label": "integer_delta:src/calculator/calculator.py:692",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 8
+    },
+    {
+      "candidate_digest": "9e3975c107040fab8be37f7669d67f11338b15ac00a354d883261a2ef950aac2",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-009"
+        ],
+        "elapsed_ms": 44,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 0,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": true
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 0, \"expected\": 1, \"n\": 0, \"ok\": false}, {\"actual\": 0, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 0, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 0, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 0, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 0, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 0, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 0, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": true}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-9e3975c107040fab",
+      "label": "integer_delta:src/calculator/calculator.py:764",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 9
+    },
+    {
+      "candidate_digest": "7f5e171983cf7b00a11956ec4c22a108be24783d1aeac19860275e7a7fa1ebdf",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-010"
+        ],
+        "elapsed_ms": 40,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 0,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 0, \"expected\": 1, \"n\": 0, \"ok\": false}, {\"actual\": 0, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 0, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 0, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 0, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 0, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 0, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 0, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "coordinated_scalar_mutations",
+      "id": "coordinated-7f5e171983cf7b00",
+      "label": "coordinated_integer_delta:1->0:2sites:broad",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 10
+    },
+    {
+      "candidate_digest": "2ab2afa67cff4b626e8f7d59817365342c3114977d3eb7fcc7150394a1a7c0fe",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-011"
+        ],
+        "elapsed_ms": 37,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 2,
+              "expected": 1,
+              "n": 0,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 2,
+              "n": 2,
+              "ok": true
+            },
+            {
+              "actual": 4,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 12,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 48,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 240,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 1440,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": true
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 2, \"expected\": 1, \"n\": 0, \"ok\": false}, {\"actual\": 2, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 2, \"expected\": 2, \"n\": 2, \"ok\": true}, {\"actual\": 4, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 12, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 48, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 240, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 1440, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": true}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-2ab2afa67cff4b62",
+      "label": "integer_delta:src/calculator/calculator.py:764",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 11
+    },
+    {
+      "candidate_digest": "292bcfeed297a34a753082a3fdab8615eb4f882f68a03f50e48e64a336ebdab9",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-012"
+        ],
+        "elapsed_ms": 35,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": true
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 0, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 0, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 0, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 0, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 0, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 0, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 0, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": true}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-292bcfeed297a34a",
+      "label": "integer_delta:src/calculator/calculator.py:785",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 12
+    },
+    {
+      "candidate_digest": "e10cd69eb6eb2c86160e7216b2f97ac87f1d136bc489174c44ca9d42e9466111",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-013"
+        ],
+        "elapsed_ms": 68,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": true
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": true}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-e10cd69eb6eb2c86",
+      "label": "integer_delta:src/calculator/calculator.py:785",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 13
+    },
+    {
+      "candidate_digest": "3f5a2fb75b5390bf7cc1eb399add164387a10a3255421142403bdcc62a119d08",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-014"
+        ],
+        "elapsed_ms": 59,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-3f5a2fb75b5390bf",
+      "label": "integer_delta:src/calculator/calculator.py:907",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 14
+    },
+    {
+      "candidate_digest": "f50727efb4ba7d8a35f9487c5e2a068e8939d8d13a1e5abe8bc26b8bd616c24c",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-015"
+        ],
+        "elapsed_ms": 46,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 0, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 0, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 0, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 0, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 0, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 0, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 0, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "coordinated_scalar_mutations",
+      "id": "coordinated-f50727efb4ba7d8a",
+      "label": "coordinated_integer_delta:1->0:2sites:broad",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 15
+    },
+    {
+      "candidate_digest": "e293b0aa2464acc0c95cc87c690b0882d95c05ad570946ee9260cea25a9e4904",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-016"
+        ],
+        "elapsed_ms": 36,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-e293b0aa2464acc0",
+      "label": "integer_delta:src/calculator/calculator.py:907",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 16
+    },
+    {
+      "candidate_digest": "e6b6a22af319ba466cf0c9d95c4030702c6d7387360e44c21b9372be9e94db1c",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-017"
+        ],
+        "elapsed_ms": 35,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-e6b6a22af319ba46",
+      "label": "comparison_boundary:src/calculator/calculator.py:689",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 17
+    },
+    {
+      "candidate_digest": "61ef43c8a6f763673ea549ea1bc14752dcd0c44a044fcf3f97d4cd0845895593",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-018"
+        ],
+        "elapsed_ms": 36,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-61ef43c8a6f76367",
+      "label": "boolean_toggle:src/calculator/calculator.py:633",
+      "operator": "boolean_toggle",
+      "passed": false,
+      "rank": 18
+    },
+    {
+      "candidate_digest": "372f4a6b2deecda8df7e4d39f08094c0d4308d02b3c0b9bb789246c1f2007ea4",
+      "coordination_size": 1,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-019"
+        ],
+        "elapsed_ms": 34,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-372f4a6b2deecda8",
+      "label": "boolean_toggle:src/calculator/calculator.py:652",
+      "operator": "boolean_toggle",
+      "passed": false,
+      "rank": 19
+    },
+    {
+      "candidate_digest": "bd13c497b479b1af2b5ae37a99d8b8b40a5ca51942de7ce3c3f89b274f2ba5c4",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-020"
+        ],
+        "elapsed_ms": 34,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 0,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 0, \"expected\": 1, \"n\": 0, \"ok\": false}, {\"actual\": 0, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 0, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 0, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 0, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 0, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 0, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 0, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "coordinated_scalar_mutations",
+      "id": "coordinated-bd13c497b479b1af",
+      "label": "coordinated_integer_delta:1->0:2sites:broad",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 20
+    },
+    {
+      "candidate_digest": "2ec1a13d6c46b745fd4a32e1877fabca75cb1ab2b667cbaceb45d176a0ea0349",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-021"
+        ],
+        "elapsed_ms": 35,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 0, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 0, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 0, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 0, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 0, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 0, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 0, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "coordinated_scalar_mutations",
+      "id": "coordinated-2ec1a13d6c46b745",
+      "label": "coordinated_integer_delta:1->0:2sites:broad",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 21
+    },
+    {
+      "candidate_digest": "ec09bf6e760c4f4c14eeabe79efc5c4c4037210f5fff2f9eca24eafa15c693a2",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-022"
+        ],
+        "elapsed_ms": 36,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 0,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 1,
+              "n": 1,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 0,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": true
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 0, \"expected\": 1, \"n\": 0, \"ok\": false}, {\"actual\": 0, \"expected\": 1, \"n\": 1, \"ok\": false}, {\"actual\": 0, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 0, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 0, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 0, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 0, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 0, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": true}\n"
+      },
+      "generator": "coordinated_scalar_mutations",
+      "id": "coordinated-ec09bf6e760c4f4c",
+      "label": "coordinated_integer_delta:1->0:2sites:broad",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 22
+    },
+    {
+      "candidate_digest": "356ecb6f7cc00e764530aaa891672fe822b907a36368955041874a4378ce4955",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+          "/tmp/genesis-a6b-auto-vm2cbkev/candidate-023"
+        ],
+        "elapsed_ms": 36,
+        "exit_code": 1,
+        "parsed": {
+          "cases": [
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 0,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 1,
+              "n": 1,
+              "ok": true
+            },
+            {
+              "actual": 1,
+              "expected": 2,
+              "n": 2,
+              "ok": false
+            },
+            {
+              "actual": 2,
+              "expected": 6,
+              "n": 3,
+              "ok": false
+            },
+            {
+              "actual": 6,
+              "expected": 24,
+              "n": 4,
+              "ok": false
+            },
+            {
+              "actual": 24,
+              "expected": 120,
+              "n": 5,
+              "ok": false
+            },
+            {
+              "actual": 120,
+              "expected": 720,
+              "n": 6,
+              "ok": false
+            },
+            {
+              "actual": 720,
+              "expected": 5040,
+              "n": 7,
+              "ok": false
+            }
+          ],
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "schema": "mira-genesis-a6b-task004-evaluator-v1",
+          "semantics_ok": false,
+          "unrelated_functions_preserved": false
+        },
+        "stderr": "",
+        "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 1, \"expected\": 2, \"n\": 2, \"ok\": false}, {\"actual\": 2, \"expected\": 6, \"n\": 3, \"ok\": false}, {\"actual\": 6, \"expected\": 24, \"n\": 4, \"ok\": false}, {\"actual\": 24, \"expected\": 120, \"n\": 5, \"ok\": false}, {\"actual\": 120, \"expected\": 720, \"n\": 6, \"ok\": false}, {\"actual\": 720, \"expected\": 5040, \"n\": 7, \"ok\": false}], \"external_model_calls\": 0, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": false, \"unrelated_functions_preserved\": false}\n"
+      },
+      "generator": "coordinated_scalar_mutations",
+      "id": "coordinated-356ecb6f7cc00e76",
+      "label": "coordinated_integer_delta:2->1:2sites:broad",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 23
+    }
+  ],
+  "report_digest": "ef49fe06b29fdad83b0a8d8bbf64bed2068e82c5e839ca129c56f40c2c4407cb",
+  "retry_count": 0,
+  "schedule": {
+    "family_input_counts": {
+      "coordinated": 7,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 0,
+      "scalar": 16
+    },
+    "family_scheduled_counts": {
+      "coordinated": 7,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 0,
+      "scalar": 16
+    },
+    "schedule_digest": "58a876cf742169efe20346a43318da97ff5699e02a5aed8a86dcea0048471b95",
+    "scheduled_count": 23,
+    "schema": "genesis-fair-candidate-schedule-v1",
+    "weights": {
+      "coordinated": 1,
+      "exemplar": 1,
+      "learned": 1,
+      "learned_coordinated": 3,
+      "retained": 1,
+      "scalar": 4
+    }
+  },
+  "schema": "mira-genesis-a6b-autonomous-task-result-v1",
+  "task_id": 4,
+  "winner": null,
+  "winner_replay": null
+}
