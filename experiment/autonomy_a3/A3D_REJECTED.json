@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-autonomy-a3-carrier-rejection-v1",
+  "carrier": "Changyi-Li/dsh-github-issue-agent-scratch#2",
+  "carrier_commit": "246fe669dba2c2f6233fc4efcd1c797545a2cd58",
+  "selection_freeze_commit": "1d9c2eeb",
+  "stage": "post-freeze baseline/source inspection, before candidate evaluation",
+  "classification": "BASELINE_NOT_REPRODUCIBLE_AT_FROZEN_CARRIER",
+  "reason": "The issue body states double() is already correct and redirects the real defect elsewhere. At the frozen commit, add(), double(), divide(), and multiply all satisfy the shipped test suite; there is no failing baseline matching the title to repair.",
+  "candidate_evaluations": 0,
+  "objective_evaluations": 0,
+  "external_model_calls": 0,
+  "manual_repair_attempted": false,
+  "policy": "Retained as a negative carrier result. No synthetic failure is injected."
+}
