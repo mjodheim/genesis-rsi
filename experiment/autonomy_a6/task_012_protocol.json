@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6-task012-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_016_freeze.json",
+  "carrier": "jeremysball/token-burn-dashboard#55",
+  "carrier_commit": "2266ba0a0d52787184f5193259855c9b8d5704f9",
+  "task_id": 12,
+  "language": "JavaScript",
+  "qualification": "The frozen carrier still uses newest-first commits with i-1/commitIndex-1 as the alleged earlier commit in all three primary attribution paths. The secondary reasoning-cost complaint is not used as the task objective because the frozen session parser/cost path already carries reasoning tokens.",
+  "target_source": ["lib/git-blame.js"],
+  "memory": "experiment/autonomy_a6/MEMORY_011.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6/task_012_eval.cjs",
+  "pass_rule": "In a three-commit repository at 10:00/11:00/12:00 with a session at 11:30, report attribution, commit details and file cost attribution all attach the session to the 12:00 commit it preceded, not the 11:00 commit; exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}

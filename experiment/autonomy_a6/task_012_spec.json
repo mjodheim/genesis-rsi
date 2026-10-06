@@ -1,0 +1,13 @@
+{
+  "schema": "mira-genesis-a6-task-spec-v2",
+  "task_id": 12,
+  "carrier": "jeremysball/token-burn-dashboard#55",
+  "source_root": "/home/anthony/experiments/a6v2-c016",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/MEMORY_011.json",
+  "target_prefixes": ["lib/git-blame.js"],
+  "candidate_budget": 256,
+  "evaluator_argv": ["node", "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_012_eval.cjs", "{workspace}"],
+  "evaluator_timeout_seconds": 30,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_012_autonomous_result.json",
+  "runner": "experiment/autonomy_a6/run_autonomous_task_v2.py"
+}
