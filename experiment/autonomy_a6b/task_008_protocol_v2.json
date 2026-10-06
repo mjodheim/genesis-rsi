@@ -1,0 +1,20 @@
+{
+  "schema": "mira-genesis-a6b-task008-protocol-v2",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "supersedes_protocol": "experiment/autonomy_a6b/task_008_protocol.json@f5a1a8e9",
+  "apparatus_abort": "experiment/autonomy_a6b/task_008_v1_apparatus_abort.json",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_031_freeze.json",
+  "carrier": "andlo/haos-ovos-addons#8",
+  "carrier_commit": "47a2f7d8039712f8665d81970ffd1a2ace7055ae",
+  "task_id": 8,
+  "target_language": "YAML/Python",
+  "qualification": "The repository already broadcasts mycroft.ready from both external skill add-ons, but ovos-core defaults extra_pip_packages to empty. The issue's hardware-confirmed workaround requires at least one core-local skill as the SkillManager readiness trigger; skill-ovos-date-time is the documented working package.",
+  "target_source": ["ovos-core/config.yaml"],
+  "memory": "experiment/autonomy_a6b/MEMORY_018.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_008_eval.py",
+  "pass_rule": "ovos-core must default extra_pip_packages to skill-ovos-date-time, the rest of config.yaml must remain unchanged, and both existing external-skill mycroft.ready broadcast paths must still be present. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}

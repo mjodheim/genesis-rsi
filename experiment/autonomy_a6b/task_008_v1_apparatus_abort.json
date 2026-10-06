@@ -1,0 +1,11 @@
+{
+  "schema": "mira-genesis-a6b-task008-apparatus-abort-v1",
+  "task_id": 8,
+  "status": "ABORTED_BEFORE_CANDIDATE_EVALUATION",
+  "frozen_evaluator_commit": "f5a1a8e9",
+  "reason": "The unrelated-config hash normalization replaced only the expected repaired value, so the untouched baseline could not satisfy the unrelated-source predicate. No candidate was generated or evaluated.",
+  "candidate_generation_started": false,
+  "outcome_observed": false,
+  "external_model_calls": 0,
+  "replacement_rule": "Normalize either the frozen empty default or the expected repaired default to the same placeholder, preserving every other byte."
+}
