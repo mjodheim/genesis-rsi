@@ -1,0 +1,52 @@
+{
+  "schema": "mira-genesis-autonomy-a6-preregistration-v2",
+  "status": "PRE_REGISTERED_BEFORE_V2_TASK_SELECTION",
+  "date": "2026-10-06",
+  "supersedes": "experiment/autonomy_a6/PREREGISTRATION.json",
+  "v1_abort": "experiment/autonomy_a6/V1_DESIGN_ABORT.json",
+  "apparatus_freeze_commit": "e2b0dabc",
+  "candidate_queue_source": "experiment/autonomy_a6/CANDIDATE_QUEUE_METADATA.json",
+  "excluded_preinspected_carriers": ["nnayda/remora#206"],
+  "campaign": {
+    "target_runnable_tasks": 12,
+    "waves": 3,
+    "runnable_tasks_per_wave": 4,
+    "minimum_language_families": 3,
+    "candidate_budget": 256,
+    "preserve_all_exclusions": true,
+    "advance_queue_only_for_pre-outcome qualification failure": true,
+    "never_replace_a_runnable_task_after_its_outcome": true
+  },
+  "autonomous_generators": [
+    "generic_scalar_mutations",
+    "repository_exemplar_mutations",
+    "retained_acquired_subscript_strategy",
+    "learned_line_rewrite_templates"
+  ],
+  "memory": {
+    "seed_operator_memory": "experiment/autonomy_a3/RETAINED_STRATEGY.json",
+    "seed_acquired_strategy": "experiment/autonomy_a4/ACQUIRED_STRATEGY.json",
+    "successful_autonomous_and_fallback_patches_may_add_line_templates": true,
+    "template_learner": "genesis.patch_templates.learn_from_texts",
+    "memory_updates_only_after_passing_frozen_evaluation": true
+  },
+  "fallback": {
+    "trigger": "autonomous candidate budget exhausted without a passing candidate",
+    "provider_tool": "Claude Code",
+    "cli_version": "2.1.289",
+    "model": "claude-sonnet-5-5",
+    "maximum_calls_per_runnable_task": 1,
+    "no_retry": true,
+    "no_model_switch": true,
+    "fallback_patch_must_pass_same_frozen_evaluator": true,
+    "fallback_success_is_not_autonomous_success": true
+  },
+  "a6_pass_rule": {
+    "wave3_fallback_rate_strictly_lower_than_wave1": true,
+    "wave3_model_calls_per_solved_task_strictly_lower_than_wave1": true,
+    "minimum_autonomous_successes_total": 4,
+    "minimum_causal_reuses_of_campaign_learned_experience": 2,
+    "minimum_language_families_observed": 3
+  },
+  "claim_boundary": "A6 DEVELOPMENT only. A7 remains a prospectively frozen multi-language campaign with zero model calls."
+}
