@@ -1,0 +1,141 @@
+{
+  "applied": [
+    {
+      "new_sha256": "fd20845c7dbb063108948a63c4046af9a9eb19bc7133095e0232737b92bcdf7e",
+      "old_sha256": "2b6fc54c67b0f276206ab11fa60cc7a4e43e773e8b9ab2c82bba66b6e3ace475",
+      "path": "src/download.rs"
+    },
+    {
+      "new_sha256": "cf154a53e41030078cd9bd9ea60f912ac2555fb11318b820e2e53ad09a176692",
+      "old_sha256": "fd20845c7dbb063108948a63c4046af9a9eb19bc7133095e0232737b92bcdf7e",
+      "path": "src/download.rs"
+    }
+  ],
+  "autonomous_result_digest": "e70d2defabb525cd9700de3edabf287f4e8cfec6a0ec8efb84b613257fbdb03f",
+  "carrier": "FuelLabs/fuelup#836",
+  "cost_usd": 0.0426738,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_006_eval.py",
+      "/tmp/genesis-a6b-fallback-1rgapejh/workspace"
+    ],
+    "elapsed_ms": 64,
+    "exit_code": 0,
+    "parsed": {
+      "constant_ok": true,
+      "external_model_calls": 0,
+      "legacy_loops_absent": true,
+      "loop_iteration_counts": [
+        4,
+        4
+      ],
+      "loops_ok": true,
+      "objective_ok": true,
+      "schema": "mira-genesis-a6b-task006-evaluator-v1",
+      "unrelated_source_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"constant_ok\": true, \"external_model_calls\": 0, \"legacy_loops_absent\": true, \"loop_iteration_counts\": [4, 4], \"loops_ok\": true, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task006-evaluator-v1\", \"unrelated_source_preserved\": true}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 1,
+  "learned_template_digests": [
+    "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "delta": -1,
+          "kind": "number_delta",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ".."
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ".."
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "{"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "d709d6419d1ab893c4cd87b53d8215eea7e5ef2cb4f4c7344d9f7b0bb937577d",
+      "template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "d709d6419d1ab893c4cd87b53d8215eea7e5ef2cb4f4c7344d9f7b0bb937577d",
+  "proposal": {
+    "edits": [
+      {
+        "new": "    let handle = build_agent()?;\n\n    for _ in 0..RETRY_ATTEMPTS {",
+        "old": "    let handle = build_agent()?;\n\n    for _ in 1..RETRY_ATTEMPTS {",
+        "path": "src/download.rs"
+      },
+      {
+        "new": "        .open(path)?;\n\n    for _ in 0..RETRY_ATTEMPTS {",
+        "old": "        .open(path)?;\n\n    for _ in 1..RETRY_ATTEMPTS {",
+        "path": "src/download.rs"
+      }
+    ],
+    "summary": "Change both retry loops from 1..RETRY_ATTEMPTS (3 iterations) to 0..RETRY_ATTEMPTS (4 iterations); RETRY_ATTEMPTS stays 4."
+  },
+  "report_digest": "a556ffe67a5ada69927b6f3272547864aaa5c7aba7e87b2c44fa96df20165806",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 6
+}
