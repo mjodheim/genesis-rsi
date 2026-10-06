@@ -1,0 +1,44 @@
+{
+  "applied": [
+    {
+      "new_sha256": "886e3c161eafd1f825109ecdfa0811a3001c207b0c47144a47a8695f97b7e325",
+      "old_sha256": "9bb92dddb62395db7b2849d19901c9e752c18de54678189f88dc833d5a14212c",
+      "path": "scripts/eval/extraction-bench/lib/judge.ts"
+    }
+  ],
+  "autonomous_result_digest": "449056ee9d988a46dea63e7ba6e7cd24188d94db31fd7b628fbdd2cdd1f0afaa",
+  "cost_usd": 0.15338100000000002,
+  "evaluation": {
+    "exit_code": 1,
+    "parsed": {
+      "exit_code": 1,
+      "external_model_calls": 0,
+      "objective_ok": false,
+      "schema": "mira-genesis-a6-task005-evaluator-v1",
+      "stderr": "vitest.config.ts (1:340) \u001b[33m[UNRESOLVED_IMPORT] \u001b[0mCould not resolve 'vitest/config' in vitest.config.ts\n - Module not found, treating it as an external dependency in vitest.config.ts at 340..355\n\nfailed to load config from /tmp/a6-task005-fallback-o5y0bc8f/workspace/vitest.config.ts\n\n\u001b[31m\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u001b[39m\u001b[1m\u001b[41m Startup Error \u001b[49m\u001b[22m\u001b[31m\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u001b[39m\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'vitest' imported from /tmp/a6-task005-fallback-o5y0bc8f/workspace/vitest.config.ts.timestamp-1791283458855-40cad60ece596.mjs\nDid you mean to import \"vitest/dist/config.cjs\"?\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)\n    at packageResolve (node:internal/modules/esm/resolve:772:81)\n    at moduleResolve (node:internal/modules/esm/resolve:859:18)\n    at defaultResolve (node:internal/modules/esm/resolve:989:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\n\n\n",
+      "stdout": ""
+    },
+    "stderr": "",
+    "stdout": "{\"schema\": \"mira-genesis-a6-task005-evaluator-v1\", \"objective_ok\": false, \"exit_code\": 1, \"stdout\": \"\", \"stderr\": \"vitest.config.ts (1:340) \\u001b[33m[UNRESOLVED_IMPORT] \\u001b[0mCould not resolve 'vitest/config' in vitest.config.ts\\n - Module not found, treating it as an external dependency in vitest.config.ts at 340..355\\n\\nfailed to load config from /tmp/a6-task005-fallback-o5y0bc8f/workspace/vitest.config.ts\\n\\n\\u001b[31m\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u001b[39m\\u001b[1m\\u001b[41m Startup Error \\u001b[49m\\u001b[22m\\u001b[31m\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u001b[39m\\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'vitest' imported from /tmp/a6-task005-fallback-o5y0bc8f/workspace/vitest.config.ts.timestamp-1791283458855-40cad60ece596.mjs\\nDid you mean to import \\\"vitest/dist/config.cjs\\\"?\\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)\\n    at packageResolve (node:internal/modules/esm/resolve:772:81)\\n    at moduleResolve (node:internal/modules/esm/resolve:859:18)\\n    at defaultResolve (node:internal/modules/esm/resolve:989:11)\\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)\\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)\\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:320:38)\\n    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {\\n  code: 'ERR_MODULE_NOT_FOUND'\\n}\\n\\n\\n\\n\", \"external_model_calls\": 0}\n"
+  },
+  "fallback_passed": false,
+  "learned_template_count": 0,
+  "learned_template_digests": [],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "09e16b9ab37ff908a3a683d2f364d8948d58e52eee2177b9f4db8be079e18924",
+  "proposal": {
+    "edits": [
+      {
+        "new": "  // Judge occasionally emits an off-by-one matched_gold_index (== goldAtoms.length)\n  // while its reason names the real index; recover it so the confirmed match\n  // isn't left in unmatched_gold_indices as a false recall miss.\n  for (const v of parsed.extracted_verdicts) {\n    if (v.verdict !== 'matches_gold') continue;\n    const idx = v.matched_gold_index;\n    if (typeof idx === 'number' && Number.isInteger(idx) && idx >= 0 && idx < goldAtoms.length) continue;\n    let recovered: number | null = null;\n    const nums = [...String(v.reason ?? '').matchAll(/(?:index\\s*|gold\\s*(?:atom\\s*)?(?:#|\\[)?\\s*|\\[)(\\d+)/gi)];\n    for (const m of nums) {\n      const n = Number(m[1]);\n      if (n < goldAtoms.length) recovered = n;\n    }\n    v.matched_gold_index = recovered;\n    if (recovered !== null) {\n      parsed.unmatched_gold_indices = parsed.unmatched_gold_indices.filter(i => i !== recovered);\n    }\n  }\n\n  const matches = parsed.extracted_verdicts.filter(v => v.verdict === 'matches_gold');\n  const junk =",
+        "old": "  const matches = parsed.extracted_verdicts.filter(v => v.verdict === 'matches_gold');\n  const junk =",
+        "path": "scripts/eval/extraction-bench/lib/judge.ts"
+      }
+    ],
+    "summary": "After parsing, validate matched_gold_index for matches_gold verdicts. If out of range (or non-integer), recover the valid index from the reason text (last in-range number following \"index\"/\"gold\"/\"[n]\"), rewrite matched_gold_index, and remove it from unmatched_gold_indices so recall isn't falsely reduced. If unrecoverable, set it to null."
+  },
+  "report_digest": "8427adbca96d68d21ec844e5117b79c8c0e2ab77c1c7595372a0a76f857829f1",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task005-fallback-result-v1"
+}
