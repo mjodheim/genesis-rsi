@@ -1,0 +1,15 @@
+{
+  "schema": "mira-genesis-a6v2-carrier-exclusion-v1",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_013_freeze.json",
+  "carrier": "emoon/rust_minifb#417",
+  "carrier_commit": "a048a0320391589e5206a25b13bd0be8e00630e0",
+  "classification": "MULTI_BACKEND_BUNDLE_NOT_PORTABLY_REPRODUCIBLE",
+  "stage": "pre-outcome qualification",
+  "reason": "The public issue is a bundle of independent Windows, macOS, wasm and Redox defects, including native Objective-C lifetime/global-menu behavior. On the Linux campaign host there is no single faithful runnable baseline/evaluator for the complete issue without replacing platform behavior by a project-authored structural oracle. Treating one convenient bullet as the whole task after inspection would cherry-pick the carrier. The issue is therefore excluded before any candidate evaluation.",
+  "runnable_task_count_increment": 0,
+  "candidate_evaluations": 0,
+  "fallback_calls": 0,
+  "external_model_calls": 0,
+  "manual_repair_attempted": false,
+  "policy": "Preserve the exclusion and advance the frozen metadata queue."
+}
