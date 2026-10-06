@@ -1,0 +1,26 @@
+{
+  "schema": "mira-genesis-autonomy-a5-csharp-evaluator-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "carrier_repository": "JoshuaRamirez/RoslynMcpServer",
+  "carrier_commit": "46f6fe0bc96e845d5b5cae2318cbf8d335d9b4e3",
+  "issue_number": 724,
+  "objective_file": "experiment/autonomy_a5/DEPTH_OBJECTIVE.cs",
+  "injected_workspace_path": "tests/RoslynMcp.Core.Tests/Query/Utilities/GenesisA5DepthOfInheritanceTests.cs",
+  "test_project": "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+  "test_filter": "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+  "bootstrap": "dotnet restore test project once before baseline/candidate evaluation",
+  "candidate_command": ["dotnet", "test", "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj", "--no-restore", "--filter", "FullyQualifiedName~GenesisA5DepthOfInheritanceTests", "--verbosity", "quiet"],
+  "candidate_source_scope": ["src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs"],
+  "baseline_must_fail": true,
+  "objective_expectations": {
+    "Root": 1,
+    "Child": 2,
+    "GrandChild": 3,
+    "S": 2,
+    "null": 0
+  },
+  "winning_operator_required": "integer_delta",
+  "external_model_calls": 0,
+  "manual_candidate_repair_allowed": false,
+  "network_during_candidate_evaluation": false
+}
