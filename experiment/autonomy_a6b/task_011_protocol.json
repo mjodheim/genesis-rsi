@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6b-task011-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_035_freeze.json",
+  "carrier": "okihita/portfolio#2",
+  "carrier_commit": "880906f5e83dbe4109e9724f762386dea52dfff9",
+  "task_id": 11,
+  "target_language": "TypeScript",
+  "qualification": "checkAllPhase1 reads COMPREHENSIVE_ROADMAP_CHECKLIST[1] even though the array's first entry is month 1, so the Month 1 button checks Month 2 items.",
+  "target_source": ["components/erlangga/ErlanggaRoadmapView.tsx"],
+  "memory": "experiment/autonomy_a6b/MEMORY_020.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_011_eval.py",
+  "pass_rule": "checkAllPhase1 must read checklist index 0, the checklist data must still begin with month 1, and all source in ErlanggaRoadmapView.tsx outside that expression must remain unchanged. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}

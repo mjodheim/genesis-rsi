@@ -1,0 +1,16 @@
+{
+  "schema": "mira-genesis-a6b-task-spec-v1",
+  "task_id": 11,
+  "carrier": "okihita/portfolio#2",
+  "source_root": "/home/anthony/experiments/a6b-c035",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/MEMORY_020.json",
+  "target_prefixes": ["components/erlangga/ErlanggaRoadmapView.tsx"],
+  "candidate_budget": 256,
+  "evaluator_argv": [
+    "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+    "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_011_eval.py",
+    "{workspace}"
+  ],
+  "evaluator_timeout_seconds": 20,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_011_autonomous_result.json"
+}
