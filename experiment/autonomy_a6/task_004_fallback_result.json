@@ -1,0 +1,65 @@
+{
+  "applied": [
+    {
+      "new_sha256": "bde8ed384cecd1fded824ff5102b7ec53d0ac47f8ab17d51965a6b51271ba3e3",
+      "old_sha256": "ddfb26f0b8b111b11552c7333f3b0dfeaad7d444676834c33852e97d244736ab",
+      "path": "internal/protracker/modproject.go"
+    }
+  ],
+  "autonomous_result_digest": "191ff7b258a3f942316c644808d4e298393a011d048812ea40de1afe95026bb9",
+  "cost_usd": 0.09914660000000002,
+  "evaluation": {
+    "exit_code": 0,
+    "parsed": {
+      "assignment_expr": "i.ID-1",
+      "cases": [
+        {
+          "assignment_in_bounds": true,
+          "assignment_index": 0,
+          "duplicate_check_index": 0,
+          "duplicate_in_bounds": true,
+          "expected_zero_based_index": 0,
+          "instrument_id": 1,
+          "ok": true
+        },
+        {
+          "assignment_in_bounds": true,
+          "assignment_index": 30,
+          "duplicate_check_index": 30,
+          "duplicate_in_bounds": true,
+          "expected_zero_based_index": 30,
+          "instrument_id": 31,
+          "ok": true
+        }
+      ],
+      "duplicate_expr": "i.ID-1",
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "schema": "mira-genesis-a6-task004-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"assignment_expr\": \"i.ID-1\", \"cases\": [{\"assignment_in_bounds\": true, \"assignment_index\": 0, \"duplicate_check_index\": 0, \"duplicate_in_bounds\": true, \"expected_zero_based_index\": 0, \"instrument_id\": 1, \"ok\": true}, {\"assignment_in_bounds\": true, \"assignment_index\": 30, \"duplicate_check_index\": 30, \"duplicate_in_bounds\": true, \"expected_zero_based_index\": 30, \"instrument_id\": 31, \"ok\": true}], \"duplicate_expr\": \"i.ID-1\", \"external_model_calls\": 0, \"objective_ok\": true, \"schema\": \"mira-genesis-a6-task004-evaluator-v1\"}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 1,
+  "learned_template_digests": [
+    "f0813b3371d43fe44748314538208cdaa69161f413ba9f712a0a9999bba3b224"
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "58c6dfd9eb2ab7e32cd41228dd444dce4eb947249bcb178b2125f850a19d6e7d",
+  "proposal": {
+    "edits": [
+      {
+        "new": "if slots[i.ID-1].ID > 0 {",
+        "old": "if slots[i.ID].ID > 0 {",
+        "path": "internal/protracker/modproject.go"
+      }
+    ],
+    "summary": "The duplicate-ID check in preProcessInstruments indexed slots[i.ID], but slots is 0-based and the store uses slots[i.ID-1]. ID 31 therefore panicked with an index out of range. Duplicate detection was also wrong: ID 1 checked slot 1, so a repeat of ID 1 was missed, and slot 1 could be flagged falsely. The fix indexes with i.ID-1 in the check. I only read the code; nothing was run or edited."
+  },
+  "report_digest": "36dc5dd4ba539e4de29b6723a11e13c53cee171186925b84f91a8b0a4c3a6428",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task004-fallback-result-v1"
+}
