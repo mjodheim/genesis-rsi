@@ -1,0 +1,26 @@
+services:
+  genesis-db:
+    image: postgres:17-alpine
+    container_name: genesis-postgres
+    environment:
+      POSTGRES_DB: genesis
+      POSTGRES_USER: genesis
+      POSTGRES_PASSWORD: ${GENESIS_DB_PASSWORD:?GENESIS_DB_PASSWORD required}
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - genesis-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U genesis -d genesis"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: "0.75"
+
+volumes:
+  genesis-pgdata:

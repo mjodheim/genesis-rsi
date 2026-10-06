@@ -18,9 +18,9 @@ authors = [
   { name = "Anthony Mets" },
 ]
 requires-python = ">=3.11"
-# `numpy` is the only runtime dependency. It supports batched behavioural-equivalence
-# calculations in the `*_eval_support` modules. `torch` and `scipy` were declared but
-# no longer imported after retirement R001; see `archives/RETIRED_CODE.md`.
+# `numpy` is the only distribution runtime dependency. Experimental OE1
+# PostgreSQL support is installed from deploy/oe1/requirements.txt so repository
+# experiments remain local rather than becoming package dependencies.
 dependencies = [
   "numpy",
 ]
@@ -28,9 +28,6 @@ dependencies = [
 [project.optional-dependencies]
 # `pytest-xdist` is a test *runner*, never imported by the project. It is included so the
 # growing repository-wide suite can be run concurrently with `-n 10 --dist loadscope`.
-# `loadscope` keeps each module on one worker so module-scoped fixtures are not computed
-# twice. Exact pass/skip counts and elapsed times are intentionally not pinned here because
-# they become stale as the suite evolves; measure them from the commit being validated.
 dev = ["pytest", "pytest-xdist"]
 
 [tool.setuptools]

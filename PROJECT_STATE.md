@@ -1,8 +1,20 @@
 # Mira Genesis — current authoritative project state
 
-**Updated: 1 October 2026 — V26 validates bounded L5; V24 and V25 remain negative.**
+**Updated: 6 October 2026 — OE1-v3 passes the project-defined finite operational L9 gate; L10 independent replication remains open.**
 
 ## Current RSI frontier
+
+OE1-v3 is now the authoritative L9 result. Its prospectively frozen qualification
+returned **L9_OPERATIONAL_GATE_PASSED** with 16/16 predicates true. The coded archive
+solved 576/576 transfer tasks; the frozen post-run audit independently re-executed
+**33,215 retained candidate receipts** with no evaluator-receipt mismatch and returned
+**L9_OE1_V3_ARCHIVE_OK**. The apparatus/freeze/result chronology and exact hashes are
+recorded in [`docs/L9_OE1_V3_QUALIFICATION_2026-10-06.md`](docs/L9_OE1_V3_QUALIFICATION_2026-10-06.md).
+
+This is a finite operational L9 closure under the project's precommitted criterion.
+It does **not** establish asymptotic open-endedness, general RSI, AGI, or L10. L10
+remains separately open and requires genuine external governance, reproduction and
+adversarial audit.
 
 V26's single prospectively frozen Track A attempt returns **POSITIVE_BOUNDED_L5**.
 The qualified V22R G2 controller selects an executable two-component G3 descendant

@@ -453,6 +453,14 @@
         "results/M022_ADAPTATION_SMOKE_RESULT.md"
       ]
     },
+    "236816059ebb7e850f097f083c9361bcec31570e": {
+      "subject": "research: freeze closed L9 OE1 v3 qualification",
+      "preserved_by": "provenance/l9-oe1-v3-freeze-20261006",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/L9_OE1_V3_QUALIFICATION_2026-10-06.md"
+      ]
+    },
     "243080c73d13bbe5f86a366d7cb2bab9a68df2e2": {
       "subject": "feat(m040): evaluate true lineage-anchor transfer on seed 400047",
       "preserved_by": "main",
@@ -701,7 +709,7 @@
     },
     "337d0453fad230aa57fba5fab02a287322b88382": {
       "subject": "Specify an exact free-codec archive model and prospective public native fixtures",
-      "preserved_by": "provenance/v50-apparatus-20261005",
+      "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "docs/RSI_V50_MODEL_2026-10-05.md",
@@ -946,6 +954,14 @@
         "docs/state-history/PROJECT_STATE_2026-08-24.yaml",
         "experiments/M094/POST_VERDICT_DISCLOSURE.md",
         "experiments/M094/RESULT.json"
+      ]
+    },
+    "441a079fd1667aa72b48a7e1a2be3e86a3d4b170": {
+      "subject": "research: freeze L9 OE1 qualification apparatus",
+      "preserved_by": "provenance/l9-oe1-v1-apparatus-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/L9_OE1_QUALIFICATION_2026-10-05.md"
       ]
     },
     "45886bc2652e91641bb722d9d42dc94b35bc9e91": {
@@ -1216,6 +1232,14 @@
         "experiments/M072/STATUS.md"
       ]
     },
+    "590489e65f012be92b874f5f5b07ee711b7ec24e": {
+      "subject": "research: prepare audited L9 OE1 v2 qualification",
+      "preserved_by": "provenance/l9-oe1-v2-apparatus-20261006",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/L9_OE1_V2_QUALIFICATION_2026-10-06.md"
+      ]
+    },
     "5948f9acda25fca0199b3919acd6516df8e85a74": {
       "subject": "test: materialize the M086-C bank and holdout, in that order",
       "preserved_by": "main",
@@ -1372,6 +1396,14 @@
         "experiments/M103/PROTOCOL.json",
         "experiments/M103/PROTOCOL_CANDIDATE.json",
         "scripts/build_m103_protocol.py"
+      ]
+    },
+    "614ee1396d54728ef487973bcccb39c47cc02ec2": {
+      "subject": "research: prepare closed-audit L9 OE1 v3 apparatus",
+      "preserved_by": "provenance/l9-oe1-v3-apparatus-20261006",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/L9_OE1_V3_QUALIFICATION_2026-10-06.md"
       ]
     },
     "6165699e8de4f0c89fffa7242eaab65235cdbd5f": {
@@ -1944,6 +1976,14 @@
         "docs/COMMIT_CITATIONS.json",
         "results/M039_DEVELOPMENT.md",
         "results/M039_FREEZE.md"
+      ]
+    },
+    "8c326d835d458da9120c1e8ab633385dcb91423d": {
+      "subject": "research: seal audited L9 OE1 v2 freeze",
+      "preserved_by": "provenance/l9-oe1-v2-freeze-20261006",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/L9_OE1_V2_QUALIFICATION_2026-10-06.md"
       ]
     },
     "8d0f0c7b82b5c25ea639fcb5fe922167c3780355": {
@@ -3006,6 +3046,14 @@
         "experiments/M075/MODEL_DEVELOPMENT_RESULT.md"
       ]
     },
+    "e163383b6f568bc9ab28d6128b2e5bc5693c436f": {
+      "subject": "research: seal L9 OE1 qualification freeze",
+      "preserved_by": "provenance/l9-oe1-v1-freeze-20261005",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "docs/L9_OE1_QUALIFICATION_2026-10-05.md"
+      ]
+    },
     "e1c35bb03184dbd87d8be5a626cc0915e86d6fcc": {
       "subject": "results(v22r): restore exact progression R2 s2 transcript bytes",
       "preserved_by": "main",
@@ -3391,34 +3439,34 @@
   },
   "known_unresolvable": {
     "0000000000000000000000000000000000000000": {
-      "reason": "a placeholder in a test fixture protocol, not a citation",
       "kind": "fixture",
+      "reason": "a placeholder in a test fixture protocol, not a citation",
       "where": "tests/test_m074_scientific_runner.py"
     },
     "40ac0f64a1fb9465e1c4cadf6c32c0cfde3b84dd": {
-      "reason": "deliberately dead. M013c cites its announced evaluation commit in order to record that the announcement was defective: at that commit experiments/M013c/protocol.yaml is absent, so the published reproduction command cannot reproduce the claimed protocol hash. The citation documents the revocation.",
       "kind": "deliberately_dead",
+      "reason": "deliberately dead. M013c cites its announced evaluation commit in order to record that the announcement was defective: at that commit experiments/M013c/protocol.yaml is absent, so the published reproduction command cannot reproduce the claimed protocol hash. The citation documents the revocation.",
       "where": "results/M013c.md, results/M013c_raw/summary.json, experiments/M013c/STATUS.md"
     },
     "459ff6ec99417589b7f679d14ddf3b3f0ae4f1dc": {
-      "reason": "a commit in the external Harbor harness repository, not in this one",
       "kind": "external_repository",
+      "reason": "a commit in the external Harbor harness repository, not in this one",
       "where": "experiments/M070/EXECUTION_PROTOCOL.json (harness/peeled_commit)"
     },
-    "f75477f2ad0b04fad199b0cb80689cc23a06c72d": {
-      "reason": "the annotated tag object of an external Harbor release, pinned by M070's selection protocol. It is a git object in Harbor's repository, not in this one.",
+    "720b27c8bc80de16c04953e13d5f9e8425beea8c": {
       "kind": "external_repository",
-      "where": "experiments/M070/SELECTION_PROTOCOL.json, experiments/M070/HARBOR_PIN_CORRECTION.json"
+      "reason": "a commit in the external mjodheim/mjodheim-brewstead host repository, pinned prospectively by the RSI V22 retained-evaluator replication; it is not a commit in mira-genesis",
+      "where": "experiment/rsi_v22/calibration-manifest.json, experiment/rsi_v22/V22_PREREGISTRATION.md, docs/rsi-v22/V22_FREEZE.json"
     },
     "b8a8bb064ff456c491369bd1ca25c72ca187b545": {
-      "reason": "A GENUINE LOSS, recorded rather than excused. M049's positive bounded development result names this as the commit CI run 31076192847 qualified, and the object is not in this repository at all -- not dangling, absent. It predates the provenance tags and could not be preserved by them, because the sixteen-commit repair could only reach citations that still resolved. This is the population that check cannot see, which is why the commit-typed scan exists. M049's result is not wrong; it is unverifiable from the record as it stands.",
       "kind": "lost",
+      "reason": "A GENUINE LOSS, recorded rather than excused. M049's positive bounded development result names this as the commit CI run 31076192847 qualified, and the object is not in this repository at all -- not dangling, absent. It predates the provenance tags and could not be preserved by them, because the sixteen-commit repair could only reach citations that still resolved. This is the population that check cannot see, which is why the commit-typed scan exists. M049's result is not wrong; it is unverifiable from the record as it stands.",
       "where": "PROJECT_STATE.yaml, experiments/M049/PROTOCOL.md, experiments/M049/DEVELOPMENT_RESULT.md"
     },
-    "720b27c8bc80de16c04953e13d5f9e8425beea8c": {
-      "reason": "a commit in the external mjodheim/mjodheim-brewstead host repository, pinned prospectively by the RSI V22 retained-evaluator replication; it is not a commit in mira-genesis",
+    "f75477f2ad0b04fad199b0cb80689cc23a06c72d": {
       "kind": "external_repository",
-      "where": "experiment/rsi_v22/calibration-manifest.json, experiment/rsi_v22/V22_PREREGISTRATION.md, docs/rsi-v22/V22_FREEZE.json"
+      "reason": "the annotated tag object of an external Harbor release, pinned by M070's selection protocol. It is a git object in Harbor's repository, not in this one.",
+      "where": "experiments/M070/SELECTION_PROTOCOL.json, experiments/M070/HARBOR_PIN_CORRECTION.json"
     }
   }
 }
