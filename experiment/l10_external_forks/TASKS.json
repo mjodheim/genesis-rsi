@@ -1,0 +1,65 @@
+{
+  "schema": "mira-genesis-l10a-external-fork-tasks-v1",
+  "protocol_freeze_commit": "9707ea78c39cebc66e978a1185a8dc79c544ac5b",
+  "selected_after_protocol_freeze": true,
+  "carriers": [
+    {
+      "language": "Python",
+      "upstream": "pallets/click",
+      "commit": "2247b35ea1c47c727d7a06e51fa280e12a863ff6",
+      "status": "NO_ELIGIBLE_TASK"
+    },
+    {
+      "language": "Java",
+      "upstream": "google/gson",
+      "commit": "845664ba1c307e6c1910d07cfed2f622e0ad8df1",
+      "status": "SELECTED",
+      "issue": {
+        "number": 453,
+        "title": "JsonPrimitive string to number is inconsistent and bad",
+        "labels": [
+          "bug"
+        ],
+        "created_at": "2015-03-19T18:32:44Z",
+        "updated_at": "2022-08-06T12:49:07Z",
+        "canonical_payload_sha256": "8837e6e8b20021b735147f3355ae3326b7bebaa60f1184f2bcdf9334671e4a44",
+        "body": "```\nWhat steps will reproduce the problem?\n\n(0. run the attached test case)\n\n1. use an long attribute with exponent like \"dateCreated\": 1.020204000000e+12\n2. Object deserialization works with new Gson().fromJson(...)\n3. When using GsonBuilder + custom JsonDeserializer it fails when deserializing \non the given context (see Test case line 65 or below \ncontext.deserialize(jsonElement, Content.class))\n\n    public TestObject deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)\n            throws JsonParseException {\n        JsonObject jsonObject = json.getAsJsonObject();\n\n        TestObject testObject = new TestObject();\n        JsonArray jsonArray = jsonObject.getAsJsonArray(\"content\");\n        for (JsonElement jsonElement : jsonArray) {\n            Content content = context.deserialize(jsonElement, Content.class);\n            testObject.content.add(content);\n        }\n        return testObject;\n    }\n\nWhat is the expected output? What do you see instead?\n- expected: successfully deserialize the value to 1020204000000 \n- actual: com.google.gson.JsonSyntaxException: java.lang.NumberFormatException: \nFor input string: \"1.0202040\"\n\nWhat version of the product are you using? On what operating system?\n- >= 2.0 (1.6. works)\n\nPlease provide any additional information below.\n- see attached JUnit test case\n```\n\nOriginal issue reported on code.google.com by `jenshadl...@googlemail.com` on 22 Jun 2012 at 10:11\n\nAttachments:\n- [GsonUnserializeTest.java](https://storage.googleapis.com/google-code-attachments/google-gson/issue-453/comment-0/GsonUnserializeTest.java)"
+      },
+      "toolchain_image": "maven@sha256:6fdc855a6ed81d288ca7ca37ac6ff5e9308b612485c0801d70b25a858c83d237",
+      "evaluator": "experiment/l10_external_forks/eval_gson_453.py"
+    },
+    {
+      "language": "C#",
+      "upstream": "spectreconsole/spectre.console",
+      "commit": "0de1831405299575419a9cb17d5e7349a3ae61f5",
+      "status": "NO_ELIGIBLE_TASK"
+    },
+    {
+      "language": "TypeScript",
+      "upstream": "sindresorhus/p-map",
+      "commit": "2c0934b8312b637f933b752c6054845c2d2d5533",
+      "status": "NO_ELIGIBLE_TASK"
+    },
+    {
+      "language": "Rust",
+      "upstream": "BurntSushi/ripgrep",
+      "commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "status": "SELECTED",
+      "issue": {
+        "number": 278,
+        "title": "filters don't work correctly when a search path is specified",
+        "labels": [
+          "bug",
+          "gitignore",
+          "icebox"
+        ],
+        "created_at": "2016-12-11T08:43:34Z",
+        "updated_at": "2020-05-08T11:43:30Z",
+        "canonical_payload_sha256": "dc91a3033dc1e92f199f7ec59b6a2797c8d049149c2077d3c858269c115e7c89",
+        "body": "ripgrep seems to ignore unintended files when the base directory is not the current directory.\n\nHow to reproduce:\n\n```\n% mkdir -p ../test/foo\n% echo '.*' >../test/.gitignore\n% echo baz >../test/foo/bar\n\n% rg baz ../test\n../test/foo/bar\n1:baz\n\n% rg baz ../test/foo\nNo files were searched, which means ripgrep probably applied a filter you didn't expect. Try running again with --debug.\n```\n\nI found the following lines in `ignore/src/dir.rs` don't make sense because `path` on the right side is a relative path from the current directory, not from `abs_parent_path`.\n```\n339         if let Some(abs_parent_path) = self.absolute_base() {\n340             let path = abs_parent_path.join(path);\n```\n\nA possible fix to run the example above correctly is the following.  However, I'm not sure this fixes other cases.\n```\nlet path = path.canonicalize().unwrap()\n```"
+      },
+      "toolchain_image": "rust@sha256:1f0dbad1df66647807e6952d1db85d0b2bda7606cb2139d82517e4f009967376",
+      "evaluator": "experiment/l10_external_forks/eval_ripgrep_278.py"
+    }
+  ]
+}
