@@ -1,0 +1,220 @@
+{
+  "claim_boundary": "Informative prospective A6 failure. It must not be relabelled as a pass. A6b may change the architecture prospectively and must use fresh tasks for evidence.",
+  "diagnosis": {
+    "multi_site_gap": "Task 10 required the same boundary correction at two sites; the frozen runner evaluates one mutation candidate at a time.",
+    "observed_search_starvation": "On task 9 the correct scalar comparison-boundary candidate existed at scalar rank 73 but full mixed-pool rank 524, outside the 256 budget because learned/template families were prepended.",
+    "primary": "candidate scheduling and expressivity, not evaluator throughput",
+    "structural_gap": "Tasks 11 and 12 required structural/multi-line transformations beyond the single-site generic scalar grammar."
+  },
+  "pass_criteria": {
+    "minimum_autonomous_successes_total": false,
+    "minimum_causal_reuses_of_campaign_learned_experience": false,
+    "minimum_language_families_observed": true,
+    "wave3_fallback_rate_strictly_lower_than_wave1": false,
+    "wave3_model_calls_per_solved_task_strictly_lower_than_wave1": false
+  },
+  "passed": false,
+  "preregistration": "experiment/autonomy_a6/PREREGISTRATION_V2.json",
+  "report_digest": "63807d8e53cae87a535f0a14ad2743463c9fad057c5034d199082a748637586d",
+  "runnable_tasks": 12,
+  "schema": "mira-genesis-autonomy-a6-campaign-result-v1",
+  "tasks": [
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "2e782734c02caa4689e44f595af69c0aa36bddf60e87162930bc6e5080cc5cec",
+      "carrier": null,
+      "charged_candidate_executions": 222,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "33352e579f5c500f5d8a7588b60e7093cf96f1ac2327b9ed9ce10d16abb991d3",
+      "solved": true,
+      "task_id": 1,
+      "wave": 1
+    },
+    {
+      "autonomous_passed": true,
+      "autonomous_result_digest": "925386e7af5c1e29364def8a1edc997cc19ab260a0b7cb18ae995a66382c8280",
+      "carrier": "linnin233-l/spica-test-2#11",
+      "charged_candidate_executions": 4,
+      "fallback_model_calls": 0,
+      "fallback_passed": false,
+      "fallback_required": false,
+      "fallback_result_digest": null,
+      "solved": true,
+      "task_id": 2,
+      "wave": 1
+    },
+    {
+      "autonomous_passed": true,
+      "autonomous_result_digest": "b13f362297af81260f2a7f949a79dd0daa1c353451e3cba88dd47fabeea5ede7",
+      "carrier": "steventango/model-uncertainty-exploration#34",
+      "charged_candidate_executions": 154,
+      "fallback_model_calls": 0,
+      "fallback_passed": false,
+      "fallback_required": false,
+      "fallback_result_digest": null,
+      "solved": true,
+      "task_id": 3,
+      "wave": 1
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "191ff7b258a3f942316c644808d4e298393a011d048812ea40de1afe95026bb9",
+      "carrier": "FatmanUK/ptgen#43",
+      "charged_candidate_executions": 218,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "36dc5dd4ba539e4de29b6723a11e13c53cee171186925b84f91a8b0a4c3a6428",
+      "solved": true,
+      "task_id": 4,
+      "wave": 1
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "466216b0f769a5ef1712fdbd3b2a28019ece13b9c0cb4904bf55229b7cff9f66",
+      "carrier": "astragenie/astramem-local#280",
+      "charged_candidate_executions": 256,
+      "fallback_model_calls": 1,
+      "fallback_passed": false,
+      "fallback_required": true,
+      "fallback_result_digest": "8427adbca96d68d21ec844e5117b79c8c0e2ab77c1c7595372a0a76f857829f1",
+      "solved": false,
+      "task_id": 5,
+      "wave": 2
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "7177e2f109eef890715dcd4ecdafcf331bc3db0d51f771dfcd278752edb47b9e",
+      "carrier": "executablebooks/MyST-Parser#1165",
+      "charged_candidate_executions": 256,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "743dbc3ae504d09191607accd411b4ed23131a5993c8d4154aeb4b75731e65df",
+      "solved": true,
+      "task_id": 6,
+      "wave": 2
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "bda1c84b456eadd1edc47538278270c292a0be735199ab29408953d01dc027e7",
+      "carrier": "mitmartin/bluehorizon-excursions-api#1",
+      "charged_candidate_executions": 14,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "13d6987312ffdc5587e8ef8f38799ec316320b0477007f2c4d9f097446a671e4",
+      "solved": true,
+      "task_id": 7,
+      "wave": 2
+    },
+    {
+      "autonomous_passed": true,
+      "autonomous_result_digest": "972830618e769b36ad5856e598e1b9122ada4a814c59314e4ca829d4a3330254",
+      "carrier": "taskiq-python/taskiq#647",
+      "charged_candidate_executions": 216,
+      "fallback_model_calls": 0,
+      "fallback_passed": false,
+      "fallback_required": false,
+      "fallback_result_digest": null,
+      "solved": true,
+      "task_id": 8,
+      "wave": 2
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "f0fad5e212a3bb49e9100c2abb785dbdd542a5d4d636a06ce86b88fc56628749",
+      "carrier": "yaso09/tengiz#185",
+      "charged_candidate_executions": 256,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "54d01971cfc163c9f81b0c6b2d81739b4650d28fdb77dea57bbf4846a24e600f",
+      "solved": true,
+      "task_id": 9,
+      "wave": 3
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "a53a6348975616af72bf1d6fecc31f18d28bffaf431391cf6aae4696dd62d294",
+      "carrier": "yaso09/tengiz#337",
+      "charged_candidate_executions": 256,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "d644816fcf6c83b01752204b1eabf4ead208fa8fa0535a50dccc61734b62c410",
+      "solved": true,
+      "task_id": 10,
+      "wave": 3
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "9a0cb613262c6008728cef879abe41df283d95dedf5168f3b281d18bf5ec4d9f",
+      "carrier": "airframesio/acars-decoder-typescript#473",
+      "charged_candidate_executions": 256,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "f7a168b4226558186bfc9a3a13e77e1ceb5a5ea2a16442cd62a5bebb1f46244c",
+      "solved": true,
+      "task_id": 11,
+      "wave": 3
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_result_digest": "588ae2303ab43d5b29df9ca13fe9e20c0e25ca2980647d043a7f96ccdfb1a8b5",
+      "carrier": "jeremysball/token-burn-dashboard#55",
+      "charged_candidate_executions": 256,
+      "fallback_model_calls": 1,
+      "fallback_passed": true,
+      "fallback_required": true,
+      "fallback_result_digest": "6b57284910263fe1962ec014fda9077dfa6db4b236e062eacd138fe15ea3c61b",
+      "solved": true,
+      "task_id": 12,
+      "wave": 3
+    }
+  ],
+  "totals": {
+    "autonomous_successes": 3,
+    "causal_reuses_of_campaign_learned_experience_proven": 0,
+    "fallback_model_calls": 9,
+    "fallback_successes": 8,
+    "observed_language_families_at_least": 4,
+    "solved_tasks": 11
+  },
+  "verdict": "A6_DEVELOPMENT_FAIL_INCREASING_FALLBACK_DEPENDENCE",
+  "waves": [
+    {
+      "autonomous_successes": 2,
+      "fallback_rate": 0.5,
+      "fallback_required_count": 2,
+      "model_calls": 2,
+      "model_calls_per_solved_task": 0.5,
+      "solved_tasks": 4,
+      "tasks": 4,
+      "wave": 1
+    },
+    {
+      "autonomous_successes": 1,
+      "fallback_rate": 0.75,
+      "fallback_required_count": 3,
+      "model_calls": 3,
+      "model_calls_per_solved_task": 1.0,
+      "solved_tasks": 3,
+      "tasks": 4,
+      "wave": 2
+    },
+    {
+      "autonomous_successes": 0,
+      "fallback_rate": 1.0,
+      "fallback_required_count": 4,
+      "model_calls": 4,
+      "model_calls_per_solved_task": 1.0,
+      "solved_tasks": 4,
+      "tasks": 4,
+      "wave": 3
+    }
+  ]
+}

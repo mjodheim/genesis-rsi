@@ -1,0 +1,691 @@
+{
+  "applied": [
+    {
+      "new_sha256": "75d5bae211f082cc3874011523704b8c2f4e9236fa312e1f6c501881d0285d0e",
+      "old_sha256": "76f136a70d346bdee92aaace271afd4deb6064f4a1d776e538e5e43fbdbc8ea7",
+      "path": "lib/git-blame.js"
+    },
+    {
+      "new_sha256": "1aa16a457dd06c1c9bcee3f7a580cc085c30dd6f2490a8198064679c37e06085",
+      "old_sha256": "75d5bae211f082cc3874011523704b8c2f4e9236fa312e1f6c501881d0285d0e",
+      "path": "lib/git-blame.js"
+    },
+    {
+      "new_sha256": "adbd7bb587dca8fd5271d1509d1c8c500176739ff6f74091a1924784a02b3f1a",
+      "old_sha256": "1aa16a457dd06c1c9bcee3f7a580cc085c30dd6f2490a8198064679c37e06085",
+      "path": "lib/git-blame.js"
+    }
+  ],
+  "autonomous_result_digest": "588ae2303ab43d5b29df9ca13fe9e20c0e25ca2980647d043a7f96ccdfb1a8b5",
+  "cost_usd": 0.1031548,
+  "evaluation": {
+    "elapsed_ms": 189,
+    "exit_code": 0,
+    "parsed": {
+      "attributed_hash": "67961ff8",
+      "checks": {
+        "file_cost_attributes_to_newest": true,
+        "middle_details_exclude_session": true,
+        "newest_details_include_session": true,
+        "report_attributes_to_newest": true
+      },
+      "external_model_calls": 0,
+      "file_costs": [
+        {
+          "commits": 1,
+          "cost": 0.0010500000000000002,
+          "file": "newest.txt",
+          "tokens": 0
+        }
+      ],
+      "hashes": {
+        "middle": "60f5c8de9e5466d7818d9ce9fe3f382eb6a814aa",
+        "newest": "67961ff8d9f46504e029359d86ea5d5d6c46e594",
+        "oldest": "3ba31804e78b5d54b961038af067e4ba51803969"
+      },
+      "objective_ok": true,
+      "report": [
+        {
+          "files": [
+            "newest.txt"
+          ],
+          "hash": "67961ff8",
+          "tokens": 150
+        }
+      ],
+      "schema": "mira-genesis-a6-task012-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"schema\":\"mira-genesis-a6-task012-evaluator-v1\",\"objective_ok\":true,\"checks\":{\"report_attributes_to_newest\":true,\"newest_details_include_session\":true,\"middle_details_exclude_session\":true,\"file_cost_attributes_to_newest\":true},\"hashes\":{\"oldest\":\"3ba31804e78b5d54b961038af067e4ba51803969\",\"middle\":\"60f5c8de9e5466d7818d9ce9fe3f382eb6a814aa\",\"newest\":\"67961ff8d9f46504e029359d86ea5d5d6c46e594\"},\"attributed_hash\":\"67961ff8\",\"report\":[{\"hash\":\"67961ff8\",\"tokens\":150,\"files\":[\"newest.txt\"]}],\"file_costs\":[{\"file\":\"newest.txt\",\"cost\":0.0010500000000000002,\"tokens\":0,\"commits\":1}],\"external_model_calls\":0}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 4,
+  "learned_template_digests": [
+    "9b7bc1993b2a420da5ed5039c405c3056fcf368dfbf7ad3a0a179eba75f667c4",
+    "31e46c1e62eb38db095264981c8285df3bc31ddd3500a9fceac0fb24f7a61e16",
+    "520a821db9fcacf8baba0b8721c51f22d13e857040e8f9aa70d4c471beb55e01",
+    "3c905c48eef119d4f5244059ceb4f1bea5f38be52a8074cff478b1e88d7d2300"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "literal",
+          "value": "prevCommit"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "Chronologically"
+        },
+        {
+          "kind": "literal",
+          "value": "earlier"
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "literal",
+          "value": "git"
+        },
+        {
+          "kind": "literal",
+          "value": "log"
+        },
+        {
+          "kind": "literal",
+          "value": "is"
+        },
+        {
+          "kind": "literal",
+          "value": "newest"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "literal",
+          "value": "first"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "["
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "]"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "9b7bc1993b2a420da5ed5039c405c3056fcf368dfbf7ad3a0a179eba75f667c4"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "from"
+        },
+        {
+          "kind": "literal",
+          "value": "the"
+        },
+        {
+          "kind": "literal",
+          "value": "earlier"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "copy",
+          "name": "I4"
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "I6"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "copy",
+          "name": "I7"
+        },
+        {
+          "kind": "literal",
+          "value": "before"
+        },
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "literal",
+          "value": "oldest"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "literal",
+          "value": "/"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "literal",
+          "value": "from"
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I4",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I5",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "I6",
+          "type": "ident"
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "capture",
+          "name": "I7",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "if"
+        },
+        {
+          "kind": "capture",
+          "name": "I8",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "31e46c1e62eb38db095264981c8285df3bc31ddd3500a9fceac0fb24f7a61e16"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "literal",
+          "value": "endTime"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "520a821db9fcacf8baba0b8721c51f22d13e857040e8f9aa70d4c471beb55e01"
+    },
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "copy",
+          "name": "I3"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "literal",
+          "value": "prevCommit"
+        },
+        {
+          "kind": "literal",
+          "value": "?"
+        },
+        {
+          "kind": "literal",
+          "value": "prevCommit"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "-"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N1"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "copy",
+          "name": "N2"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "const"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "="
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "?"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "."
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        },
+        {
+          "kind": "capture",
+          "name": "I3",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N1",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": "*"
+        },
+        {
+          "kind": "capture",
+          "name": "N2",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ";"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+      "template_digest": "3c905c48eef119d4f5244059ceb4f1bea5f38be52a8074cff478b1e88d7d2300"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "8b5dddce96ce3e0ee41f1845826156fb49b6586fd6f22d9fd9a6e2db3b39c26d",
+  "proposal": {
+    "edits": [
+      {
+        "new": "  const prevCommit = commits[commitIndex + 1]; // Chronologically earlier commit (git log is newest-first)\n  \n  // Time window: from the earlier commit to this commit (or 2 hours before if oldest)\n  const endTime = commit.date;\n  const startTime = prevCommit ? prevCommit.date : endTime - (2 * 60 * 60 * 1000);\n  \n  const sessionFiles",
+        "old": "  const nextCommit = commits[commitIndex - 1]; // Earlier commit\n  \n  // Time window: from this commit to next commit (or 2 hours if last)\n  const startTime = commit.date;\n  const endTime = nextCommit ? nextCommit.date : startTime + (2 * 60 * 60 * 1000);\n  \n  const sessionFiles",
+        "path": "lib/git-blame.js"
+      },
+      {
+        "new": "    const prevCommit = commits[i + 1]; // Chronologically earlier commit (git log is newest-first)\n\n    // Time window: from the earlier commit to this commit (or 2 hours before if oldest)\n    const endTime = commit.date;\n    const startTime = prevCommit ? prevCommit.date : endTime - (2 * 60 * 60 * 1000);\n",
+        "old": "    const nextCommit = commits[i - 1]; // Earlier commit\n\n    // Time window: from this commit to next commit (or 2 hours if last)\n    const startTime = commit.date;\n    const endTime = nextCommit ? nextCommit.date : startTime + (2 * 60 * 60 * 1000);\n",
+        "path": "lib/git-blame.js"
+      },
+      {
+        "new": "    const prevCommit = commits[commitIndex + 1]; // Chronologically earlier commit (git log is newest-first)\n    const endTime = commit.date;\n    const startTime = prevCommit ? prevCommit.date : endTime - (2 * 60 * 60 * 1000);\n\n    const sessions = getSessionFilesInRange(startTime, endTime)",
+        "old": "    const nextCommit = commits[commitIndex - 1];\n    const endTime = nextCommit ? nextCommit.date : commit.date + (2 * 60 * 60 * 1000);\n\n    const sessions = getSessionFilesInRange(commit.date, endTime)",
+        "path": "lib/git-blame.js"
+      }
+    ],
+    "summary": "git log is newest-first, so commits[i + 1] is the chronologically earlier commit. Each commit's window is now [earlier commit date, this commit date], so a session is attributed to the commit it preceded. The oldest commit gets a 2-hour lookback. I applied this to getCommitSessionDetails, generateGitBlameReport and getCostByFile. I did not run tests."
+  },
+  "report_digest": "6b57284910263fe1962ec014fda9077dfa6db4b236e062eacd138fe15ea3c61b",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task012-fallback-result-v1"
+}

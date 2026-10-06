@@ -55,7 +55,7 @@ The initial toolchain implementation lives in
 | A3 | Retain a successful strategy and causally reuse it on a fresh external task. | **DEVELOPMENT PASS** |
 | A4 | Acquire new transformation strategies from failures/results rather than host-authored recipes. | **DEVELOPMENT PASS** |
 | A5 | Transfer retained strategies across at least three language families. | **DEVELOPMENT PASS** |
-| A6 | Frozen multi-repository campaign with an LLM fallback arm shows decreasing fallback demand. | open |
+| A6 | Frozen multi-repository campaign with an LLM fallback arm shows decreasing fallback demand. | **DEVELOPMENT FAIL — A6b required** |
 | A7 | Frozen multi-language campaign completes with **0 external model calls** while retaining useful repair performance. | open |
 
 A7 is the operational "100% autonomous" target. It is intentionally independent
