@@ -51,7 +51,7 @@ The initial toolchain implementation lives in
 | --- | --- | --- |
 | A0 | Detect languages and available toolchains without an LLM. | **DEVELOPMENT PASS** |
 | A1 | Execute bounded diagnosis/verification loops using native tools. | **DEVELOPMENT PASS** |
-| A2 | Generate useful candidate mutations without an external LLM for at least one real bug family. | open |
+| A2 | Generate useful candidate mutations without an external LLM for at least one real bug family. | **DEVELOPMENT PASS** |
 | A3 | Retain a successful strategy and causally reuse it on a fresh external task. | open |
 | A4 | Acquire new transformation strategies from failures/results rather than host-authored recipes. | open |
 | A5 | Transfer retained strategies across at least three language families. | open |

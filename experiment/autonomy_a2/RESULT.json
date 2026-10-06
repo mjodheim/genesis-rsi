@@ -1,0 +1,54 @@
+{
+  "baseline": {
+    "elapsed_ms": 77,
+    "exit_code": 1,
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "{\"name\":\"empty-capacity-30\",\"expected\":\"30 of 30 seats left\",\"actual\":\"29 of 30 seats left\",\"ok\":false}\n{\"name\":\"single-seat-left\",\"expected\":\"1 of 30 seats left\",\"actual\":\"0 of 30 seats left\",\"ok\":false}\n{\"name\":\"full\",\"expected\":\"Full\",\"actual\":\"Full\",\"ok\":true}\n{\"name\":\"unlimited\",\"expected\":\"4 going\",\"actual\":\"4 going\",\"ok\":true}\n",
+    "stdout_sha256": "ef812640819185d3cf4cef56de6c4641cc6f68d42a28bdfb01c0dbdfa1169410"
+  },
+  "candidate_generation": {
+    "candidate_count": 2030,
+    "external_model_calls": 0,
+    "schema": "genesis-generic-scalar-mutation-set-v1",
+    "truncated": false
+  },
+  "carrier_commit": "a4a8a4173aaf4afd77da5f748b5be5a25353faab",
+  "charged_candidate_executions": 2030,
+  "claim": "A2_ZERO_LLM_REAL_EXTERNAL_BUG_FAMILY",
+  "external_model_calls": 0,
+  "issue_number": 5,
+  "manual_candidate_repair": false,
+  "objective_sha256": "ab60792d95304fc26bbec22ae15f6acc5605591d4ca60ab7d21e0c6df6967e98",
+  "passed": true,
+  "passing_candidate_count": 1,
+  "passing_candidates": [
+    {
+      "candidate_digest": "1fea14f388f31db8bedd38870f147953449882133fbe1b477533275fcef10c4a",
+      "id": "scalar-1fea14f388f31db8",
+      "index": 2019,
+      "label": "integer_delta:frontend/src/utils/format.js:937",
+      "mutation_path": "frontend/src/utils/format.js",
+      "objective": {
+        "elapsed_ms": 78,
+        "exit_code": 0,
+        "stderr": "",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout": "{\"name\":\"empty-capacity-30\",\"expected\":\"30 of 30 seats left\",\"actual\":\"30 of 30 seats left\",\"ok\":true}\n{\"name\":\"single-seat-left\",\"expected\":\"1 of 30 seats left\",\"actual\":\"1 of 30 seats left\",\"ok\":true}\n{\"name\":\"full\",\"expected\":\"Full\",\"actual\":\"Full\",\"ok\":true}\n{\"name\":\"unlimited\",\"expected\":\"4 going\",\"actual\":\"4 going\",\"ok\":true}\n",
+        "stdout_sha256": "dfc4a4159e5a2faed9b44877ef50113cda6c9a51c9ec2aec5a94c427854dec67"
+      },
+      "passed": true
+    }
+  ],
+  "report_digest": "f36ca5c56023e5cabbe1b23ef489a18a949438ea50268eb3edd08ce3b4eaf6aa",
+  "retry_count": 0,
+  "schema": "mira-genesis-autonomy-a2-result-v1",
+  "winner_replay": {
+    "elapsed_ms": 98,
+    "exit_code": 0,
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "{\"name\":\"empty-capacity-30\",\"expected\":\"30 of 30 seats left\",\"actual\":\"30 of 30 seats left\",\"ok\":true}\n{\"name\":\"single-seat-left\",\"expected\":\"1 of 30 seats left\",\"actual\":\"1 of 30 seats left\",\"ok\":true}\n{\"name\":\"full\",\"expected\":\"Full\",\"actual\":\"Full\",\"ok\":true}\n{\"name\":\"unlimited\",\"expected\":\"4 going\",\"actual\":\"4 going\",\"ok\":true}\n",
+    "stdout_sha256": "dfc4a4159e5a2faed9b44877ef50113cda6c9a51c9ec2aec5a94c427854dec67"
+  }
+}

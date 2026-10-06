@@ -1,0 +1,13 @@
+diff --git a/frontend/src/utils/format.js b/frontend/src/utils/format.js
+index 01cdff0..9fb5a9f 100644
+--- a/frontend/src/utils/format.js
++++ b/frontend/src/utils/format.js
+@@ -21,7 +21,7 @@ export const MODE_LABELS = {
+ export function seatsLabel(session) {
+   if (session.seats_left === null) return `${session.rsvp_count} going`
+   if (session.seats_left === 0) return 'Full'
+-  return `${session.seats_left - 1} of ${session.capacity} seats left`
++  return `${session.seats_left - 0} of ${session.capacity} seats left`
+ }
+ 
+ // <input type="datetime-local"> works with "YYYY-MM-DDTHH:mm" in local time.

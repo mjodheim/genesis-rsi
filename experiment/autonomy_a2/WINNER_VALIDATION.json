@@ -1,0 +1,26 @@
+{
+  "schema": "mira-genesis-autonomy-a2-winner-validation-v1",
+  "carrier_repository": "drishtiaggarwal-ugsot/Os_Club_portal",
+  "carrier_commit": "a4a8a4173aaf4afd77da5f748b5be5a25353faab",
+  "issue_number": 5,
+  "candidate_id": "scalar-1fea14f388f31db8",
+  "candidate_digest": "1fea14f388f31db8bedd38870f147953449882133fbe1b477533275fcef10c4a",
+  "candidate_index": 2019,
+  "mutation_path": "frontend/src/utils/format.js",
+  "before_sha256": "55b0aaeec01be82e689ef0f17dbdfdc2232e9ca3f2f99f2f2fbafbb8401c7e92",
+  "after_sha256": "27069318b7dc6afa72ef43ec0f1e8d5fa9cbaf62c5e7f86a8cdc510927ed3462",
+  "patch_sha256": "4c5aca9913285170dfd6f612b5e070780fc80af6960082a7a524561279f5419f",
+  "objective_exit_code": 0,
+  "winner_replay_exit_code": 0,
+  "frontend_validation": {
+    "npm_ci_ignore_scripts": 0,
+    "npm_run_lint": 0,
+    "lint_warnings": 0,
+    "lint_errors": 0,
+    "npm_run_check_contributors": 0,
+    "npm_run_build": 0
+  },
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "note": "The mechanically generated winner changes session.seats_left - 1 to session.seats_left - 0. It is behaviorally correct under the frozen objective and passes the repository frontend lint/build checks, but it is intentionally not rewritten by hand into a prettier equivalent because A2 forbids manual candidate repair."
+}
