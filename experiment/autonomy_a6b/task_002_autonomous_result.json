@@ -1,0 +1,212 @@
+{
+  "autonomous_passed": true,
+  "baseline": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_002_eval.py",
+      "/home/anthony/experiments/a6b-c019"
+    ],
+    "elapsed_ms": 65,
+    "exit_code": 1,
+    "parsed": {
+      "external_model_calls": 0,
+      "files": {
+        "internal/health/health.go": {
+          "checks": {
+            "exact_expected_source_digest": false,
+            "new_loop_count": 0,
+            "old_loop_absent": false
+          },
+          "ok": false,
+          "sha256": "ca1d017991a2f42945212dfb5410f6c68e6e1960557d6f472567b6bbc074e2d5"
+        },
+        "internal/runtime/docker.go": {
+          "checks": {
+            "exact_expected_source_digest": false,
+            "new_loop_count": 0,
+            "old_loop_absent": false
+          },
+          "ok": false,
+          "sha256": "a8b06e93f5daa3628ec63b923bd0a74af2b18568478c33777c6fef2907c9ee5c"
+        }
+      },
+      "native_go_toolchain_available": false,
+      "objective_ok": false,
+      "schema": "mira-genesis-a6b-task002-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"files\": {\"internal/health/health.go\": {\"checks\": {\"exact_expected_source_digest\": false, \"new_loop_count\": 0, \"old_loop_absent\": false}, \"ok\": false, \"sha256\": \"ca1d017991a2f42945212dfb5410f6c68e6e1960557d6f472567b6bbc074e2d5\"}, \"internal/runtime/docker.go\": {\"checks\": {\"exact_expected_source_digest\": false, \"new_loop_count\": 0, \"old_loop_absent\": false}, \"ok\": false, \"sha256\": \"a8b06e93f5daa3628ec63b923bd0a74af2b18568478c33777c6fef2907c9ee5c\"}}, \"native_go_toolchain_available\": false, \"objective_ok\": false, \"schema\": \"mira-genesis-a6b-task002-evaluator-v1\"}\n"
+  },
+  "candidate_budget": 256,
+  "carrier": "yaso09/tengiz#1161",
+  "charged_candidate_executions": 1,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 13,
+  "records": [
+    {
+      "candidate_digest": "27b0bef73377e77dc69a628dc1f7e727928b5a4f569be96b28a4dba2db620ea8",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_002_eval.py",
+          "/tmp/genesis-a6b-auto-vxk6qw5g/candidate-001"
+        ],
+        "elapsed_ms": 60,
+        "exit_code": 0,
+        "parsed": {
+          "external_model_calls": 0,
+          "files": {
+            "internal/health/health.go": {
+              "checks": {
+                "exact_expected_source_digest": true,
+                "new_loop_count": 1,
+                "old_loop_absent": true
+              },
+              "ok": true,
+              "sha256": "187ac9b6036fbdf962d1d3c1303d59e553c9c3f757427d2741ec57b347e30798"
+            },
+            "internal/runtime/docker.go": {
+              "checks": {
+                "exact_expected_source_digest": true,
+                "new_loop_count": 1,
+                "old_loop_absent": true
+              },
+              "ok": true,
+              "sha256": "fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822"
+            }
+          },
+          "native_go_toolchain_available": false,
+          "objective_ok": true,
+          "schema": "mira-genesis-a6b-task002-evaluator-v1"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"files\": {\"internal/health/health.go\": {\"checks\": {\"exact_expected_source_digest\": true, \"new_loop_count\": 1, \"old_loop_absent\": true}, \"ok\": true, \"sha256\": \"187ac9b6036fbdf962d1d3c1303d59e553c9c3f757427d2741ec57b347e30798\"}, \"internal/runtime/docker.go\": {\"checks\": {\"exact_expected_source_digest\": true, \"new_loop_count\": 1, \"old_loop_absent\": true}, \"ok\": true, \"sha256\": \"fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822\"}}, \"native_go_toolchain_available\": false, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task002-evaluator-v1\"}\n"
+      },
+      "generator": "coordinated_learned_template",
+      "id": "learned-coordinated-27b0bef73377e77d",
+      "label": "learned_coordinated:1f8811a279e9:2files",
+      "operator": "learned_template",
+      "passed": true,
+      "rank": 1
+    }
+  ],
+  "report_digest": "8a67819b04565df84cc67550f956182cac71723c8ac2c696db79f9bdfc272fdb",
+  "retry_count": 0,
+  "schedule": {
+    "family_input_counts": {
+      "coordinated": 512,
+      "exemplar": 0,
+      "learned": 4,
+      "learned_coordinated": 2,
+      "retained": 30,
+      "scalar": 236
+    },
+    "family_scheduled_counts": {
+      "coordinated": 44,
+      "exemplar": 0,
+      "learned": 2,
+      "learned_coordinated": 1,
+      "retained": 30,
+      "scalar": 179
+    },
+    "schedule_digest": "78e990566859ffa23dc841d32614fa6c6f2cd41be2550ac02635c6dac0a38a99",
+    "scheduled_count": 256,
+    "schema": "genesis-fair-candidate-schedule-v1",
+    "weights": {
+      "coordinated": 1,
+      "exemplar": 1,
+      "learned": 1,
+      "learned_coordinated": 3,
+      "retained": 1,
+      "scalar": 4
+    }
+  },
+  "schema": "mira-genesis-a6b-autonomous-task-result-v1",
+  "task_id": 2,
+  "winner": {
+    "candidate_digest": "27b0bef73377e77dc69a628dc1f7e727928b5a4f569be96b28a4dba2db620ea8",
+    "coordination_size": 2,
+    "evaluation": {
+      "argv": [
+        "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+        "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_002_eval.py",
+        "/tmp/genesis-a6b-auto-vxk6qw5g/candidate-001"
+      ],
+      "elapsed_ms": 60,
+      "exit_code": 0,
+      "parsed": {
+        "external_model_calls": 0,
+        "files": {
+          "internal/health/health.go": {
+            "checks": {
+              "exact_expected_source_digest": true,
+              "new_loop_count": 1,
+              "old_loop_absent": true
+            },
+            "ok": true,
+            "sha256": "187ac9b6036fbdf962d1d3c1303d59e553c9c3f757427d2741ec57b347e30798"
+          },
+          "internal/runtime/docker.go": {
+            "checks": {
+              "exact_expected_source_digest": true,
+              "new_loop_count": 1,
+              "old_loop_absent": true
+            },
+            "ok": true,
+            "sha256": "fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822"
+          }
+        },
+        "native_go_toolchain_available": false,
+        "objective_ok": true,
+        "schema": "mira-genesis-a6b-task002-evaluator-v1"
+      },
+      "stderr": "",
+      "stdout": "{\"external_model_calls\": 0, \"files\": {\"internal/health/health.go\": {\"checks\": {\"exact_expected_source_digest\": true, \"new_loop_count\": 1, \"old_loop_absent\": true}, \"ok\": true, \"sha256\": \"187ac9b6036fbdf962d1d3c1303d59e553c9c3f757427d2741ec57b347e30798\"}, \"internal/runtime/docker.go\": {\"checks\": {\"exact_expected_source_digest\": true, \"new_loop_count\": 1, \"old_loop_absent\": true}, \"ok\": true, \"sha256\": \"fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822\"}}, \"native_go_toolchain_available\": false, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task002-evaluator-v1\"}\n"
+    },
+    "generator": "coordinated_learned_template",
+    "id": "learned-coordinated-27b0bef73377e77d",
+    "label": "learned_coordinated:1f8811a279e9:2files",
+    "operator": "learned_template",
+    "passed": true,
+    "rank": 1
+  },
+  "winner_replay": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_002_eval.py",
+      "/tmp/genesis-a6b-auto-replay-e3qp45g0/workspace"
+    ],
+    "elapsed_ms": 56,
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "files": {
+        "internal/health/health.go": {
+          "checks": {
+            "exact_expected_source_digest": true,
+            "new_loop_count": 1,
+            "old_loop_absent": true
+          },
+          "ok": true,
+          "sha256": "187ac9b6036fbdf962d1d3c1303d59e553c9c3f757427d2741ec57b347e30798"
+        },
+        "internal/runtime/docker.go": {
+          "checks": {
+            "exact_expected_source_digest": true,
+            "new_loop_count": 1,
+            "old_loop_absent": true
+          },
+          "ok": true,
+          "sha256": "fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822"
+        }
+      },
+      "native_go_toolchain_available": false,
+      "objective_ok": true,
+      "schema": "mira-genesis-a6b-task002-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"files\": {\"internal/health/health.go\": {\"checks\": {\"exact_expected_source_digest\": true, \"new_loop_count\": 1, \"old_loop_absent\": true}, \"ok\": true, \"sha256\": \"187ac9b6036fbdf962d1d3c1303d59e553c9c3f757427d2741ec57b347e30798\"}, \"internal/runtime/docker.go\": {\"checks\": {\"exact_expected_source_digest\": true, \"new_loop_count\": 1, \"old_loop_absent\": true}, \"ok\": true, \"sha256\": \"fdabdd5d703ab87e8bab41a940b4c2445e0ca5d2fe7caffc5d8c55c3bc8a8822\"}}, \"native_go_toolchain_available\": false, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task002-evaluator-v1\"}\n"
+  }
+}
