@@ -1,0 +1,16 @@
+{
+  "schema": "mira-genesis-a6b-task-spec-v1",
+  "task_id": 8,
+  "carrier": "andlo/haos-ovos-addons#8",
+  "source_root": "/home/anthony/experiments/a6b-c031",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/MEMORY_018.json",
+  "target_prefixes": ["ovos-core/config.yaml"],
+  "candidate_budget": 256,
+  "evaluator_argv": [
+    "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+    "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_008_eval.py",
+    "{workspace}"
+  ],
+  "evaluator_timeout_seconds": 20,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_008_autonomous_result.json"
+}
