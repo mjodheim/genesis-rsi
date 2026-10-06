@@ -294,7 +294,14 @@ class ExperienceStore:
         return evaluation_id
 
     def record_episode(self, *, run_id, improver_sha256, task, row):
-        task_sha = self.upsert_task(task)
+        """Persist one observed episode atomically.
+
+        A crash may leave no episode or the complete episode, never a replay-visible
+        prefix of candidates/edges.
+        """
+        task_sha = digest(task)
+        records = []
+        edges = []
         for program in row["programs"]:
             parent = program.get("search_parent_source_sha256")
             descriptor = {
@@ -305,30 +312,55 @@ class ExperienceStore:
                 "root_quality_milli": row["root_evaluation"]["quality_milli"],
                 "depth_hint": 0 if parent is None else 1,
             }
-            self.record_evaluation(
-                run_id=run_id,
-                task_sha256=task_sha,
-                improver_sha256=improver_sha256,
-                candidate=program["genome"],
-                candidate_sha256=program["source_sha256"],
-                parent_candidate_sha256=parent,
-                origin=program.get("candidate_origin", "search"),
-                quality_milli=program["quality_milli"],
-                solved=program["quality_milli"] == 1000,
-                charged_cost=1,
-                position=row["position"],
-                window=task.get("window"),
-                descriptor=descriptor,
-            )
+            records.append((program, parent, descriptor))
             if parent:
-                self.record_edge(
-                    run_id=run_id,
-                    task_sha256=task_sha,
-                    parent_candidate_sha256=parent,
-                    child_candidate_sha256=program["source_sha256"],
-                    relation="observed",
-                )
-        return task_sha
+                edges.append((
+                    digest([task_sha, parent, program["source_sha256"], "observed"]),
+                    run_id, task_sha, parent, program["source_sha256"], "observed",
+                ))
+
+        cur = self.db.cursor()
+        try:
+            cur.execute(self._sql(
+                """INSERT INTO oe_tasks(task_sha256,family,width,task_window,payload_json)
+                   VALUES(?,?,?,?,?)
+                   ON CONFLICT(task_sha256) DO UPDATE SET
+                     family=excluded.family,width=excluded.width,
+                     task_window=excluded.task_window,payload_json=excluded.payload_json"""
+            ), (task_sha, task.get("family"), task.get("width"),
+                task.get("window"), _json(task)))
+            cur.executemany(self._sql(
+                """INSERT INTO oe_candidates(candidate_sha256,genome_json)
+                   VALUES(?,?) ON CONFLICT(candidate_sha256) DO NOTHING"""
+            ), [(program["source_sha256"], _json(program["genome"]))
+                for program, _, _ in records])
+            cur.executemany(self._sql(
+                """INSERT INTO oe_evaluations(
+                     evaluation_id,run_id,task_sha256,improver_sha256,
+                     candidate_sha256,parent_candidate_sha256,origin,
+                     quality_milli,solved,charged_cost,position,task_window,descriptor_json
+                   ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"""
+            ), [(str(uuid4()), run_id, task_sha, improver_sha256,
+                  program["source_sha256"], parent,
+                  program.get("candidate_origin", "search"),
+                  int(program["quality_milli"]),
+                  int(program["quality_milli"] == 1000), 1,
+                  int(row["position"]), task.get("window"), _json(descriptor))
+                for program, parent, descriptor in records])
+            if edges:
+                cur.executemany(self._sql(
+                    """INSERT INTO oe_edges(
+                         edge_id,run_id,task_sha256,parent_candidate_sha256,
+                         child_candidate_sha256,relation
+                       ) VALUES(?,?,?,?,?,?) ON CONFLICT(edge_id) DO NOTHING"""
+                ), edges)
+            self.db.commit()
+            return task_sha
+        except Exception:
+            self.db.rollback()
+            raise
+        finally:
+            cur.close()
 
     def record_counterfactual_batch(
         self,
@@ -425,14 +457,14 @@ class ExperienceStore:
                FROM oe_evaluations e
                JOIN oe_candidates c ON c.candidate_sha256=e.candidate_sha256
                WHERE e.task_sha256=?
-               ORDER BY e.position, e.evaluation_id""",
+               ORDER BY e.position, e.candidate_sha256, e.origin, COALESCE(e.parent_candidate_sha256, ''), e.evaluation_id""",
             (task_sha256,),
         )
 
     def task_edges(self, task_sha256):
         return self.fetchall(
             """SELECT parent_candidate_sha256,child_candidate_sha256,relation
-               FROM oe_edges WHERE task_sha256=?""",
+               FROM oe_edges WHERE task_sha256=? ORDER BY parent_candidate_sha256, child_candidate_sha256, relation""",
             (task_sha256,),
         )
 
