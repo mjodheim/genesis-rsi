@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-candidate-import-failure-v1",
+  "candidate_patch_commit": "05c541f8b65be48f5c17376405de27ef67d38013",
+  "proposer_result_commit": "715507285ee4d4421fe2c4b1b2b6ed996dfee780",
+  "candidate_patch_sha256": "a76a54bac06db91d399a3db55a82ab5fb3846815607fbba0e0ff9d602793ba8b",
+  "carrier_commit": "e40a45ec2a074b90703b3b4b842c8a3adbd6ada3",
+  "touched_paths": [
+    "sherlock_project/sherlock.py"
+  ],
+  "import_command": "git apply --check",
+  "import_exit_code": 128,
+  "import_error": "patch fragment without header at line 12: @@ -135,6 +136,9 @@",
+  "classification": "CANDIDATE_TRANSPORT_INVALID",
+  "evaluator_executed": false,
+  "candidate_behavior_observed": false,
+  "retry_permitted_under_frozen_protocol": false,
+  "interpretation": "The model's semantic proposal is not scored because the frozen output contract required a standard unified diff intended to apply cleanly. No post-hoc --recount, hunk repair, or manual normalization is allowed."
+}
