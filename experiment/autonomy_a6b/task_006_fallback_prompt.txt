@@ -1,0 +1,20 @@
+You are the single frozen fallback proposer for A6b task 6.
+
+Repository: FuelLabs/fuelup
+Frozen commit: be317609a8364ffa095d8c5786a02c9e77f35e82
+Issue: #836 — Download retry count is off by one
+
+Public task contract:
+- src/download.rs defines RETRY_ATTEMPTS = 4 in download() and download_file().
+- Both retry loops currently use 1..RETRY_ATTEMPTS, which executes only three iterations.
+- Each function must perform exactly four configured attempts.
+- Keep RETRY_ATTEMPTS equal to 4.
+- Preserve all unrelated source.
+
+Inspect only the frozen repository and return the smallest source-only repair.
+Do not run tests. Do not use the web. Do not inspect Genesis files. Do not
+modify files yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an
+exact UTF-8 substring replacement whose old text occurs exactly once. Do not
+include tests or generated files.
