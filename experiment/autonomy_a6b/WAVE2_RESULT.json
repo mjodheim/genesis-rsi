@@ -1,0 +1,59 @@
+{
+  "autonomous_successes": 0,
+  "causal_reuse_successes": 0,
+  "fallback_rate": 1.0,
+  "fallback_required": 4,
+  "model_calls": 4,
+  "model_calls_per_solved": 1.3333333333333333,
+  "note": "Task 8 fallback made the requested readiness-default change but also changed the add-on version; the frozen unrelated-source predicate rejected it and no retry was allowed.",
+  "schema": "mira-genesis-a6b-wave-result-v1",
+  "solved": 3,
+  "tasks": [
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "ba862d1f7e0191115fa83d3d50c4bfaa148bf483ac19e51c8d509982291fd7b0",
+      "carrier": "vrischmann/tree-sitter-templ#152",
+      "fallback_passed": true,
+      "fallback_report_digest": "6fbe8a7c62b9d961e714f9f494d862813a5683fa0a791bb9150e5a9c4015cc5f",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": true,
+      "task_id": 5
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "e70d2defabb525cd9700de3edabf287f4e8cfec6a0ec8efb84b613257fbdb03f",
+      "carrier": "FuelLabs/fuelup#836",
+      "fallback_passed": true,
+      "fallback_report_digest": "a556ffe67a5ada69927b6f3272547864aaa5c7aba7e87b2c44fa96df20165806",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": true,
+      "task_id": 6
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "67c87b4aec0acf90e4955729ef715d62bbc1e68d1bb2feb75011d513753afcf9",
+      "carrier": "bushuyeu/iolani-g1-workshop#27",
+      "fallback_passed": true,
+      "fallback_report_digest": "e6ed31a15ac1a34c0f799f8b7c76b4cddbd5821cb600ed8c88b8933841b650f9",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": true,
+      "task_id": 7
+    },
+    {
+      "autonomous_passed": false,
+      "autonomous_report_digest": "d28c8cb26a0b91a2d8264814e591d2a4b448e091ada80955bfbc5d4b5e1640f6",
+      "carrier": "andlo/haos-ovos-addons#8",
+      "fallback_passed": false,
+      "fallback_report_digest": "9a91eee14befd2a531958bec3fce94462ed52f202199f1eb11ed5262f1935ed0",
+      "fallback_required": true,
+      "model_calls": 1,
+      "solved": false,
+      "task_id": 8
+    }
+  ],
+  "wave": 2,
+  "within_a6b_prior_task_reuses": 0
+}
