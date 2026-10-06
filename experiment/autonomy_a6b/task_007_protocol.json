@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6b-task007-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_030_freeze.json",
+  "carrier": "bushuyeu/iolani-g1-workshop#27",
+  "carrier_commit": "872d306b52e80cdf7bc9f6e69b7aaae489cc385f",
+  "task_id": 7,
+  "target_language": "Python",
+  "qualification": "The validator applies shoulder-roll limits at DOF 15 and 22, while the documented 29-DOF G1 ordering places shoulder roll at 16 and 23; the numerical bounds are roll bounds.",
+  "target_source": ["robotica/validate.py"],
+  "memory": "experiment/autonomy_a6b/MEMORY_017.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_007_eval.py",
+  "pass_rule": "JOINT_LIMITS_29 must map left/right shoulder-roll bounds to indices 16 and 23, warnings must fire at those indices and not at 15/22, and source outside the two mapping entries must remain unchanged. Exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}

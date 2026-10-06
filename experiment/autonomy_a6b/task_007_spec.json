@@ -1,0 +1,16 @@
+{
+  "schema": "mira-genesis-a6b-task-spec-v1",
+  "task_id": 7,
+  "carrier": "bushuyeu/iolani-g1-workshop#27",
+  "source_root": "/home/anthony/experiments/a6b-c030",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/MEMORY_017.json",
+  "target_prefixes": ["robotica/validate.py"],
+  "candidate_budget": 256,
+  "evaluator_argv": [
+    "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+    "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_007_eval.py",
+    "{workspace}"
+  ],
+  "evaluator_timeout_seconds": 20,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_007_autonomous_result.json"
+}
