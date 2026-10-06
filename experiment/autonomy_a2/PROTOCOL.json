@@ -1,0 +1,23 @@
+{
+  "schema": "mira-genesis-autonomy-a2-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "carrier_repository": "drishtiaggarwal-ugsot/Os_Club_portal",
+  "carrier_commit": "a4a8a4173aaf4afd77da5f748b5be5a25353faab",
+  "issue_number": 5,
+  "candidate_generator_freeze_commit": "d5ef0781",
+  "candidate_generator": "genesis.scalar_mutations.generate",
+  "candidate_scope": ["frontend/src"],
+  "candidate_limit": 10000,
+  "candidate_shape": "single-site scalar mutation",
+  "candidate_order": "deterministic generator order",
+  "evaluate_complete_candidate_image": true,
+  "objective": "experiment/autonomy_a2/OBJECTIVE.mjs",
+  "baseline_must_fail": true,
+  "winner_rule": "exactly one candidate returns objective exit code 0",
+  "winner_replay_required": true,
+  "external_model_allowed": false,
+  "external_model_calls": 0,
+  "silent_retry_allowed": false,
+  "manual_candidate_repair_allowed": false,
+  "claim_boundary": "A2 DEVELOPMENT only: one real external bug family repaired by a generic zero-LLM mutation grammar under a project-controlled evaluator."
+}

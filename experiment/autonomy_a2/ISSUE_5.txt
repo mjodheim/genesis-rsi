@@ -1,0 +1,12 @@
+Seats left is off by one
+
+What happened?
+The number of seats left is one less than it should be.
+
+Steps to reproduce:
+1. Run python manage.py seed_demo if you haven't.
+2. Open the home page and find Git conflicts without fear. It has 30 seats and nobody has registered yet.
+3. It shows 29 of 30 seats left. The session's own page shows the same.
+
+What did you expect to happen instead?
+30 of 30 seats left, because nobody has registered.
