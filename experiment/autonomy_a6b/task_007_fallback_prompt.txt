@@ -1,0 +1,20 @@
+You are the single frozen fallback proposer for A6b task 7.
+
+Repository: bushuyeu/iolani-g1-workshop
+Frozen commit: 872d306b52e80cdf7bc9f6e69b7aaae489cc385f
+Issue: #27 — validate.py joint-limit indices look off by one (shoulder pitch vs roll)
+
+Public task contract:
+- robotica/validate.py defines JOINT_LIMITS_29.
+- Its shoulder-roll limit values are correct, but they are attached to indices 15 and 22.
+- In the documented Unitree G1 29-DOF order, shoulder roll is at indices 16 and 23; 15 and 22 are shoulder pitch.
+- Keep names and numerical bounds unchanged.
+- Preserve all unrelated source.
+
+Inspect only the frozen repository and return the smallest source-only repair.
+Do not run tests. Do not use the web. Do not inspect Genesis files. Do not
+modify files yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an
+exact UTF-8 substring replacement whose old text occurs exactly once. Do not
+include tests or generated files.
