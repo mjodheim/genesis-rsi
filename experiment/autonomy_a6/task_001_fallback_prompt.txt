@@ -1,0 +1,12 @@
+You are the single fallback proposer for one frozen software-repair task.
+
+Repository: CANOE-main/canoe-commercial
+Frozen commit: 7cfe2e421a0b33125a2009210e6a04b5d3e09739
+Issue: #8 — Off-by-one slice errors in weather_mapping.get_weekly_variation
+
+Public issue statement:
+get_weekly_variation in canoe_commercial/weather_mapping.py contains two off-by-one errors in its slice endpoints. The daily average currently uses data[24 * d:24 * d + 23], which contains 23 elements rather than 24. The weekly average currently uses data[7 * 24 * w:7 * 24 * w + 7 * 24 - 1], which contains 167 rather than 168 elements. The issue proposes exclusive-end slices that cover the full day/week. The unrelated tow_mults dead-code question is outside this repair task.
+
+Produce the smallest source repair that addresses the stated off-by-one bug. Inspect repository source as needed. Do not run tests, do not use the web, do not inspect any Genesis files, and do not make edits yourself.
+
+Return only the structured JSON requested by the supplied schema. Each edit must be an exact UTF-8 substring replacement with an old substring that occurs exactly once in the named file. Do not include test changes.
