@@ -1,0 +1,12 @@
+{
+  "schema": "mira-genesis-a6b-pre-outcome-exclusion-v1",
+  "queue_index": 36,
+  "repository": "komalharshita/DevPath",
+  "issue_number": 1867,
+  "carrier_commit": "c15faacf9af36e010729fa32b1986456d294466b",
+  "status": "EXCLUDED_BEFORE_CANDIDATE_EVALUATION",
+  "reason": "The frozen baseline already preserves the full http/https scheme by slicing from idx + 2. Direct execution of the issue examples returns valid https:// URLs, so there is no failing baseline objective.",
+  "candidate_generation_started": false,
+  "external_model_calls": 0,
+  "counts_as_runnable_task": false
+}
