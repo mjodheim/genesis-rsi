@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-autonomy-a3-carrier-rejection-v1",
+  "carrier": "chris-monahan/tictactoe#4",
+  "carrier_commit": "27a43cee5087decc8bab2d349a223ce9b70c2d20",
+  "selection_freeze_commit": "db7e8b2f",
+  "stage": "post-freeze source expressibility check, before candidate evaluation",
+  "classification": "FROZEN_GRAMMAR_NOT_EXPRESSIVE_FOR_PRIMARY_FIX",
+  "reason": "The primary defect requires changing currentArray[xPos] to 1-based index arithmetic such as currentArray[xPos - 1]. The frozen A2 scalar grammar can mutate integer literals, boolean literals, and comparison operators, but it cannot insert arithmetic around an identifier. The issue also notes an ordering concern outside the A2 grammar.",
+  "candidate_evaluations": 0,
+  "objective_evaluations": 0,
+  "external_model_calls": 0,
+  "manual_repair_attempted": false,
+  "policy": "Retained as a negative carrier-selection result. No grammar extension is introduced after seeing this task because doing so would confound A3 causal reuse."
+}
