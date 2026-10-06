@@ -1,16 +1,31 @@
 project: Genesis
 former_project_name: Mira Genesis
-updated_at: 2026-10-06
+updated_at: 2026-10-07
 architecture_generation: genesis_v2_efficiency_first
 architecture_reset_changes_scientific_gate: false
 snapshot_kind: current_authoritative_navigation
-status: v26_positive_bounded_l5_v24_v25_negative_preserved
+status: genesis_v2_g5_gate_passed_bounded_l9_operational_pass_l10_open
 
 rsi_frontier:
   operational_l9_gate_passed: true
   operational_l9_scope: finite_project_defined_oe1_v3
   strict_l10_independent_replication_open: true
   general_rsi_claimed: false
+  genesis_v2_g5:
+    verdict: G5_SCIENTIFIC_GATE_PASSED
+    scope: bounded_project_defined_autonomous_experiment_generation
+    preregistration_commit: cb33aef4
+    result_commit: e0a7e07c
+    holdout_sha256: a20d5a00add3c11d0240ea56f638a4fa898774f091f160c341dfb0d7d29dd228
+    holdout_cases: 6
+    parent_solved: 0
+    winning_component: universal_operator_ir
+    winner_solved: 5
+    ablation_solved: 0
+    external_model_calls: 0
+    independent_third_party_validation: false
+    g6_closed: false
+    evidence: docs/G5_QUALIFICATION_2026-10-07.md
   l5_validated: true
   l5_scope: bounded_v26_project_authored_native_repair_transfer
   v24:

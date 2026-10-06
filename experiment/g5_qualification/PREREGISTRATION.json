@@ -1,0 +1,286 @@
+{
+  "apparatus_commit": "6753f98ba7fa56fdc9743b6f89ac275344a7dda3",
+  "calibration": {
+    "baseline_failed": true,
+    "failure_record": {
+      "autonomous_report_digest": "fb6aee8ea01c6b65bc110250929822c76f121ef888be166defaa7ad1b956d708",
+      "confidence": 0.9,
+      "evidence": {
+        "operator": [
+          "supported target and validation path existed but no candidate was representable"
+        ]
+      },
+      "external_model_calls": 0,
+      "failure_model_digest": "276026e126da64473036318928ef0ac019c27d08b30c27be224d0c9ed431eba6",
+      "missing_toolchain_languages": [],
+      "parse_failure_paths": [],
+      "primary_failure_class": "operator",
+      "recommended_interventions": [
+        "acquire_or_synthesize_new_operator",
+        "test_operator_on_fresh_matched_contexts"
+      ],
+      "schema": "genesis-failure-model-v1",
+      "scores": {
+        "evaluation": 0,
+        "knowledge": 0,
+        "operator": 90,
+        "planner": 0,
+        "representation": 0,
+        "retrieval": 0,
+        "search": 0,
+        "toolchain": 0,
+        "unknown": 0
+      },
+      "solution_visible": false,
+      "supported_target_languages": [
+        "csharp"
+      ],
+      "target_prefixes": [
+        "Program.cs"
+      ],
+      "unsupported_target_paths": []
+    },
+    "intervention_target": {
+      "candidate_component_ids": [
+        "structural_operator_engine",
+        "universal_operator_ir"
+      ],
+      "external_model_calls": 0,
+      "failure_class": "operator",
+      "failure_model_digest": "276026e126da64473036318928ef0ac019c27d08b30c27be224d0c9ed431eba6",
+      "reason": "multiple_mutable_components_match_failure",
+      "schema": "genesis-self-model-intervention-target-v1",
+      "selected_component_digest": null,
+      "selected_component_id": null,
+      "self_model_digest": "e6aa01dc40847c2815d67aa46c09fce57df674e118c1d1fa6c39d7188baaf381",
+      "target_digest": "f2444d4ea3d7720d6c31b27af5f4c658e9b32782e8821660f82d6bf5d7ba6ad2",
+      "trust_root_modification_allowed": false
+    },
+    "structural_parent_candidate_count": 0
+  },
+  "claim_boundary": "Prospective G5 qualification only. Passing establishes autonomous experiment-generation evidence for one internal software mechanism; it does not establish G6, general RSI, AGI, or ASI.",
+  "g5_plan": {
+    "arms": [
+      {
+        "arm_digest": "e465e963ffce6e725cd23eafcef08bcee1277f3b1d86031515aa632ae69ca75a",
+        "budget": {
+          "candidate_executions": 6,
+          "external_model_calls": 0,
+          "wall_time_seconds": 120
+        },
+        "component_id": null,
+        "intervention": "no_change",
+        "kind": "control",
+        "name": "control-parent",
+        "schema": "genesis-self-experiment-arm-v1"
+      },
+      {
+        "arm_digest": "6e71d3df1084c70eb55b1eb19edabca4636ef96ff61203e37e6ab70bcfb2b654",
+        "budget": {
+          "candidate_executions": 6,
+          "external_model_calls": 0,
+          "wall_time_seconds": 120
+        },
+        "component_id": "structural_operator_engine",
+        "intervention": "acquire_or_synthesize_new_operator",
+        "kind": "candidate",
+        "name": "candidate-1",
+        "schema": "genesis-self-experiment-arm-v1"
+      },
+      {
+        "arm_digest": "f76cbe7754fab305e281bd88bd8c8f5db542431c150eab5a80ab99de54922bcd",
+        "budget": {
+          "candidate_executions": 6,
+          "external_model_calls": 0,
+          "wall_time_seconds": 120
+        },
+        "component_id": "structural_operator_engine",
+        "intervention": "test_operator_on_fresh_matched_contexts",
+        "kind": "candidate",
+        "name": "candidate-2",
+        "schema": "genesis-self-experiment-arm-v1"
+      },
+      {
+        "arm_digest": "110ee931280839f5ed4a46044a8d8aedf15162e0da47665688e7651561a00418",
+        "budget": {
+          "candidate_executions": 6,
+          "external_model_calls": 0,
+          "wall_time_seconds": 120
+        },
+        "component_id": "universal_operator_ir",
+        "intervention": "acquire_or_synthesize_new_operator",
+        "kind": "candidate",
+        "name": "candidate-3",
+        "schema": "genesis-self-experiment-arm-v1"
+      },
+      {
+        "arm_digest": "395eb3596a3f4b78773d634dfd14dc55b734f81c4717ab9ee46c38fadef48a1c",
+        "budget": {
+          "candidate_executions": 6,
+          "external_model_calls": 0,
+          "wall_time_seconds": 120
+        },
+        "component_id": "universal_operator_ir",
+        "intervention": "test_operator_on_fresh_matched_contexts",
+        "kind": "candidate",
+        "name": "candidate-4",
+        "schema": "genesis-self-experiment-arm-v1"
+      }
+    ],
+    "component_ambiguity": true,
+    "decision_objective": "pareto_capability_resource_frontier",
+    "evaluator_id": "external-dotnet-exitcode-evaluator-v1",
+    "external_model_calls_for_design": 0,
+    "failure_class": "operator",
+    "failure_model_digest": "276026e126da64473036318928ef0ac019c27d08b30c27be224d0c9ed431eba6",
+    "fresh_case_contents_visible_to_lineage": false,
+    "fresh_case_set_id": "sha256:a20d5a00add3c11d0240ea56f638a4fa898774f091f160c341dfb0d7d29dd228",
+    "frozen_before_execution": true,
+    "hypothesis": "The observed operator limitation is causally influenced by one or more of [structural_operator_engine, universal_operator_ir]; matched interventions among [acquire_or_synthesize_new_operator, test_operator_on_fresh_matched_contexts] will discriminate the limiting machinery and may improve fresh matched-budget capability or preserve capability while reducing resource cost relative to the unchanged parent.",
+    "matched_budget": {
+      "candidate_executions": 6,
+      "external_model_calls": 0,
+      "wall_time_seconds": 120
+    },
+    "metrics": [
+      "candidate_executions",
+      "external_model_calls",
+      "task_success",
+      "wall_time"
+    ],
+    "mutable_lineage_owns_verdict": false,
+    "plan_digest": "246f6c0e7993f6c4d1e6ad8d82d519704b97223483fc1346130891d06de3f6a7",
+    "promotion_authority": "external_trust_root",
+    "schema": "genesis-self-experiment-plan-v1",
+    "selected_component_id": null,
+    "self_model_digest": "e6aa01dc40847c2815d67aa46c09fce57df674e118c1d1fa6c39d7188baaf381",
+    "target_component_digests": {
+      "structural_operator_engine": "61d801975fcb21627df5ea1c9e9e63c8766d5f3bf4e17398cd248783343c1278",
+      "universal_operator_ir": "4dc81f2894cd883c98f70ed3c2a4d1098f692972c7c795a3b48d6eca0d97847e"
+    },
+    "target_component_ids": [
+      "structural_operator_engine",
+      "universal_operator_ir"
+    ]
+  },
+  "holdout": {
+    "case_count": 6,
+    "contents_visible_to_mutable_lineage": false,
+    "location_at_freeze": "external_to_repository",
+    "sha256": "a20d5a00add3c11d0240ea56f638a4fa898774f091f160c341dfb0d7d29dd228"
+  },
+  "preregistration_digest": "a5a75135b18585d7dde693866ffa455f0ad8525d3c416d535ba93b3b5cc7f404",
+  "qualification_rule": {
+    "fail_label": "G5_SCIENTIFIC_GATE_OPEN",
+    "pass_label": "G5_SCIENTIFIC_GATE_PASSED",
+    "required": [
+      "holdout_sha256_matches_preregistered_identity",
+      "control_parent_success_rate_is_lower_than_best_candidate",
+      "best_candidate_targets_component_named_by_g5_plan",
+      "best_candidate_uses_no_more_budget_than_control",
+      "best_candidate_uses_zero_external_model_calls",
+      "at_least_4_of_6_hidden_cases_solved",
+      "ablation_of_winning_component_removes_gain"
+    ]
+  },
+  "schema": "genesis-g5-qualification-preregistration-v1",
+  "source_capability": {
+    "source_language": "python",
+    "source_result": {
+      "after_expected_pass": true,
+      "after_sha256": "b43ffbbcef2744bcaaae1b3fd2746e223eb7c903411af96621195c6787f458af",
+      "before_expected_failure": true,
+      "before_sha256": "bbc418dbb37134d11b4f4203b678c77c4ea68c84251e4337dd90df0d95b45f86",
+      "evaluator": "python-function-contract-v1"
+    },
+    "source_result_digest": "c7e2e3f47aadd145fe207bd282f51fbf93ae3f96313e5f4fad81ae8fc3f4335c",
+    "structural_operator": {
+      "context_lines": 0,
+      "external_model_calls_for_learning": 0,
+      "hunks": [
+        {
+          "after_program": [
+            {
+              "kind": "render_line",
+              "template": "    return __GENESIS_CAPTURE_I0__[0]\n"
+            }
+          ],
+          "before_line_count": 1,
+          "before_program": [
+            {
+              "kind": "pattern_line",
+              "pattern": [
+                {
+                  "kind": "literal",
+                  "value": "return"
+                },
+                {
+                  "kind": "capture",
+                  "name": "I0",
+                  "type": "ident"
+                },
+                {
+                  "kind": "literal",
+                  "value": "["
+                },
+                {
+                  "kind": "literal",
+                  "value": "1"
+                },
+                {
+                  "kind": "literal",
+                  "value": "]"
+                }
+              ]
+            }
+          ],
+          "change_kinds": [
+            "replace"
+          ],
+          "hunk_digest": "e87036831d1d52a235393fceef16a1e03f1c5b79604fca878973dd764697c115"
+        }
+      ],
+      "operator_digest": "63c3571942069f0de9ae72ee3c63e567cee56ed8dfa3747c443a8a44dfdefe8f",
+      "schema": "genesis-acquired-structural-operator-v1",
+      "source_family": "python",
+      "source_path": "source.py",
+      "source_result_digest": "c7e2e3f47aadd145fe207bd282f51fbf93ae3f96313e5f4fad81ae8fc3f4335c"
+    },
+    "universal_operator": {
+      "anchor_width": 2,
+      "external_model_calls_for_learning": 0,
+      "from_token": {
+        "kind": "number",
+        "value": "1"
+      },
+      "left_anchor": [
+        {
+          "kind": "identifier",
+          "value": "*"
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        }
+      ],
+      "operation": "replace_token",
+      "operator_digest": "6e2a50dd2b6949fc7d702d580677094859d875ef232c4fba64c5ab80854a7712",
+      "right_anchor": [
+        {
+          "kind": "punctuation",
+          "value": "]"
+        }
+      ],
+      "schema": "genesis-universal-operator-v1",
+      "semantic_role": "subscript_index",
+      "source_document_digest": "bde749136311b28bfaa47f0e68915d37d36e8ad405a63db74cb81fdcc9d35326",
+      "source_language": "python",
+      "source_path": "source.py",
+      "source_result_digest": "c7e2e3f47aadd145fe207bd282f51fbf93ae3f96313e5f4fad81ae8fc3f4335c",
+      "to_token": {
+        "kind": "number",
+        "value": "0"
+      }
+    }
+  }
+}

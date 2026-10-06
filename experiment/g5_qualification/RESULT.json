@@ -1,0 +1,597 @@
+{
+  "ablation": {
+    "arm_digest": "e1da0416759fc515e3967f349943dd43eab6ed06a36f046338db4d410331d3da",
+    "arm_name": "winning-component-ablation",
+    "arm_result_digest": "db5ca352c0668a34b7d2524b30103fd76064193cc137f59b68bc205f79e16237",
+    "candidate_executions": 0,
+    "case_count": 6,
+    "cases": [
+      {
+        "candidate_count": 0,
+        "case_id": "array",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "string",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "list",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "span",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "indexer",
+        "passed": false,
+        "status": "no_candidate"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "method-call",
+        "passed": false,
+        "status": "no_candidate"
+      }
+    ],
+    "component_id": "structural_operator_engine",
+    "external_model_calls": 0,
+    "intervention": "winning_component_removed",
+    "solved": 0,
+    "success_rate": 0.0,
+    "wall_time_seconds": 0.005456,
+    "within_candidate_budget": true,
+    "within_wall_time_budget": true
+  },
+  "arms": [
+    {
+      "arm_digest": "e465e963ffce6e725cd23eafcef08bcee1277f3b1d86031515aa632ae69ca75a",
+      "arm_name": "control-parent",
+      "arm_result_digest": "08ed11a774b45030de924d266b139b41dbf9130f017e6cea18eb56e6cd133387",
+      "candidate_executions": 6,
+      "case_count": 6,
+      "cases": [
+        {
+          "candidate_id": "control-parent",
+          "case_id": "array",
+          "evaluation": {
+            "passed": false,
+            "returncode": 11,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.484379
+          },
+          "passed": false,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "control-parent",
+          "case_id": "string",
+          "evaluation": {
+            "passed": false,
+            "returncode": 12,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.629998
+          },
+          "passed": false,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "control-parent",
+          "case_id": "list",
+          "evaluation": {
+            "passed": false,
+            "returncode": 13,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.680909
+          },
+          "passed": false,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "control-parent",
+          "case_id": "span",
+          "evaluation": {
+            "passed": false,
+            "returncode": 14,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.679199
+          },
+          "passed": false,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "control-parent",
+          "case_id": "indexer",
+          "evaluation": {
+            "passed": false,
+            "returncode": 15,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.752107
+          },
+          "passed": false,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "control-parent",
+          "case_id": "method-call",
+          "evaluation": {
+            "passed": false,
+            "returncode": 16,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.595734
+          },
+          "passed": false,
+          "status": "evaluated"
+        }
+      ],
+      "component_id": null,
+      "external_model_calls": 0,
+      "intervention": "no_change",
+      "solved": 0,
+      "success_rate": 0.0,
+      "wall_time_seconds": 15.838798,
+      "within_candidate_budget": true,
+      "within_wall_time_budget": true
+    },
+    {
+      "arm_digest": "6e71d3df1084c70eb55b1eb19edabca4636ef96ff61203e37e6ab70bcfb2b654",
+      "arm_name": "candidate-1",
+      "arm_result_digest": "370f85217aebe2d3509b237a0b094d24b3edf2d8e8bb52e7b32be2df17b0cc37",
+      "candidate_executions": 0,
+      "case_count": 6,
+      "cases": [
+        {
+          "candidate_count": 0,
+          "case_id": "array",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "string",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "list",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "span",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "indexer",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "method-call",
+          "passed": false,
+          "status": "no_candidate"
+        }
+      ],
+      "component_id": "structural_operator_engine",
+      "external_model_calls": 0,
+      "intervention": "acquire_or_synthesize_new_operator",
+      "solved": 0,
+      "success_rate": 0.0,
+      "wall_time_seconds": 0.005502,
+      "within_candidate_budget": true,
+      "within_wall_time_budget": true
+    },
+    {
+      "arm_digest": "f76cbe7754fab305e281bd88bd8c8f5db542431c150eab5a80ab99de54922bcd",
+      "arm_name": "candidate-2",
+      "arm_result_digest": "97e580bec6e64001905f1b4146a53a6845804be7147f59dc325a61145a564fd4",
+      "candidate_executions": 0,
+      "case_count": 6,
+      "cases": [
+        {
+          "candidate_count": 0,
+          "case_id": "array",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "string",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "list",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "span",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "indexer",
+          "passed": false,
+          "status": "no_candidate"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "method-call",
+          "passed": false,
+          "status": "no_candidate"
+        }
+      ],
+      "component_id": "structural_operator_engine",
+      "external_model_calls": 0,
+      "intervention": "test_operator_on_fresh_matched_contexts",
+      "solved": 0,
+      "success_rate": 0.0,
+      "wall_time_seconds": 0.005379,
+      "within_candidate_budget": true,
+      "within_wall_time_budget": true
+    },
+    {
+      "arm_digest": "110ee931280839f5ed4a46044a8d8aedf15162e0da47665688e7651561a00418",
+      "arm_name": "candidate-3",
+      "arm_result_digest": "9303f83921556d45d056ab42f16222888cdd82629f5774753c0c80604ef609ee",
+      "candidate_executions": 5,
+      "case_count": 6,
+      "cases": [
+        {
+          "candidate_id": "universal-54f3dbea1612559b",
+          "case_id": "array",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.73806
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-ee056818b7aabfa6",
+          "case_id": "string",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.611712
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-2f01d1813241251a",
+          "case_id": "list",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.626145
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-fc97a5f80a3640cc",
+          "case_id": "span",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.497098
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-048647ca46e1fd4e",
+          "case_id": "indexer",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.579794
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "method-call",
+          "passed": false,
+          "status": "no_candidate"
+        }
+      ],
+      "component_id": "universal_operator_ir",
+      "external_model_calls": 0,
+      "intervention": "acquire_or_synthesize_new_operator",
+      "solved": 5,
+      "success_rate": 0.8333333333333334,
+      "wall_time_seconds": 13.076916,
+      "within_candidate_budget": true,
+      "within_wall_time_budget": true
+    },
+    {
+      "arm_digest": "395eb3596a3f4b78773d634dfd14dc55b734f81c4717ab9ee46c38fadef48a1c",
+      "arm_name": "candidate-4",
+      "arm_result_digest": "32432aac8e2e94b92347f8ce70614c54c06db7d95ad9304d412fa0a7cf550305",
+      "candidate_executions": 5,
+      "case_count": 6,
+      "cases": [
+        {
+          "candidate_id": "universal-54f3dbea1612559b",
+          "case_id": "array",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.622403
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-ee056818b7aabfa6",
+          "case_id": "string",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.549735
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-2f01d1813241251a",
+          "case_id": "list",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.509457
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-fc97a5f80a3640cc",
+          "case_id": "span",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.728002
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_id": "universal-048647ca46e1fd4e",
+          "case_id": "indexer",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.552501
+          },
+          "passed": true,
+          "status": "evaluated"
+        },
+        {
+          "candidate_count": 0,
+          "case_id": "method-call",
+          "passed": false,
+          "status": "no_candidate"
+        }
+      ],
+      "component_id": "universal_operator_ir",
+      "external_model_calls": 0,
+      "intervention": "test_operator_on_fresh_matched_contexts",
+      "solved": 5,
+      "success_rate": 0.8333333333333334,
+      "wall_time_seconds": 12.981673,
+      "within_candidate_budget": true,
+      "within_wall_time_budget": true
+    }
+  ],
+  "best_candidate": {
+    "arm_digest": "395eb3596a3f4b78773d634dfd14dc55b734f81c4717ab9ee46c38fadef48a1c",
+    "arm_name": "candidate-4",
+    "arm_result_digest": "32432aac8e2e94b92347f8ce70614c54c06db7d95ad9304d412fa0a7cf550305",
+    "candidate_executions": 5,
+    "case_count": 6,
+    "cases": [
+      {
+        "candidate_id": "universal-54f3dbea1612559b",
+        "case_id": "array",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.622403
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_id": "universal-ee056818b7aabfa6",
+        "case_id": "string",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.549735
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_id": "universal-2f01d1813241251a",
+        "case_id": "list",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.509457
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_id": "universal-fc97a5f80a3640cc",
+        "case_id": "span",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.728002
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_id": "universal-048647ca46e1fd4e",
+        "case_id": "indexer",
+        "evaluation": {
+          "passed": true,
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.552501
+        },
+        "passed": true,
+        "status": "evaluated"
+      },
+      {
+        "candidate_count": 0,
+        "case_id": "method-call",
+        "passed": false,
+        "status": "no_candidate"
+      }
+    ],
+    "component_id": "universal_operator_ir",
+    "external_model_calls": 0,
+    "intervention": "test_operator_on_fresh_matched_contexts",
+    "solved": 5,
+    "success_rate": 0.8333333333333334,
+    "wall_time_seconds": 12.981673,
+    "within_candidate_budget": true,
+    "within_wall_time_budget": true
+  },
+  "claim_boundary": "Prospective G5 qualification only. Passing establishes autonomous experiment-generation evidence for one internal software mechanism; it does not establish G6, general RSI, AGI, or ASI.",
+  "external_model_calls": 0,
+  "gate_passed": true,
+  "holdout": {
+    "baseline_all_fail": true,
+    "baseline_case_results": [
+      {
+        "case_id": "array",
+        "passed": false,
+        "returncode": 11,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.837634
+      },
+      {
+        "case_id": "string",
+        "passed": false,
+        "returncode": 12,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.566473
+      },
+      {
+        "case_id": "list",
+        "passed": false,
+        "returncode": 13,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.611002
+      },
+      {
+        "case_id": "span",
+        "passed": false,
+        "returncode": 14,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.700221
+      },
+      {
+        "case_id": "indexer",
+        "passed": false,
+        "returncode": 15,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.664176
+      },
+      {
+        "case_id": "method-call",
+        "passed": false,
+        "returncode": 16,
+        "stderr_tail": "",
+        "stdout_tail": "",
+        "wall_time_seconds": 2.589001
+      }
+    ],
+    "case_count": 6,
+    "revealed_only_after_preregistration_commit": true,
+    "sha256": "a20d5a00add3c11d0240ea56f638a4fa898774f091f160c341dfb0d7d29dd228"
+  },
+  "preregistration_apparatus_commit": "6753f98ba7fa56fdc9743b6f89ac275344a7dda3",
+  "preregistration_digest": "a5a75135b18585d7dde693866ffa455f0ad8525d3c416d535ba93b3b5cc7f404",
+  "preregistration_git_commit": "cb33aef4c6942d2e85bdf941c85dab63c0f13f0b",
+  "requirements": {
+    "ablation_of_winning_component_removes_gain": true,
+    "at_least_4_of_6_hidden_cases_solved": true,
+    "best_candidate_targets_component_named_by_g5_plan": true,
+    "best_candidate_uses_no_more_budget_than_control": true,
+    "best_candidate_uses_zero_external_model_calls": true,
+    "control_parent_success_rate_is_lower_than_best_candidate": true,
+    "holdout_sha256_matches_preregistered_identity": true
+  },
+  "result_digest": "5569175e477279c31f3cc4aec04dd515b4772a7299920ee395ac290b2dc696e0",
+  "schema": "genesis-g5-qualification-result-v1",
+  "verdict": "G5_SCIENTIFIC_GATE_PASSED",
+  "winning_component": "universal_operator_ir"
+}
