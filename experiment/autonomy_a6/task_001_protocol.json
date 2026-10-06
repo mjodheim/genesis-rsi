@@ -1,0 +1,23 @@
+{
+  "schema": "mira-genesis-a6-task001-protocol-v1",
+  "status": "FROZEN_BEFORE_BASELINE_OR_CANDIDATE_EVALUATION",
+  "campaign_preregistration": "experiment/autonomy_a6/PREREGISTRATION_V2.json",
+  "carrier": "CANOE-main/canoe-commercial#8",
+  "carrier_commit": "7cfe2e421a0b33125a2009210e6a04b5d3e09739",
+  "target_path": "canoe_commercial/weather_mapping.py",
+  "evaluator": "experiment/autonomy_a6/task_001_eval.py",
+  "objective": "Behavioral equality to correct 24-hour daily and 168-hour weekly exclusive-end slicing on deterministic 364-day input.",
+  "candidate_budget": 256,
+  "autonomous_order": [
+    "learned_line_rewrite_templates",
+    "retained_acquired_strategies",
+    "repository_exemplar_mutations",
+    "generic_scalar_mutations_ranked_by_operator_memory"
+  ],
+  "fallback_on_autonomous_failure": true,
+  "fallback_model": "claude-sonnet-5-5",
+  "fallback_max_calls": 1,
+  "manual_candidate_repair_allowed": false,
+  "silent_retry_allowed": false,
+  "memory_update_only_after_passing_evaluation": true
+}
