@@ -1,0 +1,22 @@
+{
+  "schema": "mira-genesis-a6b-task002-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_019_freeze.json",
+  "carrier": "yaso09/tengiz#1161",
+  "carrier_commit": "061c493d9ac653039370f84c4986947908162ba3",
+  "task_id": 2,
+  "target_language": "Go",
+  "qualification": "Two frozen health-check loops use i <= retries and therefore execute retries+1 attempts. Both exact loops must use i < retries, with no other text change in either target file.",
+  "target_source": [
+    "internal/runtime/docker.go",
+    "internal/health/health.go"
+  ],
+  "memory": "experiment/autonomy_a6b/MEMORY_013.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_002_eval.py",
+  "evaluator_note": "The host has no Go binary, so the frozen evaluator verifies the exact minimal source repair by normalized UTF-8 digests for both public-issue target files.",
+  "pass_rule": "Both target files must exactly match the one-replacement expected digest, contain exactly one i < retries loop at the reported site, contain no i <= retries loop, and exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
