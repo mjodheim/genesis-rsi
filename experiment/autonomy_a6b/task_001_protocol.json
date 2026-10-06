@@ -1,0 +1,18 @@
+{
+  "schema": "mira-genesis-a6b-task001-protocol-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "candidate_freeze": "experiment/autonomy_a6b/candidate_018_freeze.json",
+  "carrier": "vjuliaife/TariffShield#492",
+  "carrier_commit": "3d150c7f102f58cf77ea0dc51dbe5b20098cdd11",
+  "task_id": 1,
+  "target_language": "Rust",
+  "qualification": "Frozen approve_upgrade accepts at the exact expiry ledger because it uses sequence() > expiry_ledger. Public acceptance criteria require the exact expiry boundary to be rejected while one-before remains valid and one-past remains expired.",
+  "target_source": ["contracts/tariff-shield/src/lib.rs"],
+  "memory": "experiment/autonomy_a6/MEMORY_012.json",
+  "candidate_budget": 256,
+  "evaluator": "experiment/autonomy_a6b/task_001_eval.py",
+  "pass_rule": "approve_upgrade uses the expiry boundary that rejects exactly-at-expiry and later, preserves pre-expiry validity, proposal horizon computation, and cancel_upgrade critical behavior; exact winner replay must pass.",
+  "manual_candidate_repair_allowed": false,
+  "fallback": "One frozen Claude Sonnet 5.5 call only after autonomous miss.",
+  "external_model_calls_before_autonomous_run": 0
+}
