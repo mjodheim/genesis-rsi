@@ -1,0 +1,19 @@
+{
+  "schema": "mira-genesis-autonomy-a3e-evaluator-v1",
+  "status": "FROZEN_BEFORE_CANDIDATE_EVALUATION",
+  "carrier_repository": "caorantaoyao/mm-truncate",
+  "carrier_commit": "53bdc652b0e8c5879158b9cc3927e9bddbba3a00",
+  "issue_number": 1,
+  "objective_source": "repository-owned tests/test_textutil.py at frozen carrier commit",
+  "command": ["/home/anthony/mira-genesis-oe1/.venv/bin/python", "-m", "pytest", "-q"],
+  "working_directory": "candidate workspace root",
+  "network_required": false,
+  "baseline_must_fail": true,
+  "candidate_pass_rule": "pytest exit code 0",
+  "search_budget_each_arm": 16,
+  "candidate_generator": "frozen genesis.scalar_mutations.generate",
+  "memory_digest": "9be25ef2ab02a706934d0744d68e4065df060677d0327d8a26648319497fdc79",
+  "external_model_calls": 0,
+  "manual_candidate_repair_allowed": false,
+  "note": "Repository tests already encode both the failing long-string case and the short-string regression control; no project-authored issue-specific assertion is added."
+}
