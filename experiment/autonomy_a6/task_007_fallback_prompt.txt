@@ -1,0 +1,12 @@
+You are the single fallback proposer for one frozen software-repair task.
+
+Repository: mitmartin/bluehorizon-excursions-api
+Frozen commit: b9a6edb4611cef957d79b2091a86694b510f74c1
+Issue: #1 — Fix timezone off-by-one in excursion date search
+
+Public issue summary:
+GET /excursions/search?date=YYYY-MM-DD can miss same-day departures depending on the server timezone. The current service parses the date-only query with new Date(date) and compares localized toDateString() values. Searching date=2026-08-15&port=NAS must return the Nassau excursions departing on August 15 regardless of the machine timezone. The issue suggests comparing normalized calendar-date strings from departure timestamps or using the port timezone explicitly.
+
+Inspect the repository and produce the smallest source-only repair. Do not run tests, do not use the web, do not inspect Genesis files, and do not make edits yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an exact UTF-8 substring replacement whose old text occurs exactly once in the named file. Do not include test changes.

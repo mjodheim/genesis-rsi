@@ -1,0 +1,994 @@
+{
+  "autonomous_passed": false,
+  "baseline": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+      "/home/anthony/experiments/a6v2-c010"
+    ],
+    "elapsed_ms": 1274,
+    "exit_code": 1,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": false,
+      "results": [
+        {
+          "exit_code": 0,
+          "expected": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "found": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "ok": true,
+          "stderr": "",
+          "tz": "UTC"
+        },
+        {
+          "exit_code": 0,
+          "expected": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "found": [],
+          "ok": false,
+          "stderr": "",
+          "tz": "America/Nassau"
+        },
+        {
+          "exit_code": 0,
+          "expected": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "found": [],
+          "ok": false,
+          "stderr": "",
+          "tz": "Pacific/Honolulu"
+        }
+      ],
+      "schema": "mira-genesis-a6-task007-evaluator-v2"
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+  },
+  "candidate_budget": 256,
+  "candidate_pool_size": 14,
+  "carrier": "mitmartin/bluehorizon-excursions-api#1",
+  "charged_candidate_executions": 14,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 6,
+  "records": [
+    {
+      "candidate_digest": "ee6a653774a88f8935e8de23b4ce3428bd157f846fe59ae1561a0d886087dc05",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-001"
+        ],
+        "elapsed_ms": 1245,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-ee6a653774a88f89",
+      "label": "integer_delta:src/services/excursionService.ts:2430",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 1
+    },
+    {
+      "candidate_digest": "1ce85e3289feeea1946523baa0c48d77ac6f3dcc94fbb78e1a5b8769dad149ce",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-002"
+        ],
+        "elapsed_ms": 1269,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-1ce85e3289feeea1",
+      "label": "integer_delta:src/services/excursionService.ts:3460",
+      "operator": "integer_delta",
+      "passed": false,
+      "rank": 2
+    },
+    {
+      "candidate_digest": "ed0dc047c18305c1c17487fe99747f72fa8a6d845fa15a0363a9d967658f54f2",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-003"
+        ],
+        "elapsed_ms": 1204,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-003/src/services/excursionService.ts:7:36: ERROR: Unexpected \"=\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-003/src/services/excursionService.ts:7:36: ERROR: Unexpected \"=\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-003/src/services/excursionService.ts:7:36: ERROR: Unexpected \"=\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-003/src/services/excursionService.ts:7:36: ERROR: Unexpected \\\"=\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"UTC\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-003/src/services/excursionService.ts:7:36: ERROR: Unexpected \\\"=\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-003/src/services/excursionService.ts:7:36: ERROR: Unexpected \\\"=\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-ed0dc047c18305c1",
+      "label": "comparison_boundary:src/services/excursionService.ts:350",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 3
+    },
+    {
+      "candidate_digest": "bfc2c9136ec7ffad93c8bfddc7b507236a94ec33d4ebcfa317a88ca9f35550ed",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-004"
+        ],
+        "elapsed_ms": 1236,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-004/src/services/excursionService.ts:7:35: ERROR: Unexpected \">\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-004/src/services/excursionService.ts:7:35: ERROR: Unexpected \">\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-004/src/services/excursionService.ts:7:35: ERROR: Unexpected \">\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-004/src/services/excursionService.ts:7:35: ERROR: Unexpected \\\">\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"UTC\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-004/src/services/excursionService.ts:7:35: ERROR: Unexpected \\\">\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-004/src/services/excursionService.ts:7:35: ERROR: Unexpected \\\">\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-bfc2c9136ec7ffad",
+      "label": "comparison_boundary:src/services/excursionService.ts:350",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 4
+    },
+    {
+      "candidate_digest": "857ad278f0481bcc48129cfb1d501630d44ed464e6baf2f0513f30e120ef97fa",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-005"
+        ],
+        "elapsed_ms": 1225,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-005/src/services/excursionService.ts:7:50: ERROR: Expected \">\" but found \"<\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-005/src/services/excursionService.ts:7:50: ERROR: Expected \">\" but found \"<\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-005/src/services/excursionService.ts:7:50: ERROR: Expected \">\" but found \"<\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-005/src/services/excursionService.ts:7:50: ERROR: Expected \\\">\\\" but found \\\"<\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"UTC\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-005/src/services/excursionService.ts:7:50: ERROR: Expected \\\">\\\" but found \\\"<\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-005/src/services/excursionService.ts:7:50: ERROR: Expected \\\">\\\" but found \\\"<\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-857ad278f0481bcc",
+      "label": "comparison_boundary:src/services/excursionService.ts:365",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 5
+    },
+    {
+      "candidate_digest": "eeea0784d7deb7ee62acbff419cd8d49cdbb371509c822bd390b2cd55ce9f9c0",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-006"
+        ],
+        "elapsed_ms": 1246,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-006/src/services/excursionService.ts:7:51: ERROR: Unexpected \"=\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-006/src/services/excursionService.ts:7:51: ERROR: Unexpected \"=\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 1,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": null,
+              "ok": false,
+              "stderr": "Error [TransformError]: Transform failed with 1 error:\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-006/src/services/excursionService.ts:7:51: ERROR: Unexpected \"=\"\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:561:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\n    at Readable.push (node:internal/streams/readable:392:5)\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\n",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-006/src/services/excursionService.ts:7:51: ERROR: Unexpected \\\"=\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"UTC\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-006/src/services/excursionService.ts:7:51: ERROR: Unexpected \\\"=\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 1, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": null, \"ok\": false, \"stderr\": \"Error [TransformError]: Transform failed with 1 error:\\n/tmp/genesis-a6-auto-9sy5yjkq/candidate-006/src/services/excursionService.ts:7:51: ERROR: Unexpected \\\"=\\\"\\n    at failureErrorWithLog (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1748:15)\\n    at /home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:1017:50\\n    at responseCallbacks.<computed> (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:884:9)\\n    at handleIncomingPacket (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:939:12)\\n    at Socket.readFromStdout (/home/anthony/experiments/a6v2-c010/node_modules/esbuild/lib/main.js:862:7)\\n    at Socket.emit (node:events:519:28)\\n    at addChunk (node:internal/streams/readable:561:12)\\n    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)\\n    at Readable.push (node:internal/streams/readable:392:5)\\n    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)\\n\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-eeea0784d7deb7ee",
+      "label": "comparison_boundary:src/services/excursionService.ts:365",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 6
+    },
+    {
+      "candidate_digest": "2eac89d12af611df16fb5fee01026d4fe69c8c514f364d6831515390754334d3",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-007"
+        ],
+        "elapsed_ms": 1194,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-2eac89d12af611df",
+      "label": "comparison_boundary:src/services/excursionService.ts:1447",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 7
+    },
+    {
+      "candidate_digest": "b0ada0918b06ac846748249d8b9d8d3a2fa6169444be027a4be3a2afafb046b7",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-008"
+        ],
+        "elapsed_ms": 1177,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-b0ada0918b06ac84",
+      "label": "comparison_boundary:src/services/excursionService.ts:1620",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 8
+    },
+    {
+      "candidate_digest": "8a00dfbf3d5ec86957b897bf2a47a3691e397b96870200bb96dfc99ccacd7bd1",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-009"
+        ],
+        "elapsed_ms": 1201,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-8a00dfbf3d5ec869",
+      "label": "comparison_boundary:src/services/excursionService.ts:1658",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 9
+    },
+    {
+      "candidate_digest": "0403b37f1af5cefdce03a1cc86d71eb461b21481d7092b6d72d1affb78114ad1",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-010"
+        ],
+        "elapsed_ms": 1184,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-0403b37f1af5cefd",
+      "label": "comparison_boundary:src/services/excursionService.ts:1658",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 10
+    },
+    {
+      "candidate_digest": "6920ac1ab8d97c09f4d21cbe94f712d33b47569364b39a19947cbff5186730c7",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-011"
+        ],
+        "elapsed_ms": 1322,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-6920ac1ab8d97c09",
+      "label": "comparison_boundary:src/services/excursionService.ts:2229",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 11
+    },
+    {
+      "candidate_digest": "4efa2d46d3f813a3a0ad3bf3abd782ab3f90b957ac45ce165e9560d0c3dfbd9d",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-012"
+        ],
+        "elapsed_ms": 1182,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-4efa2d46d3f813a3",
+      "label": "comparison_boundary:src/services/excursionService.ts:2664",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 12
+    },
+    {
+      "candidate_digest": "0f527910efc47ea387761c246037d8c2b90549aec7753393c1b7a181e5129c97",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-013"
+        ],
+        "elapsed_ms": 1271,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-0f527910efc47ea3",
+      "label": "comparison_boundary:src/services/excursionService.ts:2664",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 13
+    },
+    {
+      "candidate_digest": "e68b54f9c0a1c6a0cd86f83651e0b9ee81ff345cae0a4ccc550b217af49232d8",
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_007_eval_v2.py",
+          "/tmp/genesis-a6-auto-9sy5yjkq/candidate-014"
+        ],
+        "elapsed_ms": 1228,
+        "exit_code": 1,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": false,
+          "results": [
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [],
+              "ok": false,
+              "stderr": "",
+              "tz": "UTC"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "America/Nassau"
+            },
+            {
+              "exit_code": 0,
+              "expected": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "found": [
+                "exc-nas-food-02",
+                "exc-nas-kayak-03",
+                "exc-nas-reef-01"
+              ],
+              "ok": true,
+              "stderr": "",
+              "tz": "Pacific/Honolulu"
+            }
+          ],
+          "schema": "mira-genesis-a6-task007-evaluator-v2"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [], \"ok\": false, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+      },
+      "generator": "generic_scalar_mutations",
+      "id": "scalar-e68b54f9c0a1c6a0",
+      "label": "comparison_boundary:src/services/excursionService.ts:3954",
+      "operator": "comparison_boundary",
+      "passed": false,
+      "rank": 14
+    }
+  ],
+  "report_digest": "bda1c84b456eadd1edc47538278270c292a0be735199ab29408953d01dc027e7",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-autonomous-task-result-v1",
+  "task_id": 7,
+  "winner": null,
+  "winner_replay": null
+}
