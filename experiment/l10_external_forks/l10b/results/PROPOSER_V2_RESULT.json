@@ -1,0 +1,35 @@
+{
+  "schema": "mira-genesis-l10b-sherlock-claude-v2-result",
+  "proposer_freeze_commit": "630514429d97d2bd4c6131443fc5e57275346d25",
+  "cli": "Claude Code 2.1.289",
+  "model": "claude-sonnet-5-5",
+  "invocation_count": 1,
+  "exit_code": 0,
+  "is_error": false,
+  "terminal_reason": "completed",
+  "stop_reason": "tool_use",
+  "num_turns": 8,
+  "total_cost_usd": 0.158504,
+  "allowed_tools": [
+    "Read",
+    "Glob",
+    "Grep"
+  ],
+  "web_search_requests": 0,
+  "web_fetch_requests": 0,
+  "permission_denials": [],
+  "touched_paths": [
+    "sherlock_project/sherlock.py"
+  ],
+  "rationale": "A username ending in '.' yields a subdomain URL like 'alice..site.com'; urllib3 raises LocationParseError, which is not a requests RequestException, so it escapes get_response and crashes the run. Catching it there turns it into a per-site error result and the scan continues.",
+  "raw_artifact_sha256": {
+    "result_json": "b343d85cb76e73658a80982f70b423bda536fb5aaae91cc36df2e1acda0e3830",
+    "candidate_patch": "a76a54bac06db91d399a3db55a82ab5fb3846815607fbba0e0ff9d602793ba8b",
+    "summary_json": "d81e8f0b4af2c47ff6c9b6b3985d1350286e162389bca080f359eed9db3c46fc",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "started_at": "7e17edf6ebbb9df3698bb769b7a33e2827ccb799673d9b10f9e164925f08c460",
+    "finished_at": "4df91af7b3d55bdf40de2049e2ce0dd0f33c5d6e8c0035fe7176f81c6fc7ff9f",
+    "exit_code": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  "candidate_evaluated": false
+}
