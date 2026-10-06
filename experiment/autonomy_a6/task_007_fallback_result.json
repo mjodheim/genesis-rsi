@@ -1,0 +1,94 @@
+{
+  "applied": [
+    {
+      "new_sha256": "33e9b6c77e72c00eabb8748c33f2c98edd838d801f7bd7e33601f8ec5c56cd52",
+      "old_sha256": "bd042b89a19fef83e950d28aef59029c97c13407f960f07d1d7eef3f912911be",
+      "path": "src/services/excursionService.ts",
+      "supplied_path": "src/services/excursionService.ts"
+    }
+  ],
+  "autonomous_result_digest": "bda1c84b456eadd1edc47538278270c292a0be735199ab29408953d01dc027e7",
+  "cost_usd": 0.09154320000000002,
+  "evaluation": {
+    "elapsed_ms": 1160,
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "results": [
+        {
+          "exit_code": 0,
+          "expected": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "found": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "ok": true,
+          "stderr": "",
+          "tz": "UTC"
+        },
+        {
+          "exit_code": 0,
+          "expected": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "found": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "ok": true,
+          "stderr": "",
+          "tz": "America/Nassau"
+        },
+        {
+          "exit_code": 0,
+          "expected": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "found": [
+            "exc-nas-food-02",
+            "exc-nas-kayak-03",
+            "exc-nas-reef-01"
+          ],
+          "ok": true,
+          "stderr": "",
+          "tz": "Pacific/Honolulu"
+        }
+      ],
+      "schema": "mira-genesis-a6-task007-evaluator-v2"
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"objective_ok\": true, \"results\": [{\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"UTC\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"America/Nassau\"}, {\"exit_code\": 0, \"expected\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"found\": [\"exc-nas-food-02\", \"exc-nas-kayak-03\", \"exc-nas-reef-01\"], \"ok\": true, \"stderr\": \"\", \"tz\": \"Pacific/Honolulu\"}], \"schema\": \"mira-genesis-a6-task007-evaluator-v2\"}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 0,
+  "learned_template_digests": [],
+  "learned_templates": [],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "5b233f82367e914ff1a9c117a02322ce4d500933eab1be9ccaa4c2d54af947be",
+  "proposal": {
+    "edits": [
+      {
+        "new": "    return excursion.departures.some((departure) => departure.startsAt.slice(0, 10) === date);",
+        "old": "    const requestedDate = new Date(date);\n\n    return excursion.departures.some((departure) => {\n      const departureDate = new Date(departure.startsAt);\n      return departureDate.toDateString() === requestedDate.toDateString();\n    });",
+        "path": "src/services/excursionService.ts"
+      }
+    ],
+    "summary": "Compare the calendar-date prefix (YYYY-MM-DD) of each departure's startsAt, which already carries the port's local UTC offset, with the requested date string. This avoids any Date parsing and server-timezone dependence."
+  },
+  "report_digest": "13d6987312ffdc5587e8ef8f38799ec316320b0477007f2c4d9f097446a671e4",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6-task007-fallback-result-v1"
+}
