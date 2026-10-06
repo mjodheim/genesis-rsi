@@ -149,6 +149,13 @@ def generate(
         for start, end, replacement, operator in _site_alternatives(text):
             site_count += 1
             mutated = text[:start] + replacement + text[end:]
+            line_start = text.rfind("\n", 0, start) + 1
+            line_end = text.find("\n", end)
+            if line_end < 0:
+                line_end = len(text)
+            site_context = (
+                text[line_start:start] + "$SITE" + text[end:line_end]
+            ).strip()
             payload = {
                 "path": relative,
                 "start": start,
@@ -166,6 +173,15 @@ def generate(
                     "provenance": {
                         "generator": "generic_scalar_mutations",
                         "operator": operator,
+                        "site_edit": {
+                            "path": relative,
+                            "start": start,
+                            "end": end,
+                            "before": text[start:end],
+                            "after": replacement,
+                            "context": site_context,
+                            "expected_sha256": expected,
+                        },
                         "external_model_calls": 0,
                     },
                     "mutations": [

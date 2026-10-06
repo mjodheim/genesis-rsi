@@ -1,0 +1,13 @@
+{
+  "schema": "mira-genesis-a6b-retrospective-calibration-spec-v1",
+  "task_id": 10,
+  "carrier": "yaso09/tengiz#337",
+  "source_root": "/home/anthony/experiments/a6v2-c012",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/MEMORY_009.json",
+  "target_prefixes": ["internal/runtime/docker.go", "internal/health/health.go"],
+  "candidate_budget": 256,
+  "evaluator_argv": ["/home/anthony/mira-genesis-oe1/.venv/bin/python", "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_010_eval.py", "{workspace}"],
+  "evaluator_timeout_seconds": 20,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/RETRO_TASK_010.json",
+  "evidence_use": "development calibration only"
+}

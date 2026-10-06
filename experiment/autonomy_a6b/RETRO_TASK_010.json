@@ -1,0 +1,192 @@
+{
+  "autonomous_passed": true,
+  "baseline": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_010_eval.py",
+      "/home/anthony/experiments/a6v2-c012"
+    ],
+    "elapsed_ms": 62,
+    "exit_code": 1,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": false,
+      "results": [
+        {
+          "attempts_for_3": 4,
+          "default_logic_ok": true,
+          "name": "WaitForHealth",
+          "ok": false,
+          "operator": "<="
+        },
+        {
+          "attempts_for_3": 4,
+          "default_logic_ok": true,
+          "name": "doHTTPCheck",
+          "ok": false,
+          "operator": "<="
+        }
+      ],
+      "schema": "mira-genesis-a6-task010-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"objective_ok\": false, \"results\": [{\"attempts_for_3\": 4, \"default_logic_ok\": true, \"name\": \"WaitForHealth\", \"ok\": false, \"operator\": \"<=\"}, {\"attempts_for_3\": 4, \"default_logic_ok\": true, \"name\": \"doHTTPCheck\", \"ok\": false, \"operator\": \"<=\"}], \"schema\": \"mira-genesis-a6-task010-evaluator-v1\"}\n"
+  },
+  "candidate_budget": 256,
+  "carrier": "yaso09/tengiz#337",
+  "charged_candidate_executions": 1,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 9,
+  "records": [
+    {
+      "candidate_digest": "27b0bef73377e77dc69a628dc1f7e727928b5a4f569be96b28a4dba2db620ea8",
+      "coordination_size": 2,
+      "evaluation": {
+        "argv": [
+          "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+          "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_010_eval.py",
+          "/tmp/genesis-a6b-auto-mc9bjbq4/candidate-001"
+        ],
+        "elapsed_ms": 63,
+        "exit_code": 0,
+        "parsed": {
+          "external_model_calls": 0,
+          "objective_ok": true,
+          "results": [
+            {
+              "attempts_for_3": 3,
+              "default_logic_ok": true,
+              "name": "WaitForHealth",
+              "ok": true,
+              "operator": "<"
+            },
+            {
+              "attempts_for_3": 3,
+              "default_logic_ok": true,
+              "name": "doHTTPCheck",
+              "ok": true,
+              "operator": "<"
+            }
+          ],
+          "schema": "mira-genesis-a6-task010-evaluator-v1"
+        },
+        "stderr": "",
+        "stdout": "{\"external_model_calls\": 0, \"objective_ok\": true, \"results\": [{\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"WaitForHealth\", \"ok\": true, \"operator\": \"<\"}, {\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"doHTTPCheck\", \"ok\": true, \"operator\": \"<\"}], \"schema\": \"mira-genesis-a6-task010-evaluator-v1\"}\n"
+      },
+      "generator": "coordinated_learned_template",
+      "id": "learned-coordinated-27b0bef73377e77d",
+      "label": "learned_coordinated:1f8811a279e9:2files",
+      "operator": "learned_template",
+      "passed": true,
+      "rank": 1
+    }
+  ],
+  "report_digest": "30f5683d1c12bc37d0c2899c353674d40f41ac2344859933942c0c540114b297",
+  "retry_count": 0,
+  "schedule": {
+    "family_input_counts": {
+      "coordinated": 512,
+      "exemplar": 0,
+      "learned": 2,
+      "learned_coordinated": 1,
+      "retained": 30,
+      "scalar": 236
+    },
+    "family_scheduled_counts": {
+      "coordinated": 44,
+      "exemplar": 0,
+      "learned": 2,
+      "learned_coordinated": 1,
+      "retained": 30,
+      "scalar": 179
+    },
+    "schedule_digest": "5166f5f5501abf0bf6cfb172ef74dd1d1fd4d4bb7acba20ca4962d8d7db14dc0",
+    "scheduled_count": 256,
+    "schema": "genesis-fair-candidate-schedule-v1",
+    "weights": {
+      "coordinated": 1,
+      "exemplar": 1,
+      "learned": 1,
+      "learned_coordinated": 3,
+      "retained": 1,
+      "scalar": 4
+    }
+  },
+  "schema": "mira-genesis-a6b-autonomous-task-result-v1",
+  "task_id": 10,
+  "winner": {
+    "candidate_digest": "27b0bef73377e77dc69a628dc1f7e727928b5a4f569be96b28a4dba2db620ea8",
+    "coordination_size": 2,
+    "evaluation": {
+      "argv": [
+        "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+        "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_010_eval.py",
+        "/tmp/genesis-a6b-auto-mc9bjbq4/candidate-001"
+      ],
+      "elapsed_ms": 63,
+      "exit_code": 0,
+      "parsed": {
+        "external_model_calls": 0,
+        "objective_ok": true,
+        "results": [
+          {
+            "attempts_for_3": 3,
+            "default_logic_ok": true,
+            "name": "WaitForHealth",
+            "ok": true,
+            "operator": "<"
+          },
+          {
+            "attempts_for_3": 3,
+            "default_logic_ok": true,
+            "name": "doHTTPCheck",
+            "ok": true,
+            "operator": "<"
+          }
+        ],
+        "schema": "mira-genesis-a6-task010-evaluator-v1"
+      },
+      "stderr": "",
+      "stdout": "{\"external_model_calls\": 0, \"objective_ok\": true, \"results\": [{\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"WaitForHealth\", \"ok\": true, \"operator\": \"<\"}, {\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"doHTTPCheck\", \"ok\": true, \"operator\": \"<\"}], \"schema\": \"mira-genesis-a6-task010-evaluator-v1\"}\n"
+    },
+    "generator": "coordinated_learned_template",
+    "id": "learned-coordinated-27b0bef73377e77d",
+    "label": "learned_coordinated:1f8811a279e9:2files",
+    "operator": "learned_template",
+    "passed": true,
+    "rank": 1
+  },
+  "winner_replay": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6/task_010_eval.py",
+      "/tmp/genesis-a6b-auto-replay-g4qbxtn0/workspace"
+    ],
+    "elapsed_ms": 65,
+    "exit_code": 0,
+    "parsed": {
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "results": [
+        {
+          "attempts_for_3": 3,
+          "default_logic_ok": true,
+          "name": "WaitForHealth",
+          "ok": true,
+          "operator": "<"
+        },
+        {
+          "attempts_for_3": 3,
+          "default_logic_ok": true,
+          "name": "doHTTPCheck",
+          "ok": true,
+          "operator": "<"
+        }
+      ],
+      "schema": "mira-genesis-a6-task010-evaluator-v1"
+    },
+    "stderr": "",
+    "stdout": "{\"external_model_calls\": 0, \"objective_ok\": true, \"results\": [{\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"WaitForHealth\", \"ok\": true, \"operator\": \"<\"}, {\"attempts_for_3\": 3, \"default_logic_ok\": true, \"name\": \"doHTTPCheck\", \"ok\": true, \"operator\": \"<\"}], \"schema\": \"mira-genesis-a6-task010-evaluator-v1\"}\n"
+  }
+}

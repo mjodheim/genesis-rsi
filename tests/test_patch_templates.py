@@ -53,3 +53,18 @@ def test_generate_creates_candidate_without_touching_source(tmp_path: Path) -> N
     assert result["candidate_count"] == 1
     assert "var depth = 1;" in result["candidates"][0]["mutations"][0]["content_utf8"]
     assert target.read_text() == "var depth = 0;\n"
+
+
+def test_go_learned_template_preserves_short_declaration_and_block_spacing() -> None:
+    template = patch_templates.learn_template(
+        "for i := 0; i <= retries; i++ {\n",
+        "for i := 0; i < retries; i++ {\n",
+        source_digest="go-result",
+    )
+
+    out = patch_templates.apply_template_to_line(
+        "for i := 0; i <= maxRetries; i++ {\n",
+        template,
+    )
+
+    assert out == "for i := 0; i < maxRetries; i++ {\n"

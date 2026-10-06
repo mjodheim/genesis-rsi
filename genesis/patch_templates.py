@@ -197,12 +197,32 @@ def _join_tokens(tokens: Sequence[str]) -> str:
     """Render tokens with conservative spacing while preserving valid syntax."""
     if not tokens:
         return ""
+
+    # Preserve compatibility with templates learned before Go's := operator had
+    # any dedicated rendering logic. The tokenizer intentionally keeps ':' and
+    # '=' separate in stored patterns; rendering folds only that adjacent pair.
+    normalized: list[str] = []
+    index = 0
+    while index < len(tokens):
+        if index + 1 < len(tokens) and tokens[index] == ":" and tokens[index + 1] == "=":
+            normalized.append(":=")
+            index += 2
+            continue
+        normalized.append(tokens[index])
+        index += 1
+    tokens = normalized
+
     text = tokens[0]
     no_space_before = {")","]","}",",",";",":",".","?.","::","..","..="}
     no_space_after = {"(","[","{",".","?.","::","..","..="}
     tight_ops = {"++","--"}
     for prev, tok in zip(tokens, tokens[1:]):
-        if tok in no_space_before or prev in no_space_after or tok in tight_ops or prev in tight_ops:
+        if (
+            tok in no_space_before
+            or prev in no_space_after
+            or tok in tight_ops
+            or (prev in tight_ops and (_IDENT_RE.match(tok) or _NUM_RE.match(tok)))
+        ):
             text += tok
         elif tok in {"(", "["} and (_IDENT_RE.match(prev) or prev in {")", "]"}):
             text += tok
