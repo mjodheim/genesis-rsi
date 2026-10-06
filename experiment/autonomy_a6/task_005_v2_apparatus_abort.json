@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-a6-task005-apparatus-abort-v2",
+  "task_id": 5,
+  "date": "2026-10-06",
+  "classification": "APPARATUS_ABORT_BEFORE_SEMANTIC_EVALUATION",
+  "evaluator_v2_freeze_commit": "7cd1b565",
+  "cause": "Vitest 4.1.9 interpreted --reporter=basic as a custom reporter module and exited during startup before loading the test.",
+  "semantic_baseline_observed": false,
+  "semantic_candidate_outcome_observed": false,
+  "additional_fallback_model_calls": 0,
+  "candidate_generator_changed_for_v3": false,
+  "objective_semantics_changed_for_v3": false,
+  "policy": "Preserve V2 as an apparatus abort. V3 removes only the reporter CLI option and retains the dedicated config, objective and candidate set."
+}
