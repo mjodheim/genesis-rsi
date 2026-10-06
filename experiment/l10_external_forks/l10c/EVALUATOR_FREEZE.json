@@ -1,0 +1,43 @@
+{
+  "schema": "mira-genesis-l10c-bat-4039-evaluator-freeze-v1",
+  "status": "FROZEN_BEFORE_BASELINE_OR_CANDIDATE_EXECUTION",
+  "protocol_c_commit": "62ad9f18143ed5beb537832aa9583edd76884b8f",
+  "selection_commit": "aa9412873b39c1ea633c103e0f15bcf7673a0c0a",
+  "issue_payload_commit": "99cad7ccd8718a8e10d02b1c42ca439072f9618d",
+  "carrier": {
+    "upstream": "sharkdp/bat",
+    "fork": "mjodheim/bat",
+    "frozen_commit": "4608fc959aa8abf80d32198836511a570b7ae9ea",
+    "issue_number": 4039,
+    "issue_payload_sha256": "33a89861828c3a6f60055790a3da5a2192f8b54268112e5714d4f6bf049ee05e"
+  },
+  "evaluator": {
+    "script": "experiment/l10_external_forks/l10c/eval_bat_4039.py",
+    "script_sha256": "13223af74b81098a47c335faaa911e186254b972f5fbfd6fa9625acb4b850884",
+    "image_id": "sha256:e37db5048d151226b42e51e9382d5837c879f18cfca90e05c713b3b0da2bbe7f",
+    "base_image": "rust@sha256:1f0dbad1df66647807e6952d1db85d0b2bda7606cb2139d82517e4f009967376",
+    "dockerfile_sha256": "71fcd2288b43347a9b07e3dbfe0d580def5201b0cfbc6c3740e230e63fbe352f",
+    "fetch_bootstrap_sha256": "536e506bb90914c243a12b397b9a998f85ae2cbd9ba02dfd03a9e155ca5ca0f4",
+    "carrier_cargo_toml_sha256": "d494847ac2b7206873b44c29afaf18f864ac0c94a7a34a79d0b89e7eb5e971ef",
+    "carrier_cargo_lock_sha256": "acf50d3d0259b0f729fc4420bc0444bf670108b519018bf402367bffa898001f",
+    "network_mode": "none",
+    "workspace_mount": "read_only",
+    "cargo_offline": true,
+    "regression": "cargo test --locked --offline --lib",
+    "objective": {
+      "control_range": ":-2",
+      "control_input": "line1\\nline2\\nline3\\n",
+      "control_expected_stdout": "line1\\n",
+      "issue_range": ":-999999999999999999",
+      "panic_markers": [
+        "thread 'main' panicked",
+        "panicked at",
+        "capacity overflow"
+      ],
+      "accepted_issue_outcome": "Either successful non-panicking output containing only original input lines, or a controlled exit code 1/2 with an error/range diagnostic and no panic."
+    }
+  },
+  "baseline_executions_before_freeze": 0,
+  "candidate_executions_before_freeze": 0,
+  "strict_l10_independent_pass_possible": false
+}
