@@ -1,0 +1,17 @@
+{
+  "schema": "mira-genesis-a6-task005-apparatus-abort-v1",
+  "task_id": 5,
+  "date": "2026-10-06",
+  "classification": "APPARATUS_ABORT_BEFORE_SEMANTIC_EVALUATION",
+  "autonomous_run_digest": "449056ee9d988a46dea63e7ba6e7cd24188d94db31fd7b628fbdd2cdd1f0afaa",
+  "fallback_run_digest": "8427adbca96d68d21ec844e5117b79c8c0e2ab77c1c7595372a0a76f857829f1",
+  "cause": "The standalone Vitest executable discovered the repository vitest.config.ts, whose import of vitest/config could not resolve because the candidate workspace intentionally had no node_modules. The baseline and every candidate exited during Vitest startup before the frozen semantic assertion ran.",
+  "semantic_baseline_observed": false,
+  "semantic_candidate_outcome_observed": false,
+  "fallback_model_was_invoked": true,
+  "fallback_model_calls": 1,
+  "fallback_proposal_must_not_be_reinvoked": true,
+  "candidate_generator_changed_for_v2": false,
+  "objective_semantics_changed_for_v2": false,
+  "policy": "Preserve both invalid V1 outputs. V2 may change evaluator transport only. Rerun the identical autonomous campaign first. If it still needs fallback, evaluate the already-frozen single fallback proposal without another model call."
+}
