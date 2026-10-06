@@ -1,0 +1,20 @@
+You are the single frozen fallback proposer for A6b task 1.
+
+Repository: vjuliaife/TariffShield
+Frozen commit: 3d150c7f102f58cf77ea0dc51dbe5b20098cdd11
+Issue: #492 — approve_upgrade expiry check has an off-by-one boundary at the exact expiry ledger
+
+Public task contract:
+- approve_upgrade currently accepts a proposal when the current ledger equals proposal.expiry_ledger.
+- The exact expiry ledger must be treated as expired.
+- One ledger before expiry must remain valid.
+- One ledger past expiry must remain expired.
+- cancel_upgrade behavior must remain unchanged.
+
+Inspect only the frozen repository and return the smallest source-only repair.
+Do not run tests. Do not use the web. Do not inspect Genesis files. Do not
+modify files yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an
+exact UTF-8 substring replacement whose old text occurs exactly once. Do not
+include tests or generated files.
