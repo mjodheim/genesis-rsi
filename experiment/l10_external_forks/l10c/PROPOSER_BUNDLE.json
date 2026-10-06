@@ -1,0 +1,56 @@
+{
+  "schema": "mira-genesis-l10c-bat-proposer-bundle-v1",
+  "status": "FROZEN_BEFORE_EXTERNAL_PROPOSER_INVOCATION",
+  "carrier_commit": "4608fc959aa8abf80d32198836511a570b7ae9ea",
+  "issue_payload_sha256": "33a89861828c3a6f60055790a3da5a2192f8b54268112e5714d4f6bf049ee05e",
+  "files": [
+    {
+      "path": "src/controller.rs",
+      "sha256": "4992f1422520fe824c5197351e0b77d1fe49df6204673b6ee441c666f13b77cc",
+      "bytes": 12913
+    },
+    {
+      "path": "src/line_range.rs",
+      "sha256": "7b1e86ccd62b37253a88632d2b8725ef3996633b0a9811dd07a7948f342585a3",
+      "bytes": 25260
+    },
+    {
+      "path": "src/config.rs",
+      "sha256": "39423fc9f95576f8cdad4ad2b8babf71de1bc9c076598cef1947fd56263d9789",
+      "bytes": 7365
+    },
+    {
+      "path": "src/input.rs",
+      "sha256": "fb2c72029a7907d06268a0c33c93b7b72bd70577ec8cae6277377d33969c1e45",
+      "bytes": 19613
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "d494847ac2b7206873b44c29afaf18f864ac0c94a7a34a79d0b89e7eb5e971ef",
+      "bytes": 3773
+    }
+  ],
+  "excluded": [
+    "Mira Genesis repository",
+    "external evaluator source",
+    "baseline output",
+    "candidate outcomes",
+    "credentials",
+    "private files"
+  ],
+  "proposer": {
+    "cli": "Claude Code 2.1.289",
+    "model": "claude-sonnet-5-5",
+    "session_persistence": false,
+    "permission_mode": "plan",
+    "permission_prompts": "none",
+    "allowed_tools": [
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "max_budget_usd": 1,
+    "invocation_count": 1,
+    "no_retry_after_result": true
+  }
+}
