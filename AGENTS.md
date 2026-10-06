@@ -89,3 +89,33 @@ contributor-rights boundary is active. Follow [`CONTRIBUTING.md`](CONTRIBUTING.m
 
 Preserving alternative commercial licensing requires a clean chain of rights for future external
 contributions.
+
+
+## 8. L9 persistence directive — continue through negative experiments
+
+Until the authoritative L9 criteria are genuinely satisfied, treat **closing L9** as the primary
+research objective of the active Genesis programme.
+
+A negative, neutral or failed experiment is a scientific result and **not** a stopping condition.
+After such a result, agents should, within the same working session whenever tools and resources
+allow:
+
+1. preserve the negative result and its provenance;
+2. diagnose the failure against the authoritative L9 criteria and current evidence;
+3. formulate the next falsifiable mechanism or experiment;
+4. implement and test it first on already-consumed/development data;
+5. retain improvements and discard or archive ineffective branches;
+6. continue this loop rather than stopping merely to report that the latest attempt failed.
+
+Fresh/prospective populations remain protected: tune only on consumed/development evidence, freeze
+the apparatus and acceptance predicates before a fresh run, and never retune that frozen candidate
+after observing its prospective result.
+
+This persistence directive does **not** relax the scientific boundary in section 5. Never move L9
+thresholds, relabel scoped evidence as general L9, suppress negative windows/results, or claim success
+without satisfying the repository's authoritative L9 definition. If work becomes blocked by an
+external dependency, unavailable permission/tooling, or a safety/publication boundary, leave a
+precise durable state record and the next executable step so another session can resume immediately.
+
+Do not advance to L10 external/fork validation as though L9 were closed until L9 is genuinely closed
+under the authoritative criteria.
