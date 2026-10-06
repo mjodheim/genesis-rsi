@@ -1,0 +1,16 @@
+{
+  "schema": "mira-genesis-a6b-task-spec-v1",
+  "task_id": 12,
+  "carrier": "davidhealey/waistline#979",
+  "source_root": "/home/anthony/experiments/a6b-c039",
+  "memory_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/MEMORY_021.json",
+  "target_prefixes": ["www/activities/statistics/js/statistics.js"],
+  "candidate_budget": 256,
+  "evaluator_argv": [
+    "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+    "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_012_eval.py",
+    "{workspace}"
+  ],
+  "evaluator_timeout_seconds": 20,
+  "result_path": "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_012_autonomous_result.json"
+}
