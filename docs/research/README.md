@@ -10,6 +10,7 @@ The active project direction is documented at repository root:
 
 Current implementation lines that feed the new architecture include:
 
+- G1-G5 foundation: `docs/G1_G5_FOUNDATION_2026-10-06.md`
 - software autonomy: `docs/AUTONOMOUS_RSI_SOFTWARE_TRACK.md`
 - failure-driven self-extension: `genesis/learning/self_extension.py`
 - capability-gap diagnosis: `genesis/learning/capability_gaps.py`

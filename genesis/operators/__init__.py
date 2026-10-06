@@ -1,5 +1,5 @@
 """Transformation operator substrate for Genesis v2."""
 
-from . import structural
+from . import structural, universal
 
-__all__ = ["structural"]
+__all__ = ["structural", "universal"]

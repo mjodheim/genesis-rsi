@@ -1,5 +1,5 @@
-"""Genesis evolution architecture surface.
+"""Experiment design and descendant evolution for Genesis v2."""
 
-Compatibility-first Genesis v2 namespace. Active components migrate here
-incrementally while historical flat modules remain valid.
-"""
+from . import experiment_design
+
+__all__ = ["experiment_design"]
