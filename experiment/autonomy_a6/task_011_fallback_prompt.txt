@@ -1,0 +1,12 @@
+You are the single fallback proposer for one frozen software-repair task.
+
+Repository: airframesio/acars-decoder-typescript
+Frozen commit: 51c912e75deb211403fe2f984fdefa1114766dce
+Issue: #473 — DateTimeUtils.convertDayTimeToTod is off by one (day 15 renders as day 16)
+
+Public issue summary:
+convertDayTimeToTod parses DDHHMMSS and currently places day d at d*86400 seconds from the Unix epoch. Since Jan 1 is offset zero, every rendered day is one too high; day 31 can overflow into February. Days are one-indexed within the month.
+
+Inspect the repository and produce the smallest source-only repair. Do not run tests, do not use the web, do not inspect Genesis files, and do not make edits yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an exact UTF-8 substring replacement whose old text occurs exactly once in the named file. Do not include test changes.
