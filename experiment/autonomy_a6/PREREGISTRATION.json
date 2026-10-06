@@ -1,0 +1,11 @@
+{
+  "schema": "mira-genesis-autonomy-a6-preregistration-v1",
+  "status": "PRE_REGISTERED_BEFORE_TASK_SELECTION",
+  "date": "2026-10-06",
+  "campaign": {"target_runnable_tasks": 12, "waves": 3, "runnable_tasks_per_wave": 4, "minimum_language_families": 3, "preserve_all_exclusions": true},
+  "autonomous_arm": {"model_calls": 0, "candidate_budget": 256, "manual_candidate_repair": false, "silent_retry": false},
+  "fallback_arm": {"trigger": "autonomous budget exhausted without a passing candidate", "maximum_model_calls_per_task": 1, "single_model_for_campaign": true},
+  "learning": {"updates_only_from_passing_results": true, "failed_results_retained": true, "no_task_specific_operator_after_inspection": true},
+  "pass_rule": {"wave3_fallback_rate_lower_than_wave1": true, "wave3_model_calls_per_solved_task_lower_than_wave1": true, "minimum_autonomous_successes_total": 4, "minimum_causal_reuses": 2},
+  "claim_boundary": "A6 DEVELOPMENT only; A7 remains the zero-model-call multi-language campaign."
+}

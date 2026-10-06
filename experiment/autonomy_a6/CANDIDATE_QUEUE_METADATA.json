@@ -1,0 +1,1896 @@
+{
+  "schema": "mira-genesis-a6-metadata-queue-v1",
+  "queries": [
+    "is:issue is:open label:bug created:>=2026-07-01 \"off by one\" in:title",
+    "is:issue is:open label:bug created:>=2026-07-01 \"off-by-one\" in:title",
+    "is:issue is:open label:bug created:>=2026-07-01 \"one extra\" in:title",
+    "is:issue is:open label:bug created:>=2026-07-01 \"one less\" in:title",
+    "is:issue is:open label:bug created:>=2026-07-01 \"one too many\" in:title",
+    "is:issue is:open label:bug created:>=2026-07-01 \"one too few\" in:title"
+  ],
+  "count": 99,
+  "items": [
+    {
+      "repository": "nnayda/remora",
+      "issue_number": 206,
+      "title": "openViaAttach existing-tab revive lacks the sessionNotFound\u2192respawn fallback (one extra click when the session is truly gone)",
+      "created_at": "2026-07-01T13:16:07Z",
+      "updated_at": "2026-07-01T13:16:07Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 2474,
+      "stargazers_count": 0,
+      "queue_index": 1
+    },
+    {
+      "repository": "CANOE-main/canoe-commercial",
+      "issue_number": 8,
+      "title": "Off-by-one slice errors in `weather_mapping.get_weekly_variation`",
+      "created_at": "2026-07-03T18:34:32Z",
+      "updated_at": "2026-07-03T18:34:32Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 5845,
+      "stargazers_count": 0,
+      "queue_index": 2
+    },
+    {
+      "repository": "linnin233-l/spica-test-2",
+      "issue_number": 11,
+      "title": "truncate off-by-one error",
+      "created_at": "2026-07-07T15:45:31Z",
+      "updated_at": "2026-07-07T15:46:49Z",
+      "comments": 2,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 29,
+      "stargazers_count": 0,
+      "queue_index": 3
+    },
+    {
+      "repository": "artemis-sbs/LegendaryMissions",
+      "issue_number": 680,
+      "title": "[bug]: sbs.get_text_block_height() and possibly related functions are off by one character",
+      "created_at": "2026-07-09T20:08:37Z",
+      "updated_at": "2026-08-21T16:48:25Z",
+      "comments": 3,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 40462,
+      "stargazers_count": 6,
+      "queue_index": 4
+    },
+    {
+      "repository": "steventango/model-uncertainty-exploration",
+      "issue_number": 34,
+      "title": "PlantEnv: step_env vs is_terminal termination threshold off-by-one (from #12)",
+      "created_at": "2026-07-10T06:41:44Z",
+      "updated_at": "2026-07-10T06:41:44Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 537,
+      "stargazers_count": 0,
+      "queue_index": 5
+    },
+    {
+      "repository": "CEES-STELLAR-COTERIE/cee-stellar-stream-api",
+      "issue_number": 5,
+      "title": "Possible off-by-one on cancelled_at ledger assignment",
+      "created_at": "2026-07-11T10:49:19Z",
+      "updated_at": "2026-07-11T10:49:19Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 311,
+      "stargazers_count": 0,
+      "queue_index": 6
+    },
+    {
+      "repository": "FatmanUK/ptgen",
+      "issue_number": 43,
+      "title": "Debug slot number off-by-one error",
+      "created_at": "2026-07-12T23:07:00Z",
+      "updated_at": "2026-10-05T20:56:49Z",
+      "comments": 1,
+      "labels": [
+        "bug",
+        "line372",
+        "testFix"
+      ],
+      "default_branch": "mother",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 229,
+      "stargazers_count": 0,
+      "queue_index": 7
+    },
+    {
+      "repository": "astragenie/astramem-local",
+      "issue_number": 280,
+      "title": "extraction-bench judge: matched_gold_index off-by-one silently drops confirmed matches",
+      "created_at": "2026-07-14T02:38:16Z",
+      "updated_at": "2026-07-14T02:38:16Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 10842,
+      "stargazers_count": 0,
+      "queue_index": 8
+    },
+    {
+      "repository": "StellarFraction/StellarFraction-contracts",
+      "issue_number": 51,
+      "title": "[BUG-CONTRACT] Fix off-by-one block math check inside timelock checks",
+      "created_at": "2026-07-14T10:03:50Z",
+      "updated_at": "2026-07-14T10:03:50Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 207,
+      "stargazers_count": 4,
+      "queue_index": 9
+    },
+    {
+      "repository": "executablebooks/MyST-Parser",
+      "issue_number": 1165,
+      "title": "Line attribution inside `{include}`d markdown is off by one",
+      "created_at": "2026-07-14T23:06:07Z",
+      "updated_at": "2026-07-14T23:06:07Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 2494,
+      "stargazers_count": 893,
+      "queue_index": 10
+    },
+    {
+      "repository": "mitmartin/bluehorizon-excursions-api",
+      "issue_number": 1,
+      "title": "Fix timezone off-by-one in excursion date search",
+      "created_at": "2026-07-15T03:53:33Z",
+      "updated_at": "2026-07-15T11:35:12Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "agentic-devops"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 81,
+      "stargazers_count": 0,
+      "queue_index": 11
+    },
+    {
+      "repository": "taskiq-python/taskiq",
+      "issue_number": 647,
+      "title": "--hardkill-count appears off by one",
+      "created_at": "2026-07-17T14:58:43Z",
+      "updated_at": "2026-07-17T15:01:06Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 2961,
+      "stargazers_count": 2350,
+      "queue_index": 12
+    },
+    {
+      "repository": "yaso09/tengiz",
+      "issue_number": 185,
+      "title": "LOW: Off-by-one in WaitForHealth retry loop \u2014 does retries+1 attempts",
+      "created_at": "2026-07-17T16:22:48Z",
+      "updated_at": "2026-07-17T16:22:48Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 11700,
+      "stargazers_count": 4,
+      "queue_index": 13
+    },
+    {
+      "repository": "emoon/rust_minifb",
+      "issue_number": 417,
+      "title": "Menu handling: wrong item flags, index desync on removal, off-by-one handles",
+      "created_at": "2026-07-18T19:13:18Z",
+      "updated_at": "2026-07-18T19:13:18Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "macOS",
+        "windows"
+      ],
+      "default_branch": "master",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 1324,
+      "stargazers_count": 1216,
+      "queue_index": 14
+    },
+    {
+      "repository": "yaso09/tengiz",
+      "issue_number": 337,
+      "title": "WaitForHealth and doHTTPCheck have off-by-one retry loops",
+      "created_at": "2026-07-18T22:59:36Z",
+      "updated_at": "2026-07-18T22:59:36Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 11700,
+      "stargazers_count": 4,
+      "queue_index": 15
+    },
+    {
+      "repository": "airframesio/acars-decoder-typescript",
+      "issue_number": 473,
+      "title": "Bug: DateTimeUtils.convertDayTimeToTod is off-by-one (day 15 renders as day 16)",
+      "created_at": "2026-07-24T00:52:27Z",
+      "updated_at": "2026-07-24T00:52:27Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 2339,
+      "stargazers_count": 22,
+      "queue_index": 16
+    },
+    {
+      "repository": "jeremysball/token-burn-dashboard",
+      "issue_number": 55,
+      "title": "Git Blame attributes commit-session usage to the wrong commit (off-by-one)",
+      "created_at": "2026-07-26T00:41:52Z",
+      "updated_at": "2026-07-26T00:41:52Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "P1-high",
+        "area:backend"
+      ],
+      "default_branch": "main",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 5749,
+      "stargazers_count": 0,
+      "queue_index": 17
+    },
+    {
+      "repository": "vjuliaife/TariffShield",
+      "issue_number": 492,
+      "title": "approve_upgrade expiry check has an off-by-one boundary at the exact expiry ledger",
+      "created_at": "2026-07-27T18:57:01Z",
+      "updated_at": "2026-07-27T18:57:01Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "contract",
+        "upgrade"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 2153,
+      "stargazers_count": 2,
+      "queue_index": 18
+    },
+    {
+      "repository": "yaso09/tengiz",
+      "issue_number": 1161,
+      "title": "MEDIUM: Off-by-one in health check retry loops runs retries+1 attempts",
+      "created_at": "2026-07-29T14:20:57Z",
+      "updated_at": "2026-07-29T14:20:57Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 11700,
+      "stargazers_count": 4,
+      "queue_index": 19
+    },
+    {
+      "repository": "lafuan/Sribuu",
+      "issue_number": 1405,
+      "title": "[Bug] Transaction date uses UTC \u2014 may be off by one day for non-UTC users",
+      "created_at": "2026-07-29T15:35:57Z",
+      "updated_at": "2026-07-29T15:35:57Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 7125,
+      "stargazers_count": 0,
+      "queue_index": 20
+    },
+    {
+      "repository": "lafuan/Sribuu",
+      "issue_number": 1416,
+      "title": "[Bug] Transaction date uses UTC \u2014 may be off by one day for non-UTC users",
+      "created_at": "2026-07-29T15:39:22Z",
+      "updated_at": "2026-07-29T15:39:22Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 7125,
+      "stargazers_count": 0,
+      "queue_index": 21
+    },
+    {
+      "repository": "lafuan/Sribuu",
+      "issue_number": 1417,
+      "title": "[Bug] Transaction date uses UTC \u2014 may be off by one day for non-UTC users",
+      "created_at": "2026-07-29T15:39:34Z",
+      "updated_at": "2026-07-29T15:39:34Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 7125,
+      "stargazers_count": 0,
+      "queue_index": 22
+    },
+    {
+      "repository": "lafuan/Sribuu",
+      "issue_number": 1434,
+      "title": "Bug: formatDate() timezone bug \u2014 date may display off-by-one day",
+      "created_at": "2026-07-29T17:06:55Z",
+      "updated_at": "2026-07-29T17:06:55Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "priority:high",
+        "frontend"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 7125,
+      "stargazers_count": 0,
+      "queue_index": 23
+    },
+    {
+      "repository": "yaso09/tengiz",
+      "issue_number": 1307,
+      "title": "MEDIUM: Off-by-one in WaitForHealth retries \u2014 executes retries+1 attempts",
+      "created_at": "2026-07-30T21:18:57Z",
+      "updated_at": "2026-07-30T21:18:57Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 11700,
+      "stargazers_count": 4,
+      "queue_index": 24
+    },
+    {
+      "repository": "Analyst-Harsh/triage-bot-test",
+      "issue_number": 28,
+      "title": "factorial(n) returns wrong result for all positive n (off-by-one loop range)",
+      "created_at": "2026-08-01T10:40:49Z",
+      "updated_at": "2026-08-01T10:40:49Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 23,
+      "stargazers_count": 0,
+      "queue_index": 25
+    },
+    {
+      "repository": "vrischmann/tree-sitter-templ",
+      "issue_number": 152,
+      "title": "lookahead_buffer_find_keyword has an off-by-one in its backtracking arithmetic",
+      "created_at": "2026-08-01T16:00:52Z",
+      "updated_at": "2026-08-01T16:20:19Z",
+      "comments": 2,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 10573,
+      "stargazers_count": 100,
+      "queue_index": 26
+    },
+    {
+      "repository": "block/buzz",
+      "issue_number": 4421,
+      "title": "[Bug] Desktop: editing an agent forks a duplicate identity-less record instead of updating the existing one",
+      "created_at": "2026-08-02T23:01:23Z",
+      "updated_at": "2026-08-02T23:01:23Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 606432,
+      "stargazers_count": 35603,
+      "queue_index": 27
+    },
+    {
+      "repository": "x-ror/lava",
+      "issue_number": 357,
+      "title": "runtime: stack-trace line numbers are off by one (CommonJS wrapper vs JSEvaluateScript)",
+      "created_at": "2026-08-03T09:30:10Z",
+      "updated_at": "2026-08-03T20:25:04Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "agent-ready"
+      ],
+      "default_branch": "master",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 3259,
+      "stargazers_count": 0,
+      "queue_index": 28
+    },
+    {
+      "repository": "FuelLabs/fuelup",
+      "issue_number": 836,
+      "title": "Download retry count is off by one",
+      "created_at": "2026-08-03T12:14:14Z",
+      "updated_at": "2026-08-03T12:14:14Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 7357,
+      "stargazers_count": 282,
+      "queue_index": 29
+    },
+    {
+      "repository": "bushuyeu/iolani-g1-workshop",
+      "issue_number": 27,
+      "title": "validate.py joint-limit indices look off by one (shoulder pitch vs roll)",
+      "created_at": "2026-08-05T11:01:59Z",
+      "updated_at": "2026-08-05T11:01:59Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "P0"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 475,
+      "stargazers_count": 0,
+      "queue_index": 30
+    },
+    {
+      "repository": "andlo/haos-ovos-addons",
+      "issue_number": 8,
+      "title": "ovos-core's SkillManager never reaches set_ready() unless extra_pip_packages has at least one skill -- blocks ALL skills, everywhere, from answering",
+      "created_at": "2026-08-06T11:05:11Z",
+      "updated_at": "2026-08-06T11:05:11Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 661,
+      "stargazers_count": 5,
+      "queue_index": 31
+    },
+    {
+      "repository": "caorantaoyao/maintainermesh-demo-lib",
+      "issue_number": 1,
+      "title": "truncate off-by-one: returned string exceeds max_len",
+      "created_at": "2026-08-06T19:11:59Z",
+      "updated_at": "2026-08-06T19:11:59Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 2,
+      "stargazers_count": 0,
+      "queue_index": 32
+    },
+    {
+      "repository": "caorantaoyao/mm-truncate",
+      "issue_number": 1,
+      "title": "truncate() off-by-one returns one extra character",
+      "created_at": "2026-08-06T19:26:01Z",
+      "updated_at": "2026-08-06T19:26:01Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 2,
+      "stargazers_count": 0,
+      "queue_index": 33
+    },
+    {
+      "repository": "sinelaw/fresh",
+      "issue_number": 2928,
+      "title": "Ruler rendering: Off-by-one column offset and solid block styling",
+      "created_at": "2026-08-07T10:29:07Z",
+      "updated_at": "2026-09-02T18:34:05Z",
+      "comments": 2,
+      "labels": [
+        "bug",
+        "triaged",
+        "actionable"
+      ],
+      "default_branch": "master",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 137421,
+      "stargazers_count": 9120,
+      "queue_index": 34
+    },
+    {
+      "repository": "okihita/portfolio",
+      "issue_number": 2,
+      "title": "\"Check Month 1\" button checks Month 2 items (off-by-one in checklist array)",
+      "created_at": "2026-08-10T05:08:24Z",
+      "updated_at": "2026-08-10T05:08:24Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "ux",
+        "severity-high"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 47843,
+      "stargazers_count": 0,
+      "queue_index": 35
+    },
+    {
+      "repository": "komalharshita/DevPath",
+      "issue_number": 1867,
+      "title": "fix: parse_resource still corrupts every https:// resource - off-by-one from #1325 never fixed",
+      "created_at": "2026-08-11T01:40:50Z",
+      "updated_at": "2026-08-29T17:39:48Z",
+      "comments": 2,
+      "labels": [
+        "data",
+        "ui",
+        "gssoc-2026",
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 4026,
+      "stargazers_count": 77,
+      "queue_index": 36
+    },
+    {
+      "repository": "Embassy-of-the-Free-Mind/sourcelibrary-v2",
+      "issue_number": 3941,
+      "title": "Possible off-by-one between search snippet page numbers and get_quote (Agrippa 1550)",
+      "created_at": "2026-08-12T06:28:52Z",
+      "updated_at": "2026-08-30T23:01:18Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "user-feedback",
+        "search",
+        "mcp"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 416413,
+      "stargazers_count": 21,
+      "queue_index": 37
+    },
+    {
+      "repository": "eclipse-theia/theia",
+      "issue_number": 17922,
+      "title": "Parcel watcher failures surface as a one-shot, path-less \"large workspace\" warning and never retry",
+      "created_at": "2026-08-16T13:43:22Z",
+      "updated_at": "2026-08-19T13:09:34Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "file-watchers"
+      ],
+      "default_branch": "master",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 206711,
+      "stargazers_count": 21705,
+      "queue_index": 38
+    },
+    {
+      "repository": "davidhealey/waistline",
+      "issue_number": 979,
+      "title": "Date range off by one in Statistics screen",
+      "created_at": "2026-08-16T19:52:51Z",
+      "updated_at": "2026-08-21T21:48:34Z",
+      "comments": 1,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 172941,
+      "stargazers_count": 748,
+      "queue_index": 39
+    },
+    {
+      "repository": "djm204/frankenbeast",
+      "issue_number": 4258,
+      "title": "SEC: ApprovalAnomalyDetector Self-Inclusion Inflates Window Counts \u2014 Off-by-One in All Anomaly Thresholds",
+      "created_at": "2026-08-17T11:08:26Z",
+      "updated_at": "2026-08-17T11:08:26Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 28567,
+      "stargazers_count": 2,
+      "queue_index": 40
+    },
+    {
+      "repository": "Changyi-Li/dsh-github-issue-agent-scratch",
+      "issue_number": 2,
+      "title": "diagnosed bug: double() off-by-one at 21",
+      "created_at": "2026-08-17T12:24:36Z",
+      "updated_at": "2026-08-18T12:59:29Z",
+      "comments": 7,
+      "labels": [
+        "bug",
+        "ready-for-agent"
+      ],
+      "default_branch": "main",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 12,
+      "stargazers_count": 0,
+      "queue_index": 41
+    },
+    {
+      "repository": "mruangutai/harness",
+      "issue_number": 534,
+      "title": "Write-less reviewers cannot run check-expertise.sh, so the one role that must hand ops up cannot validate them",
+      "created_at": "2026-08-19T03:16:57Z",
+      "updated_at": "2026-08-19T03:16:57Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "harness"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 90761,
+      "stargazers_count": 0,
+      "queue_index": 42
+    },
+    {
+      "repository": "pathosDev/actor-ts",
+      "issue_number": 1285,
+      "title": "[Bug] SINGLETON_HOST_DISAGREEMENT_HOLD_MS is hard-coded at two gossip intervals of the default cadence, justified by a reconcile-driven discharge that does not exist \u2014 a cluster with gossipIntervalMs >= 2000 holds for less than one round",
+      "created_at": "2026-08-19T14:01:17Z",
+      "updated_at": "2026-08-19T14:01:17Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "priority: medium",
+        "production-goal"
+      ],
+      "default_branch": "develop",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 48876,
+      "stargazers_count": 11,
+      "queue_index": 43
+    },
+    {
+      "repository": "randspace0/boxcraft",
+      "issue_number": 10,
+      "title": "Chunk coord conversion truncates toward zero \u2014 off-by-one at negative world coords",
+      "created_at": "2026-08-20T14:50:08Z",
+      "updated_at": "2026-08-20T14:50:08Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 389,
+      "stargazers_count": 0,
+      "queue_index": 44
+    },
+    {
+      "repository": "Jaswanth-Kumar-2007/OpenSource-Hunt",
+      "issue_number": 105,
+      "title": "[Bug] Off-by-one in get_top_contributors return value",
+      "created_at": "2026-08-21T05:27:38Z",
+      "updated_at": "2026-08-22T12:25:40Z",
+      "comments": 2,
+      "labels": [
+        "bug",
+        "good first issue",
+        "beginner friendly",
+        "easy"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 4528,
+      "stargazers_count": 11,
+      "queue_index": 45
+    },
+    {
+      "repository": "iumalabs/flaretower",
+      "issue_number": 537,
+      "title": "Overview \"N open\" / Unified Alerts Inbox total is off by one vs. the sum of CRITICAL + WARNING stat cards",
+      "created_at": "2026-08-27T18:48:24Z",
+      "updated_at": "2026-08-27T18:48:24Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 2862,
+      "stargazers_count": 1,
+      "queue_index": 46
+    },
+    {
+      "repository": "anthropics/claude-code",
+      "issue_number": 90303,
+      "title": "[BUG] Desktop sidebar: \"Show N more\" is one-way \u2014 no \"Show less\" and the reveal count never decreases",
+      "created_at": "2026-08-28T08:52:24Z",
+      "updated_at": "2026-08-28T08:53:25Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "platform:macos",
+        "area:ui",
+        "area:desktop"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 32418,
+      "stargazers_count": 149561,
+      "queue_index": 47
+    },
+    {
+      "repository": "diaanajjar95/sarfees-backend",
+      "issue_number": 86,
+      "title": "active-state remainingStops is off by one",
+      "created_at": "2026-08-28T12:25:25Z",
+      "updated_at": "2026-08-28T12:25:25Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "priority: medium"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 1038,
+      "stargazers_count": 1,
+      "queue_index": 48
+    },
+    {
+      "repository": "ZoloAi/zOS",
+      "issue_number": 70,
+      "title": "zRaven step: only ONE interact primitive per step \u2014 extras silently dropped (zClick + zFill in one step loses the click)",
+      "created_at": "2026-08-30T06:19:41Z",
+      "updated_at": "2026-08-30T06:19:41Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "P3-backlog"
+      ],
+      "default_branch": "post-alpha",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 599158,
+      "stargazers_count": 0,
+      "queue_index": 49
+    },
+    {
+      "repository": "cloudgrid-io/mcp",
+      "issue_number": 333,
+      "title": "MCP sign-in shows an extra page and a second tab; the CLI shows one. Redirect straight to the console login",
+      "created_at": "2026-08-30T08:24:30Z",
+      "updated_at": "2026-08-31T09:28:01Z",
+      "comments": 3,
+      "labels": [
+        "bug",
+        "by:michal"
+      ],
+      "default_branch": "main",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 3674,
+      "stargazers_count": 1,
+      "queue_index": 50
+    },
+    {
+      "repository": "BootBlock/Gubbins",
+      "issue_number": 957,
+      "title": "Four build guards enforce less than their docstrings claim, and each one's own controls hide the gap",
+      "created_at": "2026-08-31T18:58:52Z",
+      "updated_at": "2026-09-02T12:54:39Z",
+      "comments": 1,
+      "labels": [
+        "bug",
+        "ui",
+        "github"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 34439,
+      "stargazers_count": 2,
+      "queue_index": 51
+    },
+    {
+      "repository": "BenjaminSRussell/cozy-game",
+      "issue_number": 112,
+      "title": "Fix(Time): TimeSystem.getTimeString() returns '13:60' when minute rolls over \u2014 off-by-one in modulo",
+      "created_at": "2026-09-01T21:46:42Z",
+      "updated_at": "2026-09-01T23:40:05Z",
+      "comments": 2,
+      "labels": [
+        "bug",
+        "time",
+        "qwen-task"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 1834,
+      "stargazers_count": 0,
+      "queue_index": 52
+    },
+    {
+      "repository": "coryzibell/mx",
+      "issue_number": 423,
+      "title": "cap-short-return warning misattributes cause and has an off-by-one at exactly the budget",
+      "created_at": "2026-09-02T17:21:25Z",
+      "updated_at": "2026-09-02T17:21:25Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 316349,
+      "stargazers_count": 2,
+      "queue_index": 53
+    },
+    {
+      "repository": "stellXpress/contracts",
+      "issue_number": 23,
+      "title": "Dispute/timelock window boundaries are off-by-one in edge cases",
+      "created_at": "2026-09-03T17:57:45Z",
+      "updated_at": "2026-09-03T18:19:43Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "contracts",
+        "priority: medium"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 523,
+      "stargazers_count": 0,
+      "queue_index": 54
+    },
+    {
+      "repository": "StellarExpress/contracts",
+      "issue_number": 23,
+      "title": "Dispute/timelock window boundaries are off-by-one in edge cases",
+      "created_at": "2026-09-03T18:04:10Z",
+      "updated_at": "2026-09-03T18:21:59Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "contracts",
+        "priority: medium"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 512,
+      "stargazers_count": 0,
+      "queue_index": 55
+    },
+    {
+      "repository": "Temi-suwa18/Stellar-Escrow-Engine",
+      "issue_number": 12,
+      "title": "Dispute window boundary check has an off-by-one",
+      "created_at": "2026-09-03T19:18:15Z",
+      "updated_at": "2026-09-03T19:18:15Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "contracts",
+        "priority: medium"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 979,
+      "stargazers_count": 0,
+      "queue_index": 56
+    },
+    {
+      "repository": "davdunc/tradekit",
+      "issue_number": 13,
+      "title": "SCREENER_COLS: rsi, change_open and gap column codes are each off by one",
+      "created_at": "2026-09-06T01:18:47Z",
+      "updated_at": "2026-09-06T02:16:47Z",
+      "comments": 1,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 507,
+      "stargazers_count": 2,
+      "queue_index": 57
+    },
+    {
+      "repository": "anthropics/claude-code",
+      "issue_number": 92457,
+      "title": "Skill/command argument substitution is off by one and limited to $0/$1",
+      "created_at": "2026-09-06T09:34:59Z",
+      "updated_at": "2026-09-06T10:40:10Z",
+      "comments": 2,
+      "labels": [
+        "bug",
+        "has repro",
+        "platform:windows",
+        "area:skills",
+        "area:plugins"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 32418,
+      "stargazers_count": 149561,
+      "queue_index": 58
+    },
+    {
+      "repository": "assapir/quilon",
+      "issue_number": 401,
+      "title": "Grammar: the < opening a one-line body is colored as the less-than operator",
+      "created_at": "2026-09-07T07:02:22Z",
+      "updated_at": "2026-09-07T07:02:22Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "M7",
+        "P6"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 4361,
+      "stargazers_count": 3,
+      "queue_index": 59
+    },
+    {
+      "repository": "ayushgupta9906/FitEmpire",
+      "issue_number": 13,
+      "title": "[FE-013] Timezone Shift Bug in Date Formatting Leads to Off-By-One Day Bookings",
+      "created_at": "2026-09-08T11:24:41Z",
+      "updated_at": "2026-09-08T11:24:41Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "priority:high",
+        "mobile",
+        "timezone",
+        "dates",
+        "booking",
+        "ist",
+        "expo"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 14454,
+      "stargazers_count": 1,
+      "queue_index": 60
+    },
+    {
+      "repository": "JoshuaRamirez/RoslynMcpServer",
+      "issue_number": 724,
+      "title": "get_code_metrics undercounts depth of inheritance (stops before System.Object; off-by-one vs VS)",
+      "created_at": "2026-09-09T06:14:10Z",
+      "updated_at": "2026-09-09T06:14:10Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "C#",
+      "fork": false,
+      "archived": false,
+      "size": 6123,
+      "stargazers_count": 31,
+      "queue_index": 61
+    },
+    {
+      "repository": "CultureBotAI/auto-term-catalog",
+      "issue_number": 76,
+      "title": "Upstream: span locator \u2014 off-by-one starts (479), substring-in-word matches (116), 314 rows with no span",
+      "created_at": "2026-09-11T04:18:45Z",
+      "updated_at": "2026-09-11T04:18:46Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 915,
+      "stargazers_count": 1,
+      "queue_index": 62
+    },
+    {
+      "repository": "anthropics/claude-code",
+      "issue_number": 93710,
+      "title": "[BUG] /diff turn view counts one extra added line for every created file",
+      "created_at": "2026-09-11T20:27:10Z",
+      "updated_at": "2026-09-17T13:31:57Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "has repro",
+        "area:tui"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 32418,
+      "stargazers_count": 149561,
+      "queue_index": 63
+    },
+    {
+      "repository": "sdubois777/Cataclysm",
+      "issue_number": 1618,
+      "title": "Leech pays out continuously, not in ticks, so one reading of the 50% less tick rate row does nothing",
+      "created_at": "2026-09-12T16:15:41Z",
+      "updated_at": "2026-09-12T16:32:22Z",
+      "comments": 1,
+      "labels": [
+        "bug",
+        "unreal"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 43827,
+      "stargazers_count": 0,
+      "queue_index": 64
+    },
+    {
+      "repository": "cinatra-ai/cinatra",
+      "issue_number": 3441,
+      "title": "Review surface: the review target's representation sits inside two extra bordered boxes where the drawing gives one target card",
+      "created_at": "2026-09-12T19:48:05Z",
+      "updated_at": "2026-09-17T01:28:34Z",
+      "comments": 1,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 373486,
+      "stargazers_count": 7,
+      "queue_index": 65
+    },
+    {
+      "repository": "polymorph-components/polyengine",
+      "issue_number": 365,
+      "title": "streams: `Future.drop()` before `await` on a deferred future is executed *after* the read \u2014 the disposed handle still drives the guest and yields the value; the same program with one extra turn rejects `DroppedError` blaming the write end",
+      "created_at": "2026-09-12T22:13:41Z",
+      "updated_at": "2026-09-12T23:55:43Z",
+      "comments": 2,
+      "labels": [
+        "bug",
+        "p2"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 45722,
+      "stargazers_count": 2,
+      "queue_index": 66
+    },
+    {
+      "repository": "princegondaliya001/feedback-triage-agent",
+      "issue_number": 1,
+      "title": "Fix date display off by one day in iOS app for Europe/Lisbon timezone",
+      "created_at": "2026-09-13T09:03:36Z",
+      "updated_at": "2026-09-13T09:03:36Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "low"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 35,
+      "stargazers_count": 0,
+      "queue_index": 67
+    },
+    {
+      "repository": "alehatsman/codeintel",
+      "issue_number": 41,
+      "title": "stdlib: def_lines is off by one; a one-line def reports 0",
+      "created_at": "2026-09-13T23:49:26Z",
+      "updated_at": "2026-09-13T23:49:26Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 945,
+      "stargazers_count": 0,
+      "queue_index": 68
+    },
+    {
+      "repository": "honestarcade/HonestFrogAcross",
+      "issue_number": 154,
+      "title": "#148's telegraph: a dead assertion, a 29-vs-30 tick off-by-one, and untested wiring",
+      "created_at": "2026-09-18T01:17:57Z",
+      "updated_at": "2026-09-18T01:17:57Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "confirmed",
+        "sev:medium",
+        "area:gameplay"
+      ],
+      "default_branch": "main",
+      "language": "C#",
+      "fork": false,
+      "archived": false,
+      "size": 991,
+      "stargazers_count": 0,
+      "queue_index": 69
+    },
+    {
+      "repository": "oven-sh/bun",
+      "issue_number": 43295,
+      "title": "bun why: a cycle through the queried package prints one extra round before *circular",
+      "created_at": "2026-09-18T15:44:46Z",
+      "updated_at": "2026-09-20T06:18:43Z",
+      "comments": 1,
+      "labels": [
+        "bug",
+        "bun install"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 1225156,
+      "stargazers_count": 96137,
+      "queue_index": 70
+    },
+    {
+      "repository": "diegoami/imperial_conquest_2",
+      "issue_number": 166,
+      "title": "Bug: JoinFleets' 100-ship cap is off by one against its own cited report",
+      "created_at": "2026-09-18T19:30:15Z",
+      "updated_at": "2026-09-28T07:09:33Z",
+      "comments": 1,
+      "labels": [
+        "bug",
+        "phase:2",
+        "lane:engine",
+        "post-v0.5.0"
+      ],
+      "default_branch": "main",
+      "language": "C#",
+      "fork": false,
+      "archived": false,
+      "size": 6601,
+      "stargazers_count": 0,
+      "queue_index": 71
+    },
+    {
+      "repository": "daniel-ospina/tortoise",
+      "issue_number": 4193,
+      "title": "VGATE records only a subset of the files a single PASS names \u2014 one dispatch per file, N extra cycles",
+      "created_at": "2026-09-19T13:38:44Z",
+      "updated_at": "2026-09-19T13:38:44Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 127760,
+      "stargazers_count": 6,
+      "queue_index": 72
+    },
+    {
+      "repository": "kairos-io/kairos",
+      "issue_number": 4782,
+      "title": "immucore: one failed extra volume or overlay path silently skips every persistent bind mount, and the boot reports success",
+      "created_at": "2026-09-19T18:17:23Z",
+      "updated_at": "2026-10-01T12:26:36Z",
+      "comments": 4,
+      "labels": [
+        "bug",
+        "area/immucore"
+      ],
+      "default_branch": "master",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 17153,
+      "stargazers_count": 1839,
+      "queue_index": 73
+    },
+    {
+      "repository": "EarnQuestOne/stellar_Earn",
+      "issue_number": 2479,
+      "title": "Fix the Pagination off-by-one on the last page",
+      "created_at": "2026-09-21T09:57:06Z",
+      "updated_at": "2026-10-03T01:12:06Z",
+      "comments": 2,
+      "labels": [
+        "bug",
+        "frontend",
+        "difficulty:easy"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 11789,
+      "stargazers_count": 37,
+      "queue_index": 74
+    },
+    {
+      "repository": "workfloworchestrator/orchestrator-core",
+      "issue_number": 1930,
+      "title": "[Bug]: Cron expression weekdays are off by one",
+      "created_at": "2026-09-22T15:59:52Z",
+      "updated_at": "2026-09-22T15:59:52Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 22418,
+      "stargazers_count": 72,
+      "queue_index": 75
+    },
+    {
+      "repository": "derekmwright/wadjet",
+      "issue_number": 1279,
+      "title": "planner: a NOT EXISTS whose body inherits a name through a deeper WITH answers PostgreSQL's rows plus one extra \u2014 outerRefScope.nest carries the parent's resolver",
+      "created_at": "2026-09-23T05:24:32Z",
+      "updated_at": "2026-09-23T05:24:32Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "correctness",
+        "planner",
+        "engine"
+      ],
+      "default_branch": "main",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 72991,
+      "stargazers_count": 1,
+      "queue_index": 76
+    },
+    {
+      "repository": "martinsharkey/optuna",
+      "issue_number": 14,
+      "title": "HyperbandPruner computes one bracket too few when max/min resource is an exact power of the reduction factor",
+      "created_at": "2026-09-23T18:22:24Z",
+      "updated_at": "2026-09-23T18:22:24Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 23738,
+      "stargazers_count": 1,
+      "queue_index": 77
+    },
+    {
+      "repository": "scout-off/scout-off-backend",
+      "issue_number": 1307,
+      "title": "Fix client-IP resolution: extractClientIp is off by one for standard reverse proxies and the rate limiter ignores it",
+      "created_at": "2026-09-23T22:35:55Z",
+      "updated_at": "2026-09-30T11:11:42Z",
+      "comments": 1,
+      "labels": [
+        "bug",
+        "security",
+        "difficulty: hard"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 6250,
+      "stargazers_count": 5,
+      "queue_index": 78
+    },
+    {
+      "repository": "samwhosung/benilla",
+      "issue_number": 177,
+      "title": "The chat box has no byte cap, so a line over 255 bytes is sent and dropped; SetMaxBytes/GetMaxBytes are off by one",
+      "created_at": "2026-09-24T19:50:56Z",
+      "updated_at": "2026-09-24T19:50:56Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 37804,
+      "stargazers_count": 616,
+      "queue_index": 79
+    },
+    {
+      "repository": "pikhan/treegraphduals",
+      "issue_number": 17,
+      "title": "Settle the empty-tree / pruning convention: two 'empty' states, root=-1 breaks methods, prune count off by one vs K\u2013Z",
+      "created_at": "2026-09-25T04:13:30Z",
+      "updated_at": "2026-09-25T04:56:03Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "priority: high",
+        "difficulty: max",
+        "foundational",
+        "file: tree.py"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 15341,
+      "stargazers_count": 0,
+      "queue_index": 80
+    },
+    {
+      "repository": "fishloa/rust-broadcast",
+      "issue_number": 1048,
+      "title": "bug(st377-1): OP1a qualifier bits are off by one",
+      "created_at": "2026-09-25T07:52:51Z",
+      "updated_at": "2026-09-25T07:52:51Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "audit"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 1311080,
+      "stargazers_count": 3,
+      "queue_index": 81
+    },
+    {
+      "repository": "wagner-group/next-xss-sbyd",
+      "issue_number": 89,
+      "title": "`require-disable-justification` hard-codes the `xss-sbyd/` prefix and can be switched off by one justified disable of itself",
+      "created_at": "2026-09-25T16:40:19Z",
+      "updated_at": "2026-09-25T16:40:19Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 1018,
+      "stargazers_count": 0,
+      "queue_index": 82
+    },
+    {
+      "repository": "ludachrish3/otto-sh",
+      "issue_number": 449,
+      "title": "lab_health dials each credential-less Zephyr console twice (one single-client port, ~2x the stated cost)",
+      "created_at": "2026-09-26T00:55:23Z",
+      "updated_at": "2026-09-26T00:55:23Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 23496,
+      "stargazers_count": 2,
+      "queue_index": 83
+    },
+    {
+      "repository": "tailscale/tailscale",
+      "issue_number": 21570,
+      "title": "cmd/tsidp: numeric extra claims of one million or more are emitted as \"1e+06\"",
+      "created_at": "2026-09-29T11:21:36Z",
+      "updated_at": "2026-09-29T17:21:47Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 88797,
+      "stargazers_count": 37185,
+      "queue_index": 84
+    },
+    {
+      "repository": "matiaszanolli/ByroRedux",
+      "issue_number": 5031,
+      "title": "GAME-D1-2026-09-29-01: The mid-life gear queue keeps one root-less equip per wearer per batch and drops the rest \u2014 a second never-worn item (or one equipped while an import is pending) never gets its worn mesh",
+      "created_at": "2026-09-29T22:03:18Z",
+      "updated_at": "2026-09-29T22:04:08Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "medium",
+        "gameplay",
+        "inventory"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 1151642,
+      "stargazers_count": 21,
+      "queue_index": 85
+    },
+    {
+      "repository": "knorquist-enterprise-cloud-testing/ledger-lite",
+      "issue_number": 3,
+      "title": "Processing fee is sometimes off by one cent",
+      "created_at": "2026-09-29T23:55:33Z",
+      "updated_at": "2026-09-29T23:55:33Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Java",
+      "fork": false,
+      "archived": false,
+      "size": 16,
+      "stargazers_count": 0,
+      "queue_index": 86
+    },
+    {
+      "repository": "nightscout/nocturne",
+      "issue_number": 1952,
+      "title": "Entries bulk delete is off by one at the upper bound, and the V4 repository docs say exclusive where the code is inclusive",
+      "created_at": "2026-09-30T20:53:56Z",
+      "updated_at": "2026-10-05T10:24:01Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "P3",
+        "effort:S"
+      ],
+      "default_branch": "main",
+      "language": "C#",
+      "fork": false,
+      "archived": false,
+      "size": 98889,
+      "stargazers_count": 138,
+      "queue_index": 87
+    },
+    {
+      "repository": "surveyjs/survey-analytics",
+      "issue_number": 859,
+      "title": "Date-range presets (last7days, last14days, etc.) use UTC date boundaries instead of the user's local timezone, causing off-by-one-day ranges",
+      "created_at": "2026-10-02T00:42:11Z",
+      "updated_at": "2026-10-02T08:03:16Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "v3.0"
+      ],
+      "default_branch": "master",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 43301,
+      "stargazers_count": 124,
+      "queue_index": 88
+    },
+    {
+      "repository": "PriorLabs/TabPFN",
+      "issue_number": 1347,
+      "title": "A float SUBSAMPLE_SAMPLES takes one row too many, and a valid small fraction fails the class-count guard",
+      "created_at": "2026-10-02T06:19:54Z",
+      "updated_at": "2026-10-02T06:23:10Z",
+      "comments": 1,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 287345,
+      "stargazers_count": 8128,
+      "queue_index": 89
+    },
+    {
+      "repository": "mumax/plus",
+      "issue_number": 186,
+      "title": "Illegal memory access (off-by-one read) in k_exchangeField with spatially-varying msat on large grids",
+      "created_at": "2026-10-02T06:55:17Z",
+      "updated_at": "2026-10-02T08:24:52Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 87374,
+      "stargazers_count": 39,
+      "queue_index": 90
+    },
+    {
+      "repository": "pmaasz/openLens",
+      "issue_number": 351,
+      "title": "Beam synthesis: off-by-one beamlet spacing and `q` propagated with the wrong \u03bb in glass",
+      "created_at": "2026-10-02T12:13:03Z",
+      "updated_at": "2026-10-02T12:13:03Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 3080,
+      "stargazers_count": 0,
+      "queue_index": 91
+    },
+    {
+      "repository": "grafana/grafana-influxdb-datasource",
+      "issue_number": 123,
+      "title": "InfluxQL: counts of one million or more are shown as 1e+06 in time-less results",
+      "created_at": "2026-10-03T01:52:39Z",
+      "updated_at": "2026-10-03T01:52:39Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "TypeScript",
+      "fork": false,
+      "archived": false,
+      "size": 3161,
+      "stargazers_count": 2,
+      "queue_index": 92
+    },
+    {
+      "repository": "drishtiaggarwal-ugsot/Os_Club_portal",
+      "issue_number": 5,
+      "title": "Seats left is off by one",
+      "created_at": "2026-10-03T08:34:13Z",
+      "updated_at": "2026-10-03T08:34:13Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "good first issue",
+        "frontend",
+        "easy"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 62,
+      "stargazers_count": 0,
+      "queue_index": 93
+    },
+    {
+      "repository": "rosenhouse/capi-dagger-dev-env",
+      "issue_number": 89,
+      "title": "One broken extra workload cluster makes every redeploy wait 5 minutes and fail",
+      "created_at": "2026-10-03T09:01:11Z",
+      "updated_at": "2026-10-03T09:16:44Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Go",
+      "fork": false,
+      "archived": false,
+      "size": 758,
+      "stargazers_count": 0,
+      "queue_index": 94
+    },
+    {
+      "repository": "panopticon-scanner/panopticon",
+      "issue_number": 2739,
+      "title": "[COD][LOW] Workflow guard: `echo 'sh tool' | sh | sh` gains a duplicate `_Quiet` row per extra shell, and `$T` between printer and shell adds one -- the chain is already reported by its first shell",
+      "created_at": "2026-10-04T06:12:47Z",
+      "updated_at": "2026-10-04T06:12:47Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "severity:low"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 19777,
+      "stargazers_count": 1,
+      "queue_index": 95
+    },
+    {
+      "repository": "ChanLumerico/lucid",
+      "issue_number": 171,
+      "title": "special.zeta is off by ~1.5e-4 relative on every dtype and device (Euler\u2013Maclaurin coefficient off-by-one): \u03b6(2) = 1.6450854",
+      "created_at": "2026-10-04T14:15:57Z",
+      "updated_at": "2026-10-04T14:15:57Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 292595,
+      "stargazers_count": 5,
+      "queue_index": 96
+    },
+    {
+      "repository": "chris-monahan/tictactoe",
+      "issue_number": 4,
+      "title": "GridState.getColumn is off by one",
+      "created_at": "2026-10-04T15:59:23Z",
+      "updated_at": "2026-10-04T15:59:23Z",
+      "comments": 0,
+      "labels": [
+        "bug"
+      ],
+      "default_branch": "master",
+      "language": "JavaScript",
+      "fork": false,
+      "archived": false,
+      "size": 1844,
+      "stargazers_count": 0,
+      "queue_index": 97
+    },
+    {
+      "repository": "matiaszanolli/ByroRedux",
+      "issue_number": 5266,
+      "title": "GAME-D1-2026-10-05-01: The post-load worn-gear reconcile counts the weapon slot as a missing mesh and shares #5031's one-request queue, so a loaded player's root-less armor imports at random",
+      "created_at": "2026-10-05T18:59:54Z",
+      "updated_at": "2026-10-05T18:59:54Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "medium",
+        "gameplay",
+        "inventory",
+        "save-load"
+      ],
+      "default_branch": "main",
+      "language": "Rust",
+      "fork": false,
+      "archived": false,
+      "size": 1151642,
+      "stargazers_count": 21,
+      "queue_index": 98
+    },
+    {
+      "repository": "identique/idnumbers",
+      "issue_number": 300,
+      "title": "[BUG] LTU: century mapping is off by one century for odd first digits (parse() returns the wrong birth year, 29 Feb validity differs) (+1 more)",
+      "created_at": "2026-10-06T08:47:44Z",
+      "updated_at": "2026-10-06T09:39:17Z",
+      "comments": 0,
+      "labels": [
+        "bug",
+        "Europe Continent"
+      ],
+      "default_branch": "main",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "size": 11427,
+      "stargazers_count": 11,
+      "queue_index": 99
+    }
+  ]
+}
