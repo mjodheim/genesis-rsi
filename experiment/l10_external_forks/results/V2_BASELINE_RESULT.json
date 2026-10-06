@@ -1,0 +1,35 @@
+{
+  "schema": "mira-genesis-l10a-v2-baseline-result-v1",
+  "freeze_commit": "eaaeede89b37aef175b2aed30c2f5634a59bbfa8",
+  "candidate_executions": 0,
+  "carriers": {
+    "google/gson#453": {
+      "frozen_commit": "845664ba1c307e6c1910d07cfed2f622e0ad8df1",
+      "regression_exit": 0,
+      "objective_exit": 0,
+      "classification": "BASELINE_ALREADY_SATISFIES_OBJECTIVE",
+      "evidence": "L10_GSON_453_OK",
+      "candidate_scoring_authorized": false
+    },
+    "BurntSushi/ripgrep#278": {
+      "frozen_commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+      "regression_exit": 0,
+      "objective_exit": 0,
+      "classification": "BASELINE_ALREADY_SATISFIES_OBJECTIVE",
+      "observed": {
+        "first_returncode": 0,
+        "second_returncode": 0,
+        "first_found": true,
+        "second_found": true
+      },
+      "candidate_scoring_authorized": false
+    }
+  },
+  "no_eligible_task": [
+    "pallets/click",
+    "spectreconsole/spectre.console",
+    "sindresorhus/p-map"
+  ],
+  "verdict": "L10A_V2_VALID_NONQUALIFYING_BASELINE_ONLY",
+  "interpretation": "The prospectively selected public issues do not provide repairable work at the frozen upstream revisions. No candidate was evaluated and no task was replaced after observation. This pilot supplies task-selection calibration only and does not advance strict L10."
+}
