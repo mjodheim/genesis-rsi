@@ -1,0 +1,22 @@
+You are the single frozen fallback proposer for A6b task 3.
+
+Repository: lafuan/Sribuu
+Frozen commit: 1d7df13c744dcf09f0dfb519b3ff27d669cded2f
+Issue: #1405 — Transaction date uses UTC and may be off by one day for non-UTC users
+
+Public task contract:
+- The transaction POST route currently defaults a missing transaction_date with new Date().toISOString().split('T')[0].
+- That default is UTC and can select the wrong local calendar day.
+- The existing client already sends transaction_date.
+- This frozen repository has no persisted user timezone to derive a correct server-side local date from.
+- The repaired route must not silently invent a UTC calendar date.
+- Preserve the existing transaction insert, amount validation, default-category lookup and other unrelated behavior.
+- Do not introduce a hard-coded timezone.
+
+Inspect only the frozen repository and return the smallest source-only repair.
+Do not run tests. Do not use the web. Do not inspect Genesis files. Do not
+modify files yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an
+exact UTF-8 substring replacement whose old text occurs exactly once. Do not
+include tests or generated files.
