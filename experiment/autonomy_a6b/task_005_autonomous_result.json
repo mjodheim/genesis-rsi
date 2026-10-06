@@ -1,0 +1,66 @@
+{
+  "autonomous_passed": false,
+  "baseline": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_005_eval.py",
+      "/home/anthony/experiments/a6b-c026"
+    ],
+    "elapsed_ms": 159,
+    "exit_code": 1,
+    "parsed": {
+      "compile_exit_code": 0,
+      "external_model_calls": 0,
+      "objective_ok": false,
+      "run_exit_code": 1,
+      "schema": "mira-genesis-a6b-task005-evaluator-v1",
+      "stderr": "",
+      "stdout": "empty got=1 expected=1 consumed=2 expected_consumed=2 ok=1\npartial got=1 expected=1 consumed=9 expected_consumed=9 ok=1\nmore_than_half got=0 expected=1 consumed=4 expected_consumed=4 ok=0\ncomplete got=0 expected=1 consumed=0 expected_consumed=0 ok=0\nbuffer_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\nstream_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\nbuffer_longer_than_keyword got=0 expected=0 consumed=0 expected_consumed=0 ok=1\n",
+      "unrelated_source_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"compile_exit_code\": 0, \"external_model_calls\": 0, \"objective_ok\": false, \"run_exit_code\": 1, \"schema\": \"mira-genesis-a6b-task005-evaluator-v1\", \"stderr\": \"\", \"stdout\": \"empty got=1 expected=1 consumed=2 expected_consumed=2 ok=1\\npartial got=1 expected=1 consumed=9 expected_consumed=9 ok=1\\nmore_than_half got=0 expected=1 consumed=4 expected_consumed=4 ok=0\\ncomplete got=0 expected=1 consumed=0 expected_consumed=0 ok=0\\nbuffer_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\\nstream_mismatch got=0 expected=0 consumed=0 expected_consumed=0 ok=1\\nbuffer_longer_than_keyword got=0 expected=0 consumed=0 expected_consumed=0 ok=1\\n\", \"unrelated_source_preserved\": true}\n"
+  },
+  "candidate_budget": 256,
+  "carrier": "vrischmann/tree-sitter-templ#152",
+  "charged_candidate_executions": 0,
+  "external_model_calls": 0,
+  "manual_candidate_repair": false,
+  "memory_generation": 15,
+  "records": [],
+  "report_digest": "ba862d1f7e0191115fa83d3d50c4bfaa148bf483ac19e51c8d509982291fd7b0",
+  "retry_count": 0,
+  "schedule": {
+    "family_input_counts": {
+      "coordinated": 0,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 0,
+      "scalar": 0
+    },
+    "family_scheduled_counts": {
+      "coordinated": 0,
+      "exemplar": 0,
+      "learned": 0,
+      "learned_coordinated": 0,
+      "retained": 0,
+      "scalar": 0
+    },
+    "schedule_digest": "7e6cfd6d76f470ba631344fccf34edc0c0d65b61d04038d6936e478069834daa",
+    "scheduled_count": 0,
+    "schema": "genesis-fair-candidate-schedule-v1",
+    "weights": {
+      "coordinated": 1,
+      "exemplar": 1,
+      "learned": 1,
+      "learned_coordinated": 3,
+      "retained": 1,
+      "scalar": 4
+    }
+  },
+  "schema": "mira-genesis-a6b-autonomous-task-result-v1",
+  "task_id": 5,
+  "winner": null,
+  "winner_replay": null
+}

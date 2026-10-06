@@ -1,0 +1,23 @@
+You are the single frozen fallback proposer for A6b task 5.
+
+Repository: vrischmann/tree-sitter-templ
+Frozen commit: 2c0a72e907d2a95a7b6dd29703e38c95818e956a
+Issue: #152 — lookahead_buffer_find_keyword has an off-by-one in its backtracking arithmetic
+
+Public task contract:
+- src/scanner.c contains lookahead_buffer_find_keyword.
+- The helper currently mutates keyword length while comparing buffered bytes.
+- Genuine matches fail when the buffer contains more than half the keyword, and a complete buffered keyword also fails.
+- Keep the original keyword length immutable.
+- Reject a buffer longer than the keyword.
+- Compare all buffered bytes against the corresponding keyword prefix.
+- Then consume only the remaining keyword bytes from the lexer.
+- Preserve all code outside this helper.
+
+Inspect only the frozen repository and return the smallest source-only repair.
+Do not run tests. Do not use the web. Do not inspect Genesis files. Do not
+modify files yourself.
+
+Return only structured JSON matching the supplied schema. Each edit must be an
+exact UTF-8 substring replacement whose old text occurs exactly once. Do not
+include tests or generated files.
