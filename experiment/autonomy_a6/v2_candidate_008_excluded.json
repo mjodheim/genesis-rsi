@@ -1,0 +1,14 @@
+{
+  "schema": "mira-genesis-a6v2-carrier-exclusion-v1",
+  "candidate_freeze": "experiment/autonomy_a6/v2_candidate_008_freeze.json",
+  "carrier": "StellarFraction/StellarFraction-contracts#51",
+  "carrier_commit": "dd95225fdf3333a17d38dc3f69714f71eaf31adb",
+  "classification": "PUBLIC_ISSUE_CONTRADICTS_FROZEN_REPOSITORY_BEHAVIOR",
+  "stage": "pre-outcome qualification",
+  "reason": "The public issue asks to change the timelock comparison from '<' to '<='. At the frozen carrier, repository-owned tests explicitly state that exactly at the unlock timestamp withdrawal must succeed and verify that behavior. The current '<' implements that tested contract. Treating '<=' as the desired objective would manufacture a regression rather than reproduce a confirmed failing baseline.",
+  "runnable_task_count_increment": 0,
+  "candidate_evaluations": 0,
+  "fallback_calls": 0,
+  "external_model_calls": 0,
+  "policy": "Preserved as a qualification exclusion and advance to the next frozen metadata-queue candidate."
+}
