@@ -1,0 +1,207 @@
+{
+  "applied": [
+    {
+      "new_sha256": "839f0e9e08352c6f7b4fcac04eba703ca1ce00e5fddaf8e3e7d24b017f1f063e",
+      "old_sha256": "998ea75ce6f966e7fa4102c0f066cc7cd396eb980b7dd794ba62cdc4eb94503e",
+      "path": "src/calculator/calculator.py"
+    }
+  ],
+  "autonomous_result_digest": "ef49fe06b29fdad83b0a8d8bbf64bed2068e82c5e839ca129c56f40c2c4407cb",
+  "carrier": "Analyst-Harsh/triage-bot-test#28",
+  "cost_usd": 0.0386076,
+  "evaluation": {
+    "argv": [
+      "/home/anthony/mira-genesis-oe1/.venv/bin/python",
+      "/home/anthony/mira-genesis-autonomy/experiment/autonomy_a6b/task_004_eval.py",
+      "/tmp/genesis-a6b-fallback-bquwxzsu/workspace"
+    ],
+    "elapsed_ms": 69,
+    "exit_code": 0,
+    "parsed": {
+      "cases": [
+        {
+          "actual": 1,
+          "expected": 1,
+          "n": 0,
+          "ok": true
+        },
+        {
+          "actual": 1,
+          "expected": 1,
+          "n": 1,
+          "ok": true
+        },
+        {
+          "actual": 2,
+          "expected": 2,
+          "n": 2,
+          "ok": true
+        },
+        {
+          "actual": 6,
+          "expected": 6,
+          "n": 3,
+          "ok": true
+        },
+        {
+          "actual": 24,
+          "expected": 24,
+          "n": 4,
+          "ok": true
+        },
+        {
+          "actual": 120,
+          "expected": 120,
+          "n": 5,
+          "ok": true
+        },
+        {
+          "actual": 720,
+          "expected": 720,
+          "n": 6,
+          "ok": true
+        },
+        {
+          "actual": 5040,
+          "expected": 5040,
+          "n": 7,
+          "ok": true
+        }
+      ],
+      "external_model_calls": 0,
+      "objective_ok": true,
+      "schema": "mira-genesis-a6b-task004-evaluator-v1",
+      "semantics_ok": true,
+      "unrelated_functions_preserved": true
+    },
+    "stderr": "",
+    "stdout": "{\"cases\": [{\"actual\": 1, \"expected\": 1, \"n\": 0, \"ok\": true}, {\"actual\": 1, \"expected\": 1, \"n\": 1, \"ok\": true}, {\"actual\": 2, \"expected\": 2, \"n\": 2, \"ok\": true}, {\"actual\": 6, \"expected\": 6, \"n\": 3, \"ok\": true}, {\"actual\": 24, \"expected\": 24, \"n\": 4, \"ok\": true}, {\"actual\": 120, \"expected\": 120, \"n\": 5, \"ok\": true}, {\"actual\": 720, \"expected\": 720, \"n\": 6, \"ok\": true}, {\"actual\": 5040, \"expected\": 5040, \"n\": 7, \"ok\": true}], \"external_model_calls\": 0, \"objective_ok\": true, \"schema\": \"mira-genesis-a6b-task004-evaluator-v1\", \"semantics_ok\": true, \"unrelated_functions_preserved\": true}\n"
+  },
+  "fallback_passed": true,
+  "learned_template_count": 1,
+  "learned_template_digests": [
+    "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+  ],
+  "learned_templates": [
+    {
+      "after_program": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "copy",
+          "name": "I0"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "copy",
+          "name": "I1"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "copy",
+          "name": "I2"
+        },
+        {
+          "kind": "literal",
+          "value": "+"
+        },
+        {
+          "kind": "copy",
+          "name": "N0"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        }
+      ],
+      "before_pattern": [
+        {
+          "kind": "literal",
+          "value": "for"
+        },
+        {
+          "kind": "capture",
+          "name": "I0",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "in"
+        },
+        {
+          "kind": "capture",
+          "name": "I1",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": "("
+        },
+        {
+          "kind": "capture",
+          "name": "N0",
+          "type": "number"
+        },
+        {
+          "kind": "literal",
+          "value": ","
+        },
+        {
+          "kind": "capture",
+          "name": "I2",
+          "type": "ident"
+        },
+        {
+          "kind": "literal",
+          "value": ")"
+        },
+        {
+          "kind": "literal",
+          "value": ":"
+        }
+      ],
+      "external_model_calls_for_learning": 0,
+      "schema": "genesis-learned-line-rewrite-template-v1",
+      "source_result_digest": "b5b9ffb44d3ec883cae7cb3eb0d206bcea44e8798f3d94b195852a7608ddd793",
+      "template_digest": "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+    }
+  ],
+  "manual_candidate_repair": false,
+  "model": "claude-sonnet-5-5",
+  "model_calls": 1,
+  "patch_digest": "b5b9ffb44d3ec883cae7cb3eb0d206bcea44e8798f3d94b195852a7608ddd793",
+  "proposal": {
+    "edits": [
+      {
+        "new": "    for i in range(1, n + 1):\n        result *= i",
+        "old": "    for i in range(1, n):\n        result *= i",
+        "path": "src/calculator/calculator.py"
+      }
+    ],
+    "summary": "Fix off-by-one in factorial loop: range(1, n) -> range(1, n + 1). factorial(0) still returns 1 (empty loop); other functions untouched."
+  },
+  "report_digest": "5b248eff1e8d8c71fddbbf76691077098760fee9707ca5366a362427f81cdca9",
+  "retry_count": 0,
+  "schema": "mira-genesis-a6b-fallback-result-v1",
+  "task_id": 4
+}
