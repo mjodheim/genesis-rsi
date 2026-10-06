@@ -1,0 +1,21 @@
+{
+  "schema": "mira-genesis-autonomy-a5-csharp-evaluator-v2",
+  "status": "FROZEN_BEFORE_V2_CANDIDATE_EVALUATION",
+  "supersedes": "experiment/autonomy_a5/EVALUATOR_CSHARP.json",
+  "previous_abort": "experiment/autonomy_a5/A5C_CSHARP_ABORTED_RUN_1.json",
+  "revision_reason": "V1 aborted before baseline because the carrier pins .NET SDK 9.0.308 while the VPS only exposed 10.0.112. V2 uses an exact side-installed SDK 9.0.308 without changing repository source, task objective or candidate generation.",
+  "dotnet_executable": "/home/anthony/.dotnet9/dotnet",
+  "dotnet_sdk": "9.0.308",
+  "carrier_repository": "JoshuaRamirez/RoslynMcpServer",
+  "carrier_commit": "46f6fe0bc96e845d5b5cae2318cbf8d335d9b4e3",
+  "issue_number": 724,
+  "objective_file": "experiment/autonomy_a5/DEPTH_OBJECTIVE.cs",
+  "injected_workspace_path": "tests/RoslynMcp.Core.Tests/Query/Utilities/GenesisA5DepthOfInheritanceTests.cs",
+  "test_project": "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+  "test_filter": "FullyQualifiedName~GenesisA5DepthOfInheritanceTests",
+  "candidate_source_scope": ["src/RoslynMcp.Core/Query/Utilities/MetricsCalculator.cs"],
+  "baseline_must_fail": true,
+  "winning_operator_required": "integer_delta",
+  "external_model_calls": 0,
+  "manual_candidate_repair_allowed": false
+}

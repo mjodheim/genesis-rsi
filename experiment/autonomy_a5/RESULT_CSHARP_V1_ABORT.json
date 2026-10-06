@@ -1,0 +1,22 @@
+{
+  "classification": "APPARATUS_ABORT_RESTORE",
+  "external_model_calls": 0,
+  "passed": false,
+  "report_digest": "787e1721ce2eb6bf9d7cdf3f75867a803c6ccb3a75af784e087642aeb4a046f6",
+  "restore": {
+    "argv": [
+      "dotnet",
+      "restore",
+      "tests/RoslynMcp.Core.Tests/RoslynMcp.Core.Tests.csproj",
+      "--verbosity",
+      "quiet"
+    ],
+    "elapsed_ms": 5,
+    "exit_code": 155,
+    "stderr": "The command could not be loaded, possibly because:\n  * You intended to execute a .NET application:\n      The application 'restore' does not exist or is not a managed .dll or .exe.\n  * You intended to execute a .NET SDK command:\n      A compatible .NET SDK was not found.\n\nRequested SDK version: 9.0.308\nglobal.json file: /tmp/genesis-a5-csharp-ubbpvhgq/workspace/global.json\n\nInstalled SDKs:\n\nInstall the [9.0.308] .NET SDK or update [/tmp/genesis-a5-csharp-ubbpvhgq/workspace/global.json] to match an installed SDK.\n\nLearn about SDK resolution:\nhttps://aka.ms/dotnet/sdk-not-found\n",
+    "stderr_sha256": "06290af981ae16e6eb757a9f1abbdf9eb9c3b0935def44b134a6dd4bd9996303",
+    "stdout": "10.0.112 [/usr/lib/dotnet/sdk]\n",
+    "stdout_sha256": "b63ff9e9185f4c42aed02f481ade0f315303abf700c5a1576719e9277cc46ee4"
+  },
+  "schema": "mira-genesis-autonomy-a5-csharp-result-v1"
+}
