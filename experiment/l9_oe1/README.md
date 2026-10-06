@@ -33,3 +33,12 @@ Install PostgreSQL support with:
 The database is **experience**, not evidence. Prospective populations and their freeze
 files remain immutable repository artefacts. A fresh evaluation may read only the
 experience explicitly allowed by its frozen protocol.
+
+
+## Research persistence directive
+
+The owner-directed continue-through-failure policy is recorded in
+`docs/L9_RESEARCH_THROUGH_FAILURE_DIRECTIVE_2026-10-06.md`. It intentionally lives
+outside historically frozen V25/V26 inputs: negative experiments remain evidence, not
+stopping conditions, while fresh populations and frozen acceptance criteria remain
+protected.
