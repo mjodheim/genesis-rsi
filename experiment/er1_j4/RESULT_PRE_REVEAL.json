@@ -1,0 +1,31 @@
+{
+  "schema": "genesis-er1-j4-result-pre-reveal-v1",
+  "status": "VALID_NEGATIVE_MATCHED_REAL_REPO",
+  "scientific_gate_passed": false,
+  "selected_case": 21,
+  "discovery_freeze": "experiment/er1_j4/DISCOVERY_FREEZE.json",
+  "baseline": {
+    "result_sha256": "8b76cc9fbd53c15971205695dc831484fcab6590563589715d97d4e813701aaf",
+    "candidate_budget": 10000,
+    "evaluated_count": 10000,
+    "winner": null,
+    "coverage_pruned_count": 9868,
+    "junit_candidate_count": 132,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0
+  },
+  "successor": {
+    "result_sha256": "3c712b03d5bddff5d83af2c04f94082e6f71c7e5653c8661112b47b1e7b58d82",
+    "candidate_budget": 10000,
+    "evaluated_count": 10000,
+    "winner": null,
+    "coverage_pruned_count": 9868,
+    "junit_candidate_count": 132,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0
+  },
+  "causal_result": "The frozen progress-step successor did not outperform the matched predecessor on fresh blind case Lang-21. The selected trigger loaded no source file that received a progress candidate, so the new mechanism was causally inapplicable on this case.",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "claim_boundary": "J4 is a valid blind negative and an applicability result. It does not refute the J3-derived progress operator; it shows that a fresh deterministic defect may require a different transformation family. The human fix may now be revealed only for post-result diagnosis."
+}
