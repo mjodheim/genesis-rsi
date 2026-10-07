@@ -734,11 +734,25 @@ class LangDefects4JAdapter:
         paths = self._paths(state)
         output = paths["evidence"] / "BLIND_RESULT.json"
         evaluator = paths["harness"] / "evaluate_candidates.py"
+        resume_index = 0
+        previous_validation = state.get("success_validation") or {}
+        if previous_validation and not bool(previous_validation.get("passed")):
+            resume_index = int(previous_validation.get("resume_index", 0) or 0)
+        index_path = paths["indexes"] / "CANDIDATE_INDEX.jsonl"
+        evaluation_index = index_path
+        if resume_index > 0:
+            records = [
+                json.loads(line)
+                for line in index_path.read_text(encoding="utf-8").splitlines()
+                if line.strip() and int(json.loads(line).get("logical_index", -1)) >= resume_index
+            ]
+            evaluation_index = paths["indexes"] / f"CANDIDATE_INDEX.resume-{resume_index}.jsonl"
+            _write_jsonl(evaluation_index, records)
         run = _run(
             [
                 str(evaluator),
                 "--index",
-                str(paths["indexes"] / "CANDIDATE_INDEX.jsonl"),
+                str(evaluation_index),
                 "--output",
                 str(output),
                 "--workers",
@@ -754,6 +768,8 @@ class LangDefects4JAdapter:
         if run.returncode not in {0, 3}:
             raise RuntimeError(f"candidate evaluator failed: {run.stdout[-4000:]}")
         result = json.loads(output.read_text(encoding="utf-8"))
+        result["resume_index"] = resume_index
+        result["evaluation_index_sha256"] = _sha_file(evaluation_index)
         result["scientific_gate_passed"] = result.get("winner") is not None
         result["human_fix_inspected"] = False
         result["issue_text_inspected"] = False
@@ -771,11 +787,14 @@ class LangDefects4JAdapter:
         _apply_candidate(validation_root, rec)
         result = _test_reference(validation_root)
         passed = result["compile_exit"] == 0 and result["failing_tests"] == 0
+        evaluated_indexes = [int(x.get("index", -1)) for x in state["blind_result"].get("results", [])]
+        resume_index = max(evaluated_indexes, default=int(winner["index"])) + 1
         payload = {
             "passed": passed,
             "case_id": state["current_case"]["case_id"],
             "winner_index": winner["index"],
             "winner_candidate_digest": winner.get("candidate_digest"),
+            "resume_index": resume_index,
             "reference": result,
             "human_fix_inspected": False,
             "issue_text_inspected": False,

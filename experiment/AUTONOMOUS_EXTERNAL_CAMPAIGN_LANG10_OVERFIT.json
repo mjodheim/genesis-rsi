@@ -1,0 +1,18 @@
+{
+  "allowed_successor": "Resume the same frozen candidate index strictly after all already evaluated logical indices, with the same frozen evaluator and no solution reveal.",
+  "blind_result_digest": "2f07401b8f8ce07dfedb21a6eb0b6fe1b902c84cab4eedbdc90cd2ff50a8c171",
+  "blind_trigger_passed": true,
+  "buggy_reference_failing_tests": 2,
+  "candidate_broad_validation_failing_tests": 34,
+  "candidate_broad_validation_passed": false,
+  "case_id": "10",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "resume_index": 1728,
+  "schema": "genesis-autonomous-external-campaign-overfit-positive-v1",
+  "scientific_interpretation": "The candidate overfit the frozen trigger: it repaired the hidden trigger but introduced or exposed many regressions under the broader suite. It is rejected and must not count as a repair success.",
+  "status": "TRIGGER_POSITIVE_REJECTED_BY_BROAD_VALIDATION",
+  "winner_candidate_digest": "c0946ddd75ac3fa150e0c7deaa47d76070cbbbffb83e44de4f4a22f89172c3bf",
+  "winner_index": 1726,
+  "winner_operator": "java_qualified_symbol_substitute"
+}

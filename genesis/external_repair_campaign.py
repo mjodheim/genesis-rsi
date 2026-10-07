@@ -235,24 +235,28 @@ def transition(state: Mapping[str, Any], adapter: CampaignAdapter) -> dict[str, 
             },
             phase="validate_success" if passed else "diagnose",
             blind_result=result,
+            success_validation=None,
         )
 
     if phase == "validate_success":
         validation = dict(adapter.validate_success(current))
         passed = bool(validation.get("passed"))
-        event = _append(
+        kind = "positive_validated" if passed else "trigger_positive_rejected"
+        next_phase = "advance" if passed else "evaluate"
+        return _append(
             current,
-            kind="positive_validated",
+            kind=kind,
             payload={
                 "case_id": current["current_case"]["case_id"],
                 "passed": passed,
                 "validation_digest": str(validation.get("validation_digest") or digest_of(validation)),
+                "winner_index": validation.get("winner_index"),
+                "resume_index": validation.get("resume_index"),
             },
-            phase="advance" if passed else "halted",
+            phase=next_phase,
             success_validation=validation,
             success_count=int(current["success_count"]) + (1 if passed else 0),
         )
-        return event
 
     if phase == "diagnose":
         learning = dict(adapter.diagnose_and_retain(current))

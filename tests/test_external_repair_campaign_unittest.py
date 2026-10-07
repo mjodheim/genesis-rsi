@@ -135,6 +135,38 @@ class CampaignTests(unittest.TestCase):
             self.assertEqual(final["generation"], 2)
             self.assertEqual(final["attempted_case_ids"][-2:], ["case-a", "case-b"])
 
+    def test_trigger_positive_that_fails_broad_validation_resumes_search(self):
+        class OverfitAdapter(FakeAdapter):
+            def validate_success(self, state):
+                return {
+                    "passed": False,
+                    "winner_index": 17,
+                    "resume_index": 32,
+                    "validation_digest": "overfit-validation",
+                }
+
+        adapter = OverfitAdapter()
+        state = campaign.create_state(
+            campaign_id="overfit-resume",
+            machinery={"machinery_digest": "m0", "capability_generation": 0},
+        )
+        state = dict(state)
+        state["phase"] = "validate_success"
+        state["current_case"] = {"case_id": "case-b"}
+        state["blind_result"] = {
+            "winner": {"id": "trigger-only", "index": 17},
+            "scientific_gate_passed": True,
+            "result_digest": "blind-positive",
+        }
+        state.pop("state_digest")
+        state["state_digest"] = digest_of({k: v for k, v in state.items() if k != "state_digest"})
+
+        resumed = campaign.transition(state, adapter)
+        self.assertEqual(resumed["phase"], "evaluate")
+        self.assertEqual(resumed["success_count"], 0)
+        self.assertEqual(resumed["success_validation"]["resume_index"], 32)
+        self.assertEqual(resumed["events"][-1]["kind"], "trigger_positive_rejected")
+
     def test_reveal_gate_refuses_positive_or_unfrozen_state(self):
         adapter = FakeAdapter()
         state = campaign.create_state(
