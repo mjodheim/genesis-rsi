@@ -1,0 +1,28 @@
+{
+  "candidate_coverage": {
+    "human_fix_file_candidate_count": 145,
+    "human_fix_file_first_candidate_index": 74,
+    "human_fix_file_was_covered": true,
+    "operators_on_human_fix_file": {
+      "comparison_boundary": 116,
+      "integer_delta": 29
+    },
+    "scheduled_source_files": 76
+  },
+  "causal_findings": [
+    "The fair inter-file scheduler removed the J1 starvation failure: the human-fix file was reached at candidate index 74 and received 145 evaluated scalar mutations.",
+    "No candidate passed because the human repair requires structural edits outside the frozen scalar A2 grammar: field modifier insertion (transient), import insertion, and method insertion with executable statements.",
+    "J2 therefore isolates an expressivity bottleneck after the search-coverage bottleneck was removed."
+  ],
+  "claim_boundary": "J2 remains a valid negative. The revealed human repair diagnoses the next machinery gap but may not be used to reclassify or retune the frozen J2 attempt.",
+  "human_fix_reveal": {
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "source_diff_sha256": "5da6a41b54afa95d2ce2841236e1f2db87314cf947c79b1cdb2db02b032698eb"
+  },
+  "next_development_change": "Add a generic Java structural-repair grammar capable of field-modifier edits, import edits, and bounded method insertion without encoding Lang-56-specific identifiers or patch text. Qualify on a fresh deterministic J3 bug; do not repair Lang-56 into a pass.",
+  "pre_reveal_result_commit": "8a3564ae",
+  "schema": "genesis-er1-j2-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_EXPRESSIVITY_GAP"
+}
