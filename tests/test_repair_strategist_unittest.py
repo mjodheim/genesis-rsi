@@ -163,3 +163,63 @@ class StrategistTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class DefaultNormalizationTests(unittest.TestCase):
+    def test_hoists_default_before_conditional_use_and_coordinates_siblings(self) -> None:
+        from genesis import java_default_normalization_mutations as jdn
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            p = root / "src" / "RegistryFactory.java"
+            p.parent.mkdir(parents=True)
+            p.write_text(
+                """class RegistryFactory {
+    Object createA(Object context) {
+        Object key = token();
+        if (context != null) {
+            key = pair(key, context);
+        }
+        Object found = lookup(key);
+        if (found == null) {
+            if (context == null) {
+                context = Defaults.current();
+            }
+            return build(context);
+        }
+        return found;
+    }
+
+    Object createB(Object context) {
+        Object key = token();
+        if (context != null) {
+            key = pair(key, context);
+        }
+        Object found = lookupOther(key);
+        if (found == null) {
+            if (context == null) {
+                context = Defaults.current();
+            }
+            return buildOther(context);
+        }
+        return found;
+    }
+}
+""",
+                encoding="utf-8",
+            )
+            result = jdn.generate(
+                root, include_prefixes=["src"], max_candidates=100
+            )
+            coordinated = [
+                c for c in result["candidates"]
+                if c["detail"]["mode"] == "coordinated_sibling_methods"
+                and c["detail"]["site_count"] == 2
+            ]
+            self.assertTrue(coordinated)
+            text = coordinated[0]["content_utf8"]
+            self.assertEqual(text.count("context = Defaults.current();"), 2)
+            self.assertEqual(text.count("if (context != null)"), 0)
+            self.assertEqual(text.count("key = pair(key, context);"), 2)
+            self.assertEqual(text.count("if (context == null)"), 2)
+            self.assertEqual(coordinated[0]["external_model_calls"], 0)

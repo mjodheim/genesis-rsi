@@ -1,0 +1,49 @@
+{
+  "architecture": {
+    "bounded_sibling_subsets": true,
+    "causal_routing": true,
+    "default_before_use_hoisting": true,
+    "external_model_calls_for_generation": 0,
+    "historical_fallback_retained": true,
+    "max_plan_depth": 2,
+    "same_file_composition": true
+  },
+  "claim_boundary": "ER2 v2 is validated on synthetic tests and consumed J10 evidence only. It is not a fresh external repair result. Fresh transfer evidence begins with J11 after this commit is frozen and tagged.",
+  "consumed_replay_validation": {
+    "activated_new_family": {
+      "accepted": 7,
+      "activated": true,
+      "generated": 7
+    },
+    "atomic_candidate_count": 294,
+    "case": "ER1-J10 Lang-50",
+    "composed_candidate_count": 199,
+    "evaluated_count": 16,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "generation_wall_seconds": 4.038976848998573,
+    "independent_holdout": false,
+    "planner_candidate_count": 493,
+    "winner_logical_index": 0,
+    "winner_passed_trigger": true
+  },
+  "feature": "default_before_use_dataflow_normalization_plus_compositional_planner",
+  "future_holdout_boundary": "ER1-J11-plus-unseen-until-this-freeze",
+  "schema": "genesis-er2-v2-repair-planner-qualification-v1",
+  "scientific_gate_passed": true,
+  "training_boundary": "ER1-J1-through-J10-consumed-evidence",
+  "unit_validation": {
+    "checks": [
+      "repair IR non-overlap composition",
+      "coordinated sibling expression rewrite",
+      "causal focus-path routing",
+      "bounded depth-2 composition",
+      "deterministic generation",
+      "generic default-before-use normalization with sibling coordination"
+    ],
+    "failed": 0,
+    "framework": "python unittest",
+    "passed": 6,
+    "test_count": 6
+  }
+}
