@@ -1,0 +1,30 @@
+{
+  "claim_boundary": "The replay only validates that ER2 v3 captures the abstract capability diagnosed from consumed J11 evidence. It is not fresh external evidence; fresh qualification begins at J12.",
+  "feature": "generic_java_string_predicate_literal_equivalence_closure",
+  "focused_unittests_passed": 9,
+  "j11_consumed_replay": {
+    "candidate_count": 1,
+    "evaluated_count": 1,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "result_sha256": "d5afb513c393abd214def3d28bcb8f895d48824ae59d697c3970e9d47ce1c961",
+    "winner": {
+      "candidate_digest": "d9b5f52f41005a3b58ca9236e136555103b05d301dcd50b14af2a6f6db34ff36",
+      "compile_exit_code": 0,
+      "coverage_pruned": false,
+      "elapsed_ms": 850,
+      "evaluator_error": null,
+      "id": "repair-plan-d9b5f52f41005a3b",
+      "index": 0,
+      "kind": "java_plan",
+      "operator": "repair_plan",
+      "passed_trigger": true,
+      "path_sha256": "70a900e0a87c944e8eac8b0fe2b8ffb95bef4d8bc9bb405dc5b84e21cd6e7835",
+      "test_exit_code": 0,
+      "valid": true
+    }
+  },
+  "qualification_boundary": "ER1-J12-plus unseen until machinery freeze",
+  "schema": "genesis-er2-v3-validation-v1",
+  "training_boundary": "ER1-J1-through-J11-consumed-evidence"
+}

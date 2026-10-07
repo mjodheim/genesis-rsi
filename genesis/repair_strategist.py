@@ -33,17 +33,19 @@ from genesis import (
     java_range_mutations,
     java_structural_mutations,
     java_symbol_mutations,
+    java_string_literal_mutations,
     java_test_switch_mutations,
     scalar_mutations,
 )
 from genesis.repair_ir import RepairPlan, compose, plan_from_candidate, render_candidate
 from genesis.trust_root import digest_of
 
-SCHEMA = "genesis-capability-routed-compositional-repair-v2"
+SCHEMA = "genesis-capability-routed-compositional-repair-v3"
 
 # The weights encode only abstract ER1 lessons.  Narrow specialists receive a
 # modest boost when they actually activate; they do not receive target IDs.
 FAMILY_LIMITS: dict[str, int] = {
+    "java_string_literal": 64,
     "java_default_normalization": 64,
     "java_expression": 64,
     "java_test_switch": 96,
@@ -57,6 +59,7 @@ FAMILY_LIMITS: dict[str, int] = {
 }
 
 FAMILY_WEIGHTS: dict[str, int] = {
+    "java_string_literal": 118,
     "java_default_normalization": 120,
     "java_expression": 110,
     "java_test_switch": 105,
@@ -71,6 +74,7 @@ FAMILY_WEIGHTS: dict[str, int] = {
 
 Generator = Callable[..., dict[str, Any]]
 FAMILIES: tuple[tuple[str, Generator], ...] = (
+    ("java_string_literal", java_string_literal_mutations.generate),
     ("java_default_normalization", java_default_normalization_mutations.generate),
     ("java_expression", java_expression_mutations.generate),
     ("java_test_switch", java_test_switch_mutations.generate),
@@ -377,8 +381,8 @@ def generate(
         "composition_enabled": composition_fraction > 0,
         "max_plan_depth": max((c["plan"]["depth"] for c in out), default=0),
         "family_activation": family_meta,
-        "training_boundary": "ER1-J1-through-J10-consumed-evidence",
-        "qualification_boundary": "future ER1-J11-plus cases unseen until machinery freeze",
+        "training_boundary": "ER1-J1-through-J11-consumed-evidence",
+        "qualification_boundary": "future ER1-J12-plus cases unseen until machinery freeze",
         "external_model_calls": 0,
         "candidates": out,
     }
