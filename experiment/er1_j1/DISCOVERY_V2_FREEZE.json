@@ -1,0 +1,22 @@
+{
+  "schema": "genesis-er1-j1-discovery-v2-freeze-v1",
+  "predecessor_abort": "experiment/er1_j1/V1_INSTRUMENT_ABORT.json",
+  "sanitized_buggy_tree_sha256": "9c32b81a4fdaa236d7c2859f1724a98117ad2bd9b9d607bc15ab152476f06649",
+  "raw_candidate_set_sha256": "ceaa88f50cb151d2a827c500898ed0daea43fe4de0338c5fbe47845dd5cbeac6",
+  "compact_candidate_index_sha256": "1e90069ec35fcb74d2997b75e10095ac49fedb0d06862e204add024270889fb4",
+  "candidate_count": 10000,
+  "candidate_budget": 10000,
+  "selection_rule": "lowest Genesis candidate index passing hidden triggering test",
+  "hidden_trigger_identity_sha256": "30831ea629fd5b9b65658e2cc21cbd735651bb32bf000d515a437a563c58de6b",
+  "hidden_evaluator_v2_sha256": "da82f112acb19c6c17d0a1e8d238604b6b5a8650f4b41392e68e05fdcf3e1847",
+  "parallel_workers": 8,
+  "parallel_batch_size": 32,
+  "semantic_change_from_v1": false,
+  "execution_change_from_v1": "retain compiled target and rely on Ant incremental recompilation after git restoration/application of each scalar source mutation",
+  "generator_changed": false,
+  "candidate_order_changed": false,
+  "candidate_budget_changed": false,
+  "hidden_trigger_changed": false,
+  "pass_criterion_changed": false,
+  "external_model_calls": 0
+}
