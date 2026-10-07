@@ -1,0 +1,27 @@
+{
+  "candidate_coverage": {
+    "baseline_human_fix_file_candidate_count": 61,
+    "baseline_human_fix_file_first_logical_index": 45,
+    "successor_human_fix_file_candidate_count": 40,
+    "successor_human_fix_file_first_logical_index": 91,
+    "symbol_candidates_on_human_fix_file": 0
+  },
+  "causal_findings": [
+    "J5 was not a localization failure: the trigger set loaded only RandomStringUtils.java and both arms evaluated candidates on that file.",
+    "The frozen J4 qualified-symbol mechanism was causally inapplicable to this fresh defect.",
+    "The human repair adds an explicit empty-array precondition and conditionally derives range bounds from a nullable character array.",
+    "The inherited grammars cannot synthesize multi-statement parameter guards or null-sensitive bound initialization."
+  ],
+  "claim_boundary": "J5 remains a valid negative applicability result. The revealed fix diagnoses the next machinery gap and may not be used to reclassify or retune J5 into a pass.",
+  "human_fix_reveal": {
+    "human_fix_shape": "input_guard_plus_conditional_range_derivation",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
+    "source_diff_sha256": "e504440b3589c2c20ab8109611efd264c0e6fb637d0357e169625acc9752ca9f"
+  },
+  "next_development_change": "Add generic Java parameter-guard and conditional-bound derivation operators mined from method signatures and source-local usage patterns, without encoding RandomStringUtils, chars, LANG-805, or human patch text. Qualify only on a fresh deterministic J6 case.",
+  "pre_reveal_result_commit": "4111a32f",
+  "schema": "genesis-er1-j5-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_PRECONDITION_AND_CONDITIONAL_DERIVATION_GAP"
+}
