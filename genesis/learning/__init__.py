@@ -1,5 +1,5 @@
-"""Learning and capability-acquisition substrate for Genesis v2."""
+"""Learning machinery for Genesis v2."""
 
-from . import capability_gaps, failure_model, self_extension
+from . import capability_gaps, distillation, failure_model, self_extension
 
-__all__ = ["capability_gaps", "failure_model", "self_extension"]
+__all__ = ["capability_gaps", "distillation", "failure_model", "self_extension"]
