@@ -1,0 +1,1804 @@
+{
+  "claim_boundary": "Bounded project-defined G9 whole-successor qualification only. Passing shows one lineage-produced Genesis N -> Genesis N+1 transition with multiple material machinery changes, fresh matched-budget improvement, causal ablations and retained parent capability. A single transition is not recursive self-improvement and does not establish G10, general RSI, AGI, ASI or independent third-party validation.",
+  "external_model_calls": 0,
+  "gate_passed": true,
+  "holdout": {
+    "case_count": 12,
+    "content_digest": "bb6033d14ecbb0e2b4c7c6886c588c0d9ea202c5ce1d4d5f000d7f5c5d760c5c",
+    "group_counts": {
+      "g6_component_gain": 4,
+      "g8_specialist_gain": 4,
+      "parent_retention": 4
+    },
+    "raw_cases": [
+      {
+        "case_id": "retained-1",
+        "evaluation": {
+          "passed": false,
+          "returncode": 21,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.499085
+        },
+        "group": "parent_retention",
+        "passed": false
+      },
+      {
+        "case_id": "retained-2",
+        "evaluation": {
+          "passed": false,
+          "returncode": 22,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.561039
+        },
+        "group": "parent_retention",
+        "passed": false
+      },
+      {
+        "case_id": "retained-3",
+        "evaluation": {
+          "passed": false,
+          "returncode": 21,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.614589
+        },
+        "group": "parent_retention",
+        "passed": false
+      },
+      {
+        "case_id": "retained-4",
+        "evaluation": {
+          "passed": false,
+          "returncode": 22,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.682271
+        },
+        "group": "parent_retention",
+        "passed": false
+      },
+      {
+        "case_id": "g6-gain-1",
+        "evaluation": {
+          "passed": false,
+          "returncode": 31,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.512469
+        },
+        "group": "g6_component_gain",
+        "passed": false
+      },
+      {
+        "case_id": "g6-gain-2",
+        "evaluation": {
+          "passed": false,
+          "returncode": 32,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.57028
+        },
+        "group": "g6_component_gain",
+        "passed": false
+      },
+      {
+        "case_id": "g6-gain-3",
+        "evaluation": {
+          "passed": false,
+          "returncode": 31,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.568006
+        },
+        "group": "g6_component_gain",
+        "passed": false
+      },
+      {
+        "case_id": "g6-gain-4",
+        "evaluation": {
+          "passed": false,
+          "returncode": 32,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 2.737917
+        },
+        "group": "g6_component_gain",
+        "passed": false
+      },
+      {
+        "case_id": "g8-python-1",
+        "evaluation": {
+          "passed": false,
+          "returncode": 1,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 0.0379
+        },
+        "group": "g8_specialist_gain",
+        "passed": false
+      },
+      {
+        "case_id": "g8-python-2",
+        "evaluation": {
+          "passed": false,
+          "returncode": 1,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "wall_time_seconds": 0.03803
+        },
+        "group": "g8_specialist_gain",
+        "passed": false
+      },
+      {
+        "case_id": "g8-rust-retry",
+        "evaluation": {
+          "passed": false,
+          "protected_invariant": true,
+          "returncode": 1,
+          "single_changed_line": false,
+          "wall_time_seconds": 0.000123
+        },
+        "group": "g8_specialist_gain",
+        "passed": false
+      },
+      {
+        "case_id": "g8-rust-boundary",
+        "evaluation": {
+          "passed": false,
+          "protected_invariant": true,
+          "returncode": 1,
+          "single_changed_line": false,
+          "wall_time_seconds": 8.7e-05
+        },
+        "group": "g8_specialist_gain",
+        "passed": false
+      }
+    ],
+    "sha256": "82324e8cd011e27f18753f88ee0e188daf672ad143b87ba135be3c198bd6a1b6"
+  },
+  "parent": {
+    "candidate_budget_per_case": 4,
+    "candidate_budget_total": 48,
+    "candidate_executions": 4,
+    "case_count": 12,
+    "cases": [
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-1",
+        "evaluations": [
+          {
+            "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+            "candidate_id": "universal-2b7be6cea5179457",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.62902
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "5ee089f3a5c9922e835e9331c8a5d7d98e0026a244770a4c0a91790cbce40ed6",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+          "candidate_id": "universal-2b7be6cea5179457",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.62902
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-2",
+        "evaluations": [
+          {
+            "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+            "candidate_id": "universal-6c5278d2aff28629",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.596013
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "d37aef27f71fec03ad5885981d851eba441c783465cbf608df3cd51c2273105a",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+          "candidate_id": "universal-6c5278d2aff28629",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.596013
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-3",
+        "evaluations": [
+          {
+            "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+            "candidate_id": "universal-4164ebe8c24a76f6",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.707097
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "192c4b308e0710bce50bcd90bb984221df3063774eec0c5e4e295a9a5a046d97",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+          "candidate_id": "universal-4164ebe8c24a76f6",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.707097
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-4",
+        "evaluations": [
+          {
+            "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+            "candidate_id": "universal-cd547639ccd087b1",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.625476
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "8c4b3a1f6e4d04d2f4294b200f54638c5ae77ac427cc0b29843c15fb0f48c6e5",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+          "candidate_id": "universal-cd547639ccd087b1",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.625476
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-1",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-2",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-3",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-4",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-python-1",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-python-2",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-rust-retry",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-rust-boundary",
+        "evaluations": [],
+        "generation_digest": "65f42c1037cb2ece21603d59f8683c16869ba088f641443ae02d4c7e60297404",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      }
+    ],
+    "controller_cpu_process_time_ns": 112806906,
+    "external_model_calls": 0,
+    "group_solved": {
+      "g6_component_gain": 0,
+      "g8_specialist_gain": 0,
+      "parent_retention": 4
+    },
+    "measurement_digest": "7c224434a8b46714d75af555e05b7ac3aadbcfe5ae9c3f60fa952410116c4030",
+    "profile_digest": "c361276dc1f367f901d37d86efaa48001768b0ec93b47ab4b79c140738719e93",
+    "solved": 4,
+    "success_rate": 0.3333333333333333,
+    "wall_time_seconds": 10.665528,
+    "within_candidate_budget": true
+  },
+  "parent_profile_digest": "c361276dc1f367f901d37d86efaa48001768b0ec93b47ab4b79c140738719e93",
+  "preregistration_digest": "c9d2746903946ca5752a3b266da44f95ef9b410f68247329ed57fe4ac74e13e8",
+  "proposal_digest": "b3bef30ef7c25e060d330b42723cfbc22890bc17885befd95f13d0d02273ef81",
+  "requirements": {
+    "all_profiles_stay_within_matched_candidate_budget": true,
+    "all_profiles_use_zero_external_model_calls": true,
+    "all_raw_tasks_fail_before_repair": true,
+    "each_causal_ablation_is_worse_than_whole_successor": true,
+    "g6_ablation_removes_g6_block_gain": true,
+    "g8_ablation_removes_g8_block_gain": true,
+    "holdout_has_three_balanced_blocks": true,
+    "holdout_sha256_matches_preregistered_identity": true,
+    "matched_candidate_budgets_are_identical": true,
+    "mutable_lineage_does_not_own_evaluator_or_verdict": true,
+    "resource_accounting_records_candidate_cpu_and_wall_axes": true,
+    "successor_contains_multiple_material_machinery_changes": true,
+    "successor_generation_is_exactly_parent_plus_one": true,
+    "successor_improves_fresh_success_rate": true,
+    "successor_is_lineage_produced": true,
+    "successor_preserves_all_parent_retention_cases": true,
+    "successor_preserves_every_parent_success": true,
+    "successor_proposal_is_content_addressed_and_valid": true,
+    "successor_solves_at_least_11_of_12_fresh_cases": true,
+    "successor_was_generated_without_g9_holdout_visibility": true,
+    "whole_successor_inherits_unchanged_component_inventory": true
+  },
+  "result_digest": "d5a0842759d95801e97b49e9e5c7933e0ccdddb3286bfa5f3510acfb88ab5268",
+  "schema": "genesis-g9-qualification-result-v1",
+  "successor": {
+    "candidate_budget_per_case": 4,
+    "candidate_budget_total": 48,
+    "candidate_executions": 12,
+    "case_count": 12,
+    "cases": [
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-1",
+        "evaluations": [
+          {
+            "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+            "candidate_id": "universal-2b7be6cea5179457",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.591287
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "173c106731eb7d880a1c1e942685534b3fd7fee6f8b1a7c7fa6b7143808387b9",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+          "candidate_id": "universal-2b7be6cea5179457",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.591287
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-2",
+        "evaluations": [
+          {
+            "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+            "candidate_id": "universal-6c5278d2aff28629",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.650762
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "4e5dcb1c8620afaf4c4e279b6d7a677c360660d2b1d82bea2bfa29a9fe111bc0",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+          "candidate_id": "universal-6c5278d2aff28629",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.650762
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-3",
+        "evaluations": [
+          {
+            "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+            "candidate_id": "universal-4164ebe8c24a76f6",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.808221
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "3ba589ec6ba44e9b108c7383b1f1b11b3e118f3a4897ec40a0fef49bc02277b5",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+          "candidate_id": "universal-4164ebe8c24a76f6",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.808221
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-4",
+        "evaluations": [
+          {
+            "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+            "candidate_id": "universal-cd547639ccd087b1",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.618086
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "7f17b62a5ee3469da663c60dda0899160a7bc02d5c55b493da3a5dd060ebf56c",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+          "candidate_id": "universal-cd547639ccd087b1",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.618086
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-1",
+        "evaluations": [
+          {
+            "candidate_digest": "0dc9a54280e057fa1e3645e845b805be25b266469ce8f07ec57504ca90d1d425",
+            "candidate_id": "universal-0dc9a54280e057fa",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.615203
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "44a006101cb48853bd2bac87258a46bfa01978c5e31eefbb1702f9c63dd77d94",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "0dc9a54280e057fa1e3645e845b805be25b266469ce8f07ec57504ca90d1d425",
+          "candidate_id": "universal-0dc9a54280e057fa",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.615203
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-2",
+        "evaluations": [
+          {
+            "candidate_digest": "d1b9adee6ffec06cd8053d11b552c895bee9a3c5ca7e56a129f16a38b7a91b9d",
+            "candidate_id": "universal-d1b9adee6ffec06c",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.683485
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "2dcd3f32662b688d1f466cb176989aeb83bf5963265064bad842cce724736607",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "d1b9adee6ffec06cd8053d11b552c895bee9a3c5ca7e56a129f16a38b7a91b9d",
+          "candidate_id": "universal-d1b9adee6ffec06c",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.683485
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-3",
+        "evaluations": [
+          {
+            "candidate_digest": "92a6c3499024b3f1e59a418c9decf45d81692805caa37b917a14dceb9e0b7727",
+            "candidate_id": "universal-92a6c3499024b3f1",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.693475
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "93c61052addaa82b3e2dc76dee730a74fea4a4a3b1765510e0dc3c30f0c294b8",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "92a6c3499024b3f1e59a418c9decf45d81692805caa37b917a14dceb9e0b7727",
+          "candidate_id": "universal-92a6c3499024b3f1",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.693475
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-4",
+        "evaluations": [
+          {
+            "candidate_digest": "990ab8a25d17a2f29c3ad749a7409f167177d58c8fde219f9592694b3f65121a",
+            "candidate_id": "universal-990ab8a25d17a2f2",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.582746
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "ced29f54df09bb03038ab8694bc60a1e40cd68424b4c42a2496d4d2964b18487",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "990ab8a25d17a2f29c3ad749a7409f167177d58c8fde219f9592694b3f65121a",
+          "candidate_id": "universal-990ab8a25d17a2f2",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.582746
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-python-1",
+        "evaluations": [
+          {
+            "candidate_digest": "52ddaed90d15ba0a212ad84a683e278877d1d4f2b0a9c2f79d251dc9f255ef0c",
+            "candidate_id": "learned-52ddaed90d15ba0a",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 0.038222
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "c55bba3f057efb0caaef7094077e50c2c052e898cf82c29eff2590ba76cb4fad",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "52ddaed90d15ba0a212ad84a683e278877d1d4f2b0a9c2f79d251dc9f255ef0c",
+          "candidate_id": "learned-52ddaed90d15ba0a",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 0.038222
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-python-2",
+        "evaluations": [
+          {
+            "candidate_digest": "99b442c5af1fac5b955e57d80532ea55c28bf836de81b3b5151f29358e42a45a",
+            "candidate_id": "learned-99b442c5af1fac5b",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 0.036595
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "92e082571240cf991f839ece2e11ec690d9cb990860ba564522d8fa089b2d6d7",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "99b442c5af1fac5b955e57d80532ea55c28bf836de81b3b5151f29358e42a45a",
+          "candidate_id": "learned-99b442c5af1fac5b",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 0.036595
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-rust-retry",
+        "evaluations": [
+          {
+            "candidate_digest": "3c854e73ff6bb197fe24520f7ecb8b929a9a062925c8bd8da3880bd6b967b58e",
+            "candidate_id": "learned-3c854e73ff6bb197",
+            "evaluation": {
+              "passed": true,
+              "protected_invariant": true,
+              "returncode": 0,
+              "single_changed_line": true,
+              "wall_time_seconds": 0.000109
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "461a152aefbec3f75b78d7b13a0e976b7d06e9d073600f6922f9587afd4806bb",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "3c854e73ff6bb197fe24520f7ecb8b929a9a062925c8bd8da3880bd6b967b58e",
+          "candidate_id": "learned-3c854e73ff6bb197",
+          "evaluation": {
+            "passed": true,
+            "protected_invariant": true,
+            "returncode": 0,
+            "single_changed_line": true,
+            "wall_time_seconds": 0.000109
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-rust-boundary",
+        "evaluations": [
+          {
+            "candidate_digest": "b942e03e58de22d17af1945b444a425391f966a5b01ad7a46f6750c4c4e15af3",
+            "candidate_id": "learned-b942e03e58de22d1",
+            "evaluation": {
+              "passed": true,
+              "protected_invariant": true,
+              "returncode": 0,
+              "single_changed_line": true,
+              "wall_time_seconds": 0.000128
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "a1617a19e5e4d44c690732002584dcc0d39a63a12704bb95a6b1105b509eacb5",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "b942e03e58de22d17af1945b444a425391f966a5b01ad7a46f6750c4c4e15af3",
+          "candidate_id": "learned-b942e03e58de22d1",
+          "evaluation": {
+            "passed": true,
+            "protected_invariant": true,
+            "returncode": 0,
+            "single_changed_line": true,
+            "wall_time_seconds": 0.000128
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      }
+    ],
+    "controller_cpu_process_time_ns": 179220022,
+    "external_model_calls": 0,
+    "group_solved": {
+      "g6_component_gain": 4,
+      "g8_specialist_gain": 4,
+      "parent_retention": 4
+    },
+    "measurement_digest": "00df3f1982e813b631a63ac46fb3d21beca28f32b1b6b8fd744227b02ca23582",
+    "profile_digest": "ce863273b94b65d454bf61c9b6140f6b55654c8f3ae39827887293ce6d559601",
+    "solved": 12,
+    "success_rate": 1.0,
+    "wall_time_seconds": 21.489678,
+    "within_candidate_budget": true
+  },
+  "successor_freeze_digest": "ddf2ecd86229eb5fc10806fd81946c6bbbfe4e5c47afe4e513311a7e3d88972b",
+  "successor_profile_digest": "ce863273b94b65d454bf61c9b6140f6b55654c8f3ae39827887293ce6d559601",
+  "verdict": "G9_SCIENTIFIC_GATE_PASSED",
+  "without_g6_ablation": {
+    "candidate_budget_per_case": 4,
+    "candidate_budget_total": 48,
+    "candidate_executions": 8,
+    "case_count": 12,
+    "cases": [
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-1",
+        "evaluations": [
+          {
+            "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+            "candidate_id": "universal-2b7be6cea5179457",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.590338
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "8e154a431e1d9f259b0e74b241f5541486ee7c90dca1a35b127d4c0aedb77850",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+          "candidate_id": "universal-2b7be6cea5179457",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.590338
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-2",
+        "evaluations": [
+          {
+            "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+            "candidate_id": "universal-6c5278d2aff28629",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.500618
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "717d8c4a7ac4a048e99415c692047ab07ad8977867a79e8050f30131c2c859f1",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+          "candidate_id": "universal-6c5278d2aff28629",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.500618
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-3",
+        "evaluations": [
+          {
+            "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+            "candidate_id": "universal-4164ebe8c24a76f6",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.715326
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "970a49388837ba0aab097b2c6001dc1f579ce1b4fbccae4a560e98a0de07bcee",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+          "candidate_id": "universal-4164ebe8c24a76f6",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.715326
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-4",
+        "evaluations": [
+          {
+            "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+            "candidate_id": "universal-cd547639ccd087b1",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.709564
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "f7ea56cac48102884b4efa3912c7b61efc1a28ab312d6955843e2478bed2c2b2",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+          "candidate_id": "universal-cd547639ccd087b1",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.709564
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-1",
+        "evaluations": [],
+        "generation_digest": "a25171d1a89ca8405182236c932b9eb147ac52d2e19efe9f82ca8ea9443c44c0",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-2",
+        "evaluations": [],
+        "generation_digest": "a25171d1a89ca8405182236c932b9eb147ac52d2e19efe9f82ca8ea9443c44c0",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-3",
+        "evaluations": [],
+        "generation_digest": "a25171d1a89ca8405182236c932b9eb147ac52d2e19efe9f82ca8ea9443c44c0",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g6-gain-4",
+        "evaluations": [],
+        "generation_digest": "a25171d1a89ca8405182236c932b9eb147ac52d2e19efe9f82ca8ea9443c44c0",
+        "group": "g6_component_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "local_repair_specialist": 0,
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-python-1",
+        "evaluations": [
+          {
+            "candidate_digest": "52ddaed90d15ba0a212ad84a683e278877d1d4f2b0a9c2f79d251dc9f255ef0c",
+            "candidate_id": "learned-52ddaed90d15ba0a",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 0.038924
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "ae17f2d84f745b7f644563c3fee032ef5b98ee00a64aa916edc40ec3417a814e",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "52ddaed90d15ba0a212ad84a683e278877d1d4f2b0a9c2f79d251dc9f255ef0c",
+          "candidate_id": "learned-52ddaed90d15ba0a",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 0.038924
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-python-2",
+        "evaluations": [
+          {
+            "candidate_digest": "99b442c5af1fac5b955e57d80532ea55c28bf836de81b3b5151f29358e42a45a",
+            "candidate_id": "learned-99b442c5af1fac5b",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 0.028012
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "dfc480a49d3538be8a20340ad5fa892681eafe0d17b4e2ca3fbf67a4d81c2ef8",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "99b442c5af1fac5b955e57d80532ea55c28bf836de81b3b5151f29358e42a45a",
+          "candidate_id": "learned-99b442c5af1fac5b",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 0.028012
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-rust-retry",
+        "evaluations": [
+          {
+            "candidate_digest": "3c854e73ff6bb197fe24520f7ecb8b929a9a062925c8bd8da3880bd6b967b58e",
+            "candidate_id": "learned-3c854e73ff6bb197",
+            "evaluation": {
+              "passed": true,
+              "protected_invariant": true,
+              "returncode": 0,
+              "single_changed_line": true,
+              "wall_time_seconds": 0.000145
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "ba8add7135f0b456379f9550647232525c6026e47e046f7b2a51aa90dda76cb1",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "3c854e73ff6bb197fe24520f7ecb8b929a9a062925c8bd8da3880bd6b967b58e",
+          "candidate_id": "learned-3c854e73ff6bb197",
+          "evaluation": {
+            "passed": true,
+            "protected_invariant": true,
+            "returncode": 0,
+            "single_changed_line": true,
+            "wall_time_seconds": 0.000145
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g8-rust-boundary",
+        "evaluations": [
+          {
+            "candidate_digest": "b942e03e58de22d17af1945b444a425391f966a5b01ad7a46f6750c4c4e15af3",
+            "candidate_id": "learned-b942e03e58de22d1",
+            "evaluation": {
+              "passed": true,
+              "protected_invariant": true,
+              "returncode": 0,
+              "single_changed_line": true,
+              "wall_time_seconds": 0.000137
+            },
+            "passed": true,
+            "route": "local_repair_specialist"
+          }
+        ],
+        "generation_digest": "65cc5466fe67b0447f043c0a70f8a08a81a9e6c9223fffcb728f9e8deac927d3",
+        "group": "g8_specialist_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "local_repair_specialist": 1,
+          "universal_operator_ir": 0
+        },
+        "winner": {
+          "candidate_digest": "b942e03e58de22d17af1945b444a425391f966a5b01ad7a46f6750c4c4e15af3",
+          "candidate_id": "learned-b942e03e58de22d1",
+          "evaluation": {
+            "passed": true,
+            "protected_invariant": true,
+            "returncode": 0,
+            "single_changed_line": true,
+            "wall_time_seconds": 0.000137
+          },
+          "passed": true,
+          "route": "local_repair_specialist"
+        }
+      }
+    ],
+    "controller_cpu_process_time_ns": 170287644,
+    "external_model_calls": 0,
+    "group_solved": {
+      "g6_component_gain": 0,
+      "g8_specialist_gain": 4,
+      "parent_retention": 4
+    },
+    "measurement_digest": "0f8cc62520564df1fa12d16ed5045421368583cde4da2231ccc9baed399acd6d",
+    "profile_digest": "8d734742f86d86679ee8dcd5d749bd63880316bebc8e0d01f01f14a34e846ee7",
+    "solved": 8,
+    "success_rate": 0.6666666666666666,
+    "wall_time_seconds": 10.748767,
+    "within_candidate_budget": true
+  },
+  "without_g8_ablation": {
+    "candidate_budget_per_case": 4,
+    "candidate_budget_total": 48,
+    "candidate_executions": 8,
+    "case_count": 12,
+    "cases": [
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-1",
+        "evaluations": [
+          {
+            "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+            "candidate_id": "universal-2b7be6cea5179457",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.597204
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "dc989737b9c3fb25ad9c9d18c0a5a8b84151fca2a62322e5940be67ad2c018f6",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "2b7be6cea517945706a3d854abb771200e9db5d026ff8ce420f3cf50f33e0a42",
+          "candidate_id": "universal-2b7be6cea5179457",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.597204
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-2",
+        "evaluations": [
+          {
+            "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+            "candidate_id": "universal-6c5278d2aff28629",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.674453
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "1c0629c631c5f8482c7c50483a0d390db906c8ecb5203a4186d19933b44071fe",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "6c5278d2aff286290f6285f0bb3721a3d96fe885ce36e62626f2c28cbc690de9",
+          "candidate_id": "universal-6c5278d2aff28629",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.674453
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-3",
+        "evaluations": [
+          {
+            "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+            "candidate_id": "universal-4164ebe8c24a76f6",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.691796
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "1d4ee58e12afc996632e4a673b588f22acd5a519c11ef9cafd58c22232a8fdd5",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "4164ebe8c24a76f6f007d4eb16f9e344f722c3cba3c690f517b40bb82ab5104d",
+          "candidate_id": "universal-4164ebe8c24a76f6",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.691796
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "retained-4",
+        "evaluations": [
+          {
+            "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+            "candidate_id": "universal-cd547639ccd087b1",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.665408
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "8678750d75fe89428e7f645f4fc06d7d59a9503720372eb0d74cf27ca75da9fc",
+        "group": "parent_retention",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "cd547639ccd087b104272b3ba0d7acf09bfa7d8cde8e1f9e260ae43a7ba65c43",
+          "candidate_id": "universal-cd547639ccd087b1",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.665408
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-1",
+        "evaluations": [
+          {
+            "candidate_digest": "0dc9a54280e057fa1e3645e845b805be25b266469ce8f07ec57504ca90d1d425",
+            "candidate_id": "universal-0dc9a54280e057fa",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.666382
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "b3d9fc76bb647e9d55d0914df50575576d3793c9c1f7f16f4bcc8e4d42f28d64",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "0dc9a54280e057fa1e3645e845b805be25b266469ce8f07ec57504ca90d1d425",
+          "candidate_id": "universal-0dc9a54280e057fa",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.666382
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-2",
+        "evaluations": [
+          {
+            "candidate_digest": "d1b9adee6ffec06cd8053d11b552c895bee9a3c5ca7e56a129f16a38b7a91b9d",
+            "candidate_id": "universal-d1b9adee6ffec06c",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.611408
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "99a86a289e2109085af1b7a6c2b61c07fb16caffbb7e3313d6b30879e0464e80",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "d1b9adee6ffec06cd8053d11b552c895bee9a3c5ca7e56a129f16a38b7a91b9d",
+          "candidate_id": "universal-d1b9adee6ffec06c",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.611408
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-3",
+        "evaluations": [
+          {
+            "candidate_digest": "92a6c3499024b3f1e59a418c9decf45d81692805caa37b917a14dceb9e0b7727",
+            "candidate_id": "universal-92a6c3499024b3f1",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.673571
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "39b5c3888985fdaf3fa80c79c0ddbc4c674596fa1dfe77f695caa8a21ee73d7e",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "92a6c3499024b3f1e59a418c9decf45d81692805caa37b917a14dceb9e0b7727",
+          "candidate_id": "universal-92a6c3499024b3f1",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.673571
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "g6-gain-4",
+        "evaluations": [
+          {
+            "candidate_digest": "990ab8a25d17a2f29c3ad749a7409f167177d58c8fde219f9592694b3f65121a",
+            "candidate_id": "universal-990ab8a25d17a2f2",
+            "evaluation": {
+              "passed": true,
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "wall_time_seconds": 2.546261
+            },
+            "passed": true,
+            "route": "universal_operator_ir"
+          }
+        ],
+        "generation_digest": "eecdc411ce1b137038b06cb37bcc91c13956052cc8a154b51d4ccd1f6e878886",
+        "group": "g6_component_gain",
+        "passed": true,
+        "route_candidate_counts": {
+          "universal_operator_ir": 1
+        },
+        "winner": {
+          "candidate_digest": "990ab8a25d17a2f29c3ad749a7409f167177d58c8fde219f9592694b3f65121a",
+          "candidate_id": "universal-990ab8a25d17a2f2",
+          "evaluation": {
+            "passed": true,
+            "returncode": 0,
+            "stderr_tail": "",
+            "stdout_tail": "",
+            "wall_time_seconds": 2.546261
+          },
+          "passed": true,
+          "route": "universal_operator_ir"
+        }
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-python-1",
+        "evaluations": [],
+        "generation_digest": "4917a70bf50236fd4f850b60e67575003b8704db4a530665a0a5e97057e79484",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-python-2",
+        "evaluations": [],
+        "generation_digest": "4917a70bf50236fd4f850b60e67575003b8704db4a530665a0a5e97057e79484",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-rust-retry",
+        "evaluations": [],
+        "generation_digest": "4917a70bf50236fd4f850b60e67575003b8704db4a530665a0a5e97057e79484",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      },
+      {
+        "candidate_budget": 4,
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "g8-rust-boundary",
+        "evaluations": [],
+        "generation_digest": "4917a70bf50236fd4f850b60e67575003b8704db4a530665a0a5e97057e79484",
+        "group": "g8_specialist_gain",
+        "passed": false,
+        "route_candidate_counts": {
+          "universal_operator_ir": 0
+        },
+        "winner": null
+      }
+    ],
+    "controller_cpu_process_time_ns": 143498351,
+    "external_model_calls": 0,
+    "group_solved": {
+      "g6_component_gain": 4,
+      "g8_specialist_gain": 0,
+      "parent_retention": 4
+    },
+    "measurement_digest": "12ee8e27a23f15e6229cfe996d4707294e86080d157e0671e434563c4065553c",
+    "profile_digest": "baa9182f4d248ef0585fe626f28c256beb4c7a6e6c8a9f4e3b04c0c99cfd009a",
+    "solved": 8,
+    "success_rate": 0.6666666666666666,
+    "wall_time_seconds": 21.262597,
+    "within_candidate_budget": true
+  }
+}

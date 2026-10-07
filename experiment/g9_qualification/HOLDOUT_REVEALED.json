@@ -1,0 +1,162 @@
+{
+  "case_count": 12,
+  "cases": [
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static int Pick938(int[] values) => values[1]; static int Main() => Pick938(new[]{54,79}) == 54 ? 0 : 21; }\n"
+      },
+      "group": "parent_retention",
+      "id": "retained-1"
+    },
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static char Pick287(string text) => text[1]; static int Main() => Pick287(\"bp\") == 'b' ? 0 : 22; }\n"
+      },
+      "group": "parent_retention",
+      "id": "retained-2"
+    },
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static int Pick223(int[] values) => values[1]; static int Main() => Pick223(new[]{21,52}) == 21 ? 0 : 21; }\n"
+      },
+      "group": "parent_retention",
+      "id": "retained-3"
+    },
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static char Pick844(string text) => text[1]; static int Main() => Pick844(\"ls\") == 'l' ? 0 : 22; }\n"
+      },
+      "group": "parent_retention",
+      "id": "retained-4"
+    },
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static int[] Make991() => new[]{90,127}; static int Pick245() => Make991()[1]; static int Main() => Pick245() == 90 ? 0 : 31; }\n"
+      },
+      "group": "g6_component_gain",
+      "id": "g6-gain-1"
+    },
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static string Make408() => \"ly\"; static char Pick640() => Make408()[1]; static int Main() => Pick640() == 'l' ? 0 : 32; }\n"
+      },
+      "group": "g6_component_gain",
+      "id": "g6-gain-2"
+    },
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static int[] Make435() => new[]{105,162}; static int Pick587() => Make435()[1]; static int Main() => Pick587() == 105 ? 0 : 31; }\n"
+      },
+      "group": "g6_component_gain",
+      "id": "g6-gain-3"
+    },
+    {
+      "evaluation": {
+        "kind": "dotnet_exit_zero"
+      },
+      "files": {
+        "Case.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup></Project>\n",
+        "Program.cs": "using System;\nclass Program { static string Make124() => \"fp\"; static char Pick939() => Make124()[1]; static int Main() => Pick939() == 'f' ? 0 : 32; }\n"
+      },
+      "group": "g6_component_gain",
+      "id": "g6-gain-4"
+    },
+    {
+      "evaluation": {
+        "kind": "python_exit_zero"
+      },
+      "expected_replacement": {
+        "new": "    for item_592 in range(1, limit_475 + 1):",
+        "old": "    for item_592 in range(1, limit_475):",
+        "path": "program.py"
+      },
+      "files": {
+        "program.py": "def product_to_243(limit_475):\n    result = 1\n    for item_592 in range(1, limit_475):\n        result *= item_592\n    return result\n\nraise SystemExit(0 if product_to_243(4) == 24 and product_to_243(1) == 1 else 1)\n"
+      },
+      "group": "g8_specialist_gain",
+      "id": "g8-python-1"
+    },
+    {
+      "evaluation": {
+        "kind": "python_exit_zero"
+      },
+      "expected_replacement": {
+        "new": "    for item_182 in range(1, limit_334 + 1):",
+        "old": "    for item_182 in range(1, limit_334):",
+        "path": "program.py"
+      },
+      "files": {
+        "program.py": "def product_to_247(limit_334):\n    result = 1\n    for item_182 in range(1, limit_334):\n        result *= item_182\n    return result\n\nraise SystemExit(0 if product_to_247(4) == 24 and product_to_247(1) == 1 else 1)\n"
+      },
+      "group": "g8_specialist_gain",
+      "id": "g8-python-2"
+    },
+    {
+      "evaluation": {
+        "kind": "static_single_line",
+        "protected_substring": "const MAX_TRIES_490: usize = 6;"
+      },
+      "expected_replacement": {
+        "new": "    for attempt_689 in 0..MAX_TRIES_490 {",
+        "old": "    for attempt_689 in 1..MAX_TRIES_490 {",
+        "path": "program.rs"
+      },
+      "files": {
+        "program.rs": "const MAX_TRIES_490: usize = 6;\nfn run() {\n    for attempt_689 in 1..MAX_TRIES_490 {\n        println!(\"{}\", attempt_689);\n    }\n}\n"
+      },
+      "group": "g8_specialist_gain",
+      "id": "g8-rust-retry"
+    },
+    {
+      "evaluation": {
+        "kind": "static_single_line"
+      },
+      "expected_replacement": {
+        "new": "    if ctx_701.clock_848().tick_817() >= lease_602.deadline_342 {",
+        "old": "    if ctx_701.clock_848().tick_817() > lease_602.deadline_342 {",
+        "path": "program.rs"
+      },
+      "files": {
+        "program.rs": "fn expired() -> bool {\n    if ctx_701.clock_848().tick_817() > lease_602.deadline_342 {\n        return true;\n    }\n    false\n}\n"
+      },
+      "group": "g8_specialist_gain",
+      "id": "g8-rust-boundary"
+    }
+  ],
+  "group_counts": {
+    "g6_component_gain": 4,
+    "g8_specialist_gain": 4,
+    "parent_retention": 4
+  },
+  "holdout_content_digest": "bb6033d14ecbb0e2b4c7c6886c588c0d9ea202c5ce1d4d5f000d7f5c5d760c5c",
+  "schema": "genesis-g9-holdout-v1",
+  "seed_commitment": "cf70108d3885c288b0f936540b8a9bd98d93038f90a6f1fc26776861e61724e6"
+}
