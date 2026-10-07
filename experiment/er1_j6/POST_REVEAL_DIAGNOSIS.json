@@ -1,0 +1,31 @@
+{
+  "candidate_coverage": {
+    "human_fix_file_candidate_count": 823,
+    "human_fix_file_first_logical_index": 24,
+    "range_candidates_generated_anywhere": 0
+  },
+  "causal_findings": [
+    "J6 was not a localization failure: the trigger loaded only DateUtils.java and inherited machinery evaluated 823 candidates on that file.",
+    "The J5-derived sentinel-range operator was completely inapplicable and generated zero candidates on the fresh repository.",
+    "The human repair requires coordinated multi-site behavior: a Calendar low-unit normalization prepass plus suppression of a zero-offset state write.",
+    "Neither revealed sub-change repairs the trigger alone; their combination does.",
+    "This exceeds the expressivity of isolated single-site/source-local analogy operators and motivates a bounded semantic specialist or compositional repair planner."
+  ],
+  "claim_boundary": "J6 remains a valid negative. The revealed repair is used only to diagnose and distill bounded successor machinery; it may not reclassify J6 into a pass.",
+  "development_ablation_after_reveal": {
+    "combined_functional_patch_passes_trigger": true,
+    "guarded_offset_update_only_passes_trigger": false,
+    "normalization_prepass_only_passes_trigger": false
+  },
+  "human_fix_reveal": {
+    "human_fix_shape": "calendar_low_unit_normalization_prepass_plus_guarded_offset_update",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/java/org/apache/commons/lang/time/DateUtils.java",
+    "source_diff_sha256": "f30c0f76705923c55d67e91cdea2eb52a6f69ac25e217fec5511b53049ddb501"
+  },
+  "next_development_change": "Distill a bounded Java Calendar normalization specialist triggered by structural Calendar/field/round/truncation-loop evidence, with coordinated pre-normalization and zero-offset write guarding. It must encode no Lang-65 repository, class, method, test, issue, commit, or line identity. Validate on generic synthetic Calendar truncation fixtures and the consumed J6 replay, then freeze before fresh J7 selection.",
+  "pre_reveal_result_commit": "bd109a3a",
+  "schema": "genesis-er1-j6-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_COORDINATED_ALGORITHMIC_REPAIR_GAP"
+}
