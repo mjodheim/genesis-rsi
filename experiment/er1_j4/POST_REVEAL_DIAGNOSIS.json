@@ -1,0 +1,30 @@
+{
+  "candidate_coverage": {
+    "baseline_human_fix_file_candidate_count": 132,
+    "baseline_human_fix_file_first_logical_index": 166,
+    "progress_candidates_on_human_fix_file": 0,
+    "successor_human_fix_file_candidate_count": 132,
+    "successor_human_fix_file_first_logical_index": 179
+  },
+  "causal_findings": [
+    "J4 was not a localization failure: the trigger loaded only DateUtils.java and both arms evaluated 132 candidates on that file.",
+    "The frozen J3 progress-step mechanism was correctly inapplicable to this fresh defect.",
+    "The human repair changes a qualified symbolic constant from Calendar.HOUR to Calendar.HOUR_OF_DAY at two coordinated sites.",
+    "The inherited scalar and structural grammars do not enumerate qualified identifier substitutions or coordinated static-symbol replacements."
+  ],
+  "claim_boundary": "J4 remains a valid negative applicability result. The revealed fix diagnoses the next machinery gap and may not be used to reclassify or retune J4 into a pass.",
+  "human_fix_reveal": {
+    "after_symbol": "Calendar.HOUR_OF_DAY",
+    "before_symbol": "Calendar.HOUR",
+    "human_fix_shape": "coordinated_qualified_static_symbol_substitution",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/main/java/org/apache/commons/lang3/time/DateUtils.java",
+    "replacement_site_count": 2,
+    "source_diff_sha256": "989d71937a2d966f3cc4b48618023a7088c0a436edda0551dfdc9050a2bbbf5a"
+  },
+  "next_development_change": "Add a generic qualified-symbol substitution operator that mines sibling qualified constants already present in source/type context and can coordinate the same substitution across repeated sites, without encoding Calendar, HOUR, HOUR_OF_DAY, DateUtils, Lang-21, or patch text. Qualify only on a fresh deterministic J5 case.",
+  "pre_reveal_result_commit": "67de7f16",
+  "schema": "genesis-er1-j4-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_QUALIFIED_SYMBOL_SUBSTITUTION_GAP"
+}
