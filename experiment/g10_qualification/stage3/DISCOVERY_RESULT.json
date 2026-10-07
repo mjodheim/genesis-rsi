@@ -1,0 +1,1026 @@
+{
+  "ancestor": {
+    "discovery_evidence": {
+      "bank_digest": "ae3c8d8bb38074c131b597c4256eb666468c3c8eea871ed1aa7758ad9fe30640",
+      "candidate_budget_per_case": 6,
+      "candidate_executions": 20,
+      "case_count": 4,
+      "discovery_digest": "f6b8e2eebaaf8446607669093f42c36ebbc78ea4a86083c9b18689d4172922ca",
+      "external_model_calls": 0,
+      "measurement_digest": "da1e73c8d9a46baacc416e12af1838cd2d5833f3d7f616b70c0f27f393ed4549",
+      "profile_digest": "90c30ced7af6ad9b351dbfb5ccc875792f2807a5df1ccfc4ddbde05cce726cf9",
+      "schema": "genesis-g10-discovery-evidence-v1",
+      "solved": 0,
+      "successful_traces": []
+    },
+    "measurement": {
+      "bank_digest": "ae3c8d8bb38074c131b597c4256eb666468c3c8eea871ed1aa7758ad9fe30640",
+      "campaign_generation": 1,
+      "candidate_budget_per_case": 6,
+      "candidate_budget_total": 24,
+      "candidate_executions": 20,
+      "case_count": 4,
+      "cases": [
+        {
+          "candidate_budget": 6,
+          "candidate_count": 5,
+          "candidate_executions": 5,
+          "case_id": "d3-0",
+          "evaluations": [
+            {
+              "candidate_digest": "70f96bfa5dbbeaeda612f14c29023f3c453b5453da0d689dc318cab6d6a16632",
+              "candidate_id": "g10-macro-70f96bfa5dbbeaed",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.6e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 1,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "global_pair",
+                "scope_ids": [
+                  "decoy_78583"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "97ccf947ee03632c1a34ade7e0eb8d2dc9c9ef331640fea37f3371c68a3cd606",
+              "candidate_id": "learned-97ccf947ee03632c",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "8682928699b7d5e32a8e8c2035c3742d2b94598fd5c09de24d237192f4198fd5",
+              "candidate_id": "learned-8682928699b7d5e3",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "e51d602a762a701915389835377d30664a968d38bca1e8e9c2990fb70c7e6651",
+              "candidate_id": "learned-e51d602a762a7019",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "c18992ffcf97f12560f1ad3fc70b6cbeba281792bfbe9f85860ec762db832fa0",
+              "candidate_id": "learned-c18992ffcf97f125",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.4e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            }
+          ],
+          "generation_digest": "216156ee126fcd4580f7dbd1e023ecea15bf9980e6ff17654d935e354b090259",
+          "group": "scope_discovery",
+          "passed": false,
+          "winner": null
+        },
+        {
+          "candidate_budget": 6,
+          "candidate_count": 5,
+          "candidate_executions": 5,
+          "case_id": "d3-1",
+          "evaluations": [
+            {
+              "candidate_digest": "10602f188d61e62c227b030ee30fe25ba58962aeaf1213834b92138d51ac75bf",
+              "candidate_id": "g10-macro-10602f188d61e62c",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 4.4e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 1,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "global_pair",
+                "scope_ids": [
+                  "decoy_79878"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "fa24b7f6700f0e1d8eb752b72b06d61ed545cf05a3c3f67b426dc6edf3408f19",
+              "candidate_id": "learned-fa24b7f6700f0e1d",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "e5986bcd17f8de582bd2791c61ba80e8e4a484d3759ccc22ee1a5378e352e2ff",
+              "candidate_id": "learned-e5986bcd17f8de58",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "45ded5862cf170fc68e61bcdc83da570e812b90bc56b23774d6c2384da4778da",
+              "candidate_id": "learned-45ded5862cf170fc",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "d949cae63bcb887696596af0453f2855a91992fe412b070a863ab2f349bc2cfc",
+              "candidate_id": "learned-d949cae63bcb8876",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            }
+          ],
+          "generation_digest": "cb84f287f394113b63fb2322718d4eed316cf14260a03a1f9533404a5b4e3a59",
+          "group": "scope_discovery",
+          "passed": false,
+          "winner": null
+        },
+        {
+          "candidate_budget": 6,
+          "candidate_count": 5,
+          "candidate_executions": 5,
+          "case_id": "d3-2",
+          "evaluations": [
+            {
+              "candidate_digest": "e6a46dae1f04c12a12385ed4ef6a7788f717fa7b1b43cb0b12053f01c7b12545",
+              "candidate_id": "g10-macro-e6a46dae1f04c12a",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.6e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 1,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "global_pair",
+                "scope_ids": [
+                  "decoy_38206"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "ef3b861f5a18982fb877e2ecf99feb1ce0889f0a451976f367ca4e5dda20bb9b",
+              "candidate_id": "learned-ef3b861f5a18982f",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.6e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "4798b1b585e430ed8a2b264cdca5cf29ab93af9836ee85bb3031ecc45274f65f",
+              "candidate_id": "learned-4798b1b585e430ed",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.7e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "2d4c3e019927331e7397b7dbcdd0fb9f7f89c0e846ba842ffb5dd8355083fc16",
+              "candidate_id": "learned-2d4c3e019927331e",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "428d3fa4ffcc4e8ef3afbc574010e907c6f4c80046fbd53587aa26e4f568a1a0",
+              "candidate_id": "learned-428d3fa4ffcc4e8e",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 4.7e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            }
+          ],
+          "generation_digest": "c01c915a9cf6994773a0600d9061879f075140e6d008b615a606f25eb4e4693d",
+          "group": "scope_discovery",
+          "passed": false,
+          "winner": null
+        },
+        {
+          "candidate_budget": 6,
+          "candidate_count": 5,
+          "candidate_executions": 5,
+          "case_id": "d3-3",
+          "evaluations": [
+            {
+              "candidate_digest": "9e057a854f5c33b95578de8c28ad54c58725251410cb58d1b25a94ce35b01a8e",
+              "candidate_id": "g10-macro-9e057a854f5c33b9",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.6e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 1,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "global_pair",
+                "scope_ids": [
+                  "decoy_21895"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "3b4eaec24cd6f7705a76d58f8c136d720f93ddb456dff524b4904a277a7467c9",
+              "candidate_id": "learned-3b4eaec24cd6f770",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.6e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "f4c7a9471e0ed3ad3421a73eb36627fb7dcf8b4ba35054ed1e8a77f12d3b8997",
+              "candidate_id": "learned-f4c7a9471e0ed3ad",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "9272be374155f71d6228a2100d5f0f2158c50ae52a77ff3032aff98e02ab4ae6",
+              "candidate_id": "learned-9272be374155f71d",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.6e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+                ]
+              },
+              "route": "local_repair_specialist"
+            },
+            {
+              "candidate_digest": "b7d6052243a87bb090c59145c9ee96afd591e8a5af35d791a293211446c47ef0",
+              "candidate_id": "learned-b7d6052243a87bb0",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.5e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "base_template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5",
+                "capability_level": 0,
+                "mode": "base_single",
+                "scope_ids": [],
+                "template_digests": [
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "local_repair_specialist"
+            }
+          ],
+          "generation_digest": "82388377734793dce2e713860b02d3012d9ac1df7b15ec8d03d5011ee6da4435",
+          "group": "scope_discovery",
+          "passed": false,
+          "winner": null
+        }
+      ],
+      "controller_cpu_process_time_ns": 19722255,
+      "external_model_calls": 0,
+      "group_solved": {
+        "scope_discovery": 0
+      },
+      "measurement_digest": "da1e73c8d9a46baacc416e12af1838cd2d5833f3d7f616b70c0f27f393ed4549",
+      "profile_digest": "90c30ced7af6ad9b351dbfb5ccc875792f2807a5df1ccfc4ddbde05cce726cf9",
+      "schema": "genesis-g10-profile-measurement-v1",
+      "solved": 0,
+      "success_rate": 0.0,
+      "wall_time_seconds": 0.023159,
+      "within_candidate_budget": true
+    }
+  },
+  "bank_digest": "ae3c8d8bb38074c131b597c4256eb666468c3c8eea871ed1aa7758ad9fe30640",
+  "candidate_budget_per_case": 6,
+  "parent": {
+    "discovery_evidence": {
+      "bank_digest": "ae3c8d8bb38074c131b597c4256eb666468c3c8eea871ed1aa7758ad9fe30640",
+      "candidate_budget_per_case": 6,
+      "candidate_executions": 8,
+      "case_count": 4,
+      "discovery_digest": "d2111b94582f19f8cf848333bc3ab005497d30aea6bb437e0d3493c2d98f17b7",
+      "external_model_calls": 0,
+      "measurement_digest": "24cb379cdcf78ca1d585695e396e61c2975e9120b96dcb6c57e1182b339b225d",
+      "profile_digest": "3d9d3aa46effc2af1703efcdbeb380727eaa5a7a77f999c4c3879e8e648d5815",
+      "schema": "genesis-g10-discovery-evidence-v1",
+      "solved": 4,
+      "successful_traces": [
+        {
+          "base_template_digest": "",
+          "candidate_digest": "a332f338d116c98469e14ce2ca3fb57d6f3e1594cba5a0891185bda0d3176a56",
+          "candidate_execution_index": 2,
+          "capability_level": 2,
+          "case_id": "d3-0",
+          "group": "scope_discovery",
+          "mode": "scope_bound_pair",
+          "route": "recursive_macro",
+          "scope_ids": [
+            "target_90024"
+          ],
+          "template_digests": [
+            "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+            "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+          ]
+        },
+        {
+          "base_template_digest": "",
+          "candidate_digest": "92ba866596e5b489f965a8b4749438107f321319a29d6578ee2e025c8c26f48b",
+          "candidate_execution_index": 2,
+          "capability_level": 2,
+          "case_id": "d3-1",
+          "group": "scope_discovery",
+          "mode": "scope_bound_pair",
+          "route": "recursive_macro",
+          "scope_ids": [
+            "target_60579"
+          ],
+          "template_digests": [
+            "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+            "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+          ]
+        },
+        {
+          "base_template_digest": "",
+          "candidate_digest": "24844f05c794c308d2d25a79e77262be6874a9c88ea06046ea49f231fc9d8938",
+          "candidate_execution_index": 2,
+          "capability_level": 2,
+          "case_id": "d3-2",
+          "group": "scope_discovery",
+          "mode": "scope_bound_pair",
+          "route": "recursive_macro",
+          "scope_ids": [
+            "target_77677"
+          ],
+          "template_digests": [
+            "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+            "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+          ]
+        },
+        {
+          "base_template_digest": "",
+          "candidate_digest": "f2b93213055f6eb29f584258db5d2b6dae844cce65066df8bdc1069b9e0919b2",
+          "candidate_execution_index": 2,
+          "capability_level": 2,
+          "case_id": "d3-3",
+          "group": "scope_discovery",
+          "mode": "scope_bound_pair",
+          "route": "recursive_macro",
+          "scope_ids": [
+            "target_27534"
+          ],
+          "template_digests": [
+            "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+            "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+          ]
+        }
+      ]
+    },
+    "measurement": {
+      "bank_digest": "ae3c8d8bb38074c131b597c4256eb666468c3c8eea871ed1aa7758ad9fe30640",
+      "campaign_generation": 2,
+      "candidate_budget_per_case": 6,
+      "candidate_budget_total": 24,
+      "candidate_executions": 8,
+      "case_count": 4,
+      "cases": [
+        {
+          "candidate_budget": 6,
+          "candidate_count": 6,
+          "candidate_executions": 2,
+          "case_id": "d3-0",
+          "evaluations": [
+            {
+              "candidate_digest": "f5f614d82646172d9e19be134c3a0b9ae60b653a7b53f7d11524438b2f0fb809",
+              "candidate_id": "g10-macro-f5f614d82646172d",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 4.2e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "decoy_78583"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "a332f338d116c98469e14ce2ca3fb57d6f3e1594cba5a0891185bda0d3176a56",
+              "candidate_id": "g10-macro-a332f338d116c984",
+              "evaluation": {
+                "mismatched_files": [],
+                "passed": true,
+                "wall_time_seconds": 4e-05
+              },
+              "passed": true,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  5,
+                  6
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "target_90024"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            }
+          ],
+          "generation_digest": "0f8fb4cd709a02be35f1cdcc97ff910777190cba9afe660a6c8ffadaf29776c6",
+          "group": "scope_discovery",
+          "passed": true,
+          "winner": {
+            "candidate_digest": "a332f338d116c98469e14ce2ca3fb57d6f3e1594cba5a0891185bda0d3176a56",
+            "candidate_id": "g10-macro-a332f338d116c984",
+            "evaluation": {
+              "mismatched_files": [],
+              "passed": true,
+              "wall_time_seconds": 4e-05
+            },
+            "passed": true,
+            "recursive_trace": {
+              "capability_level": 2,
+              "edited_line_indexes": [
+                5,
+                6
+              ],
+              "mode": "scope_bound_pair",
+              "scope_ids": [
+                "target_90024"
+              ],
+              "template_digests": [
+                "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+              ]
+            },
+            "route": "recursive_macro"
+          }
+        },
+        {
+          "candidate_budget": 6,
+          "candidate_count": 6,
+          "candidate_executions": 2,
+          "case_id": "d3-1",
+          "evaluations": [
+            {
+              "candidate_digest": "b266d956dab85b68350943a6889d038264545e3d622c2a467c6461758d787fa4",
+              "candidate_id": "g10-macro-b266d956dab85b68",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.9e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "decoy_79878"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "92ba866596e5b489f965a8b4749438107f321319a29d6578ee2e025c8c26f48b",
+              "candidate_id": "g10-macro-92ba866596e5b489",
+              "evaluation": {
+                "mismatched_files": [],
+                "passed": true,
+                "wall_time_seconds": 3.9e-05
+              },
+              "passed": true,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  5,
+                  6
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "target_60579"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            }
+          ],
+          "generation_digest": "fd7879fbc5d30a9d941730d2f4c2e3c55ff475598b9f9b09edf776b0221d9ed6",
+          "group": "scope_discovery",
+          "passed": true,
+          "winner": {
+            "candidate_digest": "92ba866596e5b489f965a8b4749438107f321319a29d6578ee2e025c8c26f48b",
+            "candidate_id": "g10-macro-92ba866596e5b489",
+            "evaluation": {
+              "mismatched_files": [],
+              "passed": true,
+              "wall_time_seconds": 3.9e-05
+            },
+            "passed": true,
+            "recursive_trace": {
+              "capability_level": 2,
+              "edited_line_indexes": [
+                5,
+                6
+              ],
+              "mode": "scope_bound_pair",
+              "scope_ids": [
+                "target_60579"
+              ],
+              "template_digests": [
+                "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+              ]
+            },
+            "route": "recursive_macro"
+          }
+        },
+        {
+          "candidate_budget": 6,
+          "candidate_count": 6,
+          "candidate_executions": 2,
+          "case_id": "d3-2",
+          "evaluations": [
+            {
+              "candidate_digest": "fe2e79d6d43ecd16d48f55cc16cfb681f3475c2ca1f3b9d2033d83a868fad101",
+              "candidate_id": "g10-macro-fe2e79d6d43ecd16",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 4e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "decoy_38206"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "24844f05c794c308d2d25a79e77262be6874a9c88ea06046ea49f231fc9d8938",
+              "candidate_id": "g10-macro-24844f05c794c308",
+              "evaluation": {
+                "mismatched_files": [],
+                "passed": true,
+                "wall_time_seconds": 3.9e-05
+              },
+              "passed": true,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  5,
+                  6
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "target_77677"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            }
+          ],
+          "generation_digest": "4ea763d1e6e9595995fa2314e93e66e09252c2c7fd4235b74b83b5101d173a31",
+          "group": "scope_discovery",
+          "passed": true,
+          "winner": {
+            "candidate_digest": "24844f05c794c308d2d25a79e77262be6874a9c88ea06046ea49f231fc9d8938",
+            "candidate_id": "g10-macro-24844f05c794c308",
+            "evaluation": {
+              "mismatched_files": [],
+              "passed": true,
+              "wall_time_seconds": 3.9e-05
+            },
+            "passed": true,
+            "recursive_trace": {
+              "capability_level": 2,
+              "edited_line_indexes": [
+                5,
+                6
+              ],
+              "mode": "scope_bound_pair",
+              "scope_ids": [
+                "target_77677"
+              ],
+              "template_digests": [
+                "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+              ]
+            },
+            "route": "recursive_macro"
+          }
+        },
+        {
+          "candidate_budget": 6,
+          "candidate_count": 6,
+          "candidate_executions": 2,
+          "case_id": "d3-3",
+          "evaluations": [
+            {
+              "candidate_digest": "35d93eb9ee241fe0c6015e7dd763a64ae712311e9fa898d1ee97472b759582c0",
+              "candidate_id": "g10-macro-35d93eb9ee241fe0",
+              "evaluation": {
+                "mismatched_files": [
+                  "case.js"
+                ],
+                "passed": false,
+                "wall_time_seconds": 3.7e-05
+              },
+              "passed": false,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  1,
+                  2
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "decoy_21895"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            },
+            {
+              "candidate_digest": "f2b93213055f6eb29f584258db5d2b6dae844cce65066df8bdc1069b9e0919b2",
+              "candidate_id": "g10-macro-f2b93213055f6eb2",
+              "evaluation": {
+                "mismatched_files": [],
+                "passed": true,
+                "wall_time_seconds": 3.6e-05
+              },
+              "passed": true,
+              "recursive_trace": {
+                "capability_level": 2,
+                "edited_line_indexes": [
+                  5,
+                  6
+                ],
+                "mode": "scope_bound_pair",
+                "scope_ids": [
+                  "target_27534"
+                ],
+                "template_digests": [
+                  "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                  "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+                ]
+              },
+              "route": "recursive_macro"
+            }
+          ],
+          "generation_digest": "26904204191c9afdc5a85058945bb8639692d2ff51df0b434d48f05f16c61367",
+          "group": "scope_discovery",
+          "passed": true,
+          "winner": {
+            "candidate_digest": "f2b93213055f6eb29f584258db5d2b6dae844cce65066df8bdc1069b9e0919b2",
+            "candidate_id": "g10-macro-f2b93213055f6eb2",
+            "evaluation": {
+              "mismatched_files": [],
+              "passed": true,
+              "wall_time_seconds": 3.6e-05
+            },
+            "passed": true,
+            "recursive_trace": {
+              "capability_level": 2,
+              "edited_line_indexes": [
+                5,
+                6
+              ],
+              "mode": "scope_bound_pair",
+              "scope_ids": [
+                "target_27534"
+              ],
+              "template_digests": [
+                "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+                "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+              ]
+            },
+            "route": "recursive_macro"
+          }
+        }
+      ],
+      "controller_cpu_process_time_ns": 18600095,
+      "external_model_calls": 0,
+      "group_solved": {
+        "scope_discovery": 4
+      },
+      "measurement_digest": "24cb379cdcf78ca1d585695e396e61c2975e9120b96dcb6c57e1182b339b225d",
+      "profile_digest": "3d9d3aa46effc2af1703efcdbeb380727eaa5a7a77f999c4c3879e8e648d5815",
+      "schema": "genesis-g10-profile-measurement-v1",
+      "solved": 4,
+      "success_rate": 1.0,
+      "wall_time_seconds": 0.020564,
+      "within_candidate_budget": true
+    }
+  },
+  "run_digest": "961e29ffddaa09f9ffc0ea631224b4812440c3ef17151f0cec018a056b13d945",
+  "schema": "genesis-g10-discovery-run-v1",
+  "stage": 3
+}
