@@ -15,6 +15,9 @@ Current implementation lines that feed the new architecture include:
 - G6 scientific qualification: `docs/G6_QUALIFICATION_2026-10-07.md`
 - G7 scientific qualification: `docs/G7_QUALIFICATION_2026-10-07.md`
 - G8 scientific qualification: `docs/G8_QUALIFICATION_2026-10-07.md`
+- G9 scientific qualification: `docs/G9_QUALIFICATION_2026-10-07.md`
+- whole-successor generation: `genesis/evolution/successor_generation.py`
+- profile runtime: `genesis/runtime/profile_executor.py`
 - local reasoning distillation: `genesis/learning/distillation.py`
 - component evolution: `genesis/evolution/component_evolution.py`
 - externally authorized lineage promotion: `genesis/evolution/lineage_promotion.py`

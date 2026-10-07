@@ -159,6 +159,10 @@ Exit evidence:
 
 ## G9 — Successor generation
 
+**Scientific status (2026-10-07): PROJECT-DEFINED GATE PASSED.** Genesis generated a content-addressed whole-system N+1 before the fresh G9 holdout existed, promoting the G6 universal-operator descendant, activating the G8 distilled specialist and replacing the parent route with a specialist-first global-budget route. On a prospectively sealed 12-case holdout, N solved 4/12 and N+1 solved 12/12 under the same candidate budget and zero external-model calls. Removing the G6 change reduced N+1 to 8/12 by eliminating exactly the four G6-block successes; removing the G8 specialist also reduced N+1 to 8/12 by eliminating exactly the four G8-block successes. All 21 frozen predicates passed. See `docs/G9_QUALIFICATION_2026-10-07.md`.
+
+This establishes one bounded causal self-improvement transition, not recursive self-improvement. G10 remains open.
+
 **Goal:** Genesis N produces a better Genesis N+1.
 
 Minimum criterion:
