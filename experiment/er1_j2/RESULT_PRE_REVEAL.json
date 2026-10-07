@@ -1,0 +1,26 @@
+{
+  "candidate_budget": 10000,
+  "claim_boundary": "This is a valid negative ER1-J2 result for the frozen fair scheduler plus unchanged scalar A2 grammar. It is development evidence about search coverage, not evidence that the real defect is unrepairable after machinery extension.",
+  "compiled_candidates": 9990,
+  "discovery_freeze": "experiment/er1_j2/DISCOVERY_FREEZE.json",
+  "discovery_result_sha256": "53e441b7aabc5004d5e2884e87e31332b0a1405798f7c12b2403e2bf6b3ad866",
+  "evaluated_candidates": 10000,
+  "external_model_calls": 0,
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "operator_counts": {
+    "boolean_toggle": 90,
+    "comparison_boundary": 9358,
+    "integer_delta": 552
+  },
+  "pre_reveal_interpretation": "Fair inter-file scheduling removed the J1 single-file starvation bottleneck but the unchanged scalar A2 grammar still produced no trigger-passing candidate within the frozen 10000-candidate budget. No claim about the human fixing location or repair shape is made before reveal.",
+  "reference_buggy_failing_tests": 1,
+  "reference_fixed_failing_tests": 0,
+  "schema": "genesis-er1-j2-result-pre-reveal-v1",
+  "scientific_gate_passed": false,
+  "selected_case": 56,
+  "status": "VALID_NEGATIVE_BLIND_FAIR_A2_SEARCH",
+  "trigger_passing_candidates": 0,
+  "unique_source_path_hashes_in_evaluated_set": 76,
+  "valid_candidates": 10000
+}
