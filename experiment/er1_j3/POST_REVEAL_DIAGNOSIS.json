@@ -1,0 +1,29 @@
+{
+  "candidate_coverage": {
+    "baseline_human_fix_file_candidate_count": 132,
+    "baseline_human_fix_file_first_logical_index": 73,
+    "successor_human_fix_file_candidate_count": 130,
+    "successor_human_fix_file_first_logical_index": 136,
+    "successor_human_fix_file_scalar_candidates": 69,
+    "successor_human_fix_file_structural_candidates": 61
+  },
+  "causal_findings": [
+    "J3 was not a localization failure: both matched arms reached the human-fix file early and repeatedly.",
+    "The human repair is a one-statement progress update before an early return.",
+    "Neither the scalar A2 grammar nor the frozen J3 structural grammar can synthesize insertion of an existing source-local progress operation into control flow.",
+    "J3 therefore isolates a progress/control-flow expressivity bottleneck after J1 search starvation and J2 structural-edit expressivity."
+  ],
+  "claim_boundary": "J3 remains a valid negative. The revealed fix diagnoses the next machinery gap and may not be used to reclassify or retune J3 into a pass.",
+  "human_fix_reveal": {
+    "human_fix_shape": "single_statement_insertion_before_early_return",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "inserted_statement": "next(pos);",
+    "issue_text_inspected": false,
+    "modified_source_file": "src/java/org/apache/commons/lang/text/ExtendedMessageFormat.java",
+    "source_diff_sha256": "b61edecaefed814532fb42d6f82c3405ba3ee44d6e2f18dfaacee01d8f4c2e62"
+  },
+  "next_development_change": "Add a generic Java progress-step insertion operator that mines source-local cursor/progress operations and proposes them before early exits in compatible control-flow contexts, without encoding Lang-43 file/class/method/identifier names or human patch text. Qualify only on a fresh deterministic J4 case.",
+  "pre_reveal_result_commit": "de3c4ed7",
+  "schema": "genesis-er1-j3-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_PROGRESS_OPERATOR_GAP"
+}
