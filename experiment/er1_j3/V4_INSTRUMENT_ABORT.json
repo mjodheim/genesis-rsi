@@ -1,0 +1,14 @@
+{
+  "arm": "baseline",
+  "claim_boundary": "No J3 scientific verdict is licensed by V4.",
+  "failure": "candidate_can_terminate_or_corrupt_persistent_oracle",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "next_instrument_change": "fail closed per candidate on oracle loss, restart evaluator process, record evaluator_error, and continue without changing candidate identity/order/budget/trigger/pass criterion.",
+  "observed_exception": "RuntimeError: oracle protocol error after bounded lifecycle restart",
+  "schema": "genesis-er1-j3-v4-instrument-abort-v1",
+  "scientific_result_obtained": false,
+  "status": "INSTRUMENT_ABORTED",
+  "successor_arm_started": false,
+  "v4_freeze_commit": "8f7e6ae5"
+}
