@@ -1,0 +1,60 @@
+{
+  "cases": [
+    {
+      "bug_id": 46,
+      "lesson": "fair inter-file scheduling and localization starvation",
+      "stage": "J1"
+    },
+    {
+      "bug_id": 56,
+      "lesson": "structural Java repair expressivity",
+      "stage": "J2"
+    },
+    {
+      "bug_id": 43,
+      "lesson": "source-local progress/control-flow insertion",
+      "stage": "J3"
+    },
+    {
+      "bug_id": 21,
+      "lesson": "qualified-symbol substitution",
+      "stage": "J4"
+    },
+    {
+      "bug_id": 12,
+      "lesson": "parameter guards and conditional range derivation",
+      "stage": "J5"
+    },
+    {
+      "bug_id": 65,
+      "lesson": "coordinated stateful algorithmic repair",
+      "stage": "J6"
+    },
+    {
+      "bug_id": 52,
+      "lesson": "test-guided switch completion",
+      "stage": "J7"
+    },
+    {
+      "bug_id": 54,
+      "lesson": "delimited-parser empty-segment branch synthesis",
+      "stage": "J8"
+    },
+    {
+      "bug_id": 20,
+      "lesson": "coordinated sibling expression rewrite and multi-edit planning",
+      "stage": "J9"
+    }
+  ],
+  "future_holdout_boundary": "ER1-J10 and later defects are unseen qualification material until the ER2 machinery freeze is committed and tagged.",
+  "generalized_lessons": [
+    "route search to dynamically causal source files before spending candidate budget",
+    "represent repairs as bounded plans rather than isolated mutation families",
+    "compose compatible edits on the same source file",
+    "retain atomic candidates as causal ablations",
+    "use the historical exhaustive search only as a fallback after the intelligent front",
+    "do not use human patches or issue text on future qualification cases"
+  ],
+  "schema": "genesis-er2-training-corpus-v1",
+  "status": "CONSUMED_TRAINING_EVIDENCE"
+}

@@ -1,0 +1,39 @@
+{
+  "architecture": {
+    "causal_routing": true,
+    "external_model_calls_for_generation": 0,
+    "historical_fallback_retained": true,
+    "max_plan_depth": 2,
+    "same_file_composition": true
+  },
+  "claim_boundary": "This gate validates the new planning machinery and a consumed training replay only. It is not evidence of fresh external transfer. Fresh evidence begins at J10 after this freeze.",
+  "consumed_replay_validation": {
+    "atomic_candidate_count": 219,
+    "case": "ER1-J9 Lang-20",
+    "composed_candidate_count": 200,
+    "evaluated_count": 32,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "generation_wall_seconds": 15.11438640000415,
+    "independent_holdout": false,
+    "planner_candidate_count": 419,
+    "winner_logical_index": 0,
+    "winner_passed_trigger": true
+  },
+  "feature": "capability_routed_compositional_repair_planner",
+  "schema": "genesis-er2-repair-planner-qualification-v1",
+  "scientific_gate_passed": true,
+  "unit_validation": {
+    "checks": [
+      "repair IR composes non-overlapping edits",
+      "generic coordinated sibling expression mutation",
+      "causal focus paths are a hard routing constraint",
+      "bounded depth-2 plan composition",
+      "deterministic candidate digests and ordering"
+    ],
+    "failed": 0,
+    "framework": "python unittest",
+    "passed": 5,
+    "test_count": 5
+  }
+}
