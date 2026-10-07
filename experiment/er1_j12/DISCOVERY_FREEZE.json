@@ -1,0 +1,44 @@
+{
+  "baseline_description": "frozen ER2 v2 planner front plus frozen J9 fallback",
+  "baseline_index_sha256": "ac163e2fade96aa6d9e7bc0385dab6f0a65cb8414063160870aa4d938f310819",
+  "candidate_budget_per_arm": 10000,
+  "claim_boundary": "J12 is a fresh blind external transfer/applicability test for frozen ER2 v3. The new string-literal closure family generated zero candidates on this target; human fix and issue text remain unseen until the result is committed.",
+  "execution_rule": "Because ER2 v2 and ER2 v3 indexes are byte-identical on J12, execute the shared frozen index once; the verdict applies identically to both arms.",
+  "external_model_calls": 0,
+  "hidden_evaluator_sha256": "2a7777670d74367b8bd06756d2b3e14888b50609059c08c2cdb97cc64a2ca3df",
+  "hidden_trigger_identity_sha256": "10cb3959d2b9415cbe1e3cb6bb970b2b804aab439b88ff58e4e3a8259038edf5",
+  "human_fix_inspected": false,
+  "indexes_byte_identical": true,
+  "issue_text_inspected": false,
+  "java_max_heap_mb": 64,
+  "machinery_freeze_commit": "4a0ad4f7",
+  "machinery_freeze_tag": "provenance/er2-v3-repair-planner-freeze-20261007",
+  "oracle_request_lifetime": 128,
+  "parallel_batch_size": 32,
+  "parallel_workers": 8,
+  "persistent_oracle_class_manifest_sha256": "ba3d0b907f0eb8d5a39ac4032c3c9df054f9b8b416f3d74553967e38713a24ac",
+  "persistent_oracle_source_sha256": "a02cdca519f3ed53549954f4f4b30a368ba4b6ef17b811a3b4a3deda408df508",
+  "reference_equivalence": {
+    "buggy_compile_exit": 0,
+    "buggy_test_exit": 1,
+    "fixed_compile_exit": 0,
+    "fixed_test_exit": 0
+  },
+  "reference_loaded_source_paths": [
+    "src/java/org/apache/commons/lang/StringUtils.java",
+    "src/java/org/apache/commons/lang/time/DurationFormatUtils.java"
+  ],
+  "reference_loaded_source_union_sha256": "41d2139bf2184e2ee1440e6760ffa51d019f44f85284efcd9a1311f1f43919a5",
+  "schema": "genesis-er1-j12-discovery-freeze-v1",
+  "scientific_result_obtained": false,
+  "selected_case": 63,
+  "successor_description": "frozen ER2 v3 planner front plus identical frozen J9 fallback",
+  "successor_index_sha256": "ac163e2fade96aa6d9e7bc0385dab6f0a65cb8414063160870aa4d938f310819",
+  "v2_planner_front_count": 768,
+  "v3_planner_front_count": 768,
+  "v3_string_literal_activation": {
+    "accepted": 0,
+    "activated": false,
+    "generated": 0
+  }
+}
