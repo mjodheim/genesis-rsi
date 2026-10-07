@@ -1,0 +1,33 @@
+{
+  "baseline": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 9748,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 252,
+    "result_sha256": "08113eda558fbef80cb97086a89e7c896ea6a527f1989996cc8048a06be2c68c",
+    "winner": null
+  },
+  "causal_result": "The frozen empty-segment parser successor did not outperform the matched predecessor on fresh blind case Lang-20. Its single new candidate targeted a source file outside the trigger-loaded StringUtils source, so the mechanism was causally inapplicable; neither arm produced a candidate passing both hidden trigger methods.",
+  "claim_boundary": "J9 is a valid blind matched negative/applicability result. Both hidden triggers were enforced. Human-fix reveal is permitted only after this result is committed.",
+  "discovery_freeze": "experiment/er1_j9/DISCOVERY_FREEZE.json",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "schema": "genesis-er1-j9-result-pre-reveal-v1",
+  "scientific_gate_passed": false,
+  "selected_case": 20,
+  "status": "VALID_NEGATIVE_MATCHED_REAL_REPO",
+  "successor": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 9748,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 252,
+    "result_sha256": "e8443f86616cfd3c8b66c5705c30004056fb613dd1df6ef22ce030ccc18b956c",
+    "winner": null
+  },
+  "successor_empty_segment_candidate_count": 1,
+  "successor_empty_segment_candidates_on_reference_loaded_sources": 0
+}
