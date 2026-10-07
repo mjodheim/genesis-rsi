@@ -1,0 +1,17 @@
+{
+  "schema": "genesis-er1-j1-instrument-abort-v2",
+  "discovery_v2_freeze_commit": "3dda5d35",
+  "status": "INSTRUMENT_ABORTED_RESOURCE",
+  "scientific_verdict": null,
+  "aborted_at": "2026-10-07T12:45:36+02:00",
+  "elapsed_seconds_at_abort": 153,
+  "result_file_was_written": false,
+  "candidate_result_output_was_observed_by_researcher": false,
+  "reason": "Incremental source restoration removed full target deletion but the Defects4J/Ant compile.tests and runner startup remained too expensive as a per-candidate oracle over the frozen 10000-candidate search.",
+  "candidate_space_changed": false,
+  "candidate_order_changed": false,
+  "hidden_trigger_changed": false,
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "allowed_successor": "A direct compiler/test-runner evaluator may replace Ant orchestration only if it is validated on the frozen buggy/fixed references and preserves candidate space/order/budget, trigger identity and pass semantics."
+}
