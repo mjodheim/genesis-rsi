@@ -1,0 +1,31 @@
+{
+  "candidate_coverage": {
+    "baseline_relevant_candidate_count": 74,
+    "successor_relevant_candidate_count": 74,
+    "test_switch_candidates_on_human_fix_file": 0
+  },
+  "causal_findings": [
+    "J8 was not a localization failure: trigger tracing isolated LocaleUtils.java as the only production source loaded by the failing test.",
+    "The frozen test-guided switch-completion mechanism generated candidates only in StringEscapeUtils.java and was correctly inapplicable.",
+    "The human repair adds a guard for a delimiter occupying the first character of the otherwise-required middle segment, then returns a three-component value with an empty middle component and suffix substring.",
+    "The existing parser already exposes all structural ingredients needed to infer the repair: delimiter position, charAt index, prefix substring, middle substring, suffix substring and three-argument constructor.",
+    "The inherited repair language lacks a generic empty-middle-segment branch synthesis operation for fixed-layout delimited parsers."
+  ],
+  "claim_boundary": "J8 remains a valid negative. Human-fix and test evidence are used only after the frozen result to diagnose and build successor machinery.",
+  "human_fix_reveal": {
+    "human_fix_shape": "delimiter_guarded_early_return_for_empty_middle_segment",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/java/org/apache/commons/lang/LocaleUtils.java",
+    "source_diff_sha256": "5ecbfdcf991063ecc24d07523f8b3f5c69f699ebc2eb33edbf7d950adbb61ff1"
+  },
+  "next_development_change": "Add a generic Java delimited-parser empty-segment completion operator. It should mine delimiter checks, charAt positions, sibling substring-based constructor returns and adjacent-delimiter structure from source, synthesize an early-return branch with an empty middle component, and encode no Locale, LocaleUtils, language tag, underscore, Lang-54, test, issue, commit or line identity. Validate on synthetic parser fixtures and the consumed J8 replay, then freeze before fresh J9 selection.",
+  "post_reveal_test_evidence": {
+    "key_generalizable_signal": "input contains adjacent delimiters and expected middle component is empty while prefix and suffix are preserved",
+    "test_shape": "helper assertion maps one delimited input literal to three expected constructor components",
+    "test_source_inspected": true
+  },
+  "pre_reveal_result_commit": "ecab90fe",
+  "schema": "genesis-er1-j8-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_EMPTY_SEGMENT_PARSER_BRANCH_GAP"
+}
