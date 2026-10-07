@@ -432,7 +432,7 @@ def init_worker():
 def _ask_once(mode,relative):
     global _oracle
     if _oracle is None or _oracle.poll() is not None: _start_oracle()
-    _oracle.stdin.write(f"{{mode}}\t{{relative}}\n"); _oracle.stdin.flush()
+    _oracle.stdin.write(f"{{mode}}\t{{relative}}\\n"); _oracle.stdin.flush()
     line=_oracle.stdout.readline().strip()
     if not line: raise OracleError("oracle_eof")
     parts=line.split("\t")
@@ -533,7 +533,7 @@ def main():
       "external_model_calls":0,
     }}
     a.output.parent.mkdir(parents=True,exist_ok=True)
-    a.output.write_text(json.dumps(payload,indent=2,sort_keys=True)+"\n")
+    a.output.write_text(json.dumps(payload,indent=2,sort_keys=True)+"\\n")
     print(json.dumps({{k:payload[k] for k in ("evaluated_count","winner","coverage_pruned_count","evaluator_error_count","external_model_calls")}},sort_keys=True))
     return 0 if winner else 3
 if __name__=="__main__": raise SystemExit(main())
@@ -720,6 +720,8 @@ class LangDefects4JAdapter:
             "trigger_digest": digest_of(triggers),
             "evaluator_sha256": _sha_file(evaluator),
             "oracle_source_sha256": _sha_file(java_path),
+            "adapter_source_sha256": _sha_file(Path(__file__).resolve()),
+            "campaign_controller_source_sha256": _sha_file(ROOT / "genesis/external_repair_campaign.py"),
             "buggy_reference": buggy_ref,
             "fixed_reference_pass_digest": digest_of(fixed_ref),
             "human_fix_inspected": False,
