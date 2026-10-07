@@ -1,0 +1,30 @@
+{
+  "candidate_coverage": {
+    "human_fix_file_candidate_count_generated": 297,
+    "human_fix_file_first_logical_index": 10,
+    "human_fix_file_relevant_candidate_count": 252,
+    "scalar_candidates": 74,
+    "structural_candidates": 199,
+    "symbol_candidates": 24
+  },
+  "causal_findings": [
+    "J9 was not a localization failure: StringUtils.java was the sole reference-loaded production source and was reached at logical index 10.",
+    "The frozen empty-segment parser mechanism was correctly inapplicable because its only candidate targeted LocaleUtils.java.",
+    "The human repair performs the same expression-level rewrite at two sibling join implementations.",
+    "The inherited repair language can mutate scalar boundaries, symbols and field modifiers, but cannot infer and coordinate a shared expression rewrite across analogous sibling methods.",
+    "J6 and J9 independently show that real repairs often require a repair plan containing multiple coordinated edits rather than one atomic mutation."
+  ],
+  "claim_boundary": "J9 remains a valid negative. The revealed fix may train the new planner but may never be used to reclassify J9 as a pass.",
+  "human_fix_reveal": {
+    "human_fix_shape": "same_expression_rewrite_across_two_sibling_methods",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/main/java/org/apache/commons/lang3/StringUtils.java",
+    "replacement_site_count": 2,
+    "source_pair_sha256": "8746946e92f6928b04d281e8069faecb9d790e9ab04dd5a033552a727c7ca8c1"
+  },
+  "next_development_change": "Replace the one-new-specialist-per-failure loop with a capability-routed compositional repair planner. It should represent atomic edits as a small IR, infer applicability from failing-test traces/source structure, compose bounded multi-edit plans, coordinate analogous sites, rank by causal evidence, and retain explicit provenance. J1-J9 become consumed training evidence; future J10+ cases remain unseen qualification holdouts.",
+  "pre_reveal_result_commit": "52979322",
+  "schema": "genesis-er1-j9-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_COORDINATED_SIBLING_EXPRESSION_REWRITE_GAP"
+}
