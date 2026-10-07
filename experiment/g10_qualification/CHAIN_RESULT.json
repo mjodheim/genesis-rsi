@@ -1,0 +1,71 @@
+{
+  "campaign_generations": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "claim_boundary": "A pass establishes a bounded project-defined recursive self-improvement chain in the frozen synthetic software-repair composition assay: three successive causal improvements, with the inherited machinery of generations 1 and 2 required to produce the evidence for their next successors under matched budgets. This supports a domain-bounded RSI claim for this assay only. It does not establish general RSI, AGI, ASI, open-world autonomy, or independent third-party validation.",
+  "gate_passed": true,
+  "profile_chain": [
+    "613138e45bb05f4cae884bbb9e951e82bee1a19f858f7d6e9875af8fbce8f4b3",
+    "90c30ced7af6ad9b351dbfb5ccc875792f2807a5df1ccfc4ddbde05cce726cf9",
+    "3d9d3aa46effc2af1703efcdbeb380727eaa5a7a77f999c4c3879e8e648d5815",
+    "be03c081af05af4e1adb51dd4b8966283c96658875824d7eeaca3391d21ce2c8"
+  ],
+  "recursive_production_comparisons": [
+    {
+      "ancestor_candidate_executions": 16,
+      "ancestor_solved": 0,
+      "current_generation_candidate_executions": 4,
+      "current_generation_solved": 4,
+      "stage": 2
+    },
+    {
+      "ancestor_candidate_executions": 20,
+      "ancestor_solved": 0,
+      "current_generation_candidate_executions": 8,
+      "current_generation_solved": 4,
+      "stage": 3
+    }
+  ],
+  "requirements": {
+    "all_runtime_and_generation_external_model_calls_are_zero": true,
+    "all_three_prospective_stage_gates_pass": true,
+    "campaign_generations_are_exactly_0_1_2_3": true,
+    "chain_is_content_addressed_and_contiguous": true,
+    "every_child_preserves_every_parent_success": true,
+    "every_child_strictly_improves_on_fresh_evidence": true,
+    "mutable_lineage_never_owns_evaluator_or_verdict": true,
+    "recursive_production_advantage_improves_yield_and_candidate_cost": true,
+    "recursive_production_advantage_is_causal_at_transitions_2_and_3": true
+  },
+  "result_digest": "ccbc75ac2de8bbf821dc6912b32d2d08fbbf5f284d51775bcedbfd5a2f8d80f2",
+  "schema": "genesis-g10-chain-result-v1",
+  "stage_result_digests": [
+    "f7626a817ab97783889c21152c57c326d833697b0d3777986a057fadda3a1307",
+    "2ec678cbed836ad2c9ea05ffd425b2f454ac147ba032321a8637105857d7bd02",
+    "3de228fbb683a9e3b0151cd769588952414f57b8193fd8cf6eae0e48d061008b"
+  ],
+  "stage_scores": [
+    {
+      "case_count": 6,
+      "parent_solved": 2,
+      "stage": 1,
+      "successor_solved": 6
+    },
+    {
+      "case_count": 8,
+      "parent_solved": 4,
+      "stage": 2,
+      "successor_solved": 8
+    },
+    {
+      "case_count": 10,
+      "parent_solved": 6,
+      "stage": 3,
+      "successor_solved": 10
+    }
+  ],
+  "verdict": "G10_SCIENTIFIC_GATE_PASSED"
+}
