@@ -1,0 +1,30 @@
+{
+  "schema": "genesis-er1-j1-result-pre-reveal-v1",
+  "status": "VALID_NEGATIVE_BLIND_A2_SEARCH",
+  "scientific_gate_passed": false,
+  "selected_case": 46,
+  "reference_buggy_failing_tests": 1,
+  "reference_fixed_failing_tests": 0,
+  "sanitized_buggy_tree_sha256": "9c32b81a4fdaa236d7c2859f1724a98117ad2bd9b9d607bc15ab152476f06649",
+  "candidate_index_sha256": "1e90069ec35fcb74d2997b75e10095ac49fedb0d06862e204add024270889fb4",
+  "discovery_result_sha256": "2a5628b98b106794c8dc4cb9d5727487bd89ef9d4adeb8cf86c0043590338a45",
+  "candidate_budget": 10000,
+  "evaluated_candidates": 10000,
+  "valid_candidates": 10000,
+  "compiled_candidates": 10000,
+  "trigger_tests_executed": 10000,
+  "trigger_passing_candidates": 0,
+  "external_model_calls": 0,
+  "operator_counts": {
+    "comparison_boundary": 8977,
+    "integer_delta": 917,
+    "boolean_toggle": 106
+  },
+  "unique_source_path_hashes_in_evaluated_set": 1,
+  "generator_truncated_at_existing_limit": true,
+  "pre_reveal_interpretation": "Current pre-ER1 A2 did not repair the blindly selected real defect within its frozen 10000-candidate space. The deterministic enumeration exhausted the entire budget while covering only one source-path identity. This is evidence of a search-coverage/scheduling bottleneck, but the relationship to the human fixing location or edit is deliberately not asserted before reveal.",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "modified_class_metadata_used_by_genesis": false,
+  "claim_boundary": "This is a valid negative ER1-J1 result for the frozen existing A2 candidate grammar and scheduling policy. It is not evidence that the real bug is unrepairable by Genesis after machinery improvement, and it does not negate G10."
+}
