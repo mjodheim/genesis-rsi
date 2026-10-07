@@ -1,0 +1,14 @@
+{
+  "schema": "genesis-er1-j1-environment-v1",
+  "dataset_revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+  "active_bug_list_sha256": "cb68d0b470c72142e77ee3b07398b4761218f0f00b2ef61bec0ff55fe0e0762a",
+  "selected_bug_id": 46,
+  "java_distribution": "Eclipse Temurin",
+  "java_version": "11.0.32.1+1",
+  "jdk_archive_sha256": "5c3f68887c325d36d852ba534303e1f5f1f5cae7d6cc1e951d73e0d8e98a058d",
+  "timezone": "America/Los_Angeles",
+  "locale": "C.UTF-8",
+  "perl_local_lib": "/home/anthony/perl5",
+  "environment_correction_reason": "Initial buggy and fixed reference runs both failed before tests because javac inherited US-ASCII and could not decode unchanged project source comments. C.UTF-8 is frozen before any triggering-test behavior is observed.",
+  "reference_bug_behavior_observed_before_this_freeze": false
+}
