@@ -1,0 +1,32 @@
+{
+  "baseline": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 8902,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 1098,
+    "result_sha256": "746eecee13d9997318df8af1d81943739c19afc60128f0c2b5af5836ca0379fa",
+    "winner": null
+  },
+  "causal_result": "ER2 v1 and v2 produced byte-identical frozen indexes on fresh Lang-16 because the v2 default-normalization family was inapplicable. The shared index produced no trigger-passing repair within the 10000-candidate budget.",
+  "claim_boundary": "J11 is a valid fresh blind negative/applicability result. It provides no v2-over-v1 causal advantage because the new family did not activate. Human-fix reveal is permitted only after this result is committed.",
+  "discovery_freeze": "experiment/er1_j11/DISCOVERY_FREEZE.json",
+  "human_fix_inspected": false,
+  "indexes_byte_identical": true,
+  "issue_text_inspected": false,
+  "schema": "genesis-er1-j11-result-pre-reveal-v1",
+  "scientific_gate_passed": false,
+  "selected_case": 16,
+  "status": "VALID_NEGATIVE_IDENTICAL_ARMS_FRESH_REAL_REPO",
+  "successor": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 8902,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 1098,
+    "result_sha256": "746eecee13d9997318df8af1d81943739c19afc60128f0c2b5af5836ca0379fa",
+    "winner": null
+  }
+}
