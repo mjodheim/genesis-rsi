@@ -1,0 +1,33 @@
+{
+  "baseline": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 9926,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 74,
+    "result_sha256": "35ac6f92e13cc37fe341e1a759b8ac7cb52b08d1cbe0fa1e4fe19da8b4fb4ede",
+    "winner": null
+  },
+  "causal_result": "The frozen test-guided switch-completion successor did not outperform the matched predecessor on fresh blind case Lang-54. Its two new candidates targeted a source file outside the trigger-loaded source union, so the mechanism was causally inapplicable on this case; neither arm produced a trigger-passing repair.",
+  "claim_boundary": "J8 is a valid blind matched negative/applicability result. It does not refute the J7-derived test-guided switch mechanism; human-fix reveal is permitted only after this result is committed.",
+  "discovery_freeze": "experiment/er1_j8/DISCOVERY_FREEZE.json",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "schema": "genesis-er1-j8-result-pre-reveal-v1",
+  "scientific_gate_passed": false,
+  "selected_case": 54,
+  "status": "VALID_NEGATIVE_MATCHED_REAL_REPO",
+  "successor": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 9926,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 74,
+    "result_sha256": "63ec5efd50cf91336a860d162063812f0e61cb75a0634a283665d0431e9e86d2",
+    "winner": null
+  },
+  "successor_test_switch_candidate_count": 2,
+  "successor_test_switch_candidates_on_reference_loaded_sources": 0
+}
