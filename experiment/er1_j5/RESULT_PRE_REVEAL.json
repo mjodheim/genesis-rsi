@@ -1,0 +1,31 @@
+{
+  "schema": "genesis-er1-j5-result-pre-reveal-v1",
+  "status": "VALID_NEGATIVE_MATCHED_REAL_REPO",
+  "scientific_gate_passed": false,
+  "selected_case": 12,
+  "discovery_freeze": "experiment/er1_j5/DISCOVERY_FREEZE.json",
+  "baseline": {
+    "result_sha256": "f60a94cf8baef50c23301d4d59991bebd5b4fd614d9721841c89688947c877b0",
+    "candidate_budget": 10000,
+    "evaluated_count": 10000,
+    "winner": null,
+    "coverage_pruned_count": 9939,
+    "junit_candidate_count": 61,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0
+  },
+  "successor": {
+    "result_sha256": "c2720d423184550a46ed659f9a8753be4c1f5641e6d7b18913a27c22dcd11a11",
+    "candidate_budget": 10000,
+    "evaluated_count": 10000,
+    "winner": null,
+    "coverage_pruned_count": 9960,
+    "junit_candidate_count": 40,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0
+  },
+  "causal_result": "The frozen qualified-symbol successor did not outperform the matched predecessor on fresh blind case Lang-12. The trigger set loaded no source file receiving a qualified-symbol candidate, so the new mechanism was causally inapplicable under this blind selection.",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "claim_boundary": "J5 is a valid matched negative/applicability result. It does not refute the J4-derived symbol mechanism; it shows that the next blindly selected real defect requires a different transformation family. Human-fix reveal is permitted only after this result is committed."
+}
