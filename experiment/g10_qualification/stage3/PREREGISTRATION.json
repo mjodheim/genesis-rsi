@@ -1,0 +1,116 @@
+{
+  "apparatus": {
+    "bank_builder": {
+      "path": "scripts/build_g10_bank.py",
+      "source_sha256": "44c8493936f5aeea07c306e9e968e1d7e425de942225a1c03bf3f36e9aa56304"
+    },
+    "chain_adjudicator": {
+      "path": "scripts/run_g10_chain_adjudication.py",
+      "source_sha256": "a5209df9180fdfbd322d0fe83a7740d5a91f1a2e6a9343053a5f4682b1b3f72c"
+    },
+    "discovery_runner": {
+      "path": "scripts/run_g10_discovery.py",
+      "source_sha256": "5958560549c7363d13895a0f53ac3ac160a8d3d6ab7e08e8dde865e016cf3de4"
+    },
+    "external_evaluator": {
+      "path": "scripts/g10_evaluator.py",
+      "source_sha256": "18160a7c374b4c25eb62f7bf1eff4bb7cfaae58d5f528c8b841a6d9fea9ebaf6"
+    },
+    "external_task_bank": {
+      "path": "scripts/g10_task_bank.py",
+      "source_sha256": "6f19debdeb6127e3f9974150cd6a3afc75f414c404cde4fbce92eba046ab7e31"
+    },
+    "preregistration_builder": {
+      "path": "scripts/build_g10_stage_preregistration.py",
+      "source_sha256": "21abb606c6229101c386b441a8e41b321fb57d6deb0e9a66bcd4413428915173"
+    },
+    "recursive_chain": {
+      "path": "genesis/evolution/recursive_chain.py",
+      "source_sha256": "ce54ef05917eedeb1eb552905f679a157746e2ca76b45552d1704c306d23b8b9"
+    },
+    "recursive_chain_executor": {
+      "path": "genesis/runtime/recursive_chain_executor.py",
+      "source_sha256": "0594c08b9e089db81540ca7a767ad21e04e453b3690ecef78c4d22ef34e7e9e8"
+    },
+    "seed_builder": {
+      "path": "scripts/build_g10_seed.py",
+      "source_sha256": "2685300f09e228856f49e89faf175d09a8cd1c8888ea27da0b52b76fd7359668"
+    },
+    "stage_runner": {
+      "path": "scripts/run_g10_stage.py",
+      "source_sha256": "7f70d42b2974f0b6951ab071a0422daba05cf75a83b9270a534795928607f793"
+    },
+    "successor_builder": {
+      "path": "scripts/build_g10_successor.py",
+      "source_sha256": "53e061dcaa4e16b876899bf37bb2df02bf9d21d7f4f0acfa4b706dc08c27bf2b"
+    }
+  },
+  "authority": {
+    "mutable_lineage_owns_evaluator_or_verdict": false,
+    "promotion_authority": "external_trust_root",
+    "same_frozen_evaluator_for_parent_and_successor": true
+  },
+  "claim_boundary": "Bounded project-defined G10 stage 3 only. A pass establishes one additional causal successor transition inside the frozen synthetic software-repair composition assay. Stages 2 and 3 additionally require the current generation to outperform its direct ancestor at producing the discovery evidence needed for the next successor under the same budget. No single stage establishes G10, general RSI, AGI, ASI or independent third-party validation.",
+  "discovery": {
+    "ancestor_discovery_digest": "f6b8e2eebaaf8446607669093f42c36ebbc78ea4a86083c9b18689d4172922ca",
+    "bank_digest": "ae3c8d8bb38074c131b597c4256eb666468c3c8eea871ed1aa7758ad9fe30640",
+    "parent_discovery_digest": "d2111b94582f19f8cf848333bc3ab005497d30aea6bb437e0d3493c2d98f17b7",
+    "run_digest": "961e29ffddaa09f9ffc0ea631224b4812440c3ef17151f0cec018a056b13d945"
+  },
+  "holdout": {
+    "case_count": 10,
+    "contents_visible_to_lineage_at_freeze": false,
+    "generated_after_successor_freeze": true,
+    "location_at_freeze": "external_to_repository",
+    "new_capability_case_count": 4,
+    "new_capability_group": "new_iteration",
+    "sha256": "054c73a1729abd524ec9e2d7d55d661aab9d0a1300c207ab14bf86d2a0b6cbdd"
+  },
+  "preregistration_commit_parent": "03477d6f3b72de819c46cfcf9ff06a46122bb667",
+  "preregistration_digest": "d61974c924d0901860b9f84160ec35fc835bca0cce1071b4ab6b4a518ea8863f",
+  "qualification_rule": {
+    "fail_label": "G10_STAGE_3_OPEN",
+    "pass_label": "G10_STAGE_3_PASSED",
+    "required": [
+      "holdout_sha256_matches_preregistered_identity",
+      "all_raw_tasks_fail_before_repair",
+      "holdout_shape_matches_preregistration",
+      "successor_proposal_is_content_addressed_and_valid",
+      "successor_is_lineage_produced",
+      "successor_was_generated_without_holdout_visibility",
+      "successor_generation_is_exactly_parent_plus_one",
+      "successor_strictly_improves_fresh_success",
+      "successor_solves_every_fresh_case",
+      "successor_preserves_every_parent_success",
+      "parent_cannot_solve_new_capability_block",
+      "successor_solves_entire_new_capability_block",
+      "matched_candidate_budgets_are_identical",
+      "all_profiles_use_zero_external_model_calls",
+      "all_profiles_stay_within_matched_candidate_budget",
+      "new_capability_ablation_reduces_to_parent",
+      "current_generation_has_recursive_production_advantage_over_ancestor",
+      "successor_was_induced_from_current_generation_discovery",
+      "mutable_lineage_does_not_own_evaluator_or_verdict",
+      "resource_accounting_records_candidate_cpu_and_wall_axes"
+    ]
+  },
+  "recursive_advantage": {
+    "ancestor_present": true,
+    "required": true
+  },
+  "resource_budget": {
+    "candidate_executions_per_case": 6,
+    "external_model_calls_per_case": 0,
+    "same_budget_for_parent_successor_and_discovery_comparison": true
+  },
+  "schema": "genesis-g10-stage-preregistration-v1",
+  "stage": 3,
+  "successor": {
+    "freeze_digest": "ea3214a867b33a7878294e085a58044d03467aa394981eef1bf3b60977e7773f",
+    "from_campaign_generation": 2,
+    "parent_profile_digest": "3d9d3aa46effc2af1703efcdbeb380727eaa5a7a77f999c4c3879e8e648d5815",
+    "proposal_digest": "1edde917bd02ca302efbd1448c4a8f0062ad4aa914dccc03515e3c4a8b4bc98d",
+    "successor_profile_digest": "be03c081af05af4e1adb51dd4b8966283c96658875824d7eeaca3391d21ce2c8",
+    "to_campaign_generation": 3
+  }
+}
