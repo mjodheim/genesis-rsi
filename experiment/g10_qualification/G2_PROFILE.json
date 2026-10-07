@@ -1,0 +1,175 @@
+{
+  "base_system_profile": {
+    "active_overrides": {
+      "local_repair_specialist": {
+        "artifact_path": "experiment/g8_qualification/SPECIALIST.json",
+        "evidence_result_digest": "e5471f661a337d81ec6fa1996d766d0baee67a0cf354d20d833fb6bc97389641",
+        "kind": "qualified_distilled_specialist",
+        "specialist_digest": "94afbbfbe908f9c76c6abdf19f39f24e12f14c7c5a680feceeca0283b7424edb",
+        "template_count": 6
+      },
+      "universal_operator_ir": {
+        "evidence_result_digest": "c0aec6a3b7bacc401c271c0a91d98c3df1761dca19d8d8c428ea09eed7104080",
+        "kind": "qualified_source_descendant",
+        "mutation_id": "structural_delimiter_anchors",
+        "source_path": "experiment/g6_qualification/descendant/universal.py",
+        "source_sha256": "3451b476a319846df00ffe3984da8fb760a6a4c9f68313ebf4f4fb464f5954be"
+      }
+    },
+    "component_inventory": [
+      {
+        "component_digest": "d1cfd5f9f468626148c2cab62d38ff5062ca37337bb8fa609f59a930b7a17c00",
+        "component_id": "candidate_scheduler",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/runtime/candidate_scheduler.py",
+          "sha256": "589ec20e7097b54d4f64ff9e3b46171c1f248fe3d49c195bd8dae32f0c151f60",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "02c44fd67fcf361a14372d020cd1c2cfd7d7609b7ccb272b5e7e32c09baca635",
+        "component_id": "failure_model",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/learning/failure_model.py",
+          "sha256": "68dd73757dbef005a108b3f6266e954fb10639db8d2c14aaef8f589ea5e0ce24",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "47f8c68e0917b5c39f9d1f98f0d04d943161b3fd9d304d084c7941cb6c014633",
+        "component_id": "language_substrate",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/languages/substrate.py",
+          "sha256": "9381dd138cc6fb3bdabd10e07586e716aeef118e473083d34333fa1adb11a7a6",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "fb0bfad26893ccfcab27ceb84ccf6f186f5ad85c4e1cc111196c99d91d7ffeec",
+        "component_id": "language_toolchains",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/languages/toolchains.py",
+          "sha256": "c833d68b0ec23d2a3c185cdcbf5ceb2ad639e5eb98823121c00a8a670fd502b4",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "23d3615479b788f5d3caa95effd84f6b7cd185feeffd12bf2317951299925926",
+        "component_id": "local_specialist_distillation",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/learning/distillation.py",
+          "sha256": "1f2e4c2a6b278b9e5b54170f0530b7849ae7e9a2fd1faee20223101b6cbc33ec",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "6830e75fedab333c91683f4408ef1b06832a261371c17e973f3f45a28acacdc8",
+        "component_id": "strategy_memory",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/memory/strategy.py",
+          "sha256": "e22840d7335024640713dbc56536d392dbab9db58559e90996a0e8f5faa36741",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "61d801975fcb21627df5ea1c9e9e63c8766d5f3bf4e17398cd248783343c1278",
+        "component_id": "structural_operator_engine",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/operators/structural.py",
+          "sha256": "64bf51b17399e039badc754fada2f3904f81529b1617f587493694670931cb58",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "f792755fc6151cde14b81f3f26c12ff9dd88137d7fa2111cdf74807e8eeb6bcc",
+        "component_id": "successor_generator",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/evolution/successor_generation.py",
+          "sha256": "774ad764332973f4a4857237d44efadafb953cb336d1d7a66b520262f75740ad",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      },
+      {
+        "component_digest": "6af392cddf89c09b78f6d4cdf0e660fd07d85bef94b92bdf9e2e98950b0ed6e4",
+        "component_id": "trust_root",
+        "mutable": false,
+        "source_identity": {
+          "path": "genesis/trust_root.py",
+          "sha256": "e19a513f6f1ac8924a82ffef95db16da60038ed4b34192eaaf23b152c66d9895",
+          "status": "present"
+        },
+        "trust_boundary": "root"
+      },
+      {
+        "component_digest": "4dc81f2894cd883c98f70ed3c2a4d1098f692972c7c795a3b48d6eca0d97847e",
+        "component_id": "universal_operator_ir",
+        "mutable": true,
+        "source_identity": {
+          "path": "genesis/operators/universal.py",
+          "sha256": "a294e8fb47ff3a138667463610df25121c33aa2190308231b2116492e8eb4309",
+          "status": "present"
+        },
+        "trust_boundary": "lineage"
+      }
+    ],
+    "external_model_calls_for_generation": 0,
+    "generation": 1,
+    "hidden_holdout_visible": false,
+    "parent_profile_digest": "c361276dc1f367f901d37d86efaa48001768b0ec93b47ab4b79c140738719e93",
+    "producer": "genesis-evidence-driven-successor-generator-v1",
+    "profile_digest": "ce863273b94b65d454bf61c9b6140f6b55654c8f3ae39827887293ce6d559601",
+    "routing_program": {
+      "candidate_budget_is_global": true,
+      "external_model_fallback_enabled": false,
+      "order": [
+        "local_repair_specialist",
+        "universal_operator_ir"
+      ],
+      "routing_digest": "d79818c39b041308eb4d9b1b2638c16aebafdfb13310b33a8188e20b050cf6f0",
+      "schema": "genesis-successor-routing-program-v1",
+      "selection_rationale": "prefer zero-model retained specialist when it emits; otherwise use the independently qualified evolved universal operator",
+      "stop_after_first_passing_candidate": true
+    },
+    "schema": "genesis-system-profile-v1",
+    "self_model_digest": "e6e9f1ea26d18780152129a8fb923feacf9dde6e3f358fa452aa7cc11e832394"
+  },
+  "campaign_generation": 2,
+  "external_model_calls_for_generation": 0,
+  "g9_seed_profile_digest": "ce863273b94b65d454bf61c9b6140f6b55654c8f3ae39827887293ce6d559601",
+  "lineage_generation": 3,
+  "parent_profile_digest": "90c30ced7af6ad9b351dbfb5ccc875792f2807a5df1ccfc4ddbde05cce726cf9",
+  "producer": "genesis-g10-evidence-driven-recursive-successor-v1",
+  "profile_digest": "3d9d3aa46effc2af1703efcdbeb380727eaa5a7a77f999c4c3879e8e648d5815",
+  "prospective_holdout_visible": false,
+  "recursive_capability": {
+    "acquired_from_discovery_digest": "c17fd9df271f595fd3f91717372637d39290b1df470bafd45a5f8bf00e6edc3d",
+    "base_specialist_digest": "94afbbfbe908f9c76c6abdf19f39f24e12f14c7c5a680feceeca0283b7424edb",
+    "capability_digest": "a4e28cf6f38e04b63e96bef393cccae156740d28dafcf8b9a5b7c2a7fc998540",
+    "iterate_matching_scopes": false,
+    "level": 2,
+    "mechanism": "scope_bound_pair_search",
+    "pair_template_digests": [
+      "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc",
+      "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+    ],
+    "schema": "genesis-g10-recursive-capability-v1",
+    "scope_binding": true
+  },
+  "schema": "genesis-g10-chain-profile-v1"
+}

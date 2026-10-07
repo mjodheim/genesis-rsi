@@ -178,11 +178,22 @@ A single transition is evidence of self-improvement, not yet recursive self-impr
 
 ## G10 — Recursive successor chain
 
-**Goal:** demonstrate repeated causal improvement.
+**Scientific status (2026-10-07): PROJECT-DEFINED STRENGTHENED GATE PASSED.** The prospectively frozen campaign produced a content-addressed `G0 -> G1 -> G2 -> G3` chain. Fresh matched-budget scores improved `2/6 -> 6/6`, `4/8 -> 8/8` and `6/10 -> 10/10` while preserving every parent success. On next-successor discovery, G1 beat G0 `4/4 vs 0/4` with `4 vs 16` candidate executions, and G2 beat G1 `4/4 vs 0/4` with `8 vs 20`. All generation/runtime external-model calls were zero. See `docs/G10_QUALIFICATION_2026-10-07.md`. The capability ladder itself remains a frozen, host-authored family of successor mechanisms; G10 does not claim open-ended invention of arbitrary new improvement machinery.
+
+**Goal:** demonstrate repeated causal improvement **and causal improvement of the ability to produce the next improvement**.
 
 Target evidence: `G0 -> G1 -> G2 -> G3` where each child improves on fresh evidence, inherits earlier useful capabilities, uses inherited machinery to contribute to the next improvement, and remains within explicit resource limits.
 
-This is the first point at which Genesis should seriously claim domain-bounded RSI.
+Strong minimum criterion:
+- three prospectively frozen parent -> child transitions;
+- strict fresh matched-budget improvement at every transition;
+- preservation of every parent fresh success;
+- zero external-model calls for generation and runtime in the bounded assay;
+- transitions 2 and 3: the current generation must solve more next-successor discovery cases than its direct ancestor under the same budget, while the ancestor cannot produce sufficient evidence for that successor;
+- the current generation must also use fewer candidate executions than the ancestor on those frozen discovery comparisons;
+- mutable Genesis never owns the evaluator, promotion rule or final verdict.
+
+This is the first point at which Genesis should seriously claim **domain-bounded RSI under the exact frozen assay**, not general RSI.
 
 ## Beyond G10 — toward more general RSI
 
@@ -216,12 +227,13 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 - [ ] Consolidate experiment navigation without rewriting frozen evidence.
 - [ ] Update repository identity and metadata.
 
-### Next implementation
-- [ ] G1 common language substrate.
-- [ ] G2 universal operator IR.
-- [ ] Integrate A6c structural self-extension through G1/G2.
-- [ ] Prospectively freeze the first cross-language transfer campaign.
-- [ ] Begin G3 failure-model evaluation.
+### Post-G10 scientific frontier
+- [x] Close the bounded project-defined G10 recursive-successor gate.
+- [ ] Reproduce the G10 chain independently from a clean environment and independently governed task material.
+- [ ] Transfer the recursive-production criterion onto external/public software repositories not authored for Genesis.
+- [ ] Run hostile audit of the strengthened G10 apparatus, chronology and claim boundary.
+- [ ] Measure whether the recursive-production advantage persists across materially different repair/operator families and language ecosystems.
+- [ ] Only after those replications, investigate extension beyond software repair into broader learning, representation, experiment-design and resource-allocation machinery.
 ## Historical milestone integrity
 
 The G1-G10 roadmap replaces navigation, not experimental history.
