@@ -1,0 +1,17 @@
+{
+  "schema": "genesis-er1-j1-instrument-abort-v3",
+  "discovery_v3_freeze_commit": "70de924c",
+  "status": "INSTRUMENT_ABORTED_RESOURCE",
+  "scientific_verdict": null,
+  "aborted_at": "2026-10-07T12:52:19+02:00",
+  "elapsed_seconds_at_abort": 96,
+  "result_file_was_written": false,
+  "candidate_result_output_was_observed_by_researcher": false,
+  "reason": "Direct per-candidate javac/JUnit preserved reference semantics but repeated JVM startup remained unnecessary measurement overhead. A persistent JVM implementation was validated independently on the frozen buggy and fixed references before replacement.",
+  "candidate_space_changed": false,
+  "candidate_order_changed": false,
+  "hidden_trigger_changed": false,
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "allowed_successor": "Persistent JVM evaluator only; frozen candidate space/order/budget, trigger and pass semantics must remain unchanged."
+}
