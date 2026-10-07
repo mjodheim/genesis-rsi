@@ -1,0 +1,27 @@
+{
+  "claim_boundary": "This strengthens J12 from hidden-trigger success to causally relevant module-suite success while keeping the human patch sealed. It does not claim all historical Commons Lang 2.x suites are runnable under this JDK.",
+  "full_legacy_suite_note": "The aggregate Ant suite cannot complete under JDK 11 because the historical org.apache.commons.lang.enum.EnumTestSuite errors independently of the candidate. Prior suites reached before that environment incompatibility showed 0 failures. The causally relevant time suite passes 56/56 with the Genesis candidate.",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "module_regression_validation": {
+    "buggy_errors": 0,
+    "buggy_failures": 1,
+    "buggy_tests_run": 56,
+    "genesis_errors": 0,
+    "genesis_failures": 0,
+    "genesis_tests_run": 56,
+    "result": "PASS",
+    "suite": "org.apache.commons.lang.time.TimeTestSuite"
+  },
+  "pre_reveal_result_commit": "772dacdb",
+  "schema": "genesis-er1-j12-validation-pre-reveal-v1",
+  "selected_case": 63,
+  "winner": {
+    "candidate_digest": "462b872c8023f11fbc9758d43b0431d353c9b031f6218b7dff708f5a2925c8a5",
+    "candidate_sha256": "81899a2586d6d2c4ab02dda416041d6342b7b00c7cb4babe9d01815ae351a87d",
+    "id": "java-symbol-462b872c8023f11f",
+    "logical_index": 2436,
+    "operator": "java_qualified_symbol_substitute",
+    "path": "src/java/org/apache/commons/lang/time/DurationFormatUtils.java"
+  }
+}
