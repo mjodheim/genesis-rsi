@@ -1,0 +1,31 @@
+{
+  "schema": "genesis-er1-j3-discovery-v5-freeze-v1",
+  "predecessor_abort": "experiment/er1_j3/V4_INSTRUMENT_ABORT.json",
+  "baseline_index_sha256": "a8991f238c4c8ed9380586f74c6d126aac2eb6157844819c9dc7fcd411db060d",
+  "successor_index_sha256": "3ac1cc6b8b580a7bec2453d44718d4f045bba5ccc947320d5c708f02d6ac0879",
+  "candidate_budget_per_arm": 10000,
+  "candidate_indexes_changed": false,
+  "candidate_order_changed": false,
+  "hidden_trigger_changed": false,
+  "pass_criterion_changed": false,
+  "hidden_trigger_identity_sha256": "e1a3966bffb75358b11e483520d9495b360da20ed7f3d3bfc39f18547e305990",
+  "hidden_evaluator_sha256": "c7edb313ee7564f4a4b43e9385ac7cbb587519283932ef609cb4e3225ad4e589",
+  "isolated_runner_source_sha256": "7ab45dc3e6f44a49bf9e0ba26900ffef1b5a9217a67e3d0f9b769943cd05991b",
+  "isolated_runner_class_sha256": "6e814e461d9726328098bef80f1f7a975569ef82d2e52ed771f56cfca96a2957",
+  "instrument_change_from_v4": "fresh compiler output directory plus fresh child JVM and explicit verdict file per candidate; candidate-local evaluator failures do not terminate later evaluation",
+  "candidate_isolation": "fresh compiler output directory and fresh test JVM per candidate",
+  "candidate_failure_policy": "missing verdict, timeout, crash, or runner error is candidate-local failure and evaluation continues",
+  "reference_equivalence": {
+    "buggy_test_exit": 1,
+    "fixed_test_exit": 0,
+    "buggy_verdict": "FAIL",
+    "fixed_verdict": "PASS"
+  },
+  "parallel_workers": 8,
+  "parallel_batch_size": 32,
+  "external_model_calls": 0,
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "scientific_result_obtained": false,
+  "claim_boundary": "V5 changes only evaluator isolation after the V4 instrument abort. Candidate identities, order, budget, hidden trigger, and pass criterion remain frozen."
+}
