@@ -1,0 +1,59 @@
+{
+  "baseline": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 1449,
+    "evaluated_count": 2464,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 1015,
+    "winner": {
+      "candidate_digest": "462b872c8023f11fbc9758d43b0431d353c9b031f6218b7dff708f5a2925c8a5",
+      "compile_exit_code": 0,
+      "coverage_pruned": false,
+      "elapsed_ms": 50,
+      "evaluator_error": null,
+      "id": "java-symbol-462b872c8023f11f",
+      "index": 2436,
+      "kind": "java_symbol",
+      "operator": "java_qualified_symbol_substitute",
+      "passed_trigger": true,
+      "path_sha256": "ad3693552a9088880c9418f7db7847718c91c98f33ac15bfbcaf14c971333b19",
+      "test_exit_code": 0,
+      "valid": true
+    }
+  },
+  "causal_result": "The frozen shared ER2 v2/v3 index found a trigger-passing repair on fresh blind Lang-63 at logical index 2436. Because the v3 string-literal family was inactive and both arms were byte-identical, this is a positive blind external repair by inherited Genesis machinery, not evidence of a v3-over-v2 causal advantage.",
+  "claim_boundary": "J12 is the first positive blind external repair in this ER1/ER2 campaign. The result establishes repair of the frozen hidden trigger on a fresh real defect under the frozen search budget. Full-suite regression validation is still required before claiming repository-level repair, and the human fix remains sealed.",
+  "discovery_freeze": "experiment/er1_j12/DISCOVERY_FREEZE.json",
+  "human_fix_inspected": false,
+  "indexes_byte_identical": true,
+  "issue_text_inspected": false,
+  "schema": "genesis-er1-j12-result-pre-reveal-v1",
+  "scientific_gate_passed": true,
+  "selected_case": 63,
+  "shared_result_sha256": "8ad92f1eb405a02c0965414f6f8da88756b3e8dd99e43556a3197d851521337b",
+  "status": "VALID_POSITIVE_BLIND_REAL_REPO",
+  "successor": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 1449,
+    "evaluated_count": 2464,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 1015,
+    "winner": {
+      "candidate_digest": "462b872c8023f11fbc9758d43b0431d353c9b031f6218b7dff708f5a2925c8a5",
+      "compile_exit_code": 0,
+      "coverage_pruned": false,
+      "elapsed_ms": 50,
+      "evaluator_error": null,
+      "id": "java-symbol-462b872c8023f11f",
+      "index": 2436,
+      "kind": "java_symbol",
+      "operator": "java_qualified_symbol_substitute",
+      "passed_trigger": true,
+      "path_sha256": "ad3693552a9088880c9418f7db7847718c91c98f33ac15bfbcaf14c971333b19",
+      "test_exit_code": 0,
+      "valid": true
+    }
+  }
+}
