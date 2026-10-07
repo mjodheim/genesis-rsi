@@ -1,0 +1,20 @@
+{
+  "causal_findings": [
+    "J11 was not a repository-level localization failure: NumberUtils.java was inside the four-file causal frontier.",
+    "The human repair extends an existing OR-chain of identical string predicate calls with case-equivalent literal variants.",
+    "Existing scalar, structural, symbol and planner composition machinery does not create new string-literal equivalence variants.",
+    "The missing capability is an atomic semantic closure operator, not deeper composition."
+  ],
+  "claim_boundary": "J11 remains a valid fresh blind negative. Its revealed fix may train ER2 v3 but may never reclassify J11 as a pass.",
+  "human_fix_reveal": {
+    "human_fix_shape": "extend_or_chain_with_case_variant_string_prefix_literals",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+    "source_pair_sha256": "d53e0f4b8c98b489b42fc102d72f04841154cb8a0b71faf821617ffb8ee7e082"
+  },
+  "next_development_change": "Add a generic Java string-predicate literal-closure operator that mines OR-chains of the same receiver/method over related string literals and proposes missing ASCII-case variants without encoding NumberUtils, startsWith, hexadecimal prefixes, Lang-16, tests, issues, commits or lines.",
+  "pre_reveal_result_commit": "9647ac3b",
+  "schema": "genesis-er1-j11-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_STRING_LITERAL_EQUIVALENCE_CLOSURE_GAP"
+}
