@@ -1,0 +1,143 @@
+{
+  "apparatus": {
+    "distillation": {
+      "path": "genesis/learning/distillation.py",
+      "source_sha256": "1f2e4c2a6b278b9e5b54170f0530b7849ae7e9a2fd1faee20223101b6cbc33ec"
+    },
+    "holdout_generator": {
+      "path": "scripts/build_g8_holdout.py",
+      "source_sha256": "e746cfcaf311ec325614093a873cc5d66ce1e90221fc89b7c2748f55ed7385d2"
+    },
+    "qualification_runner": {
+      "path": "scripts/run_g8_qualification.py",
+      "source_sha256": "a15a6fab889e3cf374f1b82a2d43251921777ff77eb6b5ad85a9322718af3e92"
+    },
+    "specialist_builder": {
+      "path": "scripts/build_g8_specialist.py",
+      "source_sha256": "ca67e71daeb939db9a89da5857c74928c92a902982f22bf06d22858763b4e1b7"
+    }
+  },
+  "authority": {
+    "mutable_specialist_owns_evaluator_or_verdict": false,
+    "same_frozen_evaluator_for_external_and_local_arms": true
+  },
+  "claim_boundary": "Bounded project-defined G8 distillation/local-specialization qualification only. Passing shows that previously expensive validated repair reasoning can be compiled into cheaper retained local machinery on fresh related families. It does not establish G9 whole-successor generation, G10 recursive successor chains, general RSI, AGI, ASI, or independent third-party validation.",
+  "external_baseline": {
+    "cli_version": "2.1.289 (Claude Code)",
+    "commands_or_tests_allowed": false,
+    "evaluator_visible": false,
+    "invocations_per_case": 1,
+    "max_budget_usd_per_case": 0.5,
+    "model": "claude-sonnet-5-5",
+    "model_call_accounting": "one non-interactive fallback session equals one external_model_call, matching the A6b project convention even if provider-internal turns exceed one",
+    "provider": "Claude Code",
+    "tools": [
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "web_allowed": false
+  },
+  "holdout": {
+    "case_count": 8,
+    "contents_visible_to_specialist_at_freeze": false,
+    "family_count": 4,
+    "generated_after_specialist_freeze": true,
+    "location_at_freeze": "external_to_repository",
+    "sha256": "ab7408a9bbc7cfbd12e8f4238422af190ee20d3df757d4c9f4ed42063db66df9"
+  },
+  "local_specialist": {
+    "evaluator_visible": false,
+    "external_model_calls": 0,
+    "max_candidates_per_case": 16,
+    "runtime_cost_usd": 0.0
+  },
+  "preregistration_commit_parent": "83655749dddd77c58d7d0faea50bf17683509ace",
+  "preregistration_digest": "e1bd0ed55001d9788c24ca0522f0323fdd79019541fcca2e10a3600d989372e5",
+  "qualification_rule": {
+    "fail_label": "G8_SCIENTIFIC_GATE_OPEN",
+    "pass_label": "G8_SCIENTIFIC_GATE_PASSED",
+    "required": [
+      "holdout_sha256_matches_preregistered_identity",
+      "all_raw_tasks_fail_before_repair",
+      "holdout_has_four_families_and_eight_cases",
+      "specialist_is_content_addressed_and_valid",
+      "specialist_was_distilled_from_repeated_expensive_reasoning",
+      "external_baseline_attempts_exactly_one_model_call_per_case",
+      "local_specialist_uses_zero_external_model_calls",
+      "local_specialist_solves_at_least_seven_of_eight",
+      "local_specialist_retains_or_improves_external_baseline_success",
+      "external_model_calls_per_solved_task_strictly_decrease",
+      "runtime_dollar_cost_per_solved_task_strictly_decreases",
+      "local_specialist_is_materially_faster_in_wall_time",
+      "empty_specialist_ablation_loses_capability",
+      "empty_specialist_ablation_solves_zero_tasks",
+      "specialist_has_no_holdout_visibility_at_freeze",
+      "distillation_itself_used_zero_external_model_calls",
+      "mutable_specialist_does_not_own_evaluator_or_verdict"
+    ]
+  },
+  "schema": "genesis-g8-qualification-preregistration-v1",
+  "specialist": {
+    "distillation_sources": [
+      {
+        "cost_usd": 0.1215606,
+        "model": "claude-sonnet-5-5",
+        "model_calls": 1,
+        "report_digest": "69c1d46bad4f811275eae3fd5fadb3f65515b2f389f3c2c8a7977aa9001fdcf9",
+        "task_id": 1,
+        "template_digests": [
+          "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+        ]
+      },
+      {
+        "cost_usd": 0.0386076,
+        "model": "claude-sonnet-5-5",
+        "model_calls": 1,
+        "report_digest": "5b248eff1e8d8c71fddbbf76691077098760fee9707ca5366a362427f81cdca9",
+        "task_id": 4,
+        "template_digests": [
+          "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+        ]
+      },
+      {
+        "cost_usd": 0.0426738,
+        "model": "claude-sonnet-5-5",
+        "model_calls": 1,
+        "report_digest": "a556ffe67a5ada69927b6f3272547864aaa5c7aba7e87b2c44fa96df20165806",
+        "task_id": 6,
+        "template_digests": [
+          "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+        ]
+      },
+      {
+        "cost_usd": 0.05283700000000001,
+        "model": "claude-sonnet-5-5",
+        "model_calls": 1,
+        "report_digest": "e6ed31a15ac1a34c0f799f8b7c76b4cddbd5821cb600ed8c88b8933841b650f9",
+        "task_id": 7,
+        "template_digests": [
+          "afcd966047e46070d072ab5894a36ed43dd3643c878e7d4a7870285601681d72",
+          "f6d0c266fdfddd6d5f30dad160a105e1a7ce5eac0d76c22cbe1415a35646dd19"
+        ]
+      },
+      {
+        "cost_usd": 0.218353,
+        "model": "claude-sonnet-5-5",
+        "model_calls": 1,
+        "report_digest": "b274c564894de81f0b9587d2e7132d13b88899f301f56584e79718dabf3dca78",
+        "task_id": 11,
+        "template_digests": [
+          "39f3b6d11ff216875c2dc37052da02d7b6d16253e017b5c6b5eac079937fc842"
+        ]
+      }
+    ],
+    "freeze_digest": "d74b2561c48e22b1c4eb9195ea49f89c4d051a26dd4f9dcdd52ed17015320485",
+    "runtime_external_model_calls": 0,
+    "source_cost_usd": 0.474032,
+    "source_external_model_calls": 5,
+    "specialist_digest": "94afbbfbe908f9c76c6abdf19f39f24e12f14c7c5a680feceeca0283b7424edb",
+    "specialist_id": "g8-a6b-local-repair-specialist",
+    "template_count": 6
+  }
+}
