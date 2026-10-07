@@ -1,0 +1,46 @@
+{
+  "baseline_description": "frozen ER2 v1 planner front plus frozen J9 fallback",
+  "baseline_index_sha256": "16b301b06ca8200730f276274ae067309d75151dec7553d3f847027a6236f39d",
+  "candidate_budget_per_arm": 10000,
+  "claim_boundary": "J11 is a fresh blind external transfer/applicability test. ER2 v2's new default-normalization family is inactive on this case. Human fix remains unseen until the shared result is committed.",
+  "execution_rule": "Indexes are byte-identical; execute shared frozen index once and apply verdict identically to both arms.",
+  "external_model_calls": 0,
+  "hidden_evaluator_sha256": "3f58499ef3b6a8537c563118edf2b5895c302da5975abbbb671cb3878a047fe5",
+  "hidden_trigger_identity_sha256": "3d90b8cad18c504b70e6c9c6bac235cc80dc0cb6b230e8b8cdad8dd23b39c4ab",
+  "human_fix_inspected": false,
+  "indexes_byte_identical": true,
+  "issue_text_inspected": false,
+  "java_max_heap_mb": 64,
+  "parallel_batch_size": 32,
+  "parallel_workers": 8,
+  "persistent_oracle_class_manifest_sha256": "8684c972282a0c722eaed470930c11e81289af9ad04479c9f6f85edbb432d2ef",
+  "persistent_oracle_source_sha256": "7d5716e0102cd79976c1cc31459b4fc5dca18634c9d163ae3ecd34ef2f2e61ee",
+  "reference_equivalence": {
+    "buggy_compile_exit": 0,
+    "buggy_test_exit": 1,
+    "fixed_compile_exit": 0,
+    "fixed_test_exit": 0
+  },
+  "reference_loaded_source_paths": [
+    "src/main/java/org/apache/commons/lang3/JavaVersion.java",
+    "src/main/java/org/apache/commons/lang3/StringUtils.java",
+    "src/main/java/org/apache/commons/lang3/SystemUtils.java",
+    "src/main/java/org/apache/commons/lang3/math/NumberUtils.java"
+  ],
+  "reference_loaded_source_union_sha256": "e8a519e453a188f62102091cfa31e0ac7d39609c9ec4cd57365b03b27980717a",
+  "schema": "genesis-er1-j11-discovery-freeze-v1",
+  "scientific_result_obtained": false,
+  "selected_case": 16,
+  "successor_description": "frozen ER2 v2 planner front plus identical frozen J9 fallback",
+  "successor_index_sha256": "16b301b06ca8200730f276274ae067309d75151dec7553d3f847027a6236f39d",
+  "trigger_count": 1,
+  "v1_planner_front_count": 696,
+  "v1_strategy_digest": "5f6b310a930c68c049253c2993b63957568056f0ac5f2821ab81c46302cc54d9",
+  "v2_default_normalization_activation": {
+    "accepted": 0,
+    "activated": false,
+    "generated": 0
+  },
+  "v2_planner_front_count": 696,
+  "v2_strategy_digest": "9d834231e6ca20b940d291563f46939f9372401f9b891fa8004e1e566977f811"
+}
