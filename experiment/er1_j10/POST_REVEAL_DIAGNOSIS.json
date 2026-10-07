@@ -1,0 +1,22 @@
+{
+  "causal_findings": [
+    "J10 was not a localization failure: FastDateFormat.java was the sole trigger-loaded production source and all 768 ER2 planner-front candidates targeted it.",
+    "The human repair resolves a nullable context value to its default before cache lookup, then always includes the normalized value in the cache key.",
+    "The old code normalized the value only after a cache miss, so a null caller could use a cache key that omitted state later used to construct the value.",
+    "The same dataflow-order repair is required in two sibling factory methods.",
+    "ER2 v1 can compose existing edits but cannot synthesize a guarded default assignment, hoist it before an earlier use, replace conditional key inclusion by unconditional inclusion, and remove the now-redundant late guard."
+  ],
+  "claim_boundary": "J10 remains a valid fresh blind ER2 negative. Its revealed repair may train ER2 v2 but may never reclassify J10 as a pass.",
+  "human_fix_reveal": {
+    "coordinated_method_count": 2,
+    "human_fix_shape": "hoist_default_normalization_before_cache_key_then_unconditionally_key_normalized_value",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "source_pair_sha256": "ee3403dd3f3e3bb29f7a9a3bf6e75e14865d463c61dc5a97246d5db819b71a84"
+  },
+  "next_development_change": "Add a generic default-before-use/cache-key normalization primitive. Mine a later guarded default assignment for a nullable method parameter, detect an earlier conditional key/update use of that same parameter, hoist the default assignment before the earlier use, make the use unconditional, and remove the redundant late guard. Emit both single-method and coordinated sibling-method variants. Encode no Locale, FastDateFormat, cache name, method, Lang-50, test, issue, commit, or line identity.",
+  "pre_reveal_result_commit": "14817305",
+  "schema": "genesis-er1-j10-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_DEFAULT_BEFORE_CACHE_KEY_DATAFLOW_GAP"
+}
