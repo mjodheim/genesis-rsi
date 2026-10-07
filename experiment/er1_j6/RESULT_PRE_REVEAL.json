@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 9177,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 823,
+    "winner": null
+  },
+  "causal_result": "The frozen J6 sentinel-range mechanism generated zero candidates on fresh blind case Lang-65, so baseline and successor were byte-identical. The inherited machinery also produced no trigger-passing repair under the frozen 10000-candidate budget.",
+  "claim_boundary": "J6 is a valid negative applicability result and inherited-machinery failure. Human-fix reveal is permitted only after this result is committed.",
+  "discovery_freeze": "experiment/er1_j6/DISCOVERY_FREEZE.json",
+  "human_fix_inspected": false,
+  "indexes_byte_identical": true,
+  "issue_text_inspected": false,
+  "schema": "genesis-er1-j6-result-pre-reveal-v1",
+  "scientific_gate_passed": false,
+  "selected_case": 65,
+  "shared_result_sha256": "0c119b248ca947d88da22717c69eebd32705676d9f6bea47f4267a2334bc6719",
+  "status": "VALID_NEGATIVE_IDENTICAL_ARMS_REAL_REPO",
+  "successor": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 9177,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 823,
+    "winner": null
+  }
+}
