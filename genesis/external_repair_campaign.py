@@ -341,8 +341,11 @@ def transition(state: Mapping[str, Any], adapter: CampaignAdapter) -> dict[str, 
         generation = int(current["generation"]) + 1
         max_cases = int(current["max_cases"])
         stop_after = int(current["stop_after_successes"])
+        # generation counts cases completed by this campaign instance.  Seeded
+        # attempted IDs are exclusions/provenance, not work performed by this
+        # controller, so they must not consume max_cases.
         complete = (
-            (max_cases > 0 and len(attempted) >= max_cases)
+            (max_cases > 0 and generation >= max_cases)
             or (stop_after > 0 and int(current["success_count"]) >= stop_after)
         )
         return _append(

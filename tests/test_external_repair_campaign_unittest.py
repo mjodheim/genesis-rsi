@@ -118,6 +118,23 @@ class CampaignTests(unittest.TestCase):
             )
             self.assertIn("positive_validated", kinds)
 
+    def test_seeded_exclusions_do_not_consume_max_cases(self):
+        with tempfile.TemporaryDirectory() as td:
+            store = campaign.CampaignStore(Path(td) / "campaign.json")
+            initial = campaign.create_state(
+                campaign_id="seeded-limit",
+                machinery={"machinery_digest": "m0", "capability_generation": 0},
+                max_cases=2,
+                attempted_case_ids=["old-1", "old-2", "old-3"],
+            )
+            adapter = FakeAdapter()
+            # FakeAdapter only knows case-a/case-b, so old exclusions must not
+            # make the campaign complete before those two fresh cases run.
+            final = campaign.run(store, adapter, initial_state=initial)
+            self.assertEqual(final["phase"], "complete")
+            self.assertEqual(final["generation"], 2)
+            self.assertEqual(final["attempted_case_ids"][-2:], ["case-a", "case-b"])
+
     def test_reveal_gate_refuses_positive_or_unfrozen_state(self):
         adapter = FakeAdapter()
         state = campaign.create_state(
