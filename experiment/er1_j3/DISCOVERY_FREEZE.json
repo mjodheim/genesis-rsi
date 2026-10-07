@@ -1,0 +1,31 @@
+{
+  "arms": {
+    "baseline": {
+      "candidate_count": 10000,
+      "description": "J2 fair scalar machinery only",
+      "index_sha256": "a8991f238c4c8ed9380586f74c6d126aac2eb6157844819c9dc7fcd411db060d"
+    },
+    "successor": {
+      "candidate_count": 10000,
+      "description": "J2 fair scalar plus frozen generic Java structural machinery",
+      "index_sha256": "3ac1cc6b8b580a7bec2453d44718d4f045bba5ccc947320d5c708f02d6ac0879",
+      "scalar_count": 5586,
+      "structural_count": 4414
+    }
+  },
+  "candidate_budget_per_arm": 10000,
+  "causal_question": "Does the frozen structural successor solve the fresh blind real defect under the same candidate ceiling when the J2 scalar baseline cannot?",
+  "external_model_calls": 0,
+  "hidden_evaluator_sha256": "353e5bd5939bd3d1bc5937f530ae63113f8e53e091e918984adcade7f76d0641",
+  "hidden_trigger_identity_sha256": "e1a3966bffb75358b11e483520d9495b360da20ed7f3d3bfc39f18547e305990",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "machinery_freeze": "experiment/er1_j3/MACHINERY_FREEZE.json",
+  "persistent_oracle_class_sha256": "8c70f0e08a157dcb3bac63e63b81899a1d3fc71d75c3cc39317a18c5016d4b88",
+  "persistent_oracle_source_sha256": "589286396778f337914c9fb88ca13593aa75450af3e1cd48cde3a5b8cc1d22b9",
+  "reference_buggy_failing_tests": 1,
+  "reference_fixed_failing_tests": 0,
+  "schema": "genesis-er1-j3-discovery-freeze-v1",
+  "selected_case": 43,
+  "successor_schedule": "alternate_java_structural_then_scalar_until_one_exhausts_then_fill_from_remaining"
+}
