@@ -1,0 +1,33 @@
+{
+  "baseline": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 9552,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 448,
+    "result_sha256": "09947d8b218012b6d4debaf9aa67f5cc2932e58f018ecc15e2cfac870e8bb929",
+    "winner": null
+  },
+  "causal_result": "The frozen ER2 planner did not produce a trigger-passing repair on fresh blind Lang-50. Causal routing worked as intended: all 768 planner-front candidates targeted the sole trigger-loaded production file, FastDateFormat.java. The failure is therefore an expressivity/planning gap rather than repository-level localization starvation.",
+  "claim_boundary": "J10 is a valid fresh blind negative for ER2 v1. It validates causal targeting and evaluator stability but provides no evidence of successful fresh external repair. Human-fix reveal is permitted only after this result is committed.",
+  "discovery_freeze": "experiment/er1_j10/DISCOVERY_FREEZE.json",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "planner_candidates_on_reference_loaded_sources": 768,
+  "planner_front_count": 768,
+  "schema": "genesis-er1-j10-result-pre-reveal-v1",
+  "scientific_gate_passed": false,
+  "selected_case": 50,
+  "status": "VALID_NEGATIVE_FRESH_ER2_TRANSFER",
+  "successor": {
+    "candidate_budget": 10000,
+    "coverage_pruned_count": 8789,
+    "evaluated_count": 10000,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "junit_candidate_count": 1211,
+    "result_sha256": "611d072b38ff8f0369dee4195022df6fca9c0c4fe1eed124441b179f2a16da4c",
+    "winner": null
+  }
+}
