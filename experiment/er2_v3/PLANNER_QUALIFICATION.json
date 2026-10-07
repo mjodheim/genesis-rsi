@@ -1,0 +1,29 @@
+{
+  "claim_boundary": "ER2 v3 is validated on synthetic and consumed J11 evidence only. Fresh transfer evidence begins at J12 after this freeze.",
+  "consumed_replay_validation": {
+    "case": "ER1-J11 Lang-16",
+    "evaluated_count": 208,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0,
+    "independent_holdout": false,
+    "new_family_activation": {
+      "accepted": 1,
+      "activated": true,
+      "generated": 1
+    },
+    "planner_candidate_count": 417,
+    "winner_component_operator": "java_string_literal_case_closure",
+    "winner_logical_index": 200,
+    "winner_passed_trigger": true
+  },
+  "feature": "string-predicate-literal-equivalence-closure",
+  "future_holdout_boundary": "ER1-J12-plus-unseen-until-this-freeze",
+  "schema": "genesis-er2-v3-repair-planner-qualification-v1",
+  "scientific_gate_passed": true,
+  "training_boundary": "ER1-J1-through-J11-consumed-evidence",
+  "unit_validation": {
+    "failed": 0,
+    "passed": 7,
+    "test_count": 7
+  }
+}
