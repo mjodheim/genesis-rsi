@@ -1,6 +1,6 @@
 # Genesis — current authoritative project state
 
-**Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; the Genesis v2 project-defined G5 autonomous-experiment-generation and G6 component-evolution gates are now passed in bounded preregistered qualifications; G7, L10 independent replication and general RSI remain open.**
+**Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; the Genesis v2 project-defined G5 autonomous-experiment-generation, G6 component-evolution and G7 causal-promotion/rollback gates are now passed in bounded preregistered qualifications; G8, L10 independent replication and general RSI remain open.**
 
 Genesis is the renamed continuation of **Mira Genesis**. Historical records keep their original project name; the rename changes neither authorship nor frozen evidence.
 
@@ -32,7 +32,17 @@ The project-defined G6 component-evolution gate is now **PASSED** under a separa
 
 On the fresh holdout, the exact parent solved **2/8**, while the frozen descendant solved **8/8**, preserving both parent successes, staying within the same candidate budget and using **zero external model calls**. Reverting the selected machinery mutation reduced performance back to **2/8**. All ten preregistered predicates returned true and the frozen verdict is **`G6_SCIENTIFIC_GATE_PASSED`**. The apparatus, preregistration, descendant, evaluator and result were frozen respectively as `541889eb`, `057d2764`, `2d69d22b`, `68d49591` and `649af5b3`; exact evidence and boundaries are recorded in [`docs/G6_QUALIFICATION_2026-10-07.md`](docs/G6_QUALIFICATION_2026-10-07.md).
 
-This is a bounded lineage-produced descendant with project-created external evaluation. It does **not** establish repeated promotion/rollback (G7), an open-ended successor chain, independent third-party validation, general RSI, AGI or ASI.
+This is a bounded lineage-produced descendant with project-created external evaluation. It does **not** establish an open-ended successor chain, independent third-party validation, general RSI, AGI or ASI.
+
+### Genesis v2 G7 qualification
+
+The project-defined G7 causal-promotion/rollback gate is now **PASSED** under a separate prospective qualification. Genesis' lineage machinery stores candidate component sources as immutable content-addressed artifacts and keeps only an active artifact digest in mutable state. Candidate staging therefore cannot silently change the active component.
+
+A frozen external authority then executed three fresh Python rounds under one rule. Round A promoted D1 after a **1/4 -> 4/4** matched improvement. Round B evaluated an exact-source reversion candidate and rejected it at **4/4 -> 1/4** without changing the active state digest. An externally authorized rollback then restored the exact recorded seed artifact and survived restart/replay. Round C promoted independently generated D2 after a fresh **2/4 -> 4/4** comparison. Four post-run tamper probes—artifact, external decision, hash-chained journal and persisted state—were all refused on reload. All **17/17** preregistered predicates returned true with **zero external model calls** and the frozen verdict is **`G7_SCIENTIFIC_GATE_PASSED`**.
+
+The G7 apparatus, candidate set, preregistration and result were frozen respectively as `b7aad58e`, `07dc9646`, `fd10fbb2` and `fca80392`. Exact evidence and claim boundaries are recorded in [`docs/G7_QUALIFICATION_2026-10-07.md`](docs/G7_QUALIFICATION_2026-10-07.md).
+
+This is bounded, project-created evidence with evaluator and promotion authority outside mutable lineage. It does **not** establish G8 distillation, G9 whole-successor generation, G10 recursive successor chains, independent third-party validation, general RSI, AGI or ASI.
 
 V26's single prospectively frozen Track A attempt returns **POSITIVE_BOUNDED_L5**.
 The qualified V22R G2 controller selects an executable two-component G3 descendant

@@ -127,6 +127,10 @@ Exit evidence: fresh matched-budget evaluation shows a lineage-produced descenda
 
 ## G7 — Causal promotion and rollback
 
+**Scientific status (2026-10-07): PROJECT-DEFINED GATE PASSED.** Under a prospectively frozen external authority, Genesis staged content-addressed component candidates without changing the active lineage, adopted D1 on fresh evidence (1/4 -> 4/4), rejected an exact-source regression R1 (4/4 -> 1/4) without mutating active state, rolled back exactly to the recorded seed parent, then adopted independently generated D2 after restart/replay (2/4 -> 4/4). Artifact, decision, journal and state tampering were all rejected. All 17 frozen predicates passed with zero external model calls. See `docs/G7_QUALIFICATION_2026-10-07.md`.
+
+The result is bounded and project-created; it does not establish G8, G9, a recursive successor chain, independent third-party validation or general RSI.
+
 **Goal:** automate safe lineage descent without letting mutable Genesis own the verdict.
 
 Deliverables: candidate isolation, evaluator identity, fresh-case identity, ablation, promotion records, rollback and tamper detection.

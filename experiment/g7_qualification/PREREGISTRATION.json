@@ -1,0 +1,97 @@
+{
+  "apparatus_commit": "07dc96469dc2cf6b2e6e35c57bc9ecd2ab0f2065",
+  "authority": {
+    "authority_digest": "faf44ad1beb56d3b35ac608a6a39608cddc9a9f9262b6f732110504417cdb9f8",
+    "mutable_lineage_owns_verdict": false,
+    "rollback_authority_digest": "b10f7edc8b7443717851440c1a9a45db32b1ec815a4c20e353df0322846e0a70"
+  },
+  "candidate_identities": {
+    "D1": "88512f3126b40867a0e74b12f8de98f79d8d17b247228a2d5b67906319368060",
+    "D2": "f06173c4f1314e1cb816e0366e6408ed273557c09397c38248387818ecdd16ba",
+    "R1": "f73e3c36675a78297a5b4339ce9c10ed25b537e8f70e21a8ff63ebcf0c7df69b",
+    "seed": "e6f2a5234183e76181007a0c1f3996b1fea55eac05737515446a11bdbaa73eab"
+  },
+  "candidate_set_digest": "121380c3774c58c5f45cd1f4bd2a5d8a89e065f67b1e5edf914984c2d30a8531",
+  "claim_boundary": "Bounded project-defined G7 causal promotion/rollback qualification only. Passing does not establish G8, G9, recursive successor chains, general RSI, AGI, ASI, or independent third-party validation.",
+  "decision_rule": {
+    "candidate_budget_per_round": 4,
+    "rule": {
+      "adopt_requires_matched_candidate_budget": true,
+      "adopt_requires_parent_success_preservation": true,
+      "adopt_requires_strict_capability_gain": true,
+      "adopt_requires_zero_external_model_calls": true,
+      "ties_or_regressions": "reject",
+      "version": 1
+    },
+    "rule_digest": "e8711583318e6485c0cbc216a1b1298a4af900dd1e97d42e68feb968dcd1fd54"
+  },
+  "external_evaluator": {
+    "evaluator_digest": "84f4bda2d6fe0877890be54606446b396d9ce91ca6c8a3aa9c4d3b57c915ba49",
+    "mutable_lineage_owns_evaluator": false,
+    "path": "scripts/run_g7_qualification.py",
+    "source_sha256": "d81baf6be99e3529a6310cb0ae1a712d20c5b3e6a8116e06acb28a5ce173ed9c"
+  },
+  "holdout": {
+    "case_count": 12,
+    "contents_visible_to_mutable_lineage_before_freeze": false,
+    "location_at_freeze": "external_to_repository",
+    "round_count": 3,
+    "sha256": "83211370525d160de22cf2ddcfb84d4cf830197f2de50c6292a9b7a27e4713ae"
+  },
+  "lineage_apparatus": {
+    "path": "genesis/evolution/lineage_promotion.py",
+    "source_sha256": "dd7c59ea3e6173a498c82ef8f9a02173426d0b2f572c7a9970aa3d0f0f479837"
+  },
+  "preregistration_digest": "7c52bd9a89f737933afacb7e2003e7057f456e17d08b4a696bfc1fa07ab083a4",
+  "qualification_rule": {
+    "fail_label": "G7_SCIENTIFIC_GATE_OPEN",
+    "pass_label": "G7_SCIENTIFIC_GATE_PASSED",
+    "required": [
+      "holdout_sha256_matches_preregistered_identity",
+      "all_raw_holdout_cases_fail_before_repair",
+      "all_candidates_are_isolated_before_decision",
+      "round_A_is_adopted_by_frozen_rule",
+      "round_B_regression_is_rejected_by_frozen_rule",
+      "round_B_rejection_does_not_mutate_active_state",
+      "external_rollback_restores_exact_A_parent",
+      "restart_replay_succeeds_after_each_transition",
+      "round_C_is_adopted_after_rollback",
+      "final_active_artifact_is_D2",
+      "lineage_generation_is_monotonic_and_expected",
+      "artifact_tampering_is_rejected",
+      "decision_tampering_is_rejected",
+      "journal_tampering_is_rejected",
+      "state_tampering_is_rejected",
+      "all_measurements_use_zero_external_model_calls",
+      "all_decisions_bind_frozen_authority_rule_and_evaluator"
+    ]
+  },
+  "rollback_challenge_digest": "6d54e10d484604e61c8500c06ec90b6455c2f1c83fc4e1ac52d555a71495f624",
+  "schema": "genesis-g7-qualification-preregistration-v1",
+  "sequence": [
+    {
+      "candidate": "D1",
+      "decision": "frozen_external_rule",
+      "parent": "seed",
+      "step": "round_A"
+    },
+    {
+      "candidate": "R1",
+      "decision": "frozen_external_rule",
+      "parent": "D1",
+      "step": "round_B"
+    },
+    {
+      "authority": "external_exact_parent_rollback",
+      "from": "D1",
+      "restore": "seed",
+      "step": "rollback"
+    },
+    {
+      "candidate": "D2",
+      "decision": "frozen_external_rule",
+      "parent": "seed",
+      "step": "round_C"
+    }
+  ]
+}
