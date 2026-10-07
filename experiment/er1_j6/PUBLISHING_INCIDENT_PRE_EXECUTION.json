@@ -1,0 +1,13 @@
+{
+  "claim_boundary": "This incident affects remote replication timing, not candidate generation or evaluation semantics.",
+  "decision": "Proceed from the unchanged locally committed and annotated freeze. Do not mutate candidate indexes, evaluator, trigger, budget, or pass criterion. Publish the frozen commits/tags when GitHub writes recover.",
+  "git_push_attempts_failed": 4,
+  "github_contents_api_attempt_failed": true,
+  "partial_remote_write_detected": false,
+  "recorded_before_candidate_execution": true,
+  "remote_branch": "research/er1-j6-range",
+  "schema": "genesis-er1-j6-publishing-incident-v1",
+  "scientific_freeze_commit": "25cf46b3",
+  "scientific_freeze_tag": "provenance/er1-j6-discovery-freeze-20261007",
+  "status": "REMOTE_PUBLICATION_BLOCKED_BY_GITHUB_INTERNAL_SERVER_ERROR"
+}
