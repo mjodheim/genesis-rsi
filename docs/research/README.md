@@ -14,6 +14,8 @@ Current implementation lines that feed the new architecture include:
 - G5 scientific qualification: `docs/G5_QUALIFICATION_2026-10-07.md`
 - G6 scientific qualification: `docs/G6_QUALIFICATION_2026-10-07.md`
 - G7 scientific qualification: `docs/G7_QUALIFICATION_2026-10-07.md`
+- G8 scientific qualification: `docs/G8_QUALIFICATION_2026-10-07.md`
+- local reasoning distillation: `genesis/learning/distillation.py`
 - component evolution: `genesis/evolution/component_evolution.py`
 - externally authorized lineage promotion: `genesis/evolution/lineage_promotion.py`
 - software autonomy: `docs/AUTONOMOUS_RSI_SOFTWARE_TRACK.md`

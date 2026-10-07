@@ -141,6 +141,10 @@ Exit evidence: repeated candidate generations can be accepted/rejected automatic
 
 ## G8 — Distillation and local specialization
 
+**Scientific status (2026-10-07): PROJECT-DEFINED GATE PASSED.** A content-addressed local specialist was distilled from five previously validated A6b fallback traces representing five external-model calls and $0.474032 of historical reasoning cost. The specialist was frozen before a new eight-case/four-family holdout was generated. On the fresh holdout, a Claude Sonnet 5.5 baseline solved 7/8 with eight external-model calls and $0.2300264 recorded runtime cost, while the local specialist solved 8/8 with zero external-model calls, zero runtime model cost and one candidate execution per task. An empty-specialist ablation solved 0/8. All 17 frozen predicates passed. See `docs/G8_QUALIFICATION_2026-10-07.md`.
+
+The result is bounded to related repair families and project-created evaluation; it does not establish G9, G10, independent third-party validation or general RSI.
+
 **Goal:** convert repeated expensive reasoning into cheaper retained machinery.
 
 Priority order:

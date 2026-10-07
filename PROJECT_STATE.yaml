@@ -4,7 +4,7 @@ updated_at: 2026-10-07
 architecture_generation: genesis_v2_efficiency_first
 architecture_reset_changes_scientific_gate: false
 snapshot_kind: current_authoritative_navigation
-status: genesis_v2_g7_gate_passed_bounded_l9_operational_pass_l10_open
+status: genesis_v2_g8_gate_passed_bounded_l9_operational_pass_l10_open
 
 rsi_frontier:
   operational_l9_gate_passed: true
@@ -71,8 +71,33 @@ rsi_frontier:
     tamper_probes_rejected: 4
     external_model_calls: 0
     independent_third_party_validation: false
-    g8_closed: false
+    g8_closed: true
     evidence: docs/G7_QUALIFICATION_2026-10-07.md
+  genesis_v2_g8:
+    verdict: G8_SCIENTIFIC_GATE_PASSED
+    scope: bounded_project_defined_distillation_local_specialization
+    apparatus_commit: 2afad013
+    specialist_commit: 83655749
+    preregistration_commit: e018a588
+    result_commit: 01fd7f60
+    holdout_sha256: ab7408a9bbc7cfbd12e8f4238422af190ee20d3df757d4c9f4ed42063db66df9
+    holdout_cases: 8
+    holdout_families: 4
+    source_external_model_calls: 5
+    source_reasoning_cost_usd: 0.474032
+    distilled_template_count: 6
+    external_baseline_solved: 7
+    external_baseline_calls: 8
+    external_baseline_runtime_cost_usd: 0.2300264
+    local_specialist_solved: 8
+    local_specialist_calls: 0
+    local_specialist_runtime_cost_usd: 0.0
+    local_candidate_executions_per_case: 1
+    empty_specialist_ablation_solved: 0
+    frozen_predicates_true: 17
+    independent_third_party_validation: false
+    g9_closed: false
+    evidence: docs/G8_QUALIFICATION_2026-10-07.md
   l5_validated: true
   l5_scope: bounded_v26_project_authored_native_repair_transfer
   v24:

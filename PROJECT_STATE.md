@@ -1,6 +1,6 @@
 # Genesis — current authoritative project state
 
-**Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; the Genesis v2 project-defined G5 autonomous-experiment-generation, G6 component-evolution and G7 causal-promotion/rollback gates are now passed in bounded preregistered qualifications; G8, L10 independent replication and general RSI remain open.**
+**Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; the Genesis v2 project-defined G5 autonomous-experiment-generation, G6 component-evolution, G7 causal-promotion/rollback and G8 distillation/local-specialization gates are now passed in bounded preregistered qualifications; G9, L10 independent replication and general RSI remain open.**
 
 Genesis is the renamed continuation of **Mira Genesis**. Historical records keep their original project name; the rename changes neither authorship nor frozen evidence.
 
@@ -42,7 +42,19 @@ A frozen external authority then executed three fresh Python rounds under one ru
 
 The G7 apparatus, candidate set, preregistration and result were frozen respectively as `b7aad58e`, `07dc9646`, `fd10fbb2` and `fca80392`. Exact evidence and claim boundaries are recorded in [`docs/G7_QUALIFICATION_2026-10-07.md`](docs/G7_QUALIFICATION_2026-10-07.md).
 
-This is bounded, project-created evidence with evaluator and promotion authority outside mutable lineage. It does **not** establish G8 distillation, G9 whole-successor generation, G10 recursive successor chains, independent third-party validation, general RSI, AGI or ASI.
+This is bounded, project-created evidence with evaluator and promotion authority outside mutable lineage. It does **not** establish G9 whole-successor generation, G10 recursive successor chains, independent third-party validation, general RSI, AGI or ASI.
+
+### Genesis v2 G8 qualification
+
+The project-defined G8 distillation/local-specialization gate is now **PASSED** under a separate prospective qualification. A generic selection rule admitted five already-frozen A6b fallback traces whose repairs had passed evaluation, required at least one external model invocation and yielded reusable deterministic templates. Those traces represented **5 external-model calls** and **$0.474032** of historical reasoning cost. Genesis distilled them with zero additional model calls into a content-addressed six-template local specialist, frozen before the fresh G8 holdout was generated.
+
+On a new eight-case/four-family holdout, the frozen Claude Sonnet 5.5 baseline solved **7/8** using **8 external-model calls**, with **$0.2300264** recorded runtime cost and roughly **7.8365 seconds per solved task**. The distilled local specialist solved **8/8** with **zero external-model calls**, **$0 runtime model cost**, one candidate execution per case and roughly **0.03183 seconds per solved task**. Removing the retained templates reduced the local arm to **0/8**. All **17/17** preregistered predicates returned true and the frozen verdict is **`G8_SCIENTIFIC_GATE_PASSED`**.
+
+The external baseline's one recorded miss proposed the correct semantic repair but used an absolute temporary-workspace path rejected by the prospectively frozen relative-path safety boundary. The result remains frozen as 7/8 with no retry. Crediting that proposal would make the baseline 8/8 and would still leave the G8 efficiency comparison intact: eight external calls and positive dollar cost versus local 8/8 with zero calls and zero dollar cost.
+
+The G8 apparatus, specialist, preregistration and result were frozen respectively as `2afad013`, `83655749`, `e018a588` and `01fd7f60`. Exact evidence and claim boundaries are recorded in [`docs/G8_QUALIFICATION_2026-10-07.md`](docs/G8_QUALIFICATION_2026-10-07.md).
+
+This is bounded, project-created evidence for replacing repeated expensive reasoning with cheaper retained machinery on related repair families. It does **not** establish G9 whole-successor generation, G10 recursive successor chains, independent third-party validation, general RSI, AGI or ASI.
 
 V26's single prospectively frozen Track A attempt returns **POSITIVE_BOUNDED_L5**.
 The qualified V22R G2 controller selects an executable two-component G3 descendant
