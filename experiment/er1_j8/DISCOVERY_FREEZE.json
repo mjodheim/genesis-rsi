@@ -1,0 +1,49 @@
+{
+  "baseline_coverage_pruned_count": 9926,
+  "baseline_description": "frozen J7 successor machinery",
+  "baseline_index_sha256": "e8272b794099ed07c19e183774afbe2b7a923014b17cda5ad6fb637ea43f31d0",
+  "baseline_relevant_candidate_count": 74,
+  "candidate_budget_per_arm": 10000,
+  "claim_boundary": "J8 is a fresh blind matched-budget transfer test for the frozen test-guided switch-completion mechanism. Human fix and issue text remain unseen until the frozen result is committed.",
+  "external_model_calls": 0,
+  "hidden_evaluator_sha256": "b372cd9b9e8abce126571b96c9b084776d18f7713aa41ef89bba9ab64967c1db",
+  "hidden_trigger_identity_sha256": "bb57fcc80de894e70085be9f25d562475529dd65a08bba72443edd64e6ee1b1e",
+  "human_fix_inspected": false,
+  "indexes_byte_identical": false,
+  "issue_text_inspected": false,
+  "java_file_encoding": "UTF-8",
+  "java_max_heap_mb": 64,
+  "machinery_freeze": "experiment/er1_j8/MACHINERY_FREEZE.json",
+  "oracle_request_lifetime": 128,
+  "parallel_batch_size": 32,
+  "parallel_workers": 8,
+  "persistent_oracle_class_manifest_sha256": "c0979796bb2a87879b7ffec81a459192a41ab1d1f0a9ebb3792af256a08f0c50",
+  "persistent_oracle_source_sha256": "2be051c1b0611a75ef79d82efcd32e8fb312654f24cf0e6b3ac96f2475acbf59",
+  "reference_equivalence": {
+    "buggy_compile_exit": 0,
+    "buggy_test_exit": 1,
+    "fixed_compile_exit": 0,
+    "fixed_test_exit": 0
+  },
+  "reference_loaded_source_paths": [
+    "src/java/org/apache/commons/lang/LocaleUtils.java"
+  ],
+  "reference_loaded_source_union_sha256": "ffc938cbcdc401504b73a651bf0a754090d7360a79e9dcc7df82369721b919b3",
+  "schema": "genesis-er1-j8-discovery-freeze-v1",
+  "scientific_result_obtained": false,
+  "selected_case": 54,
+  "successor_coverage_pruned_count": 9926,
+  "successor_description": "same J7 successor machinery plus frozen generic test-guided switch completion",
+  "successor_index_sha256": "a57a5d91655e8af98e4777aff0444a35e12d9333dee37dd945112da5a9008c6e",
+  "successor_relevant_candidate_count": 74,
+  "successor_test_switch_candidate_count": 2,
+  "test_switch_candidate_codepoints": [
+    39,
+    34
+  ],
+  "test_switch_candidate_paths": [
+    "src/java/org/apache/commons/lang/StringEscapeUtils.java",
+    "src/java/org/apache/commons/lang/StringEscapeUtils.java"
+  ],
+  "test_switch_candidates_on_reference_loaded_sources": 0
+}
