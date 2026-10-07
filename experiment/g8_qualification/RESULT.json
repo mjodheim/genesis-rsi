@@ -1,0 +1,1139 @@
+{
+  "apparatus_checks": {
+    "distillation": true,
+    "holdout_generator": true,
+    "qualification_runner": true,
+    "specialist_builder": true
+  },
+  "claim_boundary": "Bounded project-defined G8 distillation/local-specialization qualification only. Passing shows that previously expensive validated repair reasoning can be compiled into cheaper retained local machinery on fresh related families. It does not establish G9 whole-successor generation, G10 recursive successor chains, general RSI, AGI, ASI, or independent third-party validation.",
+  "empty_specialist_ablation": {
+    "aggregate": {
+      "case_count": 8,
+      "controller_cpu_process_time_ns": 6374524,
+      "cost_usd": 0.0,
+      "cost_usd_per_solved_task": null,
+      "external_model_calls": 0,
+      "external_model_calls_per_solved_task": null,
+      "solved": 0,
+      "wall_time_seconds": 0.006426,
+      "wall_time_seconds_per_solved_task": null
+    },
+    "cases": [
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "python-inclusive-1",
+        "controller_cpu_process_time_ns": 828594,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "python_inclusive_range",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000824,
+        "winner": null
+      },
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "typescript-zero-index-1",
+        "controller_cpu_process_time_ns": 805871,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "typescript_zero_index",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000802,
+        "winner": null
+      },
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "rust-retry-range-1",
+        "controller_cpu_process_time_ns": 811852,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "rust_retry_range",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000807,
+        "winner": null
+      },
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "rust-boundary-1",
+        "controller_cpu_process_time_ns": 758563,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "rust_boundary_inclusive",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000755,
+        "winner": null
+      },
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "python-inclusive-2",
+        "controller_cpu_process_time_ns": 817724,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "python_inclusive_range",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000897,
+        "winner": null
+      },
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "typescript-zero-index-2",
+        "controller_cpu_process_time_ns": 755717,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "typescript_zero_index",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000752,
+        "winner": null
+      },
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "rust-retry-range-2",
+        "controller_cpu_process_time_ns": 826139,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "rust_retry_range",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000822,
+        "winner": null
+      },
+      {
+        "candidate_count": 0,
+        "candidate_executions": 0,
+        "case_id": "rust-boundary-2",
+        "controller_cpu_process_time_ns": 770064,
+        "cost_usd": 0.0,
+        "evaluations": [],
+        "external_model_calls": 0,
+        "family": "rust_boundary_inclusive",
+        "generation_digest": "464f6f1b99cb335faf9f4d8504cd135c7c7911c2035097d4826a8034c24301fc",
+        "max_candidates": 16,
+        "passed": false,
+        "wall_time_seconds": 0.000767,
+        "winner": null
+      }
+    ]
+  },
+  "external_baseline": {
+    "aggregate": {
+      "case_count": 8,
+      "controller_cpu_process_time_ns": 7203107,
+      "cost_usd": 0.23002640000000002,
+      "cost_usd_per_solved_task": 0.03286091428571429,
+      "external_model_calls": 8,
+      "external_model_calls_per_solved_task": 1.1428571428571428,
+      "solved": 7,
+      "wall_time_seconds": 54.855818,
+      "wall_time_seconds_per_solved_task": 7.836545428571428
+    },
+    "cases": [
+      {
+        "apply_error": null,
+        "case_id": "python-inclusive-1",
+        "controller_cpu_process_time_ns": 835427,
+        "cost_usd": 0.028647000000000006,
+        "evaluation": {
+          "exact_expected_source": true,
+          "passed": true,
+          "protected_invariant": true,
+          "runtime": {
+            "argv": [
+              "python3",
+              "/tmp/genesis-g8-eval-c6gyvz4g/program.py"
+            ],
+            "passed": true,
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "",
+            "wall_time_seconds": 0.037893
+          },
+          "single_changed_line": true
+        },
+        "external_model_calls": 1,
+        "family": "python_inclusive_range",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1784,
+            "cacheReadInputTokens": 95865,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.028647000000000006,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 233,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": true,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "    for item480 in range(1, limit110 + 1):",
+              "old": "    for item480 in range(1, limit110):",
+              "path": "program.py"
+            }
+          ],
+          "summary": "Make the loop inclusive of the limit by changing range(1, limit110) to range(1, limit110 + 1)."
+        },
+        "wall_time_seconds": 6.892402
+      },
+      {
+        "apply_error": null,
+        "case_id": "typescript-zero-index-1",
+        "controller_cpu_process_time_ns": 805581,
+        "cost_usd": 0.028657,
+        "evaluation": {
+          "exact_expected_source": true,
+          "passed": true,
+          "protected_invariant": true,
+          "runtime": {
+            "argv": [
+              "node",
+              "/tmp/genesis-g8-eval-1hiijtzh/program.ts"
+            ],
+            "passed": true,
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "",
+            "wall_time_seconds": 0.073714
+          },
+          "single_changed_line": true
+        },
+        "external_model_calls": 1,
+        "family": "typescript_zero_index",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1757,
+            "cacheReadInputTokens": 95855,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.028657,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 245,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": true,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "const firstPhase782 = PHASES912[0];",
+              "old": "const firstPhase782 = PHASES912[1];",
+              "path": "program.ts"
+            }
+          ],
+          "summary": "The first phase variable was indexing the second array entry. Changed PHASES912[1] to PHASES912[0] (zero-indexed)."
+        },
+        "wall_time_seconds": 6.110768
+      },
+      {
+        "apply_error": null,
+        "case_id": "rust-retry-range-1",
+        "controller_cpu_process_time_ns": 979516,
+        "cost_usd": 0.029466600000000003,
+        "evaluation": {
+          "exact_expected_source": true,
+          "passed": true,
+          "protected_invariant": true,
+          "runtime": {
+            "argv": null,
+            "passed": true,
+            "returncode": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          "single_changed_line": true
+        },
+        "external_model_calls": 1,
+        "family": "rust_retry_range",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1808,
+            "cacheReadInputTokens": 95883,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.029466600000000003,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 305,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": true,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "for attempt274 in 0..MAX_TRIES_696 {",
+              "old": "for attempt274 in 1..MAX_TRIES_696 {",
+              "path": "program.rs"
+            }
+          ],
+          "summary": "Change the exclusive range start from 1 to 0 so the loop runs exactly MAX_TRIES_696 (4) attempts."
+        },
+        "wall_time_seconds": 7.60958
+      },
+      {
+        "apply_error": "edit targets a file outside the frozen task",
+        "case_id": "rust-boundary-1",
+        "controller_cpu_process_time_ns": 1019410,
+        "cost_usd": 0.028551200000000002,
+        "evaluation": {
+          "passed": false
+        },
+        "external_model_calls": 1,
+        "family": "rust_boundary_inclusive",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1738,
+            "cacheReadInputTokens": 95856,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.028551200000000002,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 242,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": false,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "tick161() >= lease364",
+              "old": "tick161() > lease364",
+              "path": "/tmp/genesis-g8-claude-of1is3by/program.rs"
+            }
+          ],
+          "summary": "Change strict `>` to `>=` so that now == deadline counts as expired; one before stays valid, one after stays expired."
+        },
+        "wall_time_seconds": 6.376779
+      },
+      {
+        "apply_error": null,
+        "case_id": "python-inclusive-2",
+        "controller_cpu_process_time_ns": 1197837,
+        "cost_usd": 0.028627000000000003,
+        "evaluation": {
+          "exact_expected_source": true,
+          "passed": true,
+          "protected_invariant": true,
+          "runtime": {
+            "argv": [
+              "python3",
+              "/tmp/genesis-g8-eval-8imyv2p3/program.py"
+            ],
+            "passed": true,
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "",
+            "wall_time_seconds": 0.042866
+          },
+          "single_changed_line": true
+        },
+        "external_model_calls": 1,
+        "family": "python_inclusive_range",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1784,
+            "cacheReadInputTokens": 95865,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.028627000000000003,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 231,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": true,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "range(1, limit448 + 1)",
+              "old": "range(1, limit448)",
+              "path": "program.py"
+            }
+          ],
+          "summary": "Make the loop inclusive of the limit by changing range(1, limit448) to range(1, limit448 + 1). Zero and one still return 1."
+        },
+        "wall_time_seconds": 5.908199
+      },
+      {
+        "apply_error": null,
+        "case_id": "typescript-zero-index-2",
+        "controller_cpu_process_time_ns": 882536,
+        "cost_usd": 0.0285252,
+        "evaluation": {
+          "exact_expected_source": true,
+          "passed": true,
+          "protected_invariant": true,
+          "runtime": {
+            "argv": [
+              "node",
+              "/tmp/genesis-g8-eval-rat1voon/program.ts"
+            ],
+            "passed": true,
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "",
+            "wall_time_seconds": 0.101572
+          },
+          "single_changed_line": true
+        },
+        "external_model_calls": 1,
+        "family": "typescript_zero_index",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1759,
+            "cacheReadInputTokens": 95856,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.0285252,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 231,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": true,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "const firstPhase721 = PHASES895[0];",
+              "old": "const firstPhase721 = PHASES895[1];",
+              "path": "program.ts"
+            }
+          ],
+          "summary": "Use index 0 instead of 1 so firstPhase721 refers to the first array entry."
+        },
+        "wall_time_seconds": 7.24913
+      },
+      {
+        "apply_error": null,
+        "case_id": "rust-retry-range-2",
+        "controller_cpu_process_time_ns": 647624,
+        "cost_usd": 0.0289348,
+        "evaluation": {
+          "exact_expected_source": true,
+          "passed": true,
+          "protected_invariant": true,
+          "runtime": {
+            "argv": null,
+            "passed": true,
+            "returncode": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          "single_changed_line": true
+        },
+        "external_model_calls": 1,
+        "family": "rust_retry_range",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1785,
+            "cacheReadInputTokens": 95884,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.0289348,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 261,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": true,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "for attempt327 in 0..MAX_TRIES_925 {",
+              "old": "for attempt327 in 1..MAX_TRIES_925 {",
+              "path": "program.rs"
+            }
+          ],
+          "summary": "Change the exclusive range start from 1 to 0 so the loop runs exactly MAX_TRIES_925 (5) attempts: 0..5."
+        },
+        "wall_time_seconds": 6.680926
+      },
+      {
+        "apply_error": null,
+        "case_id": "rust-boundary-2",
+        "controller_cpu_process_time_ns": 835176,
+        "cost_usd": 0.0286176,
+        "evaluation": {
+          "exact_expected_source": true,
+          "passed": true,
+          "protected_invariant": true,
+          "runtime": {
+            "argv": null,
+            "passed": true,
+            "returncode": 0,
+            "stderr": "",
+            "stdout": ""
+          },
+          "single_changed_line": true
+        },
+        "external_model_calls": 1,
+        "family": "rust_boundary_inclusive",
+        "model": "claude-sonnet-5-5",
+        "model_usage": {
+          "claude-sonnet-5-5": {
+            "cacheCreationInputTokens": 1742,
+            "cacheReadInputTokens": 95858,
+            "canonicalModel": "claude-sonnet-5-5",
+            "contextWindow": 1000000,
+            "costBasis": "list",
+            "costUSD": 0.0286176,
+            "inputTokens": 4,
+            "maxOutputTokens": 128000,
+            "outputTokens": 247,
+            "provider": "firstParty",
+            "thinkingTokens": 0,
+            "webSearchRequests": 0
+          }
+        },
+        "num_turns": 3,
+        "parse_error": null,
+        "passed": true,
+        "process_returncode": 0,
+        "stderr_tail": "",
+        "structured_output": {
+          "edits": [
+            {
+              "new": "tick650() >= lease208.deadline562",
+              "old": "tick650() > lease208.deadline562",
+              "path": "program.rs"
+            }
+          ],
+          "summary": "Change the strict `>` comparison to `>=` so that a tick equal to the deadline counts as expired. One unit before is still valid, and one unit after is still expired."
+        },
+        "wall_time_seconds": 8.028034
+      }
+    ]
+  },
+  "gate_passed": true,
+  "holdout": {
+    "case_count": 8,
+    "content_digest": "9d2c8fa65b04462d5ec574598f1429c25cdf1f7f4de3f67c1a5a416b58ff857c",
+    "families": [
+      "python_inclusive_range",
+      "rust_boundary_inclusive",
+      "rust_retry_range",
+      "typescript_zero_index"
+    ],
+    "raw_results": [
+      {
+        "case_id": "python-inclusive-1",
+        "passed": false
+      },
+      {
+        "case_id": "typescript-zero-index-1",
+        "passed": false
+      },
+      {
+        "case_id": "rust-retry-range-1",
+        "passed": false
+      },
+      {
+        "case_id": "rust-boundary-1",
+        "passed": false
+      },
+      {
+        "case_id": "python-inclusive-2",
+        "passed": false
+      },
+      {
+        "case_id": "typescript-zero-index-2",
+        "passed": false
+      },
+      {
+        "case_id": "rust-retry-range-2",
+        "passed": false
+      },
+      {
+        "case_id": "rust-boundary-2",
+        "passed": false
+      }
+    ],
+    "sha256": "ab7408a9bbc7cfbd12e8f4238422af190ee20d3df757d4c9f4ed42063db66df9"
+  },
+  "local_specialist": {
+    "aggregate": {
+      "case_count": 8,
+      "controller_cpu_process_time_ns": 25808566,
+      "cost_usd": 0.0,
+      "cost_usd_per_solved_task": 0.0,
+      "external_model_calls": 0,
+      "external_model_calls_per_solved_task": 0.0,
+      "solved": 8,
+      "wall_time_seconds": 0.25461,
+      "wall_time_seconds_per_solved_task": 0.03182625
+    },
+    "cases": [
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "python-inclusive-1",
+        "controller_cpu_process_time_ns": 5263240,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "14cb9a035fcbce1078e8d8c4417ad208197a0c44958e5c045fbfd28bbd89e1d6",
+            "candidate_id": "learned-14cb9a035fcbce10",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": [
+                  "python3",
+                  "/tmp/genesis-g8-eval-3vmsjsjm/program.py"
+                ],
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": "",
+                "wall_time_seconds": 0.038836
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "python_inclusive_range",
+        "generation_digest": "af9dabc117c45fa26b342dc6400606590c2675586ea51d845bec6a5deef6852d",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.043253,
+        "winner": {
+          "candidate_digest": "14cb9a035fcbce1078e8d8c4417ad208197a0c44958e5c045fbfd28bbd89e1d6",
+          "candidate_id": "learned-14cb9a035fcbce10",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": [
+                "python3",
+                "/tmp/genesis-g8-eval-3vmsjsjm/program.py"
+              ],
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "",
+              "wall_time_seconds": 0.038836
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+        }
+      },
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "typescript-zero-index-1",
+        "controller_cpu_process_time_ns": 4216357,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "3491007dcb0aceb8ab6319888113bea2ba06d419b1fcd1529bc87bed00163a6f",
+            "candidate_id": "learned-3491007dcb0aceb8",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": [
+                  "node",
+                  "/tmp/genesis-g8-eval-aig1ud6j/program.ts"
+                ],
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": "",
+                "wall_time_seconds": 0.066508
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "39f3b6d11ff216875c2dc37052da02d7b6d16253e017b5c6b5eac079937fc842"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "typescript_zero_index",
+        "generation_digest": "79e6422f32ce99f012e1eed4df85b48f8836fdd55217ac088db3e6188d97577c",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.070044,
+        "winner": {
+          "candidate_digest": "3491007dcb0aceb8ab6319888113bea2ba06d419b1fcd1529bc87bed00163a6f",
+          "candidate_id": "learned-3491007dcb0aceb8",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": [
+                "node",
+                "/tmp/genesis-g8-eval-aig1ud6j/program.ts"
+              ],
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "",
+              "wall_time_seconds": 0.066508
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "39f3b6d11ff216875c2dc37052da02d7b6d16253e017b5c6b5eac079937fc842"
+        }
+      },
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "rust-retry-range-1",
+        "controller_cpu_process_time_ns": 2606067,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "7eed225e024e7bfd17c556e45215c4d6fcc63e913ca1e87bad780bd59acf706b",
+            "candidate_id": "learned-7eed225e024e7bfd",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": null,
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": ""
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "rust_retry_range",
+        "generation_digest": "75ebdc5a046d05c89d03343154f1d0c96292edc6f6695f97acd5b4fb2ebd70c3",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.002603,
+        "winner": {
+          "candidate_digest": "7eed225e024e7bfd17c556e45215c4d6fcc63e913ca1e87bad780bd59acf706b",
+          "candidate_id": "learned-7eed225e024e7bfd",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": null,
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": ""
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+        }
+      },
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "rust-boundary-1",
+        "controller_cpu_process_time_ns": 2165631,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "84145c899b3b509e7417ee4597e1f52afae0cc920001c6b49aff34c6ff90adb9",
+            "candidate_id": "learned-84145c899b3b509e",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": null,
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": ""
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "rust_boundary_inclusive",
+        "generation_digest": "54748f24b26ba7a301aa1d8f2694a523e7968010797341018887ee85656850d8",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.002162,
+        "winner": {
+          "candidate_digest": "84145c899b3b509e7417ee4597e1f52afae0cc920001c6b49aff34c6ff90adb9",
+          "candidate_id": "learned-84145c899b3b509e",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": null,
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": ""
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+        }
+      },
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "python-inclusive-2",
+        "controller_cpu_process_time_ns": 2944621,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "e8b6185cf898b7f05e8f167da7e5fd015aefe064cc8c4cb0a4aa2eafcb103dc3",
+            "candidate_id": "learned-e8b6185cf898b7f0",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": [
+                  "python3",
+                  "/tmp/genesis-g8-eval-9zf04o7e/program.py"
+                ],
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": "",
+                "wall_time_seconds": 0.038364
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "python_inclusive_range",
+        "generation_digest": "e49d691b6fc031141ec58ee5e49824f46f6ada60cc52d0a28958249dd099eb4a",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.040774,
+        "winner": {
+          "candidate_digest": "e8b6185cf898b7f05e8f167da7e5fd015aefe064cc8c4cb0a4aa2eafcb103dc3",
+          "candidate_id": "learned-e8b6185cf898b7f0",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": [
+                "python3",
+                "/tmp/genesis-g8-eval-9zf04o7e/program.py"
+              ],
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "",
+              "wall_time_seconds": 0.038364
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "4ba63b7846b5c7ac63086d4b1a51556aea4cb05401408859e4dd7f633f440a19"
+        }
+      },
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "typescript-zero-index-2",
+        "controller_cpu_process_time_ns": 3651397,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "38217979303d7d6a8db1dc1902d9a81d053a8c34d8f7b3afe95a2accf921e751",
+            "candidate_id": "learned-38217979303d7d6a",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": [
+                  "node",
+                  "/tmp/genesis-g8-eval-rw1wd5_6/program.ts"
+                ],
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": "",
+                "wall_time_seconds": 0.087752
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "39f3b6d11ff216875c2dc37052da02d7b6d16253e017b5c6b5eac079937fc842"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "typescript_zero_index",
+        "generation_digest": "b9ef4eaeaf3db221c86b5c4d92268792be414a618ec3ee4aa01e6faa25e8967e",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.090825,
+        "winner": {
+          "candidate_digest": "38217979303d7d6a8db1dc1902d9a81d053a8c34d8f7b3afe95a2accf921e751",
+          "candidate_id": "learned-38217979303d7d6a",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": [
+                "node",
+                "/tmp/genesis-g8-eval-rw1wd5_6/program.ts"
+              ],
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": "",
+              "wall_time_seconds": 0.087752
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "39f3b6d11ff216875c2dc37052da02d7b6d16253e017b5c6b5eac079937fc842"
+        }
+      },
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "rust-retry-range-2",
+        "controller_cpu_process_time_ns": 2617628,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "c933e9a67d95438987a4479eab4d6d15b4f1449ea645ac45bcef9ffe04843c60",
+            "candidate_id": "learned-c933e9a67d954389",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": null,
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": ""
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "rust_retry_range",
+        "generation_digest": "1726f81a733eb1d7491bbbc5557f73a3fdb965cc54b4fc8650b30839a0a05d5f",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.002612,
+        "winner": {
+          "candidate_digest": "c933e9a67d95438987a4479eab4d6d15b4f1449ea645ac45bcef9ffe04843c60",
+          "candidate_id": "learned-c933e9a67d954389",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": null,
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": ""
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "2e5f6c16736149c1bb1d2329d6c4d60664a2ab715523f8f488d5ed7258a7d5bc"
+        }
+      },
+      {
+        "candidate_count": 1,
+        "candidate_executions": 1,
+        "case_id": "rust-boundary-2",
+        "controller_cpu_process_time_ns": 2343625,
+        "cost_usd": 0.0,
+        "evaluations": [
+          {
+            "candidate_digest": "784d1609d192d9910b1b6e81603152033345a4fd22639f404e8053d389314780",
+            "candidate_id": "learned-784d1609d192d991",
+            "evaluation": {
+              "exact_expected_source": true,
+              "passed": true,
+              "protected_invariant": true,
+              "runtime": {
+                "argv": null,
+                "passed": true,
+                "returncode": 0,
+                "stderr": "",
+                "stdout": ""
+              },
+              "single_changed_line": true
+            },
+            "passed": true,
+            "template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+          }
+        ],
+        "external_model_calls": 0,
+        "family": "rust_boundary_inclusive",
+        "generation_digest": "fe187120781b328f8127dc62f6dd9b892b7bb22a262fbef5ffd12e3a7c2fb900",
+        "max_candidates": 16,
+        "passed": true,
+        "wall_time_seconds": 0.002337,
+        "winner": {
+          "candidate_digest": "784d1609d192d9910b1b6e81603152033345a4fd22639f404e8053d389314780",
+          "candidate_id": "learned-784d1609d192d991",
+          "evaluation": {
+            "exact_expected_source": true,
+            "passed": true,
+            "protected_invariant": true,
+            "runtime": {
+              "argv": null,
+              "passed": true,
+              "returncode": 0,
+              "stderr": "",
+              "stdout": ""
+            },
+            "single_changed_line": true
+          },
+          "passed": true,
+          "template_digest": "a7336ac738faf4b0e69ea21a4ebfd7febe2663dab0e31b6992c7f44a6697a8c5"
+        }
+      }
+    ]
+  },
+  "preregistration_digest": "e1bd0ed55001d9788c24ca0522f0323fdd79019541fcca2e10a3600d989372e5",
+  "requirements": {
+    "all_raw_tasks_fail_before_repair": true,
+    "distillation_itself_used_zero_external_model_calls": true,
+    "empty_specialist_ablation_loses_capability": true,
+    "empty_specialist_ablation_solves_zero_tasks": true,
+    "external_baseline_attempts_exactly_one_model_call_per_case": true,
+    "external_model_calls_per_solved_task_strictly_decrease": true,
+    "holdout_has_four_families_and_eight_cases": true,
+    "holdout_sha256_matches_preregistered_identity": true,
+    "local_specialist_is_materially_faster_in_wall_time": true,
+    "local_specialist_retains_or_improves_external_baseline_success": true,
+    "local_specialist_solves_at_least_seven_of_eight": true,
+    "local_specialist_uses_zero_external_model_calls": true,
+    "mutable_specialist_does_not_own_evaluator_or_verdict": true,
+    "runtime_dollar_cost_per_solved_task_strictly_decreases": true,
+    "specialist_has_no_holdout_visibility_at_freeze": true,
+    "specialist_is_content_addressed_and_valid": true,
+    "specialist_was_distilled_from_repeated_expensive_reasoning": true
+  },
+  "result_digest": "e5471f661a337d81ec6fa1996d766d0baee67a0cf354d20d833fb6bc97389641",
+  "schema": "genesis-g8-qualification-result-v1",
+  "specialist_digest": "94afbbfbe908f9c76c6abdf19f39f24e12f14c7c5a680feceeca0283b7424edb",
+  "specialist_freeze_digest": "d74b2561c48e22b1c4eb9195ea49f89c4d051a26dd4f9dcdd52ed17015320485",
+  "verdict": "G8_SCIENTIFIC_GATE_PASSED"
+}

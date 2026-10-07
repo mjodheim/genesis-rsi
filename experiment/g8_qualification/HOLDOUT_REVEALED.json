@@ -1,0 +1,128 @@
+{
+  "case_count": 8,
+  "cases": [
+    {
+      "allowed_replacement": {
+        "new": "    for item480 in range(1, limit110 + 1):",
+        "old": "    for item480 in range(1, limit110):"
+      },
+      "family": "python_inclusive_range",
+      "id": "python-inclusive-1",
+      "path": "program.py",
+      "public_contract": "The function must multiply every positive integer from 1 through the supplied limit inclusively. The current loop stops one early. Keep the zero/one behavior and all unrelated source unchanged.",
+      "runtime": {
+        "kind": "python_exit_zero"
+      },
+      "source_utf8": "def productTo702(limit110):\n    out = 1\n    for item480 in range(1, limit110):\n        out *= item480\n    return out\n\nraise SystemExit(0 if productTo702(4) == 24 and productTo702(1) == 1 else 1)\n"
+    },
+    {
+      "allowed_replacement": {
+        "new": "const firstPhase782 = PHASES912[0];",
+        "old": "const firstPhase782 = PHASES912[1];"
+      },
+      "family": "typescript_zero_index",
+      "id": "typescript-zero-index-1",
+      "path": "program.ts",
+      "public_contract": "The array is zero-indexed and the variable named as the first phase must refer to the first entry, not the second. Preserve the array contents and unrelated source.",
+      "runtime": {
+        "kind": "node_exit_zero"
+      },
+      "source_utf8": "const PHASES912 = [{name: \"alpha211\"}, {name: \"beta820\"}];\nconst firstPhase782 = PHASES912[1];\nif (firstPhase782.name !== \"alpha211\") process.exit(1);\n"
+    },
+    {
+      "allowed_replacement": {
+        "new": "    for attempt274 in 0..MAX_TRIES_696 {",
+        "old": "    for attempt274 in 1..MAX_TRIES_696 {"
+      },
+      "family": "rust_retry_range",
+      "id": "rust-retry-range-1",
+      "path": "program.rs",
+      "public_contract": "The retry loop must perform exactly 4 configured attempts. Keep MAX_TRIES_696 unchanged and preserve all unrelated source. The current exclusive range starts at 1 and therefore performs one attempt too few.",
+      "runtime": {
+        "kind": "static_exact_replacement",
+        "protected_substring": "const MAX_TRIES_696: usize = 4;"
+      },
+      "source_utf8": "const MAX_TRIES_696: usize = 4;\nfn run() {\n    for attempt274 in 1..MAX_TRIES_696 {\n        println!(\"{}\", attempt274);\n    }\n}\n"
+    },
+    {
+      "allowed_replacement": {
+        "new": "    if ctx107.clock550().tick161() >= lease364.deadline721 {",
+        "old": "    if ctx107.clock550().tick161() > lease364.deadline721 {"
+      },
+      "family": "rust_boundary_inclusive",
+      "id": "rust-boundary-1",
+      "path": "program.rs",
+      "public_contract": "The exact expiry boundary must count as expired: equality is expired, one unit before is still valid, and one unit after is expired. Preserve all unrelated source.",
+      "runtime": {
+        "kind": "static_exact_replacement"
+      },
+      "source_utf8": "fn expired() -> bool {\n    if ctx107.clock550().tick161() > lease364.deadline721 {\n        return true;\n    }\n    false\n}\n"
+    },
+    {
+      "allowed_replacement": {
+        "new": "    for item631 in range(1, limit448 + 1):",
+        "old": "    for item631 in range(1, limit448):"
+      },
+      "family": "python_inclusive_range",
+      "id": "python-inclusive-2",
+      "path": "program.py",
+      "public_contract": "The function must multiply every positive integer from 1 through the supplied limit inclusively. The current loop stops one early. Keep the zero/one behavior and all unrelated source unchanged.",
+      "runtime": {
+        "kind": "python_exit_zero"
+      },
+      "source_utf8": "def productTo115(limit448):\n    out = 1\n    for item631 in range(1, limit448):\n        out *= item631\n    return out\n\nraise SystemExit(0 if productTo115(4) == 24 and productTo115(1) == 1 else 1)\n"
+    },
+    {
+      "allowed_replacement": {
+        "new": "const firstPhase721 = PHASES895[0];",
+        "old": "const firstPhase721 = PHASES895[1];"
+      },
+      "family": "typescript_zero_index",
+      "id": "typescript-zero-index-2",
+      "path": "program.ts",
+      "public_contract": "The array is zero-indexed and the variable named as the first phase must refer to the first entry, not the second. Preserve the array contents and unrelated source.",
+      "runtime": {
+        "kind": "node_exit_zero"
+      },
+      "source_utf8": "const PHASES895 = [{name: \"alpha489\"}, {name: \"beta169\"}];\nconst firstPhase721 = PHASES895[1];\nif (firstPhase721.name !== \"alpha489\") process.exit(1);\n"
+    },
+    {
+      "allowed_replacement": {
+        "new": "    for attempt327 in 0..MAX_TRIES_925 {",
+        "old": "    for attempt327 in 1..MAX_TRIES_925 {"
+      },
+      "family": "rust_retry_range",
+      "id": "rust-retry-range-2",
+      "path": "program.rs",
+      "public_contract": "The retry loop must perform exactly 5 configured attempts. Keep MAX_TRIES_925 unchanged and preserve all unrelated source. The current exclusive range starts at 1 and therefore performs one attempt too few.",
+      "runtime": {
+        "kind": "static_exact_replacement",
+        "protected_substring": "const MAX_TRIES_925: usize = 5;"
+      },
+      "source_utf8": "const MAX_TRIES_925: usize = 5;\nfn run() {\n    for attempt327 in 1..MAX_TRIES_925 {\n        println!(\"{}\", attempt327);\n    }\n}\n"
+    },
+    {
+      "allowed_replacement": {
+        "new": "    if ctx822.clock461().tick650() >= lease208.deadline562 {",
+        "old": "    if ctx822.clock461().tick650() > lease208.deadline562 {"
+      },
+      "family": "rust_boundary_inclusive",
+      "id": "rust-boundary-2",
+      "path": "program.rs",
+      "public_contract": "The exact expiry boundary must count as expired: equality is expired, one unit before is still valid, and one unit after is expired. Preserve all unrelated source.",
+      "runtime": {
+        "kind": "static_exact_replacement"
+      },
+      "source_utf8": "fn expired() -> bool {\n    if ctx822.clock461().tick650() > lease208.deadline562 {\n        return true;\n    }\n    false\n}\n"
+    }
+  ],
+  "families": [
+    "python_inclusive_range",
+    "rust_boundary_inclusive",
+    "rust_retry_range",
+    "typescript_zero_index"
+  ],
+  "holdout_content_digest": "9d2c8fa65b04462d5ec574598f1429c25cdf1f7f4de3f67c1a5a416b58ff857c",
+  "schema": "genesis-g8-sealed-holdout-v1",
+  "seed_commitment": "e065685ccac60270db05b160bf9d61e9ff3b727a7e9e477f3d61ca2db6f485b1"
+}
