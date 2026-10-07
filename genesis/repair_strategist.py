@@ -22,7 +22,7 @@ from __future__ import annotations
 from collections import defaultdict
 import hashlib
 from pathlib import Path
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from genesis import (
     java_calendar_specialist,
@@ -36,15 +36,17 @@ from genesis import (
     java_string_literal_mutations,
     java_test_switch_mutations,
     scalar_mutations,
+    external_repair_learning,
 )
 from genesis.repair_ir import RepairPlan, compose, plan_from_candidate, render_candidate
 from genesis.trust_root import digest_of
 
-SCHEMA = "genesis-capability-routed-compositional-repair-v3"
+SCHEMA = "genesis-capability-routed-compositional-repair-v4"
 
 # The weights encode only abstract ER1 lessons.  Narrow specialists receive a
 # modest boost when they actually activate; they do not receive target IDs.
 FAMILY_LIMITS: dict[str, int] = {
+    "retained_structural": 96,
     "java_string_literal": 64,
     "java_default_normalization": 64,
     "java_expression": 64,
@@ -59,6 +61,7 @@ FAMILY_LIMITS: dict[str, int] = {
 }
 
 FAMILY_WEIGHTS: dict[str, int] = {
+    "retained_structural": 125,
     "java_string_literal": 118,
     "java_default_normalization": 120,
     "java_expression": 110,
@@ -189,6 +192,7 @@ def _family_candidates(
     include_prefixes: Sequence[str],
     focus_paths: Sequence[str],
     per_family_budget: int,
+    retained_memory: Mapping[str, Any] | None = None,
 ) -> tuple[list[tuple[str, dict[str, Any], int]], dict[str, Any]]:
     effective = _effective_prefixes(root, include_prefixes, focus_paths)
     focus_set = set(_normalize_paths(root, focus_paths))
@@ -222,6 +226,43 @@ def _family_candidates(
             "activated": accepted > 0,
         }
 
+    if retained_memory is not None:
+        family = "retained_structural"
+        family_budget = min(per_family_budget, FAMILY_LIMITS[family])
+        result = external_repair_learning.retained_variants(
+            retained_memory,
+            root,
+            include_prefixes=effective,
+            max_candidates=family_budget,
+        )
+        raw = result.get("candidates") or []
+        accepted = 0
+        for candidate in raw:
+            if not isinstance(candidate, dict):
+                continue
+            rec = _normalize_candidate(candidate, family)
+            if rec is None:
+                continue
+            path = str(rec["path"])
+            if focus_set and path not in focus_set:
+                continue
+            score = _candidate_score(family, rec, focused=path in focus_set)
+            gathered.append((family, rec, score))
+            accepted += 1
+        meta[family] = {
+            "generated": len(raw),
+            "accepted": accepted,
+            "activated": accepted > 0,
+            "memory_digest": result.get("memory_digest"),
+        }
+    else:
+        meta["retained_structural"] = {
+            "generated": 0,
+            "accepted": 0,
+            "activated": False,
+            "memory_digest": "",
+        }
+
     return gathered, meta
 
 
@@ -230,8 +271,7 @@ def _build_plans(
     records: Sequence[tuple[str, dict[str, Any], int]],
 ) -> tuple[list[RepairPlan], dict[str, str]]:
     cache: dict[str, str] = {}
-    plans: list[RepairPlan] = []
-    seen: set[tuple[str, str]] = set()
+    best_by_content: dict[tuple[str, str], RepairPlan] = {}
 
     for _family, candidate, score in records:
         path = str(candidate["path"])
@@ -246,11 +286,14 @@ def _build_plans(
             continue
         rendered = render_candidate(original, plan)
         key = (path, _sha(str(rendered["content_utf8"])))
-        if key in seen:
-            continue
-        seen.add(key)
-        plans.append(plan)
+        previous = best_by_content.get(key)
+        if previous is None or (-plan.score, plan.digest) < (-previous.score, previous.digest):
+            best_by_content[key] = plan
 
+    plans = [
+        best_by_content[key]
+        for key in sorted(best_by_content, key=lambda item: (item[0], item[1]))
+    ]
     return plans, cache
 
 
@@ -306,6 +349,7 @@ def generate(
     per_family_budget: int | None = None,
     composition_fraction: float = 0.40,
     max_atomic_per_path: int = 72,
+    retained_memory: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     if max_candidates < 1 or max_candidates > 10_000:
         raise ValueError("max_candidates must be in [1, 10000]")
@@ -321,6 +365,7 @@ def generate(
         include_prefixes=include_prefixes,
         focus_paths=focus_paths,
         per_family_budget=family_budget,
+        retained_memory=retained_memory,
     )
     atomic, originals = _build_plans(base, records)
 
@@ -381,8 +426,8 @@ def generate(
         "composition_enabled": composition_fraction > 0,
         "max_plan_depth": max((c["plan"]["depth"] for c in out), default=0),
         "family_activation": family_meta,
-        "training_boundary": "ER1-J1-through-J11-consumed-evidence",
-        "qualification_boundary": "future ER1-J12-plus cases unseen until machinery freeze",
+        "training_boundary": "ER1-J1-through-J11-consumed-evidence; J12 positive held out from training",
+        "qualification_boundary": "future ER1-J13-plus cases unseen until machinery freeze",
         "external_model_calls": 0,
         "candidates": out,
     }
