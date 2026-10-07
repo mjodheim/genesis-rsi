@@ -1,0 +1,23 @@
+{
+  "schema": "genesis-er1-j3-v7-instrument-abort-v1",
+  "status": "INSTRUMENT_ABORTED",
+  "v7_freeze_commit": "fe332de4",
+  "arm": "baseline",
+  "failure": "incomplete_oracle_class_bundle",
+  "observed_exception": "java.lang.NoClassDefFoundError: PersistentOracleV6$1",
+  "baseline_result_sha256": "f784e4826695bbd3c202ecb851aecb91eab7a04be8564e0aeb4a884bf1ec3d16",
+  "evaluated_count": 10000,
+  "coverage_pruned_count": 9587,
+  "evaluator_error_count": 413,
+  "scientific_result_obtained": false,
+  "successor_arm_started": false,
+  "candidate_indexes_changed": false,
+  "candidate_order_changed": false,
+  "candidate_budget_changed": false,
+  "hidden_trigger_changed": false,
+  "pass_criterion_changed": false,
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "next_instrument_change": "Recompile and freeze the complete PersistentOracleV6 class bundle, including generated inner classes, and preserve the same candidate indexes, coverage filter, budget, trigger and pass rule.",
+  "claim_boundary": "No J3 scientific verdict is licensed by V7."
+}
