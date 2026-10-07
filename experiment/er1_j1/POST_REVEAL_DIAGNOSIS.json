@@ -1,0 +1,23 @@
+{
+  "schema": "genesis-er1-j1-post-reveal-diagnosis-v1",
+  "pre_reveal_result_commit": "c9216a35",
+  "status": "VALID_NEGATIVE_WITH_IDENTIFIED_MACHINERY_GAPS",
+  "candidate_coverage": {
+    "evaluated_candidates": 10000,
+    "unique_source_files": 1,
+    "only_source_file": "src/java/org/apache/commons/lang/ArrayUtils.java",
+    "generator_truncated": true
+  },
+  "human_fix_reveal": {
+    "source_diff_sha256": "2ff4bcb8c3fc286925f7c896f5d271d27126e937a70766c4339bd65f9d394702",
+    "modified_source_file": "src/java/org/apache/commons/lang/StringEscapeUtils.java",
+    "issue_text_inspected": false,
+    "human_patch_used_as_input_to_negative_attempt": false
+  },
+  "causal_findings": [
+    "The frozen A2 scheduler exhausted its 10000-candidate budget in the lexicographically first high-density source file and never generated a candidate for the human-fix source file.",
+    "The human repair is a multi-site structural change: method arity extension, boolean argument propagation and conditional guarding. The frozen A2 grammar only expresses single-site integer deltas, boolean literal toggles and comparison-boundary replacements, so the exact human repair is outside that grammar."
+  ],
+  "next_development_change": "Introduce deterministic fair inter-file candidate scheduling while preserving the existing scalar operators and legacy generate() behavior. Qualify the scheduling change on a fresh externally selected bug, not by repairing this revealed case into a pass.",
+  "claim_boundary": "The revealed human patch diagnoses why ER1-J1 cannot establish a real-repository pass. It is development evidence only for successor machinery and must not be used to reclassify the frozen negative result."
+}
