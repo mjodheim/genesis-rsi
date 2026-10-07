@@ -1,0 +1,18 @@
+{
+  "schema": "genesis-er1-j1-instrument-abort-v1",
+  "discovery_freeze_commit": "283d140f",
+  "status": "INSTRUMENT_ABORTED_RESOURCE",
+  "scientific_verdict": null,
+  "started_at": "2026-10-07T12:38:20+02:00",
+  "aborted_at": "2026-10-07T12:41:29+02:00",
+  "elapsed_seconds_at_abort": 189,
+  "result_file_was_written": false,
+  "candidate_result_output_was_observed_by_researcher": false,
+  "reason": "The frozen V1 hidden evaluator deleted the complete target directory before every scalar candidate, forcing a full Java rebuild and making the 10000-candidate blind search an impractical measurement instrument. The run was terminated before its batch results were emitted.",
+  "candidate_space_changed": false,
+  "candidate_order_changed": false,
+  "hidden_trigger_changed": false,
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "allowed_successor": "A new evaluator may optimize execution only if it preserves the frozen sanitized tree, candidate index and order, candidate budget, hidden trigger identity, pass semantics and zero-model boundary."
+}
