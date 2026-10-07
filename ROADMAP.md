@@ -178,11 +178,22 @@ A single transition is evidence of self-improvement, not yet recursive self-impr
 
 ## G10 — Recursive successor chain
 
-**Goal:** demonstrate repeated causal improvement.
+**Development status (2026-10-07): STRENGTHENED PROTOCOL IMPLEMENTED; NO G10 QUALIFICATION OBSERVATION YET.** The active protocol requires more than repeated self-edits: transitions 2 and 3 must show that the current generation outperforms its direct ancestor at producing the evidence required for the next successor under the same candidate budget. See `docs/G10_PROTOCOL_2026-10-07.md`.
+
+**Goal:** demonstrate repeated causal improvement **and causal improvement of the ability to produce the next improvement**.
 
 Target evidence: `G0 -> G1 -> G2 -> G3` where each child improves on fresh evidence, inherits earlier useful capabilities, uses inherited machinery to contribute to the next improvement, and remains within explicit resource limits.
 
-This is the first point at which Genesis should seriously claim domain-bounded RSI.
+Strong minimum criterion:
+- three prospectively frozen parent -> child transitions;
+- strict fresh matched-budget improvement at every transition;
+- preservation of every parent fresh success;
+- zero external-model calls for generation and runtime in the bounded assay;
+- transitions 2 and 3: the current generation must solve more next-successor discovery cases than its direct ancestor under the same budget, while the ancestor cannot produce sufficient evidence for that successor;
+- the current generation must also use fewer candidate executions than the ancestor on those frozen discovery comparisons;
+- mutable Genesis never owns the evaluator, promotion rule or final verdict.
+
+This is the first point at which Genesis should seriously claim **domain-bounded RSI under the exact frozen assay**, not general RSI.
 
 ## Beyond G10 — toward more general RSI
 
