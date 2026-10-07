@@ -1,0 +1,32 @@
+{
+  "schema": "genesis-er1-j1-discovery-v4-freeze-v1",
+  "predecessor_abort": "experiment/er1_j1/V3_INSTRUMENT_ABORT.json",
+  "sanitized_buggy_tree_sha256": "9c32b81a4fdaa236d7c2859f1724a98117ad2bd9b9d607bc15ab152476f06649",
+  "raw_candidate_set_sha256": "ceaa88f50cb151d2a827c500898ed0daea43fe4de0338c5fbe47845dd5cbeac6",
+  "compact_candidate_index_sha256": "1e90069ec35fcb74d2997b75e10095ac49fedb0d06862e204add024270889fb4",
+  "candidate_count": 10000,
+  "candidate_budget": 10000,
+  "selection_rule": "lowest Genesis candidate index passing hidden triggering test",
+  "hidden_trigger_identity_sha256": "30831ea629fd5b9b65658e2cc21cbd735651bb32bf000d515a437a563c58de6b",
+  "hidden_evaluator_v4_sha256": "db55341a80b664452759cfec415bdda3149ac9a611c607762f6a03c4c0a4cbb1",
+  "persistent_oracle_source_sha256": "d384daa672bd7837f70d4d06100fdc55c326ac0c9569909c7d11d4fa4482039d",
+  "persistent_oracle_class_sha256": "8e99359ae2429b27dca2990b9796f1813d1850eadb1535592ad3cf2030ba9412",
+  "parallel_workers": 8,
+  "parallel_batch_size": 32,
+  "semantic_change_from_v3": false,
+  "execution_change_from_v3": "persistent JVM uses JavaCompiler and fresh per-candidate URLClassLoader/JUnit request, eliminating JVM startup only",
+  "persistent_reference_equivalence": {
+    "buggy_compile_exit": 0,
+    "buggy_test_exit": 1,
+    "fixed_compile_exit": 0,
+    "fixed_test_exit": 0
+  },
+  "generator_changed": false,
+  "candidate_order_changed": false,
+  "candidate_budget_changed": false,
+  "hidden_trigger_changed": false,
+  "pass_criterion_changed": false,
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "external_model_calls": 0
+}
