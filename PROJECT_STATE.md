@@ -1,6 +1,6 @@
 # Genesis — current authoritative project state
 
-**Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; the Genesis v2 project-defined G5 autonomous-experiment-generation, G6 component-evolution, G7 causal-promotion/rollback, G8 distillation/local-specialization and G9 whole-successor gates are now passed in bounded preregistered qualifications; G10, L10 independent replication and general RSI remain open.**
+**Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; Genesis v2 G5 through G9 remain passed, and the strengthened project-defined G10 recursive-successor gate has now passed with a prospectively frozen G0→G1→G2→G3 chain plus causal next-successor production advantages at generations 1 and 2. Independent replication, broader software-domain transfer and general RSI remain open.**
 
 Genesis is the renamed continuation of **Mira Genesis**. Historical records keep their original project name; the rename changes neither authorship nor frozen evidence.
 
@@ -64,7 +64,19 @@ The fresh holdout contained **12 cases** in three balanced blocks: 4 parent-rete
 
 The parent and successor profiles are content-addressed as `c361276dc1f367f901d37d86efaa48001768b0ec93b47ab4b79c140738719e93` and `ce863273b94b65d454bf61c9b6140f6b55654c8f3ae39827887293ce6d559601`. The G9 apparatus, successor, preregistration and result were frozen respectively as `373a1b4c`, `e1575796`, `bae46b4a` and `2a921e85`. Exact evidence and claim boundaries are recorded in [`docs/G9_QUALIFICATION_2026-10-07.md`](docs/G9_QUALIFICATION_2026-10-07.md).
 
-This establishes **one bounded causal self-improvement transition** from Genesis N to Genesis N+1. It does **not** establish recursive self-improvement: G10 remains open until descendants themselves repeatedly contribute to producing better descendants on new fresh evidence. It also does not establish independent third-party validation, general RSI, AGI or ASI.
+This establishes **one bounded causal self-improvement transition** from Genesis N to Genesis N+1. G10 subsequently tests whether such improvements become recursively useful for producing later descendants.
+
+### Genesis v2 G10 qualification
+
+The strengthened project-defined G10 recursive-successor gate is now **PASSED** under a three-stage prospective campaign whose apparatus, external task-bank generator, external evaluator, stage rules and final adjudicator were frozen before any G10 qualification holdout existed (`c6a231b2`). The G10 seed is the qualified G9 successor. Each later profile is content-addressed and names its exact parent.
+
+The fresh qualification chain is **G0 → G1 → G2 → G3**. Under the same maximum budget of **6 candidate executions per case** and **zero external-model calls**, stage scores improved **2/6 → 6/6**, **4/8 → 8/8**, and **6/10 → 10/10**, with every parent fresh success preserved.
+
+G10 also requires a stronger recursive-production criterion. Before G2 existed, G1 and G0 received the same D2 discovery bank and budget: G1 solved **4/4 in 4 candidate executions**, while G0 solved **0/4 in 16**. Before G3 existed, G2 and G1 received the same D3 discovery bank and budget: G2 solved **4/4 in 8 candidate executions**, while G1 solved **0/4 in 20**. Thus the inherited machinery of G1 and G2 causally improved both next-successor discovery yield and candidate-execution cost relative to their direct ancestors.
+
+The final frozen adjudicator returned **`G10_SCIENTIFIC_GATE_PASSED`** with every chain predicate true. The preserved chain result is commit `c5b6fb44`, result digest `ccbc75ac2de8bbf821dc6912b32d2d08fbbf5f284d51775bcedbfd5a2f8d80f2`. Exact chronology, holdout hashes and claim boundaries are recorded in [`docs/G10_QUALIFICATION_2026-10-07.md`](docs/G10_QUALIFICATION_2026-10-07.md).
+
+This supports the narrow claim **domain-bounded recursive self-improvement under the exact frozen software-repair composition assay**. It does **not** establish general RSI, AGI, ASI, open-world autonomy or independent third-party validation. The next scientific frontier is external reproduction and broader transfer while retaining the same causal/resource discipline.
 
 V26's single prospectively frozen Track A attempt returns **POSITIVE_BOUNDED_L5**.
 The qualified V22R G2 controller selects an executable two-component G3 descendant

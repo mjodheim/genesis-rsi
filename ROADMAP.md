@@ -178,7 +178,7 @@ A single transition is evidence of self-improvement, not yet recursive self-impr
 
 ## G10 — Recursive successor chain
 
-**Development status (2026-10-07): STRENGTHENED PROTOCOL IMPLEMENTED; NO G10 QUALIFICATION OBSERVATION YET.** The active protocol requires more than repeated self-edits: transitions 2 and 3 must show that the current generation outperforms its direct ancestor at producing the evidence required for the next successor under the same candidate budget. See `docs/G10_PROTOCOL_2026-10-07.md`.
+**Scientific status (2026-10-07): PROJECT-DEFINED STRENGTHENED GATE PASSED.** The prospectively frozen campaign produced a content-addressed `G0 -> G1 -> G2 -> G3` chain. Fresh matched-budget scores improved `2/6 -> 6/6`, `4/8 -> 8/8` and `6/10 -> 10/10` while preserving every parent success. On next-successor discovery, G1 beat G0 `4/4 vs 0/4` with `4 vs 16` candidate executions, and G2 beat G1 `4/4 vs 0/4` with `8 vs 20`. All generation/runtime external-model calls were zero. See `docs/G10_QUALIFICATION_2026-10-07.md`. The capability ladder itself remains a frozen, host-authored family of successor mechanisms; G10 does not claim open-ended invention of arbitrary new improvement machinery.
 
 **Goal:** demonstrate repeated causal improvement **and causal improvement of the ability to produce the next improvement**.
 
@@ -227,12 +227,13 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 - [ ] Consolidate experiment navigation without rewriting frozen evidence.
 - [ ] Update repository identity and metadata.
 
-### Next implementation
-- [ ] G1 common language substrate.
-- [ ] G2 universal operator IR.
-- [ ] Integrate A6c structural self-extension through G1/G2.
-- [ ] Prospectively freeze the first cross-language transfer campaign.
-- [ ] Begin G3 failure-model evaluation.
+### Post-G10 scientific frontier
+- [x] Close the bounded project-defined G10 recursive-successor gate.
+- [ ] Reproduce the G10 chain independently from a clean environment and independently governed task material.
+- [ ] Transfer the recursive-production criterion onto external/public software repositories not authored for Genesis.
+- [ ] Run hostile audit of the strengthened G10 apparatus, chronology and claim boundary.
+- [ ] Measure whether the recursive-production advantage persists across materially different repair/operator families and language ecosystems.
+- [ ] Only after those replications, investigate extension beyond software repair into broader learning, representation, experiment-design and resource-allocation machinery.
 ## Historical milestone integrity
 
 The G1-G10 roadmap replaces navigation, not experimental history.

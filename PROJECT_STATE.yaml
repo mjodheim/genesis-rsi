@@ -4,7 +4,7 @@ updated_at: 2026-10-07
 architecture_generation: genesis_v2_efficiency_first
 architecture_reset_changes_scientific_gate: false
 snapshot_kind: current_authoritative_navigation
-status: genesis_v2_g9_gate_passed_bounded_l9_operational_pass_l10_open
+status: genesis_v2_g10_gate_passed_domain_bounded_rsi_independent_replication_open
 
 rsi_frontier:
   operational_l9_gate_passed: true
@@ -120,8 +120,48 @@ rsi_frontier:
     external_model_calls: 0
     frozen_predicates_true: 21
     independent_third_party_validation: false
-    g10_closed: false
+    g10_closed: true
     evidence: docs/G9_QUALIFICATION_2026-10-07.md
+  genesis_v2_g10:
+    verdict: G10_SCIENTIFIC_GATE_PASSED
+    scope: bounded_project_defined_recursive_successor_chain
+    apparatus_commit: c6a231b2
+    stage1_successor_commit: a136d784
+    stage1_preregistration_commit: 2aed97f8
+    stage1_result_commit: 610038b7
+    stage2_successor_commit: 9bf326f7
+    stage2_preregistration_commit: e40285c7
+    stage2_result_commit: 123386a6
+    stage3_successor_commit: 03477d6f
+    stage3_preregistration_commit: cebf06dc
+    stage3_result_commit: b062230a
+    chain_result_commit: c5b6fb44
+    chain_result_digest: ccbc75ac2de8bbf821dc6912b32d2d08fbbf5f284d51775bcedbfd5a2f8d80f2
+    profile_chain:
+      - 613138e45bb05f4cae884bbb9e951e82bee1a19f858f7d6e9875af8fbce8f4b3
+      - 90c30ced7af6ad9b351dbfb5ccc875792f2807a5df1ccfc4ddbde05cce726cf9
+      - 3d9d3aa46effc2af1703efcdbeb380727eaa5a7a77f999c4c3879e8e648d5815
+      - be03c081af05af4e1adb51dd4b8966283c96658875824d7eeaca3391d21ce2c8
+    stage_scores:
+      - [2, 6, 6]
+      - [4, 8, 8]
+      - [6, 10, 10]
+    recursive_production_stage2:
+      current_generation_solved: 4
+      ancestor_solved: 0
+      current_generation_candidate_executions: 4
+      ancestor_candidate_executions: 16
+    recursive_production_stage3:
+      current_generation_solved: 4
+      ancestor_solved: 0
+      current_generation_candidate_executions: 8
+      ancestor_candidate_executions: 20
+    candidate_budget_per_case: 6
+    external_model_calls: 0
+    parent_successes_preserved: true
+    independent_third_party_validation: false
+    general_rsi_claimed: false
+    evidence: docs/G10_QUALIFICATION_2026-10-07.md
   l5_validated: true
   l5_scope: bounded_v26_project_authored_native_repair_transfer
   v24:
