@@ -4,7 +4,7 @@ updated_at: 2026-10-07
 architecture_generation: genesis_v2_efficiency_first
 architecture_reset_changes_scientific_gate: false
 snapshot_kind: current_authoritative_navigation
-status: genesis_v2_g8_gate_passed_bounded_l9_operational_pass_l10_open
+status: genesis_v2_g9_gate_passed_bounded_l9_operational_pass_l10_open
 
 rsi_frontier:
   operational_l9_gate_passed: true
@@ -96,8 +96,32 @@ rsi_frontier:
     empty_specialist_ablation_solved: 0
     frozen_predicates_true: 17
     independent_third_party_validation: false
-    g9_closed: false
+    g9_closed: true
     evidence: docs/G8_QUALIFICATION_2026-10-07.md
+  genesis_v2_g9:
+    verdict: G9_SCIENTIFIC_GATE_PASSED
+    scope: bounded_project_defined_whole_successor_transition
+    apparatus_commit: 373a1b4c
+    successor_commit: e1575796
+    preregistration_commit: bae46b4a
+    result_commit: 2a921e85
+    holdout_sha256: 82324e8cd011e27f18753f88ee0e188daf672ad143b87ba135be3c198bd6a1b6
+    holdout_cases: 12
+    parent_profile_digest: c361276dc1f367f901d37d86efaa48001768b0ec93b47ab4b79c140738719e93
+    successor_profile_digest: ce863273b94b65d454bf61c9b6140f6b55654c8f3ae39827887293ce6d559601
+    material_changes: 3
+    parent_solved: 4
+    successor_solved: 12
+    without_g6_ablation_solved: 8
+    without_g8_ablation_solved: 8
+    parent_retention_preserved: true
+    candidate_budget_per_case: 4
+    candidate_budget_total: 48
+    external_model_calls: 0
+    frozen_predicates_true: 21
+    independent_third_party_validation: false
+    g10_closed: false
+    evidence: docs/G9_QUALIFICATION_2026-10-07.md
   l5_validated: true
   l5_scope: bounded_v26_project_authored_native_repair_transfer
   v24:

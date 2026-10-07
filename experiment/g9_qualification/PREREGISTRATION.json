@@ -1,0 +1,134 @@
+{
+  "apparatus": {
+    "holdout_builder": {
+      "path": "scripts/build_g9_holdout.py",
+      "source_sha256": "0a93863917b667f0b17b6fac0fdbcdf4349abe603aee29528279186fc33216ac"
+    },
+    "profile_executor": {
+      "path": "genesis/runtime/profile_executor.py",
+      "source_sha256": "f3ebf3466c0ddb8fabe0fca0ad06b6e09e33919432dcd6fae68ceffe9da7af8c"
+    },
+    "qualification_runner": {
+      "path": "scripts/run_g9_qualification.py",
+      "source_sha256": "79ba3d4b139048616bcd720159ea104cb2e62816f3a41d1d50ec12b5cdbe4e29"
+    },
+    "self_model": {
+      "path": "genesis/core/self_model.py",
+      "source_sha256": "3b46d53da81a68ae039b5cddff0b1717d6792ab3241c410d36a8e7092a179f18"
+    },
+    "successor_builder": {
+      "path": "scripts/build_g9_successor.py",
+      "source_sha256": "1657ec7b22ef27c6d6d052d42fc84ca839c31ad146583483770564f0b9e929e7"
+    },
+    "successor_generator": {
+      "path": "genesis/evolution/successor_generation.py",
+      "source_sha256": "774ad764332973f4a4857237d44efadafb953cb336d1d7a66b520262f75740ad"
+    }
+  },
+  "authority": {
+    "mutable_lineage_owns_evaluator_or_verdict": false,
+    "promotion_authority": "external_trust_root",
+    "same_frozen_evaluator_for_parent_successor_and_ablations": true
+  },
+  "claim_boundary": "Bounded project-defined G9 whole-successor qualification only. Passing shows one lineage-produced Genesis N -> Genesis N+1 transition with multiple material machinery changes, fresh matched-budget improvement, causal ablations and retained parent capability. A single transition is not recursive self-improvement and does not establish G10, general RSI, AGI, ASI or independent third-party validation.",
+  "holdout": {
+    "case_count": 12,
+    "contents_visible_to_lineage_at_freeze": false,
+    "generated_after_successor_freeze": true,
+    "group_counts": {
+      "g6_component_gain": 4,
+      "g8_specialist_gain": 4,
+      "parent_retention": 4
+    },
+    "location_at_freeze": "external_to_repository",
+    "sha256": "82324e8cd011e27f18753f88ee0e188daf672ad143b87ba135be3c198bd6a1b6"
+  },
+  "preregistration_commit_parent": "e157579612bba7f891a94dd5ecb315bda01d9825",
+  "preregistration_digest": "c9d2746903946ca5752a3b266da44f95ef9b410f68247329ed57fe4ac74e13e8",
+  "qualification_rule": {
+    "fail_label": "G9_SCIENTIFIC_GATE_OPEN",
+    "pass_label": "G9_SCIENTIFIC_GATE_PASSED",
+    "required": [
+      "holdout_sha256_matches_preregistered_identity",
+      "all_raw_tasks_fail_before_repair",
+      "holdout_has_three_balanced_blocks",
+      "successor_proposal_is_content_addressed_and_valid",
+      "successor_is_lineage_produced",
+      "successor_contains_multiple_material_machinery_changes",
+      "successor_was_generated_without_g9_holdout_visibility",
+      "successor_generation_is_exactly_parent_plus_one",
+      "successor_improves_fresh_success_rate",
+      "successor_solves_at_least_11_of_12_fresh_cases",
+      "successor_preserves_every_parent_success",
+      "successor_preserves_all_parent_retention_cases",
+      "matched_candidate_budgets_are_identical",
+      "all_profiles_use_zero_external_model_calls",
+      "all_profiles_stay_within_matched_candidate_budget",
+      "g6_ablation_removes_g6_block_gain",
+      "g8_ablation_removes_g8_block_gain",
+      "each_causal_ablation_is_worse_than_whole_successor",
+      "whole_successor_inherits_unchanged_component_inventory",
+      "mutable_lineage_does_not_own_evaluator_or_verdict",
+      "resource_accounting_records_candidate_cpu_and_wall_axes"
+    ]
+  },
+  "resource_budget": {
+    "candidate_executions_per_case": 4,
+    "external_model_calls_per_case": 0,
+    "same_budget_for_parent_successor_and_ablations": true
+  },
+  "schema": "genesis-g9-qualification-preregistration-v1",
+  "successor": {
+    "external_model_calls": 0,
+    "freeze_digest": "ddf2ecd86229eb5fc10806fd81946c6bbbfe4e5c47afe4e513311a7e3d88972b",
+    "lineage_produced": true,
+    "material_change_count": 3,
+    "material_changes": [
+      {
+        "component_id": "universal_operator_ir",
+        "evidence": {
+          "descendant_record_digest": "f4bb522c12d5a6bbe88b276384e9b5da5bdd54727bb9afbe1a6f615443d5ef55",
+          "descendant_solved": 8,
+          "mutation_id": "structural_delimiter_anchors",
+          "parent_solved": 2,
+          "parent_source_sha256": "a294e8fb47ff3a138667463610df25121c33aa2190308231b2116492e8eb4309",
+          "result_digest": "c0aec6a3b7bacc401c271c0a91d98c3df1761dca19d8d8c428ea09eed7104080",
+          "source_sha256": "3451b476a319846df00ffe3984da8fb760a6a4c9f68313ebf4f4fb464f5954be"
+        },
+        "from": "a294e8fb47ff3a138667463610df25121c33aa2190308231b2116492e8eb4309",
+        "to": "3451b476a319846df00ffe3984da8fb760a6a4c9f68313ebf4f4fb464f5954be"
+      },
+      {
+        "component_id": "local_repair_specialist",
+        "evidence": {
+          "ablation_solved": 0,
+          "external_solved": 7,
+          "freeze_digest": "d74b2561c48e22b1c4eb9195ea49f89c4d051a26dd4f9dcdd52ed17015320485",
+          "local_external_model_calls": 0,
+          "local_solved": 8,
+          "result_digest": "e5471f661a337d81ec6fa1996d766d0baee67a0cf354d20d833fb6bc97389641",
+          "specialist_digest": "94afbbfbe908f9c76c6abdf19f39f24e12f14c7c5a680feceeca0283b7424edb",
+          "template_count": 6
+        },
+        "from": null,
+        "to": "94afbbfbe908f9c76c6abdf19f39f24e12f14c7c5a680feceeca0283b7424edb"
+      },
+      {
+        "component_id": "candidate_router",
+        "evidence": {
+          "g6_result_digest": "c0aec6a3b7bacc401c271c0a91d98c3df1761dca19d8d8c428ea09eed7104080",
+          "g8_result_digest": "e5471f661a337d81ec6fa1996d766d0baee67a0cf354d20d833fb6bc97389641",
+          "rule": "prefer qualified zero-model specialist then qualified universal operator"
+        },
+        "from": "7256927668c8c10f0551098dede4e1e6b3728d78d3efb14fb01efff883af90f0",
+        "to": "d79818c39b041308eb4d9b1b2638c16aebafdfb13310b33a8188e20b050cf6f0"
+      }
+    ],
+    "parent_generation": 0,
+    "parent_profile_digest": "c361276dc1f367f901d37d86efaa48001768b0ec93b47ab4b79c140738719e93",
+    "proposal_digest": "b3bef30ef7c25e060d330b42723cfbc22890bc17885befd95f13d0d02273ef81",
+    "prospective_holdout_visible": false,
+    "successor_generation": 1,
+    "successor_profile_digest": "ce863273b94b65d454bf61c9b6140f6b55654c8f3ae39827887293ce6d559601"
+  }
+}
