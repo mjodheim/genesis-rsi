@@ -1,0 +1,31 @@
+{
+  "candidate_coverage": {
+    "baseline_relevant_candidate_count": 219,
+    "calendar_specialist_relevant_candidate_count": 0,
+    "successor_relevant_candidate_count": 219
+  },
+  "causal_findings": [
+    "J7 was not a localization failure: trigger tracing reduced the causal source union to StringEscapeUtils plus two exception support classes.",
+    "The Calendar specialist was correctly inapplicable.",
+    "The human repair is a one-case switch extension structurally analogous to existing escape cases.",
+    "The consumed test itself contains enough expected-output evidence to infer that an additional escaped-character case is required.",
+    "The inherited repair language does not currently convert test assertions into source-level switch-case completion candidates."
+  ],
+  "claim_boundary": "J7 remains a valid negative. Test and human-fix evidence are used only after the frozen result to diagnose and build successor machinery.",
+  "human_fix_reveal": {
+    "human_fix_shape": "single_switch_case_insertion_by_escape_analogy",
+    "human_patch_used_as_input_to_negative_attempt": false,
+    "issue_text_inspected": false,
+    "modified_source_file": "src/java/org/apache/commons/lang/StringEscapeUtils.java",
+    "source_diff_sha256": "71cbce3493bdbbf90c792de88aed1ae046e369e6feb721ac986eee2c87ef757a"
+  },
+  "next_development_change": "Add a generic test-guided Java switch-completion operator. It may parse literal expected/input assertions from tests, identify escaped-character pairs present in the expected value but absent from a compatible production switch, and clone a sibling escape-case body while substituting the inferred character. It must encode no slash, StringEscapeUtils, Lang-52, class, method, issue, commit, or line identity. Validate on synthetic fixtures and the consumed J7 replay, then freeze before fresh J8 selection.",
+  "post_reveal_test_evidence": {
+    "key_generalizable_signal": "expected output contains an escaped character pair absent from the production switch while sibling escaped-character cases already provide a body template",
+    "test_shape": "assertEquals expected escaped string versus escape-method call on literal input",
+    "test_source_inspected": true
+  },
+  "pre_reveal_result_commit": "f2dc3e45",
+  "schema": "genesis-er1-j7-post-reveal-diagnosis-v1",
+  "status": "VALID_NEGATIVE_WITH_CONFIRMED_TEST_GUIDED_SWITCH_COMPLETION_GAP"
+}
