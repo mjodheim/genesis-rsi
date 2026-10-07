@@ -1,0 +1,604 @@
+{
+  "archived_tag_count": 66,
+  "created_at": "2026-10-07",
+  "main_at_cleanup": "5715843a98963d0ad8c9d3459333d014e5dc435c",
+  "off_main_parent_count": 54,
+  "purpose": "Collapse non-scientific archive/* and branch/* preservation refs before post-G10 work while retaining exact names, tag object identities, messages, target commits, and reachability of every off-main history.",
+  "records": [
+    {
+      "contents": "fix(audit): avoid unregistered commit-shaped citations",
+      "created_at": "2026-09-05T11:44:45+02:00",
+      "peeled_commit": "4e582d40019d129347abb81eb89fd42f6dbb231e",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "4e582d40019d129347abb81eb89fd42f6dbb231e",
+      "ref_object_type": "commit",
+      "tag": "archive/audit/scientific-validation-20260905"
+    },
+    {
+      "contents": "docs: record H39 audit navigation corrigendum",
+      "created_at": "2026-09-05T20:39:18+02:00",
+      "peeled_commit": "1b1147e3a97286c6ef0f0d2e6158878f808874bf",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "1b1147e3a97286c6ef0f0d2e6158878f808874bf",
+      "ref_object_type": "commit",
+      "tag": "archive/docs/state-sync-20260905"
+    },
+    {
+      "contents": "docs(frontier): distinguish readiness from scientific result",
+      "created_at": "2026-09-06T00:13:26+02:00",
+      "peeled_commit": "b0e840fe3e05ddb9518ffff0413f17d0bc8fcb30",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "b0e840fe3e05ddb9518ffff0413f17d0bc8fcb30",
+      "ref_object_type": "commit",
+      "tag": "archive/docs/sync-m124-state-20260906"
+    },
+    {
+      "contents": "Merge main into fix/codex-audit-hardening-20260905",
+      "created_at": "2026-09-05T19:50:06+02:00",
+      "peeled_commit": "4a34d94f5a3310be544949a8696408d5135f231a",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "4a34d94f5a3310be544949a8696408d5135f231a",
+      "ref_object_type": "commit",
+      "tag": "archive/fix/codex-audit-hardening-20260905"
+    },
+    {
+      "contents": "M014c \u2014 HALTED, SUPERSEDED BY M017. Development head preserved as an immutable reference. See experiments/M014c/STATUS.md.",
+      "created_at": "2026-07-31T23:16:18+02:00",
+      "peeled_commit": "a97d810e3517cae84e93b968de3e50a9a939ba0e",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "1a15072a40ebbaba097e308626f3204fdc79b55b",
+      "ref_object_type": "tag",
+      "tag": "archive/m014c-halted"
+    },
+    {
+      "contents": "Archive agent/hati/m125-h70-audit before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "f0f8a77f388d98866e1429a97b0fbde3a982bc3d",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "c2594e76fe87c57c0e5a6fe2dff5e4dfe124ed1c",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/agent-hati-m125-h70-audit"
+    },
+    {
+      "contents": "Archive lab/rsi-v23-l5-freeze-builder-20260924 before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "a3da9deb307fd7a496223cdf68991678de922fdf",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "90fe842b93695da2d9c77727b619b4929cc4c6c1",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/lab-rsi-v23-l5-freeze-builder-20260924"
+    },
+    {
+      "contents": "Archive publication/genesis-iv-preprint before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "a5b5f241ef1d8b1b8af3055881e4b4b7c6997511",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "321f4e8b6e088bd81d6b5cad267f23e7d18f6fd3",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/publication-genesis-iv-preprint"
+    },
+    {
+      "contents": "Archive research/genesis-m109-bridge-20260909 before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "0c1bdea76a352e5397e393b8d31635701d109885",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "2821d82f7791515724dbecc52b915110431ec190",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/research-genesis-m109-bridge-20260909"
+    },
+    {
+      "contents": "Archive research/l10-external-fork-pilot before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "9bf3114544db5f456b28b203de906b0a32631e8b",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "0bffbeb6903d74d0e3c2bef7c0851bc28d2bef4b",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/research-l10-external-fork-pilot"
+    },
+    {
+      "contents": "Archive research/l10d-causal-multilang before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "4cd40fc72ec809e0209190baf96747d728fecc13",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "e69c7156385bcddd70fac0fa47fe756215cda586",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/research-l10d-causal-multilang"
+    },
+    {
+      "contents": "Archive research/l9-v54-lineage-credit before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "fa6547390daf26c04894e879c95c26aefcfaa334",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "b23f1b318965690657566275436ea321d0978fd4",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/research-l9-v54-lineage-credit"
+    },
+    {
+      "contents": "Archive research/l9-v55-feedback-diagnostics before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "77a841fce89d6fcd813536ff7af8dfe17e096f00",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "7176974d6d759725ed258a7a9a5114987c05d863",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/research-l9-v55-feedback-diagnostics"
+    },
+    {
+      "contents": "Archive results/rsi-v23-l5-meta-20260924 before Genesis G10; branch retired during pre-G10 cleanup.",
+      "created_at": "2026-10-07T10:53:59+02:00",
+      "peeled_commit": "df67d37c8f5b73d3b1568a4ab9ac20cf731c7a41",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "f0eefc89a6f1efb329a79159da45905a44d1fe28",
+      "ref_object_type": "tag",
+      "tag": "archive/pre-g10/results-rsi-v23-l5-meta-20260924"
+    },
+    {
+      "contents": "docs(state): record M120 as pre-registered, built and unspent\n\nThe authoritative snapshot said there was no successor and that M120/H65 was a\nproposed label. There is one now, and it has spent nothing: qualifying\nscientific invocations 0, no bank, no freeze, H65 untested.\n\nThe state documents record what M120 does about each M119 finding, what the\nDEVELOPMENT rehearsal established, the defect the rehearsal itself found and\nthe five owner gates that remain open. They also record what M120 still cannot\npromise, which is a verdict: whether the blind generator produces an adequate\nbank on this route is not knowable before the generation, and the honest\nnumbers are that a development emitter qualified at 29% at the contract's\nsmallest corner while M119's real blind bank qualified at one in thirty-seven\nunder the old contract.\n\nNo publication disposition is recorded. The register carries no M120 row and\nthe YAML says so explicitly.\n\nCI gains two gates: the checker in its unarmed form, which reports a clean\nstate until a result exists, and the acceptance claim, because it is the single\ngate whose failure would repeat M119's outcome exactly.",
+      "created_at": "2026-09-02T23:42:18+02:00",
+      "peeled_commit": "38f0aaa254b8df712533a0dd63a21aaa9abf2432",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "38f0aaa254b8df712533a0dd63a21aaa9abf2432",
+      "ref_object_type": "commit",
+      "tag": "archive/research/m120-h65-successor"
+    },
+    {
+      "contents": "result(m120): close the milestone at its readiness gate; H65 untested\n\nThe gate ran once and returned not_ready_identity. Sixteen DEVELOPMENT\nrequests. No qualifying generation, no freeze, no seal, no reveal.\n\nSeven of the nine feature classes the candidate schema requires were enforced\ncleanly, with runtime identity holding on every request that carried a\ncompletion. array_of_object_levels was not. The probe asks for a structure the\nprompt does not describe, every level bounded minItems 1 maxItems 1, so the\nconforming answer is a single eight-deep chain of about fifty tokens.\nEnforcement would have produced it. The route returned HTTP 200 with\nfinish_reason length after 101,379 completion tokens instead.\n\nThe number that matters is the depth. M115's schema, inherited by M116 and M119\nand certified by M118's readiness gate, needs five array-of-object levels.\nM120's needs eight, because splitting actions into conditional and plain and\nmoving initial inside its own cell added nesting. Seven of nine classes survived\nthat change; this one did not. The contract is not serviceable on this route as\ndesigned.\n\nThe verdict label misattributes the cause and is recorded rather than corrected.\nAfter the runaway probe the combined probe and the stress each exhausted their\ntwo permitted retries on HTTP 429, a 429 carries no router metadata, so identity\ncould not be attested, and the frozen ladder checks identity before features.\nThe outcome is robust to it: with identity holding, the ladder reports\nnot_ready_features on the same unenforced class and M120 stops in the same\nplace. Attesting identity on a response that carries no completion conflates the\nroute serving something else with the route serving nothing, and that is a\nsuccessor requirement, not a repair here.\n\nThe gate is single-use and was not redrawn. The schema is not shallowed and\nre-run, the unenforced class is not dropped from the required set, and the\nverdict is not relabelled to the cause it should have named.\n\nWhat this cost is sixteen calibration requests. What it saved is the comparison\nM119 could not avoid: M119 discovered its contract was unusable by spending its\none qualifying generation, and M120 discovered the same class of problem before\nspending anything. M120's contract, decoder, adequacy gate and reproducing\nchecker were never exercised against a real bank and carry no scientific\nevidence of any kind.",
+      "created_at": "2026-09-03T09:05:03+02:00",
+      "peeled_commit": "f043f78d88fa2714627124dc2bdee88273795c83",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "f043f78d88fa2714627124dc2bdee88273795c83",
+      "ref_object_type": "commit",
+      "tag": "archive/research/m120-readiness"
+    },
+    {
+      "contents": "Merge branch 'main' into research/m121-h66-g7-groundwork",
+      "created_at": "2026-09-03T19:17:21+02:00",
+      "peeled_commit": "29df50748c7674403a793e93762f315350738976",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "29df50748c7674403a793e93762f315350738976",
+      "ref_object_type": "commit",
+      "tag": "archive/research/m121-h66-g7-groundwork"
+    },
+    {
+      "contents": "result(m122): close at readiness with not_ready_stress; H67 untested\n\nThe stress conformed -- HTTP 200, finish_reason stop, schema valid -- at 30,957\ntokens against an inherited threshold of 32,000. Short by 3.3%.\n\nEverything else was green, and that is the part a successor needs. Nine of nine\ncapability probes conformed, zero enforcement failures, identity holding on\nevery request, zero requests carrying no completion, in thirteen requests. That\nincludes nested_arrays, the class that closed M120: at eight array-of-object\nlevels it free-ran to 101,379 tokens and truncated, and at five it conforms in\n76. And combined, which exercises every class at once and which no earlier run\nhad ever reached cleanly, conformed in 582.\n\nSo the flattened contract is validated against the live route rather than\ncertified by inheritance across a schema change, which is what M120 attempted\nand what M119 attempted before it.\n\nWhat closed the milestone was the stress size, and twice that was the operator's\nerror rather than the route's or the contract's. First inherited: 24 stations\ncame from M120 while the schema beneath it was being flattened from eight levels\nto five, and a shallower station serialises smaller. Then extrapolated: revision\n1 replaced the constant with a derivation taken from a single measurement, 546.6\ntokens per station over 24 stations, assuming that rate constant. It is not. At\n74 stations the observed rate was 418.3, twenty-three per cent lower, because\nthe model grows terser as the list lengthens. Seventy-six stations would have\ncleared the threshold.\n\nA derivation from one point is an assumption wearing a derivation's clothes.\n\nIt was not re-run. not_ready_stress is not a delivery verdict, and under the\nallowance the owner authorised only a delivery verdict may be superseded. Going\nagain with 76 stations would be adjusting the instrument until the gate passes,\nwhich is the failure the allowance exists to prevent, and the 32,000 threshold\nwas never touched for the same reason. The gate now refuses itself.\n\nFour attempts are preserved and none deleted, including the one the operator's\nown harness timeout killed and the duplicate file that briefly made one attempt\ncount as two. The archive index counts files rather than attempts, so the fourth\nis stored under index 05; the count that matters is taken from result digests,\nand the filenames are left as written rather than tidied, because renaming\nevidence after the fact is worse than an untidy index.\n\nTwo defects are recorded and not repaired: a derivation from a single\nmeasurement, and unenforced_feature_classes still conflating not enforced with\nnot answered.",
+      "created_at": "2026-09-04T08:47:25+02:00",
+      "peeled_commit": "fe350c439de4bf3f5bc8c588b44431638030cc1b",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "fe350c439de4bf3f5bc8c588b44431638030cc1b",
+      "ref_object_type": "commit",
+      "tag": "archive/research/m122-flattened-contract"
+    },
+    {
+      "contents": "test(m123): assert the closed state the terminal verdict creates\n\nThe ceiling test called the allowance guard against the live repository, and the\nguard now refuses -- correctly, because a terminal verdict is recorded and only\n`not_ready_delivery` may be superseded. The test asserts the refusal and reads\nthe ceiling scan directly instead.\n\nAlso records that M123's attempt 2 is absent from the delivery count while\nM122's attempt 2 is present, which is why the assertion is qualified by\nmilestone rather than matching a bare filename.\n\nThis slipped into the previous commit because the test run was piped through\n`tail`, so the pipeline reported tail's exit status and pytest's failure was\ninvisible.",
+      "created_at": "2026-09-04T23:41:04+02:00",
+      "peeled_commit": "f8468442b2b9e7c85824311bfc2b583509409e8d",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "f8468442b2b9e7c85824311bfc2b583509409e8d",
+      "ref_object_type": "commit",
+      "tag": "archive/research/m123-two-point-stress"
+    },
+    {
+      "contents": "governance: preserve historical ledger wording in reconciliation",
+      "created_at": "2026-09-05T23:39:06+02:00",
+      "peeled_commit": "bc8f1e36a64ad772c474f01c67adb0e0e26b4c68",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "bc8f1e36a64ad772c474f01c67adb0e0e26b4c68",
+      "ref_object_type": "commit",
+      "tag": "archive/research/m124-pinned-cardinalities"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-architectural-probe-crash-consistency-20260911 before cleanup on 2026-10-05. Original tip 1444712c3430d35e97a0e6947783a7c0b5615c79. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "1444712c3430d35e97a0e6947783a7c0b5615c79",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "20a57dfd27c2c8cbde51c9ef5513b8ded167ed9c",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-architectural-probe-crash-consistency-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-autonomous-loop-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 2f2fdd05dfbe6914213fa591db4f29de86fc8ed7. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "2f2fdd05dfbe6914213fa591db4f29de86fc8ed7",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "168ef58163b75a68d72df4844600e53124d316bb",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-autonomous-loop-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-campaign-cursor-journal-binding-20260911 before cleanup on 2026-10-05. Original tip 642d367d4618d22806fd88136e12190189d07e0b. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "642d367d4618d22806fd88136e12190189d07e0b",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "843d1c308ea011cea363a2a836380d20787b91e5",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-campaign-cursor-journal-binding-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-durable-causality-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 93ec4dc28af2f34bc6d92a1d2b1687a505e5180c. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "93ec4dc28af2f34bc6d92a1d2b1687a505e5180c",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "d35002af784ce82cb8d3d40ae61d3c63eeeee015",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-durable-causality-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-executable-form-identity-20260911 before cleanup on 2026-10-05. Original tip 2461e606a8d82ed5fd9a15a2a9028a4554bb0df7. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "2461e606a8d82ed5fd9a15a2a9028a4554bb0df7",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "5940281eca5546eb0ad689673725f2c26b5eed8c",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-executable-form-identity-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-fast-validation-20260908 before cleanup on 2026-10-05. Original tip 3d35ebfe234d4144d080380ced86e149c52f3797. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "3d35ebfe234d4144d080380ced86e149c52f3797",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "ad93d5185a0cb8798c51e6cb4e2309ecb4521ab4",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-fast-validation-20260908"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-generated-policy-mutation-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 0e44df5c9435e8c8401867b418fb166629b8053e. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "0e44df5c9435e8c8401867b418fb166629b8053e",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "a724ac979f99e63b18e7aba53b90f74241afe1c9",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-generated-policy-mutation-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-generated-policy-mutation-fast-validation-v2-20260909 before cleanup on 2026-10-05. Original tip 51a90f78f4d3a47e0009ed5242fffeb720e08dae. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "51a90f78f4d3a47e0009ed5242fffeb720e08dae",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "290d9953607334527d99780fb2f609e1aa065b91",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-generated-policy-mutation-fast-validation-v2-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-integrated-meta-loop-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 950b0158331cd49ca9ed2aea38e081dbcfb9f6fb. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "950b0158331cd49ca9ed2aea38e081dbcfb9f6fb",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "6e600ad97eda33270ad7142a70ca9fe9805525d6",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-integrated-meta-loop-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-budget-crash-consistency-20260909 before cleanup on 2026-10-05. Original tip d151674c5742117edbff934fad7b11813994c434. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "d151674c5742117edbff934fad7b11813994c434",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "6b4a866c3237e324c4adde6bab5b8791b0068cc3",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-budget-crash-consistency-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-budget-crash-consistency-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 4b81ee5ed506f2ba514c48c091705cddc2e72a3b. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "4b81ee5ed506f2ba514c48c091705cddc2e72a3b",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "acf31a56fbdaf3baf5b99b32b74b812afd33632e",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-budget-crash-consistency-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-loop-integration-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 2833c47a4465ac17cbaabef98383987aed6786ce. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "2833c47a4465ac17cbaabef98383987aed6786ce",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "4ba6aaaceb59c745f175a838cf501a65ed9c5f73",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-loop-integration-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-loop-integration-fast-validation-v2-20260909 before cleanup on 2026-10-05. Original tip 408d21e86f622b65a7c36108a1f2408c74b75d8b. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "408d21e86f622b65a7c36108a1f2408c74b75d8b",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "811b6ee8bea987739685d5b9d4399dd2cb3aefe3",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-loop-integration-fast-validation-v2-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-measurement-revalidation-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 6be3aec8fadb69cadec5f5b30bfbeff0cfb88770. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "6be3aec8fadb69cadec5f5b30bfbeff0cfb88770",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "fc69bba3a5be65157fc75827caf1725d4846eafb",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-measurement-revalidation-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-measurement-revalidation-fast-validation-v2-20260909 before cleanup on 2026-10-05. Original tip 623a802e245669eaf00672b8ae0368883016ca0d. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "623a802e245669eaf00672b8ae0368883016ca0d",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "46554a93706800da6b10c513c4d54117b1fbb529",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-measurement-revalidation-fast-validation-v2-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-policy-evolution-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 68342b360f22896bcd5745d90eb4be8593e312c9. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "68342b360f22896bcd5745d90eb4be8593e312c9",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "ddd60acf4e990a8687424b904d5115712fd8d0c9",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-policy-evolution-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-selection-fast-validation-20260909 before cleanup on 2026-10-05. Original tip 372ee599d23b5c0b813b3fc6a253b46df82d5d93. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "372ee599d23b5c0b813b3fc6a253b46df82d5d93",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "e16162f9a3ec91ee196316d056e5f8148b467047",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-selection-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-selection-fast-validation-v2-20260909 before cleanup on 2026-10-05. Original tip 6d1950fc46b240c0defd61bbac9faa347c43c5d5. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "6d1950fc46b240c0defd61bbac9faa347c43c5d5",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "01d38f9a5575cf6dbc9b248c03769603032eb35e",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-selection-fast-validation-v2-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-meta-selection-fast-validation-v3-20260909 before cleanup on 2026-10-05. Original tip 0b9a7942521f2bed1bd46afb882a8b441177590c. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "0b9a7942521f2bed1bd46afb882a8b441177590c",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "71266e3d6b56eddcb45c88dfc4e94da33b073e3b",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-meta-selection-fast-validation-v3-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-objective-policy-fast-validation-20260909 before cleanup on 2026-10-05. Original tip c8d633eaeccad3ea701578f7a46cb86ce37b92b8. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "c8d633eaeccad3ea701578f7a46cb86ce37b92b8",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "976d41c4d096a0d4155c1042777709e12a41eb31",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-objective-policy-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-policy-evolution-20260908 before cleanup on 2026-10-05. Original tip ad31c6474f8ab6c0bb837621c6c84a1e8aae5b43. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "ad31c6474f8ab6c0bb837621c6c84a1e8aae5b43",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "89a858d262ba9758aee30c96026d4fed46a14a73",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-policy-evolution-20260908"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-post-migration-causal-continuation-20260911 before cleanup on 2026-10-05. Original tip 95117e62c60fb6947cc5dd8cd9c09092d211b9e9. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "95117e62c60fb6947cc5dd8cd9c09092d211b9e9",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "cb2f48b7ffc27ad159d0aa8e85ee9f0a34c15edd",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-post-migration-causal-continuation-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-post-migration-form-fast-validation-20260910 before cleanup on 2026-10-05. Original tip fcde2ae99e54820557782a33d2bd0c30790c09ad. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "fcde2ae99e54820557782a33d2bd0c30790c09ad",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "e9af1ec18ffa4dad283513afda174694b916f1e0",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-post-migration-form-fast-validation-20260910"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-retention-fast-validation-20260909 before cleanup on 2026-10-05. Original tip eb604961b38e983bfe656b6c3db6ab63d619a29a. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "eb604961b38e983bfe656b6c3db6ab63d619a29a",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "8c1148957f7c67f272f4c8a8e131656076eff3c9",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-retention-fast-validation-20260909"
+    },
+    {
+      "contents": "Preserve exact historical branch review/gpt56-genesis-round2-20260908 before cleanup on 2026-10-05. Original tip 3a26d6bc3475abd71669497a8c5730a58a062e2d. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "3a26d6bc3475abd71669497a8c5730a58a062e2d",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "801fdb6bedb84abc9f5d88aac30a5cf4f46aa17b",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/review/gpt56-genesis-round2-20260908"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-architectural-probe-crash-consistency-20260911 before cleanup on 2026-10-05. Original tip f2dbf8d1b2f126a059fb31c25d8d6ca66b4637bf. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "f2dbf8d1b2f126a059fb31c25d8d6ca66b4637bf",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "43fcd309f77fef0bd30005c77473b40d1faea74a",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-architectural-probe-crash-consistency-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-campaign-cursor-journal-binding-20260911 before cleanup on 2026-10-05. Original tip 4ccbedf3127041c08fad7c11fe13773a31e279f4. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "4ccbedf3127041c08fad7c11fe13773a31e279f4",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "de21f884c0a8a22097486d347778b6d40bc5b6ff",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-campaign-cursor-journal-binding-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-executable-form-identity-20260911 before cleanup on 2026-10-05. Original tip bd0333726cf8af05ba0196e216430cac8e8b6317. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "bd0333726cf8af05ba0196e216430cac8e8b6317",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "6293673fb2c25e24820da7bf09ea642232d1267f",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-executable-form-identity-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-parent-artifact-causality-20260911 before cleanup on 2026-10-05. Original tip c9788000e861845092abc860329967e388b96a83. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "c9788000e861845092abc860329967e388b96a83",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "66a5a17a7c0a9528193b6b297290ce30dea72c44",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-parent-artifact-causality-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-persistent-metamorphic-campaign-20260911 before cleanup on 2026-10-05. Original tip 814b21b9c0bc1cc44848024179818efa60a53feb. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "814b21b9c0bc1cc44848024179818efa60a53feb",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "73c5c535321b293944887ab8864227c61443a794",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-persistent-metamorphic-campaign-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-policy-registry-binding-20260911 before cleanup on 2026-10-05. Original tip ca22c0712b2d59dbf98f1e25798b413987d2fd72. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "ca22c0712b2d59dbf98f1e25798b413987d2fd72",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "d96c743e4495cc6fa120189dec1e804bdda67b4b",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-policy-registry-binding-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-post-migration-causal-20260911 before cleanup on 2026-10-05. Original tip 82e32a4773165a1824e87f346920cf2018746160. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "82e32a4773165a1824e87f346920cf2018746160",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "79e4250ff6a4409ff1514f77a7f82a4a635de6ad",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-post-migration-causal-20260911"
+    },
+    {
+      "contents": "Preserve exact historical branch validation/gpt56-genesis-transition-capability-scoring-20260911 before cleanup on 2026-10-05. Original tip 43cbca97c11147415a50383f91203088161d8ef2. No main integration or scientific qualification.",
+      "created_at": "2026-10-05T07:44:03+00:00",
+      "peeled_commit": "43cbca97c11147415a50383f91203088161d8ef2",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "ffa416f22f24d117b73348d81a8154903a442154",
+      "ref_object_type": "tag",
+      "tag": "archive/review-heads/20261005/validation/gpt56-genesis-transition-capability-scoring-20260911"
+    },
+    {
+      "contents": "docs(M125): close Hati/Codex anti-rearm and source-binding gaps",
+      "created_at": "2026-09-06T20:56:42+02:00",
+      "peeled_commit": "631ad265acb71275c1f7568b10c117bccb94592e",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "631ad265acb71275c1f7568b10c117bccb94592e",
+      "ref_object_type": "commit",
+      "tag": "archive/review/m125-preimplementation-20260906"
+    },
+    {
+      "contents": "M093 real component transformation (events_by_kind)\n\nTip of branch agent/hati/m093-real-transformation, which is not merged into main and has no surviving remote branch.\n2 commit(s) ahead of origin/main. Tagged so the work stays reachable after the\nbranch ref is deleted.",
+      "created_at": "2026-08-20T23:03:32+02:00",
+      "peeled_commit": "d58101e36a608277d5f38da2a431c1388c3f83bd",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "95a23bb5ab93a1d98fd488a6836a71b811173f54",
+      "ref_object_type": "tag",
+      "tag": "branch/agent-hati-m093-real-transformation"
+    },
+    {
+      "contents": "M076-M084 byte-exact digest-bearing artifact storage\n\nTip of branch claude/dreamy-swanson-d63fc5, which is not merged into main and has no surviving remote branch.\n1 commit(s) ahead of origin/main. Tagged so the work stays reachable after the\nbranch ref is deleted.",
+      "created_at": "2026-08-20T23:03:30+02:00",
+      "peeled_commit": "9e0bff76bb8e4dc17f1d78f257353ac9867afcf2",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "17de28d4f45fc8e374a3fd6ad0c116a9ab233f95",
+      "ref_object_type": "tag",
+      "tag": "branch/claude-dreamy-swanson-d63fc5"
+    },
+    {
+      "contents": "M065 first immutable corrected whole-wasm canonical arm\n\nTip of branch codex/m065-canonical-arm, which is not merged into main and has no surviving remote branch.\n1 commit(s) ahead of origin/main. Tagged so the work stays reachable after the\nbranch ref is deleted.",
+      "created_at": "2026-08-20T23:03:31+02:00",
+      "peeled_commit": "840b9e80ef647b2862bdc6e0c730fd7439236b0f",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "0607132bf7b01109ad7c139ab6207511791419af",
+      "ref_object_type": "tag",
+      "tag": "branch/codex-m065-canonical-arm"
+    },
+    {
+      "contents": "M066 first immutable governance-corrected whole-wasm canonical arm\n\nTip of branch codex/m066-canonical-arm, which is not merged into main and has no surviving remote branch.\n1 commit(s) ahead of origin/main. Tagged so the work stays reachable after the\nbranch ref is deleted.",
+      "created_at": "2026-08-20T23:03:31+02:00",
+      "peeled_commit": "086f7d4024bb511670563b56b57be67c069f157d",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "dc227a713e3e6af71af2ea33329c4778a0cb9a35",
+      "ref_object_type": "tag",
+      "tag": "branch/codex-m066-canonical-arm"
+    },
+    {
+      "contents": "Preserve codex/m095-doc-consistency (1 unmerged commit) before branch deletion.",
+      "created_at": "2026-08-24T22:30:08+02:00",
+      "peeled_commit": "a8edebddd9e4dd0bfa95acdf6101d3d25c709fb8",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "6444fa6ad63092d354b9e02eea8def0cf5647375",
+      "ref_object_type": "tag",
+      "tag": "branch/codex-m095-doc-consistency"
+    },
+    {
+      "contents": "Preserve M095 frozen qualification protocol",
+      "created_at": "2026-08-22T16:18:20+02:00",
+      "peeled_commit": "951c7c271f07a5bf2c08735c30b8d49f39cf8b73",
+      "reachable_from_main_at_cleanup": true,
+      "ref_object_sha": "6decffd6a9d05cf0dff724419f92bc14a9ad7f32",
+      "ref_object_type": "tag",
+      "tag": "branch/codex-m095-qualification-design"
+    },
+    {
+      "contents": "M069 disclosure and M072 ablation-arm draft\n\nTip of branch m069-disclosure-m072-draft, which is not merged into main and has no surviving remote branch.\n7 commit(s) ahead of origin/main. Tagged so the work stays reachable after the\nbranch ref is deleted.",
+      "created_at": "2026-08-20T23:03:31+02:00",
+      "peeled_commit": "95410de1f74b9d9bc467923c3205383885acc279",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "91bcae01fe14da389a2d4d1dc218846b68842059",
+      "ref_object_type": "tag",
+      "tag": "branch/m069-disclosure-m072-draft"
+    },
+    {
+      "contents": "Preserve publication/m100-doi-final (4 unmerged commits: M100 Zenodo DOI metadata and citations) before branch deletion.",
+      "created_at": "2026-08-24T22:30:08+02:00",
+      "peeled_commit": "75f3b82ca5b7265c88d5ee81e37d00635e3773bc",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "58c240cad3508aa0d2c81dd9fa329a48d69dcf04",
+      "ref_object_type": "tag",
+      "tag": "branch/publication-m100-doi-final"
+    },
+    {
+      "contents": "Preserve publication/m100-preprint-draft (21 unmerged commits: M100 preprint and archival package) before branch deletion.",
+      "created_at": "2026-08-24T22:30:08+02:00",
+      "peeled_commit": "6fb01461b4d5633233effe75fbab9fe8313b8d54",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "ff65f36da0d2ebd6bf7e7ddecca6cb28c10f3c78",
+      "ref_object_type": "tag",
+      "tag": "branch/publication-m100-preprint-draft"
+    },
+    {
+      "contents": "G2 multimodal grounding protocol, harness and first result\n\nTip of branch research/g2-multimodal-grounding, which is not merged into main and has no surviving remote branch.\n5 commit(s) ahead of origin/main. Tagged so the work stays reachable after the\nbranch ref is deleted.",
+      "created_at": "2026-08-20T23:03:32+02:00",
+      "peeled_commit": "7ac3e9fab3d77525f04ded9fa8f3fc0f23a0f615",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "7f94647ca09cb93340c5cce7c2abcc61c387d081",
+      "ref_object_type": "tag",
+      "tag": "branch/research-g2-multimodal-grounding"
+    },
+    {
+      "contents": "Preserve research/m101-cross-family-transfer (6 unmerged commits: M101 pre-registration and adversarial review) before branch deletion.",
+      "created_at": "2026-08-24T22:30:08+02:00",
+      "peeled_commit": "acda2f5846ae5a125cabff053d10931aa947b743",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "ed51965730d7a21e68210e0e80fefbbff5f25247",
+      "ref_object_type": "tag",
+      "tag": "branch/research-m101-cross-family-transfer"
+    },
+    {
+      "contents": "Preserve research/repository-audit-and-acceleration (30 unmerged local-only commits: M095 arms/descent work and the provenance repair that re-anchored sixteen orphaned cited commits) before branch deletion.",
+      "created_at": "2026-08-24T22:37:32+02:00",
+      "peeled_commit": "ef369ba0f4d6eff46c6a3ac1e20b8c54f6022ea9",
+      "reachable_from_main_at_cleanup": false,
+      "ref_object_sha": "8789bf96249dd15cf816af5af97a9d3caf8f8625",
+      "ref_object_type": "tag",
+      "tag": "branch/research-repository-audit-and-acceleration"
+    }
+  ],
+  "schema": "genesis-legacy-tag-archive-v1"
+}
