@@ -1,0 +1,31 @@
+{
+  "schema": "genesis-er1-j3-result-pre-reveal-v1",
+  "status": "VALID_NEGATIVE_MATCHED_REAL_REPO",
+  "scientific_gate_passed": false,
+  "selected_case": 43,
+  "discovery_freeze": "experiment/er1_j3/DISCOVERY_V8_FREEZE.json",
+  "baseline": {
+    "result_sha256": "343e97749c6f3dcd9ff57651a742dcfccd24375876fde984118e66bd0e928fd8",
+    "candidate_budget": 10000,
+    "evaluated_count": 10000,
+    "winner": null,
+    "coverage_pruned_count": 9587,
+    "junit_candidate_count": 413,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0
+  },
+  "successor": {
+    "result_sha256": "ee4461e23ee7054da162ded256558b2c890b50b8bb31cb9dd3b09c6db3f24fba",
+    "candidate_budget": 10000,
+    "evaluated_count": 10000,
+    "winner": null,
+    "coverage_pruned_count": 9671,
+    "junit_candidate_count": 329,
+    "evaluator_error_count": 0,
+    "external_model_calls": 0
+  },
+  "causal_result": "The frozen Java structural successor did not causally outperform the matched J2 scalar baseline on fresh blind case Lang-43 under the same 10000-candidate ceiling; neither arm produced a trigger-passing repair.",
+  "human_fix_inspected": false,
+  "issue_text_inspected": false,
+  "claim_boundary": "J3 is a valid negative external-reality result. It does not invalidate the J2-derived machinery generally; it establishes that the frozen structural successor is insufficient for this fresh defect under the matched budget. The human fix may now be revealed only for post-result diagnosis."
+}
