@@ -1,0 +1,29 @@
+{
+  "base_commit_before_pilot": "5722d965",
+  "bug_id": 15,
+  "buggy_revision": "8fc193527df27beeeb638e6e812e8c4df6c72f46",
+  "candidate_generation_budget_per_arm": 80,
+  "claim_scope": "single previously unexposed Codec case; exploratory real-project repair only; not proof of general RSI",
+  "composition_fraction": 0.4,
+  "er4_lang_holdouts_not_used": true,
+  "evaluation_top_k_per_arm": 8,
+  "feedback_boundary": "all candidate orders frozen and hashed before any tests of generated candidates",
+  "focus_selection": "Codec loaded_classes/<bug>.src, limited to existing project Java sources",
+  "no_fixed_checkout_no_human_patch_no_issue_text": true,
+  "original_must_compile_and_have_at_least_one_failing_test": true,
+  "planner_arms": [
+    "baseline",
+    "g11_shadow_hypotheses",
+    "g11_experimental_rerank"
+  ],
+  "preregistration_digest": "c7933bc6f103061d5fb52930880b4263f19c2ccba4b278ea9a4933271ef13984",
+  "project": "Codec",
+  "repair_memory_source": "empty - no previously retained Codec or Lang fixes",
+  "schema": "genesis-g11-real-codec-preregistration-v1",
+  "selection_digest": "c56c6b0cae8f79f295cc4bbcf3c3c34c945ea03857411f637d2adbc2caa98f2c",
+  "selection_method": "sha256(seed) mod count of active bugs, preserving active-bugs.csv row order",
+  "selection_seed": "genesis-g11-real-project-pilot-20261008-codec-v1",
+  "selection_source": "Defects4J Codec active-bugs.csv metadata only",
+  "source_tree": "buggy checkout only (15b), no fixed checkout",
+  "validator": "Defects4J compile then full Defects4J test on isolated candidate copies"
+}
