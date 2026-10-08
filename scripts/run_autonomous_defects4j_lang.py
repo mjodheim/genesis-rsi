@@ -201,6 +201,10 @@ def _build_index(
     understanding_ledger: ExperienceLedger | None = None,
     insight_registry: InsightRegistry | None = None,
     understanding_rerank: bool = False,
+    understanding_hypotheses: bool = False,
+    source_balance_experimental: bool = False,
+    compile_preflight_javac: Path | None = None,
+    compile_preflight_classpath: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     inherited, _ = inherited_j8(buggy, source_prefix, budget)
     fallback, fallback_meta = j9_successor(buggy, source_prefix, budget, inherited)
@@ -216,6 +220,10 @@ def _build_index(
         understanding_ledger=understanding_ledger,
         insight_registry=insight_registry,
         understanding_rerank=understanding_rerank,
+        understanding_hypotheses=understanding_hypotheses,
+        source_balance_experimental=source_balance_experimental,
+        compile_preflight_javac=compile_preflight_javac,
+        compile_preflight_classpath=compile_preflight_classpath,
     )
 
     records: list[dict[str, Any]] = []
@@ -606,15 +614,21 @@ class LangDefects4JAdapter:
         g11_security: bool = False,
         g11_performance: bool = False,
         g11_rerank_experimental: bool = False,
+        g11_hypotheses: bool = False,
+        g11_source_balance_experimental: bool = False,
+        g11_compile_preflight_experimental: bool = False,
         excluded_case_ids: tuple[int, ...] = (),
     ) -> None:
         self.workspace = workspace.resolve()
         self.workspace.mkdir(parents=True, exist_ok=True)
         if g11_experience_db is not None and not g11_understanding:
             raise ValueError("G11 experience DB requires G11 understanding")
-        if (g11_security or g11_performance or g11_rerank_experimental) and not g11_understanding:
-            raise ValueError("G11 domain modules and reranking require G11 understanding")
+        if (g11_security or g11_performance or g11_rerank_experimental or g11_hypotheses) and not g11_understanding:
+            raise ValueError("G11 domain modules, hypotheses and reranking require G11 understanding")
         self.g11_rerank_experimental = g11_rerank_experimental
+        self.g11_hypotheses = g11_hypotheses
+        self.g11_source_balance_experimental = g11_source_balance_experimental
+        self.g11_compile_preflight_experimental = g11_compile_preflight_experimental
         self.g11_registry = None
         self.g11_ledger = None
         self.g11_insights = None
@@ -706,6 +720,13 @@ class LangDefects4JAdapter:
         bin_tests = _d4j_export(paths["buggy"], "dir.bin.tests")[-1]
         cp_compile = _d4j_export(paths["buggy"], "cp.compile")[-1].split(os.pathsep)
         cp_test = _d4j_export(paths["buggy"], "cp.test")[-1].split(os.pathsep)
+        if self.g11_registry is not None:
+            # The buggy reference has been compiled. Without its build
+            # classpath, valid project references appear unresolved to javac.
+            cp = tuple(_relative_or_absolute_cp(cp_compile, paths["buggy"]))
+            self.g11_registry.register(
+                JavaCompilerModule(java=JAVA, javac=JAVAC, classpath=cp)
+            )
         triggers = _triggers(bug_id)
         focus = _focus_paths(bug_id, paths["buggy"], source_prefix)
 
@@ -723,6 +744,12 @@ class LangDefects4JAdapter:
             understanding_ledger=self.g11_ledger,
             insight_registry=self.g11_insights,
             understanding_rerank=self.g11_rerank_experimental,
+            understanding_hypotheses=self.g11_hypotheses,
+            source_balance_experimental=self.g11_source_balance_experimental,
+            compile_preflight_javac=JAVAC if self.g11_compile_preflight_experimental else None,
+            compile_preflight_classpath=tuple(
+                _relative_or_absolute_cp(cp_compile, paths["buggy"])
+            ) if self.g11_compile_preflight_experimental else (),
         )
         _write_json(paths["indexes"] / "INDEX_SUMMARY.json", summary)
 
@@ -967,13 +994,19 @@ def main() -> int:
                         help="Opt-in read-only performance review signals (not proved speedups)")
     parser.add_argument("--g11-rerank-experimental", action="store_true",
                         help="Opt-in unproven structural reranking; G11 is shadow-only by default")
+    parser.add_argument("--g11-hypotheses", action="store_true",
+                        help="Annotate candidates with falsifiable predicted behavior changes")
+    parser.add_argument("--g11-balance-sources-experimental", action="store_true",
+                        help="Experimental per-source candidate budget and fair top-K rotation")
+    parser.add_argument("--g11-compile-preflight-experimental", action="store_true",
+                        help="Experimental compiler-only patch screening before full suite")
     parser.add_argument("--exclude-case-ids", default="",
                         help="Comma-separated additional protected cases")
     args = parser.parse_args()
     if args.g11_experience_db and not args.g11_understanding:
         parser.error("--g11-experience-db requires --g11-understanding")
-    if (args.g11_security or args.g11_performance or args.g11_rerank_experimental) and not args.g11_understanding:
-        parser.error("G11 module flags and reranking require --g11-understanding")
+    if (args.g11_security or args.g11_performance or args.g11_rerank_experimental or args.g11_hypotheses) and not args.g11_understanding:
+        parser.error("G11 flags and reranking require --g11-understanding")
 
     store = campaign.CampaignStore(args.state)
     initial = None
@@ -997,6 +1030,9 @@ def main() -> int:
         g11_security=args.g11_security,
         g11_performance=args.g11_performance,
         g11_rerank_experimental=args.g11_rerank_experimental,
+        g11_hypotheses=args.g11_hypotheses,
+        g11_source_balance_experimental=args.g11_balance_sources_experimental,
+        g11_compile_preflight_experimental=args.g11_compile_preflight_experimental,
         excluded_case_ids=excluded_ids,
     )
     final = campaign.run(

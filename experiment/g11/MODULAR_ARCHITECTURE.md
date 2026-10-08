@@ -188,3 +188,37 @@ a post-fix replay measured approximately 0.067s baseline, 5.909s G11
 shadow, and 4.905s experimental mode, in one process. These times were
 measured in different runs, are not controlled CPU benchmarks and should
 not be interpreted as statistically reliable speedups.
+
+## Real-project tests and compiler validity screening (2026-10-08)
+
+See G11_REAL_PROJECT_REPORT_20261008.md for the detailed methods, complete
+negative results and experimental limitations. Codec-15 reproduced one
+failure and yielded zero verified repairs among 16 distinct candidates.
+Compress-6 reproduced one failure and yielded zero verified repairs among
+13 distinct candidates, including cases where source balancing created
+noncompiling proposals.
+
+G11 now additionally supports three individually opt-in features:
+
+- G11 hypotheses: compiler-verified comparison/null-guard change
+  predictions and falsifiable boundary probe suggestions, without patch
+  priority changes or oracle access.
+- Experimental source balancing: distribute generator budgets and rotate
+  candidates across distinct causally focused source files; never enabled
+  automatically because fairness is not the same as bug relevance.
+- Experimental compilation preflight: compile the original and proposed
+  Java sources with matching options and project classpath. If the original
+  cannot be compiled using the preflight environment, candidate rejection
+  is inconclusive. Compilation success is NOT full repair validation.
+
+In a *posthoc development check* on 13 exposed Compress-6 candidates,
+the compiler preflight agreed with full project compilation on 13/13:
+3 compile-valid, 10 compile-invalid. No additional bug fix was produced.
+
+The existing Defects4J Lang adapter now passes project build classpath to
+the Java analysis module, addressing the missing-dependency diagnostic
+issue found on the real Codec/Compress pilots. Separate experimental runner
+historical outputs were not retroactively changed.
+
+All effects remain testable behind explicit flags. None changes autonomous
+ER3 systemd service configuration, which remains stopped.

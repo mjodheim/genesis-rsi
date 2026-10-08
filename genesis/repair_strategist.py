@@ -42,6 +42,8 @@ from genesis.repair_ir import RepairPlan, compose, plan_from_candidate, render_c
 from genesis.languages.understanding import ModuleRegistry
 from genesis.languages.experience import ExperienceLedger
 from genesis.insights.registry import InsightRegistry
+from genesis.insights.hypotheses import hypotheses_for_candidates
+from genesis.insights.compile_preflight import screen_candidates
 from genesis.trust_root import digest_of
 
 SCHEMA = "genesis-capability-routed-compositional-repair-v4"
@@ -196,20 +198,37 @@ def _family_candidates(
     focus_paths: Sequence[str],
     per_family_budget: int,
     retained_memory: Mapping[str, Any] | None = None,
+    balance_sources: bool = False,
 ) -> tuple[list[tuple[str, dict[str, Any], int]], dict[str, Any]]:
     effective = _effective_prefixes(root, include_prefixes, focus_paths)
     focus_set = set(_normalize_paths(root, focus_paths))
     gathered: list[tuple[str, dict[str, Any], int]] = []
     meta: dict[str, Any] = {}
 
+    def collect(generator, family_budget: int, *, retained: bool = False):
+        def call(prefixes, budget):
+            if retained:
+                return external_repair_learning.retained_variants(
+                    retained_memory, root,
+                    include_prefixes=prefixes, max_candidates=budget,
+                )
+            return generator(root, include_prefixes=prefixes, max_candidates=budget)
+
+        if balance_sources and len(focus_set) > 1:
+            budget_per_file = max(1, (family_budget + len(focus_set) - 1) // len(focus_set))
+            collected = []
+            digest = ""
+            for focus in sorted(focus_set):
+                result = call((focus,), budget_per_file)
+                collected.extend(result.get("candidates") or [])
+                digest = str(result.get("memory_digest") or digest)
+            return collected[:family_budget], digest
+        result = call(effective, family_budget)
+        return list(result.get("candidates") or []), str(result.get("memory_digest") or "")
+
     for family, generator in FAMILIES:
         family_budget = min(per_family_budget, FAMILY_LIMITS[family])
-        result = generator(
-            root,
-            include_prefixes=effective,
-            max_candidates=family_budget,
-        )
-        raw = result.get("candidates") or []
+        raw, _ = collect(generator, family_budget)
         accepted = 0
         for candidate in raw:
             if not isinstance(candidate, dict):
@@ -232,13 +251,9 @@ def _family_candidates(
     if retained_memory is not None:
         family = "retained_structural"
         family_budget = min(per_family_budget, FAMILY_LIMITS[family])
-        result = external_repair_learning.retained_variants(
-            retained_memory,
-            root,
-            include_prefixes=effective,
-            max_candidates=family_budget,
+        raw, memory_digest = collect(
+            external_repair_learning.retained_variants, family_budget, retained=True,
         )
-        raw = result.get("candidates") or []
         accepted = 0
         for candidate in raw:
             if not isinstance(candidate, dict):
@@ -256,7 +271,7 @@ def _family_candidates(
             "generated": len(raw),
             "accepted": accepted,
             "activated": accepted > 0,
-            "memory_digest": result.get("memory_digest"),
+            "memory_digest": memory_digest,
         }
     else:
         meta["retained_structural"] = {
@@ -313,7 +328,7 @@ def _score_from_understanding(
     rerank: bool,
     max_files: int,
     focus_paths: Sequence[str],
-) -> tuple[list[RepairPlan], dict[str, Any]]:
+) -> tuple[list[RepairPlan], dict[str, Any], dict[str, dict[str, Any]]]:
     """Analyze only buggy-side candidate paths and optionally log observations."""
     if max_files < 1 or max_files > 32:
         raise ValueError("max_understanding_files must be in [1, 32]")
@@ -373,7 +388,7 @@ def _score_from_understanding(
             depth=plan.depth,
             score=plan.score + applied_bonus,
         ))
-    return adjusted, {
+    metadata_payload = {
         "schema": "genesis-g11-planner-analysis-v1",
         "analyzed_file_count": len(reports),
         "selected_file_count": min(len(paths), max_files),
@@ -386,7 +401,7 @@ def _score_from_understanding(
         "ledger_recording_enabled": ledger is not None,
         "position_scoring_limited_to_ascii": True,
     }
-
+    return adjusted, metadata_payload, reports
 
 
 def _build_plans(
@@ -477,6 +492,11 @@ def generate(
     understanding_ledger: ExperienceLedger | None = None,
     insight_registry: InsightRegistry | None = None,
     understanding_rerank: bool = False,
+    understanding_hypotheses: bool = False,
+    source_balance_experimental: bool = False,
+    compile_preflight_javac: Path | None = None,
+    compile_preflight_classpath: Sequence[str] = (),
+    max_compile_preflight_candidates: int = 80,
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
@@ -485,6 +505,10 @@ def generate(
         raise ValueError("domain insights require an enabled understanding registry")
     if understanding_rerank and understanding_registry is None:
         raise ValueError("experimental reranking requires an understanding registry")
+    if understanding_hypotheses and understanding_registry is None:
+        raise ValueError("repair hypotheses require an understanding registry")
+    if source_balance_experimental and len(_normalize_paths(Path(root).resolve(), focus_paths)) > 32:
+        raise ValueError("source balancing is bounded to 32 focus files")
     if max_candidates < 1 or max_candidates > 10_000:
         raise ValueError("max_candidates must be in [1, 10000]")
     if not (0.0 <= composition_fraction <= 0.8):
@@ -500,11 +524,13 @@ def generate(
         focus_paths=focus_paths,
         per_family_budget=family_budget,
         retained_memory=retained_memory,
+        balance_sources=source_balance_experimental,
     )
     atomic, originals = _build_plans(base, records)
     understanding_summary = None
+    understanding_reports: dict[str, dict[str, Any]] = {}
     if understanding_registry is not None:
-        atomic, understanding_summary = _score_from_understanding(
+        atomic, understanding_summary, understanding_reports = _score_from_understanding(
             base, atomic,
             registry=understanding_registry,
             ledger=understanding_ledger,
@@ -536,6 +562,19 @@ def generate(
             p.digest,
         )
     )
+    if source_balance_experimental and focus_paths:
+        from collections import deque
+        groups: dict[str, deque[RepairPlan]] = {}
+        for plan in all_plans:
+            groups.setdefault(plan.path, deque()).append(plan)
+        rotated: list[RepairPlan] = []
+        active = deque(sorted(groups))
+        while active:
+            path = active.popleft()
+            rotated.append(groups[path].popleft())
+            if groups[path]:
+                active.append(path)
+        all_plans = rotated
 
     out: list[dict[str, Any]] = []
     seen_contents: set[tuple[str, str]] = set()
@@ -560,6 +599,15 @@ def generate(
         if len(out) >= max_candidates:
             break
 
+    preflight_summary = None
+    if compile_preflight_javac is not None:
+        # Experimental compiler-only source validity screening. No oracle is
+        # consulted; compile failures are never mislabeled behavioral failures.
+        out, preflight_summary = screen_candidates(
+            base, out, javac=compile_preflight_javac,
+            classpath=compile_preflight_classpath,
+            max_candidates=min(max_compile_preflight_candidates, len(out)),
+        ) if out else (out, None)
     normalized_focus = list(_normalize_paths(base, focus_paths))
     payload = {
         "schema": SCHEMA,
@@ -576,7 +624,19 @@ def generate(
         "external_model_calls": 0,
         "candidates": out,
     }
+    if preflight_summary is not None:
+        payload["g11_compile_preflight"] = preflight_summary
+    if source_balance_experimental:
+        from collections import Counter
+        payload["source_balance_experimental"] = True
+        payload["selected_candidate_paths"] = dict(sorted(Counter(c["path"] for c in out).items()))
     if understanding_summary is not None:
+        if understanding_hypotheses:
+            # Hypotheses run AFTER ranking. They never alter candidate selection.
+            understanding_summary["repair_hypotheses"] = hypotheses_for_candidates(
+                root=base, reports=understanding_reports,
+                candidates=out, max_candidates=min(24, max_candidates),
+            )
         payload["g11_understanding"] = understanding_summary
     # Keep the disabled path bit-for-bit backward compatible with v4.
     without_candidates = {k: v for k, v in payload.items() if k != "candidates"}

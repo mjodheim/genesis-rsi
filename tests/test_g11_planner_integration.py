@@ -81,6 +81,34 @@ class G11PlannerTests(unittest.TestCase):
             self.assertGreater(shadow["g11_understanding"]["potential_plan_count"], 0)
             self.assertFalse(shadow["g11_understanding"]["experimental_reranking_enabled"])
 
+    def test_hypotheses_are_falsifiable_annotations_not_hidden_ranking(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            target = root / "src" / "Trial.java"
+            target.parent.mkdir(parents=True)
+            target.write_text("class Trial { int f(int x) { if (x < 5) return 1; return 0; } }")
+            registry = ModuleRegistry()
+            registry.register(JavaCompilerModule(java=JDK/"java", javac=JDK/"javac"))
+            config = dict(include_prefixes=["src"], focus_paths=["src/Trial.java"],
+                          max_candidates=64, per_family_budget=64)
+            baseline = repair_strategist.generate(root, **config)
+            enhanced = repair_strategist.generate(
+                root, understanding_registry=registry,
+                understanding_hypotheses=True, **config,
+            )
+            self.assertEqual(
+                [c["content_utf8"] for c in baseline["candidates"]],
+                [c["content_utf8"] for c in enhanced["candidates"]],
+            )
+            hypothesis_index = enhanced["g11_understanding"]["repair_hypotheses"]
+            self.assertFalse(hypothesis_index["ranking_altered"])
+            self.assertGreater(hypothesis_index["hypothesis_count"], 0)
+            self.assertTrue(all(
+                not h["correct_fix_proven"] and h["suggested_probe_values"]
+                for item in hypothesis_index["annotations"]
+                for h in item["hypotheses"]
+            ))
+
     def test_g11_reranking_without_analyzer_is_rejected(self):
         with tempfile.TemporaryDirectory() as td:
             with self.assertRaisesRegex(ValueError, "requires an understanding registry"):
@@ -116,6 +144,32 @@ class G11PlannerTests(unittest.TestCase):
                                 for f in meta["domain_findings"]))
             self.assertEqual(repair_strategist.generate(root, **kwargs)["strategy_digest"],
                              baseline["strategy_digest"])
+
+    def test_optional_compile_preflight_never_changes_candidate_content(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            target = root / "src" / "A.java"
+            target.parent.mkdir(parents=True)
+            target.write_text(
+                "class A { int f(int x) { if(x < 2) return 1; return 0; } }"
+            )
+            cfg = dict(include_prefixes=["src"], focus_paths=["src/A.java"],
+                       max_candidates=12, per_family_budget=12)
+            plain = repair_strategist.generate(root, **cfg)
+            screened = repair_strategist.generate(
+                root, compile_preflight_javac=JDK/"javac",
+                max_compile_preflight_candidates=12, **cfg,
+            )
+            meta = screened["g11_compile_preflight"]
+            self.assertEqual(meta["candidate_count"], screened["candidate_count"])
+            self.assertEqual(meta["screened_candidate_count"], screened["candidate_count"])
+            self.assertTrue(meta["candidate_content_unchanged"])
+            self.assertFalse(meta["behavioral_correctness_proven"])
+            self.assertEqual(
+                sorted(c["content_utf8"] for c in plain["candidates"]),
+                sorted(c["content_utf8"] for c in screened["candidates"]),
+            )
+            self.assertNotIn("g11_compile_preflight", plain)
 
     def test_holdouts_are_excluded_and_already_selected_holdout_is_blocked(self):
         with tempfile.TemporaryDirectory() as td:

@@ -1,0 +1,199 @@
+{
+  "all_arms_frozen_before_validation": true,
+  "arms": {
+    "balanced_g11_hypotheses": {
+      "candidate_count": 80,
+      "candidate_order_digest": "ab619c9f99c331428660ec24d06ee3035318df7e6796042ee00dc3042266977b",
+      "compiled_count": 0,
+      "evaluated_top_k": 8,
+      "first_validated_rank": null,
+      "fully_validated_repair_count": 0,
+      "hypothesis_count": 0,
+      "planner_seconds": 3.788,
+      "unparseable_or_exception_count": 8
+    },
+    "baseline": {
+      "candidate_count": 80,
+      "candidate_order_digest": "59c817d07f5834e370a11ab50180cbc74bfd57986ed52ba60517ea9d8ce9c941",
+      "compiled_count": 3,
+      "evaluated_top_k": 8,
+      "first_validated_rank": null,
+      "fully_validated_repair_count": 0,
+      "hypothesis_count": 0,
+      "planner_seconds": 0.5666,
+      "unparseable_or_exception_count": 5
+    },
+    "source_balanced": {
+      "candidate_count": 80,
+      "candidate_order_digest": "ab619c9f99c331428660ec24d06ee3035318df7e6796042ee00dc3042266977b",
+      "compiled_count": 0,
+      "evaluated_top_k": 8,
+      "first_validated_rank": null,
+      "fully_validated_repair_count": 0,
+      "hypothesis_count": 0,
+      "planner_seconds": 0.6862,
+      "unparseable_or_exception_count": 8
+    }
+  },
+  "bug_id": 6,
+  "fixed_checkout_or_human_patch_used": false,
+  "freeze_digest": "db8924dba6f883f697db7385991ddc31403c842010b04c20c6e79ca7b05b87d4",
+  "fully_validated_unique_candidates": 0,
+  "original_compiles": true,
+  "original_full_suite_failing_count": 1,
+  "preregistration_digest": "feedd55f23cb67388986dcdd10613bd98c48dfc2cd77e5eaa7ccdd0b107f45e4",
+  "project": "Compress",
+  "read_only_source_analysis": true,
+  "report_digest": "54cf5c2c15d3bf6eaade803f260616648348712c991d28bf23d344702c77f3c4",
+  "result_limit": "one real-project defect, top-8 full suites, no RSI/generalization claim",
+  "schema": "genesis-g11-compress6-real-project-evaluation-v1",
+  "unique_candidates_evaluated": 13,
+  "validator_outcomes": [
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "4d0a45e72310d34883328d66f66d87b453382ff36fcc498d010943b7202479be",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "0430c1a8915815880ca955320dacac5cb071bf6fb000d08f8d57c23a9eadfd52"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "4ba7fbf0225b04c7090aba52d79ccb7416199c6bc5c49e2ba0e6d0b2fc0b3258",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "2185f4b0ca25d55f1c6ebd10d4adc2176751dfc31ad26ca4aad925af666d4ad2"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 12,
+        "test_exit": 0,
+        "test_output_sha256": "c8d3547806a1d8bbabce5dd55346e137a8aec52fa50c4a187f502dce127ae1d9",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "5227c2d02ec04cb7895b9b18d8d0008dbcd5d6559a8d2488ff085d81b4e987e2"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "3f5d147ca556df507ff79223d0234db6aa10ad66e8d6f2a1c6f3c5f90d56afea",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "dacfada2eaa32baf5b075352c0505dda13233636622138b5045afb63baf28a62"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "4ba7fbf0225b04c7090aba52d79ccb7416199c6bc5c49e2ba0e6d0b2fc0b3258",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "dbb340cf2e19b6c7d1421233e618c6860efa9ea780cdd85599d0d280fe9a631c"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "1e26871f0baaaef6c057fce696fed8cd568411beaabcac90d3b0c758e5079ae3",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "ddf4381c0ed6cba61d80d84d59c11d578641473803275cea55dc058390b24dd3"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "e96879f572869f847f07caa91f34d0607f35890175d3fc4769e645801c68c8c2",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "e8b6bbab9f3cd649869102116c66e03f119933454aa822771ff60707e48f66e4"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "755930cf0df9afa5ee5ce39784a43500e1862b13a359c3f47569f231c9dac250",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "f0cb74fc4b30aad39004ec54aab5d1b1cce4a8a1bcaf6692b0673825eaac8179"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "7b1aac526d09b9d211ff34e8da80193c88515236515a46bb7182abddb2560fe3",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+      "sha256": "368f9329c12698b2342e9ce84595f131bc0c31cd97a51c85967bfe341e16db63"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "c0c8669c4ae73df4d44d75bda11ac1fba57af6f7cbdad742969e684ed74b1e95",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+      "sha256": "79a41ab87d7b0d43d6ccf80c122790ec2a7fd1ee26d43d0b2a5cd6058deb3e09"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "19bf08cba0d463a95cdbe9fa137a157093b115bb17af8b434db349acd302b9be",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+      "sha256": "cd27f437a9e76d82e55b30e60255c2d4c954712131d7d37f2125997998ef991d"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "7bb789d3c75afa04f14d1c8da43fb68f0305d1db1db6742af8eb94610a1a3cdc",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipExtraField.java",
+      "sha256": "af26371c076546a13b8a4df742d507e849e9198ece446789d6e02e18392569d0"
+    },
+    {
+      "outcome": {
+        "compile_exit": 1,
+        "compile_output_sha256": "9e2167abcdffba980925b172bb0272b39f928ecb19711f3144df517bf5a72f7e",
+        "compiled": false,
+        "error": "compile failed",
+        "failing_tests": null
+      },
+      "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipExtraField.java",
+      "sha256": "f8afc6e4f4beeee6f299b080382cc9926108ebc391be54291fd7f61f8b8e6e12"
+    }
+  ]
+}

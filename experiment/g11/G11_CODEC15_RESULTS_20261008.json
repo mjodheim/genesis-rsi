@@ -1,0 +1,245 @@
+{
+  "all_arms_frozen_before_validation": true,
+  "arms": {
+    "baseline": {
+      "candidate_count": 80,
+      "candidate_order_digest": "516048e728e470f89e3a7e33c9bd557d1b2199cb03d8c3b56639d7fcca66a27e",
+      "compiled_count": 8,
+      "evaluated_top_k": 8,
+      "first_validated_rank": null,
+      "fully_validated_repair_count": 0,
+      "hypothesis_count": 0,
+      "planner_seconds": 0.3114,
+      "unparseable_or_exception_count": 0
+    },
+    "g11_experimental_rerank": {
+      "candidate_count": 80,
+      "candidate_order_digest": "8cd0b08196cf16cdd91d9f5f542a6984cc50eedae1b1bc42144c3c78da885723",
+      "compiled_count": 8,
+      "evaluated_top_k": 8,
+      "first_validated_rank": null,
+      "fully_validated_repair_count": 0,
+      "hypothesis_count": 0,
+      "planner_seconds": 2.9451,
+      "unparseable_or_exception_count": 0
+    },
+    "g11_shadow_hypotheses": {
+      "candidate_count": 80,
+      "candidate_order_digest": "516048e728e470f89e3a7e33c9bd557d1b2199cb03d8c3b56639d7fcca66a27e",
+      "compiled_count": 8,
+      "evaluated_top_k": 8,
+      "first_validated_rank": null,
+      "fully_validated_repair_count": 0,
+      "hypothesis_count": 0,
+      "planner_seconds": 3.9129,
+      "unparseable_or_exception_count": 0
+    }
+  },
+  "bug_id": 15,
+  "fixed_checkout_or_human_patch_used": false,
+  "freeze_digest": "6a7d95ca2ec739e7c42149a02db5876752978594080fd1d5cf0cdde214f80e1c",
+  "fully_validated_unique_candidates": 0,
+  "original_compiles": true,
+  "original_full_suite_failing_count": 1,
+  "preregistration_digest": "c7933bc6f103061d5fb52930880b4263f19c2ccba4b278ea9a4933271ef13984",
+  "project": "Codec",
+  "read_only_source_analysis": true,
+  "report_digest": "61341e35d941c005d8f2e0a2e1f69caf88365163d8c633f788e1415963676fae",
+  "result_limit": "one real-project defect, top-8 full suites, no RSI/generalization claim",
+  "schema": "genesis-g11-codec15-real-project-evaluation-v1",
+  "unique_candidates_evaluated": 16,
+  "validator_outcomes": [
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "0a227ef9b5131559ac6045b0c129baf431d31b3da99eb2208a7269dd2bdfa4a3"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "17d77bcc5f3f11fa16903dff832e901dcaaea4b8aaaf79ced6cda1bdbe8b96ec"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "1f44e062d0d2817f04ad5957d974775a8c899d76778a8bb0616a6d3900eaac2a"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "2276a8fe8b9d381483d2f030e7047f94bb1fdc0b3dd94649d6d6bfb72fd95fdc"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "30b6de492959ccfadf780d2b62613c86bb65fbd6c635495aed5ee5ac1ebb4c06"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "323202d5e79e1fb89c977c90694c2920eb4021a3a11634b36e9494ec08882e8d"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "3a73831292f3256d9a4c1548ac43b1c2313e1babefe84be22321dd677936218d"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "64417afb849c8bb00dfa9fc78dfb7002912542d6d9cd61c7680bc2109b61ac4b"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "771b2fd5694de612d194f73244c934e715bfa464a6afc3e975e00a3096a09526"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "7b9c7e619e547b4bb9d0fbb51560d3446dd6373aac63356d238af9d27fd52339"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "a2a7710bb7948c8456fc4f6c2ac9065f6522f7b493b13477aeb79b52e1de5b10"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "aaba9d73f51c2d219004841a7097a3e86f416b3e048ca5f34b5039ffc3c0da2e"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "cd286ae7ff4eed9ea1d99c907ff2b1c5bfde9207ab32992d191d23cecb8dec91"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "ecf9ca561ff6afde4967f79e396c42047aaed3697ec624c80addd589cdc1d786"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "fcc38d999dd626809e188f817cb70cbb3150a3eaa43aedd2c12d00c6fa235c52"
+    },
+    {
+      "outcome": {
+        "compiled": true,
+        "error": null,
+        "failing_tests": 1,
+        "test_exit": 0,
+        "test_output_sha256": "67743646cc615d807d7217e6cad8d4f50e668a6790d2653b23f30b2b0a2e226c",
+        "validated_full_suite": false
+      },
+      "path": "src/main/java/org/apache/commons/codec/Encoder.java",
+      "sha256": "fe72c75105b14fe73afbb2cf013bc95606ee98394e5f971eb039b1c52dbd266a"
+    }
+  ]
+}
