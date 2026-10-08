@@ -1,0 +1,45 @@
+{
+  "already_exposed_training_case": true,
+  "bug_id": 53,
+  "candidate_generated_before_evaluator": true,
+  "candidate_sha256": "0ec59fa2f6b0a3d3473df88be442e099d67c663b8073234b00098826c231dffc",
+  "compiled_candidate_digest": "8239ae9d9b0eb6d6cd9ac048eedba5cd35adb1181034cc26b20a496a7c82ac5e",
+  "freeze_digest": "298c5a5e74f6f2967868e6a7269714aee83e9c67995633d5f1477c4eb9859b7a",
+  "generator_source": "bounded_source_peer_contract_grammar",
+  "human_reference_patch_seen": false,
+  "hypothesis": {
+    "derived_only_from_buggy_source": true,
+    "donor_methods": [
+      "divide",
+      "multiply",
+      "subtract"
+    ],
+    "donor_quorum": 3,
+    "human_patch_seen": false,
+    "hypothesis": "sibling_boolean_guard_contract",
+    "hypothesis_digest": "44a308f3ed46dcb559794bbb27d8ca5fea63bf372cfe597415dc4bf148d791dd",
+    "language": "java",
+    "parameter_name": "rhs",
+    "parameter_type": "Complex",
+    "placement": "after_existing_null_check",
+    "predicate": {
+      "argument_boolean_field": "isNaN",
+      "connector": "||",
+      "left_boolean_field": "isNaN"
+    },
+    "return_constant": "NaN",
+    "schema": "genesis-v2-typed-java-guard-hypothesis-v1",
+    "source_path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "source_sha256": "22eca1722c9d0587002d0207e121174f1ff1c71fb0744567cd1b22ebc90c3ddc",
+    "target_method": "add",
+    "target_return_type": "Complex",
+    "validator_result_seen": false
+  },
+  "independent_unseen_holdout": false,
+  "language": "java",
+  "project": "Math",
+  "proposal_index_digest": "529cea4281fdcaa926d84c3f09b0279063281420254385cc81d3b3d50b98bd08",
+  "schema": "genesis-v21-real-development-freeze-v1",
+  "source_relative_path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+  "source_sha256": "22eca1722c9d0587002d0207e121174f1ff1c71fb0744567cd1b22ebc90c3ddc"
+}

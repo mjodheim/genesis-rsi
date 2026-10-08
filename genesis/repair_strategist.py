@@ -49,6 +49,7 @@ from genesis.insights.hypotheses import hypotheses_for_candidates
 from genesis.insights.compile_preflight import screen_candidates
 from genesis.trust_root import digest_of
 from genesis.v2.live_adapter import rerank as v2_rerank
+from genesis.v2 import semantic_adapter as v21_semantic_adapter
 from genesis.v2.genome import validate_genome as v2_validate_genome
 
 SCHEMA = "genesis-capability-routed-compositional-repair-v4"
@@ -60,6 +61,7 @@ FAMILY_LIMITS: dict[str, int] = {
     "java_state_consistency": 64,
     "java_sibling_guard": 64,
     "java_stream_iterator": 64,
+    "v21_peer_contract": 32,
     "java_string_literal": 64,
     "java_default_normalization": 64,
     "java_expression": 64,
@@ -78,6 +80,7 @@ FAMILY_WEIGHTS: dict[str, int] = {
     "java_state_consistency": 145,
     "java_sibling_guard": 140,
     "java_stream_iterator": 142,
+    "v21_peer_contract": 150,
     "java_string_literal": 118,
     "java_default_normalization": 120,
     "java_expression": 110,
@@ -213,6 +216,7 @@ def _family_candidates(
     balance_sources: bool = False,
     enable_sibling_guard: bool = False,
     enable_stream_iterator: bool = False,
+    enable_v21_semantic: bool = False,
 ) -> tuple[list[tuple[str, dict[str, Any], int]], dict[str, Any]]:
     effective = _effective_prefixes(root, include_prefixes, focus_paths)
     focus_set = set(_normalize_paths(root, focus_paths))
@@ -245,6 +249,8 @@ def _family_candidates(
           if enable_sibling_guard else ())
         + ((("java_stream_iterator", java_stream_iterator_mutations.generate),)
            if enable_stream_iterator else ())
+        + ((("v21_peer_contract", v21_semantic_adapter.generate),)
+           if enable_v21_semantic else ())
         + FAMILIES
     )
     for family, generator in selected_families:
@@ -524,6 +530,7 @@ def generate(
     stream_iterator_experimental: bool = False,
     g12_retained_probe_slots: int = 0,
     v2_discovery_genome: Mapping[str, Any] | None = None,
+    v21_semantic_hypotheses_experimental: bool = False,
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
@@ -562,6 +569,7 @@ def generate(
         balance_sources=source_balance_experimental,
         enable_sibling_guard=sibling_guard_experimental,
         enable_stream_iterator=stream_iterator_experimental,
+        enable_v21_semantic=v21_semantic_hypotheses_experimental,
     )
     if g12_retained_probe_slots:
         # Without this opt-in, identical candidate content produced by the
@@ -703,6 +711,15 @@ def generate(
     }
     if v2_rank_summary is not None:
         payload["v2_discovery_ranking"] = v2_rank_summary
+    if v21_semantic_hypotheses_experimental:
+        payload["v21_semantic_hypothesis_generation"] = {
+            "schema":"genesis-v21-search-family-enablement-v1",
+            "family":"v21_peer_contract","source_family_limit":32,
+            "only_buggy_source_facts":True,
+            "human_patch_seen":False,
+            "validation_result_used_during_proposal":False,
+            "independent_repair_successes_claimed":0,
+        }
     if g12_retained_probe_slots:
         payload["g12_retained_probe"] = {
             "schema": "genesis-g12-retained-exploration-v1",
