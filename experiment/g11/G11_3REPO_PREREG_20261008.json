@@ -1,0 +1,54 @@
+{
+  "G11_family_precommitted": true,
+  "arms": [
+    "legacy_unchanged",
+    "candidate_atomic_first_plus_source_balancing_plus_testname_hints"
+  ],
+  "baseline_revision": "fc9d6c3d",
+  "budget_per_arm": 80,
+  "buggy_checkout_only": true,
+  "claim": "small exploratory unseen multirepo holdout, not proof of general RSI",
+  "composition_fraction": 0.4,
+  "contaminated_ER4_Lang_cases_excluded": true,
+  "evaluate_top_k_per_arm": 8,
+  "forbidden_reference_sources": [
+    "fixed version",
+    "human patch",
+    "issue text",
+    "known fix recipes",
+    "learned memory from evaluated repo"
+  ],
+  "full_suite_only_when_trigger_passes": true,
+  "preregistration_digest": "8d21b4da8e3e31798fa402092379fed278cca6978b58592c292f811029296d19",
+  "preserve_independent_oracle": "all arms generated and sealed before any generated candidate evaluation",
+  "projects": [
+    {
+      "bug_id": 53,
+      "buggy_revision": "fe761c28ceca03d859ec34273798d67d85bd704b",
+      "project": "Math",
+      "seed": "genesis-g11-post-fix-multirepo-frozen-20261008-Math-v1",
+      "seed_sha256": "564d867741d53c07a4959b863417aa8966c38673d74c47d939a79cd6885e4746",
+      "selection_pool_size": 106
+    },
+    {
+      "bug_id": 16,
+      "buggy_revision": "33f662b219b439af5134de4553a1bb9485136999",
+      "project": "Csv",
+      "seed": "genesis-g11-post-fix-multirepo-frozen-20261008-Csv-v1",
+      "seed_sha256": "9a83c1f7c871a121c8313ad456a1700ab0fe856393c422c9dc8c0251fb945cff",
+      "selection_pool_size": 16
+    },
+    {
+      "bug_id": 24,
+      "buggy_revision": "72784c46f6a7d7644398db5c7ac8bd3822c523d4",
+      "project": "Collections",
+      "seed": "genesis-g11-post-fix-multirepo-frozen-20261008-Collections-v1",
+      "seed_sha256": "78db177ab02248097c44dcec5694a307329f026138da13b5fb39fecb1d347dd7",
+      "selection_pool_size": 28
+    }
+  ],
+  "schema": "genesis-g11-postfix-three-repos-prereg-v1",
+  "selection_logic": "int(sha256(seed),16) mod count of active bugs in active-bugs.csv row order",
+  "trigger_first": true,
+  "valid_repair_requires_full_suite_zero_failures": true
+}
