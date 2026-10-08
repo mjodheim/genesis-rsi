@@ -57,6 +57,16 @@ M074 invokes the Docker CLI/daemon to create disposable, network-disabled contai
 external execution prerequisite for that experiment; it is not declared as a Python package and is
 not copied into the Mira Python package by the repository.
 
+### Defects4J validator image
+
+`deploy/defects4j/Dockerfile` builds a local image from `ubuntu:22.04`, OpenJDK 11 and Defects4J
+pinned at revision `8c16da8230843cdc918eaf4ddb449637f02b83c6`. Defects4J, its project repositories
+and the tools its `init.sh` downloads are fetched at image build time and stay in the local image;
+none of them is copied into this repository or redistributed by it. `genesis/defects4j_sandbox.py`
+invokes the Docker CLI to run that image in disposable, network-disabled containers.
+
+**Audit note:** the `ubuntu:22.04` base is named by tag, not by digest.
+
 ### M081 / shell and HTTP service
 
 M081 uses two pinned container bases:
