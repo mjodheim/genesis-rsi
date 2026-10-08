@@ -77,3 +77,83 @@ partition, input snapshots and fair A/B/C budgets are established.
   examples while recording compute costs and failures.
 - Never execute untrusted plugin code outside an isolated sandbox: installed
   adapters are trusted code in this first implementation.
+
+## Small-language tests (2026-10-08)
+
+Reproducible command:
+
+    python3 scripts/g11_language_smoke.py > experiment/g11/G11_LANGUAGE_SMOKE_20261008.json
+
+The smoke matrix used **18 synthetic examples** (6 language families x 3
+scenarios: branch/call, comment/string decoy, malformed source). Of 14 checks
+supported by current fidelity, **14 passed** after fixing two real false
+positives: compiler-generated Java implicit constructor calls and a C# method
+declaration misclassified as a call. The remaining **4 checks** (malformed
+syntax in C#, Rust, Go and TS) are excluded from the pass rate because their
+lexical mode cannot reliably validate syntax; their incidental diagnostics
+must not be counted as comprehensive syntax validation.
+
+- Java: JDK compiler-derived AST and partial semantic bindings.
+- Python: CPython AST.
+- C#, Rust, Go, TS: lexical only, sufficient for small source structures but
+  not proof of semantic understanding.
+
+This verifies instrumentation/signal accuracy on narrow synthetic cases.
+**It is not a Defects4J repair result, nor evidence of cross-language
+generalization, nor an improvement in validated fixes.**
+
+## Security and performance modules (first prototype)
+
+Cross-cutting read-only module registry: genesis/insights/registry.py.
+Initially installed modules (each independently removable):
+
+- security.python.ast-v1: dynamic eval/exec review, subprocess shell=True
+  review, with AST matching (not string/comment matching).
+- security.java.compiler-v1: compiler-resolved Runtime.exec review.
+- performance.python.ast-v1 and performance.java.compiler-v1: nested-loop
+  review; these flags are **not measured time complexity or speedups**.
+
+Module outputs include fidelity, rule ID, source line, confidence, coverage
+by domain, and explicit flags describing that problems and speedups are
+not verified. No source code is executed. Files with insufficient language
+fidelity are marked unsupported/insufficient, NOT secure or optimized.
+Never treat zero warnings as a security audit clearance.
+
+Reproducible read-only CLI on expressly named files:
+
+    python3 scripts/g11_module_probe.py --language-compiler --security \
+      --performance genesis/java_analysis/GenesisJavaAnalyzer.java \
+      genesis/repair_strategist.py
+
+Optional --experience-db /path/to/TRAIN-only.sqlite persists portable
+observation patterns; do not attach evaluation holdout files to that DB.
+
+experiment/g11/G11_DOMAIN_PROBE_20261008.json records this first local
+probe: **2 source files analyzed; 3 informational nested-loop review hints
+in repair_strategist.py, zero security hints**. These are not proof of a
+slowdown or proof that the files are secure.
+
+The repair planner accepts an opt-in domain registry alongside the existing
+language registry and records review findings in strategy metadata. The
+Defects4J Lang training-only CLI provides:
+
+    --g11-understanding --g11-security --g11-performance
+
+These switches are not enabled for the systemd service. The legacy planner
+still produces the same output when no G11 switches are supplied. Experience
+storage is likewise opt-in via --g11-experience-db.
+
+### Scientific and safety boundaries
+
+- Trusted modules are explicitly registered; arbitrary plugins are NOT
+  loaded from inspected repositories. Current plugin code runs in the host
+  process; isolate third-party plugins before supporting installation.
+- Python AST warnings cannot establish taint; Java Runtime.exec matching
+  cannot establish exploitability; static nested loops cannot establish poor
+  performance. Confirmation requires appropriate tests, taint reasoning,
+  independent security validation and actual benchmarks.
+- The ER3 systemd campaign remains intentionally stopped to protect future
+  holdouts. Four prior ER4 cases were contaminated.
+- The observation ledger remembers usage after a module is removed, not how
+  to execute the removed analyzer. Actual generalization and any recursive
+  self-improvement remain to be shown.

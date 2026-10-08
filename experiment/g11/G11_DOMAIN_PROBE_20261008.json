@@ -1,0 +1,68 @@
+{
+  "external_model_calls": 0,
+  "file_count": 2,
+  "findings_are_unverified_review_hints": true,
+  "ledger_summary_digest": null,
+  "no_repository_code_executed": true,
+  "report_digest": "9957a2f20d1938261ea6a3d6d2667371dc42c4b58285d39ba84057ac9fc7bfa2",
+  "reports": [
+    {
+      "coverage_by_domain": {
+        "performance": "checked",
+        "security": "checked"
+      },
+      "fidelity": "compiler_semantic_partial",
+      "filename": "GenesisJavaAnalyzer.java",
+      "findings": [],
+      "insight_digest": "112233918bbd8d5106824cc81d7eb05a0bc8f4f581e6c4f37f8f9ce96190e895",
+      "language": "java"
+    },
+    {
+      "coverage_by_domain": {
+        "performance": "checked",
+        "security": "checked"
+      },
+      "fidelity": "ast",
+      "filename": "repair_strategist.py",
+      "findings": [
+        {
+          "confidence": "low",
+          "domain": "performance",
+          "level": "informational",
+          "line": 214,
+          "module_id": "performance.python.ast-v1",
+          "reason": "Nested iteration may grow with input sizes; benchmark before optimizing.",
+          "requires_human_or_independent_validation": true,
+          "rule_id": "nested-iteration-review",
+          "verified_problem": false
+        },
+        {
+          "confidence": "low",
+          "domain": "performance",
+          "level": "informational",
+          "line": 431,
+          "module_id": "performance.python.ast-v1",
+          "reason": "Nested iteration may grow with input sizes; benchmark before optimizing.",
+          "requires_human_or_independent_validation": true,
+          "rule_id": "nested-iteration-review",
+          "verified_problem": false
+        },
+        {
+          "confidence": "low",
+          "domain": "performance",
+          "level": "informational",
+          "line": 432,
+          "module_id": "performance.python.ast-v1",
+          "reason": "Nested iteration may grow with input sizes; benchmark before optimizing.",
+          "requires_human_or_independent_validation": true,
+          "rule_id": "nested-iteration-review",
+          "verified_problem": false
+        }
+      ],
+      "insight_digest": "d22c4cf7cf0d4f5263b50f5240988e120a8dffeac6f4a9bbff8602af625210a9",
+      "language": "python"
+    }
+  ],
+  "review_hint_count": 3,
+  "schema": "genesis-g11-probe-bundle-v1"
+}

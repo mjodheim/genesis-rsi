@@ -41,6 +41,7 @@ from genesis import (
 from genesis.repair_ir import RepairPlan, compose, plan_from_candidate, render_candidate
 from genesis.languages.understanding import ModuleRegistry
 from genesis.languages.experience import ExperienceLedger
+from genesis.insights.registry import InsightRegistry
 from genesis.trust_root import digest_of
 
 SCHEMA = "genesis-capability-routed-compositional-repair-v4"
@@ -308,6 +309,7 @@ def _score_from_understanding(
     *,
     registry: ModuleRegistry,
     ledger: ExperienceLedger | None,
+    insight_registry: InsightRegistry | None,
     max_files: int,
     focus_paths: Sequence[str],
 ) -> tuple[list[RepairPlan], dict[str, Any]]:
@@ -327,6 +329,10 @@ def _score_from_understanding(
             reports[relpath] = report
             if ledger is not None:
                 ledger.record(report, operator="repair-planning-observation")
+            diagnostic = (
+                insight_registry.inspect(path, understanding=report, ledger=ledger)
+                if insight_registry is not None else None
+            )
             metadata.append({
                 "path": relpath,
                 "language": report["language"],
@@ -335,6 +341,9 @@ def _score_from_understanding(
                 "analysis_digest": report["analysis_digest"],
                 "diagnostic_count": len(report["diagnostics"]),
                 "features": report["features"],
+                "domain_insight_digest": diagnostic["insight_digest"] if diagnostic else None,
+                "domain_findings": diagnostic["findings"] if diagnostic else [],
+                "domain_coverage": diagnostic["coverage_by_domain"] if diagnostic else None,
             })
         except Exception as exc:
             metadata.append({"path": relpath, "analysis_error": type(exc).__name__})
@@ -457,10 +466,13 @@ def generate(
     retained_memory: Mapping[str, Any] | None = None,
     understanding_registry: ModuleRegistry | None = None,
     understanding_ledger: ExperienceLedger | None = None,
+    insight_registry: InsightRegistry | None = None,
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
         raise ValueError("experience ledger requires an enabled understanding registry")
+    if insight_registry is not None and understanding_registry is None:
+        raise ValueError("domain insights require an enabled understanding registry")
     if max_candidates < 1 or max_candidates > 10_000:
         raise ValueError("max_candidates must be in [1, 10000]")
     if not (0.0 <= composition_fraction <= 0.8):
@@ -484,6 +496,7 @@ def generate(
             base, atomic,
             registry=understanding_registry,
             ledger=understanding_ledger,
+            insight_registry=insight_registry,
             max_files=max_understanding_files,
             focus_paths=focus_paths,
         )

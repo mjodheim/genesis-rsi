@@ -1,6 +1,8 @@
 # G11 — Program Understanding (pre-implementation protocol)
 
-Status: DESIGN ONLY. No claim of autonomous repair or G11 validation.
+Status: PROTOCOL + OPT-IN PROTOTYPE (2026-10-08). Modules and smoke tests exist;
+this is NOT a claim of successful autonomous repair or validated G11 improvement.
+See MODULAR_ARCHITECTURE.md for current implementation and results.
 
 ## Scientific question
 Does explicit Java program analysis increase the rate of fully validated repairs on unseen defects, at a fixed candidate/time budget?

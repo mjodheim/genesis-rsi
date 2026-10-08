@@ -146,6 +146,10 @@ public final class GenesisJavaAnalyzer {
     }
     @Override public Void visitMethodInvocation(MethodInvocationTree t, Void unused) {
       Element e = element(getCurrentPath());
+      // javac may synthesize implicit super() calls with no source range.
+      // Such calls are not evidence that the user's code invokes a method.
+      if (start(pos,unit,t) < 0 || end(pos,unit,t) < start(pos,unit,t))
+        return super.visitMethodInvocation(t, unused);
       calls.add(record("start",start(pos,unit,t),"end",end(pos,unit,t),
           "method",e == null ? null : e.toString(),
           "target_id",e instanceof ExecutableElement ? id(e) : null,

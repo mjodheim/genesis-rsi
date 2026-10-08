@@ -163,9 +163,21 @@ def _node(kind: str, token: SourceToken, **fields: object) -> dict[str, object]:
     }
 
 
-def _lexical_structure(tokens: tuple[SourceToken, ...]) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+def _lexical_structure(
+    tokens: tuple[SourceToken, ...], *, language: str | None = None
+) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
     nodes: list[dict[str, object]] = []
     symbols: list[dict[str, object]] = []
+    # One linear pass for parenthesis partners prevents O(n²) lookahead
+    # on large C# files containing many calls and signatures.
+    paren_close: dict[int, int] = {}
+    open_parens: list[int] = []
+    if language == "csharp":
+        for index, item in enumerate(tokens):
+            if item.value == "(":
+                open_parens.append(index)
+            elif item.value == ")" and open_parens:
+                paren_close[open_parens.pop()] = index
 
     declaration_keywords = {"class", "interface", "struct", "enum", "record", "type"}
     function_keywords = {"def", "fn", "func", "function"}
@@ -215,7 +227,22 @@ def _lexical_structure(tokens: tuple[SourceToken, ...]) -> tuple[list[dict[str, 
             continue
 
         if token.kind == "identifier" and following and following.value == "(":
-            if not previous or previous.value not in function_keywords | control_keywords:
+            # C# declarations also look like identifier(...); unlike calls,
+            # they have a return type immediately before and a body after ')'.
+            # This is ONLY a conservative lexical heuristic, not Roslyn.
+            is_csharp_declaration = False
+            if language == "csharp" and previous and previous.value != ".":
+                if previous.kind in {"identifier", "keyword"} and previous.value not in {
+                    "return", "throw", "new", "await", "if", "for", "while",
+                }:
+                    closing_index = paren_close.get(index + 1)
+                    if closing_index is not None:
+                        after = tokens[closing_index + 1] if closing_index + 1 < len(tokens) else None
+                        is_csharp_declaration = bool(after and after.value in {"{", "=>"})
+            if is_csharp_declaration:
+                nodes.append(_node("function_declaration", token, name=token.value))
+                symbols.append({"kind": "function", "name": token.value, "line": token.line})
+            elif not previous or previous.value not in function_keywords | control_keywords:
                 nodes.append(_node("call", token, name=token.value))
             continue
 
@@ -326,7 +353,7 @@ def inspect_source(source: str, *, path: str) -> dict[str, object]:
         diagnostics = [*balance_diagnostics, *diagnostics]
         parse_ok = parse_ok and balanced
     else:
-        nodes, symbols = _lexical_structure(tokens)
+        nodes, symbols = _lexical_structure(tokens, language=language)
         parse_ok = balanced
         diagnostics = balance_diagnostics
         backend = "genesis_lexical_structure_v1"

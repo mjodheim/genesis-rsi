@@ -1,0 +1,321 @@
+{
+  "assertion_count": 14,
+  "assertions_passed": 14,
+  "case_count": 18,
+  "cases": [
+    {
+      "analysis_digest": "0428ba67459a37d7fe1f43542a65b17a9e150c7b58a3167ca6b7aeb55056c6f4",
+      "expected": {
+        "has_branch": true,
+        "has_call": true
+      },
+      "fidelity": "ast",
+      "language": "python",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": true,
+        "has_call": true,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "branch_and_call",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "314c05a9e1e7c9644f30967f76c8d4df7a8a47638dc9a48dd7de830d9e20b62a",
+      "expected": {
+        "has_branch": false,
+        "has_call": false
+      },
+      "fidelity": "ast",
+      "language": "python",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "comment_string_decoy",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "03b8a6edcf80070bca7dab1a02c2121c5a2299f93180a0d1f8931a264112b58b",
+      "expected": {
+        "has_diagnostics": true
+      },
+      "fidelity": "ast",
+      "language": "python",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": true
+      },
+      "parse_limit": null,
+      "scenario": "malformed_source",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "fa15bdda39f0fa0e0a254507f056e92cdadc3b9ebce2b8ba10df04f7912ba921",
+      "expected": {
+        "has_branch": true,
+        "has_call": true
+      },
+      "fidelity": "compiler_semantic_partial",
+      "language": "java",
+      "module": "jdk-java-compiler-v2",
+      "observed": {
+        "has_branch": true,
+        "has_call": true,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "branch_and_call",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "92d2b7881edebd7fc4700867a56654845f1bc7b81908f2e20534a567a264baa2",
+      "expected": {
+        "has_branch": false,
+        "has_call": false
+      },
+      "fidelity": "compiler_semantic_partial",
+      "language": "java",
+      "module": "jdk-java-compiler-v2",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "comment_string_decoy",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "94d99e991a7ed810a5abc305ccad94bc6f21e2fd0f0583158e501e98a8389573",
+      "expected": {
+        "has_diagnostics": true
+      },
+      "fidelity": "compiler_semantic_with_errors",
+      "language": "java",
+      "module": "jdk-java-compiler-v2",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": true
+      },
+      "parse_limit": null,
+      "scenario": "malformed_source",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "d931c3484da4fadb5c2c6060b50006dd48da54b446bfb16e90ac7185348bc828",
+      "expected": {
+        "has_branch": true,
+        "has_call": true
+      },
+      "fidelity": "lexical_structure",
+      "language": "csharp",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": true,
+        "has_call": true,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "branch_and_call",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "d965d9228bae77222338f02e4255fe92315e8e7efc02d2a3ef7566e7decb838b",
+      "expected": {
+        "has_branch": false,
+        "has_call": false
+      },
+      "fidelity": "lexical_structure",
+      "language": "csharp",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "comment_string_decoy",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "f293b873ef588ce189e87cef1dd317a9c1b15cefb55f78e661baf01eb525c931",
+      "expected": {},
+      "fidelity": "lexical_structure",
+      "language": "csharp",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": true,
+        "has_diagnostics": true
+      },
+      "parse_limit": "invalid syntax not necessarily detectable",
+      "scenario": "malformed_source",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "9fb509b359f2f6b0172a0db1204c25e6e63cf5602d950a8cc11cf579bb38a6fb",
+      "expected": {
+        "has_branch": true,
+        "has_call": true
+      },
+      "fidelity": "lexical_structure",
+      "language": "rust",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": true,
+        "has_call": true,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "branch_and_call",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "2ba580b0e01d00c96c18fba1fafb99263a3a94d9396948c508226f2c1bc11433",
+      "expected": {
+        "has_branch": false,
+        "has_call": false
+      },
+      "fidelity": "lexical_structure",
+      "language": "rust",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "comment_string_decoy",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "96463d04e88471685d85c948f0ac28338a41fe16271d40c9e4421c2ef97d49d8",
+      "expected": {},
+      "fidelity": "lexical_structure",
+      "language": "rust",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": true
+      },
+      "parse_limit": "invalid syntax not necessarily detectable",
+      "scenario": "malformed_source",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "1da11de438e9cd57ab701b3eff77f0ce30407a6c3af58163568eb8cd5daa5232",
+      "expected": {
+        "has_branch": true,
+        "has_call": true
+      },
+      "fidelity": "lexical_structure",
+      "language": "go",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": true,
+        "has_call": true,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "branch_and_call",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "2693f20e59eebea86a5210f1cfcdcdf83b09c4d1522099f7f28a9c3c09308598",
+      "expected": {
+        "has_branch": false,
+        "has_call": false
+      },
+      "fidelity": "lexical_structure",
+      "language": "go",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "comment_string_decoy",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "ae66ae2b3d6d634deef223a734c19a0d7ba91d6986bcebe38f10d678fde165bf",
+      "expected": {},
+      "fidelity": "lexical_structure",
+      "language": "go",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": true
+      },
+      "parse_limit": "invalid syntax not necessarily detectable",
+      "scenario": "malformed_source",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "6f3ccbab68551fab53543d720514779e72b162b1e89defe4d8353c7819e07d90",
+      "expected": {
+        "has_branch": true,
+        "has_call": true
+      },
+      "fidelity": "lexical_structure",
+      "language": "typescript",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": true,
+        "has_call": true,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "branch_and_call",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "197b0563d8a1252748cdfa4236cfe3ffb49dbfdc1e04747a732fc359797af1c0",
+      "expected": {
+        "has_branch": false,
+        "has_call": false
+      },
+      "fidelity": "lexical_structure",
+      "language": "typescript",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": false
+      },
+      "parse_limit": null,
+      "scenario": "comment_string_decoy",
+      "test_passed": true
+    },
+    {
+      "analysis_digest": "692449ca8adfb02a06e664c619a2f8e61896dc7efa8bad8f733e3a4a794efb55",
+      "expected": {},
+      "fidelity": "lexical_structure",
+      "language": "typescript",
+      "module": "genesis-substrate-v1",
+      "observed": {
+        "has_branch": false,
+        "has_call": false,
+        "has_diagnostics": true
+      },
+      "parse_limit": "invalid syntax not necessarily detectable",
+      "scenario": "malformed_source",
+      "test_passed": true
+    }
+  ],
+  "lexical_syntax_undetectable_count": 4,
+  "report_digest": "27bc1df129653ea04dffee67b8f2d39089270de837b6eb5e7ccfcdced61bf9f3",
+  "schema": "genesis-g11-language-smoke-v1",
+  "test_failures": []
+}

@@ -52,6 +52,37 @@ class G11PlannerTests(unittest.TestCase):
             registry.remove("java")
             self.assertEqual(ExperienceLedger(root/"observations.db").knowledge_summary()["observation_count"], 1)
 
+    def test_domain_insights_in_planner_are_optional_and_read_only(self):
+        from genesis.insights import InsightRegistry, JavaSecurityModule, JavaPerformanceModule
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            file = root / "src" / "A.java"
+            file.parent.mkdir(parents=True)
+            file.write_text(
+                "class A { int f(int x) {"
+                " for(int i=0;i<x;i++) { for(int j=0;j<x;j++) {} } return x; } }"
+            )
+            registry = ModuleRegistry()
+            registry.register(JavaCompilerModule(java=JDK/"java", javac=JDK/"javac"))
+            insights = InsightRegistry()
+            insights.register(JavaSecurityModule())
+            insights.register(JavaPerformanceModule())
+            kwargs = dict(include_prefixes=["src"], focus_paths=["src/A.java"],
+                          max_candidates=50, per_family_budget=50)
+            baseline = repair_strategist.generate(root, **kwargs)
+            report = repair_strategist.generate(
+                root, understanding_registry=registry,
+                insight_registry=insights, **kwargs
+            )
+            self.assertNotIn("g11_understanding", baseline)
+            meta = report["g11_understanding"]["reports"][0]
+            self.assertEqual(meta["domain_coverage"]["security"], "checked")
+            self.assertEqual(meta["domain_coverage"]["performance"], "checked")
+            self.assertTrue(any(f["rule_id"] == "nested-iteration-review"
+                                for f in meta["domain_findings"]))
+            self.assertEqual(repair_strategist.generate(root, **kwargs)["strategy_digest"],
+                             baseline["strategy_digest"])
+
     def test_holdouts_are_excluded_and_already_selected_holdout_is_blocked(self):
         with tempfile.TemporaryDirectory() as td:
             adapter = runner.LangDefects4JAdapter(Path(td))
