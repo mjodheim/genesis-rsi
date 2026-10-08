@@ -150,3 +150,23 @@ its own repair success.
 The overarching RSI target is not achieved: no autonomous algorithm
 invention, new-case full-suite repair or proven recursively improving
 repair machinery has yet been demonstrated.
+
+## Additional Math-53 posthoc full-suite repair
+
+On already-exposed Math-53, a new pattern compared multiple sibling methods
+sharing the same invalid-state guard and proposed inserting the missing guard
+into another sibling method. The generic operator
+java_transfer_sibling_invalid_state_guard was written by the assistant, not
+autonomously created by Genesis, and is disabled unless explicitly enabled.
+
+The opt-in G11 planner selected the resulting atomic candidate at rank 1,
+and the independent Defects4J full suite was passed with zero failures,
+including the previously failing ComplexTest::testAddNaN.
+
+Proof: G11_MATH53_POSTHOC_REPAIR_20261008.json, reproducible via
+PYTHONPATH=. python3 scripts/g11_math_dev_replay.py.
+
+This is a development repair, NOT independent blind validation. The
+original negative Math-53 heldout result remains unchanged. Future
+independent evaluations must use untouched bugs, with all proposals frozen
+before evaluator feedback.

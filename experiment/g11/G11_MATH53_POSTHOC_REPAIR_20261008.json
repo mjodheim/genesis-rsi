@@ -1,0 +1,41 @@
+{
+  "candidate_was_generated_before_validation": true,
+  "claim": "posthoc development repair only; human authored operator family",
+  "freeze": {
+    "bug_id": 53,
+    "candidate_digest": "dbb9212316d65a0c5ef696924d3f15b04375b3281583d800ff4fd6ec766c6569",
+    "candidate_index_digest": "3ea313d7b17f157972bdb55201e56a8b58751451a1bc17756b48f23ea8460856",
+    "human_patch_consulted": false,
+    "known_exposed_case": true,
+    "operator": "java_transfer_sibling_invalid_state_guard",
+    "original_negative_holdout_digest": "0c231b166cf9172f1af5e693949fe4449204abf2a6677b5a6be84a49633b8b4c",
+    "previous_candidate_index_digest": "89cb94573859aaf2de5244e76a792697ced0846ef5472404267f7e848dd8d559",
+    "project": "Math",
+    "rank": 1,
+    "schema": "genesis-g11-math53-posthoc-development-freeze-v1",
+    "source_digest": "22eca1722c9d0587002d0207e121174f1ff1c71fb0744567cd1b22ebc90c3ddc",
+    "source_file": "src/main/java/org/apache/commons/math/complex/Complex.java"
+  },
+  "freeze_digest": "8fadc792eb3f56f643acc49273cbe08c08e2d20df49d03f9c55ca00e426099d0",
+  "full_suite_passed": true,
+  "independent_holdout_success_count": 0,
+  "result_digest": "d29956f602bb4d4bc9ac9a998447e543387bdff4f4c69c81f8ce14acb3623771",
+  "schema": "genesis-g11-math53-development-replay-v1",
+  "validator": {
+    "compiled": true,
+    "error": null,
+    "full_suite_failures": 0,
+    "full_suite_pass": true,
+    "full_suite_ran": true,
+    "test_exit": 0,
+    "test_output_digest": "b4bf1f1aaf09825dd0e55a9f3b6852cf7cf51e3de06c4d69932ef00a8d40f862",
+    "trigger_results": [
+      {
+        "digest": "b4bf1f1aaf09825dd0e55a9f3b6852cf7cf51e3de06c4d69932ef00a8d40f862",
+        "exit": 0,
+        "failing_tests": 0,
+        "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+      }
+    ]
+  }
+}
