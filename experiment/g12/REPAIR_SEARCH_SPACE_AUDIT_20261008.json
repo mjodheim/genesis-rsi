@@ -1,0 +1,521 @@
+{
+  "audit_digest": "e0560907ea6c7d78e3961a94f22045289bf607d32aea4a72756fda165aa21efe",
+  "cases": [
+    {
+      "candidates": 1727,
+      "candidates_in_fixed_file": 767,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_structural": 32,
+        "scalar": 80
+      },
+      "case": "Codec-15",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/main/java/org/apache/commons/codec/language/Soundex.java": [
+          [
+            "replace",
+            5,
+            3
+          ],
+          [
+            "insert",
+            0,
+            3
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "src/main/java/org/apache/commons/codec/language/Soundex.java"
+      ],
+      "loaded_source_files": 5,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 2213,
+      "candidates_in_fixed_file": 2116,
+      "candidates_on_fix_lines": 65,
+      "candidates_per_family": {
+        "java_state_consistency": 1,
+        "java_structural": 37,
+        "scalar": 45
+      },
+      "case": "Compress-6",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": 1,
+      "fix_edits": {
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java": [
+          [
+            "insert",
+            0,
+            1
+          ],
+          [
+            "replace",
+            2,
+            4
+          ],
+          [
+            "replace",
+            1,
+            1
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java"
+      ],
+      "loaded_source_files": 3,
+      "operator_written_for_this_case": true
+    },
+    {
+      "candidates": 694,
+      "candidates_in_fixed_file": 185,
+      "candidates_on_fix_lines": 19,
+      "candidates_per_family": {
+        "java_sibling_guard": 1,
+        "java_structural": 49,
+        "java_symbol": 22,
+        "scalar": 37,
+        "v21_peer_contract": 1
+      },
+      "case": "Math-53",
+      "exact_fix_rank": 1,
+      "first_rank_on_fix_lines": 1,
+      "fix_edits": {
+        "src/main/java/org/apache/commons/math/complex/Complex.java": [
+          [
+            "insert",
+            0,
+            3
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "src/main/java/org/apache/commons/math/complex/Complex.java"
+      ],
+      "loaded_source_files": 16,
+      "operator_written_for_this_case": true
+    },
+    {
+      "candidates": 2547,
+      "candidates_in_fixed_file": 373,
+      "candidates_on_fix_lines": 27,
+      "candidates_per_family": {
+        "java_stream_iterator": 1,
+        "java_structural": 72,
+        "java_symbol": 37,
+        "scalar": 74
+      },
+      "case": "Csv-16",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": 1,
+      "fix_edits": {
+        "src/main/java/org/apache/commons/csv/CSVParser.java": [
+          [
+            "insert",
+            0,
+            1
+          ],
+          [
+            "insert",
+            0,
+            1
+          ],
+          [
+            "replace",
+            1,
+            4
+          ],
+          [
+            "delete",
+            1,
+            0
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "src/main/java/org/apache/commons/csv/CSVParser.java"
+      ],
+      "loaded_source_files": 9,
+      "operator_written_for_this_case": true
+    },
+    {
+      "candidates": 883,
+      "candidates_in_fixed_file": 120,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_structural": 11,
+        "scalar": 96
+      },
+      "case": "Collections-24",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java": [
+          [
+            "insert",
+            0,
+            1
+          ],
+          [
+            "replace",
+            1,
+            1
+          ],
+          [
+            "insert",
+            0,
+            5
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java"
+      ],
+      "loaded_source_files": 7,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 525,
+      "candidates_in_fixed_file": 0,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_structural": 66,
+        "java_symbol": 11,
+        "scalar": 91
+      },
+      "case": "Gson-2",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java": [
+          [
+            "replace",
+            1,
+            4
+          ],
+          [
+            "insert",
+            0,
+            9
+          ]
+        ]
+      },
+      "fixed_file_in_focus": false,
+      "fixed_file_rank": [
+        34
+      ],
+      "fixed_files": [
+        "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java"
+      ],
+      "loaded_source_files": 39,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 718,
+      "candidates_in_fixed_file": 44,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_progress": 21,
+        "java_string_literal": 2,
+        "java_structural": 74,
+        "java_symbol": 5,
+        "scalar": 85
+      },
+      "case": "Jsoup-68",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java": [
+          [
+            "replace",
+            4,
+            1
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        2
+      ],
+      "fixed_files": [
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java"
+      ],
+      "loaded_source_files": 43,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 965,
+      "candidates_in_fixed_file": 45,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_progress": 11,
+        "java_structural": 85,
+        "java_symbol": 39,
+        "scalar": 92
+      },
+      "case": "JacksonCore-11",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/main/java/com/fasterxml/jackson/core/sym/ByteQuadsCanonicalizer.java": [
+          [
+            "insert",
+            0,
+            1
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "src/main/java/com/fasterxml/jackson/core/sym/ByteQuadsCanonicalizer.java"
+      ],
+      "loaded_source_files": 40,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 1251,
+      "candidates_in_fixed_file": 229,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_structural": 80,
+        "java_symbol": 17,
+        "scalar": 96
+      },
+      "case": "Cli-34",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/main/java/org/apache/commons/cli/Option.java": [
+          [
+            "replace",
+            1,
+            1
+          ]
+        ],
+        "src/main/java/org/apache/commons/cli/OptionBuilder.java": [
+          [
+            "replace",
+            1,
+            1
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        9,
+        2
+      ],
+      "fixed_files": [
+        "src/main/java/org/apache/commons/cli/Option.java",
+        "src/main/java/org/apache/commons/cli/OptionBuilder.java"
+      ],
+      "loaded_source_files": 17,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 587,
+      "candidates_in_fixed_file": 19,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_string_literal": 1,
+        "java_structural": 70,
+        "java_symbol": 12,
+        "scalar": 96
+      },
+      "case": "Time-22",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/main/java/org/joda/time/base/BasePeriod.java": [
+          [
+            "replace",
+            1,
+            1
+          ],
+          [
+            "insert",
+            0,
+            5
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        21
+      ],
+      "fixed_files": [
+        "src/main/java/org/joda/time/base/BasePeriod.java"
+      ],
+      "loaded_source_files": 66,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 583,
+      "candidates_in_fixed_file": 40,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_progress": 7,
+        "java_structural": 75,
+        "java_symbol": 6,
+        "scalar": 84
+      },
+      "case": "JxPath-12",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/java/org/apache/commons/jxpath/ri/model/dom/DOMNodePointer.java": [
+          [
+            "replace",
+            1,
+            2
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        19
+      ],
+      "fixed_files": [
+        "src/java/org/apache/commons/jxpath/ri/model/dom/DOMNodePointer.java"
+      ],
+      "loaded_source_files": 90,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 719,
+      "candidates_in_fixed_file": 19,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_structural": 65,
+        "java_symbol": 33,
+        "scalar": 96
+      },
+      "case": "Chart-23",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java": [
+          [
+            "insert",
+            0,
+            19
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java"
+      ],
+      "loaded_source_files": 41,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 1024,
+      "candidates_in_fixed_file": 35,
+      "candidates_on_fix_lines": 0,
+      "candidates_per_family": {
+        "java_progress": 5,
+        "java_structural": 90,
+        "java_symbol": 28,
+        "scalar": 94
+      },
+      "case": "JacksonXml-4",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": null,
+      "fix_edits": {
+        "src/main/java/com/fasterxml/jackson/dataformat/xml/ser/XmlSerializerProvider.java": [
+          [
+            "insert",
+            0,
+            4
+          ],
+          [
+            "replace",
+            1,
+            1
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        22
+      ],
+      "fixed_files": [
+        "src/main/java/com/fasterxml/jackson/dataformat/xml/ser/XmlSerializerProvider.java"
+      ],
+      "loaded_source_files": 27,
+      "operator_written_for_this_case": false
+    },
+    {
+      "candidates": 257,
+      "candidates_in_fixed_file": 17,
+      "candidates_on_fix_lines": 6,
+      "candidates_per_family": {
+        "java_structural": 41,
+        "scalar": 76
+      },
+      "case": "Mockito-22",
+      "exact_fix_rank": null,
+      "first_rank_on_fix_lines": 125,
+      "fix_edits": {
+        "src/org/mockito/internal/matchers/Equality.java": [
+          [
+            "replace",
+            1,
+            3
+          ]
+        ]
+      },
+      "fixed_file_in_focus": true,
+      "fixed_file_rank": [
+        1
+      ],
+      "fixed_files": [
+        "src/org/mockito/internal/matchers/Equality.java"
+      ],
+      "loaded_source_files": 77,
+      "operator_written_for_this_case": false
+    }
+  ],
+  "cases_remain_development_only": true,
+  "human_fix_read": true,
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-search-space-audit-v1",
+  "summary_without_hand_written_operator": {
+    "candidates_generated": 9239,
+    "cases": 11,
+    "cases_with_a_candidate_on_fix_lines": 1,
+    "cases_with_the_exact_fix": 0,
+    "fixed_file_in_focus": 10,
+    "fixed_file_ranked_first": 5
+  }
+}
