@@ -211,9 +211,14 @@ class Defects4JSandbox:
         return self.defects4j(*arguments)
 
     def export(self, directory: str, prop: str) -> SandboxRun:
+        """Read one Defects4J property of a checkout; ``output`` is the bare value."""
         if not re.fullmatch(r"[a-z.]+", prop):
             raise Defects4JSandboxError(f"{prop!r} is not a Defects4J property name")
-        return self.defects4j("export", "-p", prop, "-w", self._inside(directory))
+        # Defects4J prints progress on stderr and the value on stdout without a newline; merged,
+        # the two interleave into one unusable line. Only the value is wanted here.
+        return self.execute([
+            "sh", "-c", 'exec defects4j export -p "$1" -w "$2" 2>/dev/null', "export", prop, self._inside(directory),
+        ])
 
     def failing_tests(self, directory: str) -> list[str]:
         """Tests the last ``test`` run left in ``failing_tests``, read without following links.

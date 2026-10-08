@@ -88,7 +88,7 @@ def test_verbs_translate_to_defects4j_commands_on_container_paths(tmp_path) -> N
     assert sandbox.compile("case").command == ("defects4j", "compile", "-w", "/work/case")
     assert sandbox.test("case", single_test="org.x.FooTest::testBar", relevant_only=True).command == (
         "defects4j", "test", "-w", "/work/case", "-t", "org.x.FooTest::testBar", "-r")
-    assert sandbox.export("case", "cp.test").command == ("defects4j", "export", "-p", "cp.test", "-w", "/work/case")
+    assert sandbox.export("case", "cp.test").command[-3:] == ("export", "cp.test", "/work/case")
     with pytest.raises(Defects4JSandboxError):
         sandbox.test("case", single_test="Foo; rm -rf /")
 
@@ -174,5 +174,6 @@ def test_the_real_boundary_holds_and_reproduces_a_known_bug(tmp_path) -> None:
     tested = sandbox.test("lang-1b", relevant_only=True)
     assert tested.ok, tested.output[-2000:]
     assert sandbox.failing_tests("lang-1b") == ["org.apache.commons.lang3.math.NumberUtilsTest::TestLang747"]
+    assert sandbox.export("lang-1b", "dir.src.classes").output == "src/main/java"
     owners = {path.stat().st_uid for path in (tmp_path / "workspace").rglob("*")}
     assert owners == {os.getuid()}, "the container must not leave files the operator cannot delete"
