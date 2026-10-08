@@ -1,0 +1,75 @@
+{
+  "all_arms_freeze_before_oracle": true,
+  "arms": [
+    "baseline",
+    "understanding",
+    "understanding_security_performance"
+  ],
+  "base_commit": "f4c6b05b",
+  "candidate_budget_per_arm": 64,
+  "case_count": 8,
+  "cases": [
+    {
+      "case_id": "A",
+      "oracle_assertion_count": 6,
+      "oracle_sha256": "4407267959005d4b828ce340721bb7a8a494b0661414edf52d609e538e8b9c76",
+      "source_sha256": "6534ed6c71cc930bd89461bc5dc08e28ed279abfccda76196594c15630963637"
+    },
+    {
+      "case_id": "B",
+      "oracle_assertion_count": 8,
+      "oracle_sha256": "a62a81ea6957340f58e97b8327750cb6182b8ce467deef01896e6256a1a77db3",
+      "source_sha256": "5cee34135cdb1d7f5bf606a8e2be98dc54012ef9a6a8be2d95d2793a52c579be"
+    },
+    {
+      "case_id": "C",
+      "oracle_assertion_count": 5,
+      "oracle_sha256": "9e556ea8665a496585499e1e85108c586db1800e5b6d6d212d6fd7690485c38c",
+      "source_sha256": "4199136303a295d4e42d4d5701cbea2f99b61a3074f2f7600b175206295fc436"
+    },
+    {
+      "case_id": "D",
+      "oracle_assertion_count": 5,
+      "oracle_sha256": "42754f58055b1aaffe6b4a720eab534e55c14082a3de558174ab3b3b2e641789",
+      "source_sha256": "717735888026396912add84bb625119b48a43e4fa96dbf442efc8ba8f67b77e5"
+    },
+    {
+      "case_id": "E",
+      "oracle_assertion_count": 6,
+      "oracle_sha256": "ed6ea467d7cd6c74e4d685481548bd35e0c386cc8f35a277a9cf888a71477855",
+      "source_sha256": "1421a6b6f08dee1b2ed051717c4d59a772ce6d1c4e2a7a6744b35b25097d6cb8"
+    },
+    {
+      "case_id": "F",
+      "oracle_assertion_count": 8,
+      "oracle_sha256": "0065da14a5a87bfdd56d570a0e4deccc55f64a55ef1e8b909780ea7740fb4938",
+      "source_sha256": "c8ed3e1394bc078015ca5618b303ee03eb0df19f505849cf228b118ef2a99929"
+    },
+    {
+      "case_id": "G",
+      "oracle_assertion_count": 5,
+      "oracle_sha256": "1e3e320a45a8280505363a9bb56c95019a7275e8047eb4f8ac37c1a332470ce7",
+      "source_sha256": "8ef4ddb177666705f1d4a32514ed0de99b4449073854c5e933bb08a0dd0badf8"
+    },
+    {
+      "case_id": "H",
+      "oracle_assertion_count": 5,
+      "oracle_sha256": "d3a5c70777330cfa367c0942d19d79b215d59fecb9a9b7be43a26271dc7a4dd9",
+      "source_sha256": "f8576a74e3bb7b13cf8e97a6f5cedfaa7fbfc869cc0456916aaab81898f05807"
+    }
+  ],
+  "claim_limit": "synthetic constrained pilot; not real-world autonomous repair evidence",
+  "composition_fraction": 0.4,
+  "er4_holdout_cases_used": false,
+  "human_revealed_patches_used": false,
+  "languages": [
+    "java"
+  ],
+  "memory_learning_during_test": false,
+  "oracle_hidden_from_planner": true,
+  "per_family_budget": 64,
+  "preregistration_digest": "f3f3e4b02e01eeef02f165e69b063a30ca1f2009fe5336ca0a201073aa04db40",
+  "schema": "genesis-g11-java-repair-pilot-preregistration-v1",
+  "score_policy": "full_assertion_suite_pass_only; compilation + oracle execution",
+  "top_k_compiled_and_validated_per_arm": 24
+}
