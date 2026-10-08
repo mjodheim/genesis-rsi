@@ -1,0 +1,51 @@
+{
+  "baseline_arm": "same 32 focus files but old operator family and sorting",
+  "candidate_arms": [
+    "legacy_operators",
+    "testbody_source_localization_g11"
+  ],
+  "candidate_generation_frozen_before_evaluation": true,
+  "claim_scope": "small exploratory prospective batch; RSI not proven by one successful test",
+  "committed_base_version": "235ff33e",
+  "composition_fraction": 0.4,
+  "er4_holdouts_used": false,
+  "evaluated_top_k_each": 12,
+  "experimental_arm": "source balanced, atomic-first, sibling guard transfer, testbody source priority",
+  "focus_selection": "up to 32 dynamic loaded Java sources, ranked by source type mentions in public failing test method only",
+  "full_suite_acceptance": "defects4j compile then public trigger triage then full suite 0 failures",
+  "generated_budget_each": 120,
+  "human_reference_fix_access": false,
+  "preregistration_digest": "c5ab6a0537c624fb12a8818fbd3dd6dfc1e54fadedc2f9a9d2c6580da11439d8",
+  "schema": "genesis-g11-third-independent-batch-prereg-v1",
+  "selected_cases": [
+    {
+      "bug_id": 34,
+      "buggy_revision": "40c4892e932afba6ac2ace430ee59a465565bd50",
+      "dynamic_loaded_classes_exists": true,
+      "pool_size": 39,
+      "project": "Cli",
+      "seed": "genesis-g11-testbody-third-independent-20261008-Cli-v1",
+      "sha256": "8ca6170d8a43ff6c07205bc6e3212cef5be5ff89452f79484e4c473fc082ecbc"
+    },
+    {
+      "bug_id": 22,
+      "buggy_revision": "14dedcbc04682c1b1b6c5ebe91bc930b79eeb572",
+      "dynamic_loaded_classes_exists": true,
+      "pool_size": 26,
+      "project": "Time",
+      "seed": "genesis-g11-testbody-third-independent-20261008-Time-v1",
+      "sha256": "4f2017a6946f78bb52223314eec44a307e9cebb532a207038543bacf5260bdfe"
+    },
+    {
+      "bug_id": 12,
+      "buggy_revision": "52d73022820d163104c6419f25ca955f86464f63",
+      "dynamic_loaded_classes_exists": true,
+      "pool_size": 22,
+      "project": "JxPath",
+      "seed": "genesis-g11-testbody-third-independent-20261008-JxPath-v1",
+      "sha256": "3ac4fa2168c4dfe3edecdb965a46f3d33155c216e8ff07984cf17fc64792c849"
+    }
+  ],
+  "selection_rule": "int(sha256(seed),16) % rows of public active-bugs.csv with no source inspection",
+  "training_data_from_selected_cases_used": false
+}
