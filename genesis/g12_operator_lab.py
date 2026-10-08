@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import tempfile
 from pathlib import Path
 import re
 from typing import Any, Callable, Mapping, Sequence
@@ -70,15 +72,28 @@ def _checked_proposal(root: Path, candidate: Mapping[str, Any]) -> dict[str, Any
 
 def _write_new(path: Path, document: Mapping[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    # The evaluation freeze must not be silently modified on subsequent runs.
+    # A complete, synced staging file is linked into place atomically.
+    # A power loss cannot leave a half-written *official* freeze/memory.
+    stage = None
     try:
-        with path.open("x", encoding="utf-8") as handle:
+        with tempfile.NamedTemporaryFile(
+            "w", encoding="utf-8", dir=path.parent,
+            prefix=".g12-stage-", delete=False,
+        ) as handle:
+            stage = Path(handle.name)
             json.dump(document, handle, indent=2, sort_keys=True)
             handle.write("\n")
-    except FileExistsError:
-        current = json.loads(path.read_text(encoding="utf-8"))
-        if current != dict(document):
-            raise G12GateError("immutable freeze/result conflicts with existing file")
+            handle.flush()
+            os.fsync(handle.fileno())
+        try:
+            os.link(stage, path)
+        except FileExistsError:
+            current = json.loads(path.read_text(encoding="utf-8"))
+            if current != dict(document):
+                raise G12GateError("immutable freeze/result conflicts with existing file")
+    finally:
+        if stage is not None:
+            stage.unlink(missing_ok=True)
 
 
 def freeze_training_search(
@@ -179,6 +194,10 @@ def validate_and_learn(
         except Exception as exc:
             # Failure of an evaluator is never evidence that a patch is wrong.
             feedback = {"error": "evaluator_exception:" + type(exc).__name__}
+        # A validator must work on isolated copies. Never accept a result
+        # from an evaluator that silently rewrote the training source.
+        if _hash(_validated_path(root, record["path"]).read_text(encoding="utf-8")) != record["expected_sha256"]:
+            raise G12GateError("evaluator mutated the original buggy source")
         passed = _validated_outcome(feedback)
         attempt = {
             "candidate_sha256": record["new_sha256"],

@@ -104,9 +104,6 @@ class OperatorLabTests(unittest.TestCase):
         self.addCleanup(self.work.cleanup)
         self.root=Path(self.work.name)
         self.root.joinpath("Voucher.java").write_text(source())
-        self.assertFalse(public_validator(self.root)(
-            "Voucher.java",source(),"8"*64
-        )["full_suite_pass"]) if False else None
         self.candidates=state.generate(self.root,include_prefixes=["Voucher.java"])["candidates"]
         self.assertEqual(len(self.candidates),1)
         self.freeze=self.root/"evidence/freeze.json"
@@ -132,6 +129,7 @@ class OperatorLabTests(unittest.TestCase):
             freeze_path=self.freeze,previous_failure=miss(),
             evaluator=public_validator(self.root),memory_path=self.memory,
             result_path=self.receipt,role="released_training",
+            context_lines=0,
         )
         self.assertEqual(result["attempt_count"],1)
         self.assertEqual(result["memory_generation"],2)
@@ -159,6 +157,41 @@ class OperatorLabTests(unittest.TestCase):
                for m in item["mutations"]]
         self.assertIn(self.candidates[0]["content_utf8"],texts)
         self.assertEqual(reused["external_model_calls"],0)
+
+        # A second, *different* source identifier and class name checks
+        # that the operator has learned a rule, not only a memorized patch.
+        renamed=self.root/"renamed"
+        renamed.mkdir()
+        renamed.joinpath("Parcel.java").write_text(source("Parcel","token"))
+        portable=self_extension.generate_candidates(
+            memory,renamed,include_prefixes=["Parcel.java"],max_candidates=16
+        )
+        matches=[
+            m["content_utf8"] for c in portable["candidate_set"]["candidates"]
+            for m in c.get("mutations",())
+            if m.get("path")=="Parcel.java"
+            and "this.token = token;" in m["content_utf8"]
+        ]
+        self.assertTrue(matches,"retained transformation should transfer across renamed identifiers")
+        oracle="""public class ParcelCheck {
+            public static void main(String[] args) {
+                Parcel a=new Parcel("one"), b=new Parcel("two"), c=new Parcel("one");
+                if (a.equals(b) || !a.equals(c)) throw new AssertionError("equality invariant");
+                if (!"one".equals(a.getToken())) throw new AssertionError("getter invariant");
+            }
+        }"""
+        with tempfile.TemporaryDirectory() as td:
+            d=Path(td)
+            (d/"Parcel.java").write_text(matches[0])
+            (d/"ParcelCheck.java").write_text(oracle)
+            compiled=subprocess.run(
+                [JAVAC,"-proc:none","-d",str(d),str(d/"Parcel.java"),str(d/"ParcelCheck.java")],
+                capture_output=True,text=True,timeout=30
+            )
+            self.assertEqual(compiled.returncode,0,compiled.stderr)
+            verified=subprocess.run([JAVA,"-cp",str(d),"ParcelCheck"],
+                capture_output=True,text=True,timeout=10)
+            self.assertEqual(verified.returncode,0,verified.stderr)
 
     def test_rejects_unreleased_holdout_even_with_passing_patch(self):
         with self.assertRaisesRegex(G12GateError,"held-out"):
@@ -200,6 +233,22 @@ class OperatorLabTests(unittest.TestCase):
                 result_path=self.receipt,role="released_training",
             )
         self.assertFalse(self.memory.exists())
+
+    def test_evaluator_may_not_modify_original_project(self):
+        frozen=self.frozen()
+        def corrupt_and_claim_pass(path, content, preimage):
+            (self.root/path).write_text(content)
+            return {"compiled":True,"full_suite_ran":True,"full_suite_pass":True,
+                    "full_suite_failures":0,"test_exit":0}
+        with self.assertRaisesRegex(G12GateError,"mutated the original"):
+            validate_and_learn(
+                root=self.root,candidates=self.candidates,frozen=frozen,
+                freeze_path=self.freeze,previous_failure=miss(),
+                evaluator=corrupt_and_claim_pass,memory_path=self.memory,
+                result_path=self.receipt,role="released_training",
+            )
+        self.assertFalse(self.memory.exists())
+        self.assertFalse(self.receipt.exists())
 
     def test_freeze_is_immutable(self):
         self.frozen()

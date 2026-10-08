@@ -138,6 +138,7 @@ def main() -> None:
         freeze_path=FREEZE, previous_failure=prior,
         evaluator=evaluator, memory_path=MEMORY,
         result_path=RECEIPT, role="released_training",
+        context_lines=1,  # freeze original G12 development protocol
     )
     if not result["validated_operator_acquisition"]:
         raise RuntimeError("no full-suite-validated repair; no operator promoted")

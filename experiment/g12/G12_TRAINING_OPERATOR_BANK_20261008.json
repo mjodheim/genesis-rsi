@@ -1,0 +1,138 @@
+{
+  "bank_digest": "9640c2e9197c561343ef3ef92d15dc6601340e7b5e6e4f58d0a87bac422d0922",
+  "g12_reuse_requires_explicit_opt_in": true,
+  "learned_operator_count": 2,
+  "merged_seed_is_not_a_continuation_of_source_lineages": true,
+  "new_independent_full_suite_successes": 0,
+  "operator_semantics_preexisting_human_authored_generators": true,
+  "released_training_rounds": 2,
+  "retained_memory": {
+    "events": [],
+    "external_model_calls_for_memory_logic": 0,
+    "generation": 0,
+    "memory_digest": "ec59797d1aca2dc8cf383a2799dd5968c46f37e300032ac1b2d54e7d28cbafe8",
+    "operators": [
+      {
+        "context_lines": 1,
+        "external_model_calls_for_learning": 0,
+        "hunks": [
+          {
+            "after_program": [
+              {
+                "before_line": 0,
+                "kind": "copy_line"
+              },
+              {
+                "kind": "render_line",
+                "template": "        if (isNaN || rhs.isNaN) {\n"
+              },
+              {
+                "kind": "render_line",
+                "template": "            return NaN;\n"
+              },
+              {
+                "kind": "render_line",
+                "template": "        }\n"
+              },
+              {
+                "kind": "render_line",
+                "template": "\n"
+              },
+              {
+                "before_line": 1,
+                "kind": "copy_line"
+              }
+            ],
+            "before_line_count": 2,
+            "before_program": [
+              {
+                "kind": "literal_line",
+                "text": "        MathUtils.checkNotNull(rhs);\n"
+              },
+              {
+                "kind": "literal_line",
+                "text": "        return createComplex(real + rhs.getReal(),\n"
+              }
+            ],
+            "change_kinds": [
+              "insert"
+            ],
+            "hunk_digest": "0bf83b5454c2f01e9820fc96b71a816196d75370ec675dfe931aa0e176eb8f5d"
+          }
+        ],
+        "operator_digest": "a9b8d9ae8412c9b46024f8271dd7435c1d05ead5964b48dc218ec2052cf6deec",
+        "schema": "genesis-acquired-structural-operator-v1",
+        "source_family": "java",
+        "source_path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+        "source_result_digest": "6107c12cf0c4cd3f244eb994eb29c304d43288957dc1122ebaf02bd8463a2d48"
+      },
+      {
+        "context_lines": 1,
+        "external_model_calls_for_learning": 0,
+        "hunks": [
+          {
+            "after_program": [
+              {
+                "before_line": 0,
+                "kind": "copy_line"
+              },
+              {
+                "kind": "render_line",
+                "template": "        this.name = name;\n"
+              },
+              {
+                "before_line": 1,
+                "kind": "copy_line"
+              }
+            ],
+            "before_line_count": 2,
+            "before_program": [
+              {
+                "kind": "literal_line",
+                "text": "        super(name);\n"
+              },
+              {
+                "kind": "literal_line",
+                "text": "    }\n"
+              }
+            ],
+            "change_kinds": [
+              "insert"
+            ],
+            "hunk_digest": "a67f435c8646d3ea2e6c06ef05916e302480948b5e1a00316b998526762c0a2b"
+          }
+        ],
+        "operator_digest": "eba97b955e758aef73e86e5f540a577566a4f9803802c815401dbe55a50af650",
+        "schema": "genesis-acquired-structural-operator-v1",
+        "source_family": "java",
+        "source_path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+        "source_result_digest": "6e1c8fac630ea87a6e05701f639261aef2f901ad5487edf998adb0cb79ad329e"
+      }
+    ],
+    "parent_memory_digest": "",
+    "schema": "genesis-a6c-failure-driven-self-extension-memory-v1"
+  },
+  "schema": "genesis-g12-derived-training-operator-bank-v1",
+  "sources": [
+    {
+      "acquired_operator_digests": [
+        "eba97b955e758aef73e86e5f540a577566a4f9803802c815401dbe55a50af650"
+      ],
+      "independently_validated_new_bug": false,
+      "original_memory_digest": "3fc4dc2ba4de97923dd65e74306e9202f4229b22180e2e425af1b4b787edc24a",
+      "original_memory_generation": 2,
+      "receipt_digest": "9df1b02cba72ae685c4f3cc5f74c945cacb2ca2f1c50d250b41faa922873ffeb",
+      "source_role": "released_training"
+    },
+    {
+      "acquired_operator_digests": [
+        "a9b8d9ae8412c9b46024f8271dd7435c1d05ead5964b48dc218ec2052cf6deec"
+      ],
+      "independently_validated_new_bug": false,
+      "original_memory_digest": "8f8ea2b92f9dc232d408d227d77d33b7ea57af8fc8407645eaceddb4d617af7f",
+      "original_memory_generation": 2,
+      "receipt_digest": "e8caec6b4fa1b92384321017689bfea19d25d3a0024d0335af99ed94658a1db1",
+      "source_role": "released_training"
+    }
+  ]
+}

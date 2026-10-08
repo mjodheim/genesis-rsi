@@ -520,6 +520,7 @@ def generate(
     priority_focus_paths: Sequence[str] = (),
     sibling_guard_experimental: bool = False,
     stream_iterator_experimental: bool = False,
+    g12_retained_probe_slots: int = 0,
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
@@ -532,6 +533,10 @@ def generate(
         raise ValueError("repair hypotheses require an understanding registry")
     if source_balance_experimental and len(_normalize_paths(Path(root).resolve(), focus_paths)) > 32:
         raise ValueError("source balancing is bounded to 32 focus files")
+    if isinstance(g12_retained_probe_slots, bool) or not 0 <= g12_retained_probe_slots <= 4:
+        raise ValueError("G12 retained probe slots must be in [0,4]")
+    if g12_retained_probe_slots and retained_memory is None:
+        raise ValueError("G12 retained probe slots require retained training memory")
     if max_candidates < 1 or max_candidates > 10_000:
         raise ValueError("max_candidates must be in [1, 10000]")
     if not (0.0 <= composition_fraction <= 0.8):
@@ -551,6 +556,15 @@ def generate(
         enable_sibling_guard=sibling_guard_experimental,
         enable_stream_iterator=stream_iterator_experimental,
     )
+    if g12_retained_probe_slots:
+        # Without this opt-in, identical candidate content produced by the
+        # human-authored family wins the deduplication score and ERASES the
+        # learner's provenance. Give replay-validated retained edits a
+        # provisional score advantage solely for bounded exploration.
+        records = [
+            (family, rec, score + 250 if family == "retained_structural" else score)
+            for family, rec, score in records
+        ]
     atomic, originals = _build_plans(base, records)
     understanding_summary = None
     understanding_reports: dict[str, dict[str, Any]] = {}
@@ -614,6 +628,19 @@ def generate(
                 active.append(path)
         all_plans = rotated
 
+    selected_retained_probes = 0
+    if g12_retained_probe_slots:
+        reserved: list[RepairPlan] = []
+        for plan in all_plans:
+            if (plan.depth == 1
+                    and "retained_structural_operator" in plan.component_operators
+                    and len(reserved) < min(g12_retained_probe_slots, max_candidates)):
+                reserved.append(plan)
+        if reserved:
+            chosen = {p.digest for p in reserved}
+            all_plans = [*reserved, *(p for p in all_plans if p.digest not in chosen)]
+        selected_retained_probes = len(reserved)
+
     out: list[dict[str, Any]] = []
     seen_contents: set[tuple[str, str]] = set()
     atomic_count = 0
@@ -662,6 +689,15 @@ def generate(
         "external_model_calls": 0,
         "candidates": out,
     }
+    if g12_retained_probe_slots:
+        payload["g12_retained_probe"] = {
+            "schema": "genesis-g12-retained-exploration-v1",
+            "requested_slots": g12_retained_probe_slots,
+            "selected_slots": selected_retained_probes,
+            "training_memory_digest": retained_memory["memory_digest"],
+            "promotion_does_not_prove_repair": True,
+            "opt_in_only": True,
+        }
     if preflight_summary is not None:
         payload["g11_compile_preflight"] = preflight_summary
     if atomic_first_experimental:
