@@ -196,9 +196,9 @@ def main() -> int:
                     "candidate_count": len(candidates),
                     "planner_digest": result["strategy_digest"],
                     "planner_elapsed_seconds": round(elapsed, 3),
-                    "top_hashes": [c["content_sha256"] for c in candidates[:TOP_K]],
+                    "top_hashes": [hashlib.sha256(c["content_utf8"].encode()).hexdigest() for c in candidates[:TOP_K]],
                     "candidate_order_digest": digest_of(
-                        [c["content_sha256"] for c in candidates]),
+                        [hashlib.sha256(c["content_utf8"].encode()).hexdigest() for c in candidates]),
                     "g11_report": result.get("g11_understanding"),
                     "candidates": candidates[:TOP_K],
                 }
@@ -221,12 +221,12 @@ def main() -> int:
             cid = case["case_id"]
             harness = oracle_sources[cid]
             original = validate_candidate(case["source"], cid, harness, "original")
-            if original["full_suite_passed"]:
+            if not original["compiled"] or original["full_suite_passed"]:
                 raise RuntimeError(f"Case {cid} not actually buggy: REFUSE TO REPORT")
             jobs: dict[str, str] = {}
             for arm in case["arms"].values():
                 for candidate in arm["candidates"]:
-                    key = candidate["content_sha256"]
+                    key = hashlib.sha256(candidate["content_utf8"].encode()).hexdigest()
                     if key in jobs and jobs[key] != candidate["content_utf8"]:
                         raise RuntimeError("candidate SHA256 collision")
                     jobs[key] = candidate["content_utf8"]
