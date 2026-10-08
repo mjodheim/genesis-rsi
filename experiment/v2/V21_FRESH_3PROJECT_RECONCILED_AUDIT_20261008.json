@@ -1,0 +1,98 @@
+{
+  "all_candidate_freeze_digest": "36e66504a7e59edeb850cfb73e5b169bf31599fe5c2eeabed6b3ef880119cce3",
+  "all_candidates_rejected_by_compiler_or_original_public_trigger": true,
+  "audit_digest": "fd73dbfb4bb03fd8bc1637f33fa21c552ceefbcff31e7423029e9812a4931c90",
+  "candidate_full_suite_required_for_acceptance": true,
+  "cases": [
+    {
+      "candidate_indexes_identical_between_arms": true,
+      "case": "Chart-23",
+      "compiled_by_arm": {
+        "v1_frozen_default": 8,
+        "v21_typed_semantic_optin": 8
+      },
+      "repaired_by_arm": {
+        "v1_frozen_default": 0,
+        "v21_typed_semantic_optin": 0
+      },
+      "tested_by_arm": {
+        "v1_frozen_default": 8,
+        "v21_typed_semantic_optin": 8
+      },
+      "typed_semantic_hypotheses_generated": 0,
+      "validation_evidence_type": "original_preregistered_validator"
+    },
+    {
+      "candidate_indexes_identical_between_arms": true,
+      "case": "JacksonXml-4",
+      "compiled_by_arm": {
+        "v1_frozen_default": 7,
+        "v21_typed_semantic_optin": 7
+      },
+      "repaired_by_arm": {
+        "v1_frozen_default": 0,
+        "v21_typed_semantic_optin": 0
+      },
+      "tested_by_arm": {
+        "v1_frozen_default": 8,
+        "v21_typed_semantic_optin": 8
+      },
+      "typed_semantic_hypotheses_generated": 0,
+      "validation_evidence_type": "original_preregistered_validator"
+    },
+    {
+      "candidate_indexes_identical_between_arms": true,
+      "case": "Mockito-22",
+      "compiled_by_arm": {
+        "v1_frozen_default": 8,
+        "v21_typed_semantic_optin": 8
+      },
+      "repaired_by_arm": {
+        "v1_frozen_default": 0,
+        "v21_typed_semantic_optin": 0
+      },
+      "tested_by_arm": {
+        "v1_frozen_default": 8,
+        "v21_typed_semantic_optin": 8
+      },
+      "typed_semantic_hypotheses_generated": 0,
+      "validation_evidence_type": "postfreeze_infrastructure_validator_correction"
+    }
+  ],
+  "combined_bugs_without_validated_repairs": 12,
+  "corrected_mockito_digest": "f3f061c647fdf293329d44d63ef1b6b9d939005aeb6f1fc0b57b3605b09bfbdd",
+  "earlier_three_batch_result_digests": [
+    "0c231b166cf9172f1af5e693949fe4449204abf2a6677b5a6be84a49633b8b4c",
+    "9547854281e373e089204a6f77820b6f641f6b23bf1111ecdac723efa8dd337b",
+    "fd3052dc5e0ee917143ff2e753386047a44120d7945ebf528a5be32751726c30"
+  ],
+  "evaluator_infrastructure_correction_explicitly_postfreeze": true,
+  "general_RSI_not_tested_or_proven": true,
+  "new_independent_cases": 3,
+  "new_repairs": 0,
+  "no_passing_candidate_reached_full_suite": true,
+  "original_misleading_Mockito_compile_failures_invalidated": true,
+  "original_preregistration_digest": "aeca5556d5f181263065a791c7ca9265bfba3a47e639782a70c7c6c38bfa3c49",
+  "original_report_digest": "5b1aed8e7d07fe2ac1743f985f56a3c24d3bcac236ef9ceca1c32c400ea3719e",
+  "policy_and_candidate_hashes_not_changed_after_freeze": true,
+  "policy_code_head": "bdc2b6199ecd48331fbf36b65acd09196e7190c6",
+  "previous_independent_bugs_without_repair": 9,
+  "schema": "genesis-v21-reconciled-blind-evaluation-audit-v1",
+  "summary": {
+    "v1_frozen_default": {
+      "compiled_candidates": 23,
+      "full_suite_valid_repairs": 0,
+      "new_semantic_hypotheses": 0,
+      "projects": 3,
+      "tested_candidates": 24
+    },
+    "v21_typed_semantic_optin": {
+      "compiled_candidates": 23,
+      "full_suite_valid_repairs": 0,
+      "new_semantic_hypotheses": 0,
+      "projects": 3,
+      "tested_candidates": 24
+    }
+  },
+  "validator_amendment_digest": "bc3989d5bedfedc6703fc5cf7ae83033de547a974d7da21cbca52d4a21ac822a"
+}
