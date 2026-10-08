@@ -1,0 +1,1084 @@
+{
+  "all_cases_verified_buggy_before_passing_candidates": true,
+  "candidate_validation_isolated_from_generator": true,
+  "case_count": 8,
+  "cases": [
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "00b96d00981b0316c0386ca48c524f3535663012849dbf0251fe7227803e4a33",
+          "compile_success_count": 24,
+          "evaluated_top_k": 24,
+          "first_validated_rank": 21,
+          "generated_count": 26,
+          "passed_in_top_k": 1,
+          "planner_seconds": 0.007,
+          "planner_strategy_digest": "9ffaffcaceb393ca5afa2f6cfe82898eba52aad00fed9fa01a52a37c466931fb",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "d40aebcdd148964fa2b263342ec05f4a2dea1a6523c6ef2d1413fc59571ed818",
+          "compile_success_count": 24,
+          "evaluated_top_k": 24,
+          "first_validated_rank": 21,
+          "generated_count": 26,
+          "passed_in_top_k": 2,
+          "planner_seconds": 1.596,
+          "planner_strategy_digest": "d17ad2809ddabf43723337afb9a3b5b68b056dcef9455f18e4de70e46030ba37",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 7,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "5b4a39000616078cbbefed6f3ff1481589df4ab80d8f1f89dc2d7c4ccd80e4d5",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 1,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "identifier",
+                    "if_control",
+                    "int_literal",
+                    "less_than",
+                    "modifiers",
+                    "parenthesized",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialA.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 99
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "d40aebcdd148964fa2b263342ec05f4a2dea1a6523c6ef2d1413fc59571ed818",
+          "compile_success_count": 24,
+          "evaluated_top_k": 24,
+          "first_validated_rank": 21,
+          "generated_count": 26,
+          "passed_in_top_k": 2,
+          "planner_seconds": 1.629,
+          "planner_strategy_digest": "e855bf045fc7dd060ddc38bcee0e0756c58fb297709397ff56782abac94e0152",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 7,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "5b4a39000616078cbbefed6f3ff1481589df4ab80d8f1f89dc2d7c4ccd80e4d5",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "81bc58b76cfb12b39eeebf7b16443a1e2e098bf5dd39110f1c91c379d62b4e21",
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 1,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "identifier",
+                    "if_control",
+                    "int_literal",
+                    "less_than",
+                    "modifiers",
+                    "parenthesized",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialA.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 99
+          }
+        }
+      },
+      "case_id": "A",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "6534ed6c71cc930bd89461bc5dc08e28ed279abfccda76196594c15630963637",
+      "unique_candidates_evaluated": 26,
+      "unique_candidates_passed": 2,
+      "validation_digest": "994215b5af7522e0ab587ab0fc2d5c685e7e6501cf04e1e098d3f8fc31afaa34"
+    },
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "05f7861620bed746c8ab97def34656e82bbfa09a9164194772e5d2c002d120ee",
+          "compile_success_count": 24,
+          "evaluated_top_k": 24,
+          "first_validated_rank": 9,
+          "generated_count": 36,
+          "passed_in_top_k": 2,
+          "planner_seconds": 0.006,
+          "planner_strategy_digest": "a5fb2e238b3b1ea4bbaa8e5cca2add659a0f3ac1b29c7caf5db4bcf2ecae453c",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "df1d84e7f59dc32edd14af3d92f861b4f4c17b1fcaae20f1fbb714143d29f33b",
+          "compile_success_count": 24,
+          "evaluated_top_k": 24,
+          "first_validated_rank": null,
+          "generated_count": 36,
+          "passed_in_top_k": 0,
+          "planner_seconds": 1.508,
+          "planner_strategy_digest": "732fb96a05122679d9f2abd360418bdf9aeeebd20bbadf35d89268e7c2ce1588",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 11,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "031d371cc1d566b3e9a7a91307a24a9954c7f1b96e078bb6ab7327e12eb3ede8",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 4,
+                  "branch_count": 2,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "greater_than",
+                    "identifier",
+                    "if_control",
+                    "int_literal",
+                    "less_than",
+                    "modifiers",
+                    "parenthesized",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialB.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 165
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "df1d84e7f59dc32edd14af3d92f861b4f4c17b1fcaae20f1fbb714143d29f33b",
+          "compile_success_count": 24,
+          "evaluated_top_k": 24,
+          "first_validated_rank": null,
+          "generated_count": 36,
+          "passed_in_top_k": 0,
+          "planner_seconds": 1.541,
+          "planner_strategy_digest": "d631a69e4ab5dc805361c6878dd37d7366beefe54ca92786e400107c5c7266e5",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 11,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "031d371cc1d566b3e9a7a91307a24a9954c7f1b96e078bb6ab7327e12eb3ede8",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "210d1db5624ed4d0db7b04a6f3f683193163f2b58750d9ed6eddb64b75f7d7e6",
+                "features": {
+                  "access_count": 4,
+                  "branch_count": 2,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "greater_than",
+                    "identifier",
+                    "if_control",
+                    "int_literal",
+                    "less_than",
+                    "modifiers",
+                    "parenthesized",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialB.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 165
+          }
+        }
+      },
+      "case_id": "B",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "5cee34135cdb1d7f5bf606a8e2be98dc54012ef9a6a8be2d95d2793a52c579be",
+      "unique_candidates_evaluated": 31,
+      "unique_candidates_passed": 2,
+      "validation_digest": "4c8b8ee84f17f78c413d6d8e2af98aa4cb6288b7cb4e88988fbb6ea972215f78"
+    },
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "1728fcfa16b7ebdba6de9a6305ed8a2ea011a206d58619913d12b84ec1302dbc",
+          "compile_success_count": 20,
+          "evaluated_top_k": 20,
+          "first_validated_rank": 18,
+          "generated_count": 20,
+          "passed_in_top_k": 1,
+          "planner_seconds": 0.012,
+          "planner_strategy_digest": "0fb9174331082daa2889bab05bf18182898e5d27e8d76f21bb0d8e07c2c322a6",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "fd23eb41bf3832eb58be5780ff34d117b85cc349f92db30e63f0de2d7a0954d7",
+          "compile_success_count": 20,
+          "evaluated_top_k": 20,
+          "first_validated_rank": 19,
+          "generated_count": 20,
+          "passed_in_top_k": 1,
+          "planner_seconds": 1.668,
+          "planner_strategy_digest": "498a7ab4a74084588c1e5dd086a432d24168b627987f3e88d00d094723202bc9",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 6,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "412850757b420c85ed7f432493f1f85d680ab8414d08cee6a24c1ac17965bd9e",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 1,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "greater_than",
+                    "identifier",
+                    "if_control",
+                    "int_literal",
+                    "modifiers",
+                    "parenthesized",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialC.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 84
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "fd23eb41bf3832eb58be5780ff34d117b85cc349f92db30e63f0de2d7a0954d7",
+          "compile_success_count": 20,
+          "evaluated_top_k": 20,
+          "first_validated_rank": 19,
+          "generated_count": 20,
+          "passed_in_top_k": 1,
+          "planner_seconds": 1.529,
+          "planner_strategy_digest": "ff6d42b3fb72dae0b8e9903c0d188b2396d661a94890563ebdccd6756e5d7b20",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 6,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "412850757b420c85ed7f432493f1f85d680ab8414d08cee6a24c1ac17965bd9e",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "0664fef31da2b20c5f5c51e87b69e9df63d1f2c0fa98ac59f23127e9d356487c",
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 1,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "greater_than",
+                    "identifier",
+                    "if_control",
+                    "int_literal",
+                    "modifiers",
+                    "parenthesized",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialC.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 84
+          }
+        }
+      },
+      "case_id": "C",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "4199136303a295d4e42d4d5701cbea2f99b61a3074f2f7600b175206295fc436",
+      "unique_candidates_evaluated": 20,
+      "unique_candidates_passed": 1,
+      "validation_digest": "9bfba2da1f91020ff4c844ff1b2aa58a1906dc6bde0396b9144a03c48aa0e154"
+    },
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "531102231542d9f019ea69e925f6073911490f98cddee22ed87b225a5eb9f147",
+          "compile_success_count": 3,
+          "evaluated_top_k": 3,
+          "first_validated_rank": 1,
+          "generated_count": 3,
+          "passed_in_top_k": 2,
+          "planner_seconds": 0.01,
+          "planner_strategy_digest": "c64881147e60b86afedd79c342be12a326f93c178b2b391e4500d14f9b097f5c",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "eb7730494a18b69d66773a4c3d183ce68473f3a57a7c3ac7d69f17c852660031",
+          "compile_success_count": 3,
+          "evaluated_top_k": 3,
+          "first_validated_rank": 1,
+          "generated_count": 3,
+          "passed_in_top_k": 2,
+          "planner_seconds": 1.617,
+          "planner_strategy_digest": "6af7f12c240472907ae879984b23449f544199a87cda227657aa052b5b90be45",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 2,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "9dbc8ae362a808f2dc455b35d8c272f48deabc6fdbe8f3670559bbba7075d12b",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 6,
+                  "branch_count": 1,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "conditional_control",
+                    "function_declaration",
+                    "identifier",
+                    "less_than",
+                    "modifiers",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialD.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 30
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "eb7730494a18b69d66773a4c3d183ce68473f3a57a7c3ac7d69f17c852660031",
+          "compile_success_count": 3,
+          "evaluated_top_k": 3,
+          "first_validated_rank": 1,
+          "generated_count": 3,
+          "passed_in_top_k": 2,
+          "planner_seconds": 1.52,
+          "planner_strategy_digest": "0d28d5b1a5cc736112108dd7218edd84c1bb7394bad94cfb00c29ccac67c9fe3",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 2,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "9dbc8ae362a808f2dc455b35d8c272f48deabc6fdbe8f3670559bbba7075d12b",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "6a1dd6b7f733d34aaeec3be9d7fda41e9f17203e7ba48cf5eaae9c168cfcafc6",
+                "features": {
+                  "access_count": 6,
+                  "branch_count": 1,
+                  "call_count": 0,
+                  "has_branch": true,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "conditional_control",
+                    "function_declaration",
+                    "identifier",
+                    "less_than",
+                    "modifiers",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialD.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 30
+          }
+        }
+      },
+      "case_id": "D",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "717735888026396912add84bb625119b48a43e4fa96dbf442efc8ba8f67b77e5",
+      "unique_candidates_evaluated": 3,
+      "unique_candidates_passed": 2,
+      "validation_digest": "5d5bef78707aaab5e871bb411ac35da4c7f590279b2d30a09b42bf858e6ed585"
+    },
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "c603e2f10cdab98f44d937666d358712cec099b8a0cfb3681ff349d36377b45d",
+          "compile_success_count": 10,
+          "evaluated_top_k": 10,
+          "first_validated_rank": 7,
+          "generated_count": 10,
+          "passed_in_top_k": 2,
+          "planner_seconds": 0.011,
+          "planner_strategy_digest": "a2c80d1841e0362683985f7fc89fad39ab2c9d5c17c10d104a7ad5ad23476618",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "f65e5662ac331a5ffafbb51201274f752ea4fe2ec89c477bb581b152805e9b11",
+          "compile_success_count": 10,
+          "evaluated_top_k": 10,
+          "first_validated_rank": 7,
+          "generated_count": 10,
+          "passed_in_top_k": 2,
+          "planner_seconds": 1.653,
+          "planner_strategy_digest": "9196523e3cdceea069bbb8dec8548220296db198d41f78b30acddbbd11be6cbd",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 4,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "1493613014111bb873faa54923ce48260eeb70e2c9da8697f2590cad64325991",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 8,
+                  "branch_count": 0,
+                  "call_count": 0,
+                  "has_branch": false,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "expression_statement",
+                    "for_control",
+                    "function_declaration",
+                    "identifier",
+                    "int_literal",
+                    "less_than_equal",
+                    "modifiers",
+                    "postfix_increment",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialE.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 54
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "f65e5662ac331a5ffafbb51201274f752ea4fe2ec89c477bb581b152805e9b11",
+          "compile_success_count": 10,
+          "evaluated_top_k": 10,
+          "first_validated_rank": 7,
+          "generated_count": 10,
+          "passed_in_top_k": 2,
+          "planner_seconds": 1.543,
+          "planner_strategy_digest": "2cc6eef84333697b409624d17b61a3b76e8d776727c9ad6c8cdcea106df7f9d9",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 4,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "1493613014111bb873faa54923ce48260eeb70e2c9da8697f2590cad64325991",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "aabee4c9f8c815c7be2d2cbe136afa67c4380ea17958d7a5b6ad1c921a29fcb6",
+                "features": {
+                  "access_count": 8,
+                  "branch_count": 0,
+                  "call_count": 0,
+                  "has_branch": false,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "expression_statement",
+                    "for_control",
+                    "function_declaration",
+                    "identifier",
+                    "int_literal",
+                    "less_than_equal",
+                    "modifiers",
+                    "postfix_increment",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialE.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 54
+          }
+        }
+      },
+      "case_id": "E",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "1421a6b6f08dee1b2ed051717c4d59a772ce6d1c4e2a7a6744b35b25097d6cb8",
+      "unique_candidates_evaluated": 10,
+      "unique_candidates_passed": 2,
+      "validation_digest": "b582b52e8c39a47def270c1ba1ad0c3731ee3db9c9480d690e078e2e7834339b"
+    },
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "799cb8aa704079315c0b14c5cfd6b1cc74806dac13f085f4236cc7f4680960e6",
+          "compile_success_count": 13,
+          "evaluated_top_k": 13,
+          "first_validated_rank": 2,
+          "generated_count": 13,
+          "passed_in_top_k": 1,
+          "planner_seconds": 0.005,
+          "planner_strategy_digest": "10ef6d77b9efd6ec3150945327789a6729db74a6e6bdcc9baacbbaa086d0bbfd",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "45eb9c316626ced73ee80e1063c096fce0d38f6d5457069078d37cf822bfcff0",
+          "compile_success_count": 13,
+          "evaluated_top_k": 13,
+          "first_validated_rank": 1,
+          "generated_count": 13,
+          "passed_in_top_k": 1,
+          "planner_seconds": 1.556,
+          "planner_strategy_digest": "869700937b78faae439becea00c6c7467c7a5e0d2412345f07ff164027d5df36",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 5,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "d85e61b17f763c25131e497a893fa76c9b65e37d148a80cbbc2231b440e0f48f",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 0,
+                  "call_count": 0,
+                  "has_branch": false,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "equal_to",
+                    "function_declaration",
+                    "identifier",
+                    "int_literal",
+                    "modifiers",
+                    "primitive_type",
+                    "remainder",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialF.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 45
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "45eb9c316626ced73ee80e1063c096fce0d38f6d5457069078d37cf822bfcff0",
+          "compile_success_count": 13,
+          "evaluated_top_k": 13,
+          "first_validated_rank": 1,
+          "generated_count": 13,
+          "passed_in_top_k": 1,
+          "planner_seconds": 1.647,
+          "planner_strategy_digest": "89d537ceaaebe2887e0a9eecd5029c9c9290c3973cf08dc400008d1708e093e7",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 5,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "d85e61b17f763c25131e497a893fa76c9b65e37d148a80cbbc2231b440e0f48f",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "073afc4e9f352e24680d24117df17e3c211dbce0a7690dbb0ce1f17e8323b6e4",
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 0,
+                  "call_count": 0,
+                  "has_branch": false,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "equal_to",
+                    "function_declaration",
+                    "identifier",
+                    "int_literal",
+                    "modifiers",
+                    "primitive_type",
+                    "remainder",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialF.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 45
+          }
+        }
+      },
+      "case_id": "F",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "c8ed3e1394bc078015ca5618b303ee03eb0df19f505849cf228b118ef2a99929",
+      "unique_candidates_evaluated": 13,
+      "unique_candidates_passed": 1,
+      "validation_digest": "95f2d91ee2d61bd4ffc5a3cbb381f7bd188bd73afceef9dfbeca1f5796f3cc15"
+    },
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "e8d989c9f553f5c75ed48e1ce3ab61085b1d3aaa898f322d2cb9173234283ab2",
+          "compile_success_count": 1,
+          "evaluated_top_k": 1,
+          "first_validated_rank": null,
+          "generated_count": 1,
+          "passed_in_top_k": 0,
+          "planner_seconds": 0.009,
+          "planner_strategy_digest": "7220ccc25a5a59edc3277d3f0cf6036fae99e30212956015b7f5cee299b45a3c",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "e8d989c9f553f5c75ed48e1ce3ab61085b1d3aaa898f322d2cb9173234283ab2",
+          "compile_success_count": 1,
+          "evaluated_top_k": 1,
+          "first_validated_rank": null,
+          "generated_count": 1,
+          "passed_in_top_k": 0,
+          "planner_seconds": 1.6,
+          "planner_strategy_digest": "c66b4459f67b40c7e144df00b54004f07f9175a13c89dc18e0319afc6f853967",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 1,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "2dcdc8690a0a65809b54d7108d1a99014ae677a230ee11afcacbcca6e9093e7f",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 3,
+                  "branch_count": 1,
+                  "call_count": 1,
+                  "has_branch": true,
+                  "has_call": true,
+                  "node_kinds": [
+                    "block",
+                    "call",
+                    "compilation_unit",
+                    "equal_to",
+                    "function_declaration",
+                    "identifier",
+                    "if_control",
+                    "member_select",
+                    "modifiers",
+                    "null_literal",
+                    "parenthesized",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialG.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 15
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "e8d989c9f553f5c75ed48e1ce3ab61085b1d3aaa898f322d2cb9173234283ab2",
+          "compile_success_count": 1,
+          "evaluated_top_k": 1,
+          "first_validated_rank": null,
+          "generated_count": 1,
+          "passed_in_top_k": 0,
+          "planner_seconds": 1.693,
+          "planner_strategy_digest": "1c2ca36bf9e30322ca564f81bf1e30f240c07b621ce6ba218d316143900f789e",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 1,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "2dcdc8690a0a65809b54d7108d1a99014ae677a230ee11afcacbcca6e9093e7f",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "c2656faa1fe938239078ed45793816c3936e2b0dc102717535858fd624b87daa",
+                "features": {
+                  "access_count": 3,
+                  "branch_count": 1,
+                  "call_count": 1,
+                  "has_branch": true,
+                  "has_call": true,
+                  "node_kinds": [
+                    "block",
+                    "call",
+                    "compilation_unit",
+                    "equal_to",
+                    "function_declaration",
+                    "identifier",
+                    "if_control",
+                    "member_select",
+                    "modifiers",
+                    "null_literal",
+                    "parenthesized",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialG.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 15
+          }
+        }
+      },
+      "case_id": "G",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "8ef4ddb177666705f1d4a32514ed0de99b4449073854c5e933bb08a0dd0badf8",
+      "unique_candidates_evaluated": 1,
+      "unique_candidates_passed": 0,
+      "validation_digest": "d1de9ec86c11466891548b3831d32d06ce92547f9f4e3b7d6459ac734c1bc838"
+    },
+    {
+      "arms": {
+        "baseline": {
+          "candidate_order_digest": "35460f0fef6d89af8867562511951303a6822002fe9269b0829abcdd7645e48b",
+          "compile_success_count": 2,
+          "evaluated_top_k": 2,
+          "first_validated_rank": 2,
+          "generated_count": 2,
+          "passed_in_top_k": 1,
+          "planner_seconds": 0.004,
+          "planner_strategy_digest": "6d4a1e69ac7e3d683bd7ceb2a5f849b7b67255ce849c6f1e33b87af1e1640931",
+          "understanding_metadata": null
+        },
+        "understanding": {
+          "candidate_order_digest": "d883394ef85e480ad7fc9ca9864709727be9507f1c390aba732cd5144d0c8c71",
+          "compile_success_count": 2,
+          "evaluated_top_k": 2,
+          "first_validated_rank": 1,
+          "generated_count": 2,
+          "passed_in_top_k": 1,
+          "planner_seconds": 1.618,
+          "planner_strategy_digest": "0696d4a9711d52802bb772109f21e7b44ffceb558858b26ba0ce10e7c0fbca5c",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 2,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "08cfcb3a4efa0fbcec16cbf06d92802661141cd4422bc3cd47a0c1f367b17318",
+                "diagnostic_count": 0,
+                "domain_coverage": null,
+                "domain_findings": [],
+                "domain_insight_digest": null,
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 0,
+                  "call_count": 0,
+                  "has_branch": false,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "identifier",
+                    "int_literal",
+                    "modifiers",
+                    "plus",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialH.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 18
+          }
+        },
+        "understanding_security_performance": {
+          "candidate_order_digest": "d883394ef85e480ad7fc9ca9864709727be9507f1c390aba732cd5144d0c8c71",
+          "compile_success_count": 2,
+          "evaluated_top_k": 2,
+          "first_validated_rank": 1,
+          "generated_count": 2,
+          "passed_in_top_k": 1,
+          "planner_seconds": 1.583,
+          "planner_strategy_digest": "0a7e626ef2169182fd0e1bc13dee6750a7ef289efe2448f087f0e1fe09eebed4",
+          "understanding_metadata": {
+            "adjusted_atomic_plan_count": 2,
+            "analyzed_file_count": 1,
+            "ledger_recording_enabled": false,
+            "position_scoring_limited_to_ascii": true,
+            "reports": [
+              {
+                "analysis_digest": "08cfcb3a4efa0fbcec16cbf06d92802661141cd4422bc3cd47a0c1f367b17318",
+                "diagnostic_count": 0,
+                "domain_coverage": {
+                  "performance": "checked",
+                  "security": "checked"
+                },
+                "domain_findings": [],
+                "domain_insight_digest": "dcc74c9ff8223d710b8ca97085b6d5fd8365b7b10929f110de21955b7b63c13f",
+                "features": {
+                  "access_count": 2,
+                  "branch_count": 0,
+                  "call_count": 0,
+                  "has_branch": false,
+                  "has_call": false,
+                  "node_kinds": [
+                    "block",
+                    "compilation_unit",
+                    "function_declaration",
+                    "identifier",
+                    "int_literal",
+                    "modifiers",
+                    "plus",
+                    "primitive_type",
+                    "return",
+                    "type_declaration",
+                    "variable_declaration"
+                  ]
+                },
+                "fidelity": "compiler_semantic_partial",
+                "language": "java",
+                "module_id": "jdk-java-compiler-v2",
+                "path": "src/TrialH.java"
+              }
+            ],
+            "schema": "genesis-g11-planner-analysis-v1",
+            "selected_file_count": 1,
+            "total_structural_score_bonus": 18
+          }
+        }
+      },
+      "case_id": "H",
+      "original_compiles": true,
+      "original_fails_full_suite": true,
+      "source_sha256": "f8576a74e3bb7b13cf8e97a6f5cedfaa7fbfc869cc0456916aaab81898f05807",
+      "unique_candidates_evaluated": 2,
+      "unique_candidates_passed": 1,
+      "validation_digest": "f376692c8e90939bc0a017fffd6a74baa2d866fb2a6fd2b4973a25258fbdd425"
+    }
+  ],
+  "er4_holdouts_used": false,
+  "freeze_digest": "a7e4f5f021283a6f280d782e23de52d6e1c2509bf4392b185f1789dd268564ab",
+  "full_suite_passed_case_counts_by_arm": {
+    "baseline": 7,
+    "understanding": 6,
+    "understanding_security_performance": 6
+  },
+  "limitation": "synthetic fixtures, top-24 ranking, no independent external evaluation; performance module only provides annotations",
+  "planner_wall_seconds_by_arm": {
+    "baseline": 0.064,
+    "understanding": 12.816,
+    "understanding_security_performance": 12.685
+  },
+  "preregistration_digest": "f3f3e4b02e01eeef02f165e69b063a30ca1f2009fe5336ca0a201073aa04db40",
+  "report_digest": "34818e52f2ac5478b02004dd987b7ea011fb80cc13e7a9760d265e5ba48c4f9a",
+  "schema": "genesis-g11-java-repair-pilot-results-v1",
+  "training_memory_used": false
+}

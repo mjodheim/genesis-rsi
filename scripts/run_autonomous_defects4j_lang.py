@@ -200,6 +200,7 @@ def _build_index(
     understanding_registry: ModuleRegistry | None = None,
     understanding_ledger: ExperienceLedger | None = None,
     insight_registry: InsightRegistry | None = None,
+    understanding_rerank: bool = False,
 ) -> dict[str, Any]:
     inherited, _ = inherited_j8(buggy, source_prefix, budget)
     fallback, fallback_meta = j9_successor(buggy, source_prefix, budget, inherited)
@@ -214,6 +215,7 @@ def _build_index(
         understanding_registry=understanding_registry,
         understanding_ledger=understanding_ledger,
         insight_registry=insight_registry,
+        understanding_rerank=understanding_rerank,
     )
 
     records: list[dict[str, Any]] = []
@@ -603,14 +605,16 @@ class LangDefects4JAdapter:
         g11_experience_db: Path | None = None,
         g11_security: bool = False,
         g11_performance: bool = False,
+        g11_rerank_experimental: bool = False,
         excluded_case_ids: tuple[int, ...] = (),
     ) -> None:
         self.workspace = workspace.resolve()
         self.workspace.mkdir(parents=True, exist_ok=True)
         if g11_experience_db is not None and not g11_understanding:
             raise ValueError("G11 experience DB requires G11 understanding")
-        if (g11_security or g11_performance) and not g11_understanding:
-            raise ValueError("G11 domain modules require G11 understanding")
+        if (g11_security or g11_performance or g11_rerank_experimental) and not g11_understanding:
+            raise ValueError("G11 domain modules and reranking require G11 understanding")
+        self.g11_rerank_experimental = g11_rerank_experimental
         self.g11_registry = None
         self.g11_ledger = None
         self.g11_insights = None
@@ -718,6 +722,7 @@ class LangDefects4JAdapter:
             understanding_registry=self.g11_registry,
             understanding_ledger=self.g11_ledger,
             insight_registry=self.g11_insights,
+            understanding_rerank=self.g11_rerank_experimental,
         )
         _write_json(paths["indexes"] / "INDEX_SUMMARY.json", summary)
 
@@ -960,13 +965,15 @@ def main() -> int:
                         help="Opt-in read-only security review signals (not proved vulnerabilities)")
     parser.add_argument("--g11-performance", action="store_true",
                         help="Opt-in read-only performance review signals (not proved speedups)")
+    parser.add_argument("--g11-rerank-experimental", action="store_true",
+                        help="Opt-in unproven structural reranking; G11 is shadow-only by default")
     parser.add_argument("--exclude-case-ids", default="",
                         help="Comma-separated additional protected cases")
     args = parser.parse_args()
     if args.g11_experience_db and not args.g11_understanding:
         parser.error("--g11-experience-db requires --g11-understanding")
-    if (args.g11_security or args.g11_performance) and not args.g11_understanding:
-        parser.error("--g11-security/--g11-performance require --g11-understanding")
+    if (args.g11_security or args.g11_performance or args.g11_rerank_experimental) and not args.g11_understanding:
+        parser.error("G11 module flags and reranking require --g11-understanding")
 
     store = campaign.CampaignStore(args.state)
     initial = None
@@ -989,6 +996,7 @@ def main() -> int:
         g11_experience_db=args.g11_experience_db,
         g11_security=args.g11_security,
         g11_performance=args.g11_performance,
+        g11_rerank_experimental=args.g11_rerank_experimental,
         excluded_case_ids=excluded_ids,
     )
     final = campaign.run(

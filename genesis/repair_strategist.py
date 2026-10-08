@@ -310,6 +310,7 @@ def _score_from_understanding(
     registry: ModuleRegistry,
     ledger: ExperienceLedger | None,
     insight_registry: InsightRegistry | None,
+    rerank: bool,
     max_files: int,
     focus_paths: Sequence[str],
 ) -> tuple[list[RepairPlan], dict[str, Any]]:
@@ -349,6 +350,8 @@ def _score_from_understanding(
             metadata.append({"path": relpath, "analysis_error": type(exc).__name__})
     adjusted: list[RepairPlan] = []
     total_bonus = 0
+    potential_bonus = 0
+    potential_plan_count = 0
     for plan in atomic:
         report = reports.get(plan.path)
         bonus = 0
@@ -357,7 +360,10 @@ def _score_from_understanding(
             original = _original_text(root, plan.path, {})
             if original is not None and original.isascii():
                 bonus = _understanding_bonus(plan, report["nodes"])
-        total_bonus += bonus
+        potential_bonus += bonus
+        potential_plan_count += int(bonus > 0)
+        applied_bonus = bonus if rerank else 0
+        total_bonus += applied_bonus
         adjusted.append(RepairPlan(
             path=plan.path,
             expected_sha256=plan.expected_sha256,
@@ -365,7 +371,7 @@ def _score_from_understanding(
             component_ids=plan.component_ids,
             component_operators=plan.component_operators,
             depth=plan.depth,
-            score=plan.score + bonus,
+            score=plan.score + applied_bonus,
         ))
     return adjusted, {
         "schema": "genesis-g11-planner-analysis-v1",
@@ -373,6 +379,9 @@ def _score_from_understanding(
         "selected_file_count": min(len(paths), max_files),
         "adjusted_atomic_plan_count": sum(a.score != b.score for a, b in zip(atomic, adjusted)),
         "total_structural_score_bonus": total_bonus,
+        "experimental_reranking_enabled": rerank,
+        "potential_bonus_without_application": potential_bonus,
+        "potential_plan_count": potential_plan_count,
         "reports": metadata,
         "ledger_recording_enabled": ledger is not None,
         "position_scoring_limited_to_ascii": True,
@@ -467,12 +476,15 @@ def generate(
     understanding_registry: ModuleRegistry | None = None,
     understanding_ledger: ExperienceLedger | None = None,
     insight_registry: InsightRegistry | None = None,
+    understanding_rerank: bool = False,
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
         raise ValueError("experience ledger requires an enabled understanding registry")
     if insight_registry is not None and understanding_registry is None:
         raise ValueError("domain insights require an enabled understanding registry")
+    if understanding_rerank and understanding_registry is None:
+        raise ValueError("experimental reranking requires an understanding registry")
     if max_candidates < 1 or max_candidates > 10_000:
         raise ValueError("max_candidates must be in [1, 10000]")
     if not (0.0 <= composition_fraction <= 0.8):
@@ -497,6 +509,7 @@ def generate(
             registry=understanding_registry,
             ledger=understanding_ledger,
             insight_registry=insight_registry,
+            rerank=understanding_rerank,
             max_files=max_understanding_files,
             focus_paths=focus_paths,
         )

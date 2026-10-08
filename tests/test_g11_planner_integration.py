@@ -37,6 +37,7 @@ class G11PlannerTests(unittest.TestCase):
                 root,
                 understanding_registry=registry,
                 understanding_ledger=ledger,
+                understanding_rerank=True,
                 **config,
             )
             self.assertNotIn("g11_understanding", baseline)
@@ -51,6 +52,39 @@ class G11PlannerTests(unittest.TestCase):
             )
             registry.remove("java")
             self.assertEqual(ExperienceLedger(root/"observations.db").knowledge_summary()["observation_count"], 1)
+
+    def test_g11_shadow_mode_never_reorders_or_drops_candidates(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            source = root / "src" / "A.java"
+            source.parent.mkdir(parents=True)
+            source.write_text(
+                "class A { int f(int x) { if (x < 2) return 1; return 0; } }"
+            )
+            registry = ModuleRegistry()
+            registry.register(JavaCompilerModule(java=JDK/"java", javac=JDK/"javac"))
+            kwargs = dict(include_prefixes=["src"], focus_paths=["src/A.java"],
+                          max_candidates=60, per_family_budget=60)
+            baseline = repair_strategist.generate(root, **kwargs)
+            shadow = repair_strategist.generate(
+                root, understanding_registry=registry, **kwargs
+            )
+            self.assertEqual(
+                [c["content_utf8"] for c in baseline["candidates"]],
+                [c["content_utf8"] for c in shadow["candidates"]],
+            )
+            self.assertEqual(
+                [c["plan"]["score"] for c in baseline["candidates"]],
+                [c["plan"]["score"] for c in shadow["candidates"]],
+            )
+            self.assertEqual(shadow["g11_understanding"]["adjusted_atomic_plan_count"], 0)
+            self.assertGreater(shadow["g11_understanding"]["potential_plan_count"], 0)
+            self.assertFalse(shadow["g11_understanding"]["experimental_reranking_enabled"])
+
+    def test_g11_reranking_without_analyzer_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            with self.assertRaisesRegex(ValueError, "requires an understanding registry"):
+                repair_strategist.generate(td, understanding_rerank=True)
 
     def test_domain_insights_in_planner_are_optional_and_read_only(self):
         from genesis.insights import InsightRegistry, JavaSecurityModule, JavaPerformanceModule

@@ -189,6 +189,7 @@ def main() -> int:
                     per_family_budget=MAX_CANDIDATES,
                     understanding_registry=language if arm != "baseline" else None,
                     insight_registry=insights if arm == "understanding_security_performance" else None,
+                    understanding_rerank=arm != "baseline",
                 )
                 elapsed = time.perf_counter() - started
                 candidates = result["candidates"]

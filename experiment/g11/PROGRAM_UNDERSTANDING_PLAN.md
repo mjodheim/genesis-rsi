@@ -1,7 +1,9 @@
 # G11 — Program Understanding (pre-implementation protocol)
 
-Status: PROTOCOL + OPT-IN PROTOTYPE (2026-10-08). Modules and smoke tests exist;
-this is NOT a claim of successful autonomous repair or validated G11 improvement.
+Status: PROTOCOL + OPT-IN PROTOTYPE + NEGATIVE SYNTHETIC REPAIR PILOT
+(2026-10-08). Modules and smoke tests exist, but current structural reranking
+reduced successful synthetic repairs from 7/8 baseline to 6/8. G11 ranking
+is now off by default; this is NOT a validated G11 improvement claim.
 See MODULAR_ARCHITECTURE.md for current implementation and results.
 
 ## Scientific question

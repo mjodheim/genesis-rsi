@@ -18,7 +18,9 @@ Status: **opt-in implementation and unit tests; NOT scientific proof of autonomo
 4. **Repair strategist (opt-in)**: repair_strategist.generate accepts a
    registry and optional experience ledger. Candidate edits overlapping
    compiler-derived syntax/semantic nodes receive a small, bounded structural
-   ranking prior. It does not generate new repair operators yet.
+   ranking prior **only when explicitly experimental**. The default G11 path
+   observes and annotates candidates but leaves ordering and scores untouched.
+   It does not generate new repair operators yet.
 
 ## Current fidelity
 
@@ -56,8 +58,10 @@ Run the Defects4J Lang script with the new optional arguments:
     --g11-understanding
     --g11-experience-db /path/to/training-only-observations.sqlite
 
-The baseline with no flags remains unchanged for candidate planning. G11
-records a source-structure observation during training-only candidate planning;
+The baseline with no flags remains unchanged for candidate planning. By
+default the G11 flags also leave candidate scores/order unchanged: reranking
+requires --g11-rerank-experimental, which has **failed the first 8-case
+synthetic pilot**. G11 records a source-structure observation during training-only candidate planning;
 it must not mutate held-out evaluation data. The 8 previously preregistered
 ER4 Lang IDs are excluded from this training script at selection and prepare
 time, including cases that were selected before the new guard.
@@ -157,3 +161,30 @@ storage is likewise opt-in via --g11-experience-db.
 - The observation ledger remembers usage after a module is removed, not how
   to execute the removed analyzer. Actual generalization and any recursive
   self-improvement remain to be shown.
+
+## Controlled synthetic repair pilot — 2026-10-08
+
+The preregistered, sealed synthetic Java pilot is documented in:
+- G11_REPAIR_PILOT_PREREG_20261008.json
+- G11_REPAIR_PILOT_RESULTS_20261008.json
+- G11_REPAIR_PILOT_ANALYSIS_20261008.md
+
+Under the equal top-24 validation budget, baseline solved 7/8 synthetic
+bugs, whereas experimental Java understanding reranking solved 6/8.
+Security and performance domain modules did not change patch ordering.
+These are full assertion suites **only for the synthetic exercises**.
+No proof of real-world autonomous repair or performance improvement.
+
+**Post-pilot safety gate:** G11 analyzes/records in shadow mode by default,
+without affecting candidate selection. Experimental ranking is available
+only when explicitly requested. The JDK analyzer helper is compiled once
+per Python process per analyzer digest to avoid redundant compiles; source
+files are still analyzed independently and no hidden tests are cached.
+
+The 8-case shadow regression confirmed identical candidate ordering to
+baseline in all 8 cases and reproduced each original experimental ordering.
+Original planning totals were 0.064s baseline and 12.816s understanding;
+a post-fix replay measured approximately 0.067s baseline, 5.909s G11
+shadow, and 4.905s experimental mode, in one process. These times were
+measured in different runs, are not controlled CPU benchmarks and should
+not be interpreted as statistically reliable speedups.
