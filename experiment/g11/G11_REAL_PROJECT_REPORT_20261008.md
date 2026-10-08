@@ -192,3 +192,24 @@ The Defects4J adapter supports
 enabled will it use the public test body to select and order loaded
 source paths. Default and previously sealed independent experiments
 remain unchanged.
+
+## Second fully frozen independent batch: Gson-2, Jsoup-68, JacksonCore-11
+
+All three buggy checkouts compiled and reproduced one failing test each.
+Project IDs and revisions were preregistered in
+G11_SECOND_BATCH_PREREG_20261008.json *before checkout*.
+Full candidate-order digests and top-12 candidates per arm were sealed in
+G11_SECOND_BATCH_FROZEN_INDEX_20261008.json before validator feedback.
+
+In the preregistered top-12 per arm budget (100 generated per arm), both
+the baseline and experimental atomic-first, source-balanced, sibling-guard
+configurations repaired **zero out of three** cases according to the
+public failing tests and independent full-suite acceptance rule.
+Full outcomes and compile failures remain immutable in
+G11_SECOND_BATCH_RESULTS_20261008.json.
+
+No success, performance benefit or RSI milestone is claimed. These three
+case IDs are now exposed and become development cases only.
+An improved public-test-method-to-source-type localization heuristic was
+developed separately and **did not influence** any proposals in this
+already frozen evaluation.
