@@ -118,3 +118,35 @@ spontaneous open-ended recursive self-improvement is claimed.
 
 A genuine future success requires freezing this machinery before encountering
 new unrelated bugs, retaining equivalent budgets and independent evaluation.
+
+## Independent three-project cross-repository evaluation (2026-10-08)
+
+Math-53, Csv-16 and Collections-24 were selected by preregistered SHA-256
+rules, frozen in commit ef103168 before their buggy code was accessed.
+Candidate indexes for both configurations were frozen in commit b9e53388
+before any candidate validation. Each baseline version compiled and failed
+its own tests (Math: 1, Csv: 1, Collections: 2).
+
+Results: 0/3 success for the previous candidate frontier and 0/3 for
+the balanced/atomic-first variant, with up to 80 candidates generated
+and eight validated per arm. Public failing-test assertions were used as
+early rejection signals, but no patch was reported successful without
+the full suite. This negative result is permanently filed in
+G11_3REPO_RESULTS_20261008.json and its frozen candidate metadata is in
+G11_3REPO_FROZEN_INDEX_20261008.json.
+
+These three cases are now exposed and may be used for development, never
+counted again as fresh blind evidence. A general sibling-method guard
+transfer pattern was identified from the already-exposed Math-53 case;
+this was an assistant-engineered capability, not autonomous invention.
+The operator is experimental-only and requires evaluation on fresh cases.
+
+Additional engineering: typed public test feedback observations and a
+hash-chained, explicitly training-only operator outcome memory. The memory
+stores portable operator/outcome metadata and deliberately refuses
+holdout records. It does NOT change candidate selection or certify
+its own repair success.
+
+The overarching RSI target is not achieved: no autonomous algorithm
+invention, new-case full-suite repair or proven recursively improving
+repair machinery has yet been demonstrated.

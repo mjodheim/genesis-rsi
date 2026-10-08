@@ -59,6 +59,21 @@ operator invention, general RSI, or independent generalization evidence.
 See experiment/g11/G11_REAL_PROJECT_REPORT_20261008.md.
 The ER3 service remains intentionally stopped to protect future holdouts.
 
+### Latest G11 independent evaluation
+
+On three new preregistered Defects4J projects (Math-53,
+Csv-16, Collections-24), the legacy and the modified source
+selection strategies both solved zero of three full-suite defects within
+their frozen top-eight candidate budgets. These negative results remain
+in experiment/g11/G11_3REPO_RESULTS_20261008.json.
+
+Separate opt-in instrumentation provides typed public-test feedback,
+training-only operator outcome retention, and experimental Java sibling-
+method guard transfer. The new operator was designed after Math-53
+had been examined, so any later Math-53 success is a posthoc development
+result, not unseen generalization. General recursive self-improvement
+remains unproven.
+
 ## Historical integrity markers
 
 The architecture reset does not erase or soften frozen historical outcomes. In particular, the **M086-A** attempt remains **POST-HOC DISQUALIFIED** and withdrawn exactly as recorded in its experiment evidence. Historical milestone labels remain valid identifiers even when they are no longer part of the active reader-facing roadmap.

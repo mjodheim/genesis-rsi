@@ -1,0 +1,1080 @@
+{
+  "case_count": 3,
+  "cases": [
+    {
+      "arms": {
+        "candidate_atomic_first_plus_source_balancing_plus_testname_hints": {
+          "candidate_index_digest": "de34bb542f51a094efe0d53ceb7f7ff698230799d5b9ec3bbc47f019a5d35e76",
+          "compile_passes": 5,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 80,
+          "planner_seconds": 22.97,
+          "tested_top_k": 8,
+          "top_operator_families": [
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ]
+          ],
+          "top_source_classes": [
+            "Complex",
+            "Field",
+            "FieldElement",
+            "DimensionMismatchException",
+            "MathArithmeticException",
+            "MathIllegalArgumentException",
+            "MathIllegalNumberException",
+            "NonMonotonousSequenceException"
+          ]
+        },
+        "legacy_unchanged": {
+          "candidate_index_digest": "924a965fcd48781e5c58156c0e8ade4deb893ae232d60b4ad8f7c4295e6984c4",
+          "compile_passes": 8,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 80,
+          "planner_seconds": 3.21,
+          "tested_top_k": 8,
+          "top_operator_families": [
+            [
+              "comparison_boundary",
+              "integer_delta"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ]
+          ],
+          "top_source_classes": [
+            "Field",
+            "Complex",
+            "Complex",
+            "MathUtils",
+            "MathUtils",
+            "MathUtils",
+            "Field",
+            "Field"
+          ]
+        }
+      },
+      "bug_id": 53,
+      "distinct_candidates_evaluated": 15,
+      "full_suite_valid_unique_candidates": 0,
+      "original_failure_count": 1,
+      "outcomes": [
+        {
+          "path": "src/main/java/org/apache/commons/math/Field.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "126d19367cd29b1888ee8f909e5b658c7c6748324356c1f2fe905f3ebb976004"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/Field.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "40bf5531bc6fd644aef1fe666db2bb834e55462e3c6dda5d8967fade4d88a5b7"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/Field.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "b3aa4a0893128425112913f790ce52d5e0090f27aff53a699def7583d7171417"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/Field.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "c72d63b12ae18ad9b495ba9d290f25b90372dda1d027fc7146256f372d0d9a80"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/FieldElement.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "fe496d4192137f733640bb0f901681331fcebba5e67d4c3e015e1eba11ab9b8b"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "da0f6bdbec47901d7e59d741a9b13deba59904bb68da576344ed31f89a83476f"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "fa6631df9594b6744b00b66a688dc19a161c4c8e0a5df92ec5fff0d162cd0c89"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/exception/DimensionMismatchException.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "e61d899a9f0464c8b9bd6ae42c7adc6ce90634c13abcc66ebca6b2d5dc76f0fb"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/exception/MathArithmeticException.java",
+          "result": {
+            "compile_output_digest": "74df36fd8530e4f07bae4c62d5fd559a0c0ea6d5708648ab8dfe1749da68c172",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "ab4db98c1855b3763e3998f7c101f85c49776552be51cfaddcf423ad4399d31d"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/exception/MathIllegalArgumentException.java",
+          "result": {
+            "compile_output_digest": "85793a5f315cd0328212ed79476b138cb11700e3bb609fdc7fe887d91f03e4e5",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "3c51dd7b036934a2fc5909f9dd28c7266203c54c453d72594aa5f2e60275aa61"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/exception/MathIllegalNumberException.java",
+          "result": {
+            "compile_output_digest": "4b5e146185d3da5970e4b2bc96688657865749a6eee0729c7ac3e88360540a47",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "378778751e56cb327d81c58a89ab9ffb054da073ea6a3ec22d07af7b935c678b"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/exception/NonMonotonousSequenceException.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "8d346d441bcbad6a91e7c0eef6fbc3a8de990c984ac043c6e786470406f57801"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/util/MathUtils.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "7293a94728f335c0c1b06ed8e5fb48d8a094ca2e12a90f8525ca6f20106e11e7"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/util/MathUtils.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "d70725ff4ce6bf4f76ca69d0f1e33f35e4b9bc49501a0e6346db9e21fdabd064"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/math/util/MathUtils.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "f4e20ab2b3c8104d3a1ac2b754dffb925fd4e7fef3032c75e8f4294d78c88d68",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.math.complex.ComplexTest::testAddNaN"
+              }
+            ]
+          },
+          "sha256": "f4c551e1606e697d52739f997dc8a3d86ed30532c4c006182d755d8604a1fcdd"
+        }
+      ],
+      "project": "Math"
+    },
+    {
+      "arms": {
+        "candidate_atomic_first_plus_source_balancing_plus_testname_hints": {
+          "candidate_index_digest": "84906abf0a2256fc8be067e500137096f731b785ebf441b58a6d97cf1f9bee5d",
+          "compile_passes": 4,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 80,
+          "planner_seconds": 1.695,
+          "tested_top_k": 8,
+          "top_operator_families": [
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_field_modifier_add"
+            ]
+          ],
+          "top_source_classes": [
+            "CSVParser",
+            "Assertions",
+            "CSVFormat",
+            "CSVRecord",
+            "Constants",
+            "ExtendedBufferedReader",
+            "Lexer",
+            "Token"
+          ]
+        },
+        "legacy_unchanged": {
+          "candidate_index_digest": "12c5001a345bcd3b6fa530d9ba0711e3a73ac09106eba6be39183620142349ed",
+          "compile_passes": 0,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 80,
+          "planner_seconds": 2.803,
+          "tested_top_k": 8,
+          "top_operator_families": [
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ]
+          ],
+          "top_source_classes": [
+            "CSVFormat",
+            "CSVFormat",
+            "CSVFormat",
+            "CSVFormat",
+            "CSVFormat",
+            "CSVFormat",
+            "CSVFormat",
+            "CSVFormat"
+          ]
+        }
+      },
+      "bug_id": 16,
+      "distinct_candidates_evaluated": 16,
+      "full_suite_valid_unique_candidates": 0,
+      "original_failure_count": 1,
+      "outcomes": [
+        {
+          "path": "src/main/java/org/apache/commons/csv/Assertions.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "d65eb0f3bf57668179e2a7d9d9fdc14d0ad5dff67c0955e361dbd38ece1ce451",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.csv.CSVParserTest::testIteratorSequenceBreaking"
+              }
+            ]
+          },
+          "sha256": "a62aa7a9fe17c2060706888ce1cf9ae6688bcf5da00ceb82a5f81e21231e80f5"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "eef3a8be8f05d7decaff21e223be848ee53922be0bbc9367eb61aee8d933928d",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "02b4fee007ebbfd61e59c7ac45f0f4c4185514ce79d5a1232a91374a89caec0e"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "963315f1b74366002cb3a2a950189f2f216f53f71ca55bebdb668af467b6c51c",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "10427de39a4e6cb71fa7690694fb1dc1c2cf00a8f4966958d03881a1b00c0f92"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "1a0225278ecf6aa9a84eb0c0de30e545f2d08591ec10b6aa33fddbe6dec91639",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "55d4426636766f922237edbad2c24e1bb9a5235c665b513d9a6774c597120b6d"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "d16e0f3bd9b8533162ed3de30a812002993d45f9d97dbbf8778450ddde5271df",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "6acab980c505c832ffd1a1305163f997b845e160a01a320902318c9aa5c0a2af"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "c16b407bc62646e6ff09f5edd376e819ff864f693d7bfaf5e2ff9c4b2e10a076",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "748297987f11e0544f8ac6b880a8de4ef1e55b2b77135fc9504dea642204b6ca"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "d8988fa8ca0f5f46e905f4e4787e218d41263ae15483ee6ecd882ab3b6df1ca6",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "a48f07455a0ecb68fa176ec5e0ee44f8500a9b5415a28bb91e66e156258c8b25"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "e6d319532858d0b45625d1170a1d05c4581ac49ca7d8e8f3b1a5b59488d6faa3",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "bce8b0adfe9327ce8994c2edf6bcc4b00a25df99e091b8fb0e1699cf30668981"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "4f9f96c4b2c2c0fd9f4290c25693d05e99d48d3cd4c1df269f4af8fedc44dc9e",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "bf54964ded196269dfa9f140964c1c3d0b83680a0fb93dcffe9bf56195f8d152"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVFormat.java",
+          "result": {
+            "compile_output_digest": "c6b39365e60d9db9adec8a1f187b11b5e7f8754fd78d31e4e590aa8abedff1db",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "de5e883deb08455180f9a556eab83bc9f587d74bd6b1b676d04447fca3e62825"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "d65eb0f3bf57668179e2a7d9d9fdc14d0ad5dff67c0955e361dbd38ece1ce451",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.csv.CSVParserTest::testIteratorSequenceBreaking"
+              }
+            ]
+          },
+          "sha256": "d480e4542f9490288d45ae40c7616b18550c11b013eba5f0c47d9f0b7da1744a"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/CSVRecord.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "d65eb0f3bf57668179e2a7d9d9fdc14d0ad5dff67c0955e361dbd38ece1ce451",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.csv.CSVParserTest::testIteratorSequenceBreaking"
+              }
+            ]
+          },
+          "sha256": "7089d430116143db46e15e49db85a10562bb2b779c45fba1d118731519675bd2"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/Constants.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "d65eb0f3bf57668179e2a7d9d9fdc14d0ad5dff67c0955e361dbd38ece1ce451",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.csv.CSVParserTest::testIteratorSequenceBreaking"
+              }
+            ]
+          },
+          "sha256": "ab58e1293b93f9c06770a971c8abad199ce6927dcdd75b1c0601018016655b11"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/ExtendedBufferedReader.java",
+          "result": {
+            "compile_output_digest": "ad918b9559d97aaec6ded782cc6271656fced139ce1c1511c75667a88e84873f",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "2e3f54df8eeeb94f438de7b89cce463b556844c000453abb6772805513642d93"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/Lexer.java",
+          "result": {
+            "compile_output_digest": "2bd148dadf54e8bd7f1a85d91f5665725fa1db9d806d72d4429aae6432b4782c",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "6875da771a279343327fddd9c79ba21f5faffa7c913db81b08d4a1eb37531094"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/csv/Token.java",
+          "result": {
+            "compile_output_digest": "5c1d816a63f3937f8535acc91ee06fc7812ede751a4ebc3c768451ed0652e6a7",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "d2ee5983ed1687bd276edd12b32fac8fedfedcfdce6538afe05f85a43bb27fec"
+        }
+      ],
+      "project": "Csv"
+    },
+    {
+      "arms": {
+        "candidate_atomic_first_plus_source_balancing_plus_testname_hints": {
+          "candidate_index_digest": "9600187e122a099b5e64c70c924197d5deb55936019743b42eab8ec3beefbeca",
+          "compile_passes": 6,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 80,
+          "planner_seconds": 4.952,
+          "tested_top_k": 8,
+          "top_operator_families": [
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "comparison_boundary"
+            ]
+          ],
+          "top_source_classes": [
+            "UnmodifiableBoundedCollection",
+            "BoundedCollection",
+            "Unmodifiable",
+            "AbstractCollectionDecorator",
+            "AbstractListDecorator",
+            "AbstractSerializableListDecorator",
+            "FixedSizeList",
+            "UnmodifiableBoundedCollection"
+          ]
+        },
+        "legacy_unchanged": {
+          "candidate_index_digest": "dabbc3bc3cb45f3933994bf9e08dc9df637cde12f8231ad8be4363f4ae4a00ef",
+          "compile_passes": 3,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 80,
+          "planner_seconds": 0.772,
+          "tested_top_k": 8,
+          "top_operator_families": [
+            [
+              "comparison_boundary",
+              "boolean_toggle"
+            ],
+            [
+              "comparison_boundary",
+              "boolean_toggle"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ]
+          ],
+          "top_source_classes": [
+            "BoundedCollection",
+            "BoundedCollection",
+            "BoundedCollection",
+            "BoundedCollection",
+            "BoundedCollection",
+            "BoundedCollection",
+            "BoundedCollection",
+            "BoundedCollection"
+          ]
+        }
+      },
+      "bug_id": 24,
+      "distinct_candidates_evaluated": 16,
+      "full_suite_valid_unique_candidates": 0,
+      "original_failure_count": 2,
+      "outcomes": [
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "1346dc61038c05b9c1ff949f082109c7aea0c18fe0eb129e3c48b1a30b0e0a5b"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compile_output_digest": "5d7fc37ee01b02dd70124ebd05675e96f051a3cc2d766d562bf017a8a46068a8",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "2f6624f55d5472e115bbe29bc84cc0964ddf7de0ffa0a1450263772e61f1554d"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compile_output_digest": "7362a53338ff9527e9c69851de7ce9adddf3f5736b930fb6bd058bb5cb337f65",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "3798ee102bf1180b94f6ee7d8be47ebe32f22921cf856a047a00b1a28e259839"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compile_output_digest": "2bde925f71801fd3e5e1eca07fc245fbebeccecd4e9c5f415112f1b821e36a04",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "463957f1b3cf03be41d15888cf6cd19f4dc3b06083c0467ef3aaae17de24136d"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "465167cf137c5b98a729c2a4de48eb336786805302b6bec3b16fe020840b1e1c"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "92c6630469be34d07b8c97989b8d6e0ce7701710468ce080759ba173e7aee1e8"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "98e18b989cdc64d58e280ef134c0316fd0f74a7a864576f99b916a4f53574831"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compile_output_digest": "dace771527686508ba7688d5dfcaf51f029244ed59eff97ae3601f9df403b721",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "c68dd0e95e36ff8df394180a929afba9a138b364b004df85198cf0fdea081d76"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/BoundedCollection.java",
+          "result": {
+            "compile_output_digest": "ea8681a348fa5a9d60456f21893221ba31dbcd86b97515eed7295f7bdf8f7359",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "efabe4e0232cf3dd94bc480212c3ebb78524668fc648854b9271ef2d4f2481d7"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/Unmodifiable.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "dae8a2d5b22d53a34edd483fda1da2289cd3cd674cb1581f56cb57d49006c0c8"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/collection/AbstractCollectionDecorator.java",
+          "result": {
+            "compile_output_digest": "16a4ac9772d5fdc4cac0f6fa016b14e0a5d62b5c346d53dcdb2390e80329594f",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "10452274fe82964c5855b7ee06fc5f0a996f683966dac7f33cbdd22818718aad"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "df1624cbf5fb8639ba5cecc848a693b569fc8c64487e700428892461dca5b3c7"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "f65e905a2d05fea59244aaf63061b350358ef018e86f99f0af8ef8531e01bd25"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/list/AbstractListDecorator.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "d01d7660c8f242fb74758d4bc96b3957257b8f0fe1d5866dbcbc026639477b95"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/list/AbstractSerializableListDecorator.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "2f820e7e6cf96ecf84e4fec4742838c3216c101ff8ecdfaa1ca622ed081bc5f5",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory"
+              },
+              {
+                "digest": "196ea2f759f9301b3626e422e54f48e57f81ef919d1e7d02a4e3c8e4a1bf2930",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testUnmodifiable"
+              }
+            ]
+          },
+          "sha256": "4da549eafefe1ad8c09c77453de479011b709669bbd4b14664226ade01fdd411"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/collections4/list/FixedSizeList.java",
+          "result": {
+            "compile_output_digest": "5c649620dd790eb2e4624320b519a1fa8c2223490021092f234fb677a0d3be11",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "3e6e064324cbd5e78a8bbe1ce0a4fb883af06bea6f32da7540f965941534be88"
+        }
+      ],
+      "project": "Collections"
+    }
+  ],
+  "cases_solved_per_arm": {
+    "candidate_atomic_first_plus_source_balancing_plus_testname_hints": 0,
+    "legacy_unchanged": 0
+  },
+  "claim_scope": "three fresh diverse Java projects; exploratory, not general RSI",
+  "freeze_digest": "36803aa957b3d5275caae508bd49e8f174ef9be97c2fd6c7c5a0b6b63e0e1822",
+  "independent_full_suite_required": true,
+  "no_fixed_revision_or_human_solution": true,
+  "preregistration_digest": "8d21b4da8e3e31798fa402092379fed278cca6978b58592c292f811029296d19",
+  "result_digest": "0c231b166cf9172f1af5e693949fe4449204abf2a6677b5a6be84a49633b8b4c",
+  "schema": "genesis-g11-three-repo-prospective-results-v1",
+  "unseen_prior_to_candidate_freeze": true
+}

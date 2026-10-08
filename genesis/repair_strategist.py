@@ -27,6 +27,7 @@ from typing import Any, Callable, Mapping, Sequence
 from genesis import (
     java_calendar_specialist,
     java_state_consistency_mutations,
+    java_sibling_guard_mutations,
     java_empty_segment_parser_mutations,
     java_default_normalization_mutations,
     java_expression_mutations,
@@ -54,6 +55,7 @@ SCHEMA = "genesis-capability-routed-compositional-repair-v4"
 FAMILY_LIMITS: dict[str, int] = {
     "retained_structural": 96,
     "java_state_consistency": 64,
+    "java_sibling_guard": 64,
     "java_string_literal": 64,
     "java_default_normalization": 64,
     "java_expression": 64,
@@ -70,6 +72,7 @@ FAMILY_LIMITS: dict[str, int] = {
 FAMILY_WEIGHTS: dict[str, int] = {
     "retained_structural": 125,
     "java_state_consistency": 145,
+    "java_sibling_guard": 140,
     "java_string_literal": 118,
     "java_default_normalization": 120,
     "java_expression": 110,
@@ -203,6 +206,7 @@ def _family_candidates(
     per_family_budget: int,
     retained_memory: Mapping[str, Any] | None = None,
     balance_sources: bool = False,
+    enable_sibling_guard: bool = False,
 ) -> tuple[list[tuple[str, dict[str, Any], int]], dict[str, Any]]:
     effective = _effective_prefixes(root, include_prefixes, focus_paths)
     focus_set = set(_normalize_paths(root, focus_paths))
@@ -230,7 +234,11 @@ def _family_candidates(
         result = call(effective, family_budget)
         return list(result.get("candidates") or []), str(result.get("memory_digest") or "")
 
-    for family, generator in FAMILIES:
+    selected_families = (
+        (("java_sibling_guard", java_sibling_guard_mutations.generate),) + FAMILIES
+        if enable_sibling_guard else FAMILIES
+    )
+    for family, generator in selected_families:
         family_budget = min(per_family_budget, FAMILY_LIMITS[family])
         raw, _ = collect(generator, family_budget)
         accepted = 0
@@ -503,6 +511,7 @@ def generate(
     max_compile_preflight_candidates: int = 80,
     atomic_first_experimental: bool = False,
     priority_focus_paths: Sequence[str] = (),
+    sibling_guard_experimental: bool = False,
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
@@ -531,6 +540,7 @@ def generate(
         per_family_budget=family_budget,
         retained_memory=retained_memory,
         balance_sources=source_balance_experimental,
+        enable_sibling_guard=sibling_guard_experimental,
     )
     atomic, originals = _build_plans(base, records)
     understanding_summary = None
@@ -640,6 +650,8 @@ def generate(
         payload["g11_compile_preflight"] = preflight_summary
     if atomic_first_experimental:
         payload["g11_atomic_first_experimental"] = True
+    if sibling_guard_experimental:
+        payload["g11_sibling_guard_experimental"] = True
     if priority_focus_paths:
         payload["g11_priority_focus_paths"] = list(_normalize_paths(base, priority_focus_paths))
     if source_balance_experimental:
