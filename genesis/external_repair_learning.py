@@ -128,7 +128,7 @@ def blind_result_for_gap(
         "winner": winner,
         "autonomous_passed": winner is not None,
         "schedule": schedule,
-        "source_result_digest": str(result.get("shared_result_sha256") or result.get("result_sha256") or ""),
+        "source_result_digest": str(result.get("shared_result_sha256") or result.get("result_sha256") or result.get("result_digest") or ""),
     }
     return {**payload, "report_digest": digest_of(payload)}
 
