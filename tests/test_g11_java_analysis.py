@@ -16,4 +16,4 @@ class JavaAnalysisTests(unittest.TestCase):
             self.assertTrue({'CLASS', 'METHOD', 'IF', 'METHOD_INVOCATION'}.issubset(kinds))
             self.assertTrue(any(n['name'] == 'clean' for n in result['nodes']))
             self.assertTrue(all(0 <= n['start'] <= n['end'] <= len(src.read_text()) for n in result['nodes']))
-            self.assertEqual(result['schema'], 'genesis-java-ast-v1')
+            self.assertEqual(result['schema'], 'genesis-java-understanding-v2')

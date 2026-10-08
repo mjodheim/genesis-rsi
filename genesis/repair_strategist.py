@@ -39,6 +39,8 @@ from genesis import (
     external_repair_learning,
 )
 from genesis.repair_ir import RepairPlan, compose, plan_from_candidate, render_candidate
+from genesis.languages.understanding import ModuleRegistry
+from genesis.languages.experience import ExperienceLedger
 from genesis.trust_root import digest_of
 
 SCHEMA = "genesis-capability-routed-compositional-repair-v4"
@@ -266,6 +268,109 @@ def _family_candidates(
     return gathered, meta
 
 
+
+def _understanding_overlap(start: int, end: int, node: Mapping[str, Any]) -> bool:
+    left = node.get("start")
+    right = node.get("end")
+    if not isinstance(left, int) or not isinstance(right, int):
+        return False
+    if start == end:
+        return left <= start <= right
+    return start < right and left < end
+
+
+def _understanding_bonus(plan: RepairPlan, nodes: Sequence[Mapping[str, Any]]) -> int:
+    """Conservative generic structural ranking prior; NOT a repair validator.
+
+    Positional scores are only valid for ASCII files because javac offsets are
+    UTF-16 while Python edit spans use codepoint offsets.
+    """
+    relevant = [
+        node for node in nodes
+        if any(_understanding_overlap(edit.start, edit.end, node) for edit in plan.edits)
+    ]
+    if not relevant:
+        return 0
+    kinds = {str(node.get("kind")) for node in relevant}
+    bonus = 4 if "function_declaration" in kinds else 0
+    if kinds.intersection({"if_control", "while_control", "for_control", "conditional_control"}):
+        bonus += 6
+    if any(node.get("type") for node in relevant):
+        bonus += 3
+    if any(node.get("symbol_id") for node in relevant):
+        bonus += 2
+    return min(15, bonus)
+
+
+def _score_from_understanding(
+    root: Path,
+    atomic: Sequence[RepairPlan],
+    *,
+    registry: ModuleRegistry,
+    ledger: ExperienceLedger | None,
+    max_files: int,
+    focus_paths: Sequence[str],
+) -> tuple[list[RepairPlan], dict[str, Any]]:
+    """Analyze only buggy-side candidate paths and optionally log observations."""
+    if max_files < 1 or max_files > 32:
+        raise ValueError("max_understanding_files must be in [1, 32]")
+    focus = set(_normalize_paths(root, focus_paths))
+    paths = sorted({plan.path for plan in atomic}, key=lambda p: (p not in focus, p))
+    reports: dict[str, dict[str, Any]] = {}
+    metadata: list[dict[str, Any]] = []
+    for relpath in paths[:max_files]:
+        path = (root / relpath).resolve()
+        if not path.is_relative_to(root) or not path.is_file():
+            continue
+        try:
+            report = registry.analyze(path)
+            reports[relpath] = report
+            if ledger is not None:
+                ledger.record(report, operator="repair-planning-observation")
+            metadata.append({
+                "path": relpath,
+                "language": report["language"],
+                "module_id": report["module_id"],
+                "fidelity": report["fidelity"],
+                "analysis_digest": report["analysis_digest"],
+                "diagnostic_count": len(report["diagnostics"]),
+                "features": report["features"],
+            })
+        except Exception as exc:
+            metadata.append({"path": relpath, "analysis_error": type(exc).__name__})
+    adjusted: list[RepairPlan] = []
+    total_bonus = 0
+    for plan in atomic:
+        report = reports.get(plan.path)
+        bonus = 0
+        if report is not None:
+            # Avoid lying about javac's UTF-16 offsets for non-ASCII source.
+            original = _original_text(root, plan.path, {})
+            if original is not None and original.isascii():
+                bonus = _understanding_bonus(plan, report["nodes"])
+        total_bonus += bonus
+        adjusted.append(RepairPlan(
+            path=plan.path,
+            expected_sha256=plan.expected_sha256,
+            edits=plan.edits,
+            component_ids=plan.component_ids,
+            component_operators=plan.component_operators,
+            depth=plan.depth,
+            score=plan.score + bonus,
+        ))
+    return adjusted, {
+        "schema": "genesis-g11-planner-analysis-v1",
+        "analyzed_file_count": len(reports),
+        "selected_file_count": min(len(paths), max_files),
+        "adjusted_atomic_plan_count": sum(a.score != b.score for a, b in zip(atomic, adjusted)),
+        "total_structural_score_bonus": total_bonus,
+        "reports": metadata,
+        "ledger_recording_enabled": ledger is not None,
+        "position_scoring_limited_to_ascii": True,
+    }
+
+
+
 def _build_plans(
     root: Path,
     records: Sequence[tuple[str, dict[str, Any], int]],
@@ -350,7 +455,12 @@ def generate(
     composition_fraction: float = 0.40,
     max_atomic_per_path: int = 72,
     retained_memory: Mapping[str, Any] | None = None,
+    understanding_registry: ModuleRegistry | None = None,
+    understanding_ledger: ExperienceLedger | None = None,
+    max_understanding_files: int = 4,
 ) -> dict[str, Any]:
+    if understanding_ledger is not None and understanding_registry is None:
+        raise ValueError("experience ledger requires an enabled understanding registry")
     if max_candidates < 1 or max_candidates > 10_000:
         raise ValueError("max_candidates must be in [1, 10000]")
     if not (0.0 <= composition_fraction <= 0.8):
@@ -368,6 +478,15 @@ def generate(
         retained_memory=retained_memory,
     )
     atomic, originals = _build_plans(base, records)
+    understanding_summary = None
+    if understanding_registry is not None:
+        atomic, understanding_summary = _score_from_understanding(
+            base, atomic,
+            registry=understanding_registry,
+            ledger=understanding_ledger,
+            max_files=max_understanding_files,
+            focus_paths=focus_paths,
+        )
 
     # Reserve an explicit part of the budget for composition.  Atomic
     # candidates remain represented because they are the strongest ablation.
@@ -431,8 +550,8 @@ def generate(
         "external_model_calls": 0,
         "candidates": out,
     }
+    if understanding_summary is not None:
+        payload["g11_understanding"] = understanding_summary
+    # Keep the disabled path bit-for-bit backward compatible with v4.
     without_candidates = {k: v for k, v in payload.items() if k != "candidates"}
-    return {
-        **payload,
-        "strategy_digest": digest_of(without_candidates),
-    }
+    return {**payload, "strategy_digest": digest_of(without_candidates)}

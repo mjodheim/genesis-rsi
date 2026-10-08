@@ -26,6 +26,8 @@ from genesis import external_repair_campaign as campaign
 from genesis import external_repair_learning as learning
 from genesis import failure_driven_self_extension as self_extension
 from genesis import repair_strategist
+from genesis.languages.understanding import ModuleRegistry, JavaCompilerModule
+from genesis.languages.experience import ExperienceLedger
 from genesis.trust_root import digest_of
 from scripts.build_er1_j9_indexes import inherited_j8, j9_successor
 
@@ -194,6 +196,8 @@ def _build_index(
     output: Path,
     budget: int,
     planner_front_budget: int,
+    understanding_registry: ModuleRegistry | None = None,
+    understanding_ledger: ExperienceLedger | None = None,
 ) -> dict[str, Any]:
     inherited, _ = inherited_j8(buggy, source_prefix, budget)
     fallback, fallback_meta = j9_successor(buggy, source_prefix, budget, inherited)
@@ -205,6 +209,8 @@ def _build_index(
         max_candidates=min(planner_front_budget, budget),
         composition_fraction=0.40,
         retained_memory=retained_memory,
+        understanding_registry=understanding_registry,
+        understanding_ledger=understanding_ledger,
     )
 
     records: list[dict[str, Any]] = []
@@ -588,9 +594,31 @@ def _machinery(
 
 
 class LangDefects4JAdapter:
-    def __init__(self, workspace: Path) -> None:
+    def __init__(
+        self, workspace: Path, *,
+        g11_understanding: bool = False,
+        g11_experience_db: Path | None = None,
+        excluded_case_ids: tuple[int, ...] = (),
+    ) -> None:
         self.workspace = workspace.resolve()
         self.workspace.mkdir(parents=True, exist_ok=True)
+        if g11_experience_db is not None and not g11_understanding:
+            raise ValueError("G11 experience DB requires G11 understanding")
+        self.g11_registry = None
+        self.g11_ledger = None
+        if g11_understanding:
+            self.g11_registry = ModuleRegistry()
+            self.g11_registry.register(JavaCompilerModule(java=JAVA, javac=JAVAC))
+            if g11_experience_db is not None:
+                self.g11_ledger = ExperienceLedger(g11_experience_db)
+
+        # Trusted boundary: pre-registered holdouts must never be selected for
+        # a training campaign even if the restart checkpoint is older.
+        prereg = ROOT / "experiment" / "ER4_PREREGISTRATION_20261008.json"
+        protected = set(excluded_case_ids)
+        if prereg.is_file():
+            protected.update(int(x) for x in json.loads(prereg.read_text())["holdout_ids"])
+        self.excluded_case_ids = frozenset(protected)
 
     def _case_root(self, state: Mapping[str, Any]) -> Path:
         return self.workspace / f"lang-{state['current_case']['case_id']}"
@@ -614,7 +642,10 @@ class LangDefects4JAdapter:
     def select_case(self, state: Mapping[str, Any]) -> Mapping[str, Any]:
         self._cleanup_attempted(state)
         attempted = {int(x) for x in state["attempted_case_ids"]}
-        remaining = [x for x in _active_bug_ids() if x not in attempted]
+        remaining = [
+            x for x in _active_bug_ids()
+            if x not in attempted and x not in self.excluded_case_ids
+        ]
         if not remaining:
             raise RuntimeError("Defects4J Lang has no unattempted active bugs")
         seed = (
@@ -635,6 +666,8 @@ class LangDefects4JAdapter:
 
     def prepare_blind(self, state: Mapping[str, Any]) -> Mapping[str, Any]:
         bug_id = int(state["current_case"]["case_id"])
+        if bug_id in self.excluded_case_ids:
+            raise RuntimeError("selected case is protected by a holdout exclusion")
         paths = self._paths(state)
         shutil.rmtree(paths["root"], ignore_errors=True)
         paths["root"].mkdir(parents=True)
@@ -666,6 +699,8 @@ class LangDefects4JAdapter:
             output=index_path,
             budget=int(state["machinery"]["candidate_budget"]),
             planner_front_budget=int(state["machinery"]["planner_front_budget"]),
+            understanding_registry=self.g11_registry,
+            understanding_ledger=self.g11_ledger,
         )
         _write_json(paths["indexes"] / "INDEX_SUMMARY.json", summary)
 
@@ -900,7 +935,15 @@ def main() -> int:
     parser.add_argument("--stop-after-successes", type=int, default=0)
     parser.add_argument("--max-transitions", type=int, default=1000)
     parser.add_argument("--seed-attempted", default="")
+    parser.add_argument("--g11-understanding", action="store_true",
+                        help="Opt-in compiler-backed Java understanding, baseline unchanged if omitted")
+    parser.add_argument("--g11-experience-db", type=Path,
+                        help="Training-only observations; NEVER enable on held-out evaluations")
+    parser.add_argument("--exclude-case-ids", default="",
+                        help="Comma-separated additional protected cases")
     args = parser.parse_args()
+    if args.g11_experience_db and not args.g11_understanding:
+        parser.error("--g11-experience-db requires --g11-understanding")
 
     store = campaign.CampaignStore(args.state)
     initial = None
@@ -916,7 +959,13 @@ def main() -> int:
             attempted_case_ids=attempted,
         )
 
-    adapter = LangDefects4JAdapter(args.workspace)
+    excluded_ids = tuple(int(x.strip()) for x in args.exclude_case_ids.split(",") if x.strip())
+    adapter = LangDefects4JAdapter(
+        args.workspace,
+        g11_understanding=args.g11_understanding,
+        g11_experience_db=args.g11_experience_db,
+        excluded_case_ids=excluded_ids,
+    )
     final = campaign.run(
         store,
         adapter,
