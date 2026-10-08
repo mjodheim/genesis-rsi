@@ -589,8 +589,15 @@ def generate(
         for plan in all_plans:
             groups.setdefault(plan.path, deque()).append(plan)
         rotated: list[RepairPlan] = []
-        priority = set(_normalize_paths(base, priority_focus_paths))
-        active = deque(sorted(groups, key=lambda p: (p not in priority, p)))
+        priority_order: dict[str, int] = {}
+        for candidate in priority_focus_paths:
+            path = str(candidate).replace("\\", "/").strip("/")
+            if path in groups and path not in priority_order:
+                priority_order[path] = len(priority_order)
+        active = deque(sorted(
+            groups,
+            key=lambda p: (p not in priority_order, priority_order.get(p, 10**6), p),
+        ))
         while active:
             path = active.popleft()
             rotated.append(groups[path].popleft())

@@ -170,3 +170,25 @@ This is a development repair, NOT independent blind validation. The
 original negative Math-53 heldout result remains unchanged. Future
 independent evaluations must use untouched bugs, with all proposals frozen
 before evaluator feedback.
+
+## Test-body source localization (additional opt-in prototype)
+
+A new failure-analysis module examines the *specific public failing Java test
+method*, masks comments and strings, and counts references to production
+types on the already observed runtime loaded-classes list. It prefers exact
+test-class matches, referenced type names, typed test fields, and package
+overlap; records the evidence but cannot establish the actual causal fault
+location. All source files are read from the buggy checkout; no human
+reference fix is consulted.
+
+On FIVE already exposed *development* cases, this method ranked the
+test-referenced class at position one: Math-53 Complex, Csv-16 CSVParser,
+Collections-24 UnmodifiableBoundedCollection, Compress-6 ZipArchiveEntry,
+and Codec-15 Soundex. These are observations about source attribution,
+NOT repairs and NOT an unseen accuracy measurement.
+
+The Defects4J adapter supports
+--g11-test-source-localization-experimental. Only when explicitly
+enabled will it use the public test body to select and order loaded
+source paths. Default and previously sealed independent experiments
+remain unchanged.

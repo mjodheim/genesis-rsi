@@ -69,7 +69,9 @@ in experiment/g11/G11_3REPO_RESULTS_20261008.json.
 
 Separate opt-in instrumentation provides typed public-test feedback,
 training-only operator outcome retention, and experimental Java sibling-
-method guard transfer. The new operator was designed after Math-53
+method guard transfer. A newer optional module also ranks the production
+source types referenced by the actual public failing test body; it is
+not a proof of exact fault localization and defaults to disabled. The new operator was designed after Math-53
 had been examined, so any later Math-53 success is a posthoc development
 result, not unseen generalization. General recursive self-improvement
 remains unproven.

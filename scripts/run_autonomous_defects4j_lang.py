@@ -30,6 +30,7 @@ from genesis.languages.understanding import ModuleRegistry, JavaCompilerModule
 from genesis.languages.experience import ExperienceLedger
 from genesis.insights import InsightRegistry, PythonSecurityModule, JavaSecurityModule, PythonPerformanceModule, JavaPerformanceModule
 from genesis.failure_localization import prioritize as prioritize_failure_sources
+from genesis.failure_localization import prioritize_from_public_test_source
 from genesis.failure_feedback import analyze_public_failures
 from genesis.trust_root import digest_of
 from scripts.build_er1_j9_indexes import inherited_j8, j9_successor
@@ -629,6 +630,7 @@ class LangDefects4JAdapter:
         g11_failure_localization_experimental: bool = False,
         g11_failure_feedback_experimental: bool = False,
         g11_sibling_guard_experimental: bool = False,
+        g11_test_source_localization_experimental: bool = False,
         excluded_case_ids: tuple[int, ...] = (),
     ) -> None:
         self.workspace = workspace.resolve()
@@ -645,6 +647,7 @@ class LangDefects4JAdapter:
         self.g11_failure_localization_experimental = g11_failure_localization_experimental
         self.g11_failure_feedback_experimental = g11_failure_feedback_experimental
         self.g11_sibling_guard_experimental = g11_sibling_guard_experimental
+        self.g11_test_source_localization_experimental = g11_test_source_localization_experimental
         self.g11_registry = None
         self.g11_ledger = None
         self.g11_insights = None
@@ -745,6 +748,18 @@ class LangDefects4JAdapter:
             )
         triggers = _triggers(bug_id)
         focus = _focus_paths(bug_id, paths["buggy"], source_prefix)
+        test_context = None
+        if self.g11_test_source_localization_experimental:
+            tests_dir = _d4j_export(paths["buggy"], "dir.src.tests")[-1]
+            test_context = prioritize_from_public_test_source(
+                project_root=paths["buggy"],
+                test_source_dir=tests_dir,
+                failing_tests_text=(paths["buggy"] / "failing_tests").read_text(encoding="utf-8"),
+                source_paths=focus,
+                max_focus_files=32,
+            )
+            if test_context["tested_method_count"] and test_context["positive_evidence_source_count"]:
+                focus = tuple(sorted(test_context["selected_source_paths"]))
         failure_hints = (
             prioritize_failure_sources(
                 (paths["buggy"] / "failing_tests").read_text(encoding="utf-8"),
@@ -771,8 +786,11 @@ class LangDefects4JAdapter:
             atomic_first_experimental=self.g11_atomic_first_experimental,
             sibling_guard_experimental=self.g11_sibling_guard_experimental,
             priority_focus_paths=tuple(
-                failure_hints["matched_source_paths"]
-            ) if failure_hints else (),
+                rec["path"] for rec in test_context["ranked_evidence"]
+                if rec["score"] > 0
+            )[:8] if test_context and test_context["positive_evidence_source_count"] else (
+                tuple(failure_hints["matched_source_paths"]) if failure_hints else ()
+            ),
             compile_preflight_javac=JAVAC if self.g11_compile_preflight_experimental else None,
             compile_preflight_classpath=tuple(
                 _relative_or_absolute_cp(cp_compile, paths["buggy"])
@@ -780,6 +798,8 @@ class LangDefects4JAdapter:
         )
         if failure_hints is not None:
             summary["g11_failure_localization"] = failure_hints
+        if test_context is not None:
+            summary["g11_test_source_localization"] = test_context
         if self.g11_failure_feedback_experimental:
             # Read only public buggy-side test failures, never future holdout
             # validation results nor sealed fixed-version sources.
@@ -1043,6 +1063,8 @@ def main() -> int:
                         help="Record typed buggy-side public test failures, without changing ranking")
     parser.add_argument("--g11-sibling-guard-experimental", action="store_true",
                         help="Propose source-derived consensus guard transfers from peer Java methods")
+    parser.add_argument("--g11-test-source-localization-experimental", action="store_true",
+                        help="Prioritize Java source types referred to by the failing public test method")
     parser.add_argument("--exclude-case-ids", default="",
                         help="Comma-separated additional protected cases")
     args = parser.parse_args()
@@ -1080,6 +1102,7 @@ def main() -> int:
         g11_failure_localization_experimental=args.g11_failure_localization_experimental,
         g11_failure_feedback_experimental=args.g11_failure_feedback_experimental,
         g11_sibling_guard_experimental=args.g11_sibling_guard_experimental,
+        g11_test_source_localization_experimental=args.g11_test_source_localization_experimental,
         excluded_case_ids=excluded_ids,
     )
     final = campaign.run(
