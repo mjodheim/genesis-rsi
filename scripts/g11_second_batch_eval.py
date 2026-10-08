@@ -73,6 +73,57 @@ def paths_for_case(project: str, bug: int, root: Path, prefix: str) -> list[str]
     return sorted(set(result))
 
 
+def bounded_focus(
+    project: str,
+    bug: int,
+    original: list[str],
+    public_failing_tests: str,
+    *,
+    max_files: int = 32,
+) -> tuple[list[str], dict]:
+    """Source-order deterministic; public failing TEST names only.
+
+    The source optimizer is bounded to 32 file paths. For larger runtime
+    coverage sets, favor source packages sharing an actual Java package
+    with the failing test and preserve coverage diversity alphabetically.
+    No project-specific exceptions, fixes or test expected values.
+    """
+    from genesis.failure_localization import prioritize
+    import re
+    if max_files < 1 or max_files > 32:
+        raise ValueError("invalid bounded focus size")
+    names=prioritize(public_failing_tests,original)
+    package_names=[]
+    for line in public_failing_tests.splitlines():
+        if not line.startswith("--- "):
+            continue
+        part=line[4:].split("::",1)[0]
+        if "." in part:
+            package_names.append(part.rsplit(".",1)[0].replace(".","/") + "/")
+    exact=set(names["matched_source_paths"])
+    def ranking(path):
+        packages=[p for p in package_names if p in path]
+        common=max((len(x.split("/")) for x in packages),default=0)
+        return (
+            0 if path in exact else 1,
+            -common,
+            path,
+        )
+    chosen=sorted(original,key=ranking)[:max_files]
+    metadata={
+        "schema":"genesis-g11-bounded-public-test-focus-v1",
+        "source":"loaded_classes + public buggy-side failing_tests only",
+        "total_available":len(original),
+        "chosen_count":len(chosen),
+        "max_files":max_files,
+        "selection":"exact test class match then test package overlap then alphabetical",
+        "excluded_paths_count":len(original)-len(chosen),
+        "touched_fixed_source":False,
+        "project_specific_repair_rule":False,
+    }
+    return sorted(chosen),metadata
+
+
 def freeze(prereg: dict) -> dict:
     if FREEZE.exists():
         raise RuntimeError("FROZEN file already exists; do not rewrite")
@@ -90,8 +141,10 @@ def freeze(prereg: dict) -> dict:
         if original_failures < 1:
             raise RuntimeError(f"reference must fail: {project}-{bug}")
         prefix = _d4j_export(root, "dir.src.classes")[-1]
-        focus = paths_for_case(project, bug, root, prefix)
-        names = prioritize((root / "failing_tests").read_text(), focus)
+        all_focus = paths_for_case(project, bug, root, prefix)
+        failure_text=(root / "failing_tests").read_text(encoding="utf-8")
+        focus, focus_policy = bounded_focus(project, bug, all_focus, failure_text)
+        names = prioritize(failure_text, focus)
         arms = {}
         for arm in prereg["candidate_arms"]:
             with patch.object(
@@ -148,6 +201,7 @@ def freeze(prereg: dict) -> dict:
             "source_prefix": prefix,
             "failure_count_original": original_failures,
             "dynamic_focus_paths": focus,
+            "focus_selection_policy": focus_policy,
             "failure_source_hints": names,
             "arms": arms,
         })
