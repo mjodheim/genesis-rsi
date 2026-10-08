@@ -1,0 +1,98 @@
+{
+  "audit_digest": "b9d63dbf1754757e32b31fb03c8664ab2680ef6164825bbaf2d447e5eb861a7a",
+  "batches": [
+    {
+      "case_count": 3,
+      "case_results": [
+        {
+          "arm_successes": {
+            "candidate_atomic_first_plus_source_balancing_plus_testname_hints": false,
+            "legacy_unchanged": false
+          },
+          "case_id": 53,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "Math"
+        },
+        {
+          "arm_successes": {
+            "candidate_atomic_first_plus_source_balancing_plus_testname_hints": false,
+            "legacy_unchanged": false
+          },
+          "case_id": 16,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "Csv"
+        },
+        {
+          "arm_successes": {
+            "candidate_atomic_first_plus_source_balancing_plus_testname_hints": false,
+            "legacy_unchanged": false
+          },
+          "case_id": 24,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "Collections"
+        }
+      ],
+      "evaluation_digest": "0c231b166cf9172f1af5e693949fe4449204abf2a6677b5a6be84a49633b8b4c",
+      "freeze_digest": "36803aa957b3d5275caae508bd49e8f174ef9be97c2fd6c7c5a0b6b63e0e1822",
+      "name": "first_independent_three"
+    },
+    {
+      "case_count": 3,
+      "case_results": [
+        {
+          "arm_successes": {
+            "g11_atomics_balancing_sibling_guard": false,
+            "legacy_before_g11": false
+          },
+          "case_id": 2,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "Gson"
+        },
+        {
+          "arm_successes": {
+            "g11_atomics_balancing_sibling_guard": false,
+            "legacy_before_g11": false
+          },
+          "case_id": 68,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "Jsoup"
+        },
+        {
+          "arm_successes": {
+            "g11_atomics_balancing_sibling_guard": false,
+            "legacy_before_g11": false
+          },
+          "case_id": 11,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "JacksonCore"
+        }
+      ],
+      "evaluation_digest": "9547854281e373e089204a6f77820b6f641f6b23bf1111ecdac723efa8dd337b",
+      "freeze_digest": "88d339bd77d3df9c9d9f1d926c571892ea186754fcc19f4c9096df32603459f5",
+      "name": "second_independent_three"
+    }
+  ],
+  "batches_evaluated": 2,
+  "candidate_counted_independent_cases": 6,
+  "full_suite_successful_distinct_independent_cases": 0,
+  "fully_operational_rsi_scientifically_demonstrated": false,
+  "gates": {
+    "genesis_self_generated_and_independently_validated_new_operator": false,
+    "independent_batched_evaluations_at_least_three": false,
+    "independent_equal_budget_baseline_improvement_proven": false,
+    "independent_full_suite_repairs_at_least_five": false,
+    "minimum_ten_pre_registered_untouched_cases": false,
+    "multiple_recursive_improvement_generations_proven": false,
+    "sandboxed_unattended_campaign_verified": false,
+    "success_across_at_least_three_projects": false
+  },
+  "human_operator_inventions_do_not_count": true,
+  "missing_studies": [
+    "G11_THIRD_BATCH_RESULTS_20261008.json"
+  ],
+  "patch_overfitting_not_ruled_out_by_visible_test_suites": true,
+  "posthoc_development_repairs_do_not_count": true,
+  "schema": "genesis-rsi-scientific-readiness-gates-v1",
+  "status": "not_proven",
+  "successful_distinct_projects": 0
+}

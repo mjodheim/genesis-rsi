@@ -213,3 +213,23 @@ case IDs are now exposed and become development cases only.
 An improved public-test-method-to-source-type localization heuristic was
 developed separately and **did not influence** any proposals in this
 already frozen evaluation.
+
+## Training-only feedback and scientific readiness gate
+
+The first preregistered Math/Csv/Collections batch has now been explicitly
+released as training examples and imported into a hash-chained SQLite operator
+outcome ledger. The event database is outside the source repository, while
+G11_RELEASED_TRAINING_SUMMARY_20261008.json persists its integrity-linked
+aggregate. There are 47 recorded distinct candidate attempts across three
+released buggy cases and five operator families. No experiment's candidate
+selection is automatically changed by this memory, and no private/heldout
+candidate is imported.
+
+An auditable, conservative readiness evaluation is provided by
+scripts/g11_rsi_readiness.py, writing RSI_READINESS_20261008.json.
+It checks public preregistration/result integrity and reports independent
+project/count coverage separately from posthoc training successes. It rejects
+the false assertion that a set of historical internal G1-G10 labels is
+equivalent to general recursive self-improvement. New operator invention,
+success across independent unseen projects, validation against equivalent
+budgets, and unattended verified operational capability are distinct gates.
