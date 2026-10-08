@@ -1,0 +1,23 @@
+{
+  "amendment_digest": "bc3989d5bedfedc6703fc5cf7ae83033de547a974d7da21cbca52d4a21ac822a",
+  "fault": "copytree globally excludes any directory named build, inadvertently removing Mockito lib/build dependencies",
+  "fixed_project_version_not_accessed": true,
+  "invalidated_validation": [
+    "Mockito-22"
+  ],
+  "negative_control": "the untouched Mockito-22 buggy checkout compiled before candidate testing",
+  "no_promotion_from_exposed_cases": true,
+  "original_preregistration_digest": "aeca5556d5f181263065a791c7ca9265bfba3a47e639782a70c7c6c38bfa3c49",
+  "original_result_digest": "5b1aed8e7d07fe2ac1743f985f56a3c24d3bcac236ef9ceca1c32c400ea3719e",
+  "remediation": "rerun only all eight exact already-frozen Mockito-22 candidate hashes; do not regenerate any candidate or change policy, source, test budgets or other results",
+  "schema": "genesis-v21-postfreeze-evaluator-audit-amendment-v1",
+  "scientific_scope": "postfreeze validator infrastructure correction after outcomes seen; transparently separated from original blind study",
+  "source_policy_lock_unchanged": true,
+  "still_valid_cases": [
+    "Chart-23",
+    "JacksonXml-4"
+  ],
+  "unchanged_candidate_freeze_digest": "36e66504a7e59edeb850cfb73e5b169bf31599fe5c2eeabed6b3ef880119cce3",
+  "validator_positive_control": "untouched Mockito-22 copied with original build wildcard exclusion failed compiler because lib/build did not exist",
+  "validator_positive_control_fixed": "untouched Mockito-22 copied without wildcard build-directory exclusion compiled successfully"
+}
