@@ -1,0 +1,165 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": 2,
+          "plausible_patch": "--- a/src/main/java/org/apache/commons/codec/language/Soundex.java\n+++ b/src/main/java/org/apache/commons/codec/language/Soundex.java\n@@ -187,9 +187,12 @@\n         if (index > 1 && mappedChar != '0') {\n             final char hwChar = str.charAt(index - 1);\n             if ('H' == hwChar || 'W' == hwChar) {\n-                final char preHWChar = str.charAt(index - 2);\n-                final char firstCode = this.map(preHWChar);\n-                if (firstCode == mappedChar || 'H' == preHWChar || 'W' == preHWChar) {\n+                int preHWIndex = index - 2;\n+                while (preHWIndex > 0 && ('H' == str.charAt(preHWIndex) || 'W' == str.charAt(preHWIndex))) {\n+                    preHWIndex--;\n+                }\n+                final char firstCode = this.map(str.charAt(preHWIndex));\n+                if (firstCode == mappedChar) {\n                     return 0;\n                 }\n             }\n",
+          "plausible_path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+          "plausible_squashed_sha256": "07efafe697af823c154e452aea12cb0cf491a9978bcb655aef1e31f1d8adba63",
+          "proposed": 2,
+          "rounds": 2,
+          "solved": true,
+          "validated": 2,
+          "verdicts": [
+            {
+              "candidate_digest": "eaf2a233e5b88186e5e7a928b9b0df15ae2f2e3590bfcb838664abddc85cdbde",
+              "feedback": "now failing: org.apache.commons.codec.language.SoundexTest::testHWRuleEx3",
+              "full_suite_failures": 1,
+              "origin": "openrouter:z-ai/glm-5.3-flash",
+              "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+              "plausible": false,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "full_suite",
+              "verdict_digest": "66e0bc7ece386877695529da3843b294bafe623539a8207f519b83d18e10ffc2"
+            },
+            {
+              "candidate_digest": "c8a099a749b9742a3c96185c18d0392690b1b9e3a1b84a7e37664e3594956f7b",
+              "feedback": null,
+              "full_suite_failures": 0,
+              "origin": "openrouter:z-ai/glm-5.3-flash",
+              "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+              "plausible": true,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "passed",
+              "verdict_digest": "4997a47c134548ef855db8287e04c390c61ae0622addf6cca93a0f1419c0924e"
+            }
+          ]
+        }
+      },
+      "case": "Codec-15",
+      "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0004452,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "z-ai/glm-5.3-flash",
+            "prompt_digest": "1c418800873ddedb171bbc4f9c66433250d3902b16527e69b9d726dcbafbf4db",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01411225,
+            "response_digest": "3b9dbc2628916a37f22e83dcca095592afeba76c6dd7a57f5c0628fb67da714f",
+            "response_id": "gen-1791492023-XQee4tq3SHE8yR9n2TJG",
+            "returned_model": "z-ai/glm-5.3-flash",
+            "routed_provider": "Relace",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 530,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 248
+              },
+              "cost": 0.0004452,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000265,
+                "upstream_inference_cost": 0.0004452,
+                "upstream_inference_prompt_cost": 0.0001802
+              },
+              "is_byok": false,
+              "prompt_tokens": 4505,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 5035
+            }
+          },
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00097828,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "z-ai/glm-5.3-flash",
+            "prompt_digest": "a33c49f419ad896899fd1b16057c06497bf24e48a881d15968a778a088875c90",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01437755,
+            "response_digest": "b45e444de64100b99afd87018c8bd27539ac1c0a924d04190839c70ddc58b31c",
+            "response_id": "gen-1791492044-7H7RJhFa1Oiuza9J6IWL",
+            "returned_model": "z-ai/glm-5.3-flash",
+            "routed_provider": "Relace",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 1716,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 897
+              },
+              "cost": 0.00097828,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000858,
+                "upstream_inference_cost": 0.00097828,
+                "upstream_inference_prompt_cost": 0.00012028
+              },
+              "is_byok": false,
+              "prompt_tokens": 4687,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 4480,
+                "video_tokens": 0
+              },
+              "total_tokens": 6403
+            }
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "z-ai/glm-5.3-flash",
+  "name": "DEV_OPENROUTER8_GLM_LOW",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "48d65b5ff27a67d862285d222700963614eb6ac181c50bea1ac1df03c31171b8",
+  "provider": "openrouter",
+  "result_digest": "354d0ea94427422dbf0cd9dc8bc8f1f50412c56aaf580734423267083b78917d",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0014
+    },
+    "solved_per_arm": {
+      "model_explore": 1
+    },
+    "usable_cases": 1
+  }
+}

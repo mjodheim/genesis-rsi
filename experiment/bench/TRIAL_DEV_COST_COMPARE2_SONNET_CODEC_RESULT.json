@@ -1,0 +1,219 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": 2,
+          "plausible_patch": "--- a/src/main/java/org/apache/commons/codec/language/Soundex.java\n+++ b/src/main/java/org/apache/commons/codec/language/Soundex.java\n@@ -184,14 +184,10 @@\n         // map() throws IllegalArgumentException\n         final char mappedChar = this.map(str.charAt(index));\n         // HW rule check\n-        if (index > 1 && mappedChar != '0') {\n-            final char hwChar = str.charAt(index - 1);\n-            if ('H' == hwChar || 'W' == hwChar) {\n-                final char preHWChar = str.charAt(index - 2);\n-                final char firstCode = this.map(preHWChar);\n-                if (firstCode == mappedChar || 'H' == preHWChar || 'W' == preHWChar) {\n-                    return 0;\n-                }\n+        if (index > 0) {\n+            final char c = str.charAt(index);\n+            if ('H' == c || 'W' == c) {\n+                return 0;\n             }\n         }\n         return mappedChar;\n",
+          "plausible_path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+          "plausible_squashed_sha256": "0cd56d6648cfe2d7175f57a36d35b14457e87409facf688ca453f6e1580051af",
+          "proposed": 2,
+          "rounds": 2,
+          "solved": true,
+          "validated": 2,
+          "verdicts": [
+            {
+              "candidate_digest": "eaf2a233e5b88186e5e7a928b9b0df15ae2f2e3590bfcb838664abddc85cdbde",
+              "feedback": "now failing: org.apache.commons.codec.language.SoundexTest::testHWRuleEx3",
+              "full_suite_failures": 1,
+              "origin": "openrouter:anthropic/claude-sonnet-5.5",
+              "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+              "plausible": false,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "full_suite",
+              "verdict_digest": "1669fd8eaf8bd52a4db2880ed3c5b6d9a36a6f44938301de50d990730c417026"
+            },
+            {
+              "candidate_digest": "d715ec5412168e9d4357b53885f1962d202f09a4cf92458f8215db3eb504e29c",
+              "feedback": null,
+              "full_suite_failures": 0,
+              "origin": "openrouter:anthropic/claude-sonnet-5.5",
+              "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+              "plausible": true,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "passed",
+              "verdict_digest": "dbe09dc2994af14649ce7a1cb4ac2181768606a406c07fd4801f309fb167e96a"
+            }
+          ]
+        }
+      },
+      "case": "Codec-15",
+      "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.017458,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "anthropic/claude-sonnet-5.5",
+            "prompt_digest": "1c418800873ddedb171bbc4f9c66433250d3902b16527e69b9d726dcbafbf4db",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.0957138,
+            "response_digest": "2b051fa77ff2dc0cbe4eda4e52f4048c186bd42f00c0e6e5bc32468e2d93bb6f",
+            "response_id": "gen-1791493888-LBnHv0hkcqkf83Yv7hDO",
+            "returned_model": "anthropic/claude-sonnet-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 426,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 243
+              },
+              "cost": 0.017458,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.00426,
+                "upstream_inference_cost": 0.017458,
+                "upstream_inference_prompt_cost": 0.013198
+              },
+              "is_byok": false,
+              "prompt_tokens": 6599,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 7025
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.017644,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "end": 340,
+                  "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+                  "start": 200
+                },
+                "result_digest": "a9740356868efbf9ccd742e96e5058364288e9c051d3de9dc84ae200dc5ee642",
+                "tool": "read_file"
+              }
+            ],
+            "model": "anthropic/claude-sonnet-5.5",
+            "prompt_digest": "f276fc0f46facff2f6c083d07df53549851a5f3e74a6e184d719458000bf4acc",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.09694230000000001,
+            "response_digest": "ee15d04121da0be4c5cf45c78d26efb84370bc7307c7cfd35b9c1f640a54c5da",
+            "response_id": "gen-1791493905-80bCNlm6Y7pn4a4djcDj",
+            "returned_model": "anthropic/claude-sonnet-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 398,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 284
+              },
+              "cost": 0.017644,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.00398,
+                "upstream_inference_cost": 0.017644,
+                "upstream_inference_prompt_cost": 0.013664
+              },
+              "is_byok": false,
+              "prompt_tokens": 6832,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 7230
+            }
+          },
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.032114,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "anthropic/claude-sonnet-5.5",
+            "prompt_digest": "a263ca1d89804483f361527f52764299e48156a579a81555cd16ebea713ed797",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.1087737,
+            "response_digest": "5e99f1c0158128253d264a6edf80142af2c7d522335025fc0cf8b665759be023",
+            "response_id": "gen-1791493909-SbyL3gKHOtf5YNIxzYYj",
+            "returned_model": "anthropic/claude-sonnet-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 1553,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 1193
+              },
+              "cost": 0.032114,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.01553,
+                "upstream_inference_cost": 0.032114,
+                "upstream_inference_prompt_cost": 0.016584
+              },
+              "is_byok": false,
+              "prompt_tokens": 8292,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 9845
+            }
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "anthropic/claude-sonnet-5.5",
+  "name": "DEV_COST_COMPARE2_SONNET_CODEC",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "149ea4809bfecf1cb1af3f48e287d7df0d23975fb050e964e405b48cf4f734a4",
+  "provider": "openrouter",
+  "result_digest": "3b218636227cb2bddd8faa3079ef560a7e0f299e28cdbb239ba0bb8e51339612",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0672
+    },
+    "solved_per_arm": {
+      "model_explore": 1
+    },
+    "usable_cases": 1
+  }
+}

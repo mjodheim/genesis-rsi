@@ -192,6 +192,14 @@ Before presenting the project for acquisition or exclusive licensing, additional
 
 ## Non-claims
 
+Prospective development integration recorded on 9 October 2026:
+`repair_self_improvement`, multilingual exercise execution and bounded
+outcome-driven search-order adaptation follow `PUBLIC_AGPL_COMMERCIAL_OPTION`
+under the standing public-research disposition. Anthony authorised starting RSI
+development; OpenAI Codex assists as tooling. Review preceded enabling
+implementation in `docs/IP_REVIEWS/REPAIR_SELF_IMPROVEMENT_REVIEW_2026-10-09.md`.
+No independent RSI gate or new publication/execution authority is claimed.
+
 This register does not claim that:
 
 - public AGPL rights can be revoked;

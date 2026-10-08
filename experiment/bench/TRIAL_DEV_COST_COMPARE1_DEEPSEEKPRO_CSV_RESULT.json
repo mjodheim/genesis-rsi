@@ -1,0 +1,234 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": null,
+          "plausible_patch": null,
+          "plausible_path": null,
+          "plausible_squashed_sha256": null,
+          "proposed": 0,
+          "rounds": 1,
+          "solved": false,
+          "validated": 0,
+          "verdicts": []
+        }
+      },
+      "case": "Csv-16",
+      "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000571483744,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "iterator()"
+                },
+                "result_digest": "b058bb35efccb6797f5f1a05cf144afcfe19212f89f1cad34d83489f740c6e71",
+                "tool": "search_files"
+              },
+              {
+                "arguments": {
+                  "text": "hasNext"
+                },
+                "result_digest": "1908d88817ae97f0a2935cb65a21b41722220e69f63fe7dd1f8f350e925267ca",
+                "tool": "search_files"
+              }
+            ],
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "2ccd69becea269951e86b355751a4f1139b1dfb2c231af1311e9766e4679e021",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.013997450000000002,
+            "response_digest": "5fbf8671a0b7dadaba5d8df1c917fd037bd066b673b68ab1297d86904f0c7ef1",
+            "response_id": "gen-1791493187-PysNw2gdjliC610MzH0Z",
+            "returned_model": "deepseek/deepseek-v4-pro",
+            "routed_provider": "StreamLake",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 377,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 300
+              },
+              "cost": 0.000571483744,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000216604596,
+                "upstream_inference_cost": 0.000571483744,
+                "upstream_inference_prompt_cost": 0.000354879148
+              },
+              "is_byok": false,
+              "prompt_tokens": 4572,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 3640,
+                "video_tokens": 0
+              },
+              "total_tokens": 4949
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0005592985385,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 520
+                },
+                "result_digest": "5d1b07d3ed0c24fc9ffe1b53baa59b7d6b77244f694f11495205b85c4309a592",
+                "tool": "read_file"
+              }
+            ],
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "65991e32b7de21a36b4599257ae4721914b1749d00875337894a7c26a502c3d2",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01947495,
+            "response_digest": "861071c6b1ce0a4708e56a25d337336b516d73038393ea01620af0392c197e5e",
+            "response_id": "gen-1791493196-zVo9Or04I6vOSYND1JjQ",
+            "returned_model": "deepseek/deepseek-v4-pro",
+            "routed_provider": "StreamLake",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 94,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 18
+              },
+              "cost": 0.0005592985385,
+              "cost_details": {
+                "upstream_inference_completions_cost": 5.4007512e-05,
+                "upstream_inference_cost": 0.0005592985385,
+                "upstream_inference_prompt_cost": 0.0005052910265
+              },
+              "is_byok": false,
+              "prompt_tokens": 8688,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 7559,
+                "video_tokens": 0
+              },
+              "total_tokens": 8782
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000913435562,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 200
+                },
+                "result_digest": "dd6a7efc9d9d91f549db499ec19202d200c867976fbac445b5ff250dd1d15481",
+                "tool": "read_file"
+              }
+            ],
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "371ab23f26a913238a08d55e3b04cf9c5789ac416d43a411eb6e9e512d83dbe3",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.0211476,
+            "response_digest": "2807154e8a5af2c450ff76de5250093b8ed4e1944d842ee662208d7cfdee0b3a",
+            "response_id": "gen-1791493200-5BW1vg9ai7U2REEuqNxI",
+            "returned_model": "deepseek/deepseek-v4-pro",
+            "routed_provider": "StreamLake",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 3,
+            "usage": {
+              "completion_tokens": 770,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 694
+              },
+              "cost": 0.000913435562,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.00044240196,
+                "upstream_inference_cost": 0.000913435562,
+                "upstream_inference_prompt_cost": 0.000471033602
+              },
+              "is_byok": false,
+              "prompt_tokens": 9721,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 8816,
+                "video_tokens": 0
+              },
+              "total_tokens": 10491
+            }
+          },
+          {
+            "benchmark_may_be_in_training_data": true,
+            "budget_refused": true,
+            "cost_usd": 0.0,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "356f112bf0c0eb170384be7f723922053a113a08ae31552b8b74390a6fbdb9c4",
+            "provider": "openrouter",
+            "request_sent": false,
+            "requested": 1,
+            "reserved_cost_usd": 0.025403249999999995,
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 4
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "deepseek/deepseek-v4-pro",
+  "name": "DEV_COST_COMPARE1_DEEPSEEKPRO_CSV",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "f90d68ce4316be5cbe4537a3711f05a2df6043bbbc32e8c21ea293e11b0ca2a6",
+  "provider": "openrouter",
+  "result_digest": "5dd2730c8e48d2fd2b36fb19bfb3b8d9eb44ad70edc80a36beb38ccdfc910e3a",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.002
+    },
+    "solved_per_arm": {
+      "model_explore": 0
+    },
+    "usable_cases": 1
+  }
+}

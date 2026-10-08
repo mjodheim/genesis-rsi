@@ -1,0 +1,72 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "c1a63a72c4cece07adfd112355eee45c1c25f63fb05774903a50872f30dc9f89",
+      "id": "retained-c1a63a72c4cece07",
+      "label": "retained_subscript_delta:subject.js:65:-1",
+      "mutations": [
+        {
+          "content_utf8": "// transfer probe\nfunction pick(values, position) { return values[position - 1]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "bc0ee377d52d6604b48dbc68300ac09da1a12d11a7805505d092a258a24de1ef",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "26318f750a29e45ff842475e40979ae228af0d5b47a79d29210c1df395cadc41",
+      "id": "retained-26318f750a29e45f",
+      "label": "retained_subscript_delta:subject.js:65:+1",
+      "mutations": [
+        {
+          "content_utf8": "// transfer probe\nfunction pick(values, position) { return values[position + 1]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "bc0ee377d52d6604b48dbc68300ac09da1a12d11a7805505d092a258a24de1ef",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "c6eb6b6e7c2d298fb671ce988548e72d85aba9fa4e2af1224e23464e2f1f5751",
+      "id": "retained-c6eb6b6e7c2d298f",
+      "label": "retained_subscript_delta:subject.js:65:-2",
+      "mutations": [
+        {
+          "content_utf8": "// transfer probe\nfunction pick(values, position) { return values[position - 2]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "bc0ee377d52d6604b48dbc68300ac09da1a12d11a7805505d092a258a24de1ef",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": -2,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    }
+  ],
+  "discover": false,
+  "policy_digest": "fb63ece777a7e6c8c35c938427539ac11554d309c1a327a6a9c2a917dfddcb7e",
+  "search_digest": "b6f8399cb767dcc89355aa91308fd2bf1c2ce820c7faf56cb0644fdbef12baa6",
+  "source_digest": "4ee7940a12d97d2392af0fc6df71aa86e1a7638819ef8403948dead5eb8e1b13",
+  "task_digest": "2e7a235752097c97c5202d05a835960bf86f1474a1b6ad3824b94938a8b5275f"
+}

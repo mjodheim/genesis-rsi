@@ -1,0 +1,634 @@
+{
+  "accepted_candidate_digest": null,
+  "accepted_origin": null,
+  "case": "Gson-2",
+  "evidence": {
+    "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+    "failing_tests": [
+      "com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch"
+    ],
+    "fixed_revision_consulted": false,
+    "production_source": [
+      {
+        "first_line": 661,
+        "last_line": 741,
+        "numbered_source": "  661|    * Writes the JSON for {@code jsonElement} to {@code writer}.\n  662|    * @throws JsonIOException if there was a problem writing to the writer\n  663|    */\n  664|   public void toJson(JsonElement jsonElement, JsonWriter writer) throws JsonIOException {\n  665|     boolean oldLenient = writer.isLenient();\n  666|     writer.setLenient(true);\n  667|     boolean oldHtmlSafe = writer.isHtmlSafe();\n  668|     writer.setHtmlSafe(htmlSafe);\n  669|     boolean oldSerializeNulls = writer.getSerializeNulls();\n  670|     writer.setSerializeNulls(serializeNulls);\n  671|     try {\n  672|       Streams.write(jsonElement, writer);\n  673|     } catch (IOException e) {\n  674|       throw new JsonIOException(e);\n  675|     } finally {\n  676|       writer.setLenient(oldLenient);\n  677|       writer.setHtmlSafe(oldHtmlSafe);\n  678|       writer.setSerializeNulls(oldSerializeNulls);\n  679|     }\n  680|   }\n  681| \n  682|   /**\n  683|    * This method deserializes the specified Json into an object of the specified class. It is not\n  684|    * suitable to use if the specified class is a generic type since it will not have the generic\n  685|    * type information because of the Type Erasure feature of Java. Therefore, this method should not\n  686|    * be used if the desired type is a generic type. Note that this method works fine if the any of\n  687|    * the fields of the specified object are generics, just the object itself should not be a\n  688|    * generic type. For the cases when the object is of generic type, invoke\n  689|    * {@link #fromJson(String, Type)}. If you have the Json in a {@link Reader} instead of\n  690|    * a String, use {@link #fromJson(Reader, Class)} instead.\n  691|    *\n  692|    * @param <T> the type of the desired object\n  693|    * @param json the string from which the object is to be deserialized\n  694|    * @param classOfT the class of T\n  695|    * @return an object of type T from the string. Returns {@code null} if {@code json} is {@code null}.\n  696|    * @throws JsonSyntaxException if json is not a valid representation for an object of type\n  697|    * classOfT\n  698|    */\n  699|   public <T> T fromJson(String json, Class<T> classOfT) throws JsonSyntaxException {\n  700|     Object object = fromJson(json, (Type) classOfT);\n  701|     return Primitives.wrap(classOfT).cast(object);\n  702|   }\n  703| \n  704|   /**\n  705|    * This method deserializes the specified Json into an object of the specified type. This method\n  706|    * is useful if the specified object is a generic type. For non-generic objects, use\n  707|    * {@link #fromJson(String, Class)} instead. If you have the Json in a {@link Reader} instead of\n  708|    * a String, use {@link #fromJson(Reader, Type)} instead.\n  709|    *\n  710|    * @param <T> the type of the desired object\n  711|    * @param json the string from which the object is to be deserialized\n  712|    * @param typeOfT The specific genericized type of src. You can obtain this type by using the\n  713|    * {@link com.google.gson.reflect.TypeToken} class. For example, to get the type for\n  714|    * {@code Collection<Foo>}, you should use:\n  715|    * <pre>\n  716|    * Type typeOfT = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();\n  717|    * </pre>\n  718|    * @return an object of type T from the string. Returns {@code null} if {@code json} is {@code null}.\n  719|    * @throws JsonParseException if json is not a valid representation for an object of type typeOfT\n  720|    * @throws JsonSyntaxException if json is not a valid representation for an object of type\n  721|    */\n  722|   @SuppressWarnings(\"unchecked\")\n  723|   public <T> T fromJson(String json, Type typeOfT) throws JsonSyntaxException {\n  724|     if (json == null) {\n  725|       return null;\n  726|     }\n  727|     StringReader reader = new StringReader(json);\n  728|     T target = (T) fromJson(reader, typeOfT);\n  729|     return target;\n  730|   }\n  731| \n  732|   /**\n  733|    * This method deserializes the Json read from the specified reader into an object of the\n  734|    * specified class. It is not suitable to use if the specified class is a generic type since it\n  735|    * will not have the generic type information because of the Type Erasure feature of Java.\n  736|    * Therefore, this method should not be used if the desired type is a generic type. Note that\n  737|    * this method works fine if the any of the fields of the specified object are generics, just the\n  738|    * object itself should not be a generic type. For the cases when the object is of generic type,\n  739|    * invoke {@link #fromJson(Reader, Type)}. If you have the Json in a String form instead of a\n  740|    * {@link Reader}, use {@link #fromJson(String, Class)} instead.\n  741|    *",
+        "path": "gson/src/main/java/com/google/gson/Gson.java"
+      }
+    ],
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "gson/src/main/java",
+    "suspect_locations": [
+      [
+        "gson/src/main/java/com/google/gson/Gson.java",
+        701
+      ]
+    ],
+    "suspects_from_stack_trace": true,
+    "test_directory": "gson/src/test/java",
+    "test_source": [
+      {
+        "first_line": 598,
+        "last_line": 648,
+        "numbered_source": "  598|     object.add(\"foo\", new JsonPrimitive(1));\n  599|     object.add(\"bar\", new JsonPrimitive(2));\n  600|     assertEquals(\"{\\\"foo\\\":1,\\\"bar\\\":2}\", gson.toJson(object, JsonElement.class));\n  601|   }\n  602| \n  603|   public void testJsonObjectDeserialization() {\n  604|     JsonObject object = new JsonObject();\n  605|     object.add(\"foo\", new JsonPrimitive(1));\n  606|     object.add(\"bar\", new JsonPrimitive(2));\n  607| \n  608|     String json = \"{\\\"foo\\\":1,\\\"bar\\\":2}\";\n  609|     JsonElement actual = gson.fromJson(json, JsonElement.class);\n  610|     assertEquals(object, actual);\n  611| \n  612|     JsonObject actualObj = gson.fromJson(json, JsonObject.class);\n  613|     assertEquals(object, actualObj);\n  614|   }\n  615| \n  616|   public void testJsonNullDeserialization() {\n  617|     assertEquals(JsonNull.INSTANCE, gson.fromJson(\"null\", JsonElement.class));\n  618|     assertEquals(JsonNull.INSTANCE, gson.fromJson(\"null\", JsonNull.class));\n  619|   }\n  620| \n  621|   public void testJsonElementTypeMismatch() {\n  622|     try {\n  623|       gson.fromJson(\"\\\"abc\\\"\", JsonObject.class);\n  624|       fail();\n  625|     } catch (JsonSyntaxException expected) {\n  626|       assertEquals(\"Expected a com.google.gson.JsonObject but was com.google.gson.JsonPrimitive\",\n  627|           expected.getMessage());\n  628|     }\n  629|   }\n  630| \n  631|   private static class ClassWithBigDecimal {\n  632|     BigDecimal value;\n  633|     ClassWithBigDecimal(String value) {\n  634|       this.value = new BigDecimal(value);\n  635|     }\n  636|     String getExpectedJson() {\n  637|       return \"{\\\"value\\\":\" + value.toEngineeringString() + \"}\";\n  638|     }\n  639|   }\n  640| \n  641|   private static class ClassWithBigInteger {\n  642|     BigInteger value;\n  643|     ClassWithBigInteger(String value) {\n  644|       this.value = new BigInteger(value);\n  645|     }\n  646|     String getExpectedJson() {\n  647|       return \"{\\\"value\\\":\" + value + \"}\";\n  648|     }",
+        "path": "gson/src/test/java/com/google/gson/functional/DefaultTypeAdaptersTest.java"
+      }
+    ],
+    "traces": [
+      {
+        "test": "com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch",
+        "trace": "java.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)\n\tat junit.framework.TestCase.run(TestCase.java:129)\n\tat junit.framework.TestSuite.runTest(TestSuite.java:252)\n\tat junit.framework.TestSuite.run(TestSuite.java:247)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1492)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:878)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1980)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:830)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2287)\n\tat org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)\n\tat jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)"
+      }
+    ]
+  },
+  "memory_after_digest": "22510476199b4b75ffc732d637e26b3ccaed3d1beb19b9d99de68eccec715be5",
+  "memory_before_digest": "266d59884497b8a5429d872e1ab81504224c0e21f74c356f9f39aa224d0812d7",
+  "new_memory_events": [
+    {
+      "data": {
+        "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "2a12b049fd9dfb9490e6d53b44e8eff005208f1178e9e1b00b69f578e22386b8"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "ab013c3b7f6cfbcdc7ed75be294293c9e8870a2dbead82d21852d290197d14b4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "54bd84e37222e7021150850f475309dc162fdf0ac5680c46fdcfeb5464361224"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "9e0e149c0f0dfab26bc766517ef90c5b7f8cc301a5d610bf5d88c1cdc2fe28bf",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+          "feedback": "    [javac] /work/Gson-2-b/gson/maven-build.xml:73: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Gson-2-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Gson-2-b/gson/src/main/java/com/google/gson/Gson.java:209: error: incompatible types: TypeAdapter<BigInteger> cannot be converted to TypeAdapterFactory\n    [javac]     factories.add(TypeAdapters.BIG_INTEGER);\n    [javac]                               ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "cbdd3640d1108e19fb480ddf0e5d011898ec3759ef7fccf8a8c382054fa02d1a"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "7ea7c1ac4f9f3658178fd878a5a0ef212aca9844953cb8a08bc1cfb73c224c8e",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "9f95dd4b6444f496d3c995bad12013971dc28cfdbd4a2acc087509de410815dc"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "14d57b35c76c322bf3e370b3d5897fdf1bdd1ba4254e728a8c4e2da0510b2545",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0008753,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "path": "gson/src/main/java/com/google/gson/Gson.java",
+              "start": 741
+            },
+            "result_digest": "f78a4c78009a81f646c3dfca8636050914494b1cfffbaed37ae56db3d08d3651",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0045612610000000005,
+        "response_digest": "b4fed6c447c858c65148484fe7714bfd4914aa9b5a0994142aae2c5b7fa238c0",
+        "response_id": "gen-1791495395-NBxJcMvc5IEBqe5h3M0m",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 372,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 236
+          },
+          "cost": 0.0008753,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000186,
+            "upstream_inference_cost": 0.0008753,
+            "upstream_inference_prompt_cost": 0.0006893
+          },
+          "is_byok": false,
+          "prompt_tokens": 6893,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7265
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3b51e860e3f6e29942c21e731898a5a112760288943a902f7609d2d9bb1c9623",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0014278,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "isInstance("
+            },
+            "result_digest": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "fe224277191baa5966c75fea8b15b6299b965d7669224067effd364cf8aa4c31",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005847798999999999,
+        "response_digest": "fd29b351d034d91c4ab23d9bc7ebe5097ae7c3b97d871fb2fb8808e894c2f9ee",
+        "response_id": "gen-1791495399-xuHucZTKBUbqnuQml3jU",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 641,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 589
+          },
+          "cost": 0.0014278,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0003205,
+            "upstream_inference_cost": 0.0014278,
+            "upstream_inference_prompt_cost": 0.0011073
+          },
+          "is_byok": false,
+          "prompt_tokens": 11073,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 11714
+        }
+      },
+      "kind": "call",
+      "previous_digest": "2359ee5f8638b292c9ec1f880aa6c6c3ca8d2c161776b91fcc8472ac08a274b3",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001201,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "newTypeHierarchyFactory"
+            },
+            "result_digest": "f1e4daa7482384c982b162d0f94935a512a9f790a5ca9169c486459e97a47ccb",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "8f3bc32f16f4d22accea92ffe6852209c8bc682028a4f2881f66f71949917a41",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006183725,
+        "response_digest": "ef47c0b2b2866411eb69ec1b2c16ecbb94aa691aeaeed62b3011788be965efe2",
+        "response_id": "gen-1791495403-SHjLig8adLgd7Yyaniad",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 58,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.001201,
+          "cost_details": {
+            "upstream_inference_completions_cost": 2.9e-05,
+            "upstream_inference_cost": 0.001201,
+            "upstream_inference_prompt_cost": 0.001172
+          },
+          "is_byok": false,
+          "prompt_tokens": 11720,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 11778
+        }
+      },
+      "kind": "call",
+      "previous_digest": "0a595d300a3be4d31f190104679da148296d69b5681e34c8b29940409fb43d59",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "benchmark_may_be_in_training_data": true,
+        "call_failed": true,
+        "cost_usd": null,
+        "error": "HTTPError",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "http_status": 404,
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "3e13e8b17059dcc2ff362a4e5045b45f94b306f8290395bcd459c7d6fba9cc9a",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0063038140000000005,
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4
+      },
+      "kind": "call",
+      "previous_digest": "4d07a6dd5c6fca04e7e9b5786eff214013cb334efccf75c664c89459205aea5a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": null,
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "975ecd7c3ed2e80b6ec2163e5a5797c6f557b1b4b56450f2611c46251ec70f4a",
+      "scope": "released_development"
+    }
+  ],
+  "patch": null,
+  "plan_digest": "a133d5cf96db23ca593266a623c43c2107555ea53a3a4b706596b85664996124",
+  "replay": null,
+  "result": {
+    "decisions": [
+      {
+        "basis": "released_comparison",
+        "complexity": "simple",
+        "estimated_request_reserve_usd": 0.003886682,
+        "fallback_quality_threshold_relaxed": false,
+        "model": "anthropic/claude-haiku-5.5",
+        "observations": 3,
+        "score": 0.005286244375,
+        "suite_passes": 3
+      }
+    ],
+    "known_cost_usd": 0.0035041,
+    "model_calls": [
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0008753,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "path": "gson/src/main/java/com/google/gson/Gson.java",
+              "start": 741
+            },
+            "result_digest": "f78a4c78009a81f646c3dfca8636050914494b1cfffbaed37ae56db3d08d3651",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0045612610000000005,
+        "response_digest": "b4fed6c447c858c65148484fe7714bfd4914aa9b5a0994142aae2c5b7fa238c0",
+        "response_id": "gen-1791495395-NBxJcMvc5IEBqe5h3M0m",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 372,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 236
+          },
+          "cost": 0.0008753,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000186,
+            "upstream_inference_cost": 0.0008753,
+            "upstream_inference_prompt_cost": 0.0006893
+          },
+          "is_byok": false,
+          "prompt_tokens": 6893,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7265
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0014278,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "isInstance("
+            },
+            "result_digest": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "fe224277191baa5966c75fea8b15b6299b965d7669224067effd364cf8aa4c31",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005847798999999999,
+        "response_digest": "fd29b351d034d91c4ab23d9bc7ebe5097ae7c3b97d871fb2fb8808e894c2f9ee",
+        "response_id": "gen-1791495399-xuHucZTKBUbqnuQml3jU",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 641,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 589
+          },
+          "cost": 0.0014278,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0003205,
+            "upstream_inference_cost": 0.0014278,
+            "upstream_inference_prompt_cost": 0.0011073
+          },
+          "is_byok": false,
+          "prompt_tokens": 11073,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 11714
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001201,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "newTypeHierarchyFactory"
+            },
+            "result_digest": "f1e4daa7482384c982b162d0f94935a512a9f790a5ca9169c486459e97a47ccb",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "8f3bc32f16f4d22accea92ffe6852209c8bc682028a4f2881f66f71949917a41",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006183725,
+        "response_digest": "ef47c0b2b2866411eb69ec1b2c16ecbb94aa691aeaeed62b3011788be965efe2",
+        "response_id": "gen-1791495403-SHjLig8adLgd7Yyaniad",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 58,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.001201,
+          "cost_details": {
+            "upstream_inference_completions_cost": 2.9e-05,
+            "upstream_inference_cost": 0.001201,
+            "upstream_inference_prompt_cost": 0.001172
+          },
+          "is_byok": false,
+          "prompt_tokens": 11720,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 11778
+        }
+      },
+      {
+        "benchmark_may_be_in_training_data": true,
+        "call_failed": true,
+        "cost_usd": null,
+        "error": "HTTPError",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "http_status": 404,
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "3e13e8b17059dcc2ff362a4e5045b45f94b306f8290395bcd459c7d6fba9cc9a",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0063038140000000005,
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4
+      }
+    ],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": false,
+    "solved_without_llm": false,
+    "total_cost_usd": null,
+    "unknown_cost": true,
+    "verdicts": [
+      {
+        "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+        "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "2a12b049fd9dfb9490e6d53b44e8eff005208f1178e9e1b00b69f578e22386b8"
+      },
+      {
+        "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+        "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "54bd84e37222e7021150850f475309dc162fdf0ac5680c46fdcfeb5464361224"
+      },
+      {
+        "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+        "feedback": "    [javac] /work/Gson-2-b/gson/maven-build.xml:73: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Gson-2-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Gson-2-b/gson/src/main/java/com/google/gson/Gson.java:209: error: incompatible types: TypeAdapter<BigInteger> cannot be converted to TypeAdapterFactory\n    [javac]     factories.add(TypeAdapters.BIG_INTEGER);\n    [javac]                               ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "cbdd3640d1108e19fb480ddf0e5d011898ec3759ef7fccf8a8c382054fa02d1a"
+      },
+      {
+        "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+        "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "9f95dd4b6444f496d3c995bad12013971dc28cfdbd4a2acc087509de410815dc"
+      }
+    ]
+  },
+  "result_digest": "d8f989e253282073cf181d66695b640322d11312aefc15d0e89dc9a3d8cbd868",
+  "success_recorded": false,
+  "usable": true
+}

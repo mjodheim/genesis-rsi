@@ -1,0 +1,226 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": null,
+          "plausible_patch": null,
+          "plausible_path": null,
+          "plausible_squashed_sha256": null,
+          "proposed": 0,
+          "rounds": 1,
+          "solved": false,
+          "validated": 0,
+          "verdicts": []
+        }
+      },
+      "case": "Csv-16",
+      "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000534175,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "class CSVRecordIterator"
+                },
+                "result_digest": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+                "tool": "search_files"
+              }
+            ],
+            "model": "openai/gpt-6-luna",
+            "prompt_digest": "2ccd69becea269951e86b355751a4f1139b1dfb2c231af1311e9766e4679e021",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.013988700000000001,
+            "response_digest": "fcf6a27e647d1a61cd71343caab6f7859490e011ff4d3a5a516473928ec965ec",
+            "response_id": "gen-1791493871-OCE7humJsfNJ3yc5oQ5A",
+            "returned_model": "openai/gpt-6-luna",
+            "routed_provider": "OpenAI",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 21,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.000534175,
+              "cost_details": {
+                "upstream_inference_completions_cost": 1.05e-05,
+                "upstream_inference_cost": 0.000534175,
+                "upstream_inference_prompt_cost": 0.000523675
+              },
+              "is_byok": false,
+              "prompt_tokens": 4190,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 4187,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 4211
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 5.637e-05,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "Iterator<CSVRecord>"
+                },
+                "result_digest": "d23c78a0feb682d3be27b1bac0f0999150929448fb98bf0cdbd672d8d82bfcc7",
+                "tool": "search_files"
+              }
+            ],
+            "model": "openai/gpt-6-luna",
+            "prompt_digest": "dca0dcec971e35c304299f5bf85e4fb1f775c568e9fba04b5c76ccad49a97e6d",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.0140951,
+            "response_digest": "32c2710fa6eee0b7145c98b6c29417901cf79772f72323dcce9df93ea6342515",
+            "response_id": "gen-1791493872-r6NeIYuTGRASXlSSgtIm",
+            "returned_model": "openai/gpt-6-luna",
+            "routed_provider": "OpenAI",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 22,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 5.637e-05,
+              "cost_details": {
+                "upstream_inference_completions_cost": 1.1e-05,
+                "upstream_inference_cost": 5.637e-05,
+                "upstream_inference_prompt_cost": 4.537e-05
+              },
+              "is_byok": false,
+              "prompt_tokens": 4222,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 4187,
+                "video_tokens": 0
+              },
+              "total_tokens": 4244
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00026717,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 430
+                },
+                "result_digest": "519e7c4d6e743ab5ac8a11dfa1187f76414efd866ac7d1d486fef8ccde0d78ff",
+                "tool": "read_file"
+              }
+            ],
+            "model": "openai/gpt-6-luna",
+            "prompt_digest": "2a801c7f4fbf72f3ab7ae4cca92d4707f8d0bc15204b003a43db17e4b9389cc9",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01647615,
+            "response_digest": "bd3294847a6038a33455c9c44aee02e7669c78516eb7539f9134ecebc8476927",
+            "response_id": "gen-1791493873-sz7Skc3SqhXerNcxVBgG",
+            "returned_model": "openai/gpt-6-luna",
+            "routed_provider": "OpenAI",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 3,
+            "usage": {
+              "completion_tokens": 34,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.00026717,
+              "cost_details": {
+                "upstream_inference_completions_cost": 1.7e-05,
+                "upstream_inference_cost": 0.00026717,
+                "upstream_inference_prompt_cost": 0.00025017
+              },
+              "is_byok": false,
+              "prompt_tokens": 5854,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 1664,
+                "cached_tokens": 4187,
+                "video_tokens": 0
+              },
+              "total_tokens": 5888
+            }
+          },
+          {
+            "benchmark_may_be_in_training_data": true,
+            "budget_refused": true,
+            "cost_usd": 0.0,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "model": "openai/gpt-6-luna",
+            "prompt_digest": "102773f5bf29a259dfeae4550fd02fa56b4e3d9367effe0a2a11c4f8edf2e2b0",
+            "provider": "openrouter",
+            "request_sent": false,
+            "requested": 1,
+            "reserved_cost_usd": 0.0194522,
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 4
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "openai/gpt-6-luna",
+  "name": "DEV_COST_COMPARE2_LUNA_CSV",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "12f1a5d8acbbb81fb2556c5ce9a67b2b9dc6a145b65975aa76e91962a15a9b62",
+  "provider": "openrouter",
+  "result_digest": "3dba0787adacdd48c06f4c9611f9210082d79e2067610be2bca5b08d3e29b115",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0009
+    },
+    "solved_per_arm": {
+      "model_explore": 0
+    },
+    "usable_cases": 1
+  }
+}

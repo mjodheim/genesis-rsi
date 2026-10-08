@@ -220,7 +220,8 @@ def strategist_proposer(count: int) -> Proposer:
             stream_iterator_experimental=True, priority_focus_paths=tuple(focus[:8]),
         )
         return [
-            Candidate(path=item["path"], content=item["content_utf8"], origin="strategist")
+            Candidate(path=item["path"], content=item["content_utf8"], origin="strategist",
+                      description="Local repair operator: " + str(item.get("operator", "unknown")))
             for item in generated["candidates"][:count]
         ]
 

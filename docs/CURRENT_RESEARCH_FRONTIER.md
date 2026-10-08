@@ -1,6 +1,55 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 6 October 2026. The project-defined finite operational L9 gate is passed under the prospectively frozen OE1-v3 criterion; L10 independent replication remains open.**
+**Reader-facing status snapshot — 8 October 2026. The active Genesis v2 frontier is blind repair transfer after the bounded G10 chain. General RSI remains unestablished. The historical finite operational L9 gate is passed; L10 independent replication remains open.**
+
+## Active Genesis v2 frontier — blind repair transfer
+
+The strengthened, project-defined G10 chain passed on 7 October in a bounded,
+host-authored successor family. Its authoritative scope and evidence are in
+[`G10_QUALIFICATION_2026-10-07.md`](G10_QUALIFICATION_2026-10-07.md).
+This does not establish general RSI.
+
+Subsequent external-software trials retained negative results: G11 solved 0/9
+and V2.1 solved 0/3 prospectively frozen Defects4J cases. The
+[`search-space diagnosis`](../experiment/g12/REPAIR_SEARCH_SPACE_DIAGNOSIS_20261008.md)
+found no exact developer repair among the local strategist's candidates on
+11 already-exposed cases without hand-written case-specific operators.
+
+The next recorded experiment is **T1**, preregistered at commit `01b42ba7`
+before execution: 24 held-out cases, three proposer arms (`strategist`,
+`model`, `model_explore`), and ten candidate validations per arm/case.
+See the [bench protocol](REPAIR_BENCH.md) and
+[frozen preregistration](../experiment/bench/TRIAL_T1_PREREG.json).
+Execution began on 8 October and was stopped after model calls failed because
+the authenticated provider session had exhausted its usage quota. See the
+[execution incident](REPAIR_BENCH_T1_EXECUTION_2026-10-08.md).
+No sealed T1 result is available at this snapshot.
+Fixed revisions must remain unopened until the trial result is sealed.
+
+At the owner's request, subsequent development now uses an economical
+OpenRouter repair agent, defaulting to Qwen3 Coder Next with provider price
+ceilings and conservative pre-call cost reservations. T1 is unchanged.
+The [integration chronology](OPENROUTER_REPAIR_INTEGRATION_2026-10-08.md)
+retains the development negative and every interruption. No new held-out
+repair or RSI gate is qualified by this provider integration.
+
+A subsequent owner-requested GLM comparison produced a full-suite-passing
+alternative repair on the already-exposed Codec-15 case at $0.00142348 using
+low reasoning effort. Its developer-fix audit found a different implementation;
+correctness beyond the suite is unestablished. DeepSeek was not invoked because
+GLM met the repair bench's validation predicate. See the
+[GLM development result](GLM_REPAIR_DEVELOPMENT_RESULT_2026-10-08.md).
+
+T1 measures repair capability under the frozen validation budget. A positive
+model-arm result would not itself demonstrate recursive improvement: the next
+step needs reusable lineage-produced machinery, frozen before fresh evaluation,
+with parent, ablation and retention controls. External-model cost and calls must
+be counted during acquisition as well as runtime. A descendant must then improve
+the production of a further descendant under matched budgets, rather than only
+solve more bugs. These are future evidence requirements, not additional T1
+acceptance predicates or a newly qualified gate.
+
+The L/M/A sections below preserve the historical research navigation.
 
 ## Active RSI frontier
 
@@ -303,7 +352,69 @@ accepted. The original matrix is left unchanged and the navigation correction is
 The original machine-readable matrix remains at
 [`audits/HYPOTHESIS_VALIDATION_MATRIX_2026-09-05.json`](audits/HYPOTHESIS_VALIDATION_MATRIX_2026-09-05.json).
 
+## Development model cost comparison, 8 October 2026
+
+A three-case exposed-development comparison tested Qwen3 Coder, GLM-5.3 Flash,
+DeepSeek V4.1 Flash and DeepSeek V4 Pro. GLM produced one full-suite pass; the
+other configurations produced none. Total journaled API spend was $0.038189,
+including unsuccessful and truncated responses. Conservative budget guards and
+model/tool errors limit ability comparisons. No held-out gate or general RSI
+claim follows. Exact costs, tokens and preserved aborted outcomes are documented
+in [the comparison report](REPAIR_MODEL_COST_COMPARISON_2026-10-08.md).
+
+## Economical development routing and retained repairs, 8 October 2026
+
+The second exposed-development model cohort tested MiMo V2.6 Flash/Pro,
+Claude Haiku/Sonnet 5.5 and GPT-6 Luna. Haiku passed all three developer suites
+for $0.013029 total; Luna passed one for $0.003091 total. A development-only
+router now ranks affordable models using complexity proxies, released outcome
+costs and a configurable reliability threshold. It attempts retained,
+previously validated local repair patterns before external calls and revalidates
+every proposal. This is retained development experience, not general understanding
+or an independently established RSI gate. See the
+[model and reuse report](ADAPTIVE_REPAIR_MODELS_2026-10-08.md).
+
+## Three further development bugs and durable local learning, 8 October 2026
+
+Compress-6 passed the developer suite on the first deterministic local candidate,
+without a model call. Its newly recorded recipe was loaded from a fresh database
+reader and passed a memory-only replay. Gson-2 and Jsoup-68 remain unsolved;
+Haiku assistance hit HTTP 404 on Gson, and Luna assistance did not repair Jsoup.
+Known API spend is $0.006471; one API error has unknown cost, so total spend is
+not asserted. The verified development memory is now retained at the active path
+recorded in `experiment/bench/ADAPTIVE_REPAIR_ACTIVE_MEMORY.json`. This is an
+exposed-development result, not fresh transfer or general RSI. The API error
+currently excludes Haiku under the conservative unknown-cost policy. See the
+[three-bug trial report](ADAPTIVE_THREE_BUGS_2026-10-08.md).
+
+## Haiku compatibility fixed and the two failed bugs retried, 8 October 2026
+
+A controlled API check confirmed that Haiku 5.5 rejects forced named tools;
+the fourth exploratory request caused the earlier HTTP 404. The proposer now
+uses auto selection with only the submission tool on its last request. An
+append-only diagnostic review restores Haiku routing while preserving the
+unknown old charge. Gson-2 passed with Luna and Jsoup-68 passed with Haiku,
+for $0.008731 in new retry API costs. A second defect in recipe lookup omitted
+repaired dependencies absent from the stack trace; that lookup is now fixed.
+Both repairs passed a separately recorded memory-only replay and their full
+verified history is in the active development database (84 events). This
+supersedes the operational Haiku exclusion noted above, without changing any
+old trial result or asserting general RSI. See the
+[404 diagnosis and retry report](HAIKU_404_RETRIES_2026-10-08.md).
+
 ## Claim boundary
+
+On 9 October 2026, two frozen model-free DEVELOPMENT experiments connected
+exemplar-derived repair rules to parent/descendant promotion and a mutable
+search ordering. Three acquisition cycles passed nine final authored
+Python/JavaScript/Java transfer probes (empty-policy baseline: zero). A
+training-outcome diagnosis then selected an authored observation-first search
+ordering: three subsequent probes passed in both arms with twelve versus three
+candidate validations. This is bounded parameter acquisition and search-policy
+adaptation on one authored bug family, not independent real-project evidence,
+new semantic primitive invention or general RSI. The active real-bug repair
+memory remains separate. See
+[the development report](REPAIR_SELF_IMPROVEMENT_DEVELOPMENT_2026-10-09.md).
 
 Mira Genesis does not currently claim AGI, general intelligence, consciousness, unrestricted
 self-rewrite, open-ended evolution, open-ended recursive self-improvement, unrestricted repository

@@ -1,0 +1,218 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": 2,
+          "plausible_patch": "--- a/src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java\n+++ b/src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java\n@@ -20,6 +20,7 @@\n import java.util.Iterator;\n \n import org.apache.commons.collections4.BoundedCollection;\n+import org.apache.commons.collections4.Unmodifiable;\n import org.apache.commons.collections4.iterators.UnmodifiableIterator;\n \n /**\n@@ -40,7 +41,7 @@\n  * @version $Id$\n  */\n public final class UnmodifiableBoundedCollection<E> extends AbstractCollectionDecorator<E>\n-        implements BoundedCollection<E> {\n+        implements BoundedCollection<E>, Unmodifiable {\n \n     /** Serialization version */\n     private static final long serialVersionUID = -7112672385450340330L;\n@@ -55,6 +56,12 @@\n      * @since 4.0\n      */\n     public static <E> BoundedCollection<E> unmodifiableBoundedCollection(final BoundedCollection<? extends E> coll) {\n+        if (coll == null) {\n+            throw new IllegalArgumentException(\"The collection must not be null\");\n+        }\n+        if (coll instanceof UnmodifiableBoundedCollection) {\n+            return (BoundedCollection<E>) coll;\n+        }\n         return new UnmodifiableBoundedCollection<E>(coll);\n     }\n \n",
+          "plausible_path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java",
+          "plausible_squashed_sha256": "d6a650dac512b24f584e53458a60a19847d47cb8f749f08fc43c9a0624d8a5b0",
+          "proposed": 2,
+          "rounds": 2,
+          "solved": true,
+          "validated": 2,
+          "verdicts": [
+            {
+              "candidate_digest": "6264a24e7ce3ba7fed69464a471595f44289d079b669f6513d029ce329e161d0",
+              "feedback": "--- org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest::testDecorateFactory\njunit.framework.AssertionFailedError: expected same:<[, One, 2, Three, null, 4, One, 5.0, 6.0, Seven, Eight, Nine, 10, 11, 12, Thirteen, 14, 15, 16]> was not:<[, One, 2, Three, null, 4, One, 5.0, 6.0, Seven, Eight, Nine, 10, 11, 12, Thirteen, 14, 15, 16]>\n\tat junit.framework.Assert.fail(Assert.java:57)\n\tat junit.framework.Assert.failNotSame(Assert.java:325)\n\tat junit.framework.Assert.assertSame(Assert.java:288)\n\tat junit.framework.Assert.assertSame(Assert.java:296)\n\tat junit.framework.TestCase.assertSame(TestCase.java:465)\n\tat org.apache.commons.collections4.collection.UnmodifiableBoundedCollectionTest.testDecorateFactory(UnmodifiableBoundedCollectionTest.java:94)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)",
+              "full_suite_failures": null,
+              "origin": "openrouter:openai/gpt-6-luna",
+              "path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java",
+              "plausible": false,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "failing_tests",
+              "verdict_digest": "83a62fcdca943a19a55a93f904b14f9862bd01c96ce76fab4c646db1b4ebadfb"
+            },
+            {
+              "candidate_digest": "1ef4a71d66863ddd48514154f5f10f498c936faac0c36c29746312ae5e0fe9f0",
+              "feedback": null,
+              "full_suite_failures": 0,
+              "origin": "openrouter:openai/gpt-6-luna",
+              "path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java",
+              "plausible": true,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "passed",
+              "verdict_digest": "2ec3a9c081f177c358abe9886234fd2d092052f861bf66999bae266dbe7ac31c"
+            }
+          ]
+        }
+      },
+      "case": "Collections-24",
+      "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+      "failing_tests": 2,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000561925,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "openai/gpt-6-luna",
+            "prompt_digest": "288df116b5450762ce5efd7efc0560de735dee021cec09bafa136ab333d00872",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.0136282,
+            "response_digest": "af4835c9413a293e38ddbefb21ecca73daf13921679706f6d10460aa9eb30bf7",
+            "response_id": "gen-1791493885-4yb6SYxmQI5Rz3LzDn40",
+            "returned_model": "openai/gpt-6-luna",
+            "routed_provider": "OpenAI",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 214,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.000561925,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000107,
+                "upstream_inference_cost": 0.000561925,
+                "upstream_inference_prompt_cost": 0.000454925
+              },
+              "is_byok": false,
+              "prompt_tokens": 3640,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 3637,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 3854
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000543675,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/test/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollectionTest.java",
+                  "start": 1
+                },
+                "result_digest": "3e8e7a555a5074631fbc01a5993196bfcc092ecb34e33bffd911431996e21f3b",
+                "tool": "read_file"
+              }
+            ],
+            "model": "openai/gpt-6-luna",
+            "prompt_digest": "849fbaea68f8e59ff65dc2093453dd3ad6a8a04b5fcdb2b781e69f5019f0ab2c",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01442795,
+            "response_digest": "29f264500a9c28ceeb5736c0630354ab5a72ee898bf4f176249d31720ab4be91",
+            "response_id": "gen-1791493893-P1elNrzwSJ8rRkwp8BB6",
+            "returned_model": "openai/gpt-6-luna",
+            "routed_provider": "OpenAI",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 41,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.000543675,
+              "cost_details": {
+                "upstream_inference_completions_cost": 2.05e-05,
+                "upstream_inference_cost": 0.000543675,
+                "upstream_inference_prompt_cost": 0.000523175
+              },
+              "is_byok": false,
+              "prompt_tokens": 4186,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 4183,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 4227
+            }
+          },
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00038838,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "openai/gpt-6-luna",
+            "prompt_digest": "bf43d4e2add8721f8fb9d15cee9952c83299c49eeaa6f6769083c5bfc3c40048",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01592875,
+            "response_digest": "02a13c194f25ad389c86a07a48dfbaa7bb6e33db80a2cea654f8aaceabd2b303",
+            "response_id": "gen-1791493894-K3jeOekBLafVMNcrtZae",
+            "returned_model": "openai/gpt-6-luna",
+            "routed_provider": "OpenAI",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 453,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 118
+              },
+              "cost": 0.00038838,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.0002265,
+                "upstream_inference_cost": 0.00038838,
+                "upstream_inference_prompt_cost": 0.00016188
+              },
+              "is_byok": false,
+              "prompt_tokens": 5144,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 958,
+                "cached_tokens": 4183,
+                "video_tokens": 0
+              },
+              "total_tokens": 5597
+            }
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "openai/gpt-6-luna",
+  "name": "DEV_COST_COMPARE2_LUNA_COLLECTIONS",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "e8a82fc0e17cf24a654715ca0ff79eb8b94d5a4720ab7adca43b2d4ceb5f0bfb",
+  "provider": "openrouter",
+  "result_digest": "04d49701b924df32e3250d23a05ca8307ee5250d317db399ff7d7d46ca580fbc",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0015
+    },
+    "solved_per_arm": {
+      "model_explore": 1
+    },
+    "usable_cases": 1
+  }
+}

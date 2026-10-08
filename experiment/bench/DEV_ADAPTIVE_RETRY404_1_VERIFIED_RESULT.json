@@ -1,0 +1,36 @@
+{
+  "schema": "genesis-postrun-verified-retry-summary-v1",
+  "scope": "post-run development summary joining preserved trial and memory-replay followup; not a fresh scientific claim",
+  "retry_result_digest": "57bf88ff4a2417ed73ed5f730dbf3950f1b2b153abc2b82997841fdc22d92a17",
+  "replay_result_digest": "fe8564cb89b0ece3360439a0be7b6db1f4c523e3a1fe7a35892dd8f23f34276c",
+  "outcomes": [
+    {
+      "case": "Gson-2",
+      "suite_passed": true,
+      "accepted_origin": "openrouter:openai/gpt-6-luna",
+      "success_recorded": true,
+      "memory_replay_verified": true,
+      "accepted_candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+      "known_cost_usd": 0.004250505
+    },
+    {
+      "case": "Jsoup-68",
+      "suite_passed": true,
+      "accepted_origin": "openrouter:anthropic/claude-haiku-5.5",
+      "success_recorded": true,
+      "memory_replay_verified": true,
+      "accepted_candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+      "known_cost_usd": 0.0044808
+    }
+  ],
+  "summary": {
+    "cases": 2,
+    "full_suite_successes": 2,
+    "durable_successes": 2,
+    "memory_only_replays": 2,
+    "actual_requests": 9,
+    "retry_cost_usd": 0.008731305
+  },
+  "cost_scope": "retry requests only; diagnostics and previous failed trial excluded",
+  "summary_digest": "5d19ed23cb4c9803c38e2c3492db0c38b1af10c6a48c3ddc78accdc19a3cb60e"
+}

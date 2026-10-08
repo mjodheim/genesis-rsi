@@ -1,0 +1,36 @@
+{
+  "acceptance": "a case is solved by an arm when one validated candidate passes the full developer test suite",
+  "arms": [
+    "model",
+    "model_explore"
+  ],
+  "benchmark_may_be_in_model_training_data": true,
+  "call_journal": true,
+  "candidates_per_model_call": 2,
+  "cases": [
+    "Codec-15"
+  ],
+  "held_out": false,
+  "machinery_commit": "01b42ba70c11c9f4508137f51f5ce7e161a579d3",
+  "machinery_digests": {
+    "genesis/defects4j_sandbox.py": "ce03c418d6f758e7a48396ece9c7a08697e369231d45c44c3ee2ac03fb79ecd6",
+    "genesis/openrouter_repair.py": "19067a3073ac94622324012a9356130a65daa0d5a4a0e150162af8d33ff5bda4",
+    "genesis/repair_bench.py": "78082322099c175f6a7ab6ef556ef05712ef5fb0e185fff017fcc332c9351e8b",
+    "genesis/repair_proposers.py": "c2c2c5cee118bdf8ccf7ec0a7c558145d94c2572c60b759d283938022b79b628",
+    "scripts/run_repair_bench_trial.py": "2f21d026a7eb915fd1be9c97ac36b683e58e879fb41ce5e69f82a6263db41d45"
+  },
+  "max_output_tokens_per_request": 4096,
+  "max_requests_per_round": 8,
+  "max_rounds_per_arm": 4,
+  "model": "qwen/qwen3-coder",
+  "model_fallback": false,
+  "name": "DEV_OPENROUTER2",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "ac1b2a82cf58cd05ab55fc7288ebc1baa51881e030ad1230e7a3a0ce0c3e343b",
+  "provider": "openrouter",
+  "provider_fallback": true,
+  "schema": "genesis-repair-bench-preregistration-v1",
+  "split_digest": "eb6169d29898f47c4a7aeb3a439a5fae3c0f78d8c754b4202c59c8d53654c753",
+  "stop_at_first_plausible": true,
+  "validation_budget_per_arm": 2
+}

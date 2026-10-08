@@ -1,0 +1,93 @@
+{
+  "candidate_set_digest": "7251014bec415efce6e5a46ec35deb3394cea3a9173d53324098dbb3ca7eccae",
+  "candidates": [
+    {
+      "candidate_digest": "03fd99df3a10e63a9b05c5940969a591805b9bee682d6be1003bd3ffc934ee82",
+      "id": "exemplar-03fd99df3a10e63a",
+      "label": "observed_subscript_delta:subject.py:45:+2",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position + 2]\n\ndef neighboring(values, position):\n    return values[position + 2]\n",
+          "expected_absent": false,
+          "expected_sha256": "4f86e3d3392abaf8575f3e683d30116434b9431291451feb005281b5affdb3a7",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": 2,
+        "exemplar_path": "subject.py",
+        "exemplar_start": 109,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "position",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      }
+    },
+    {
+      "candidate_digest": "c5e6694d20cb34a390f205f86bfabc0200994d65ce1d42ff8c698e1f53d60fa1",
+      "id": "retained-c5e6694d20cb34a3",
+      "label": "retained_subscript_delta:subject.py:45:-1",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position - 1]\n\ndef neighboring(values, position):\n    return values[position + 2]\n",
+          "expected_absent": false,
+          "expected_sha256": "4f86e3d3392abaf8575f3e683d30116434b9431291451feb005281b5affdb3a7",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "1de677b56583853c8e0536fc4caa592762ded7a40325f084dc919339b6c48b0c",
+      "id": "retained-1de677b56583853c",
+      "label": "retained_subscript_delta:subject.py:45:+1",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position + 1]\n\ndef neighboring(values, position):\n    return values[position + 2]\n",
+          "expected_absent": false,
+          "expected_sha256": "4f86e3d3392abaf8575f3e683d30116434b9431291451feb005281b5affdb3a7",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "ce8457c70ce4d1527bbb7b9df0fde1deda27c7fab9a214706969535736f2ab11",
+      "id": "retained-ce8457c70ce4d152",
+      "label": "retained_subscript_delta:subject.py:45:-2",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position - 2]\n\ndef neighboring(values, position):\n    return values[position + 2]\n",
+          "expected_absent": false,
+          "expected_sha256": "4f86e3d3392abaf8575f3e683d30116434b9431291451feb005281b5affdb3a7",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -2,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    }
+  ],
+  "search_policy_digest": "96c375ca16bb0da6f079f70f2a5d2f9c4a9eac4d7c94a49e4ec81120fa565fce",
+  "task_digest": "defdebc8e3409a81f415421a2f950b84b54b91958b572d64839fca65e013115d"
+}

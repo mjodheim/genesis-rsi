@@ -1,0 +1,74 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "c5d6bf3d584e716720bd4e5deab1fc5f01dfa5b3dd4200191d4eb17795be07f8",
+      "id": "retained-c5d6bf3d584e7167",
+      "label": "retained_subscript_delta:Subject.java:86:-1",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int slot) { return values[slot - 1]; }\n public static int neighboring(int[] values, int slot) { return values[slot - 2]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "190f270289eea7a7eb1e4e794c28010a4f6c6206b09b061334e32130fdb7541e",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "8469aa8e6971483740dc6a01baf36d7b05e6b15d93309e552cb4531cfb091323",
+      "id": "retained-8469aa8e69714837",
+      "label": "retained_subscript_delta:Subject.java:86:+1",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int slot) { return values[slot + 1]; }\n public static int neighboring(int[] values, int slot) { return values[slot - 2]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "190f270289eea7a7eb1e4e794c28010a4f6c6206b09b061334e32130fdb7541e",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "b8139730a63e366782340ac551a9eb18a2f2c52bfdc027cbbffc12a1520fa6a7",
+      "id": "exemplar-b8139730a63e3667",
+      "label": "observed_subscript_delta:Subject.java:86:-2",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int slot) { return values[slot - 2]; }\n public static int neighboring(int[] values, int slot) { return values[slot - 2]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "190f270289eea7a7eb1e4e794c28010a4f6c6206b09b061334e32130fdb7541e",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": -2,
+        "exemplar_path": "Subject.java",
+        "exemplar_start": 166,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "slot",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      }
+    }
+  ],
+  "discover": true,
+  "policy_digest": "1043a2f0bcbd2b8f205f7d1fd12ae00b038fb9e42795debcf6ac529fbaeba65e",
+  "search_digest": "46af8e92944eb732814d86cb92d73bb92644d8122125e0533fbc0f1256a1260f",
+  "source_digest": "093779684b82e1e73b09e97122c8c47a2e6dcd3dee3d64bf225c8768e5b0ad33",
+  "task_digest": "f8bce1807abf62ec797a77f7ff9a433af4cfcbc189985fd2c4d07726e773376f"
+}

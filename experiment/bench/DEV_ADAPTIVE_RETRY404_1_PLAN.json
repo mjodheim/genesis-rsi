@@ -1,0 +1,216 @@
+{
+  "acceptance": "compile + trigger tests + full developer suite; plausible not proven semantic correctness",
+  "budget_usd_per_case": 0.05,
+  "cases": [
+    "Gson-2",
+    "Jsoup-68"
+  ],
+  "catalog": [
+    {
+      "architecture": {
+        "input_modalities": [
+          "text",
+          "image",
+          "file"
+        ],
+        "instruct_type": null,
+        "modality": "text+image+file->text",
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "Claude"
+      },
+      "benchmarks": {
+        "artificial_analysis": {
+          "agentic_index": null,
+          "coding_index": null,
+          "intelligence_index": 43.4
+        },
+        "design_arena": []
+      },
+      "canonical_slug": "anthropic/claude-haiku-5.5-20261007",
+      "context_length": 1000000,
+      "created": 1791397883,
+      "default_parameters": {},
+      "description": "Claude Haiku 5.5 is Anthropic's small, fast model for high-volume, cost-sensitive work such as summarization, subagents, and browser use. It succeeds Claude Haiku 4.5 with stronger coding, computer use, and...",
+      "expiration_date": null,
+      "hugging_face_id": null,
+      "id": "anthropic/claude-haiku-5.5",
+      "knowledge_cutoff": null,
+      "links": {
+        "details": "/api/v1/models/anthropic/claude-haiku-5.5-20261007/endpoints"
+      },
+      "name": "Anthropic: Claude Haiku 5.5",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000005",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "overrides": [
+          {
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001",
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005"
+          }
+        ],
+        "prompt": "0.0000001",
+        "web_search": "0.01"
+      },
+      "reasoning": {
+        "default_effort": "medium",
+        "mandatory": false,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low"
+        ]
+      },
+      "supported_parameters": [
+        "include_reasoning",
+        "max_completion_tokens",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "response_format",
+        "stop",
+        "structured_outputs",
+        "tool_choice",
+        "tools",
+        "verbosity"
+      ],
+      "supported_voices": null,
+      "top_provider": {
+        "context_length": 1000000,
+        "is_moderated": true,
+        "max_completion_tokens": 128000
+      }
+    },
+    {
+      "architecture": {
+        "input_modalities": [
+          "file",
+          "image",
+          "text"
+        ],
+        "instruct_type": null,
+        "modality": "text+image+file->text",
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "GPT"
+      },
+      "benchmarks": {
+        "artificial_analysis": {
+          "agentic_index": null,
+          "coding_index": null,
+          "intelligence_index": 38.1
+        },
+        "design_arena": []
+      },
+      "canonical_slug": "openai/gpt-6-luna-20260922",
+      "context_length": 1050000,
+      "created": 1790100786,
+      "default_parameters": {
+        "frequency_penalty": null,
+        "presence_penalty": null,
+        "repetition_penalty": null,
+        "temperature": null,
+        "top_k": null,
+        "top_p": null
+      },
+      "description": "GPT-6 Luna is the fast, cost-efficient model in OpenAI's GPT-6 series, positioned below GPT-6 Sol. It is suited for high-volume and latency-sensitive workloads such as chat, classification, and lightweight agentic...",
+      "expiration_date": null,
+      "hugging_face_id": null,
+      "id": "openai/gpt-6-luna",
+      "knowledge_cutoff": null,
+      "links": {
+        "details": "/api/v1/models/openai/gpt-6-luna-20260922/endpoints"
+      },
+      "name": "OpenAI: GPT-6 Luna",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000005",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "overrides": [
+          {
+            "completion": "0.00000075",
+            "input_cache_read": "0.00000002",
+            "input_cache_write": "0.00000025",
+            "min_prompt_tokens": 272000,
+            "prompt": "0.0000002"
+          }
+        ],
+        "prompt": "0.0000001",
+        "web_search": "0.01"
+      },
+      "reasoning": {
+        "default_effort": "medium",
+        "default_enabled": true,
+        "mandatory": false,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "none"
+        ]
+      },
+      "supported_parameters": [
+        "include_reasoning",
+        "max_completion_tokens",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "response_format",
+        "seed",
+        "structured_outputs",
+        "tool_choice",
+        "tools",
+        "verbosity"
+      ],
+      "supported_voices": null,
+      "top_provider": {
+        "context_length": 1050000,
+        "is_moderated": true,
+        "max_completion_tokens": 128000
+      }
+    }
+  ],
+  "catalog_digest": "2657994a3d195d24736de8ebc2ccfd7728e325fb59c4ae4f1b807dc787b03547",
+  "changes": "tool_choice auto; last request advertises only submission; append-only review of diagnosed old Haiku error, without resolving old billing uncertainty",
+  "initial_memory_digest": "e32eecf0df007d28b39b7814f8b3060b6c72908d905c80c47d8e54a9650d86a1",
+  "initial_memory_snapshot": "/home/anthony/genesis-bench/DEV_ADAPTIVE_RETRY404_1/initial-memory.json",
+  "learning": "memory evolves after each validated success; no fixed revisions or manual patches consulted",
+  "local_candidates": 4,
+  "machinery_sha256": {
+    "genesis/adaptive_repair.py": "9b0f9688774eed684187dc8e7f3bfad479840da606659be1644322f6abfa39ae",
+    "genesis/defects4j_sandbox.py": "cd5791b4e5840b274551f25d7b94e7cedeac3e1286888c5bfa51674b4e3419e3",
+    "genesis/openrouter_repair.py": "a934129450bcf1b20e4f3abb092447f83ada9b2497622406acbb917c173ccb74",
+    "genesis/repair_bench.py": "1325573af309c09045b8a53ba05e4373e0ff16ecd7500002325589b84405805d",
+    "genesis/repair_proposers.py": "6a6e23267047506d61a7a7d6cc9c848478d8f16c5f2e01efdad2078a33e9aa87",
+    "genesis/repair_strategist.py": "9d0a2a9d3c00df78e40cb915bed6f3d8ee6febcfb5c43f7de736f260926231ef",
+    "scripts/run_adaptive_repair.py": "174f04e338556acb6336c465a8f49e776c9aec29371900d36fb6e47bef064aa7",
+    "scripts/run_adaptive_repair_trial.py": "387ba4fb5cab98b5d5caa528049a5dd0c82d3ce73b2f71b3b6574333c5035c3b"
+  },
+  "max_rounds_per_model": 2,
+  "memory": "/home/anthony/genesis-bench/DEV_ADAPTIVE_RETRY404_1/experience.sqlite",
+  "model_policy": "quality-aware Haiku/Luna router; relax observed quality threshold only if no eligible primary model remains",
+  "name": "DEV_ADAPTIVE_RETRY404_1",
+  "plan_digest": "788e8de15e236c4d1156035e791e5506a0d5fe19fbec64fb10fa5195c0361de4",
+  "predecessor_trial": "DEV_ADAPTIVE_THREE_BUGS1",
+  "retry_policy": "no automatic case retry; retain negative, aborted and billable call events",
+  "schema": "genesis-three-case-adaptive-development-plan-v1",
+  "scope": "exposed development; not held-out, no general RSI claim",
+  "selection": "user-authorized retry of the two failed exposed development cases after diagnosed API compatibility correction",
+  "validation_budget": 8,
+  "verification": "every success must have a durable matching recipe and pass a memory-only replay via a fresh database reader",
+  "workspace": "/home/anthony/genesis-bench/DEV_ADAPTIVE_RETRY404_1"
+}

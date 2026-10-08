@@ -1,0 +1,162 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": 1,
+          "plausible_patch": "--- a/src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java\n+++ b/src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java\n@@ -40,7 +40,7 @@\n  * @version $Id$\n  */\n public final class UnmodifiableBoundedCollection<E> extends AbstractCollectionDecorator<E>\n-        implements BoundedCollection<E> {\n+        implements BoundedCollection<E>, org.apache.commons.collections4.Unmodifiable {\n \n     /** Serialization version */\n     private static final long serialVersionUID = -7112672385450340330L;\n@@ -55,6 +55,11 @@\n      * @since 4.0\n      */\n     public static <E> BoundedCollection<E> unmodifiableBoundedCollection(final BoundedCollection<? extends E> coll) {\n+        if (coll instanceof org.apache.commons.collections4.Unmodifiable) {\n+            @SuppressWarnings(\"unchecked\")\n+            final BoundedCollection<E> result = (BoundedCollection<E>) coll;\n+            return result;\n+        }\n         return new UnmodifiableBoundedCollection<E>(coll);\n     }\n \n",
+          "plausible_path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java",
+          "plausible_squashed_sha256": "6f1062512696d58b6370fa8fece123d92f6b441a7d6d7936a3900d5214243a61",
+          "proposed": 1,
+          "rounds": 1,
+          "solved": true,
+          "validated": 1,
+          "verdicts": [
+            {
+              "candidate_digest": "3b2d909581eec58d27afc5edbfea5b58c05e932a001bb060790f41849e638915",
+              "feedback": null,
+              "full_suite_failures": 0,
+              "origin": "openrouter:anthropic/claude-haiku-5.5",
+              "path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableBoundedCollection.java",
+              "plausible": true,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "passed",
+              "verdict_digest": "7ae65758813f8a25612f111fb62e34491cb57420aa9a2d245e4159ac13fdf4a9"
+            }
+          ]
+        }
+      },
+      "case": "Collections-24",
+      "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+      "failing_tests": 2,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0010361,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "interface Unmodifiable"
+                },
+                "result_digest": "6cb06c77e9c1a849f8a09a2124a00cf83db99df36abc9f000cb062857e57b3e4",
+                "tool": "search_files"
+              }
+            ],
+            "model": "anthropic/claude-haiku-5.5",
+            "prompt_digest": "288df116b5450762ce5efd7efc0560de735dee021cec09bafa136ab333d00872",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.013631349999999999,
+            "response_digest": "7079142e0c078cc0ffe0d216d078f5e4ef55c98250aaeda1f421925e95bb4f0f",
+            "response_id": "gen-1791493829-svDRZRP1AicxwKawyxka",
+            "returned_model": "anthropic/claude-haiku-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 798,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 742
+              },
+              "cost": 0.0010361,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000399,
+                "upstream_inference_cost": 0.0010361,
+                "upstream_inference_prompt_cost": 0.0006371
+              },
+              "is_byok": false,
+              "prompt_tokens": 6371,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 7169
+            }
+          },
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.001143,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "anthropic/claude-haiku-5.5",
+            "prompt_digest": "5cb8e2e6476102d8df693e018d9ded3a408cc956bb2f1d8fdf89281ca1627bee",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01525885,
+            "response_digest": "c9b2c11b1a31d3e95d3c724d9c7dfaff6b9856cefd514293ad34c3d11237f893",
+            "response_id": "gen-1791493835-SztjgO4bv6XoMDcAr1fJ",
+            "returned_model": "anthropic/claude-haiku-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 843,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.001143,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.0004215,
+                "upstream_inference_cost": 0.001143,
+                "upstream_inference_prompt_cost": 0.0007215
+              },
+              "is_byok": false,
+              "prompt_tokens": 7215,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 8058
+            }
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "anthropic/claude-haiku-5.5",
+  "name": "DEV_COST_COMPARE2_HAIKU_COLLECTIONS",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "3f308d5537dbdfe7fed40503d15ca3024a0ca4c1eb743ffc20eede551d2e9117",
+  "provider": "openrouter",
+  "result_digest": "69218fb08a6f8ec756ae141c54f9446f7c7fdc70b872ba7e8a92e95cd62d7972",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0022
+    },
+    "solved_per_arm": {
+      "model_explore": 1
+    },
+    "usable_cases": 1
+  }
+}

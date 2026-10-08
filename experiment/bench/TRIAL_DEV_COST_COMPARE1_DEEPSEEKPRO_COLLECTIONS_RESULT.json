@@ -1,0 +1,232 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": null,
+          "plausible_patch": null,
+          "plausible_path": null,
+          "plausible_squashed_sha256": null,
+          "proposed": 0,
+          "rounds": 1,
+          "solved": false,
+          "validated": 0,
+          "verdicts": []
+        }
+      },
+      "case": "Collections-24",
+      "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+      "failing_tests": 2,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0004576514215,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "interface Unmodifiable"
+                },
+                "result_digest": "6cb06c77e9c1a849f8a09a2124a00cf83db99df36abc9f000cb062857e57b3e4",
+                "tool": "search_files"
+              }
+            ],
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "288df116b5450762ce5efd7efc0560de735dee021cec09bafa136ab333d00872",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01363695,
+            "response_digest": "8bf826a2eebecd5653da02eb8a4817e9aef02610a620c46becdac634a79b8d62",
+            "response_id": "gen-1791493241-sZOYGBsZHDEwDBmF76ve",
+            "returned_model": "deepseek/deepseek-v4-pro",
+            "routed_provider": "StreamLake",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 242,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 194
+              },
+              "cost": 0.0004576514215,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000139040616,
+                "upstream_inference_cost": 0.0004576514215,
+                "upstream_inference_prompt_cost": 0.0003186108055
+              },
+              "is_byok": false,
+              "prompt_tokens": 4124,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 3289,
+                "video_tokens": 0
+              },
+              "total_tokens": 4366
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000273772122,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/collections4/Unmodifiable.java"
+                },
+                "result_digest": "2a70ed276e6ed4bfbd3294cecaca002866990f34f12f7bc84fdd61e170194593",
+                "tool": "read_file"
+              },
+              {
+                "arguments": {
+                  "text": "implements Unmodifiable"
+                },
+                "result_digest": "509f797a74a22240898af1bb9fa5a5539b56048d0e79e04ad44eb2c4c407b199",
+                "tool": "search_files"
+              }
+            ],
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "343473fc0a6373bfb924551663240e19b43b82c0aedf68f32ddaefa757331bc9",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.01409825,
+            "response_digest": "1c0e1fe127546f3908ab678b8771cb8c21b16ac64a14a740d29925291d1649bc",
+            "response_id": "gen-1791493250-TnMdXIjEyvtiW2zCWFMB",
+            "returned_model": "deepseek/deepseek-v4-pro",
+            "routed_provider": "StreamLake",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 117,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 21
+              },
+              "cost": 0.000273772122,
+              "cost_details": {
+                "upstream_inference_completions_cost": 6.7222116e-05,
+                "upstream_inference_cost": 0.000273772122,
+                "upstream_inference_prompt_cost": 0.000206550006
+              },
+              "is_byok": false,
+              "prompt_tokens": 4404,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 4020,
+                "video_tokens": 0
+              },
+              "total_tokens": 4521
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0004066602865,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/collections4/collection/UnmodifiableCollection.java"
+                },
+                "result_digest": "1c79a3c82221f037d40c287efe3655229b82bba9ebbbf53b613ef588c7e274cf",
+                "tool": "read_file"
+              }
+            ],
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "068b7087c45b4fd7086843e07991a66ede57040bf53e9d6f4b3f8e4f2b6b6efd",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.015608149999999998,
+            "response_digest": "9c46c2a26fe0542b87f0958670c1f3f33a9f064c97b77bb497c190ef188fd236",
+            "response_id": "gen-1791493256-sfRl9XDkyagkhZT7mfdg",
+            "returned_model": "deepseek/deepseek-v4-pro",
+            "routed_provider": "StreamLake",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 3,
+            "usage": {
+              "completion_tokens": 227,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 162
+              },
+              "cost": 0.0004066602865,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000130422396,
+                "upstream_inference_cost": 0.0004066602865,
+                "upstream_inference_prompt_cost": 0.0002762378905
+              },
+              "is_byok": false,
+              "prompt_tokens": 5478,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 4927,
+                "video_tokens": 0
+              },
+              "total_tokens": 5705
+            }
+          },
+          {
+            "benchmark_may_be_in_training_data": true,
+            "budget_refused": true,
+            "cost_usd": 0.0,
+            "evidence_digest": "443906e0a4fa767e9f902acd97b5ae5e2b03b61e4e9b57c1bd782c10579f004f",
+            "explore": true,
+            "model": "deepseek/deepseek-v4-pro",
+            "prompt_digest": "547b20c7b408d21c5cfc278387a5fb2938e47e8d05c7ec4106394e5e3df9e9a5",
+            "provider": "openrouter",
+            "request_sent": false,
+            "requested": 1,
+            "reserved_cost_usd": 0.0175419,
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 4
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "deepseek/deepseek-v4-pro",
+  "name": "DEV_COST_COMPARE1_DEEPSEEKPRO_COLLECTIONS",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "49a2192eeda8519eaffaafd92deb2ef0bff0a244046c3ae47a272a0d5f4d20b2",
+  "provider": "openrouter",
+  "result_digest": "9c32411832838078d4dbe5769b42126e385bf08012448679343350b14f641731",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0011
+    },
+    "solved_per_arm": {
+      "model_explore": 0
+    },
+    "usable_cases": 1
+  }
+}

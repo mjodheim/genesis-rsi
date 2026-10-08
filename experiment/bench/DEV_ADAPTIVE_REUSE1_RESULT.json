@@ -1,0 +1,128 @@
+{
+  "schema": "genesis-adaptive-repair-development-v1",
+  "case": "Csv-16",
+  "evidence": {
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "src/main/java",
+    "test_directory": "src/test/java",
+    "failing_tests": [
+      "org.apache.commons.csv.CSVParserTest::testIteratorSequenceBreaking"
+    ],
+    "traces": [
+      {
+        "test": "org.apache.commons.csv.CSVParserTest::testIteratorSequenceBreaking",
+        "trace": "junit.framework.AssertionFailedError: expected:<[3]> but was:<[4]>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.apache.commons.csv.CSVParserTest.testIteratorSequenceBreaking(CSVParserTest.java:1053)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1492)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:878)"
+      }
+    ],
+    "suspect_locations": [
+      [
+        "src/main/java/org/apache/commons/csv/CSVParser.java",
+        1
+      ]
+    ],
+    "suspects_from_stack_trace": false,
+    "test_source": [
+      {
+        "path": "src/test/java/org/apache/commons/csv/CSVParserTest.java",
+        "first_line": 1028,
+        "last_line": 1078,
+        "numbered_source": " 1028|         for (CSVRecord record : parser) {\n 1029|             recordNumber++;\n 1030|             assertEquals(String.valueOf(recordNumber), record.get(0));\n 1031|             if (recordNumber >= 2) {\n 1032|                 break;\n 1033|             }\n 1034|         }\n 1035|         for (CSVRecord record : parser) {\n 1036|             recordNumber++;\n 1037|             assertEquals(String.valueOf(recordNumber), record.get(0));\n 1038|         }\n 1039| \n 1040|         // Consecutive enhanced for loops with hasNext() peeking shouldn't break sequence\n 1041|         parser = CSVFormat.DEFAULT.parse(new StringReader(fiveRows));\n 1042|         recordNumber = 0;\n 1043|         for (CSVRecord record : parser) {\n 1044|             recordNumber++;\n 1045|             assertEquals(String.valueOf(recordNumber), record.get(0));\n 1046|             if (recordNumber >= 2) {\n 1047|                 break;\n 1048|             }\n 1049|         }\n 1050|         parser.iterator().hasNext();\n 1051|         for (CSVRecord record : parser) {\n 1052|             recordNumber++;\n 1053|             assertEquals(String.valueOf(recordNumber), record.get(0));\n 1054|         }\n 1055|     }\n 1056|     \n 1057|     private void validateLineNumbers(final String lineSeparator) throws IOException {\n 1058|         try (final CSVParser parser = CSVParser.parse(\"a\" + lineSeparator + \"b\" + lineSeparator + \"c\",\n 1059|                 CSVFormat.DEFAULT.withRecordSeparator(lineSeparator))) {\n 1060|             assertEquals(0, parser.getCurrentLineNumber());\n 1061|             assertNotNull(parser.nextRecord());\n 1062|             assertEquals(1, parser.getCurrentLineNumber());\n 1063|             assertNotNull(parser.nextRecord());\n 1064|             assertEquals(2, parser.getCurrentLineNumber());\n 1065|             assertNotNull(parser.nextRecord());\n 1066|             // Still 2 because the last line is does not have EOL chars\n 1067|             assertEquals(2, parser.getCurrentLineNumber());\n 1068|             assertNull(parser.nextRecord());\n 1069|             // Still 2 because the last line is does not have EOL chars\n 1070|             assertEquals(2, parser.getCurrentLineNumber());\n 1071|         }\n 1072|     }\n 1073| \n 1074|     private void validateRecordNumbers(final String lineSeparator) throws IOException {\n 1075|         try (final CSVParser parser = CSVParser.parse(\"a\" + lineSeparator + \"b\" + lineSeparator + \"c\",\n 1076|                 CSVFormat.DEFAULT.withRecordSeparator(lineSeparator))) {\n 1077|             CSVRecord record;\n 1078|             assertEquals(0, parser.getRecordNumber());"
+      }
+    ],
+    "production_source": [
+      {
+        "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+        "first_line": 1,
+        "last_line": 201,
+        "numbered_source": "    1| /*\n    2|  * Licensed to the Apache Software Foundation (ASF) under one or more\n    3|  * contributor license agreements.  See the NOTICE file distributed with\n    4|  * this work for additional information regarding copyright ownership.\n    5|  * The ASF licenses this file to You under the Apache License, Version 2.0\n    6|  * (the \"License\"); you may not use this file except in compliance with\n    7|  * the License.  You may obtain a copy of the License at\n    8|  *\n    9|  *      http://www.apache.org/licenses/LICENSE-2.0\n   10|  *\n   11|  * Unless required by applicable law or agreed to in writing, software\n   12|  * distributed under the License is distributed on an \"AS IS\" BASIS,\n   13|  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   14|  * See the License for the specific language governing permissions and\n   15|  * limitations under the License.\n   16|  */\n   17| \n   18| package org.apache.commons.csv;\n   19| \n   20| import static org.apache.commons.csv.Token.Type.TOKEN;\n   21| \n   22| import java.io.Closeable;\n   23| import java.io.File;\n   24| import java.io.FileInputStream;\n   25| import java.io.IOException;\n   26| import java.io.InputStream;\n   27| import java.io.InputStreamReader;\n   28| import java.io.Reader;\n   29| import java.io.StringReader;\n   30| import java.net.URL;\n   31| import java.nio.charset.Charset;\n   32| import java.nio.file.Files;\n   33| import java.nio.file.Path;\n   34| import java.util.ArrayList;\n   35| import java.util.Arrays;\n   36| import java.util.Iterator;\n   37| import java.util.LinkedHashMap;\n   38| import java.util.List;\n   39| import java.util.Map;\n   40| import java.util.NoSuchElementException;\n   41| import java.util.TreeMap;\n   42| \n   43| /**\n   44|  * Parses CSV files according to the specified format.\n   45|  *\n   46|  * Because CSV appears in many different dialects, the parser supports many formats by allowing the\n   47|  * specification of a {@link CSVFormat}.\n   48|  *\n   49|  * The parser works record wise. It is not possible to go back, once a record has been parsed from the input stream.\n   50|  *\n   51|  * <h2>Creating instances</h2>\n   52|  * <p>\n   53|  * There are several static factory methods that can be used to create instances for various types of resources:\n   54|  * </p>\n   55|  * <ul>\n   56|  *     <li>{@link #parse(java.io.File, Charset, CSVFormat)}</li>\n   57|  *     <li>{@link #parse(String, CSVFormat)}</li>\n   58|  *     <li>{@link #parse(java.net.URL, java.nio.charset.Charset, CSVFormat)}</li>\n   59|  * </ul>\n   60|  * <p>\n   61|  * Alternatively parsers can also be created by passing a {@link Reader} directly to the sole constructor.\n   62|  *\n   63|  * For those who like fluent APIs, parsers can be created using {@link CSVFormat#parse(java.io.Reader)} as a shortcut:\n   64|  * </p>\n   65|  * <pre>\n   66|  * for(CSVRecord record : CSVFormat.EXCEL.parse(in)) {\n   67|  *     ...\n   68|  * }\n   69|  * </pre>\n   70|  *\n   71|  * <h2>Parsing record wise</h2>\n   72|  * <p>\n   73|  * To parse a CSV input from a file, you write:\n   74|  * </p>\n   75|  *\n   76|  * <pre>\n   77|  * File csvData = new File(&quot;/path/to/csv&quot;);\n   78|  * CSVParser parser = CSVParser.parse(csvData, CSVFormat.RFC4180);\n   79|  * for (CSVRecord csvRecord : parser) {\n   80|  *     ...\n   81|  * }\n   82|  * </pre>\n   83|  *\n   84|  * <p>\n   85|  * This will read the parse the contents of the file using the\n   86|  * <a href=\"http://tools.ietf.org/html/rfc4180\" target=\"_blank\">RFC 4180</a> format.\n   87|  * </p>\n   88|  *\n   89|  * <p>\n   90|  * To parse CSV input in a format like Excel, you write:\n   91|  * </p>\n   92|  *\n   93|  * <pre>\n   94|  * CSVParser parser = CSVParser.parse(csvData, CSVFormat.EXCEL);\n   95|  * for (CSVRecord csvRecord : parser) {\n   96|  *     ...\n   97|  * }\n   98|  * </pre>\n   99|  *\n  100|  * <p>\n  101|  * If the predefined formats don't match the format at hands, custom formats can be defined. More information about\n  102|  * customising CSVFormats is available in {@link CSVFormat CSVFormat Javadoc}.\n  103|  * </p>\n  104|  *\n  105|  * <h2>Parsing into memory</h2>\n  106|  * <p>\n  107|  * If parsing record wise is not desired, the contents of the input can be read completely into memory.\n  108|  * </p>\n  109|  *\n  110|  * <pre>\n  111|  * Reader in = new StringReader(&quot;a;b\\nc;d&quot;);\n  112|  * CSVParser parser = new CSVParser(in, CSVFormat.EXCEL);\n  113|  * List&lt;CSVRecord&gt; list = parser.getRecords();\n  114|  * </pre>\n  115|  *\n  116|  * <p>\n  117|  * There are two constraints that have to be kept in mind:\n  118|  * </p>\n  119|  *\n  120|  * <ol>\n  121|  *     <li>Parsing into memory starts at the current position of the parser. If you have already parsed records from\n  122|  *     the input, those records will not end up in the in memory representation of your CSV data.</li>\n  123|  *     <li>Parsing into memory may consume a lot of system resources depending on the input. For example if you're\n  124|  *     parsing a 150MB file of CSV data the contents will be read completely into memory.</li>\n  125|  * </ol>\n  126|  *\n  127|  * <h2>Notes</h2>\n  128|  * <p>\n  129|  * Internal parser state is completely covered by the format and the reader-state.\n  130|  * </p>\n  131|  *\n  132|  * @see <a href=\"package-summary.html\">package documentation for more details</a>\n  133|  */\n  134| public final class CSVParser implements Iterable<CSVRecord>, Closeable {\n  135| \n  136|     /**\n  137|      * Creates a parser for the given {@link File}.\n  138|      *\n  139|      * @param file\n  140|      *            a CSV file. Must not be null.\n  141|      * @param charset\n  142|      *            A Charset\n  143|      * @param format\n  144|      *            the CSVFormat used for CSV parsing. Must not be null.\n  145|      * @return a new parser\n  146|      * @throws IllegalArgumentException\n  147|      *             If the parameters of the format are inconsistent or if either file or format are null.\n  148|      * @throws IOException\n  149|      *             If an I/O error occurs\n  150|      */\n  151|     @SuppressWarnings(\"resource\")\n  152|     public static CSVParser parse(final File file, final Charset charset, final CSVFormat format) throws IOException {\n  153|         Assertions.notNull(file, \"file\");\n  154|         Assertions.notNull(format, \"format\");\n  155|         return new CSVParser(new InputStreamReader(new FileInputStream(file), charset), format);\n  156|     }\n  157| \n  158|     /**\n  159|      * Creates a CSV parser using the given {@link CSVFormat}.\n  160|      *\n  161|      * <p>\n  162|      * If you do not read all records from the given {@code reader}, you should call {@link #close()} on the parser,\n  163|      * unless you close the {@code reader}.\n  164|      * </p>\n  165|      *\n  166|      * @param inputStream\n  167|      *            an InputStream containing CSV-formatted input. Must not be null.\n  168|      * @param charset\n  169|      *            a Charset.\n  170|      * @param format\n  171|      *            the CSVFormat used for CSV parsing. Must not be null.\n  172|      * @return a new CSVParser configured with the given reader and format.\n  173|      * @throws IllegalArgumentException\n  174|      *             If the parameters of the format are inconsistent or if either reader or format are null.\n  175|      * @throws IOException\n  176|      *             If there is a problem reading the header or skipping the first record\n  177|      * @since 1.5\n  178|      */\n  179|     @SuppressWarnings(\"resource\")\n  180|     public static CSVParser parse(final InputStream inputStream, final Charset charset, final CSVFormat format)\n  181|             throws IOException {\n  182|         Assertions.notNull(inputStream, \"inputStream\");\n  183|         Assertions.notNull(format, \"format\");\n  184|         return parse(new InputStreamReader(inputStream, charset), format);\n  185|     }\n  186| \n  187|     /**\n  188|      * Creates a parser for the given {@link Path}.\n  189|      *\n  190|      * @param path\n  191|      *            a CSV file. Must not be null.\n  192|      * @param charset\n  193|      *            A Charset\n  194|      * @param format\n  195|      *            the CSVFormat used for CSV parsing. Must not be null.\n  196|      * @return a new parser\n  197|      * @throws IllegalArgumentException\n  198|      *             If the parameters of the format are inconsistent or if either file or format are null.\n  199|      * @throws IOException\n  200|      *             If an I/O error occurs\n  201|      * @since 1.5"
+      }
+    ],
+    "fixed_revision_consulted": false,
+    "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4"
+  },
+  "features": {
+    "complexity": "moderate",
+    "source_files": 1,
+    "source_chars": 8594,
+    "failing_tests": 1,
+    "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5"
+  },
+  "initial_ranking": [
+    {
+      "score": 0.005429033125,
+      "estimated_request_reserve_usd": 0.004343606,
+      "observations": 3,
+      "suite_passes": 3,
+      "complexity": "moderate",
+      "basis": "released_comparison",
+      "model": "anthropic/claude-haiku-5.5"
+    }
+  ],
+  "learning_verdict": {
+    "schema": "genesis-repair-bench-verdict-v1",
+    "candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+    "origin": "released-trial:DEV_COST_COMPARE2_HAIKU_CSV",
+    "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+    "stopped_at": "passed",
+    "plausible": true,
+    "full_suite_failures": 0,
+    "feedback": null,
+    "verdict_digest": "d4b368a4dd8026e9981763e447b2a31252d13a651f9b9476719489edec13a5d7"
+  },
+  "result": {
+    "solved": true,
+    "model_calls": [],
+    "decisions": [],
+    "verdicts": [
+      {
+        "schema": "genesis-repair-bench-verdict-v1",
+        "candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+        "origin": "retained-experience",
+        "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+        "stopped_at": "passed",
+        "plausible": true,
+        "full_suite_failures": 0,
+        "feedback": null,
+        "verdict_digest": "40ef44e42ec27fef57d583d33c182104b9487c2c68a01a77663e1e1b46148f13"
+      }
+    ],
+    "unknown_cost": false,
+    "known_cost_usd": 0,
+    "reuse_without_llm": true,
+    "scope": "released_development"
+  },
+  "candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+  "sandbox_probe": {
+    "schema": "genesis-defects4j-sandbox-probe-v1",
+    "image": "genesis-defects4j:8c16da8",
+    "observed": {
+      "uid": "1000",
+      "root_writable": "no",
+      "work_writable": "yes",
+      "interfaces": "lo,",
+      "network": "no",
+      "dns": "no",
+      "capabilities": "0000000000000000",
+      "no_new_privs": "1",
+      "revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6"
+    },
+    "checks": {
+      "container_started": true,
+      "no_network_interface_but_loopback": true,
+      "no_outbound_connection": true,
+      "no_name_resolution": true,
+      "root_filesystem_read_only": true,
+      "workspace_writable": true,
+      "unprivileged_uid": true,
+      "no_capability": true,
+      "no_new_privileges": true,
+      "pinned_benchmark_revision": true
+    },
+    "isolated": true,
+    "probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b"
+  },
+  "plausible_is_not_correct": true,
+  "general_understanding_demonstrated": false,
+  "memory_source": "explicit released-development trial(s) and online outcomes",
+  "result_digest": "5444fd41496f99fbd3e52022f603f89636038d74a3f94080a7c1c50f7ca19d5e"
+}

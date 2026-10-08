@@ -1,0 +1,32 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "d9a13da8ab43c9eba67703764b07d405018ad8e1a52b4296ddef91c81bd3597f",
+      "id": "exemplar-d9a13da8ab43c9eb",
+      "label": "observed_subscript_delta:subject.py:41:-1",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, slot):\n    return values[slot - 1]\n\ndef neighboring(values, slot):\n    return values[slot - 1]\n",
+          "expected_absent": false,
+          "expected_sha256": "ae057390b572a5757d7a0ddd009eef0c95be330f74c37cd952bd89cc242cc063",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "exemplar_path": "subject.py",
+        "exemplar_start": 97,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "slot",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      }
+    }
+  ],
+  "discover": true,
+  "policy_digest": "228e4a96eaf8321fb2d21111887d0982a3921ef65c8fc762abdd2a9b79833eaa",
+  "search_digest": "744a6ad17c7a58ae3b0829febbf36d5b84879008dece7251e5854a5166b44329",
+  "source_digest": "98072ec35df2b8e5e7a21782d61bb5ad451d9b4ed3890b68a3fbe9fd4aacfd83",
+  "task_digest": "9d829e27ad7823eaaa18ad5171745be221fd55ac8c582777fccca6abb485450b"
+}

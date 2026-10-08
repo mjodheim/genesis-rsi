@@ -1,0 +1,2869 @@
+{
+  "api_budget_usd_per_case": 0.05,
+  "assisted_training_after_comparison": true,
+  "assisted_validation_budget": 8,
+  "capability_policy": {
+    "generation": 3,
+    "parent_policy_digest": "1043a2f0bcbd2b8f205f7d1fd12ae00b038fb9e42795debcf6ac529fbaeba65e",
+    "policy_digest": "fb63ece777a7e6c8c35c938427539ac11554d309c1a327a6a9c2a917dfddcb7e",
+    "schema": "genesis-repair-strategy-lineage-v1",
+    "strategies": [
+      {
+        "acquired_from_candidate_digest": "d9a13da8ab43c9eba67703764b07d405018ad8e1a52b4296ddef91c81bd3597f",
+        "acquired_from_candidate_id": "exemplar-d9a13da8ab43c9eb",
+        "acquired_from_result_digest": "09242260da38247b65e514763d1a3b8e280d0f842da108f222e814a663d6930b",
+        "delta": -1,
+        "external_model_calls": 0,
+        "host_issue_specific_recipe": false,
+        "kind": "subscript_identifier_delta",
+        "schema": "genesis-acquired-edit-strategy-v1",
+        "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "template_after": "[$IDENT - 1]",
+        "template_before": "[$IDENT]"
+      },
+      {
+        "acquired_from_candidate_digest": "5fe9136009608fd13e78d08878d90ee04ecba581fe56a82de93e186bc9eea9f1",
+        "acquired_from_candidate_id": "exemplar-5fe9136009608fd1",
+        "acquired_from_result_digest": "0b7cf8a5c69c20acf1c3d44fc32facf6f837ae3430c0e28fa5dd0e3b325ddcc8",
+        "delta": 1,
+        "external_model_calls": 0,
+        "host_issue_specific_recipe": false,
+        "kind": "subscript_identifier_delta",
+        "schema": "genesis-acquired-edit-strategy-v1",
+        "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "template_after": "[$IDENT + 1]",
+        "template_before": "[$IDENT]"
+      },
+      {
+        "acquired_from_candidate_digest": "b8139730a63e366782340ac551a9eb18a2f2c52bfdc027cbbffc12a1520fa6a7",
+        "acquired_from_candidate_id": "exemplar-b8139730a63e3667",
+        "acquired_from_result_digest": "bdfaf92806e21e537d995f2ff4caf35047fdd9a38c2dd67001c1df3cd0e2f4e3",
+        "delta": -2,
+        "external_model_calls": 0,
+        "host_issue_specific_recipe": false,
+        "kind": "subscript_identifier_delta",
+        "schema": "genesis-acquired-edit-strategy-v1",
+        "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+        "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+        "template_after": "[$IDENT - 2]",
+        "template_before": "[$IDENT]"
+      }
+    ],
+    "training_receipt_digest": "bdfaf92806e21e537d995f2ff4caf35047fdd9a38c2dd67001c1df3cd0e2f4e3"
+  },
+  "cases": [
+    "Jsoup-29",
+    "Math-66",
+    "Compress-19"
+  ],
+  "catalog": [
+    {
+      "architecture": {
+        "input_modalities": [
+          "text",
+          "image",
+          "file"
+        ],
+        "instruct_type": null,
+        "modality": "text+image+file->text",
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "Claude"
+      },
+      "benchmarks": {
+        "artificial_analysis": {
+          "agentic_index": null,
+          "coding_index": null,
+          "intelligence_index": 43.4
+        },
+        "design_arena": []
+      },
+      "canonical_slug": "anthropic/claude-haiku-5.5-20261007",
+      "context_length": 1000000,
+      "created": 1791397883,
+      "default_parameters": {},
+      "description": "Claude Haiku 5.5 is Anthropic's small, fast model for high-volume, cost-sensitive work such as summarization, subagents, and browser use. It succeeds Claude Haiku 4.5 with stronger coding, computer use, and...",
+      "expiration_date": null,
+      "hugging_face_id": null,
+      "id": "anthropic/claude-haiku-5.5",
+      "knowledge_cutoff": null,
+      "links": {
+        "details": "/api/v1/models/anthropic/claude-haiku-5.5-20261007/endpoints"
+      },
+      "name": "Anthropic: Claude Haiku 5.5",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000005",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "overrides": [
+          {
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001",
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005"
+          }
+        ],
+        "prompt": "0.0000001",
+        "web_search": "0.01"
+      },
+      "reasoning": {
+        "default_effort": "medium",
+        "mandatory": false,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low"
+        ]
+      },
+      "supported_parameters": [
+        "include_reasoning",
+        "max_completion_tokens",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "response_format",
+        "stop",
+        "structured_outputs",
+        "tool_choice",
+        "tools",
+        "verbosity"
+      ],
+      "supported_voices": null,
+      "top_provider": {
+        "context_length": 1000000,
+        "is_moderated": true,
+        "max_completion_tokens": 128000
+      }
+    },
+    {
+      "architecture": {
+        "input_modalities": [
+          "file",
+          "image",
+          "text"
+        ],
+        "instruct_type": null,
+        "modality": "text+image+file->text",
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "GPT"
+      },
+      "benchmarks": {
+        "artificial_analysis": {
+          "agentic_index": null,
+          "coding_index": null,
+          "intelligence_index": 38.1
+        },
+        "design_arena": []
+      },
+      "canonical_slug": "openai/gpt-6-luna-20260922",
+      "context_length": 1050000,
+      "created": 1790100786,
+      "default_parameters": {
+        "frequency_penalty": null,
+        "presence_penalty": null,
+        "repetition_penalty": null,
+        "temperature": null,
+        "top_k": null,
+        "top_p": null
+      },
+      "description": "GPT-6 Luna is the fast, cost-efficient model in OpenAI's GPT-6 series, positioned below GPT-6 Sol. It is suited for high-volume and latency-sensitive workloads such as chat, classification, and lightweight agentic...",
+      "expiration_date": null,
+      "hugging_face_id": null,
+      "id": "openai/gpt-6-luna",
+      "knowledge_cutoff": null,
+      "links": {
+        "details": "/api/v1/models/openai/gpt-6-luna-20260922/endpoints"
+      },
+      "name": "OpenAI: GPT-6 Luna",
+      "per_request_limits": null,
+      "pricing": {
+        "completion": "0.0000005",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "overrides": [
+          {
+            "completion": "0.00000075",
+            "input_cache_read": "0.00000002",
+            "input_cache_write": "0.00000025",
+            "min_prompt_tokens": 272000,
+            "prompt": "0.0000002"
+          }
+        ],
+        "prompt": "0.0000001",
+        "web_search": "0.01"
+      },
+      "reasoning": {
+        "default_effort": "medium",
+        "default_enabled": true,
+        "mandatory": false,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "none"
+        ]
+      },
+      "supported_parameters": [
+        "include_reasoning",
+        "max_completion_tokens",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "response_format",
+        "seed",
+        "structured_outputs",
+        "tool_choice",
+        "tools",
+        "verbosity"
+      ],
+      "supported_voices": null,
+      "top_provider": {
+        "context_length": 1050000,
+        "is_moderated": true,
+        "max_completion_tokens": 128000
+      }
+    }
+  ],
+  "child_search": {
+    "capability_policy_digest": "fb63ece777a7e6c8c35c938427539ac11554d309c1a327a6a9c2a917dfddcb7e",
+    "evidence_digest": "6362d038b8b239482066fac789f32d36f2cad8959bb8e6f196b303c301996de3",
+    "generation": 1,
+    "ordering": "observed_first",
+    "parent_search_digest": "50d067d3133a293456b1c0c14bc24accf9131d24c3832a7f2506c72e2e11e909",
+    "schema": "genesis-repair-search-order-policy-v1",
+    "search_policy_digest": "96c375ca16bb0da6f079f70f2a5d2f9c4a9eac4d7c94a49e4ec81120fa565fce"
+  },
+  "command_timeout_seconds": 180,
+  "fixed_revision_consulted": false,
+  "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+  "initial_memory": [
+    {
+      "data": {
+        "cost_usd": 0.0032288,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "qwen/qwen3-coder",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0039864,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "qwen/qwen3-coder",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "8701468fc24a139bbf05768300af7b51b5b5a5a66e2ffead303cba85592b80e3",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.005405,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "qwen/qwen3-coder",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "1fae870024feb744ec2a3894987a6fd1aaa6025a158278920aa15c04613e059c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.00329728,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "z-ai/glm-5.3-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "204fc6c501e43895d93df7f794345c8d5cda726de0e971c54e3666898d6a970c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0012843,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "z-ai/glm-5.3-flash",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "a3cf5114d7ceb7f7743cde6b13dc95d9ed4594b260e86536d945418bd92103c7",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.00046728,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "z-ai/glm-5.3-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "611f3dc251bbec55c787e86a889f544a2de2b40aacbec2e1da3c7ab99b24964b",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.005221528,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "deepseek/deepseek-v4.1-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "a0c7e09bc8b30f4dc166b74963ce31be2387aeead33192c278e776a9c896ad2a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.00083796,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "deepseek/deepseek-v4.1-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "fd7cc213c95bd9d19d14771e099ee3b69e77c47e06761e84a312aace92ead052",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.00733352,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "deepseek/deepseek-v4.1-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "945fc6fab9562be4376ee90cfbeb977820bc28f2712717eccf04ba2b17bea413",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0039446311125,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "deepseek/deepseek-v4-pro",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "8fbbcc20a847fdfa05377011f62ae867871507fd3a07f128d5ba0edee02a35af",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0020442178445,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "deepseek/deepseek-v4-pro",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "c6613cbc71572fabd133ef2ff11c35edcf81c0e9f3be939995ba9780468887d5",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.00113808383,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "deepseek/deepseek-v4-pro",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "6edc3f3177b86d10a4fc1cc4b5f15a302f01538bfc7380b18238af9da5c56a7f",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "digest": "9445a8cc482a151f89d46736638e5931ee6a73c5772bcc324bf1fdff0cd6b27f"
+      },
+      "kind": "comparison_import",
+      "previous_digest": "6b1aec06c35aaaeae058a06972022afb2c5521aaa1701571de2268c7af702ecf",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.00178219,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "xiaomi/mimo-v2.6-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "a25d50d51e034e743adf064f2396c21039dc5e146de4a5da630a904696eedf8d",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0019061759999999999,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "xiaomi/mimo-v2.6-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "3204c8c2d752ab218d35c8eb23cc5a4159c1527c40117edcd6902c855b163955",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.003300906,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "xiaomi/mimo-v2.6-flash",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "d02c29d7a0cdbf7cd0d6e3434f83206342a32bb19382e2ef8a1b5d5e066a0af0",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.005694585,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "xiaomi/mimo-v2.6-pro",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "67ec88ccd32100a39ac2510f2e650dfa53edb277f2f835f27ecb4440900a8275",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0036583680000000004,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "xiaomi/mimo-v2.6-pro",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "0ec5f6abf97bd0cea742314974597c402dfd2816a5a924bab9eb70b42991f798",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0082578294,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "xiaomi/mimo-v2.6-pro",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "0d60b9d7cd0fa52fe4855c38e99187bd878c46764049d7e7e16f050d0b7fcbc8",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0069838,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "7f03fd156b17b77a66355fe6c9b11974158bd235b2091a85bed181bbcf1ee58a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0038664000000000003,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "bff2bea8ea313ba039adc86c0bfca513d2214da5e759141f0a43fd80711e515f",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0021791,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "6e0c299a2a8199f093db948e5cdb40c3d7b3cc1aa8f8e5479686ba1ccfacfb1c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.000739455,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "31d1251fdb0072243207091bfcaf5246095963bfc53209c0c87d93cd6cacb2c6",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.000857715,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "59f15f3a07933f46f6edce5033616f7834f6c16ba27edf9b2143b44075a81c52",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.00149398,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "feb6b5ac8aea94f467b5434d366f7057f6a85752d9e9059a9653f7fce1ea9131",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.067216,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "anthropic/claude-sonnet-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "2d6d9fd3b74791d3244e43366a49c09f17b1d63ef4765dae950060e5181a58ee",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.03448,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "anthropic/claude-sonnet-5.5",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "9f2bee5fee037c40e947fd95c9cef5d322c7b17058b094452074cbfd0f640faf",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.022012,
+        "features": {
+          "complexity": "any",
+          "family": "released_comparison"
+        },
+        "model": "anthropic/claude-sonnet-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "fb31fa701ed8bce8b51f533c939f3d965e39da784bb22d40adb5c91b58829a70",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "digest": "3d655720b8344aa4f2c9e4b26eb4f8c939e31f8640adf887b51c7ab91047f462"
+      },
+      "kind": "comparison_import",
+      "previous_digest": "cf194e9116c97549deac9ef3218518e1794e00923007d1c1fdeaa99a64e80bcd",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+        "edits": [
+          [
+            "\n    private final Token reusableToken = new Token();\n\n    /**\n     * Customized CSV parser using the given {@link CSVFormat}\n     *\n",
+            "\n    private final Token reusableToken = new Token();\n\n    /** Lookahead record buffered by Iterator.hasNext(); shared across iterators. */\n    private CSVRecord current;\n\n    /**\n     * Customized CSV parser using the given {@link CSVFormat}\n     *\n"
+          ],
+          [
+            "    @Override\n    public Iterator<CSVRecord> iterator() {\n        return new Iterator<CSVRecord>() {\n        private CSVRecord current;\n  \n        private CSVRecord getNextRecord() {\n            try {\n",
+            "    @Override\n    public Iterator<CSVRecord> iterator() {\n        return new Iterator<CSVRecord>() {\n  \n        private CSVRecord getNextRecord() {\n            try {\n"
+          ],
+          [
+            "            if (CSVParser.this.isClosed()) {\n                return false;\n            }\n            if (this.current == null) {\n                this.current = this.getNextRecord();\n            }\n  \n            return this.current != null;\n        }\n  \n        @Override\n",
+            "            if (CSVParser.this.isClosed()) {\n                return false;\n            }\n            if (CSVParser.this.current == null) {\n                CSVParser.this.current = this.getNextRecord();\n            }\n  \n            return CSVParser.this.current != null;\n        }\n  \n        @Override\n"
+          ],
+          [
+            "            if (CSVParser.this.isClosed()) {\n                throw new NoSuchElementException(\"CSVParser has been closed\");\n            }\n            CSVRecord next = this.current;\n            this.current = null;\n  \n            if (next == null) {\n                // hasNext() wasn't called before\n",
+            "            if (CSVParser.this.isClosed()) {\n                throw new NoSuchElementException(\"CSVParser has been closed\");\n            }\n            CSVRecord next = CSVParser.this.current;\n            CSVParser.this.current = null;\n  \n            if (next == null) {\n                // hasNext() wasn't called before\n"
+          ]
+        ],
+        "explanation": "Previously suite-validated exact-text repair; explanation limited to archived patch.",
+        "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+        "origin": "released-trial:DEV_COST_COMPARE2_HAIKU_CSV",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "released-trial:DEV_COST_COMPARE2_HAIKU_CSV",
+          "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "d4b368a4dd8026e9981763e447b2a31252d13a651f9b9476719489edec13a5d7"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "7a2a6a17c94598a4b601823ae9d367ce821e0304efb885090a91a42a018a1c2c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "evidence_digest": "498a50f237b1d9d6b5ccd78fc1cc0a3e10369fcd986d3f2ba86a2d950848b193",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7823,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "9556939250cf805df0a5cf14e7255f18996c66ba2acb9f90cba3b1d3b3c63777"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "edits": [
+          [
+            "     */\n    public ZipArchiveEntry(String name) {\n        super(name);\n    }\n\n    /**\n",
+            "     */\n    public ZipArchiveEntry(String name) {\n        super(name);\n        this.name = name;\n    }\n\n    /**\n"
+          ]
+        ],
+        "explanation": "Local repair operator: repair_plan",
+        "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+        "origin": "strategist",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "9556939250cf805df0a5cf14e7255f18996c66ba2acb9f90cba3b1d3b3c63777"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "dc485e8952ef056d00d68162c3eaa6e9c6dbf6dcdd305c0a7efd9d120f860c30",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "evidence_digest": "498a50f237b1d9d6b5ccd78fc1cc0a3e10369fcd986d3f2ba86a2d950848b193",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7823,
+          "source_files": 1
+        },
+        "origin": "retained-experience",
+        "verdict": {
+          "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "retained-experience",
+          "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "1e083e9cdd7faaaf3e2290c7c9f9a00427d366bd87c329f11bff5922f4cac469"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "2dbd5453632180fd1f05b82f19a7f110a17f2e06e4b72befcfae9f8b2a0bead4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "2a12b049fd9dfb9490e6d53b44e8eff005208f1178e9e1b00b69f578e22386b8"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "ab013c3b7f6cfbcdc7ed75be294293c9e8870a2dbead82d21852d290197d14b4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "54bd84e37222e7021150850f475309dc162fdf0ac5680c46fdcfeb5464361224"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "9e0e149c0f0dfab26bc766517ef90c5b7f8cc301a5d610bf5d88c1cdc2fe28bf",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+          "feedback": "    [javac] /work/Gson-2-b/gson/maven-build.xml:73: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Gson-2-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Gson-2-b/gson/src/main/java/com/google/gson/Gson.java:209: error: incompatible types: TypeAdapter<BigInteger> cannot be converted to TypeAdapterFactory\n    [javac]     factories.add(TypeAdapters.BIG_INTEGER);\n    [javac]                               ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "cbdd3640d1108e19fb480ddf0e5d011898ec3759ef7fccf8a8c382054fa02d1a"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "7ea7c1ac4f9f3658178fd878a5a0ef212aca9844953cb8a08bc1cfb73c224c8e",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "9f95dd4b6444f496d3c995bad12013971dc28cfdbd4a2acc087509de410815dc"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "14d57b35c76c322bf3e370b3d5897fdf1bdd1ba4254e728a8c4e2da0510b2545",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0008753,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "path": "gson/src/main/java/com/google/gson/Gson.java",
+              "start": 741
+            },
+            "result_digest": "f78a4c78009a81f646c3dfca8636050914494b1cfffbaed37ae56db3d08d3651",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0045612610000000005,
+        "response_digest": "b4fed6c447c858c65148484fe7714bfd4914aa9b5a0994142aae2c5b7fa238c0",
+        "response_id": "gen-1791495395-NBxJcMvc5IEBqe5h3M0m",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 372,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 236
+          },
+          "cost": 0.0008753,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000186,
+            "upstream_inference_cost": 0.0008753,
+            "upstream_inference_prompt_cost": 0.0006893
+          },
+          "is_byok": false,
+          "prompt_tokens": 6893,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7265
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3b51e860e3f6e29942c21e731898a5a112760288943a902f7609d2d9bb1c9623",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0014278,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "isInstance("
+            },
+            "result_digest": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "fe224277191baa5966c75fea8b15b6299b965d7669224067effd364cf8aa4c31",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005847798999999999,
+        "response_digest": "fd29b351d034d91c4ab23d9bc7ebe5097ae7c3b97d871fb2fb8808e894c2f9ee",
+        "response_id": "gen-1791495399-xuHucZTKBUbqnuQml3jU",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 641,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 589
+          },
+          "cost": 0.0014278,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0003205,
+            "upstream_inference_cost": 0.0014278,
+            "upstream_inference_prompt_cost": 0.0011073
+          },
+          "is_byok": false,
+          "prompt_tokens": 11073,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 11714
+        }
+      },
+      "kind": "call",
+      "previous_digest": "2359ee5f8638b292c9ec1f880aa6c6c3ca8d2c161776b91fcc8472ac08a274b3",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001201,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "newTypeHierarchyFactory"
+            },
+            "result_digest": "f1e4daa7482384c982b162d0f94935a512a9f790a5ca9169c486459e97a47ccb",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "8f3bc32f16f4d22accea92ffe6852209c8bc682028a4f2881f66f71949917a41",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006183725,
+        "response_digest": "ef47c0b2b2866411eb69ec1b2c16ecbb94aa691aeaeed62b3011788be965efe2",
+        "response_id": "gen-1791495403-SHjLig8adLgd7Yyaniad",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 58,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.001201,
+          "cost_details": {
+            "upstream_inference_completions_cost": 2.9e-05,
+            "upstream_inference_cost": 0.001201,
+            "upstream_inference_prompt_cost": 0.001172
+          },
+          "is_byok": false,
+          "prompt_tokens": 11720,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 11778
+        }
+      },
+      "kind": "call",
+      "previous_digest": "0a595d300a3be4d31f190104679da148296d69b5681e34c8b29940409fb43d59",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "benchmark_may_be_in_training_data": true,
+        "call_failed": true,
+        "cost_usd": null,
+        "error": "HTTPError",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "http_status": 404,
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "3e13e8b17059dcc2ff362a4e5045b45f94b306f8290395bcd459c7d6fba9cc9a",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0063038140000000005,
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4
+      },
+      "kind": "call",
+      "previous_digest": "4d07a6dd5c6fca04e7e9b5786eff214013cb334efccf75c664c89459205aea5a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": null,
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "975ecd7c3ed2e80b6ec2163e5a5797c6f557b1b4b56450f2611c46251ec70f4a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "afb2d5c0bb7882bf551dc49015d47b43eb89bea2cfc6d437739a8089fd73f748",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "afb2d5c0bb7882bf551dc49015d47b43eb89bea2cfc6d437739a8089fd73f748",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:282)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "e0464f63d3e924cc4f9f23bef059f1a29aee4cb28ef0b0e6a1fafe6b0794b3e3"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "eb105d766ef02baeb57f52f998659064c6a665c0cb2ab0feabd8074e06071505",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6f5051c822692538aef7cd40bd6c4bfb30e6381aa819caac5313d631b7cf1231",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6f5051c822692538aef7cd40bd6c4bfb30e6381aa819caac5313d631b7cf1231",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat org.jsoup.helper.ChangeNotifyingArrayList.<init>(ChangeNotifyingArrayList.java:11)\n\tat org.jsoup.nodes.Element$NodeList.<init>(Element.java:1422)\n\tat org.jsoup.nodes.Element.ensureChildNodes(Element.java:89)\n\tat org.jsoup.nodes.Element.appendChild(Element.java:406)\n\tat org.jsoup.parser.HtmlTreeBuilder.insertNode(HtmlTreeBuilder.java:273)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:221)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:210)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "2680bc7f8e5c4daf5bfba21ae2c37cd4216d3667ebcf962c82d62d559125ae8e"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "5587bd56b35508a17361c742e9a76ae9c5af4a0ac2f329e37c00b86bfec1d356",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "43f0310e215c736cc61dd3c5cf5245db4ffd0417ff2c084d4351c36c5aa372de",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "43f0310e215c736cc61dd3c5cf5245db4ffd0417ff2c084d4351c36c5aa372de",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat java.base/java.util.HashMap.hash(HashMap.java:340)\n\tat java.base/java.util.HashMap.get(HashMap.java:553)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:51)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:209)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/Tag.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "ff1b25e26a02b7c18641f57c3749c319a5367f34e37d0f97bd8ce7f56bc583b5"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "782d7edaa17ff3772bd3683fd7924bd6844aa49f05bc0ca8563571e7a09513ea",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "e2349c3f494f417f89e47c298200e76d55f7dad39e35e2e04362eac5171feccf",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "e2349c3f494f417f89e47c298200e76d55f7dad39e35e2e04362eac5171feccf",
+          "feedback": "    [javac] /work/Jsoup-68-b/maven-build.xml:84: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-68-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of expression\n    [javac]         transient return doc;\n    [javac]         ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of type\n    [javac]         transient return doc;\n    [javac]                   ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: <identifier> expected\n    [javac]         transient return doc;\n    [javac]                             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:49: error: class, interface, or enum expected\n    [javac]     protected void runParser() {\n    [javac]               ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:52: error: class, interface, or enum expected\n    [javac]             process(token);\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:53: error: class, interface, or enum expected\n    [javac]             token.reset();\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/TreeBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "eca15d073546262b6936558dfab6dcb0bf1b899c745d8219b0e321166d3bbb1a"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "94ff1d48a672713c2834de858afbb43a075af6473b8f0ee66678f4e0d380e6f5",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0009418,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testHandlesDeepSpans"
+            },
+            "result_digest": "ad35f9fa1351d8cfc9d2f91afc92427b9dd8f040280936b43832d176a8911e1c",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "064196683a9a46ce395bb2fa0799f3a631b9e91a54c808aa79cdf502fbc343e3",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006130397,
+        "response_digest": "b4b97de739680924795f3021bd3020d383b33f5406ad16a95fb703492f523550",
+        "response_id": "gen-1791495443-Bf8hBKiIe7ZHP5QxEwkK",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 22,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0009418,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.1e-05,
+            "upstream_inference_cost": 0.0009418,
+            "upstream_inference_prompt_cost": 0.0009308
+          },
+          "is_byok": false,
+          "prompt_tokens": 7447,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7444,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7469
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3c60f268bfd25c67bf1c8db0a3284fa4da6c564a3821f265c55c448055fa2fab",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 9.9365e-05,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java",
+              "start": 1065
+            },
+            "result_digest": "7deb3df87f36a453eeb617869992f0d4d9849120b285e1fc953771553e2ae1d3",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "3c8438d5542da815183bea069bf2ae61a99681f0b79638bfc63e48a13a1ad181",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006170999,
+        "response_digest": "cfae96c7d904c202fe95954b15b260561b48444803a7ed07e71a98b35cd62f78",
+        "response_id": "gen-1791495445-ups1y3O4dvLZGz1jQbUo",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 34,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 9.9365e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.7e-05,
+            "upstream_inference_cost": 9.9365e-05,
+            "upstream_inference_prompt_cost": 8.2365e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 7508,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 61,
+            "cached_tokens": 7444,
+            "video_tokens": 0
+          },
+          "total_tokens": 7542
+        }
+      },
+      "kind": "call",
+      "previous_digest": "ce53c4f7496be3292c735289684e16801c91b55be91f67682521d8efadd0d0b4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000173975,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "boolean inButtonScope"
+            },
+            "result_digest": "b3de62e4cd63b9a5f04f63273d42e07a250201fb8e64a36876dbf9cd11c61286",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "31b7bfc6d1f41567651cf9c60d6be7cdebbe075673f81f3bc66c3f19af0ed5f6",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.00627715,
+        "response_digest": "adf9f909cb6b324ac7f0854e48ad33b33ad0ad8e6a90658d9c576f057ce75ee7",
+        "response_id": "gen-1791495448-0KMGgoFdTZpyPQRYt0AK",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 136,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 113
+          },
+          "cost": 0.000173975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 6.8e-05,
+            "upstream_inference_cost": 0.000173975,
+            "upstream_inference_prompt_cost": 0.000105975
+          },
+          "is_byok": false,
+          "prompt_tokens": 7753,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 245,
+            "cached_tokens": 7505,
+            "video_tokens": 0
+          },
+          "total_tokens": 7889
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3982edcc01cdd51aa5f61436bc5bb51a186838bd1e8c5ec667523bd756e4c0b9",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0001975,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "63217658c1061be45395fa1affba6117baa5c3192264cb58d4f6ae8738510aca",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006617620999999999,
+        "response_digest": "fc6aa8862780d4151810e3886801a48d88829f2c36967f9884bca96e63b7cd51",
+        "response_id": "gen-1791495453-wmL2got7eeXoTuMMkHq6",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "usage": {
+          "completion_tokens": 173,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0001975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 8.65e-05,
+            "upstream_inference_cost": 0.0001975,
+            "upstream_inference_prompt_cost": 0.000111
+          },
+          "is_byok": false,
+          "prompt_tokens": 7925,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 172,
+            "cached_tokens": 7620,
+            "video_tokens": 0
+          },
+          "total_tokens": 8098
+        }
+      },
+      "kind": "call",
+      "previous_digest": "a003ee60e854fff037883ba7c233884f4fa23d55eb233ba3519ce4a283fbac49",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "32a33b84ab92f32b5c32b0debdff46c46861740c979b53682ef2b8c926769f5e",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "openrouter:openai/gpt-6-luna",
+        "verdict": {
+          "candidate_digest": "32a33b84ab92f32b5c32b0debdff46c46861740c979b53682ef2b8c926769f5e",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njunit.framework.AssertionFailedError: expected:<1> but was:<2>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:645)\n\tat org.junit.Assert.assertEquals(Assert.java:631)\n\tat org.jsoup.parser.HtmlParserTest.testHandlesDeepSpans(HtmlParserTest.java:1082)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "c147c2880b5a0b12d39a5ab8abb0863a6f53c8cf09d1d0f07bd389540415f43f"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "818537ff1e92119f291ee59532324b34d4ddbf1b62906a0724a32fd9551ec9bf",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000988425,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testHandlesDeepSpans"
+            },
+            "result_digest": "ad35f9fa1351d8cfc9d2f91afc92427b9dd8f040280936b43832d176a8911e1c",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d4364c8ce1f70dd55f3c6d9e8a57a76fb732655f8e0b99f5ec00de1fb5c41218",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006304924999999999,
+        "response_digest": "e2d4d3553ba9a16bfa385e21f7f5bc443772c9affee8f1162b8c1c059bc53753",
+        "response_id": "gen-1791495461-6ptMgZfOOBT294Mh05Uq",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 22,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000988425,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.1e-05,
+            "upstream_inference_cost": 0.000988425,
+            "upstream_inference_prompt_cost": 0.000977425
+          },
+          "is_byok": false,
+          "prompt_tokens": 7820,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7817,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7842
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3d1dcb9cfdbd5c53324012fcb1540ce08a132539c10fc37140fd3fec65ee98d8",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000103095,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java",
+              "start": 1065
+            },
+            "result_digest": "7deb3df87f36a453eeb617869992f0d4d9849120b285e1fc953771553e2ae1d3",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "a0678af076cf377ce3a283b3450b7e569055a793527e1e6c07d52a175665c9ed",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006345527,
+        "response_digest": "d8654e1abe770f3b849adce94fe7175ce62f1f8fc9c30c3ba8c4155c928d3a83",
+        "response_id": "gen-1791495462-9SggIMVWyoO1YiV5dL5G",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 34,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000103095,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.7e-05,
+            "upstream_inference_cost": 0.000103095,
+            "upstream_inference_prompt_cost": 8.6095e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 7881,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 61,
+            "cached_tokens": 7817,
+            "video_tokens": 0
+          },
+          "total_tokens": 7915
+        }
+      },
+      "kind": "call",
+      "previous_digest": "434148b72ac8b2fa3cdc8092dc214a1cea415b77fb1d85bc44ffd31b52cb4c44",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000221205,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "inButtonScope"
+            },
+            "result_digest": "b5f7e8698e7b7a67f75d94f14cbee7aa01e71a6015aafd798b5ccc1543496c4e",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "f3cfabcd689b89a09f5fddefe787cb13a5376ba877f450616ddca3cabe90eddf",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006451678,
+        "response_digest": "c15e1ab6a9a8cfb86de74ba8151d5d285dd1477d91a748d81851dd5777a9efe9",
+        "response_id": "gen-1791495464-tT30zaDCrvOx1PhKZKMC",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 223,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 201
+          },
+          "cost": 0.000221205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0001115,
+            "upstream_inference_cost": 0.000221205,
+            "upstream_inference_prompt_cost": 0.000109705
+          },
+          "is_byok": false,
+          "prompt_tokens": 8126,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 245,
+            "cached_tokens": 7878,
+            "video_tokens": 0
+          },
+          "total_tokens": 8349
+        }
+      },
+      "kind": "call",
+      "previous_digest": "1c55c0f2bafb6bdfacc9c1535d449a7d6a40ed463b9654995763970b31e36223",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00024123,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "494e1b45cea7df18b0781848f304dad16cb9908d4f89a609332359a6daf7b734",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006944860999999999,
+        "response_digest": "edccabf649955ff3a30249471c20e4162d09f2cd0be4a9ab401822a5b85ab24f",
+        "response_id": "gen-1791495468-R3PVAX4GdE2VhLbexc1j",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "usage": {
+          "completion_tokens": 146,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00024123,
+          "cost_details": {
+            "upstream_inference_completions_cost": 7.3e-05,
+            "upstream_inference_cost": 0.00024123,
+            "upstream_inference_prompt_cost": 0.00016823
+          },
+          "is_byok": false,
+          "prompt_tokens": 8726,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 600,
+            "cached_tokens": 7993,
+            "video_tokens": 0
+          },
+          "total_tokens": 8872
+        }
+      },
+      "kind": "call",
+      "previous_digest": "2aa3aae9bbaf9de2dbef6fce5d65bd003dee85c56214ad64a9f55d47762328ec",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.002966595,
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "872cd88256063b09ab1bd16bad9f000cebb96b59fee5b396c8a8aaaaf64e447a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "attempt_digest": "eb105d766ef02baeb57f52f998659064c6a665c0cb2ab0feabd8074e06071505",
+        "billing_resolved": false,
+        "diagnostic_digest": "ef21a43638b8000e3096986c4f697440e8ac3691989b27dae0c12cbbf1862ae5",
+        "model": "anthropic/claude-haiku-5.5",
+        "reason": "unsupported_named_tool_choice",
+        "role": "released_development"
+      },
+      "kind": "routing_review",
+      "previous_digest": "c0f1dd3fe9198ee895ca725fbd88df42e3b0ff2b3a03bfce5379f80ec0ac1e87",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "2a12b049fd9dfb9490e6d53b44e8eff005208f1178e9e1b00b69f578e22386b8"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "08b2de48976c6fccb16c6d8f2f7d566d1f57e82b9e2fc01201147cee8e88aa6f",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "54bd84e37222e7021150850f475309dc162fdf0ac5680c46fdcfeb5464361224"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "4a9cd3bd1b6d73a73ea7c92a99535d41cdd568ee9f7bad4093e564427ec4464e",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+          "feedback": "    [javac] /work/Gson-2-b/gson/maven-build.xml:73: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Gson-2-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Gson-2-b/gson/src/main/java/com/google/gson/Gson.java:209: error: incompatible types: TypeAdapter<BigInteger> cannot be converted to TypeAdapterFactory\n    [javac]     factories.add(TypeAdapters.BIG_INTEGER);\n    [javac]                               ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "cbdd3640d1108e19fb480ddf0e5d011898ec3759ef7fccf8a8c382054fa02d1a"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "59d9f6ed025914f3fa3bd94db1360d3f277cfb35c6624638095a1c6cd9e845e7",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "9f95dd4b6444f496d3c995bad12013971dc28cfdbd4a2acc087509de410815dc"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "a90c3a29c936c67c6e2551a1c139c20133d7868d3e1f3391af9bca58fc55b8d6",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0011058,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "JsonSyntaxException"
+            },
+            "result_digest": "2a03088144f13284a47c7b28a8b82888c25298fb171ec43f1c4ef4c73153e811",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0045612610000000005,
+        "response_digest": "8fbbb2d19477b63a5599e42513e602dab7eb6670de0ee21bf97915e59c1f9e9d",
+        "response_id": "gen-1791496009-0sr19NG34LjXr9FcgVln",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 833,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 730
+          },
+          "cost": 0.0011058,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0004165,
+            "upstream_inference_cost": 0.0011058,
+            "upstream_inference_prompt_cost": 0.0006893
+          },
+          "is_byok": false,
+          "prompt_tokens": 6893,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7726
+        }
+      },
+      "kind": "call",
+      "previous_digest": "25827a1f42d2c096a14f4596eafd4564dad7ee7c2558fc51f093677a048f17c4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0014956,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "fb3408d16b29de7f22fa7f49418fec7d919892a3cf66eb498ed386ad58a5f9b9",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005878502999999999,
+        "response_digest": "ba35934cbf05e90ae4b42c80f9ca53cc7f0558fa7743c00ade95ed30ad5b3514",
+        "response_id": "gen-1791496014-AnqxpymCPrHg7aszeQBb",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 676,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 296
+          },
+          "cost": 0.0014956,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000338,
+            "upstream_inference_cost": 0.0014956,
+            "upstream_inference_prompt_cost": 0.0011576
+          },
+          "is_byok": false,
+          "prompt_tokens": 11576,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 12252
+        }
+      },
+      "kind": "call",
+      "previous_digest": "be07235861246bf34bb2717439a5400d0f804863a2a59cf096102c5203c0536b",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0026014000000000002,
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "db02383a42653e25266487f9c59e79106920f5d371e82a2c13372e7890410786",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00049205,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004560352,
+        "response_digest": "d883488513d13ceaca0abf3f2d92a4f3f4bf264ec1ab23ff581b4279a085cd71",
+        "response_id": "gen-1791496017-BcvzzkC0mH11dmzt0duN",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 20,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00049205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1e-05,
+            "upstream_inference_cost": 0.00049205,
+            "upstream_inference_prompt_cost": 0.00048205
+          },
+          "is_byok": false,
+          "prompt_tokens": 3857,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 3854,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 3877
+        }
+      },
+      "kind": "call",
+      "previous_digest": "dd56a7ea41ed3ca2b5da4ef8465e2df880f11d7bbb648adfea888df19390896a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 9.209e-05,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "JSON_ELEMENT"
+            },
+            "result_digest": "4c1adf75895fed9c9bbfa28405b0cb5581a44e53c0e0342bd187ea0f5f7dbac2",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5b35cdcf626ce0647ad1c8c7a1d9fbcffbe7a8583873f3fe10508068e6c7863f",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004725587999999999,
+        "response_digest": "da07d6010260d76e40afad18adcf4cbb0e614a0e97aed3a60e28d007005cb4fe",
+        "response_id": "gen-1791496018-IJsLouvOHJoL2hGfJu5O",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 19,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 9.209e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 9.5e-06,
+            "upstream_inference_cost": 9.209e-05,
+            "upstream_inference_prompt_cost": 8.259e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 4207,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 350,
+            "cached_tokens": 3854,
+            "video_tokens": 0
+          },
+          "total_tokens": 4226
+        }
+      },
+      "kind": "call",
+      "previous_digest": "f96ec33ec7986c279f2f1ae2f16a4008dd9d48ce9e5e03550573bea8111b11e6",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 8.6465e-05,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+              "start": 643
+            },
+            "result_digest": "1fd4e1ee01d6b22949a7fa477ebb99c31534692af813bf34cadb04d630d08063",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5952e4e74ecb88de7bfcedd64b76182ab44d22d9a7bd4f1e6b8e0e3ecd7f5d65",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004833557,
+        "response_digest": "986b3adbd9f8bd9988464886588ad8472b73d749cf29de4fffabc1d25fd3ecdd",
+        "response_id": "gen-1791496022-G73eu1GpD5JTjkSeNfE8",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 37,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 8.6465e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.85e-05,
+            "upstream_inference_cost": 8.6465e-05,
+            "upstream_inference_prompt_cost": 6.7965e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 4412,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 205,
+            "cached_tokens": 4204,
+            "video_tokens": 0
+          },
+          "total_tokens": 4449
+        }
+      },
+      "kind": "call",
+      "previous_digest": "17482814d61f8f92f8745b663e997bd75756395aa7689638195344fd0691e31c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0009785,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "0ec9068322aa4340bbfa658e0c8abcd9e10b873bb6c1a13d5309e8684cc7abb2",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005713468999999999,
+        "response_digest": "4861dd457f39f811e2ff3914701a27874c665970c7e43c64d219bc426f65754a",
+        "response_id": "gen-1791496023-N8G8vcYO95bll4Oq08AB",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 320,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0009785,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.00016,
+            "upstream_inference_cost": 0.0009785,
+            "upstream_inference_prompt_cost": 0.0008185
+          },
+          "is_byok": false,
+          "prompt_tokens": 6561,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 6496,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 6881
+        }
+      },
+      "kind": "call",
+      "previous_digest": "06b750378db838a556f94e0bafe4808c7b9a079f27ce840c87c2e812558c7306",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "openrouter:openai/gpt-6-luna",
+        "verdict": {
+          "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "482409e0ee32904c5dc5fee0f85c6f3f9ebcd3af074a90af61db9b140e0e0c9d"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "ddf356d48fe049a4c1d61071c84c9fbd64b440d844537dfed5ffdfd82d2af10e",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+        "edits": [
+          [
+            "        if (!clazz.isAssignableFrom(requestedType)) {\n          return null;\n        }\n        return (TypeAdapter<T2>) typeAdapter;\n\n      }\n      @Override public String toString() {\n",
+            "        if (!clazz.isAssignableFrom(requestedType)) {\n          return null;\n        }\n        return new TypeAdapter<T2>() {\n          @Override public T2 read(JsonReader in) throws IOException {\n            T1 result = typeAdapter.read(in);\n            if (result != null && !requestedType.isInstance(result)) {\n              throw new JsonSyntaxException(\"Expected a \" + requestedType.getName()\n                  + \" but was \" + result.getClass().getName());\n            }\n            return (T2) result;\n          }\n          @Override public void write(JsonWriter out, T2 value) throws IOException {\n            typeAdapter.write(out, (T1) value);\n          }\n        };\n\n      }\n      @Override public String toString() {\n"
+          ]
+        ],
+        "explanation": "{\"hypothesis\": \"The JsonElement hierarchy adapter returns a primitive for a requested JsonObject/JsonArray subtype without validating the runtime subtype, so fail with the established JsonSyntaxException rather than allowing Class.cast to throw.\", \"path\": \"gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java\", \"edits\": [{\"search\": \"        return (TypeAdapter<T2>) typeAdapter;\\n\\n      }\\n      @Override public String toString() {\\n        return \\\"Factory[typeHierarchy=\\\" + clazz.getName() + \\\",adapter=\\\" + typeAdapter + \\\"]\\\";\", \"replace\": \"        return new TypeAdapter<T2>() {\\n          @Override public T2 read(JsonReader in) throws IOException {\\n            T1 result = typeAdapter.read(in);\\n            if (result != null && !requestedType.isInstance(result)) {\\n              throw new JsonSyntaxException(\\\"Expected a \\\" + requestedType.getName()\\n                  + \\\" but was \\\" + result.getClass().getName());\\n            }\\n            return (T2) result;\\n          }\\n          @Override public void write(JsonWriter out, T2 value) throws IOException {\\n            typeAdapter.write(out, (T1) value);\\n          }\\n        };\\n\\n      }\\n      @Override public String toString() {\\n        return \\\"Factory[typeHierarchy=\\\" + clazz.getName() + \\\",adapter=\\\" + typeAdapter + \\\"]\\\";\"}]}",
+        "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+        "origin": "openrouter:openai/gpt-6-luna",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "482409e0ee32904c5dc5fee0f85c6f3f9ebcd3af074a90af61db9b140e0e0c9d"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "7ce2ece478a25619849ca817b8e0a6959e4c5a943ff1d2ef157f4491d83f133a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0016491049999999999,
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "a84e320f41e8aa06fb4538af0363c14eab1a1275f3bac366e555f909ffe4786a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "afb2d5c0bb7882bf551dc49015d47b43eb89bea2cfc6d437739a8089fd73f748",
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "afb2d5c0bb7882bf551dc49015d47b43eb89bea2cfc6d437739a8089fd73f748",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat java.base/java.util.HashMap.hash(HashMap.java:340)\n\tat java.base/java.util.HashMap.get(HashMap.java:553)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:51)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:210)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "a572f0541be47d84d87815df40718dfda2ed458df310bff5737f3d8982c0606c"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "ca036cb70894b32a3fb3f6d6acd5d09a37350601c27935813c766e2eb7d5ebb7",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6f5051c822692538aef7cd40bd6c4bfb30e6381aa819caac5313d631b7cf1231",
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6f5051c822692538aef7cd40bd6c4bfb30e6381aa819caac5313d631b7cf1231",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat org.jsoup.helper.ChangeNotifyingArrayList.add(ChangeNotifyingArrayList.java:24)\n\tat org.jsoup.nodes.Element.appendChild(Element.java:407)\n\tat org.jsoup.parser.HtmlTreeBuilder.insertNode(HtmlTreeBuilder.java:273)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:221)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:210)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "0d2ed50539567dfba28c04beb8703de67904d64346c038a3801d8d4c30680898"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "1252f1b8c1881feb93ef5deda531b7467d59db112526b4484fdb77175d8cb722",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "e2349c3f494f417f89e47c298200e76d55f7dad39e35e2e04362eac5171feccf",
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "e2349c3f494f417f89e47c298200e76d55f7dad39e35e2e04362eac5171feccf",
+          "feedback": "    [javac] /work/Jsoup-68-b/maven-build.xml:84: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-68-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of expression\n    [javac]         transient return doc;\n    [javac]         ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of type\n    [javac]         transient return doc;\n    [javac]                   ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: <identifier> expected\n    [javac]         transient return doc;\n    [javac]                             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:49: error: class, interface, or enum expected\n    [javac]     protected void runParser() {\n    [javac]               ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:52: error: class, interface, or enum expected\n    [javac]             process(token);\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:53: error: class, interface, or enum expected\n    [javac]             token.reset();\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/TreeBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "eca15d073546262b6936558dfab6dcb0bf1b899c745d8219b0e321166d3bbb1a"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "9feb22e7e831865769469a71617feffeb726888329b80cdce574236b566b1c5d",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "4b7c52bf955e0017451f12604c76aac8af49e3641e4e65b14c76c3187bab834a",
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "4b7c52bf955e0017451f12604c76aac8af49e3641e4e65b14c76c3187bab834a",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat java.base/java.util.HashMap.hash(HashMap.java:340)\n\tat java.base/java.util.HashMap.get(HashMap.java:553)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:51)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:209)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "cceb136515126238c29d3fab3f9bef4b06112f84b8e9a03bf7ac26f12c5c2494"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "8bbfc8b81205e30a259acb80641c857957ecfafe6e4e090ee9daa679bb16dee2",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0014597,
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "inButtonScope"
+            },
+            "result_digest": "b5f7e8698e7b7a67f75d94f14cbee7aa01e71a6015aafd798b5ccc1543496c4e",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "e453479c4928747c226addd9c862749a8829c8a66032b38bfabca94b3589c538",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005412388,
+        "response_digest": "1e2caf82695aa7e81a2aee877bebadc7316598cbd15836eb4d827f33b4583beb",
+        "response_id": "gen-1791496078-F7H4wHPiRikU7zKiUzAp",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 1019,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 966
+          },
+          "cost": 0.0014597,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0005095,
+            "upstream_inference_cost": 0.0014597,
+            "upstream_inference_prompt_cost": 0.0009502
+          },
+          "is_byok": false,
+          "prompt_tokens": 9502,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 10521
+        }
+      },
+      "kind": "call",
+      "previous_digest": "18e86dc698b8a69cc81a3c0e53c094a7d1fdb2e54451f795d467b5a47f375fc8",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0011709,
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+              "start": 440
+            },
+            "result_digest": "e6b10f1d9c9e20bd2572c64f8fa24d23e53c65fb4240aa8ea0fb956c24cff841",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "4954f7db13800b3a6518ed7c264e44ccfb101dac7cef22b098a6093950f6febf",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006107166999999999,
+        "response_digest": "4cdbc612488da25de46a1372103300499475ba1729ed040ecc74700e82e81284",
+        "response_id": "gen-1791496084-KS45VO4woVik6J0VpYwF",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 96,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0011709,
+          "cost_details": {
+            "upstream_inference_completions_cost": 4.8e-05,
+            "upstream_inference_cost": 0.0011709,
+            "upstream_inference_prompt_cost": 0.0011229
+          },
+          "is_byok": false,
+          "prompt_tokens": 11229,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 11325
+        }
+      },
+      "kind": "call",
+      "previous_digest": "b5c6ceefbdb8fca7a92b68dd45fe7a696cdfc477609c4cfbbc45654798336b2b",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0018502,
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "be9ad165a6ac83c419fa60d5f0bbce7b6694a65d71f818b957ce63e855262386",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006963849,
+        "response_digest": "d2dd803f81d1166dc34283a0b9fbb308362a977e7519ee8ddba6c4b352313d8b",
+        "response_id": "gen-1791496085-fIf3qOiLNyMb7LZ8qCDz",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 846,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 416
+          },
+          "cost": 0.0018502,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000423,
+            "upstream_inference_cost": 0.0018502,
+            "upstream_inference_prompt_cost": 0.0014272
+          },
+          "is_byok": false,
+          "prompt_tokens": 14272,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 15118
+        }
+      },
+      "kind": "call",
+      "previous_digest": "b3dc413ee23fe6cf12e0424df7ef931098c96a89da632228dbe23c76027e419a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "verdict": {
+          "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "f8981c3b3919770b7b66b833fd82e3ff8a5d1c265d10a9d22323e0abb0a90b02"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "a5761dce2368410652666dad47d466aaaedbd0b9379fd5a2b8bf249182717643",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+        "edits": [
+          [
+            "    private boolean inSpecificScope(String[] targetNames, String[] baseTypes, String[] extraTypes) {\n        // https://html.spec.whatwg.org/multipage/parsing.html#has-an-element-in-the-specific-scope\n        int bottom = stack.size() -1;\n        if (bottom > MaxScopeSearchDepth) {\n            bottom = MaxScopeSearchDepth;\n        }\n        final int top = bottom > MaxScopeSearchDepth ? bottom - MaxScopeSearchDepth : 0;\n        // don't walk too far up the tree\n\n",
+            "    private boolean inSpecificScope(String[] targetNames, String[] baseTypes, String[] extraTypes) {\n        // https://html.spec.whatwg.org/multipage/parsing.html#has-an-element-in-the-specific-scope\n        int bottom = stack.size() -1;\n        final int top = bottom > MaxScopeSearchDepth ? bottom - MaxScopeSearchDepth : 0;\n        // don't walk too far up the tree\n\n"
+          ]
+        ],
+        "explanation": "{\"hypothesis\": \"inSpecificScope clamps 'bottom' to MaxScopeSearchDepth before computing 'top', so top is always 0 on deep stacks and the scope search scans from the bottom of the stack instead of the top. The freshly inserted <p> is never found, so the end-tag 'p' handler re-enters itself endlessly. Removing the clamp makes top = bottom - Max, so the search covers the top-most elements.\", \"path\": \"src/main/java/org/jsoup/parser/HtmlTreeBuilder.java\", \"edits\": [{\"search\": \"        if (bottom > MaxScopeSearchDepth) {\\n            bottom = MaxScopeSearchDepth;\\n        }\\n        final int top\", \"replace\": \"        final int top\"}]}",
+        "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "f8981c3b3919770b7b66b833fd82e3ff8a5d1c265d10a9d22323e0abb0a90b02"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "98e60578f938ff9053d5952bf6b331f355e44bbf9293d8275e492107b13e55f4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0044808,
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "ff299a129d1952df4f27817595285a541ae8d5a6ad1dc470c4cb8135877b90b3",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "origin": "retained-experience",
+        "verdict": {
+          "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "retained-experience",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "e2615ec255902b2d9a944a6fa12e286b8df426ed18bcbb8bef4134160829ad75"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "8f361fd72f449cfab9f5a0b021ce6350ae471cb3de00c7df677adbd4247a220c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "retained-experience",
+        "verdict": {
+          "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "retained-experience",
+          "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "4c4cec838a019bb68a2bd83a7fb7ea5cb11e98713d7ba8fc01b81b3fc27e5367"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "62467f4e4c09f06e7846d2479d70c9339b2ed4a52d5228012a31a21e0182ee26",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+        "evidence_digest": "d64c9e4f6c9bf5344238a3e675b5345ba44527a2b77a873d0fdffcaaf3de97ef",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 14857,
+          "source_files": 3
+        },
+        "origin": "retained-experience",
+        "verdict": {
+          "candidate_digest": "68701dfcaecd021d6055fbcfd3fd2c0ac9fe57cf1546b3e85dc6894652ddc53f",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "retained-experience",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "e2615ec255902b2d9a944a6fa12e286b8df426ed18bcbb8bef4134160829ad75"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "83e32d6c60447c09a12444a44fd835c7eecb7d099dbb58e7d0d9b508da7dd386",
+      "scope": "released_development"
+    }
+  ],
+  "initial_memory_digest": "bce279f39c188d54a390a04dfb5fe00eafd8a949268b451dfc0ee86d459cc426",
+  "machinery": {
+    "genesis/__init__.py": "7ed65e52cfefb6c18c149f707916a1c593f828d398749553c5b9606b7e631459",
+    "genesis/adaptive_repair.py": "175859ad373aaa4ad7598081389c3b885306450a9fe9cc5df9d70833312385cd",
+    "genesis/artifacts.py": "ea0b21ab7ee94a76b88ed473fa25afd97050b67c1716a790ec0c85f09dbc1d6e",
+    "genesis/autonomous_policy_loop.py": "4e7b0314126563390a007e5780c11ef73ee30303278fdfebf2e2e704d4b93ab0",
+    "genesis/candidate_scheduler.py": "00e346917621ffc58351c40de83c72e2b4ca34875bfea4bbb53d4832d30c9ead",
+    "genesis/capabilities.py": "2ab6c38bd56d7f0b91e343acb997b00027307f33eb68e16b59a98f57687c430b",
+    "genesis/capability_gaps.py": "2b4b281802454c7adf111b2b3149a96abf42fa0fb3dc6718d74b53029330cb4c",
+    "genesis/cognitive_adoption.py": "537b4d48d42ede613d749e54ea7954a13753dfe9cc596a554d41793f4eb385bd",
+    "genesis/cognitive_architecture.py": "3785c9c9a8edc4f1a1025c92e7dfc4cce06451d68acc7b29725b3b599dfeaf76",
+    "genesis/cognitive_executor.py": "f0a795bbc1cba19983f6fea832dfe30b087626f4eff4efa711747011f1c46f7a",
+    "genesis/cognitive_lineage_adoption.py": "b33dff9059c2e629e3c860f3de7df02c48ac0af658794e9339ccea575767e6f6",
+    "genesis/cognitive_measurement.py": "fd706a21885ae49fc16d73f7c4f7791a8ec9ab12801777ba72fd85232c5309ca",
+    "genesis/cognitive_meta_mutation.py": "90f46979c29d1a3cc753e995537530c368a430d2176290e6041553be661273ac",
+    "genesis/cognitive_mutation.py": "548aeb64ed6aa3b1876d59abc624f3a90ba913949ae915f49f6f4817544c9f9d",
+    "genesis/cognitive_policy_evolution.py": "cdc99bcd85923538c98d5acc86bb1a3d9b505e36c8ac09ef32db99f0dcb936d4",
+    "genesis/cognitive_search.py": "a7d4175762208cd77f1be3393df1ef0d87bf5e360925379468bff5348401059f",
+    "genesis/cognitive_search_controller.py": "d1f5768b0505917c808a3e242caa4a6170f0300e9f917f87985cc22fe2b07dfa",
+    "genesis/controller.py": "efb03a325412daa21549f78558e5e02e0821b0f307447b49861cc4436556c8f7",
+    "genesis/core/__init__.py": "6418074c108f1c4fcde502ffa8c33427e9e2d0b81d054617b9ee1a11b6156227",
+    "genesis/core/self_model.py": "4c9305ca735dacd606a79d930f0a0f8e17f2d8999d1089807a9086fd0d3aba54",
+    "genesis/defects4j_sandbox.py": "cd5791b4e5840b274551f25d7b94e7cedeac3e1286888c5bfa51674b4e3419e3",
+    "genesis/development_bodies.py": "9f1065893fe5552a9edc971fefecaf40d6f2ec6825093d5ec1face5104a27d0d",
+    "genesis/durable_meta_policy_evolution.py": "bac1c1cc55f6338caa2be90767286b7f48b9a1a465d31dedf4a88ffb7457f7c4",
+    "genesis/endogenous_frontier_fixtures.py": "62c4965c2ff95b6f12e3d3e6e578f8c0a769b4242b627070496bb2e9a878af10",
+    "genesis/energy_instrument.py": "5b84410aed1438b2244a353cc99e76a548ebfa6fd981ed9968bb1f36fddd9104",
+    "genesis/energy_measurement.py": "d51da99543bb8e35566d882070fa6d53cda1d7c48d98267124dc1f0fa830f897",
+    "genesis/evolution/__init__.py": "8d973801f6186bf9ef43ba8773c9eda83559423ac6e61c16ca1e8215d9161fd0",
+    "genesis/evolution/component_evolution.py": "fb09a3644b61d5527bcb89e0c8d944474d77738a38bcb2f43cf579ae84246ae0",
+    "genesis/evolution/experiment_design.py": "f5b3f15507d5844ddfb79250810e32d97b254604ae069c94d19150ad6f59a73e",
+    "genesis/evolution/lineage_promotion.py": "dd7c59ea3e6173a498c82ef8f9a02173426d0b2f572c7a9970aa3d0f0f479837",
+    "genesis/evolution/recursive_chain.py": "ce54ef05917eedeb1eb552905f679a157746e2ca76b45552d1704c306d23b8b9",
+    "genesis/evolution/successor_generation.py": "774ad764332973f4a4857237d44efadafb953cb336d1d7a66b520262f75740ad",
+    "genesis/exemplar_strategy.py": "92d1bf95925e0e46a547eecc8126dd3b56919bb2b1d1b8d30ecc6c179b5913d7",
+    "genesis/external_repair_campaign.py": "47acff1a022d2a4cc7fcf05067ebc696cb667fd9c11cf44f5b80cdf263ffe5e7",
+    "genesis/external_repair_learning.py": "9e24045f9d3ee401d928a09ad3470149c199f699b872ec0abfcf1a8be8ee0551",
+    "genesis/failure_driven_self_extension.py": "8f21436f49da939ccfc72538e61384c9ec7d053d0897f5839407cae055dcc2e0",
+    "genesis/failure_feedback.py": "744a675c4bb6b38371870a28d831d9f88bc1daae2f161dc081498c2f8683dcf4",
+    "genesis/failure_localization.py": "dbacf7e454b0d410312746cb283acbee15239b6aad9f5fa27f25da2170d1470f",
+    "genesis/g12_operator_lab.py": "13cda5967c01cb288625e849d4679216dd6a59bc81e548b9db47c201ecfbd50a",
+    "genesis/g12_training_bank.py": "fedc6b277ec835ab8c4c5376cbcd6203fa6fa0d769c471ed6c2a982ed98c4600",
+    "genesis/hostile_fixtures.py": "108c6472532191ebd4397828e6893ccb3e41af066631ad8c99458434a6596e83",
+    "genesis/insights/__init__.py": "fa248729a4a83092aa1df1c751b788c217bf7ba54d60cee98e1331cf70275042",
+    "genesis/insights/compile_preflight.py": "53e0ec9be5ef4ea51db2b9080d09b26835f4e1c4a7072168e13db418635915f8",
+    "genesis/insights/hypotheses.py": "ff2fb4bf6c24cd57f585b84b22430c7d8cd798037188a2432bd6a1b077d425e2",
+    "genesis/insights/performance.py": "222792d5afb4b01db4bc23a986092810b27494587b0774f5ec67ed3c0433a008",
+    "genesis/insights/registry.py": "98596a48a1ee72f7c14d1e71617227811ef64a3b7d9a2f1c94268dfdbb1429d6",
+    "genesis/insights/security.py": "8a387ccf8cfc0c490800aea03edd858afe56215b34c07323d43624a048e357c9",
+    "genesis/java_analysis/__init__.py": "1d125a9490f91e6d67aa15fd737f0a2aa00150c7570266a09b8dcd8474c431bd",
+    "genesis/java_calendar_specialist.py": "81f235c0b13c01b1657e49ddec41baf4311a908885ed8e0e9c9b0fe790a4ee15",
+    "genesis/java_default_normalization_mutations.py": "eac65edb646fac6294f73188e193ec7a321f417822adeb06eb1266c452d16199",
+    "genesis/java_empty_segment_parser_mutations.py": "2efa5429aa197ee3da4d743725a9f814f2cdf0ac996532e8384f5118cbff51fc",
+    "genesis/java_expression_mutations.py": "8ddb6714fdb2802a268a8775e9523e44ed77472f1633a975335ab1e7ebc2be1e",
+    "genesis/java_progress_mutations.py": "1b93c5ac8816cf20d7a55dbdd682cc73a394496266bbb1e1e1d5b5a47499b780",
+    "genesis/java_range_mutations.py": "913a022297f1f32f0006b098ee64f8168f83a23b3c22679e554e29d25896eadf",
+    "genesis/java_sibling_guard_mutations.py": "a882e06ca4c2b06f3bacc7897ad438c6e067eaf84d79c8fa82097852be657b8c",
+    "genesis/java_state_consistency_mutations.py": "4f151dfa514516305e8064462cfea217690d27778e87a3d913234039efcd165b",
+    "genesis/java_stream_iterator_mutations.py": "8826537736f49a937a64fdcb65115c9981806ec28bb7858f193c5cc487a93079",
+    "genesis/java_string_literal_mutations.py": "5f636a6151045fbc2769d9dfcadb81d595fe859bef4d107f9764ebf5d76acb94",
+    "genesis/java_structural_mutations.py": "693e072566e41e544cd6d3e15e0d9a60413299770b97569d2f4d0373d907f230",
+    "genesis/java_symbol_mutations.py": "ae8cb83516f5083036974de4fc2c4db4ecfd6955cba905f1e5cf97cd6e4830a6",
+    "genesis/java_test_switch_mutations.py": "187b4a4ce74cbac5696b79a452cf74ec7cf9563d1cef24d9c3643023dfe606f2",
+    "genesis/journal.py": "87be4cd9d0955addc9be05c78c9c132f74bece857da1ed7ba8a3e4b97cad4add",
+    "genesis/language_toolchains.py": "154882c29a8367cc2d03e52f7f6a01dbd7a2f26dd006ca551e9722ebf9414946",
+    "genesis/languages/__init__.py": "e05cf12a55adf8b44489ccd58c346757d0cde92480231088a66089221b4eeecb",
+    "genesis/languages/experience.py": "055d9b64977dc5655ceb4f974ceb0ef59854b59601d413c1fc457a86e8f69aff",
+    "genesis/languages/native_diagnosis.py": "096bf7aedaca514e24de066d4305a01d0bc720a425f5b677e1acc4f4e9087117",
+    "genesis/languages/substrate.py": "6c736a509fc4132a026e50b391ecd27741d608e0a79c76063d58dd52fad36d34",
+    "genesis/languages/toolchains.py": "c833d68b0ec23d2a3c185cdcbf5ceb2ad639e5eb98823121c00a8a670fd502b4",
+    "genesis/languages/understanding.py": "b6d5f0411b68375e2e7055cafdc3c9ee9269ba8e6752d12454ced5e9edb22d53",
+    "genesis/learning/__init__.py": "1da2604eb8916415362dfacd93f9ed1587905b2cd6dbca9e673ba8228f5b2160",
+    "genesis/learning/capability_gaps.py": "036a3ef6d111f4f1ff23ec761cbdf77f784fbb1339b9ae8bf2fd1caff76fd33a",
+    "genesis/learning/distillation.py": "1f2e4c2a6b278b9e5b54170f0530b7849ae7e9a2fd1faee20223101b6cbc33ec",
+    "genesis/learning/failure_model.py": "68dd73757dbef005a108b3f6266e954fb10639db8d2c14aaef8f589ea5e0ce24",
+    "genesis/learning/self_extension.py": "c529abc29ec21101e15bf6abeeac8450d3882e66629b54d144c14026283be76d",
+    "genesis/loop.py": "f7c69336ef639a638c2d2daeec6bc8ccdbef704a5f18fa72577b4304c4ffdfff",
+    "genesis/m107_bridge.py": "9d789ae4f23e62d1bf29d0295700e25ace1508c035f75514523b5a9644231e9a",
+    "genesis/m108_bridge.py": "e7622017d8a72019cf6d0cb400064765f198fbd08916e64a98d8b1599eff168e",
+    "genesis/memory/__init__.py": "4e1a3d31bfa50d854b47e16d05e471f9e560ac328775c7921c1f4cb944a40919",
+    "genesis/memory/strategy.py": "e22840d7335024640713dbc56536d392dbab9db58559e90996a0e8f5faa36741",
+    "genesis/meta_policy_application.py": "72f3b44f15ff0f9e71294de4585e07005d371e1a73dec13644d3cdc9d3eef4f9",
+    "genesis/meta_policy_controller.py": "35ffe4c790b480d85a088f1a9b20041aff2cced113e131b8fe171d93a233b7ca",
+    "genesis/meta_policy_evolution.py": "97b32cac1af9f0cf4db1d1835da007d91ecdc660dfb86621432662b157fd3f8a",
+    "genesis/metamorphic_campaign.py": "c0064b9cc69397bed09c994f90c04ac41aa018c8cc3d0429d36286c69c0db5aa",
+    "genesis/metamorphic_form_runtime.py": "e280bcde499e08a7aafdc9b26897065967bd0be33e08cdd294ac6cbdc75510e7",
+    "genesis/metamorphic_policy_loop.py": "9f8daa1d6a5e081509115438657781d52ed1d80f684eb60d327ff212eacffe03",
+    "genesis/migration.py": "08da354f5ba046d974fe6ed3d91da6cbee234b30e9098cc3d744e0f78b484425",
+    "genesis/multilingual_repair_sandbox.py": "9664b738e2fe691b4439e78c1ad4c4d0fcee1d76b81e7f973278ca31b350fb3c",
+    "genesis/native_diagnosis.py": "1f43675acb9dcf0d08636860f46cd304ade69c376204e8985c69aff478323aae",
+    "genesis/objective_policy_controller.py": "2d2fea154de545b27aec75de17d5fe6dc8edd86c8251a2e9b128449084b2195d",
+    "genesis/open_metamorphosis_campaign.py": "3c5cbe5decd28f8ee7b804d30c9b35000f6d94b511650454fc94f2bfde5721ab",
+    "genesis/open_metamorphosis_runtime.py": "4fedca73f9bb51b8dbd0c309055fb59595d335b8e6029eb30a7791874340cb25",
+    "genesis/openrouter_repair.py": "a934129450bcf1b20e4f3abb092447f83ada9b2497622406acbb917c173ccb74",
+    "genesis/operator_outcome_memory.py": "f25bff5e9396f30102aba4c599b4d2c89753319c262c17ebbb6c13c8ea6b6de2",
+    "genesis/operators/__init__.py": "9bf7ad60260b50a7f68783641c1abee7fc637eabc7df9a138b26747a8da4b943",
+    "genesis/operators/structural.py": "64bf51b17399e039badc754fada2f3904f81529b1617f587493694670931cb58",
+    "genesis/operators/universal.py": "a294e8fb47ff3a138667463610df25121c33aa2190308231b2116492e8eb4309",
+    "genesis/patch_templates.py": "5bb74a3dea6043770907f2c75e5add1e163e50b65e858fd76a2b87bb74dd736d",
+    "genesis/policies.py": "43eefa69f3d8eadd758db9e179171ac2910f11d74b71ad538a9fed6a85bb055b",
+    "genesis/policy_body_lineage.py": "86946f2c317325f6bae7cd2c3e191e875631370a142f5033b9b1f22ba51052dc",
+    "genesis/policy_controller.py": "9e753dc350a2f05c5184601293b4fa387abe2d18b3e940e66fff5f49424904f8",
+    "genesis/policy_mutations.py": "fa9f7a474ccf50b890c63e061f25d442fd75ca1a1bc123e47b60a63715532fe3",
+    "genesis/probe.py": "661db803db414c94ddf27ee0b4e31f1ec28d1a32e93735d86f0bf8c7c4a2a60b",
+    "genesis/program_forms.py": "d7946bf55382eea19923eab9c3a41113e512f33cba0d96b9467ba7f3c8bf264f",
+    "genesis/programs.py": "0614f785e685e6ff7589cb227cd3055d83927db992390d78cfa8950846002fa8",
+    "genesis/real_project.py": "312a96b922aa3a776b88e6c7ab5ffabf625e66409631ec757b8adc25ec7e844c",
+    "genesis/real_repair_transfer.py": "62f2bf5a27c985da32abaccef6b42fbb882b37f69f4cf068fd332d93fdf028e0",
+    "genesis/recovery.py": "4f15ffcc9cc47dbad826d27d6a48d83bff8a26c700dbb420239a66486f064574",
+    "genesis/recursive_policy_fixtures.py": "416394c108009ba68193cf61d147486f2e067a9a5f2f54f69bbcb2de5647e337",
+    "genesis/recursive_research_strategy.py": "95df44af5ff49c0fd490b7279ff91da0b2ad1239db1cb974d6934800db22de9f",
+    "genesis/recursive_transformation_language.py": "00e7326228f0c5b582a6b06550946c1e40d09cf861c282cbdb5a376bfb45db7f",
+    "genesis/repair_bench.py": "1325573af309c09045b8a53ba05e4373e0ff16ecd7500002325589b84405805d",
+    "genesis/repair_ir.py": "a9d6d67af4c3e4317c3901189e48c690225d8b0cd24acc8d5ca0161722f32169",
+    "genesis/repair_proposers.py": "6a6e23267047506d61a7a7d6cc9c848478d8f16c5f2e01efdad2078a33e9aa87",
+    "genesis/repair_search_adaptation.py": "ef7ed7d33fa4fdfb2d8d8f2f98e2fb0fcf60c4d9bb9caf5adf56e922838e6835",
+    "genesis/repair_self_improvement.py": "52b9dae8993bbe41e673d85b46ce7fbd94c694ea947e683c372ed41bda301997",
+    "genesis/repair_strategist.py": "9d0a2a9d3c00df78e40cb915bed6f3d8ee6febcfb5c43f7de736f260926231ef",
+    "genesis/retentive_objectives.py": "530f401b059505d13ec0d4e5151a04b3dd0beb85b25e54c6e7390e484a6ca6d0",
+    "genesis/runtime/__init__.py": "4058dca813e5372752ae3c4c1a264a75df29ccf7544dac5f98a25b72ecdaf52e",
+    "genesis/runtime/candidate_scheduler.py": "589ec20e7097b54d4f64ff9e3b46171c1f248fe3d49c195bd8dae32f0c151f60",
+    "genesis/runtime/profile_executor.py": "f3ebf3466c0ddb8fabe0fca0ad06b6e09e33919432dcd6fae68ceffe9da7af8c",
+    "genesis/runtime/recursive_chain_executor.py": "0594c08b9e089db81540ca7a767ad21e04e453b3690ecef78c4d22ef34e7e9e8",
+    "genesis/sandbox.py": "4df4b20028e9bb448514b61694f49550816da07c1d7c5716d2a7ce90287d0b65",
+    "genesis/scalar_mutations.py": "92a8bcddd2e5ab1d35c23c463c596c38954e7446684d966f60102d8984f280a8",
+    "genesis/state.py": "98c58e38b707dad6e93652be964d25c2baae6cc8ede1a947d7e5de1cb5133bb8",
+    "genesis/strategy_memory.py": "36ae20c4ee6005d42ee302b8aaa0e1b99ec39922592b988a61ae18bce03f7475",
+    "genesis/structural_operators.py": "b190146ff37992e48ba56254f2e745fb3ec57e656acdefb7ec7484ac83e140d6",
+    "genesis/transformation_language.py": "cd20665afbcbdeea2a815c98197cd3c864fc64b44b6ff0058e04bbcabe8861c7",
+    "genesis/transformation_language_application.py": "c15d66cd21d99ce2000a543c10ad1462c38d8529048890da8a761760cf7b3f52",
+    "genesis/transformation_language_controller.py": "16f6e0f1ffa652f6d80a612d1c68e19a5525105225e528ff115ff9f070ea7c44",
+    "genesis/trust_root.py": "e19a513f6f1ac8924a82ffef95db16da60038ed4b34192eaaf23b152c66d9895",
+    "genesis/v2/__init__.py": "9806f9cae4d227eaa33eaeb302e04be811cbe7dea75ce55ffea613355df3b953",
+    "genesis/v2/discovery.py": "89683b4d59e00edd7a3b5d8d182e80a8f6c4df6f849d0537762d6e37ca277670",
+    "genesis/v2/gates.py": "10a214434007c5f27a19fb98ab3ef99e3e18a95fb38d8bac1dd5e9ece897fe86",
+    "genesis/v2/genome.py": "8dc6f4ab9a8b8f3f1b39f6b45db1b310e8229c078f2df81604aa888abb2a0458",
+    "genesis/v2/live_adapter.py": "ba8dce4c734dcef674a0512fa1f84a4263907e4b0ddb61c8581aa8eb3cd4c2f7",
+    "genesis/v2/semantic_adapter.py": "577f8536f682f99737a83c6d3191851b03c01196a87a4d178fa8aa22b82f083f",
+    "genesis/v2/semantic_dsl.py": "b5998d0cc265ca5b72a991fe8c93984f14c4bb5f2a1f46d4185ac1445094676b",
+    "genesis/v2/semantic_registry.py": "29a6bed3ad5efb6e9160486cee04329b0d2349d497de66b6a7924942325fa09c",
+    "genesis/v2/traces.py": "e888f8e3e270d7c25fba298ae0f9d8c4621cd30f7d15a4d6b429862f64405b0d",
+    "scripts/run_real_repair_transfer.py": "d4bfd748c0d5b751786d84caaed5b2c8e15fd1cdba3389c6c5a29b4236c9abe2"
+  },
+  "max_models": 2,
+  "max_rounds_per_model": 2,
+  "memory": "/home/anthony/genesis-bench/DEV_REAL_REPAIR_TRANSFER1/training-memory.sqlite",
+  "parent_search": {
+    "capability_policy_digest": "fb63ece777a7e6c8c35c938427539ac11554d309c1a327a6a9c2a917dfddcb7e",
+    "evidence_digest": "",
+    "generation": 0,
+    "ordering": "retained_first",
+    "parent_search_digest": "",
+    "schema": "genesis-repair-search-order-policy-v1",
+    "search_policy_digest": "50d067d3133a293456b1c0c14bc24accf9131d24c3832a7f2506c72e2e11e909"
+  },
+  "plan_digest": "de860311a6a19f8a07d7da475d18c5dfe9048ec5403fb8263c15caf4ef928e47",
+  "plausible_is_not_correct": true,
+  "pool_budget": 32,
+  "schema": "genesis-real-repair-transfer-development-v1",
+  "scope": "released real-project DEVELOPMENT; public bugs; not independent/blind generality evidence",
+  "selection": "first nonpreviously-exposed development case per project in frozen split order",
+  "split_digest": "eb6169d29898f47c4a7aeb3a439a5fae3c0f78d8c754b4202c59c8d53654c753",
+  "validation_budget": 4,
+  "workspace": "/home/anthony/genesis-bench/DEV_REAL_REPAIR_TRANSFER1"
+}

@@ -1,0 +1,351 @@
+{
+  "schema": "genesis-haiku-tool-choice-diagnostic-v1",
+  "scope": "small synthetic API checks, separate from repair trials",
+  "endpoints": [
+    {
+      "provider_name": "Google",
+      "tag": "google-vertex/global",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005",
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Claude Platform on AWS",
+      "tag": "claude-on-aws",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005",
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Azure",
+      "tag": "azure/global",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005",
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Anthropic",
+      "tag": "anthropic",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005",
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Amazon Bedrock",
+      "tag": "amazon-bedrock",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000005",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "input_cache_write": "0.000000125",
+        "input_cache_write_1h": "0.0000002",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.0000005",
+            "completion": "0.0000025",
+            "input_cache_read": "0.00000005",
+            "input_cache_write": "0.000000625",
+            "input_cache_write_1h": "0.000001"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Google",
+      "tag": "google-vertex/europe",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.00000011",
+        "completion": "0.00000055",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000011",
+        "input_cache_write": "0.0000001375",
+        "input_cache_write_1h": "0.00000022",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.00000055",
+            "completion": "0.00000275",
+            "input_cache_read": "0.000000055",
+            "input_cache_write": "0.0000006875",
+            "input_cache_write_1h": "0.0000011"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Google",
+      "tag": "google-vertex/us",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.00000011",
+        "completion": "0.00000055",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000011",
+        "input_cache_write": "0.0000001375",
+        "input_cache_write_1h": "0.00000022",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.00000055",
+            "completion": "0.00000275",
+            "input_cache_read": "0.000000055",
+            "input_cache_write": "0.0000006875",
+            "input_cache_write_1h": "0.0000011"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Azure",
+      "tag": "azure/us",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.00000011",
+        "completion": "0.00000055",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000011",
+        "input_cache_write": "0.0000001375",
+        "input_cache_write_1h": "0.00000022",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.00000055",
+            "completion": "0.00000275",
+            "input_cache_read": "0.000000055",
+            "input_cache_write": "0.0000006875",
+            "input_cache_write_1h": "0.0000011"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Amazon Bedrock",
+      "tag": "amazon-bedrock/us-east-1",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.00000011",
+        "completion": "0.00000055",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000011",
+        "input_cache_write": "0.0000001375",
+        "input_cache_write_1h": "0.00000022",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.00000055",
+            "completion": "0.00000275",
+            "input_cache_read": "0.000000055",
+            "input_cache_write": "0.0000006875",
+            "input_cache_write_1h": "0.0000011"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    },
+    {
+      "provider_name": "Amazon Bedrock",
+      "tag": "amazon-bedrock/eu-west-1",
+      "status": 0,
+      "pricing": {
+        "prompt": "0.00000011",
+        "completion": "0.00000055",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000011",
+        "input_cache_write": "0.0000001375",
+        "input_cache_write_1h": "0.00000022",
+        "discount": 0,
+        "overrides": [
+          {
+            "min_prompt_tokens": 100000,
+            "prompt": "0.00000055",
+            "completion": "0.00000275",
+            "input_cache_read": "0.000000055",
+            "input_cache_write": "0.0000006875",
+            "input_cache_write_1h": "0.0000011"
+          }
+        ]
+      },
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": false,
+        "function": false
+      }
+    }
+  ],
+  "checks": [
+    {
+      "tool_choice": {
+        "type": "function",
+        "function": {
+          "name": "acknowledge"
+        }
+      },
+      "status": 404,
+      "error_code": 404,
+      "message": "No endpoints found that support the provided 'tool_choice' value. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection",
+      "cost_usd": null
+    },
+    {
+      "tool_choice": "auto",
+      "status": 200,
+      "response_id": "gen-1791495779-2sWFpRwXsRIvMxQ8cJaB",
+      "provider": "Google",
+      "usage": {
+        "prompt_tokens": 389,
+        "completion_tokens": 50,
+        "total_tokens": 439,
+        "cost": 6.39e-05,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 6.39e-05,
+          "upstream_inference_prompt_cost": 3.89e-05,
+          "upstream_inference_completions_cost": 2.5e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "response_digest": "bd5310d065fef825432c35cf0fcd43a33b38133989453c2052ee64f35f94a57a"
+    }
+  ],
+  "diagnostic_digest": "ef21a43638b8000e3096986c4f697440e8ac3691989b27dae0c12cbbf1862ae5"
+}
