@@ -1,0 +1,41 @@
+{
+  "blind_successes_counted": 0,
+  "claim": "assistant-engineered reusable operator, previously examined development defect",
+  "freeze": {
+    "baseline_index_digest": "388ec29be1c1c9fa001f01549b77cfd7177d1a439c23e1e0e85a22aaa445496a",
+    "candidate_digest": "6dec6aab871ee9bd2edcef013718ba2b6a7a160b0c98644516e8c5ccc2d3ca7c",
+    "exposed_development_case": true,
+    "first_passing_rank_hypothesis": 1,
+    "human_fixed_source_seen": false,
+    "human_implemented_operator": true,
+    "known_bug_id": 16,
+    "known_bug_project": "Csv",
+    "new_index_digest": "1cbec54f5e69f8b55705637d47809d22772e568a620b2b177976eca0fc4fc20f",
+    "operator": "java_reuse_stateful_stream_iterator",
+    "original_buggy_sha256": "58cba596c5da2774bff6fd926c6a62fbd1b0f8c2dd942d8fa67d3c081a2da692",
+    "original_independent_negative_report_digest": "0c231b166cf9172f1af5e693949fe4449204abf2a6677b5a6be84a49633b8b4c",
+    "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+    "schema": "genesis-csv16-posthoc-development-guard-v1"
+  },
+  "freeze_digest": "d327b9e6486d6f8bba1c9e592a1b26bba45cff10aa2663f1da6c9ccb15302e97",
+  "full_suite_passed": true,
+  "independent_full_project_validation": {
+    "compiled": true,
+    "error": null,
+    "full_suite_failures": 0,
+    "full_suite_pass": true,
+    "full_suite_ran": true,
+    "test_exit": 0,
+    "test_output_digest": "b4bf1f1aaf09825dd0e55a9f3b6852cf7cf51e3de06c4d69932ef00a8d40f862",
+    "trigger_results": [
+      {
+        "digest": "b4bf1f1aaf09825dd0e55a9f3b6852cf7cf51e3de06c4d69932ef00a8d40f862",
+        "exit": 0,
+        "failing_tests": 0,
+        "test": "org.apache.commons.csv.CSVParserTest::testIteratorSequenceBreaking"
+      }
+    ]
+  },
+  "result_digest": "4bcf1a2eaca8a736499143f6f1c903b42462af0e1d898e0ed7e65122090591ee",
+  "schema": "genesis-g11-csv16-posthoc-development-repair-v1"
+}

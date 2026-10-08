@@ -1,0 +1,1799 @@
+{
+  "case_count": 3,
+  "cases": [
+    {
+      "arms": {
+        "legacy_operators": {
+          "candidate_index_digest": "3a316fa241101927e9c5503306e59a44efab4d69ce43ef60aa85719237f30407",
+          "compile_passes": 0,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 120,
+          "planner_seconds": 0.799,
+          "tested_top_k": 12,
+          "top_operator_families": [
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "integer_delta"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add",
+              "comparison_boundary"
+            ]
+          ],
+          "top_source_classes": [
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine",
+            "CommandLine"
+          ]
+        },
+        "testbody_source_localization_g11": {
+          "candidate_index_digest": "2492eb423d069b06f91a4c32c5c4f7c2d6699a4a046b9b5f03bb1034e2937f0a",
+          "compile_passes": 8,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 120,
+          "planner_seconds": 2.272,
+          "tested_top_k": 12,
+          "top_operator_families": [
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "comparison_boundary"
+            ]
+          ],
+          "top_source_classes": [
+            "OptionBuilder",
+            "CommandLine",
+            "Options",
+            "Option",
+            "CommandLineParser",
+            "DefaultParser",
+            "Parser",
+            "AmbiguousOptionException",
+            "GnuParser",
+            "MissingArgumentException",
+            "MissingOptionException",
+            "OptionValidator"
+          ]
+        }
+      },
+      "bug_id": 34,
+      "distinct_candidates_evaluated": 24,
+      "full_suite_valid_unique_candidates": 0,
+      "original_failure_count": 2,
+      "outcomes": [
+        {
+          "path": "src/main/java/org/apache/commons/cli/AmbiguousOptionException.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "3df4d6e4fb4d8e6fa38889bbc3b372dd7fcff4d77048d26e438806a9356b7e97"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "a42d3d6a5f32e9a436b78a8f4d470003565f017dcb6366efca5140d13f3598fb",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "07b47c58327fafce9a4028913a29b3d1a3901197e4da2911cd562c1cf2ed8f07"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "625e3125a1233caec99c905446212f9a53128fb2eb278de21f1fe4c3528f26e2",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "236ec1a27ebd4f8c88e33fb8477a6816c2e63055fe14b2eb3d4093371ef1435d"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "3819fc1873aeeb54cb1249323094f634e5c3d7e74cc5b87afeb986c97103d355",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "254e94ba7f7f7916e42bf4d5e62306a4edf750a5027f7964f8ee5ced17d86850"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "3985285c8ea3f2731647ebefcacdb6995963895e20a0dacdc2734c6cb844dee9",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "2ef6bfb145a3c71ae2c34d184dbdcd88420a6580899f8d5c833f582f77acd620"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "9af697e4a35d80597d2d3daaae747407a4d9315dcca592e27c8d9b96b3e9358b",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "540bccdd26474aeeb29f688bf5673b77264b817fec2fa7a2e8addbace6a9facd"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "77dc9abbb7b371e44cbc144251ddf48d1973c20cab86c5a99110badef2f7225e",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "6938b2a3ea01874f340da305e4f9a51fd4c198b399ecf61e70c2c25cd669fa6c"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "a94152b16d3a5b247a712f0b6a81d8a0acdd806345b0f59903a3cca96ef9765c",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "800ac2cd0bfe082875e031cb7756deade93ed1b14a218540966da326f62fb756"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "97e4b2f85b5c7112599d5fff5d09dcdca54520c0bbd07a791efd14f2e56848b2",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "b07a67063310ce8bf2f6a0bcd7a3ce60e7f61796110ccc247060581f9cb4d7b2"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "bc04099c6935ea2176f3debd7e6f71c458a3ce9ceca8a018d3139e14dd0b1ef8",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "ca0e6c7fbb7c1fa702c23f36f0d39e6845b92dc5ebf7b04fb155d3fc43db83c2"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "f214a527422bfccdb6e7ff8b87e50340256c671c24c770a11ffdabfa6c1826ef",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "cd52d193786fd6f8edc2ce3ac3e22cedd58f534f7591a316a16994e84852031c"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "6bea4f4b0ac79f4fbf0e3cd7b969d165d819ad811d1bd8443e2f242f9e2b450e",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "d4cd87482e254dcea423bd1594d835c843c32cbb4b9b0ace6a8333a2ea2a261a"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "0f0fcb2403ba6523ec62d08783aaa042164ba7614324e4eaacc91b1321f33a41",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "d614a0cc75d00ab11100d8387d68cbb0ccc6ee2d7eb6a55015f0b85d34672a7f"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLine.java",
+          "result": {
+            "compile_output_digest": "62f8b1c769fdf229a3125b5237d9bd78020e64945a732b1a9e3eb01d158d8bb9",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "d6555e3363d42385ba166f22a6998ded9292e2b3ff438891ad0647ef9bb81216"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/CommandLineParser.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "89abeec492f2497d159a797dec2e438854002683636fa7d6fcb68c0a6da644dc"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/DefaultParser.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "85a4772a8ced414c088c1418b9ba84a841f52ea06e09e13efc5cf06c96952be3"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/GnuParser.java",
+          "result": {
+            "compile_output_digest": "3673588664130ae13b1a6052de4a12c79440311961b75bb7be3f1e3afe06531b",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "e20dab9339c972e5c427d493674cc5b381bb54d159f30b6f57894a7084ab97bb"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/MissingArgumentException.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "709845aaee77a3ae736f1d65e5207ce52c4eaf550d8077e9fd5aedce8267bfce"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/MissingOptionException.java",
+          "result": {
+            "compile_output_digest": "bad700e08da69f4e917690e51cc2a1a45631d9a228e25f84a329e2ec882c9a70",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "26d8d9da25586d6cec45f1fcc1079d0ed230d346679d79a581c78d4972054c22"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/Option.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "836a5c40f81f6a46793db0c241e77f1de87405d32819b133387a04ba25d95184"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/OptionBuilder.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "1b69234cce96bbd0fcc72230e4a912830fa6e45e1deb6339d4949881dc30d6a2"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/OptionValidator.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "1ee45e9903742a15fa5ae92281c0d9cebf6498858a848c4189647be6e9862623"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/Options.java",
+          "result": {
+            "compile_output_digest": "5fcba5c0e182cd12673acdff64b4540d247c0c99c0f209207b56cc79fa218b89",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "14a3a0fbf1cb256a67813ac91ae550def627ff845ecc62c23b1c1a22fea9715d"
+        },
+        {
+          "path": "src/main/java/org/apache/commons/cli/Parser.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "19f7eb81a2d13a7b46221609137a9a56969d4084dfa2bfb82e52babdd31894c0",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.CommandLineTest::testGetParsedOptionValue"
+              },
+              {
+                "digest": "5e00403f5b2069e72859023e0a13b39c33ed72be450a78c83622c8a918c2296e",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.cli.OptionBuilderTest::testTwoCompleteOptions"
+              }
+            ]
+          },
+          "sha256": "ee6854a24fde3e33d1c1e4e4ef6e40141682af83f399503e04d9de7541934099"
+        }
+      ],
+      "project": "Cli"
+    },
+    {
+      "arms": {
+        "legacy_operators": {
+          "candidate_index_digest": "f8238e7843651a1ff9f398219eedc69983b83460082345fc2fb3badc82fd9ac7",
+          "compile_passes": 12,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 120,
+          "planner_seconds": 3.331,
+          "tested_top_k": 12,
+          "top_operator_families": [
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ]
+          ],
+          "top_source_classes": [
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology",
+            "Chronology"
+          ]
+        },
+        "testbody_source_localization_g11": {
+          "candidate_index_digest": "eb947ff6d4f6599eff6f8c5b8c05fcbf84395ac9049c3472e39ecb0cf5cd577e",
+          "compile_passes": 10,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 120,
+          "planner_seconds": 42.802,
+          "tested_top_k": 12,
+          "top_operator_families": [
+            [
+              "java_string_literal_case_closure"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_qualified_symbol_substitute"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "integer_delta"
+            ],
+            [
+              "integer_delta"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "integer_delta"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ]
+          ],
+          "top_source_classes": [
+            "DateTimeZone",
+            "Period",
+            "Duration",
+            "PeriodType",
+            "Chronology",
+            "DateTimeField",
+            "DateTimeFieldType",
+            "DateTimeUtils",
+            "DurationField",
+            "DurationFieldType",
+            "IllegalFieldValueException",
+            "JodaTimePermission"
+          ]
+        }
+      },
+      "bug_id": 22,
+      "distinct_candidates_evaluated": 24,
+      "full_suite_valid_unique_candidates": 0,
+      "original_failure_count": 2,
+      "outcomes": [
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "00f561e60e53d503e45e3ff12192a2207e3704aa07912280092cf09e7b864e01"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "0742497e7af2b99cf5258478d177167d364013d7e100a65a0aef8aa2e8d673bc"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "0bc8384654a0624408055648c173a2e0ea2abd6f5828e944751633ba67078605"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "201d7137153f554d33d8ef435cb964f5277547a71e2fe6b89d1b27191a3d0ecd"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "5d4b2877ea945428963716bbd6755d97b4690c3f907aac786908661051e6c946"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "5d7f137a1735e75ce8d20e50de542b4fab2d9f4bb8e8a601ec3275a75f39bf52"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "6471078a6f4cd7d747ad2a5fcdc21e5b0fc506f400787aaeb6dd560a0791b9b5"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "7cdbecd0b9b4a95344ded67b0ff28a8e2fcbd3f6791f6fe53f28a9b0e3be2cbd"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "84b7bed7b94ba8056f43f2016c5a2878dba41041ba6b2c8d33a82460fb887bdc"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "8bc5b9d11cfc208ddea78f52c06034730bd198cf3e6bd8bfe3a431716c0cbf2c"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "b770c5ac620cab8521d34636b422fb72e57540342fc91952dbcf7f7cf1806759"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "bfbecbf6d9b8fde14e37a41028b04f8c1a7dda5434e476f93513358db790c191"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Chronology.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "f186465ff976d3fb7d5ede9365145743f8e3785f8070792fe81b7a80167c60ca"
+        },
+        {
+          "path": "src/main/java/org/joda/time/DateTimeField.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "ee8e0ef5d5e46575aca1576f38ad668219af4e90137a8cb70b6f22c495166626"
+        },
+        {
+          "path": "src/main/java/org/joda/time/DateTimeFieldType.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "746f71f8791b589731e326c31cc69ece5092df08e8e7462b7a5b6b4d3f444f95"
+        },
+        {
+          "path": "src/main/java/org/joda/time/DateTimeUtils.java",
+          "result": {
+            "compile_output_digest": "7437dfaa8a0f1980131a64918d7f354a1cf5792f3b7cfc8cfb8d050f16e5f3ce",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "0a50ee780231894c1492a29341b95d1ef6cbe657148f5c46850830af4ee5e796"
+        },
+        {
+          "path": "src/main/java/org/joda/time/DateTimeZone.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "9689c112ece296fcf764cdcfc64aef533df2314c34a67888694ee3940c2100a0"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Duration.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "f764de3f68a48211ccfc0205ff4ec91bac8ae090a0094d4489a0d48df4ed78a4"
+        },
+        {
+          "path": "src/main/java/org/joda/time/DurationField.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "a9b66c459a15118c8f90a7f4e5fa2f288fddb622e8b5fe10d42033c6e998a5f3"
+        },
+        {
+          "path": "src/main/java/org/joda/time/DurationFieldType.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "0e47e90cdec5c0cf94bf02ff1674873b11750e82e539b84d5abe7eb95b68b61f"
+        },
+        {
+          "path": "src/main/java/org/joda/time/IllegalFieldValueException.java",
+          "result": {
+            "compile_output_digest": "76970806ee72b96b60f63b0051f72381bc94d2e52e9e86f59d46a078fe57190e",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "fff220ca6940f32ce162dec3bbc155d950e27af974e688befedd4f187fd75de8"
+        },
+        {
+          "path": "src/main/java/org/joda/time/JodaTimePermission.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "e4c7244c4dc5486b26ac93322e9eea545694074fdb019e2e19b521f8615d6f7c"
+        },
+        {
+          "path": "src/main/java/org/joda/time/Period.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "08b0e62fb22612b62217f5217a4a2951f10514d838b36e7e9a1e4d61848f86c7"
+        },
+        {
+          "path": "src/main/java/org/joda/time/PeriodType.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "c3429eee73d9a25e7582dcd0c33b290765c6d2b8063f46a0cfa5ee18877a18be",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestDuration_Basics::testToPeriod_fixedZone"
+              },
+              {
+                "digest": "c800125e491e33d629bd83aa7a1a109ff6a115bd8c20364e2940c3b7a8ee4120",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.joda.time.TestPeriod_Constructors::testConstructor_long_fixedZone"
+              }
+            ]
+          },
+          "sha256": "4470dee88611b62f439be0ac3b663893d4c0b9457b8016c3f70b65ba01b3c191"
+        }
+      ],
+      "project": "Time"
+    },
+    {
+      "arms": {
+        "legacy_operators": {
+          "candidate_index_digest": "03cb7b1523190711076276e9efb88adb853a2fc022904c38385a068e697d1250",
+          "compile_passes": 12,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 120,
+          "planner_seconds": 1.512,
+          "tested_top_k": 12,
+          "top_operator_families": [
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ]
+          ],
+          "top_source_classes": [
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression",
+            "CompiledExpression"
+          ]
+        },
+        "testbody_source_localization_g11": {
+          "candidate_index_digest": "78143aa144dc6024e0875803d4ffaccb38d22372187c660b5a9dac3120ec611e",
+          "compile_passes": 9,
+          "first_passing_rank": null,
+          "full_suite_passes": 0,
+          "generated": 120,
+          "planner_seconds": 12.916,
+          "tested_top_k": 12,
+          "top_operator_families": [
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "boolean_toggle"
+            ],
+            [
+              "java_progress_step_insert"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "java_progress_step_insert"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "java_field_modifier_add"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary"
+            ],
+            [
+              "java_field_modifier_add"
+            ]
+          ],
+          "top_source_classes": [
+            "DocumentContainer",
+            "NodeIterator",
+            "NodePointer",
+            "NodePointerFactory",
+            "VariablePointer",
+            "VariablePointerFactory",
+            "BeanPointer",
+            "BeanPointerFactory",
+            "CompiledExpression",
+            "ExpressionContext",
+            "Function",
+            "CollectionPointer"
+          ]
+        }
+      },
+      "bug_id": 12,
+      "distinct_candidates_evaluated": 24,
+      "full_suite_valid_unique_candidates": 0,
+      "original_failure_count": 1,
+      "outcomes": [
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "23ccf138f2d8279ab8f753598e58eac1ad05f2bfc825e4b6670db38bdf3bbcca"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "295be0e6410bdfcb99e5aa903e33ff7af19b4f5ed7b60128a8bc8ba60175b777"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "44f5ec3b6cd7e38a7341874591222457d7181ec25fed057c8f5ee02eda3a959a"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "549215112113f495906bd42b901b380455164e00688ad0edf514012930cb5f2d"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "571681d06446955cf92f91f7316c87b87ef9d3fc7da0e1f356c6d9da1b9beeae"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "96bc795811f182226ed4947ca695a2c84dff2ce784b6765e348caec6c4b9328d"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "a15bc5c459465943f9da271283144509be790a140b4938f02a80ca27a8224ef9"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "b4d1e0115380cc7777dcb8d20b5699e68d57c9265a1a006968082279a8b21db1"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "c74beb49c8d345e7e0db60183d46d06c473d4b134e8261cc8db9f51102926b87"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "ce68de28b24b33f1e840543270026ff6c91b917a59321371aeaa7e911b0a2281"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "d20ff364064a6363f776240b312ef7538db42892b85cd6f240f7844258dfd265"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "e0e365a7499c8bc229d480e0062df38de268d738fd2e98bf7cbe5728e749dc9d"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/CompiledExpression.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "f4dc245f2456b12d14670fc95d69fd03bde0f0e2df86de4d1eb7651fd3f53492"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ExpressionContext.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "1ebe6c05624148fa73378c15df60e0c304802222c903e27fec9574c8b3abaa10"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/Function.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "7275909f0c7fd0cc8a2b66a8cc88add9c2164673abe0eca798a184d8c8b33933"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/NodeIterator.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "73c321d74f4d0bdfc2e6b2f5e6b6dced52e12e5dc500797a095ce93c25bbff6a"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/NodePointer.java",
+          "result": {
+            "compile_output_digest": "39bc90574184837f6c824935edb35eecd52fd23a0add092a253fa296f4e9797e",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "8cff773296a57e666f64cc13bd648e4dba1a836816a042d44b7ec8b6ba5734c4"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/NodePointerFactory.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "ba916a5a47733ab33559a09d299e6ef31816c6ab0a127fd2d6ab6910fc84202c"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/VariablePointer.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "2f18332cadada89aa59430ed1fa047b8a321297d89734ad28454fd621769d86c"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/VariablePointerFactory.java",
+          "result": {
+            "compile_output_digest": "8a23eb930ea7a7471b64bbc67a796bac7225e6cc727bc3e39dd513c7406792b3",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "9d31babbef78a63c8811a2bca31dff96ab165c97ec6a28f7d16474fb0a413974"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/beans/BeanPointer.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "f7149de247bf7d417e1dd5472a456379121d96929f492807806c9da3e06673e1"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/beans/BeanPointerFactory.java",
+          "result": {
+            "compile_output_digest": "96f11001b25e17a953b4d2d99c9d53bfcb9f176b679fde604aa39bcbd8dbe3a0",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          },
+          "sha256": "7056f0cdcdcf854796aeaf1736e70a289ea9af0ad49acfe7a8d0c008dfe91c21"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/ri/model/beans/CollectionPointer.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "ee0a351f9fa7175c29efde385eebf91325f5e226d755dcf98b4944969b011b7b"
+        },
+        {
+          "path": "src/java/org/apache/commons/jxpath/xml/DocumentContainer.java",
+          "result": {
+            "compiled": true,
+            "error": "public_trigger_still_fails",
+            "full_suite_failures": null,
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "digest": "e259a9a85a24d991e365f44fb98f1f6acaba2cc58d096267126ba560c1b0ceb7",
+                "exit": 0,
+                "failing_tests": 1,
+                "test": "org.apache.commons.jxpath.ri.model.ExternalXMLNamespaceTest::testElementDOM"
+              }
+            ]
+          },
+          "sha256": "ff44377f7ef0cfdc2ac338abd1cd490f5a63e8f0e6e1ab92131e408881e8abee"
+        }
+      ],
+      "project": "JxPath"
+    }
+  ],
+  "cases_solved_per_arm": {
+    "legacy_operators": 0,
+    "testbody_source_localization_g11": 0
+  },
+  "claim_scope": "three fresh diverse Java projects; exploratory, not general RSI",
+  "freeze_digest": "74d337b91b2e3efd4352338ea899bba86ddafe32c8067f3733d9e906a2e9bfce",
+  "independent_full_suite_required": true,
+  "no_fixed_revision_or_human_solution": true,
+  "preregistration_digest": "c5ab6a0537c624fb12a8818fbd3dd6dfc1e54fadedc2f9a9d2c6580da11439d8",
+  "result_digest": "fd3052dc5e0ee917143ff2e753386047a44120d7945ebf528a5be32751726c30",
+  "schema": "genesis-g11-third-batch-prospective-results-v1",
+  "unseen_prior_to_candidate_freeze": true
+}

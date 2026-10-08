@@ -211,6 +211,7 @@ def _build_index(
     atomic_first_experimental: bool = False,
     priority_focus_paths: tuple[str, ...] = (),
     sibling_guard_experimental: bool = False,
+    stream_iterator_experimental: bool = False,
 ) -> dict[str, Any]:
     inherited, _ = inherited_j8(buggy, source_prefix, budget)
     fallback, fallback_meta = j9_successor(buggy, source_prefix, budget, inherited)
@@ -233,6 +234,7 @@ def _build_index(
         atomic_first_experimental=atomic_first_experimental,
         priority_focus_paths=priority_focus_paths,
         sibling_guard_experimental=sibling_guard_experimental,
+        stream_iterator_experimental=stream_iterator_experimental,
     )
 
     records: list[dict[str, Any]] = []
@@ -631,6 +633,7 @@ class LangDefects4JAdapter:
         g11_failure_feedback_experimental: bool = False,
         g11_sibling_guard_experimental: bool = False,
         g11_test_source_localization_experimental: bool = False,
+        g11_stream_iterator_experimental: bool = False,
         excluded_case_ids: tuple[int, ...] = (),
     ) -> None:
         self.workspace = workspace.resolve()
@@ -648,6 +651,7 @@ class LangDefects4JAdapter:
         self.g11_failure_feedback_experimental = g11_failure_feedback_experimental
         self.g11_sibling_guard_experimental = g11_sibling_guard_experimental
         self.g11_test_source_localization_experimental = g11_test_source_localization_experimental
+        self.g11_stream_iterator_experimental = g11_stream_iterator_experimental
         self.g11_registry = None
         self.g11_ledger = None
         self.g11_insights = None
@@ -785,6 +789,7 @@ class LangDefects4JAdapter:
             source_balance_experimental=self.g11_source_balance_experimental,
             atomic_first_experimental=self.g11_atomic_first_experimental,
             sibling_guard_experimental=self.g11_sibling_guard_experimental,
+            stream_iterator_experimental=self.g11_stream_iterator_experimental,
             priority_focus_paths=tuple(
                 rec["path"] for rec in test_context["ranked_evidence"]
                 if rec["score"] > 0
@@ -1065,6 +1070,8 @@ def main() -> int:
                         help="Propose source-derived consensus guard transfers from peer Java methods")
     parser.add_argument("--g11-test-source-localization-experimental", action="store_true",
                         help="Prioritize Java source types referred to by the failing public test method")
+    parser.add_argument("--g11-stream-iterator-experimental", action="store_true",
+                        help="Propose reuse of a stateful lookahead iterator for streaming Iterable implementations")
     parser.add_argument("--exclude-case-ids", default="",
                         help="Comma-separated additional protected cases")
     args = parser.parse_args()
@@ -1103,6 +1110,7 @@ def main() -> int:
         g11_failure_feedback_experimental=args.g11_failure_feedback_experimental,
         g11_sibling_guard_experimental=args.g11_sibling_guard_experimental,
         g11_test_source_localization_experimental=args.g11_test_source_localization_experimental,
+        g11_stream_iterator_experimental=args.g11_stream_iterator_experimental,
         excluded_case_ids=excluded_ids,
     )
     final = campaign.run(

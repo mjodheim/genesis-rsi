@@ -233,3 +233,42 @@ the false assertion that a set of historical internal G1-G10 labels is
 equivalent to general recursive self-improvement. New operator invention,
 success across independent unseen projects, validation against equivalent
 budgets, and unattended verified operational capability are distinct gates.
+
+## Third independent prospectively frozen test-body localization study
+
+Cli-34, Time-22 and JxPath-12 were selected before their code was accessed
+using the precommitted seed in G11_THIRD_BATCH_PREREG_20261008.json.
+The original buggy versions compiled and exhibited 2, 2 and 1 failing tests.
+Both arms generated up to 120 candidates per project and froze their
+rankings before any candidate validation in
+G11_THIRD_BATCH_FROZEN_INDEX_20261008.json.
+
+The first 12 proposals per arm were checked by compilation, public trigger
+test and, where eligible, the full project suite. Outcome: zero of three
+full-suite-validated repairs for the baseline AND zero of three for G11's
+public test-body source localization, atomic-first, and sibling-guard arm.
+See G11_THIRD_BATCH_RESULTS_20261008.json for the immutable audit.
+
+Across THREE fully preregistered independent studies spanning nine distinct
+Java project/bug pairs, the corrected G11 machinery has not yet produced
+a single independently verified full-suite repair within the frozen budgets.
+This does not disprove future capabilities, but absolutely rules out a claim
+of independently proven general repair / general recursive self-improvement
+at the tested budgets and present implementation.
+
+## Csv-16 posthoc iterator state repair
+
+Already-exposed Csv-16 exposed an additional generic repair class: calling
+iterator() repeatedly on a stateful, streaming Iterable can discard an
+element prefetched by hasNext() on an abandoned iterator. An assistant-
+engineered opt-in operation identifies an anonymous Iterator with stateful
+lookahead, proposes preserving its instance, and submits it to normal
+full-suite validation. It deliberately refuses ordinary stateless iterator
+implementations and does not encode case-specific class names or human fixes.
+
+The planner selects this repair as its first proposal under an experimental
+atomic-first, public failure class guided setting. Csv-16 compiles and passes
+its full project suite with zero failures. See
+G11_CSV16_POSTHOC_REPAIR_20261008.json and reproduce via
+PYTHONPATH=. python3 scripts/g11_csv_dev_replay.py.
+This is a POSTHOC development result, not a fresh independent repair.

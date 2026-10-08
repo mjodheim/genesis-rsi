@@ -1,5 +1,5 @@
 {
-  "audit_digest": "b9d63dbf1754757e32b31fb03c8664ab2680ef6164825bbaf2d447e5eb861a7a",
+  "audit_digest": "ec64ede17d1168e7b1ef40ceb9fd8856ca69b33af618eb82f81da341a8f1b92a",
   "batches": [
     {
       "case_count": 3,
@@ -70,15 +70,50 @@
       "evaluation_digest": "9547854281e373e089204a6f77820b6f641f6b23bf1111ecdac723efa8dd337b",
       "freeze_digest": "88d339bd77d3df9c9d9f1d926c571892ea186754fcc19f4c9096df32603459f5",
       "name": "second_independent_three"
+    },
+    {
+      "case_count": 3,
+      "case_results": [
+        {
+          "arm_successes": {
+            "legacy_operators": false,
+            "testbody_source_localization_g11": false
+          },
+          "case_id": 34,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "Cli"
+        },
+        {
+          "arm_successes": {
+            "legacy_operators": false,
+            "testbody_source_localization_g11": false
+          },
+          "case_id": 22,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "Time"
+        },
+        {
+          "arm_successes": {
+            "legacy_operators": false,
+            "testbody_source_localization_g11": false
+          },
+          "case_id": 12,
+          "full_suite_valid_distinct_candidates": 0,
+          "project": "JxPath"
+        }
+      ],
+      "evaluation_digest": "fd3052dc5e0ee917143ff2e753386047a44120d7945ebf528a5be32751726c30",
+      "freeze_digest": "74d337b91b2e3efd4352338ea899bba86ddafe32c8067f3733d9e906a2e9bfce",
+      "name": "third_independent_three"
     }
   ],
-  "batches_evaluated": 2,
-  "candidate_counted_independent_cases": 6,
+  "batches_evaluated": 3,
+  "candidate_counted_independent_cases": 9,
   "full_suite_successful_distinct_independent_cases": 0,
   "fully_operational_rsi_scientifically_demonstrated": false,
   "gates": {
     "genesis_self_generated_and_independently_validated_new_operator": false,
-    "independent_batched_evaluations_at_least_three": false,
+    "independent_batched_evaluations_at_least_three": true,
     "independent_equal_budget_baseline_improvement_proven": false,
     "independent_full_suite_repairs_at_least_five": false,
     "minimum_ten_pre_registered_untouched_cases": false,
@@ -87,9 +122,7 @@
     "success_across_at_least_three_projects": false
   },
   "human_operator_inventions_do_not_count": true,
-  "missing_studies": [
-    "G11_THIRD_BATCH_RESULTS_20261008.json"
-  ],
+  "missing_studies": [],
   "patch_overfitting_not_ruled_out_by_visible_test_suites": true,
   "posthoc_development_repairs_do_not_count": true,
   "schema": "genesis-rsi-scientific-readiness-gates-v1",
