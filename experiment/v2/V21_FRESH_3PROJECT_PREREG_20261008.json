@@ -1,0 +1,52 @@
+{
+  "adaptive_self_improvement_during_exam": false,
+  "arms": [
+    "v1_frozen_default",
+    "v21_typed_semantic_optin"
+  ],
+  "candidate_generation": "generate/freeze all arms and cases BEFORE running any candidate validator",
+  "composition_fraction": 0.4,
+  "evaluated_top_k_per_arm": 8,
+  "evaluation_budgets_matched": true,
+  "freshness_scope": "projects never used in earlier Genesis G11 or G12 independent and development runs; public Defects4J bugs are not guaranteed unseen by foundation models",
+  "frozen_code_head": "bdc2b6199ecd48331fbf36b65acd09196e7190c6",
+  "frozen_policy_source": "V2.1 genesis.v2.semantic_dsl + genesis.repair_strategist and default V1, no post-selection edits",
+  "generated_max_per_arm": 96,
+  "not_claimed": "proof of general RSI or statistically powered comparison",
+  "per_family_budget": 96,
+  "preflight_refuses_failed_checkout_or_bad_buggy_baseline": true,
+  "preregistration_digest": "aeca5556d5f181263065a791c7ca9265bfba3a47e639782a70c7c6c38bfa3c49",
+  "previous_nine_cases_untouched": true,
+  "projects": [
+    {
+      "bug_id": 23,
+      "buggy_revision": "209",
+      "pool_size": 26,
+      "project": "Chart",
+      "seed": "genesis-v21-fresh-independent-blind-repair-20261008-Chart-v1",
+      "seed_sha256": "d0a47b75ee8b0cb053fc452eeef7bd4ac58923b9fe979003c58ecf3bb2647026"
+    },
+    {
+      "bug_id": 4,
+      "buggy_revision": "4c6a8b996ac608251fa63286d6c322251910ca63",
+      "pool_size": 6,
+      "project": "JacksonXml",
+      "seed": "genesis-v21-fresh-independent-blind-repair-20261008-JacksonXml-v1",
+      "seed_sha256": "fdc46ab992c0138a4cb7a963a92191d8118858510fdacc4926d918ace4afda61"
+    },
+    {
+      "bug_id": 22,
+      "buggy_revision": "920ec4c3efe3133aa5009fcc9757a3cd07c5ac02",
+      "pool_size": 38,
+      "project": "Mockito",
+      "seed": "genesis-v21-fresh-independent-blind-repair-20261008-Mockito-v1",
+      "seed_sha256": "f7cafd687d707d5e8c069530bd73b51f9234508ffc8b8c2c8f2bfc505552bfe3"
+    }
+  ],
+  "schema": "genesis-v21-three-project-prospective-repair-prereg-v1",
+  "selection_rule": "int(sha256(seed),16) modulo active-bugs.csv row count, fixed project roster before inspection",
+  "source_selection": "bounded 24 dynamically loaded .java classes ranked by public failing test class/source evidence, identical for both arms",
+  "tooling": "buggy revision only; no fixed version, human reference patches, hidden answers, issue descriptions or training from evaluation outcome before freeze",
+  "v21_semantic_grammar_locked_during_run": true,
+  "validation": "compile candidate; run public original failing triggers; full Defects4J suite required if triggers pass; zero failures+exit0"
+}
