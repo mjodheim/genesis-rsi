@@ -1,0 +1,49 @@
+{
+  "Er4_holdouts_excluded": true,
+  "all_arms_frozen_before_any_candidate_evaluation": true,
+  "baseline_commit": "e9d25fc9",
+  "budget_generated_per_arm": 100,
+  "candidate_arms": [
+    "legacy_before_g11",
+    "g11_atomics_balancing_sibling_guard"
+  ],
+  "cases": [
+    {
+      "bug_id": 2,
+      "bug_pool_size": 18,
+      "loaded_classes_exists": true,
+      "project": "Gson",
+      "revision_id": "10714ef0427536b679e9677f8417807e4cce017d",
+      "seed_digest": "dd0e03ce0490b4ae12852f614ecd2df995c63c0ce9e1afebfc14e468c5532bf7",
+      "selection_seed": "genesis-g11-second-independent-batch-20261008-Gson-v1"
+    },
+    {
+      "bug_id": 68,
+      "bug_pool_size": 93,
+      "loaded_classes_exists": true,
+      "project": "Jsoup",
+      "revision_id": "1b38f80d623310e84c87b2d708ed0ab648dfafc5",
+      "seed_digest": "43a6f0520454b5d011b9d8f686435800b696334c172b18a1f136064b586ecb2d",
+      "selection_seed": "genesis-g11-second-independent-batch-20261008-Jsoup-v1"
+    },
+    {
+      "bug_id": 11,
+      "bug_pool_size": 26,
+      "loaded_classes_exists": true,
+      "project": "JacksonCore",
+      "revision_id": "7ca3d1cb6f1317863b5b04a1b0a7bac2aee5eefd",
+      "seed_digest": "339a55e4d81cc8237526dae643b0555463389dc3ba8b98221d43ee3a3f94f89e",
+      "selection_seed": "genesis-g11-second-independent-batch-20261008-JacksonCore-v1"
+    }
+  ],
+  "composition_fraction": 0.4,
+  "external_success_is_not_RSI_certification": true,
+  "full_project_suite_required_for_any_success": true,
+  "no_fixed_versions_or_human_patch": true,
+  "no_prior_operator_training_on_these_projects": true,
+  "preregistration_digest": "512ade394af70e17874cb1363d7d93ba63c6c5e325a4f2baef589f830e6ab6c3",
+  "public_triggers_early_rejection": true,
+  "schema": "genesis-g11-second-independent-batch-prereg-v1",
+  "selection_rule": "SHA256(seed) modulo row count from public active-bugs.csv without using any buggy/fixed source",
+  "top_k_compile_and_validate_per_arm": 12
+}
