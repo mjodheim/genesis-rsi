@@ -181,6 +181,36 @@ class SemanticHypothesisDSLTests(unittest.TestCase):
             with self.assertRaisesRegex(SemanticHypothesisError,"source changed"):
                 compile_hypothesis(root,rec)
 
+    def test_requires_static_final_typed_result_and_boolean_members(self):
+        with TemporaryDirectory() as td:
+            root=Path(td)
+            java=root/"Signal.java"
+            original=fixture()
+            java.write_text(original.replace(
+                "public static final Signal BAD", "public final Signal BAD"
+            ))
+            self.assertEqual(propose(root,"Signal.java")["hypothesis_count"],0)
+            java.write_text(original.replace("private boolean corrupt;", "private Object corrupt;"))
+            self.assertEqual(propose(root,"Signal.java")["hypothesis_count"],0)
+
+    def test_donor_methods_cannot_be_borrowed_across_java_classes(self):
+        with TemporaryDirectory() as td:
+            root=Path(td)
+            primary=fixture()
+            # Another unrelated Java type has a similar method but no
+            # supporting donor methods; this must NOT borrow Signal's facts.
+            secondary="""class Parcel {
+                boolean corrupt;
+                static final Parcel BAD = new Parcel();
+                public Parcel join(Parcel peer) {
+                    return new Parcel();
+                }
+            }"""
+            (root/"Signal.java").write_text(primary+"\n"+secondary)
+            found=propose(root,"Signal.java")
+            self.assertEqual(found["hypothesis_count"],1)
+            self.assertEqual(found["proposals"][0]["target_return_type"],"Signal")
+
     def test_no_peer_quorum_and_negative_cases(self):
         with TemporaryDirectory() as td:
             root=Path(td)

@@ -4,7 +4,7 @@ from pathlib import Path
 from collections.abc import Sequence
 from typing import Any
 from genesis.trust_root import digest_of
-from genesis.v2.semantic_dsl import compile_hypothesis, propose
+from genesis.v2.semantic_registry import default_registry
 
 SCHEMA = "genesis-v21-semantic-hypothesis-candidates-v1"
 
@@ -24,10 +24,12 @@ def generate(root: str | Path, *, include_prefixes: Sequence[str] = (),
             files.append(value)
     output=[]
     hypothesis_index=[]
+    registry=default_registry()
     for relative in files:
-        suggestions=propose(base,relative,max_hypotheses=32)
-        for h in suggestions["proposals"]:
-            compiled=compile_hypothesis(base,h)
+        recorded=registry.propose(base,relative,max_hypotheses=32)
+        suggestions=recorded["proposal_response"]
+        for index,h in enumerate(suggestions["proposals"]):
+            compiled=registry.compile(base,recorded,index)
             identifier={
                 "schema":SCHEMA,"path":relative,
                 "expected_sha256":compiled["source_sha256"],

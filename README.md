@@ -114,6 +114,18 @@ a regression on one project. The V2 promotion gate REJECTS deployment.
 V1 is unchanged unless the optional V2 ranking adapter is explicitly enabled.
 See experiment/v2/README.md for reproducible evidence.
 
+### Genesis V2.1 — Typed semantic hypothesis language (experimental)
+
+V2.1 adds a declarative Java hypothesis system, a detachable language
+module registry and an optional actual repair-family adapter.
+See [V2.1 scientific scope](docs/GENESIS_V21_SEMANTIC_DISCOVERY.md).
+In synthetic Java fixtures, hypotheses from peer-method contracts
+compiled and passed independent assertions. A frozen, previously exposed
+Math-53 development case also passed the complete external suite.
+These are **not independent unseen repair successes** and do not prove RSI.
+The human-authored hypothesis grammar, not Genesis, supplies the current
+space of new transformations. The default planner remains unchanged.
+
 ## Historical integrity markers
 
 The architecture reset does not erase or soften frozen historical outcomes. In particular, the **M086-A** attempt remains **POST-HOC DISQUALIFIED** and withdrawn exactly as recorded in its experiment evidence. Historical milestone labels remain valid identifiers even when they are no longer part of the active reader-facing roadmap.

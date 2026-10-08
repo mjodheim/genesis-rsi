@@ -22,7 +22,7 @@ import re
 from typing import Any
 
 from genesis.java_sibling_guard_mutations import (
-    _mask_literals_and_comments, _methods, NULL_CHECK, ID,
+    _mask_literals_and_comments, _methods, _closing_brace, NULL_CHECK, ID,
 )
 from genesis.trust_root import digest_of
 
@@ -42,8 +42,11 @@ BOOL_DECLARATION = re.compile(
     rf"boolean\s+(?P<field>{ID})\s*(?:[;=,])"
 )
 CONSTANT_DECLARATION = re.compile(
-    rf"\b(?:(?:public|protected|private|final|static)\s+)*"
+    rf"\b(?P<mods>(?:(?:public|protected|private|final|static)\s+)*)"
     rf"(?P<type>{ID})\s+(?P<name>{ID})\s*="
+)
+CLASS_DECLARATION = re.compile(
+    rf"\bclass\s+(?P<name>{ID})\b[^{{;]*\{{",
 )
 
 
@@ -67,16 +70,38 @@ def _read_project_source(root: Path, relative: str) -> str:
 def _discover_in_text(relative: str, source: str) -> list[dict[str, Any]]:
     masked = _mask_literals_and_comments(source)
     methods = _methods(masked)
-    known_boolean_fields = {m["field"] for m in BOOL_DECLARATION.finditer(masked)}
-    fields_or_constants = {
-        (m["type"], m["name"]) for m in CONSTANT_DECLARATION.finditer(masked)
-    }
-    grouped: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    scopes = []
+    for m in CLASS_DECLARATION.finditer(masked):
+        closing = _closing_brace(masked, m.end() - 1)
+        if closing is not None:
+            body = masked[m.end():closing]
+            constants = {
+                (x["type"], x["name"]) for x in CONSTANT_DECLARATION.finditer(body)
+                if {"static", "final"} <= set(x["mods"].split())
+            }
+            scopes.append({
+                "name":m["name"], "start":m.end(), "end":closing,
+                "boolean_fields":{
+                    x["field"] for x in BOOL_DECLARATION.finditer(body)
+                },
+                "constants":constants,
+            })
+    grouped: dict[tuple[int, str, str], list[dict[str, Any]]] = defaultdict(list)
     for method in methods:
-        grouped[method["rtype"], method["argtype"]].append(method)
+        matching = [
+            (i, c) for i, c in enumerate(scopes)
+            if c["start"] <= method["body_start"] < c["end"]
+        ]
+        if matching:
+            # Nested classes cannot borrow their enclosing class's guards.
+            owner = min(matching,key=lambda item:item[1]["end"]-item[1]["start"])[0]
+            grouped[owner,method["rtype"],method["argtype"]].append(method)
 
     proposed: list[dict[str, Any]] = []
-    for (rtype, argtype), siblings in sorted(grouped.items()):
+    for (owner, rtype, argtype), siblings in sorted(grouped.items()):
+        scope = scopes[owner]
+        known_boolean_fields = scope["boolean_fields"]
+        fields_or_constants = scope["constants"]
         if rtype != argtype or len(siblings) < 3:
             continue  # return type and argument class must agree
         donor_patterns: dict[tuple[str, str, str, str], set[str]] = defaultdict(set)
