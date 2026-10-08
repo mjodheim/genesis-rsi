@@ -1,0 +1,30 @@
+{
+  "arms": [
+    "baseline",
+    "source_balanced",
+    "balanced_g11_hypotheses"
+  ],
+  "budget_each": 80,
+  "bug_id": 6,
+  "buggy_revision": "41aa509d836dcdd316a40e68680cc54e0f6c1e04",
+  "composition_fraction": 0.4,
+  "defects4j_fixed_revision_consulted": false,
+  "er4_lang_cases_used": false,
+  "excluded_training_case": "Codec-15 development case only; no transfer of patches",
+  "first_exposure_at_this_experiment": true,
+  "focus": "loaded_classes/<bug>.src entries mapping to buggy checkout Java files",
+  "freeze_before_validation": true,
+  "humans_fixes_checked_out": false,
+  "limitation": "one real defect; no broad causal generalization claim",
+  "preregistration_digest": "feedd55f23cb67388986dcdd10613bd98c48dfc2cd77e5eaa7ccdd0b107f45e4",
+  "prior_training_memory_used": false,
+  "project": "Compress",
+  "schema": "genesis-g11-compress-cross-project-prereg-v1",
+  "selection_digest": "c680c39a99c1d24dc7f4baff728a5521c23d6f54857ea401ba6f3ce5dd9a3d96",
+  "selection_method": "sha256(seed) mod active-bugs.csv row count",
+  "selection_seed": "genesis-g11-real-cross-project-20261008-Compress",
+  "selection_source": "public Defects4J Compress bug metadata only",
+  "top_k_full_suite": 8,
+  "training_during_evaluation": false,
+  "validation": "Defects4J compile plus full test suite in fresh buggy-only copies"
+}
