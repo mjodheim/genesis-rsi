@@ -1,0 +1,541 @@
+{
+  "baseline_check": {
+    "candidates_per_case": 8,
+    "case_count": 3,
+    "compile_valid_candidates": 16,
+    "full_suite_valid_candidates": 0,
+    "individual": [
+      {
+        "case_id": "Cli-34",
+        "compiled": 0,
+        "evaluated": 8,
+        "full_suite_valid": 0,
+        "has_full_suite_success": false,
+        "selected_candidate_digest": "e5dece3abef04c50bd71c44f909cbb33b702e070d9857b7bb51f1e9ff55ef67b"
+      },
+      {
+        "case_id": "Time-22",
+        "compiled": 8,
+        "evaluated": 8,
+        "full_suite_valid": 0,
+        "has_full_suite_success": false,
+        "selected_candidate_digest": "787fef6da4b05e2ae133c2bce56eb8b9238613ef4354d7aa4ab86bcff137705f"
+      },
+      {
+        "case_id": "JxPath-12",
+        "compiled": 8,
+        "evaluated": 8,
+        "full_suite_valid": 0,
+        "has_full_suite_success": false,
+        "selected_candidate_digest": "a70ec644c58e3651ca5f22bf639b78ec62c90aa3a2c6da10fbb2cd8989d6d1a7"
+      }
+    ],
+    "measurement_digest": "22c69ca685727407c8878b7cbfe0b03ad2d9cceccf4190cab92eaca84fee0efa",
+    "projects_with_full_suite_success": 0,
+    "test_budget": 24
+  },
+  "budget_and_outcomes_owned_by_immutable_judge": true,
+  "catalogue_digest": "5263d745e0d8b1f9581c41f2ccb03e5980d94e1acebbe78c10e40c044116a890",
+  "decision": "never_promote_from_exposed_data",
+  "descendant_check": {
+    "candidates_per_case": 8,
+    "case_count": 3,
+    "compile_valid_candidates": 21,
+    "full_suite_valid_candidates": 0,
+    "individual": [
+      {
+        "case_id": "Cli-34",
+        "compiled": 6,
+        "evaluated": 8,
+        "full_suite_valid": 0,
+        "has_full_suite_success": false,
+        "selected_candidate_digest": "ac6a8bda447a50d9870301bdd2905dbce7e011fc30ff5ceb50ff1f691d0d78dc"
+      },
+      {
+        "case_id": "Time-22",
+        "compiled": 8,
+        "evaluated": 8,
+        "full_suite_valid": 0,
+        "has_full_suite_success": false,
+        "selected_candidate_digest": "ea89acb3b493502812a1da810827cffd6c6062ecd7110c97b73c638dba849623"
+      },
+      {
+        "case_id": "JxPath-12",
+        "compiled": 7,
+        "evaluated": 8,
+        "full_suite_valid": 0,
+        "has_full_suite_success": false,
+        "selected_candidate_digest": "e5ff8df6059059764b55f5074a28ef16af8af3954d0f1ddefa3a0ef123a9b1fd"
+      }
+    ],
+    "measurement_digest": "eb7a4d6f7ffb93fb08e67a554025ed5573b7aec996d602218109be149a737f6d",
+    "projects_with_full_suite_success": 0,
+    "test_budget": 24
+  },
+  "development_check_cases": [
+    "Cli-34",
+    "Time-22",
+    "JxPath-12"
+  ],
+  "development_compilation_gain": 5,
+  "development_full_suite_gain": 0,
+  "fresh_unseen_repair_claims": 0,
+  "max_generations": 2,
+  "mutable_genome_can_access_evaluator": false,
+  "no_new_program_executions": true,
+  "production_genome_unchanged": true,
+  "schema": "genesis-v2-retrospective-discovery-v1",
+  "self_discovered_semantic_repair_operators": 0,
+  "study_digest": "3b146dcdf9e7fc74db7b90b83da0037d96ee80558eba50a91446dcce0e6507ca",
+  "top_k_each_case": 8,
+  "training_cases": [
+    "Math-53",
+    "Csv-16",
+    "Collections-24",
+    "Gson-2",
+    "Jsoup-68",
+    "JacksonCore-11"
+  ],
+  "training_search": {
+    "learned_genome": {
+      "can_change_trust_root": false,
+      "can_execute_generated_source": false,
+      "generation": 2,
+      "genome_digest": "ff3b15c721911cefba91a5c60a2e393a095efb406e14b0ebde238f0f6d7f8d4d",
+      "mutation": {
+        "delta": 1,
+        "feature": "non_modifier"
+      },
+      "parent_digest": "1f9b90ac12c950bc545e60e5774ad0557af74ee22ee8b1326314cdacae08c24b",
+      "schema": "genesis-v2-search-genome-v1",
+      "weights": {
+        "atomic": 1,
+        "non_modifier": 1,
+        "rare_source": 0,
+        "semantic_operator": 0,
+        "source_evidence": 0
+      }
+    },
+    "learned_training_measurement": {
+      "candidates_per_case": 8,
+      "case_count": 6,
+      "compile_valid_candidates": 35,
+      "full_suite_valid_candidates": 0,
+      "individual": [
+        {
+          "case_id": "Math-53",
+          "compiled": 8,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "0ba4fadb9c8852dbcbefd8f6aaac94324b00719ea864cb403c7586629d1034ef"
+        },
+        {
+          "case_id": "Csv-16",
+          "compiled": 4,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "1424e5bd75cd4c480753cae82d1ab805527162a8eb0f52b19b0f044791193154"
+        },
+        {
+          "case_id": "Collections-24",
+          "compiled": 5,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "5755a8d5b151897559edbeb96ae4453fdbf570758425293eda3105f17215728a"
+        },
+        {
+          "case_id": "Gson-2",
+          "compiled": 5,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "5f8daf019eb695c49008133eaf5392f8f9aa568f5e42ba7e1f19c5a0bc187db6"
+        },
+        {
+          "case_id": "Jsoup-68",
+          "compiled": 6,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "acdb3584f2b709f26e99660fb04673958464dc7482bf899e32e0e9fe05844da3"
+        },
+        {
+          "case_id": "JacksonCore-11",
+          "compiled": 7,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "a237590c827438df3a25ed8d1c9f17e3e61f12e67379eaa6ef0ba52862f3d0bc"
+        }
+      ],
+      "measurement_digest": "37127c6bf30a32a1bde495438b976174d83375608979926591c82ee38ba3bb9f",
+      "projects_with_full_suite_success": 0,
+      "test_budget": 48
+    },
+    "search_steps": [
+      {
+        "candidate_proposals": [
+          {
+            "genome_digest": "f4a851b41523adbdd4e014d86f3ae5b386df458018d064afe44c2cb6d55567cd",
+            "mutation": {
+              "delta": -1,
+              "feature": "atomic"
+            },
+            "training_fitness": [
+              0,
+              0,
+              19
+            ],
+            "training_measurement_digest": "9f07b97f0111322c2fd70bad24db532c49cbc22fcab46e0f903f0ac2b2e86a88"
+          },
+          {
+            "genome_digest": "1f9b90ac12c950bc545e60e5774ad0557af74ee22ee8b1326314cdacae08c24b",
+            "mutation": {
+              "delta": 1,
+              "feature": "atomic"
+            },
+            "training_fitness": [
+              0,
+              0,
+              33
+            ],
+            "training_measurement_digest": "5432e6a6ea3c1157d9a12d2936f8c5380f1506b42ac476baf67c67e7090bc01d"
+          },
+          {
+            "genome_digest": "fa6d4382a1373f886a987301b328fafe052be4a361902817335d5a12daad6bc3",
+            "mutation": {
+              "delta": -1,
+              "feature": "source_evidence"
+            },
+            "training_fitness": [
+              0,
+              0,
+              19
+            ],
+            "training_measurement_digest": "da31a43d939aa1f1b0d288b4a4e8b43716ca0c00de4b867ff8acc4dab883155b"
+          },
+          {
+            "genome_digest": "917d76c9e493072fb11f8c52ab3f1ef48b6b5bbad935d954331d0afbd504114b",
+            "mutation": {
+              "delta": 1,
+              "feature": "source_evidence"
+            },
+            "training_fitness": [
+              0,
+              0,
+              21
+            ],
+            "training_measurement_digest": "901443a44e726438955b48930ed3fab78226700e05600ce4d1f42fe166b37844"
+          },
+          {
+            "genome_digest": "0bb5d8eb4c6ae0410c20983e4fb7a679384191137c1aa3bfd093dddf4349fb1e",
+            "mutation": {
+              "delta": -1,
+              "feature": "non_modifier"
+            },
+            "training_fitness": [
+              0,
+              0,
+              16
+            ],
+            "training_measurement_digest": "bdd3b71d7eb6b0cbc48d8a072d2c6497125dbf530b7d523346633bef01e2e987"
+          },
+          {
+            "genome_digest": "2d4be9fcc3ed0e10b44066d28faa4df80462eda8299d1016c4427e5f8c7dc66e",
+            "mutation": {
+              "delta": 1,
+              "feature": "non_modifier"
+            },
+            "training_fitness": [
+              0,
+              0,
+              31
+            ],
+            "training_measurement_digest": "369c1373c3b079465d797b64f11bccd4a557a572e516347ca7877a6f33ef5e7b"
+          },
+          {
+            "genome_digest": "07247aaba8672c3f9cc7fc8963cb8d5a990f9ac2685afd7f7d216ad85386bc65",
+            "mutation": {
+              "delta": -1,
+              "feature": "rare_source"
+            },
+            "training_fitness": [
+              0,
+              0,
+              19
+            ],
+            "training_measurement_digest": "73eaa6144a5339b7a44fa32195a960b86454c0d8130e29f8997ccf2aff36d1ca"
+          },
+          {
+            "genome_digest": "85ecf3a8e5274fe59755ef7e59005c0dd9241f79f8d25fcc073831cca911572a",
+            "mutation": {
+              "delta": 1,
+              "feature": "rare_source"
+            },
+            "training_fitness": [
+              0,
+              0,
+              29
+            ],
+            "training_measurement_digest": "39533d4b6375690b59a8327e4dccaeb3ccb1305c849658d8aabd4eb7b6d3b8d0"
+          },
+          {
+            "genome_digest": "5d289d15373546077808e4b63845e70fa9bbfbf6483153482b6b0bef5498410f",
+            "mutation": {
+              "delta": -1,
+              "feature": "semantic_operator"
+            },
+            "training_fitness": [
+              0,
+              0,
+              22
+            ],
+            "training_measurement_digest": "182e88b3119291f99ff3da35afd2db4ec3eac289b606aed83830918e704bd1b0"
+          },
+          {
+            "genome_digest": "7ae5b6d5707445faf08159eb1e77a0d8b844f625de423ed89fc8ca5d96743b83",
+            "mutation": {
+              "delta": 1,
+              "feature": "semantic_operator"
+            },
+            "training_fitness": [
+              0,
+              0,
+              21
+            ],
+            "training_measurement_digest": "23ddadf015072a827d4084fd114ebdf497af8d22dd24b708cc360eab5003609e"
+          }
+        ],
+        "chosen_genome_digest": "1f9b90ac12c950bc545e60e5774ad0557af74ee22ee8b1326314cdacae08c24b",
+        "evaluation_scope": "released_development_training",
+        "generation_from": 0,
+        "mechanism": "finite_self_proposed_genome_mutations",
+        "parent_genome_digest": "44f59adcb008dddf664a0fc5128e56646aaacf606f8b310ed28f4bb2eef38a41",
+        "proposal_count": 10,
+        "search_step_digest": "093dc3dc619665b82249c357bb33694fd4008faed17a16b4aec35a8104f8b04d"
+      },
+      {
+        "candidate_proposals": [
+          {
+            "genome_digest": "0e9e4738e1112d83371eec628390abd7a320ddc9286de2f8f7a54f245da5ed93",
+            "mutation": {
+              "delta": -1,
+              "feature": "atomic"
+            },
+            "training_fitness": [
+              0,
+              0,
+              19
+            ],
+            "training_measurement_digest": "9f07b97f0111322c2fd70bad24db532c49cbc22fcab46e0f903f0ac2b2e86a88"
+          },
+          {
+            "genome_digest": "e775179cc9afb6678e7f36a4602a927a45fdacd6e9fb745fa8e7291af88cc039",
+            "mutation": {
+              "delta": 1,
+              "feature": "atomic"
+            },
+            "training_fitness": [
+              0,
+              0,
+              33
+            ],
+            "training_measurement_digest": "5432e6a6ea3c1157d9a12d2936f8c5380f1506b42ac476baf67c67e7090bc01d"
+          },
+          {
+            "genome_digest": "a544533419e146fb7c7ed7004da5269ab8dc7ff8deacc07ed6922a8e428ae03b",
+            "mutation": {
+              "delta": -1,
+              "feature": "source_evidence"
+            },
+            "training_fitness": [
+              0,
+              0,
+              30
+            ],
+            "training_measurement_digest": "ae51ecff36b0fbe60349f0924991ac48a8b2f3e3aedbbff2a7ce9cbf2749be6d"
+          },
+          {
+            "genome_digest": "23520b824217570d9b7eaa8970b566a2dd399340cb07eee3c1d06cd40ed07790",
+            "mutation": {
+              "delta": 1,
+              "feature": "source_evidence"
+            },
+            "training_fitness": [
+              0,
+              0,
+              33
+            ],
+            "training_measurement_digest": "5432e6a6ea3c1157d9a12d2936f8c5380f1506b42ac476baf67c67e7090bc01d"
+          },
+          {
+            "genome_digest": "b8d99a8de1d5e13af3813bcd57d700d64884df600284ceae10e839ec8d26f662",
+            "mutation": {
+              "delta": -1,
+              "feature": "non_modifier"
+            },
+            "training_fitness": [
+              0,
+              0,
+              25
+            ],
+            "training_measurement_digest": "37f9173a904edcc6ee6d9f9144b29ad119b8358288faff75cc58375f0253e03d"
+          },
+          {
+            "genome_digest": "ff3b15c721911cefba91a5c60a2e393a095efb406e14b0ebde238f0f6d7f8d4d",
+            "mutation": {
+              "delta": 1,
+              "feature": "non_modifier"
+            },
+            "training_fitness": [
+              0,
+              0,
+              35
+            ],
+            "training_measurement_digest": "37127c6bf30a32a1bde495438b976174d83375608979926591c82ee38ba3bb9f"
+          },
+          {
+            "genome_digest": "83fe8f2414ac7e97d45bf598174999d841dcf3f7bbdca3a9612e1ecf1325c757",
+            "mutation": {
+              "delta": -1,
+              "feature": "rare_source"
+            },
+            "training_fitness": [
+              0,
+              0,
+              20
+            ],
+            "training_measurement_digest": "3bb38d2e68d61eaf135446fe6044d5e92abbc10e208de4ac7972755b522c8632"
+          },
+          {
+            "genome_digest": "ef17d63ec119d1d4eaad2bf30f614602c536296041b60ddf98b340befba146b8",
+            "mutation": {
+              "delta": 1,
+              "feature": "rare_source"
+            },
+            "training_fitness": [
+              0,
+              0,
+              29
+            ],
+            "training_measurement_digest": "ed8471fc39c832785c6acad53f441237d58144f23c8809b719fc349aa8a94d1d"
+          },
+          {
+            "genome_digest": "1ba422dbb3a6aecd276b5057b5bddad6891c2eaafffee1fe142ac27f24280a81",
+            "mutation": {
+              "delta": -1,
+              "feature": "semantic_operator"
+            },
+            "training_fitness": [
+              0,
+              0,
+              31
+            ],
+            "training_measurement_digest": "831f086297782699ad35c6b768456c0164650a77a18bd4359db9f6600b8b3f6f"
+          },
+          {
+            "genome_digest": "559ffdffb2d861ac4a21d00f069532b947ee025430bb0454b17ab70c288becb5",
+            "mutation": {
+              "delta": 1,
+              "feature": "semantic_operator"
+            },
+            "training_fitness": [
+              0,
+              0,
+              27
+            ],
+            "training_measurement_digest": "8f61ad470601b907bf372d7e462183bcd9336be178e8ee9f0d6d1f5d5d9b3536"
+          }
+        ],
+        "chosen_genome_digest": "ff3b15c721911cefba91a5c60a2e393a095efb406e14b0ebde238f0f6d7f8d4d",
+        "evaluation_scope": "released_development_training",
+        "generation_from": 1,
+        "mechanism": "finite_self_proposed_genome_mutations",
+        "parent_genome_digest": "1f9b90ac12c950bc545e60e5774ad0557af74ee22ee8b1326314cdacae08c24b",
+        "proposal_count": 10,
+        "search_step_digest": "31f54912e636130cdba448418799b5293db78a8247d39f4cd551a5ef839aedac"
+      }
+    ],
+    "seed_genome": {
+      "can_change_trust_root": false,
+      "can_execute_generated_source": false,
+      "generation": 0,
+      "genome_digest": "44f59adcb008dddf664a0fc5128e56646aaacf606f8b310ed28f4bb2eef38a41",
+      "mutation": null,
+      "parent_digest": null,
+      "schema": "genesis-v2-search-genome-v1",
+      "weights": {
+        "atomic": 0,
+        "non_modifier": 0,
+        "rare_source": 0,
+        "semantic_operator": 0,
+        "source_evidence": 0
+      }
+    },
+    "seed_training_measurement": {
+      "candidates_per_case": 8,
+      "case_count": 6,
+      "compile_valid_candidates": 19,
+      "full_suite_valid_candidates": 0,
+      "individual": [
+        {
+          "case_id": "Math-53",
+          "compiled": 8,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "c0948b9a9e1f1d44508f484b880f4cf8045dd294ddbbdc6c883aaca14ebdb11f"
+        },
+        {
+          "case_id": "Csv-16",
+          "compiled": 0,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "3d007d8f6a89151271d2bc81db7233a9924156d0fb761d314d9f86317cf91e1e"
+        },
+        {
+          "case_id": "Collections-24",
+          "compiled": 3,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "80ff140bb60f128d42ecc08973cb0808e4a9853ddb4540b109d7f2420a2ddcbc"
+        },
+        {
+          "case_id": "Gson-2",
+          "compiled": 0,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "b32dd79fff22263733a78ac12504c9ad6d558be9564651db01bb376b985eec47"
+        },
+        {
+          "case_id": "Jsoup-68",
+          "compiled": 8,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "d0cfbc10d2109acc410f0511e9d5c205d86cd9632bd9ad82327149bb2bd00025"
+        },
+        {
+          "case_id": "JacksonCore-11",
+          "compiled": 0,
+          "evaluated": 8,
+          "full_suite_valid": 0,
+          "has_full_suite_success": false,
+          "selected_candidate_digest": "4dec0a8c62988342b643dcbf3d4e6ccfb606d4206063339ebe5f0bbf4cfc3626"
+        }
+      ],
+      "measurement_digest": "9f07b97f0111322c2fd70bad24db532c49cbc22fcab46e0f903f0ac2b2e86a88",
+      "projects_with_full_suite_success": 0,
+      "test_budget": 48
+    },
+    "total_mutants_considered": 20,
+    "training_only": true,
+    "training_search_digest": "8908f7f7cb14b6212aed9d7e1d1859adf26a35e44322f5dc07db24fe38272b7c"
+  }
+}

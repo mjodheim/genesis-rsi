@@ -48,6 +48,8 @@ from genesis.insights.registry import InsightRegistry
 from genesis.insights.hypotheses import hypotheses_for_candidates
 from genesis.insights.compile_preflight import screen_candidates
 from genesis.trust_root import digest_of
+from genesis.v2.live_adapter import rerank as v2_rerank
+from genesis.v2.genome import validate_genome as v2_validate_genome
 
 SCHEMA = "genesis-capability-routed-compositional-repair-v4"
 
@@ -521,6 +523,7 @@ def generate(
     sibling_guard_experimental: bool = False,
     stream_iterator_experimental: bool = False,
     g12_retained_probe_slots: int = 0,
+    v2_discovery_genome: Mapping[str, Any] | None = None,
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
@@ -535,6 +538,10 @@ def generate(
         raise ValueError("source balancing is bounded to 32 focus files")
     if isinstance(g12_retained_probe_slots, bool) or not 0 <= g12_retained_probe_slots <= 4:
         raise ValueError("G12 retained probe slots must be in [0,4]")
+    if v2_discovery_genome is not None:
+        v2_validate_genome(v2_discovery_genome)
+        if compile_preflight_javac is not None or g12_retained_probe_slots:
+            raise ValueError("V2 exploratory ranking cannot override preflight or reserved G12 slots")
     if g12_retained_probe_slots and retained_memory is None:
         raise ValueError("G12 retained probe slots require retained training memory")
     if max_candidates < 1 or max_candidates > 10_000:
@@ -673,6 +680,11 @@ def generate(
             classpath=compile_preflight_classpath,
             max_candidates=min(max_compile_preflight_candidates, len(out)),
         ) if out else (out, None)
+    v2_rank_summary = None
+    if v2_discovery_genome is not None:
+        out, v2_rank_summary = v2_rerank(
+            out, v2_discovery_genome, prioritized_sources=priority_focus_paths,
+        )
     normalized_focus = list(_normalize_paths(base, focus_paths))
     payload = {
         "schema": SCHEMA,
@@ -689,6 +701,8 @@ def generate(
         "external_model_calls": 0,
         "candidates": out,
     }
+    if v2_rank_summary is not None:
+        payload["v2_discovery_ranking"] = v2_rank_summary
     if g12_retained_probe_slots:
         payload["g12_retained_probe"] = {
             "schema": "genesis-g12-retained-exploration-v1",

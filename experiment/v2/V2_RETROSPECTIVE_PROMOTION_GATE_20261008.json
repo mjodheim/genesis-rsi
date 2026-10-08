@@ -1,0 +1,48 @@
+{
+  "candidate_budget_per_case": 8,
+  "case_count": 3,
+  "cases_with_regression": [
+    "JxPath-12"
+  ],
+  "development_compilation_gain": 5,
+  "development_full_suite_gain": 0,
+  "evidence_type": "already_exposed_development_replay",
+  "fresh_holdout_evidence_present": false,
+  "gate_digest": "43e7a0651e85f38e4746e98a1f579705bc08be513198335a5e5526e2ac151cd0",
+  "gate_reasons": [
+    "corpus_already_exposed",
+    "no_new_full_suite_repairs",
+    "per_project_regression",
+    "external_authority_and_fresh_prospective_tests_required"
+  ],
+  "per_case": [
+    {
+      "baseline_compiled": 0,
+      "case_id": "Cli-34",
+      "compilation_delta": 6,
+      "descendant_compiled": 6,
+      "equal_budget": true,
+      "full_suite_delta": 0
+    },
+    {
+      "baseline_compiled": 8,
+      "case_id": "Time-22",
+      "compilation_delta": 0,
+      "descendant_compiled": 8,
+      "equal_budget": true,
+      "full_suite_delta": 0
+    },
+    {
+      "baseline_compiled": 8,
+      "case_id": "JxPath-12",
+      "compilation_delta": -1,
+      "descendant_compiled": 7,
+      "equal_budget": true,
+      "full_suite_delta": 0
+    }
+  ],
+  "production_promotion_allowed": false,
+  "schema": "genesis-v2-retrospective-promotion-assessment-v1",
+  "self_discovered_semantic_capability_proven": false,
+  "source_study_digest": "3b146dcdf9e7fc74db7b90b83da0037d96ee80558eba50a91446dcce0e6507ca"
+}

@@ -103,6 +103,17 @@ not general recursive self-improvement, and not independent external repair.
 The separate blind G11 evaluations remain **0/9**. Details and reproducible
 experiment records: experiment/g12/G12_DEVELOPMENT_REPORT_20261008.md.
 
+### Genesis V2 — Autonomous Discovery Core (prototype)
+
+An isolated V2 research architecture in
+docs/GENESIS_V2_DISCOVERY_ARCHITECTURE.md adds bounded self-mutating selection
+policies and an independent judge. On nine *already exposed* development
+bugs, the descendant improved compilation on a separate development-check
+subset from 16/24 to 21/24 but still fixed zero full-suite defects, with
+a regression on one project. The V2 promotion gate REJECTS deployment.
+V1 is unchanged unless the optional V2 ranking adapter is explicitly enabled.
+See experiment/v2/README.md for reproducible evidence.
+
 ## Historical integrity markers
 
 The architecture reset does not erase or soften frozen historical outcomes. In particular, the **M086-A** attempt remains **POST-HOC DISQUALIFIED** and withdrawn exactly as recorded in its experiment evidence. Historical milestone labels remain valid identifiers even when they are no longer part of the active reader-facing roadmap.
