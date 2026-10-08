@@ -12,6 +12,20 @@ def test_repository_scripts_and_experiments_are_local_not_distribution_dependenc
     assert check_dependencies() == []
 
 
+def test_g11_g12_studies_are_registered_as_cli_entry_points() -> None:
+    for prefix in ("g11_", "g12_", "select_", "preregister_"):
+        assert prefix in integrity.ENTRY_POINT_PREFIXES
+    assert integrity.check_orphans() == []
+
+
+def test_relative_imports_from_init_keep_full_package_namespace() -> None:
+    module = integrity.ROOT / "genesis/insights/__init__.py"
+    imports = integrity.imported_names(module)
+    assert "genesis.insights.security" in imports
+    assert "genesis.insights.performance" in imports
+    assert "genesis.insights.registry" in imports
+
+
 def test_every_module_is_reachable_from_a_legitimate_entry_point() -> None:
     assert "build_" in integrity.ENTRY_POINT_PREFIXES
     assert "author_" in integrity.ENTRY_POINT_PREFIXES
