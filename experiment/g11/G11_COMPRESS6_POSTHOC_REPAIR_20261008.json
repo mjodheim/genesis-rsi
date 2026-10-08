@@ -1,0 +1,37 @@
+{
+  "bug_id": 6,
+  "case_was_already_exposed": true,
+  "claim": "training_development_case_repair_not_unseen_autonomous_discovery",
+  "freeze": {
+    "atomic_disabled_rank": 51,
+    "atomic_enabled_rank": 1,
+    "candidate_digest": "3579e3c7c17eefd5a7ec41b3b3cfb951ff70aaf10f9581f1159a10c483c93525",
+    "candidate_sha256": "1ed6fcb0522d09af8f32e09dd3d7ee7c2406b9f94866b0ad1c0918f46dbbeed6",
+    "new_search_digest": "c13613b315c9879197292dcf24ee4aadb2d9e573102500192d6cee5c44fa3312",
+    "no_fixed_checkout_or_human_solution": true,
+    "old_search_digest": "8c004f5196f537bee135969c159b1899084baf7d3b3664b5851ffd34177ed681",
+    "prioritized_sources": [
+      "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java"
+    ],
+    "schema": "genesis-g11-development-repair-freeze-v1",
+    "selected_operator": "initialize_shadowed_inherited_state",
+    "source_path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+    "source_sha256": "609fe93e668d58b58eedb03a88b38d409aca5ff4566f55a2fe0a5bf13f557752"
+  },
+  "freeze_digest": "080a9bb71f132fd50f1015ecc8c40608432919997eae0c9699ce45b876878c24",
+  "full_project_validation": {
+    "compiled": true,
+    "error": null,
+    "failing_tests": 0,
+    "test_exit": 0,
+    "test_output_sha256": "b4bf1f1aaf09825dd0e55a9f3b6852cf7cf51e3de06c4d69932ef00a8d40f862",
+    "validated_full_suite": true
+  },
+  "human_reference_patch_seen": false,
+  "independent_holdout_success_count": 0,
+  "original_reference_test_failure_count": 1,
+  "project": "Compress",
+  "result_digest": "07c927e951e6bcaeaae84bed96186c2d68c47fc0877fdaec978098ad50d9e0e4",
+  "schema": "genesis-g11-posthoc-development-repair-v1",
+  "validated_full_project_suite": true
+}

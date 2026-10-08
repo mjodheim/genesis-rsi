@@ -78,3 +78,43 @@ unproven.
 - The ER3 autonomous service remains intentionally stopped.
 - Future evaluations need completely untouched defects, registered budgets,
   full project dependency context and independent grading.
+
+## Posthoc development repair of Compress-6
+
+The preregistered original Codec-15 and Compress-6 negative results were
+NOT altered or retroactively rescored.
+
+Further inspection of the already exposed Compress-6 source found a Java
+subclass with a local String field still null after its constructor forwarded
+the value to the parent, despite an inherited-value fallback getter. The
+subclass equality method compared the uninitialized local field. Consequently,
+two objects with distinct parent values could be treated as equal.
+
+Genesis' operator set did not express this state-consistency initialization.
+A new generic source-derived repair candidate family was implemented:
+initialize_shadowed_inherited_state. The family depends on structural
+relations among a local nullable field, a forwarding constructor, a
+superclass-aware getter and local-field equality comparison. No benchmark
+name, class name, source line ID, issue or human patch is encoded.
+
+Then, even with this new operator present, the candidate search buried
+the useful one-edit patch beneath high-scoring unrelated two-edit composed
+patches. On the already exposed Compress-6 defect, the correct uncomposed
+candidate was placed at rank 51 with source balancing alone, beyond the
+first eight full tests. An opt-in atomic-first frontier and a weak source
+hint from the failing test classname place the simple patch at rank 1.
+
+The independent full Defects4J suite passed: compilation succeeded and
+zero tests failed. The posthoc result was reproduced in a fresh buggy-only
+workspace and saved at
+G11_COMPRESS6_POSTHOC_REPAIR_20261008.json.
+Reproduction command:
+PYTHONPATH=. python3 scripts/g11_compress_dev_replay.py
+
+This is a DEVELOPMENT SUCCESS on a previously known defect, not a fresh
+external blind success. Independent held-out repair successes remain zero.
+The operator family was explicitly engineered by the assistant: no
+spontaneous open-ended recursive self-improvement is claimed.
+
+A genuine future success requires freezing this machinery before encountering
+new unrelated bugs, retaining equivalent budgets and independent evaluation.

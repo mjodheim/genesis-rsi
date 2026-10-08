@@ -26,6 +26,7 @@ from typing import Any, Callable, Mapping, Sequence
 
 from genesis import (
     java_calendar_specialist,
+    java_state_consistency_mutations,
     java_empty_segment_parser_mutations,
     java_default_normalization_mutations,
     java_expression_mutations,
@@ -52,6 +53,7 @@ SCHEMA = "genesis-capability-routed-compositional-repair-v4"
 # modest boost when they actually activate; they do not receive target IDs.
 FAMILY_LIMITS: dict[str, int] = {
     "retained_structural": 96,
+    "java_state_consistency": 64,
     "java_string_literal": 64,
     "java_default_normalization": 64,
     "java_expression": 64,
@@ -67,6 +69,7 @@ FAMILY_LIMITS: dict[str, int] = {
 
 FAMILY_WEIGHTS: dict[str, int] = {
     "retained_structural": 125,
+    "java_state_consistency": 145,
     "java_string_literal": 118,
     "java_default_normalization": 120,
     "java_expression": 110,
@@ -82,6 +85,7 @@ FAMILY_WEIGHTS: dict[str, int] = {
 
 Generator = Callable[..., dict[str, Any]]
 FAMILIES: tuple[tuple[str, Generator], ...] = (
+    ("java_state_consistency", java_state_consistency_mutations.generate),
     ("java_string_literal", java_string_literal_mutations.generate),
     ("java_default_normalization", java_default_normalization_mutations.generate),
     ("java_expression", java_expression_mutations.generate),
@@ -497,6 +501,8 @@ def generate(
     compile_preflight_javac: Path | None = None,
     compile_preflight_classpath: Sequence[str] = (),
     max_compile_preflight_candidates: int = 80,
+    atomic_first_experimental: bool = False,
+    priority_focus_paths: Sequence[str] = (),
     max_understanding_files: int = 4,
 ) -> dict[str, Any]:
     if understanding_ledger is not None and understanding_registry is None:
@@ -553,8 +559,13 @@ def generate(
     )
 
     all_plans = [*atomic, *composed]
+    # Default remains unchanged for existing frozen evaluations. In the
+    # experimental atomic frontier, reversible single-step edits precede
+    # risky compositions, so a good atomic patch is not buried under dozens
+    # of high-scoring but invalid unrelated two-edit variants.
     all_plans.sort(
         key=lambda p: (
+            int(p.depth > 1) if atomic_first_experimental else 0,
             -p.score,
             -int(p.depth > 1),
             p.depth,
@@ -568,7 +579,8 @@ def generate(
         for plan in all_plans:
             groups.setdefault(plan.path, deque()).append(plan)
         rotated: list[RepairPlan] = []
-        active = deque(sorted(groups))
+        priority = set(_normalize_paths(base, priority_focus_paths))
+        active = deque(sorted(groups, key=lambda p: (p not in priority, p)))
         while active:
             path = active.popleft()
             rotated.append(groups[path].popleft())
@@ -626,6 +638,10 @@ def generate(
     }
     if preflight_summary is not None:
         payload["g11_compile_preflight"] = preflight_summary
+    if atomic_first_experimental:
+        payload["g11_atomic_first_experimental"] = True
+    if priority_focus_paths:
+        payload["g11_priority_focus_paths"] = list(_normalize_paths(base, priority_focus_paths))
     if source_balance_experimental:
         from collections import Counter
         payload["source_balance_experimental"] = True

@@ -29,6 +29,7 @@ from genesis import repair_strategist
 from genesis.languages.understanding import ModuleRegistry, JavaCompilerModule
 from genesis.languages.experience import ExperienceLedger
 from genesis.insights import InsightRegistry, PythonSecurityModule, JavaSecurityModule, PythonPerformanceModule, JavaPerformanceModule
+from genesis.failure_localization import prioritize as prioritize_failure_sources
 from genesis.trust_root import digest_of
 from scripts.build_er1_j9_indexes import inherited_j8, j9_successor
 
@@ -205,6 +206,8 @@ def _build_index(
     source_balance_experimental: bool = False,
     compile_preflight_javac: Path | None = None,
     compile_preflight_classpath: tuple[str, ...] = (),
+    atomic_first_experimental: bool = False,
+    priority_focus_paths: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     inherited, _ = inherited_j8(buggy, source_prefix, budget)
     fallback, fallback_meta = j9_successor(buggy, source_prefix, budget, inherited)
@@ -224,6 +227,8 @@ def _build_index(
         source_balance_experimental=source_balance_experimental,
         compile_preflight_javac=compile_preflight_javac,
         compile_preflight_classpath=compile_preflight_classpath,
+        atomic_first_experimental=atomic_first_experimental,
+        priority_focus_paths=priority_focus_paths,
     )
 
     records: list[dict[str, Any]] = []
@@ -617,6 +622,8 @@ class LangDefects4JAdapter:
         g11_hypotheses: bool = False,
         g11_source_balance_experimental: bool = False,
         g11_compile_preflight_experimental: bool = False,
+        g11_atomic_first_experimental: bool = False,
+        g11_failure_localization_experimental: bool = False,
         excluded_case_ids: tuple[int, ...] = (),
     ) -> None:
         self.workspace = workspace.resolve()
@@ -629,6 +636,8 @@ class LangDefects4JAdapter:
         self.g11_hypotheses = g11_hypotheses
         self.g11_source_balance_experimental = g11_source_balance_experimental
         self.g11_compile_preflight_experimental = g11_compile_preflight_experimental
+        self.g11_atomic_first_experimental = g11_atomic_first_experimental
+        self.g11_failure_localization_experimental = g11_failure_localization_experimental
         self.g11_registry = None
         self.g11_ledger = None
         self.g11_insights = None
@@ -729,6 +738,12 @@ class LangDefects4JAdapter:
             )
         triggers = _triggers(bug_id)
         focus = _focus_paths(bug_id, paths["buggy"], source_prefix)
+        failure_hints = (
+            prioritize_failure_sources(
+                (paths["buggy"] / "failing_tests").read_text(encoding="utf-8"),
+                focus,
+            ) if self.g11_failure_localization_experimental else None
+        )
 
         paths["indexes"].mkdir()
         index_path = paths["indexes"] / "CANDIDATE_INDEX.jsonl"
@@ -746,11 +761,17 @@ class LangDefects4JAdapter:
             understanding_rerank=self.g11_rerank_experimental,
             understanding_hypotheses=self.g11_hypotheses,
             source_balance_experimental=self.g11_source_balance_experimental,
+            atomic_first_experimental=self.g11_atomic_first_experimental,
+            priority_focus_paths=tuple(
+                failure_hints["matched_source_paths"]
+            ) if failure_hints else (),
             compile_preflight_javac=JAVAC if self.g11_compile_preflight_experimental else None,
             compile_preflight_classpath=tuple(
                 _relative_or_absolute_cp(cp_compile, paths["buggy"])
             ) if self.g11_compile_preflight_experimental else (),
         )
+        if failure_hints is not None:
+            summary["g11_failure_localization"] = failure_hints
         _write_json(paths["indexes"] / "INDEX_SUMMARY.json", summary)
 
         paths["harness"].mkdir()
@@ -1000,6 +1021,10 @@ def main() -> int:
                         help="Experimental per-source candidate budget and fair top-K rotation")
     parser.add_argument("--g11-compile-preflight-experimental", action="store_true",
                         help="Experimental compiler-only patch screening before full suite")
+    parser.add_argument("--g11-atomic-first-experimental", action="store_true",
+                        help="Try single-edit candidates before composed patches")
+    parser.add_argument("--g11-failure-localization-experimental", action="store_true",
+                        help="Prioritize sources matching failing test class names")
     parser.add_argument("--exclude-case-ids", default="",
                         help="Comma-separated additional protected cases")
     args = parser.parse_args()
@@ -1033,6 +1058,8 @@ def main() -> int:
         g11_hypotheses=args.g11_hypotheses,
         g11_source_balance_experimental=args.g11_balance_sources_experimental,
         g11_compile_preflight_experimental=args.g11_compile_preflight_experimental,
+        g11_atomic_first_experimental=args.g11_atomic_first_experimental,
+        g11_failure_localization_experimental=args.g11_failure_localization_experimental,
         excluded_case_ids=excluded_ids,
     )
     final = campaign.run(

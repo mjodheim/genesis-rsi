@@ -40,6 +40,25 @@ These results do **not** establish general RSI. G10 supports the narrower statem
 
 Historical claims remain governed by their frozen experiment records.
 
+### G11: Real-world repair development findings (8 October 2026)
+
+The first preregistered Defects4J Codec-15 and Compress-6 probes each
+yielded ZERO full-suite-valid patches within their top-eight budget.
+Their negative outcomes remain preserved in the original records.
+
+Posthoc inspection of the already known Compress-6 development case exposed
+two constraints: the operator vocabulary lacked inherited-field
+initialization, and composed two-edit candidates buried a correct atomic
+patch. A new generic state-consistency operator and an experimental,
+opt-in atomic-first search policy now rank the appropriate correction at
+rank 1 (previously rank 51). It compiles and passes the complete project
+test suite with zero failures.
+
+This is a DEVELOPMENT SUCCESS, not a blind external repair, autonomous
+operator invention, general RSI, or independent generalization evidence.
+See experiment/g11/G11_REAL_PROJECT_REPORT_20261008.md.
+The ER3 service remains intentionally stopped to protect future holdouts.
+
 ## Historical integrity markers
 
 The architecture reset does not erase or soften frozen historical outcomes. In particular, the **M086-A** attempt remains **POST-HOC DISQUALIFIED** and withdrawn exactly as recorded in its experiment evidence. Historical milestone labels remain valid identifiers even when they are no longer part of the active reader-facing roadmap.
