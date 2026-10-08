@@ -1,0 +1,669 @@
+{
+  "candidate_freeze_before_evaluator": true,
+  "candidate_freeze_digest": "36e66504a7e59edeb850cfb73e5b169bf31599fe5c2eeabed6b3ef880119cce3",
+  "case_count": 3,
+  "cases": [
+    {
+      "actual_passes": 0,
+      "arms": {
+        "v1_frozen_default": {
+          "candidate_index_digest": "67fad89f3e5ffe82d5ed465810e7de17d1078b31cf6ac47eaf6215d5ea7551df",
+          "compiled": 8,
+          "first_successful_rank": null,
+          "full_suite_pass_count": 0,
+          "new_v21_hypotheses_generated": 0,
+          "tested_rank_count": 8,
+          "top_candidate_operators": [
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ]
+          ],
+          "total_generated": 96
+        },
+        "v21_typed_semantic_optin": {
+          "candidate_index_digest": "67fad89f3e5ffe82d5ed465810e7de17d1078b31cf6ac47eaf6215d5ea7551df",
+          "compiled": 8,
+          "first_successful_rank": null,
+          "full_suite_pass_count": 0,
+          "new_v21_hypotheses_generated": 0,
+          "tested_rank_count": 8,
+          "top_candidate_operators": [
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ]
+          ],
+          "total_generated": 96
+        }
+      },
+      "bug_id": 23,
+      "candidate_evidence": [
+        {
+          "candidate_sha256": "108cf952c2e07da825649823f3d82c1aad5a3a92ab6a95f466cd1c9e60edc67b",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "2266da90894c2c1e8b999f8657956e9e10c2c94b03bb5562bfbecd90ca2da9f8",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "359365c353003ec9c60ce7b9fe0984834a8983fdd98c8a93be6db1d5843235cd",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "60a4ff88650e7895dc67631c2ce41eaf59d6bfde4880ccc8d478691481e6e800",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "686c54300bffd1f04bbc7f4766f7ffc90cbb69bdbff6665e60d7759d9519ab99",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "7a0d3da993bf51d413c4b498fd3beab8a6c5c79ea4819c977c407f9cd0a407bd",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "c4fa444041c86f06e469641a3ed896cc3995a2dbf86a9d3c5b16a598938a4f23",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "ec582dbbf5bdb17c75e38a7fa7b489291bfc69550ba5085f97d0e825cedbc08f",
+          "path": "source/org/jfree/chart/LegendItemSource.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "0fb3b802e5a9bc21f2bce9afd676330ffffdfe49855bc4758092c95a473dcafb",
+                "trigger": "org.jfree.chart.renderer.category.junit.MinMaxCategoryRendererTests::testEquals"
+              }
+            ]
+          }
+        }
+      ],
+      "distinct_candidates_tested": 8,
+      "original_failing_tests": 1,
+      "project": "Chart"
+    },
+    {
+      "actual_passes": 0,
+      "arms": {
+        "v1_frozen_default": {
+          "candidate_index_digest": "82da214b9c4e4f91049765df77dbe04b0b0884c1f0d64accb4ad13749b7babd9",
+          "compiled": 7,
+          "first_successful_rank": null,
+          "full_suite_pass_count": 0,
+          "new_v21_hypotheses_generated": 0,
+          "tested_rank_count": 8,
+          "top_candidate_operators": [
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "integer_delta"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "integer_delta"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "boolean_toggle"
+            ]
+          ],
+          "total_generated": 96
+        },
+        "v21_typed_semantic_optin": {
+          "candidate_index_digest": "82da214b9c4e4f91049765df77dbe04b0b0884c1f0d64accb4ad13749b7babd9",
+          "compiled": 7,
+          "first_successful_rank": null,
+          "full_suite_pass_count": 0,
+          "new_v21_hypotheses_generated": 0,
+          "tested_rank_count": 8,
+          "top_candidate_operators": [
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "java_field_modifier_add"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "integer_delta"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "integer_delta"
+            ],
+            [
+              "java_qualified_symbol_substitute",
+              "boolean_toggle"
+            ]
+          ],
+          "total_generated": 96
+        }
+      },
+      "bug_id": 4,
+      "candidate_evidence": [
+        {
+          "candidate_sha256": "46f6d29001a54c3e720a6d9451154a4e58ebe42e97af761232826a2a352a57ac",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "f811852d5710be92953a6b1f3b1c6f1d04841b88f683ef7d8b3e2f00a2e00d5b",
+                "trigger": "com.fasterxml.jackson.dataformat.xml.misc.RootNameTest::testDynamicRootName"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "918bf0bf6d6f0ffe5a68cb83e4436dab4604594549d03abde6ae12db4cf9247e",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "f811852d5710be92953a6b1f3b1c6f1d04841b88f683ef7d8b3e2f00a2e00d5b",
+                "trigger": "com.fasterxml.jackson.dataformat.xml.misc.RootNameTest::testDynamicRootName"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "972386ab565a3094bdb27f396012d992b23355da7fcb606147e24142799605b9",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compile_output_sha256": "82bdac8c25263aba1623e8054c5408d5fe2feddad20c3ff32c3a6294c2493c0f",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "9f782f0df4d8eda9a21400bcc1cae15aa9e42cd4a4cf3dcaeb0bc95ad9915dc5",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "f811852d5710be92953a6b1f3b1c6f1d04841b88f683ef7d8b3e2f00a2e00d5b",
+                "trigger": "com.fasterxml.jackson.dataformat.xml.misc.RootNameTest::testDynamicRootName"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "a135f0a74a2ef74df0f68c55689038e0dcf98066c95314097ee0401fc6a30afb",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "f811852d5710be92953a6b1f3b1c6f1d04841b88f683ef7d8b3e2f00a2e00d5b",
+                "trigger": "com.fasterxml.jackson.dataformat.xml.misc.RootNameTest::testDynamicRootName"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "bf2bc87292a94ac17e3f190fc37113595e4e3e045026995c55c60d8375963778",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "f811852d5710be92953a6b1f3b1c6f1d04841b88f683ef7d8b3e2f00a2e00d5b",
+                "trigger": "com.fasterxml.jackson.dataformat.xml.misc.RootNameTest::testDynamicRootName"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "cb81062707d52c4ca12d86ffd7a2401374930cdc457c252c3993e814d8417027",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "f811852d5710be92953a6b1f3b1c6f1d04841b88f683ef7d8b3e2f00a2e00d5b",
+                "trigger": "com.fasterxml.jackson.dataformat.xml.misc.RootNameTest::testDynamicRootName"
+              }
+            ]
+          }
+        },
+        {
+          "candidate_sha256": "ddf102b9dba17662b25a2ef8d1b2c798f88118aa42834c2daf04ec67b919aefb",
+          "path": "src/main/java/com/fasterxml/jackson/dataformat/xml/JacksonXmlAnnotationIntrospector.java",
+          "result": {
+            "compiled": true,
+            "error": "original_public_trigger_fails",
+            "full_suite_pass": false,
+            "full_suite_ran": false,
+            "trigger_results": [
+              {
+                "exit": 0,
+                "failing_tests": 1,
+                "output_sha256": "f811852d5710be92953a6b1f3b1c6f1d04841b88f683ef7d8b3e2f00a2e00d5b",
+                "trigger": "com.fasterxml.jackson.dataformat.xml.misc.RootNameTest::testDynamicRootName"
+              }
+            ]
+          }
+        }
+      ],
+      "distinct_candidates_tested": 8,
+      "original_failing_tests": 1,
+      "project": "JacksonXml"
+    },
+    {
+      "actual_passes": 0,
+      "arms": {
+        "v1_frozen_default": {
+          "candidate_index_digest": "6f0ddb6deec39a788f62cc6a8579bdec89492d21d292f7f1980c04674af10f57",
+          "compiled": 0,
+          "first_successful_rank": null,
+          "full_suite_pass_count": 0,
+          "new_v21_hypotheses_generated": 0,
+          "tested_rank_count": 8,
+          "top_candidate_operators": [
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary",
+              "integer_delta"
+            ],
+            [
+              "comparison_boundary",
+              "integer_delta"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ]
+          ],
+          "total_generated": 96
+        },
+        "v21_typed_semantic_optin": {
+          "candidate_index_digest": "6f0ddb6deec39a788f62cc6a8579bdec89492d21d292f7f1980c04674af10f57",
+          "compiled": 0,
+          "first_successful_rank": null,
+          "full_suite_pass_count": 0,
+          "new_v21_hypotheses_generated": 0,
+          "tested_rank_count": 8,
+          "top_candidate_operators": [
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "comparison_boundary",
+              "integer_delta"
+            ],
+            [
+              "comparison_boundary",
+              "integer_delta"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ],
+            [
+              "integer_delta",
+              "comparison_boundary"
+            ]
+          ],
+          "total_generated": 96
+        }
+      },
+      "bug_id": 22,
+      "candidate_evidence": [
+        {
+          "candidate_sha256": "05b1bb43c199acb9d5a7fcb61052b452d36ad741af9cee2ffc31d657e4329096",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "e08aa96b5c76544f79d5510e66f6e3fd9d3dfd75e99d4bd1faa02f11e98438ca",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "165eba9f3bb8c2daa61611cd51f83e48111ffeba16ad16ce1ce3572b8add8e0e",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "44d1272c66ae196be7a387b4b05de2200efabe975489490c306c6343be8de131",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "1cf97119090467af781418b7da06234e00522d2963f2510a0d8c6d23ddb7d607",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "096fa35bbfedbcc85c5d790b2eb7f6b6b4e7b7364827f152ddad9792553a82ef",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "3acd650526ee0edfb1fbbcb334edce41bb80d842608d44a154caac2fb098a3ac",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "c469885022ec71a43e40d1b743d5565bf976320aec9c4f7297105bcef3ead635",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "53675d0bd8d985d5666be17dbe54777c91e9cc95efa65d9ab3645b0e2657cf05",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "1adfecadcd371949593056da5b052292edbdc9ab20786d47f932ad405ccd1cf0",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "b13831980e762066896b9c695fdc9004c5e4a81589d75439a12e6d2c5531984e",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "443080574018fa3c06cb9e1c6071a29648f3121fbd36f075348d5c9eff122cec",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "b18857dbd323f78eeb2225187cf579f98c8624052ee5282c6244c9334c5afd4b",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "b6547e25f364cc2fd57c16bcad5667510e226dff48e5ec4046fbdc55cd4ef801",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        },
+        {
+          "candidate_sha256": "d675074cac76885abe0f028cb90df78fa6539acf68e7863c8129011f3c47aba6",
+          "path": "src/org/mockito/Captor.java",
+          "result": {
+            "compile_output_sha256": "71c797678a1c166ea54dc441b638418c7cf6cbfe7cfa75390f9c832ead89976e",
+            "compiled": false,
+            "error": "compile_failed",
+            "full_suite_pass": false
+          }
+        }
+      ],
+      "distinct_candidates_tested": 8,
+      "original_failing_tests": 1,
+      "project": "Mockito"
+    }
+  ],
+  "code_changes_during_trial": false,
+  "human_reference_fix_seen": false,
+  "not_a_general_RSI_certificate": true,
+  "preregistration_digest": "aeca5556d5f181263065a791c7ca9265bfba3a47e639782a70c7c6c38bfa3c49",
+  "real_project_full_suite_repairs_by_arm": {
+    "v1_frozen_default": 0,
+    "v21_typed_semantic_optin": 0
+  },
+  "result_digest": "5b1aed8e7d07fe2ac1743f985f56a3c24d3bcac236ef9ceca1c32c400ea3719e",
+  "schema": "genesis-v21-3project-prospective-result-v1",
+  "source_projects_unused_in_prior_experiment": true
+}
