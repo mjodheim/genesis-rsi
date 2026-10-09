@@ -232,16 +232,23 @@ def collect_evidence(
 
 @dataclass(frozen=True)
 class Candidate:
-    """One proposed repair: the complete new text of one source file."""
+    """One repair, optionally coordinating up to three existing production files."""
 
     path: str
     content: str
     origin: str
     description: str = ""
     provenance: dict | None = field(default=None, compare=False, hash=False)
+    extra_files: tuple[tuple[str, str], ...] = ()
+
+    @property
+    def files(self) -> tuple[tuple[str, str], ...]:
+        return ((self.path, self.content), *self.extra_files)
 
     @property
     def digest(self) -> str:
+        if self.extra_files:
+            return digest_of({"files": sorted(self.files)})
         return digest_of({"path": self.path, "content": self.content})
 
 
@@ -268,9 +275,50 @@ def apply_edits(
     return Candidate(path=path, content=text, origin=origin, description=description)
 
 
+def _production_target(root: Path, path: str, source_directory: str,
+                       test_directory: str | None = None) -> Path:
+    """A transaction cannot add files or leave the trusted production directory."""
+    relative = Path(path)
+    target = root / relative
+    base = root / source_directory
+    if (not path or relative.is_absolute() or ".." in relative.parts
+            or any(part.startswith(".") for part in relative.parts)
+            or any(parent.is_symlink() for parent in (target, *target.parents))
+            or not base.resolve().is_relative_to(root.resolve())
+            or not target.resolve().is_relative_to(base.resolve()) or not target.is_file()
+            or (test_directory is not None and
+                target.resolve().is_relative_to((root / test_directory).resolve()))):
+        raise RepairBenchError("transaction path outside existing production files")
+    return target
+
+
+def apply_transaction(root: Path, files: Sequence[Mapping], source_directory: str,
+                      origin: str, description: str = "", *, test_directory: str | None = None) -> Candidate | None:
+    """Construct all edits without writing any file; reject the whole invalid batch."""
+    if not 1 <= len(files) <= 3:
+        return None
+    proposed, seen = [], set()
+    try:
+        for item in files:
+            path = item["path"]
+            target = _production_target(root, path, source_directory, test_directory)
+            canonical = target.resolve()
+            if canonical in seen:
+                return None
+            seen.add(canonical)
+            candidate = apply_edits(root, path, [(e["search"], e["replace"]) for e in item["edits"]], origin)
+            if candidate is None:
+                return None
+            proposed.append((path, candidate.content))
+    except (RepairBenchError, ValueError, OSError, KeyError, TypeError):
+        return None
+    proposed.sort()
+    return Candidate(*proposed[0], origin, description, extra_files=tuple(proposed[1:]))
+
+
 def validate(
     sandbox: Defects4JSandbox, directory: str, candidate: Candidate, failing: Sequence[str],
-    tolerated: Sequence[str] = (),
+    tolerated: Sequence[str] = (), *, source_directory: str | None = None, test_directory: str | None = None,
 ) -> dict:
     """Compile the candidate, run the tests that failed, then the whole suite. Restores the file.
 
@@ -278,11 +326,21 @@ def validate(
     correct: a patch can satisfy the tests and still be wrong. Tests named in ``tolerated`` already
     failed on the unmodified revision for reasons of environment and are not held against it.
     """
-    target = sandbox.workspace / directory / candidate.path
-    original = target.read_bytes()
+    root = sandbox.workspace / directory
+    files = candidate.files
+    if candidate.extra_files:
+        if source_directory is None or len(files) > 3:
+            raise RepairBenchError("transaction requires trusted production directory and at most three files")
+        targets = [_production_target(root, path, source_directory, test_directory) for path, _ in files]
+        if len({target.resolve() for target in targets}) != len(targets):
+            raise RepairBenchError("duplicate transaction path")
+    else:
+        targets = [root / candidate.path]
+    originals = [target.read_bytes() for target in targets]
     stage, remaining, detail = "compile", None, None
     try:
-        target.write_text(candidate.content, encoding="utf-8")
+        for target, (_, content) in zip(targets, files):
+            target.write_text(content, encoding="utf-8")
         compiled = sandbox.compile(directory)
         if not compiled.ok:
             detail = "\n".join(
@@ -310,7 +368,14 @@ def validate(
                     else:
                         detail = "now failing: " + ", ".join(remaining[:8])
     finally:
-        target.write_bytes(original)
+        errors = []
+        for target, original in zip(targets, originals):
+            try:
+                target.write_bytes(original)
+            except OSError as error:
+                errors.append(error)
+        if errors:
+            raise RepairBenchError("could not restore all candidate files") from errors[0]
     body = {
         "schema": VERDICT_SCHEMA,
         "candidate_digest": candidate.digest,
@@ -321,6 +386,8 @@ def validate(
         "full_suite_failures": None if remaining is None else len(remaining),
         "feedback": detail,
     }
+    if candidate.extra_files:
+        body["paths"] = [path for path, _ in files]
     return {**body, "verdict_digest": digest_of(body)}
 
 
@@ -357,7 +424,9 @@ def run_arm(
         solved = False
         for candidate in fresh[:budget - len(history)]:
             verdict = validate(sandbox, directory, candidate, evidence["failing_tests"],
-                               evidence.get("tolerated_failures", ()))
+                               evidence.get("tolerated_failures", ()),
+                               source_directory=evidence.get("source_directory"),
+                               test_directory=evidence.get("test_directory"))
             history.append((candidate, verdict))
             if verdict["plausible"]:
                 solved = True
@@ -369,9 +438,13 @@ def run_arm(
     for candidate, verdict in history:
         if verdict["plausible"]:
             squashed = squashed_sha256(candidate.content)
-            before = (root / candidate.path).read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
-            after = candidate.content.splitlines(keepends=True)
-            patch = "".join(difflib.unified_diff(before, after, f"a/{candidate.path}", f"b/{candidate.path}"))
+            if candidate.extra_files:
+                squashed = digest_of({path: squashed_sha256(content) for path, content in candidate.files})
+            patch = ""
+            for path, content in candidate.files:
+                before = (root / path).read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
+                after = content.splitlines(keepends=True)
+                patch += "".join(difflib.unified_diff(before, after, f"a/{path}", f"b/{path}"))
     return {
         "rounds": rounds,
         "plausible_patch": patch,

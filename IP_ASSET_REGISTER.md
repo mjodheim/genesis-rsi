@@ -275,3 +275,10 @@ PUBLIC_AGPL_COMMERCIAL_OPTION. The prospective review is
 docs/IP_REVIEWS/REPAIR_FEEDBACK_TRIAL_REVIEW_2026-10-09.md. Codex-assisted
 instrumentation and external-model proposals are attributed; no generality or
 active-promotion claim is authorised by this small comparison.
+
+9 October 2026 — bounded coordinated-file repair candidates and their prospective
+exposed-development comparison follow PUBLIC_AGPL_COMMERCIAL_OPTION. The review
+precedes implementation in docs/IP_REVIEWS/REPAIR_TRANSACTIONS_REVIEW_2026-10-09.md.
+Codex assists substantially; the new representation is authored infrastructure,
+not autonomous primitive invention. Compiler/test gates and historical results
+remain unchanged; independent generality and active promotion are not claimed.

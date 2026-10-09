@@ -27,7 +27,7 @@ import urllib.error
 from typing import Callable, Mapping, Sequence
 
 from genesis.openrouter_repair import READ, SEARCH, SUBMIT, _allowed, _request, inspect_tool
-from genesis.repair_bench import Candidate, History, Proposer, _excerpts, apply_edits
+from genesis.repair_bench import Candidate, History, Proposer, _excerpts, apply_edits, apply_transaction
 from genesis.trust_root import digest_of
 
 GENOME_SCHEMA = "genesis-repair-lineage-genome-v1"
@@ -46,6 +46,15 @@ _FINAL_STEP = (
     "submit_repairs now with your best applicable repairs, or an empty candidates list. Do not "
     "answer with plain text."
 )
+
+MULTI_SUBMIT = json.loads(json.dumps(SUBMIT))
+_item = MULTI_SUBMIT["function"]["parameters"]["properties"]["candidates"]["items"]
+_file_properties = {key: value for key, value in _item["properties"].items() if key != "hypothesis"}
+_item["required"] = ["hypothesis", "files"]
+_item["properties"] = {"hypothesis": {"type": "string"}, "files": {
+    "type": "array", "minItems": 1, "maxItems": 3, "items": {
+        "type": "object", "additionalProperties": False, "required": ["path", "edits"],
+        "properties": _file_properties}}}
 
 SEED_GENOME = {
     "system": (
@@ -238,6 +247,7 @@ def _send(payload: dict, envelope: Envelope, ledger: Ledger, transport: Callable
 def lineage_proposer(
     genome: Mapping, envelope: Envelope, ledger: Ledger, calls: list[dict], *, transport: Callable | None = None,
     application_feedback: bool = False,
+    multi_file: bool = False,
 ) -> Proposer:
     """The proposer a genome defines, for one case. ``calls`` receives every request made."""
     genome = checked_genome(genome)
@@ -257,6 +267,16 @@ def lineage_proposer(
                 "type": "text", "cache_control": {"type": "ephemeral"},
                 "text": render_case(genome, root, evidence, wanted, history, envelope.prompt_characters)}]},
         ]
+        if multi_file:
+            messages[0]["content"] += (
+                "\nCoordinated repair mode overrides the one-file restriction: each candidate "
+                "has hypothesis and files, a list of one to three existing production files, "
+                "each with path and exact search/replace edits. All edits are evaluated together "
+                "from the original buggy tree, then all files are restored. Previous partial "
+                "edits are not retained automatically; include every required edit in a complete "
+                "candidate. Keep tests unchanged."
+            )
+        submit_tool = MULTI_SUBMIT if multi_file else SUBMIT
         steps = search["inspection_requests"] + 1
         for step in range(steps):
             if used >= envelope.requests:
@@ -266,7 +286,7 @@ def lineage_proposer(
                 messages.append({"role": "system", "content": _FINAL_STEP})
             payload = {
                 "model": envelope.model, "messages": messages, "tool_choice": "auto",
-                "tools": [SUBMIT] if final else [SUBMIT, READ, SEARCH], "max_tokens": envelope.max_tokens,
+                "tools": [submit_tool] if final else [submit_tool, READ, SEARCH], "max_tokens": envelope.max_tokens,
                 "provider": {"require_parameters": True, "allow_fallbacks": True, "sort": "price",
                              "max_price": dict(envelope.max_price)},
             }
@@ -298,6 +318,21 @@ def lineage_proposer(
                         submitted = 0
                         for item in arguments["candidates"][:wanted]:
                             submitted += 1
+                            if multi_file:
+                                described = "Hypothesis: " + item["hypothesis"] + "\nFiles and edits: " + json.dumps(item["files"])
+                                candidate = apply_transaction(root, item["files"], evidence["source_directory"],
+                                                              f"lineage:{envelope.model}", described[:6000],
+                                                              test_directory=evidence["test_directory"])
+                                if candidate is None:
+                                    inapplicable += 1
+                                else:
+                                    candidates.append(candidate)
+                                submission_results.append({"path": ", ".join(f["path"] for f in item["files"]),
+                                    "hypothesis": item["hypothesis"], "files": item["files"],
+                                    "applicable": candidate is not None,
+                                    "rejection": None if candidate is not None else
+                                    "transaction rejected: require 1-3 distinct existing production files and unique changed edits"})
+                                continue
                             path = str(item["path"])
                             edits = [(edit["search"], edit["replace"]) for edit in item["edits"]]
                             described = f"Hypothesis: {item['hypothesis']}\nFile: {path}\n" + "\n".join(
@@ -352,7 +387,7 @@ def lineage_proposer(
                     messages.append({"role": "tool", "tool_call_id": call["id"], "content": result})
                 record.update({"inspections": inspections, "submitted": submitted, "inapplicable": inapplicable,
                                "applicable": len(candidates)})
-                if application_feedback:
+                if application_feedback or multi_file:
                     record["submission_results"] = submission_results
             except (ValueError, KeyError, TypeError, IndexError) as error:
                 record["malformed"] = f"{type(error).__name__}: {error}"[:160]

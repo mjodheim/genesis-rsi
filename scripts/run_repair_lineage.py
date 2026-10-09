@@ -130,14 +130,15 @@ def restore(workspace: Path, case: str, source_directory: str) -> None:
 
 
 def run_case(workspace: Path, case: str, genome: dict, envelope: Envelope, ledger: Ledger, label: str,
-             *, application_feedback: bool = False) -> dict:
+             *, application_feedback: bool = False, multi_file: bool = False) -> dict:
     evidence = prepare(workspace, case)["evidence"]
     restore(workspace, case, evidence["source_directory"])
     calls = Journal(workspace / "calls.jsonl", {"case": case, "genome": genome_digest(genome), "label": label})
     started = time.monotonic()
     arm = run_arm(
         sandbox_for(workspace), f"{case}-b", evidence,
-        lineage_proposer(genome, envelope, ledger, calls, application_feedback=application_feedback),
+        lineage_proposer(genome, envelope, ledger, calls, application_feedback=application_feedback,
+                         multi_file=multi_file),
         envelope.validations, max_rounds=genome["search"]["rounds"],
     )
     return {
