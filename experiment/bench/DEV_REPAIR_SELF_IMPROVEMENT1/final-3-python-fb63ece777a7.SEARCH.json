@@ -1,0 +1,72 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "cc36aeb6087313b5b21a43a68d7af47b3a91564817311e5d55b5c3ffdb918f76",
+      "id": "retained-cc36aeb6087313b5",
+      "label": "retained_subscript_delta:subject.py:62:-1",
+      "mutations": [
+        {
+          "content_utf8": "# transfer probe\ndef pick(values, position):\n    return values[position - 1]\n",
+          "expected_absent": false,
+          "expected_sha256": "cd034596b0ef25d6c8d1eaa1d36e9ef9f24913c5379e40b9645264f24d897fcc",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "00c7975e2c55e579016c56bcf9f515b683ea872f9a7338998a7397431271d8cc",
+      "id": "retained-00c7975e2c55e579",
+      "label": "retained_subscript_delta:subject.py:62:+1",
+      "mutations": [
+        {
+          "content_utf8": "# transfer probe\ndef pick(values, position):\n    return values[position + 1]\n",
+          "expected_absent": false,
+          "expected_sha256": "cd034596b0ef25d6c8d1eaa1d36e9ef9f24913c5379e40b9645264f24d897fcc",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "998b559b37e3dde8daa4d32cac102a392455abc774f003beadd562a39366acbe",
+      "id": "retained-998b559b37e3dde8",
+      "label": "retained_subscript_delta:subject.py:62:-2",
+      "mutations": [
+        {
+          "content_utf8": "# transfer probe\ndef pick(values, position):\n    return values[position - 2]\n",
+          "expected_absent": false,
+          "expected_sha256": "cd034596b0ef25d6c8d1eaa1d36e9ef9f24913c5379e40b9645264f24d897fcc",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -2,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    }
+  ],
+  "discover": false,
+  "policy_digest": "fb63ece777a7e6c8c35c938427539ac11554d309c1a327a6a9c2a917dfddcb7e",
+  "search_digest": "134d8e847c5c7365b07c6e053c4146200bcf13ae69ce9a0b95035db5d0caa1e8",
+  "source_digest": "d1bbdaae3ff861d666f815eb17b862611f1dd396c781829aabce351b3ba19d4c",
+  "task_digest": "1106728a92d36bf3c76a775e0400a23fa4ddae340cbfc1f43fb451a461fbb06a"
+}

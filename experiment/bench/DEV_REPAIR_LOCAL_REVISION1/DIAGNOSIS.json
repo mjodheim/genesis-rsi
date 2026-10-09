@@ -1,0 +1,157 @@
+{
+  "source_result_digest": "fcd0a071e43e6560d77fc8af5cd0a1a1152cdfdab30d5e4bab224d8b9f35f280",
+  "rows": [
+    {
+      "case": "Mockito-17",
+      "replicate": 1,
+      "arm": "parent",
+      "reason": "success",
+      "requests": 3,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Mockito-17",
+      "replicate": 1,
+      "arm": "child",
+      "reason": "success",
+      "requests": 3,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Jsoup-54",
+      "replicate": 1,
+      "arm": "parent",
+      "reason": "success",
+      "requests": 1,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Jsoup-54",
+      "replicate": 1,
+      "arm": "child",
+      "reason": "success",
+      "requests": 1,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Mockito-23",
+      "replicate": 1,
+      "arm": "parent",
+      "reason": "inapplicable_only",
+      "requests": 2,
+      "validations": 0,
+      "inapplicable_proposals": 1,
+      "stages": []
+    },
+    {
+      "case": "Mockito-23",
+      "replicate": 1,
+      "arm": "child",
+      "reason": "round_limit_or_no_progress",
+      "requests": 5,
+      "validations": 3,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "failing_tests",
+        "failing_tests",
+        "failing_tests"
+      ]
+    },
+    {
+      "case": "Mockito-17",
+      "replicate": 2,
+      "arm": "parent",
+      "reason": "success",
+      "requests": 3,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Mockito-17",
+      "replicate": 2,
+      "arm": "child",
+      "reason": "success",
+      "requests": 3,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Jsoup-54",
+      "replicate": 2,
+      "arm": "parent",
+      "reason": "success",
+      "requests": 1,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Jsoup-54",
+      "replicate": 2,
+      "arm": "child",
+      "reason": "success",
+      "requests": 1,
+      "validations": 1,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "passed"
+      ]
+    },
+    {
+      "case": "Mockito-23",
+      "replicate": 2,
+      "arm": "parent",
+      "reason": "round_limit_or_no_progress",
+      "requests": 8,
+      "validations": 4,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "failing_tests",
+        "failing_tests",
+        "failing_tests",
+        "compile"
+      ]
+    },
+    {
+      "case": "Mockito-23",
+      "replicate": 2,
+      "arm": "child",
+      "reason": "round_limit_or_no_progress",
+      "requests": 6,
+      "validations": 4,
+      "inapplicable_proposals": 0,
+      "stages": [
+        "failing_tests",
+        "failing_tests",
+        "failing_tests",
+        "failing_tests"
+      ]
+    }
+  ],
+  "description": "post-result structural diagnosis; not causal attribution or a new frozen score",
+  "diagnosis_digest": "d757aad37232f4dabe271f70b9c691259bb95adc26ca60981bd2886b69315025"
+}

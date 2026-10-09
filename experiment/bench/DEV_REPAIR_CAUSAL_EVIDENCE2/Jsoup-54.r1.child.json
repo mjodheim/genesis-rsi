@@ -1,0 +1,101 @@
+{
+  "arm_digest": "58e2337ffebaf8158413b6b66831f736407383d62052e29373a70b6c2821f1f1",
+  "calls": [
+    {
+      "applicable": 1,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.001697775,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "1c7d067dde3b99fd256904566a267543814c6e6f93180447ab8e1e26efbec5b0",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [
+        {
+          "applicable": true,
+          "branch_depth": 0,
+          "candidate_digest": "1cf23c4ae79fc114c345acf364f5a239acda885127f2c5cbf88c5218eab81b92",
+          "causal_checks_passed": true,
+          "causal_evidence": {
+            "explanation": "Line 125 strips every character outside the allowed XML-name set, so the test's attribute key '\"' becomes an empty string. Line 126 then passes that empty name to setAttribute unconditionally, and the W3C DOM rejects it with INVALID_CHARACTER_ERR, matching the stack trace at W3CDom.java:126.",
+            "facts": [
+              {
+                "line": 125,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");",
+                "relation": "present",
+                "term": "replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\")"
+              },
+              {
+                "line": 126,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "el.setAttribute(key, attribute.getValue());",
+                "relation": "present",
+                "term": "el.setAttribute(key, attribute.getValue());"
+              }
+            ],
+            "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+            "prediction": "Guarding the call with a non-empty key check skips the invalid attribute, so handlesInvalidAttributeNames no longer throws the DOMException.",
+            "previous_assessment": "none"
+          },
+          "causal_rejection": null,
+          "complete_paths": [
+            "src/main/java/org/jsoup/helper/W3CDom.java"
+          ],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "if (key.length() != 0)\n                        el.setAttribute(key, attribute.getValue());",
+                  "search": "el.setAttribute(key, attribute.getValue());"
+                }
+              ],
+              "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+            }
+          ],
+          "hypothesis": "copyAttributes sanitizes attribute keys with replaceAll, which can reduce a key to the empty string (e.g. the attribute key \"\\\"\" becomes \"\"). Calling el.setAttribute with an empty name throws INVALID_CHARACTER_ERR. Skipping attributes whose sanitized key is empty should remove the exception.",
+          "parent": "",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1321,
+        "prompt_tokens": 8299
+      }
+    }
+  ],
+  "case": "Jsoup-54",
+  "causal_baseline_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/main/java/org/jsoup/helper/W3CDom.java\n+++ b/src/main/java/org/jsoup/helper/W3CDom.java\n@@ -123,7 +123,8 @@\n             for (Attribute attribute : source.attributes()) {\n                 // valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]\n                 String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");\n-                    el.setAttribute(key, attribute.getValue());\n+                    if (key.length() != 0)\n+                        el.setAttribute(key, attribute.getValue());\n             }\n         }\n \n",
+  "plausible_squashed_sha256": "cb4b082a33cd1fa97eaeff1a8d979a6b491b017a98b9a5858864a99be710cd03",
+  "rounds": 1,
+  "seconds": 15.9,
+  "solved": true,
+  "suspects_from_stack_trace": true,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "1cf23c4ae79fc114c345acf364f5a239acda885127f2c5cbf88c5218eab81b92",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "20e4a9df5e0ccdf21a14d3df228f128869ad34101a358d2899cb99085b48f07a"
+    }
+  ]
+}

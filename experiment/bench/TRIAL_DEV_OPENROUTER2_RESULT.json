@@ -1,0 +1,391 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model": {
+          "first_plausible_rank": null,
+          "plausible_patch": null,
+          "plausible_path": null,
+          "plausible_squashed_sha256": null,
+          "proposed": 1,
+          "rounds": 2,
+          "solved": false,
+          "validated": 1,
+          "verdicts": [
+            {
+              "candidate_digest": "6555d67f53315ad9af2d96fd8fd3d7f9fdd4251ddfeedfb88f7521637b668104",
+              "feedback": "--- org.apache.commons.codec.language.SoundexTest::testHWRuleEx1\njunit.framework.AssertionFailedError: expected:<Y3[3]0> but was:<Y3[0]0>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.apache.commons.codec.language.SoundexTest.testHWRuleEx1(SoundexTest.java:232)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)",
+              "full_suite_failures": null,
+              "origin": "openrouter:qwen/qwen3-coder",
+              "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+              "plausible": false,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "failing_tests",
+              "verdict_digest": "5919e55bc524d0001ea7ad0ce8591e665b13858bb18f4ee15a4ede5e39442c2b"
+            }
+          ]
+        },
+        "model_explore": {
+          "first_plausible_rank": null,
+          "plausible_patch": null,
+          "plausible_path": null,
+          "plausible_squashed_sha256": null,
+          "proposed": 2,
+          "rounds": 1,
+          "solved": false,
+          "validated": 2,
+          "verdicts": [
+            {
+              "candidate_digest": "eaf2a233e5b88186e5e7a928b9b0df15ae2f2e3590bfcb838664abddc85cdbde",
+              "feedback": "now failing: org.apache.commons.codec.language.SoundexTest::testHWRuleEx3",
+              "full_suite_failures": 1,
+              "origin": "openrouter:qwen/qwen3-coder",
+              "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+              "plausible": false,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "full_suite",
+              "verdict_digest": "b7e443205dfb4ea7052c94f6a6e28bfa082c416b6d56238f49f2460204f88d9c"
+            },
+            {
+              "candidate_digest": "dc35fb690be66a738b9013ae156241ab15563ead2e6ae924a1894ec91233d14d",
+              "feedback": "--- org.apache.commons.codec.language.SoundexTest::testHWRuleEx1\njunit.framework.AssertionFailedError: expected:<A2[61]> but was:<A2[26]>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.apache.commons.codec.language.SoundexTest.testHWRuleEx1(SoundexTest.java:229)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)",
+              "full_suite_failures": null,
+              "origin": "openrouter:qwen/qwen3-coder",
+              "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+              "plausible": false,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "failing_tests",
+              "verdict_digest": "198ac39488fd788a1290cb5de0625c6292e8d070849b5bd9392fc36a64beb51d"
+            }
+          ]
+        }
+      },
+      "case": "Codec-15",
+      "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0013153,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": false,
+            "inspections": [],
+            "model": "qwen/qwen3-coder",
+            "prompt_digest": "bde89b827ed361519d6e30b010db1a7995069a6c990136b7a779f97ac2c98c3d",
+            "provider": "openrouter",
+            "requested": 2,
+            "response_digest": "0dc73476c914bf73a7624d0363f1465d897940c3a5e4cd00447d29e8349c1708",
+            "response_id": "gen-1791490772-kA6SaNZledoKQKfs62m5",
+            "returned_model": "qwen/qwen3-coder",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 130,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.0013153,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000234,
+                "upstream_inference_cost": 0.0013153,
+                "upstream_inference_prompt_cost": 0.0010813
+              },
+              "is_byok": false,
+              "prompt_tokens": 4915,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 247,
+                "video_tokens": 0
+              },
+              "total_tokens": 5045
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0016801,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": false,
+            "inspections": [],
+            "model": "qwen/qwen3-coder",
+            "prompt_digest": "3a6dc543cf0ed967bfb18a7c73741fa008df115b3074e016fe06dee5631db2aa",
+            "provider": "openrouter",
+            "requested": 1,
+            "response_digest": "fcd72eadfacfb115de9a728d4bdbb4c1c75e44acf93d101ddb5dab9f7ca3cef8",
+            "response_id": "gen-1791490779-5hIxiDxoeORJrvSIOIJq",
+            "returned_model": "qwen/qwen3-coder",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 285,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.0016801,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000513,
+                "upstream_inference_cost": 0.0016801,
+                "upstream_inference_prompt_cost": 0.0011671
+              },
+              "is_byok": false,
+              "prompt_tokens": 5305,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 486,
+                "video_tokens": 0
+              },
+              "total_tokens": 5590
+            }
+          }
+        ],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00132378,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "yehudit"
+                },
+                "result_digest": "a833ad0c7e68d0d2327cb750b5c1c4e47e87e3508a20e7c9c80fd2d5c0131f52",
+                "tool": "search_files"
+              },
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+                  "start": 170
+                },
+                "result_digest": "d8c1ae4195a26405f0b360b39c0974bc7ea60be574fde1b196d65df44beef0ad",
+                "tool": "read_file"
+              },
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+                  "start": 200
+                },
+                "result_digest": "a9740356868efbf9ccd742e96e5058364288e9c051d3de9dc84ae200dc5ee642",
+                "tool": "read_file"
+              }
+            ],
+            "model": "qwen/qwen3-coder",
+            "prompt_digest": "ce2ebae44c6bac6e355bb4e80ba41ec53e8da3dbd8223f5da5eb124655e7ac85",
+            "provider": "openrouter",
+            "requested": 2,
+            "response_digest": "ba718a68545ecc97a9c3587a5fc0e463a4a5f62cec13ff65c3255ce7ee545f6c",
+            "response_id": "gen-1791490783-g211rs9D2REEP1Gfhnw3",
+            "returned_model": "qwen/qwen3-coder",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 111,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.00132378,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.0001998,
+                "upstream_inference_cost": 0.00132378,
+                "upstream_inference_prompt_cost": 0.00112398
+              },
+              "is_byok": false,
+              "prompt_tokens": 5109,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 5107,
+                "video_tokens": 0
+              },
+              "total_tokens": 5220
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00169866,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "yhwdyt"
+                },
+                "result_digest": "490612b104cbc8ac8c4183c06260e4f7268d0e4b5d1a80882044502a5702cebb",
+                "tool": "search_files"
+              }
+            ],
+            "model": "qwen/qwen3-coder",
+            "prompt_digest": "4cbea284247cf7adc6b0d3eb27fc4447d6341d40c2d6deec14fb93639f41b17b",
+            "provider": "openrouter",
+            "requested": 2,
+            "response_digest": "c2d91858a3d10021e51e8256c3cb7e36674b769fae837fbde1a1248685c74258",
+            "response_id": "gen-1791490785-VJHrDoYgegMNKtQSQn3f",
+            "returned_model": "qwen/qwen3-coder",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 23,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.00169866,
+              "cost_details": {
+                "upstream_inference_completions_cost": 4.14e-05,
+                "upstream_inference_cost": 0.00169866,
+                "upstream_inference_prompt_cost": 0.00165726
+              },
+              "is_byok": false,
+              "prompt_tokens": 7533,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 5218,
+                "video_tokens": 0
+              },
+              "total_tokens": 7556
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00176154,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/codec/language/Soundex.java",
+                  "start": 183
+                },
+                "result_digest": "08aff25a8450a5e7db9d831447cf6ec02600010f83692eb35eb9493c14fc8546",
+                "tool": "read_file"
+              }
+            ],
+            "model": "qwen/qwen3-coder",
+            "prompt_digest": "91207a94e88696c126bc7257555f4213fe8fb35007256e347f941f36c0d054ba",
+            "provider": "openrouter",
+            "requested": 2,
+            "response_digest": "1a410d21712cf3873de8e37b370567fb3fc5ddcf686b5d63656fd87ae284d458",
+            "response_id": "gen-1791490786-XUswKcicSOqLuCzVCkij",
+            "returned_model": "qwen/qwen3-coder",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 3,
+            "usage": {
+              "completion_tokens": 44,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.00176154,
+              "cost_details": {
+                "upstream_inference_completions_cost": 7.92e-05,
+                "upstream_inference_cost": 0.00176154,
+                "upstream_inference_prompt_cost": 0.00168234
+              },
+              "is_byok": false,
+              "prompt_tokens": 7647,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 7554,
+                "video_tokens": 0
+              },
+              "total_tokens": 7691
+            }
+          },
+          {
+            "applicable": 2,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00351774,
+            "evidence_digest": "c382383c62b1d76ca331c63ebb84095862d2719932c973c1102152fc248e507e",
+            "explore": true,
+            "inspections": [],
+            "model": "qwen/qwen3-coder",
+            "prompt_digest": "09801fb54c946b6083c60e8f4a8acef9dba742cef80e97982946ba12149e2e19",
+            "provider": "openrouter",
+            "requested": 2,
+            "response_digest": "d7cfa4867a963da91acbdd9f0b8d271269ec674404635ad85f10d0d7f967f0ef",
+            "response_id": "gen-1791490788-6WglQKmzHuG9Ze82Z9af",
+            "returned_model": "qwen/qwen3-coder",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 4,
+            "usage": {
+              "completion_tokens": 873,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.00351774,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.0015714,
+                "upstream_inference_cost": 0.00351774,
+                "upstream_inference_prompt_cost": 0.00194634
+              },
+              "is_byok": false,
+              "prompt_tokens": 8847,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 7689,
+                "video_tokens": 0
+              },
+              "total_tokens": 9720
+            }
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "qwen/qwen3-coder",
+  "name": "DEV_OPENROUTER2",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "ac1b2a82cf58cd05ab55fc7288ebc1baa51881e030ad1230e7a3a0ce0c3e343b",
+  "provider": "openrouter",
+  "result_digest": "430b04bfe68cbbd9078ce7483c69f361b5f6fa8117a2c09e549a15ffaed86ec6",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model": 0,
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model": 0.003,
+      "model_explore": 0.0083
+    },
+    "solved_per_arm": {
+      "model": 0,
+      "model_explore": 0
+    },
+    "usable_cases": 1
+  }
+}

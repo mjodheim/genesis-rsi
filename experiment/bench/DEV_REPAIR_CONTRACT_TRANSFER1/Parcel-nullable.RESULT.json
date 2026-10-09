@@ -1,0 +1,83 @@
+{
+  "baseline": {
+    "candidate_digest": "3645481e2f11efdf84cf61572237c9d015fc592e9b55b8124b7e4df7f1385a47",
+    "compile_run": {
+      "command": [
+        "javac",
+        "-d",
+        "/work/Parcel-nullable/classes",
+        "/work/Parcel-nullable/src/Parcel.java"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "7fa3dd14944cbf0d3c87fb4c568f579cd591300667df6f501251fdd1649924a3",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 1.126,
+      "timed_out": false
+    },
+    "feedback": "",
+    "plausible": true,
+    "stopped_at": "passed",
+    "test_run": {
+      "command": [
+        "java",
+        "-cp",
+        "/work/Parcel-nullable/classes",
+        "Parcel"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "157c830841153896802de49448171083724e940198fb7c80615512ff92e3ce45",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.351,
+      "timed_out": false
+    },
+    "verdict_digest": "5cb5a4d5d9e58b21552e5aff0323ea4942936c394412523ab77a5f69464e98b5"
+  },
+  "case_digest": "97a316ef47d312772df59f2854ef93f282e126ac16c77f5a1f74b5f9bd045568",
+  "generated": 0,
+  "main": "Parcel",
+  "nullable": true,
+  "passed": true,
+  "source_restored": true,
+  "verdicts": [],
+  "wrong_contract_verdict": {
+    "candidate_digest": "b13993bb3b99c07e5ce9c455b6d0b6fef151f7c84c8793748dd98f5269a63945",
+    "compile_run": {
+      "command": [
+        "javac",
+        "-d",
+        "/work/Parcel-nullable/classes",
+        "/work/Parcel-nullable/src/Parcel.java"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "62dd38198f26c89cb0b3c67aa1a6b3c58ccf6859b4868123efb6afe16fd346e4",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.911,
+      "timed_out": false
+    },
+    "feedback": "Exception in thread \"main\" java.lang.NullPointerException\n\tat Parcel.<init>(Parcel.java:4)\n\tat Parcel.main(Parcel.java:9)\n",
+    "plausible": false,
+    "stopped_at": "failing_tests",
+    "test_run": {
+      "command": [
+        "java",
+        "-cp",
+        "/work/Parcel-nullable/classes",
+        "Parcel"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "31f05962680022c6cafdde0876b276b0a8e189c48ad11f26210e6190516c2a0e",
+      "returncode": 1,
+      "run_digest": "397e323019e91c7269c69efcc76f71ce56067a5d72d1b9640e87bc6dccc8b8fa",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.355,
+      "timed_out": false
+    },
+    "verdict_digest": "6e7b109e9a6613185b6f9ec57f5967f8d31d21b77e44c938cc98f5d1a9199ca3"
+  }
+}

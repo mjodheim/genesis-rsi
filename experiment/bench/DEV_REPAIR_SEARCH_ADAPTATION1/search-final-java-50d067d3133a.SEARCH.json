@@ -1,0 +1,93 @@
+{
+  "candidate_set_digest": "05aae44ceaa2f9fb5db71cddb3ddac1dac3e9a077832001fb5211ddd5170065e",
+  "candidates": [
+    {
+      "candidate_digest": "9189a575c28c5987e0d0c856d7e152e3473bbcc5714f3fcce0dab9dde5402d97",
+      "id": "retained-9189a575c28c5987",
+      "label": "retained_subscript_delta:Subject.java:90:-1",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int position) { return values[position - 1]; }\n public static int neighboring(int[] values, int position) { return values[position + 3]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "219a8522646d91e9a9d504c8f63693924a36a17e1264fb549e89d3856ebf1f24",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "54b119eee9e9e6043f526ddc4180ebae9a065d51d246ff9c361520a90f3f4024",
+      "id": "retained-54b119eee9e9e604",
+      "label": "retained_subscript_delta:Subject.java:90:+1",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int position) { return values[position + 1]; }\n public static int neighboring(int[] values, int position) { return values[position + 3]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "219a8522646d91e9a9d504c8f63693924a36a17e1264fb549e89d3856ebf1f24",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "5ba49f7d0a3af15c7fb45321fb9f1e321016a7f8a412b2645d8ea8e20adab77d",
+      "id": "retained-5ba49f7d0a3af15c",
+      "label": "retained_subscript_delta:Subject.java:90:-2",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int position) { return values[position - 2]; }\n public static int neighboring(int[] values, int position) { return values[position + 3]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "219a8522646d91e9a9d504c8f63693924a36a17e1264fb549e89d3856ebf1f24",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": -2,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "af82f9622e18659ad921b17d394c62d254558199475550f9e2d75c7f14ad98c9",
+      "id": "exemplar-af82f9622e18659a",
+      "label": "observed_subscript_delta:Subject.java:90:+3",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int position) { return values[position + 3]; }\n public static int neighboring(int[] values, int position) { return values[position + 3]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "219a8522646d91e9a9d504c8f63693924a36a17e1264fb549e89d3856ebf1f24",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": 3,
+        "exemplar_path": "Subject.java",
+        "exemplar_start": 178,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "position",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      }
+    }
+  ],
+  "search_policy_digest": "50d067d3133a293456b1c0c14bc24accf9131d24c3832a7f2506c72e2e11e909",
+  "task_digest": "3ebdf75ddb091975dcd01e36f7a6a779156dae04f9d6005e3a1c285c04635f97"
+}

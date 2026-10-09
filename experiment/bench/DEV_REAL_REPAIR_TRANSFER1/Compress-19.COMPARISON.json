@@ -1,0 +1,273 @@
+{
+  "arms": {
+    "child": {
+      "accepted_candidate_digest": null,
+      "api_cost_usd": 0,
+      "arm": "child",
+      "arm_digest": "3439b41e655c4d97a2c77884b1a507d469db5c8c1996be1a449aef2897778e2c",
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "5f824c21f5dd19af1f91be2cb548a4922127865946b4ecc9e2112389ea0e2568",
+            "content_sha256": "45df034142294cd0ed850805f6a6e12fd0f208ce09dc8f40e2a11ddd4db99ac2",
+            "description": "Bounded retained subscript strategy; delta=-1",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "5f824c21f5dd19af1f91be2cb548a4922127865946b4ecc9e2112389ea0e2568",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "5f5070968ebe0dab08f44b397175b36d2344f5dcd3615760b3b5cd7faa8f65a4"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "0303387733a2425c2d6905579c750e8710ce0c37e01a8cae8320601470fa5065",
+            "content_sha256": "8e74768f8c04c49a5fd7233fef1c5dbda303588a120290463b28e587de264256",
+            "description": "Bounded retained subscript strategy; delta=1",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "0303387733a2425c2d6905579c750e8710ce0c37e01a8cae8320601470fa5065",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "d5120093c17d82aaf34f354a072f1921de7f25b58d79b0c2a41822bf4da97236"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+            "content_sha256": "0099b037d90e12e686db050948c2b724be4abe3144b0cccace82caac2700a985",
+            "description": "Bounded retained subscript strategy; delta=-2",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "29be101424edd6aea66130dc16edce0fc69c47278f1de3bdc36492314deb53bb"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+            "content_sha256": "ea1df76cc2e8e858a71a14d24bbd583b337a93a83b26d5b4ee8d531bf7712b87",
+            "description": "Bounded retained subscript strategy; delta=-1",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.util.zip.ZipException: central directory zip64 extended information extra field's length doesn't match central directory data.  Expected length 16 but is 28\n\tat org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField.reparseCentralDirectoryData(Zip64ExtendedInformationExtraField.java:260)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.setSizesAndOffsetFromZip64Extra(ZipFile.java:619)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.readCentralDirectoryEntry(ZipFile.java:584)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.populateFromCentralDirectory(ZipFile.java:499)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:218)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:193)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:154)\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:234)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "404a8058fc366e2bec1e71fc8ea12ab6514c22670d5386500838596b98c93429"
+          }
+        }
+      ],
+      "case": "Compress-19",
+      "external_model_calls": 0,
+      "search_digest": "88fdd9ed5e11a9f0b41d8cdbffeb3390eabf1e05a2143f8da736111421d8e07e",
+      "solved": false,
+      "validated": 4
+    },
+    "parent": {
+      "accepted_candidate_digest": null,
+      "api_cost_usd": 0,
+      "arm": "parent",
+      "arm_digest": "bce9687c7b73f17f75c2e7a0e8ab339cf3f9f9f3b66ec758c99f30d5a321875c",
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "5f824c21f5dd19af1f91be2cb548a4922127865946b4ecc9e2112389ea0e2568",
+            "content_sha256": "45df034142294cd0ed850805f6a6e12fd0f208ce09dc8f40e2a11ddd4db99ac2",
+            "description": "Bounded retained subscript strategy; delta=-1",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "5f824c21f5dd19af1f91be2cb548a4922127865946b4ecc9e2112389ea0e2568",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "5f5070968ebe0dab08f44b397175b36d2344f5dcd3615760b3b5cd7faa8f65a4"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "0303387733a2425c2d6905579c750e8710ce0c37e01a8cae8320601470fa5065",
+            "content_sha256": "8e74768f8c04c49a5fd7233fef1c5dbda303588a120290463b28e587de264256",
+            "description": "Bounded retained subscript strategy; delta=1",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "0303387733a2425c2d6905579c750e8710ce0c37e01a8cae8320601470fa5065",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "d5120093c17d82aaf34f354a072f1921de7f25b58d79b0c2a41822bf4da97236"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+            "content_sha256": "0099b037d90e12e686db050948c2b724be4abe3144b0cccace82caac2700a985",
+            "description": "Bounded retained subscript strategy; delta=-2",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "29be101424edd6aea66130dc16edce0fc69c47278f1de3bdc36492314deb53bb"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+            "content_sha256": "ea1df76cc2e8e858a71a14d24bbd583b337a93a83b26d5b4ee8d531bf7712b87",
+            "description": "Bounded retained subscript strategy; delta=-1",
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+          },
+          "verdict": {
+            "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+            "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.util.zip.ZipException: central directory zip64 extended information extra field's length doesn't match central directory data.  Expected length 16 but is 28\n\tat org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField.reparseCentralDirectoryData(Zip64ExtendedInformationExtraField.java:260)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.setSizesAndOffsetFromZip64Extra(ZipFile.java:619)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.readCentralDirectoryEntry(ZipFile.java:584)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.populateFromCentralDirectory(ZipFile.java:499)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:218)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:193)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:154)\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:234)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)",
+            "full_suite_failures": null,
+            "origin": "learned-strategy:retained",
+            "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "404a8058fc366e2bec1e71fc8ea12ab6514c22670d5386500838596b98c93429"
+          }
+        }
+      ],
+      "case": "Compress-19",
+      "external_model_calls": 0,
+      "search_digest": "f0a08a391cfc5aa4263f238433eb042371fe2df512e28f44f12f9913e91c72b7",
+      "solved": false,
+      "validated": 4
+    }
+  },
+  "case": "Compress-19",
+  "comparison_digest": "e15c853234a97337fb5dd81bd91b52bad176997cf1cceccd20f444b1d05b2dd2",
+  "evidence": {
+    "evidence_digest": "ecad65fb9ef025807cb8dbe384b256b75b5d999870ab24112c07d090c961f701",
+    "failing_tests": [
+      "org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField"
+    ],
+    "fixed_revision_consulted": false,
+    "production_source": [
+      {
+        "first_line": 220,
+        "last_line": 300,
+        "numbered_source": "  220| \n  221|         // if there is no size information in here, we are screwed and\n  222|         // can only hope things will get resolved by LFH data later\n  223|         // But there are some cases that can be detected\n  224|         // * all data is there\n  225|         // * length == 24 -> both sizes and offset\n  226|         // * length % 8 == 4 -> at least we can identify the diskStart field\n  227|         if (length >= 3 * DWORD + WORD) {\n  228|             parseFromLocalFileData(buffer, offset, length);\n  229|         } else if (length == 3 * DWORD) {\n  230|             size = new ZipEightByteInteger(buffer, offset);\n  231|             offset += DWORD;\n  232|             compressedSize = new ZipEightByteInteger(buffer, offset);\n  233|             offset += DWORD;\n  234|             relativeHeaderOffset = new ZipEightByteInteger(buffer, offset);\n  235|         } else if (length % DWORD == WORD) {\n  236|             diskStart = new ZipLong(buffer, offset + length - WORD);\n  237|         }\n  238|     }\n  239| \n  240|     /**\n  241|      * Parses the raw bytes read from the central directory extra\n  242|      * field with knowledge which fields are expected to be there.\n  243|      *\n  244|      * <p>All four fields inside the zip64 extended information extra\n  245|      * field are optional and must only be present if their corresponding\n  246|      * entry inside the central directory contains the correct magic\n  247|      * value.</p>\n  248|      */\n  249|     public void reparseCentralDirectoryData(boolean hasUncompressedSize,\n  250|                                             boolean hasCompressedSize,\n  251|                                             boolean hasRelativeHeaderOffset,\n  252|                                             boolean hasDiskStart)\n  253|         throws ZipException {\n  254|         if (rawCentralDirectoryData != null) {\n  255|             int expectedLength = (hasUncompressedSize ? DWORD : 0)\n  256|                 + (hasCompressedSize ? DWORD : 0)\n  257|                 + (hasRelativeHeaderOffset ? DWORD : 0)\n  258|                 + (hasDiskStart ? WORD : 0);\n  259|             if (rawCentralDirectoryData.length != expectedLength) {\n  260|                 throw new ZipException(\"central directory zip64 extended\"\n  261|                                        + \" information extra field's length\"\n  262|                                        + \" doesn't match central directory\"\n  263|                                        + \" data.  Expected length \"\n  264|                                        + expectedLength + \" but is \"\n  265|                                        + rawCentralDirectoryData.length);\n  266|             }\n  267|             int offset = 0;\n  268|             if (hasUncompressedSize) {\n  269|                 size = new ZipEightByteInteger(rawCentralDirectoryData, offset);\n  270|                 offset += DWORD;\n  271|             }\n  272|             if (hasCompressedSize) {\n  273|                 compressedSize = new ZipEightByteInteger(rawCentralDirectoryData,\n  274|                                                          offset);\n  275|                 offset += DWORD;\n  276|             }\n  277|             if (hasRelativeHeaderOffset) {\n  278|                 relativeHeaderOffset =\n  279|                     new ZipEightByteInteger(rawCentralDirectoryData, offset);\n  280|                 offset += DWORD;\n  281|             }\n  282|             if (hasDiskStart) {\n  283|                 diskStart = new ZipLong(rawCentralDirectoryData, offset);\n  284|                 offset += WORD;\n  285|             }\n  286|         }\n  287|     }\n  288| \n  289|     /**\n  290|      * The uncompressed size stored in this extra field.\n  291|      */\n  292|     public ZipEightByteInteger getSize() {\n  293|         return size;\n  294|     }\n  295| \n  296|     /**\n  297|      * The uncompressed size stored in this extra field.\n  298|      */\n  299|     public void setSize(ZipEightByteInteger size) {\n  300|         this.size = size;",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "first_line": 153,
+        "last_line": 258,
+        "numbered_source": "  153|     public ZipFile(File f) throws IOException {\n  154|         this(f, ZipEncodingHelper.UTF8);\n  155|     }\n  156| \n  157|     /**\n  158|      * Opens the given file for reading, assuming \"UTF8\".\n  159|      *\n  160|      * @param name name of the archive.\n  161|      *\n  162|      * @throws IOException if an error occurs while reading the file.\n  163|      */\n  164|     public ZipFile(String name) throws IOException {\n  165|         this(new File(name), ZipEncodingHelper.UTF8);\n  166|     }\n  167| \n  168|     /**\n  169|      * Opens the given file for reading, assuming the specified\n  170|      * encoding for file names, scanning unicode extra fields.\n  171|      *\n  172|      * @param name name of the archive.\n  173|      * @param encoding the encoding to use for file names, use null\n  174|      * for the platform's default encoding\n  175|      *\n  176|      * @throws IOException if an error occurs while reading the file.\n  177|      */\n  178|     public ZipFile(String name, String encoding) throws IOException {\n  179|         this(new File(name), encoding, true);\n  180|     }\n  181| \n  182|     /**\n  183|      * Opens the given file for reading, assuming the specified\n  184|      * encoding for file names and scanning for unicode extra fields.\n  185|      *\n  186|      * @param f the archive.\n  187|      * @param encoding the encoding to use for file names, use null\n  188|      * for the platform's default encoding\n  189|      *\n  190|      * @throws IOException if an error occurs while reading the file.\n  191|      */\n  192|     public ZipFile(File f, String encoding) throws IOException {\n  193|         this(f, encoding, true);\n  194|     }\n  195| \n  196|     /**\n  197|      * Opens the given file for reading, assuming the specified\n  198|      * encoding for file names.\n  199|      *\n  200|      * @param f the archive.\n  201|      * @param encoding the encoding to use for file names, use null\n  202|      * for the platform's default encoding\n  203|      * @param useUnicodeExtraFields whether to use InfoZIP Unicode\n  204|      * Extra Fields (if present) to set the file names.\n  205|      *\n  206|      * @throws IOException if an error occurs while reading the file.\n  207|      */\n  208|     public ZipFile(File f, String encoding, boolean useUnicodeExtraFields)\n  209|         throws IOException {\n  210|         this.archiveName = f.getAbsolutePath();\n  211|         this.encoding = encoding;\n  212|         this.zipEncoding = ZipEncodingHelper.getZipEncoding(encoding);\n  213|         this.useUnicodeExtraFields = useUnicodeExtraFields;\n  214|         archive = new RandomAccessFile(f, \"r\");\n  215|         boolean success = false;\n  216|         try {\n  217|             Map<ZipArchiveEntry, NameAndComment> entriesWithoutUTF8Flag =\n  218|                 populateFromCentralDirectory();\n  219|             resolveLocalFileHeaderData(entriesWithoutUTF8Flag);\n  220|             success = true;\n  221|         } finally {\n  222|             if (!success) {\n  223|                 try {\n  224|                     closed = true;\n  225|                     archive.close();\n  226|                 } catch (IOException e2) { // NOPMD\n  227|                     // swallow, throw the original exception instead\n  228|                 }\n  229|             }\n  230|         }\n  231|     }\n  232| \n  233|     /**\n  234|      * The encoding to use for filenames and the file comment.\n  235|      *\n  236|      * @return null if using the platform's default character encoding.\n  237|      */\n  238|     public String getEncoding() {\n  239|         return encoding;\n  240|     }\n  241| \n  242|     /**\n  243|      * Closes the archive.\n  244|      * @throws IOException if an error occurs closing the archive.\n  245|      */\n  246|     public void close() throws IOException {\n  247|         // this flag is only written here and read in finalize() which\n  248|         // can never be run in parallel.\n  249|         // no synchronization needed.\n  250|         closed = true;\n  251| \n  252|         archive.close();\n  253|     }\n  254| \n  255|     /**\n  256|      * close a zipfile quietly; throw no io fault, do nothing\n  257|      * on a null parameter\n  258|      * @param zipfile file to close, can be null",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "first_line": 459,
+        "last_line": 539,
+        "numbered_source": "  459|         /* compressed size                 */ + WORD\n  460|         /* uncompressed size               */ + WORD\n  461|         /* filename length                 */ + SHORT\n  462|         /* extra field length              */ + SHORT\n  463|         /* file comment length             */ + SHORT\n  464|         /* disk number start               */ + SHORT\n  465|         /* internal file attributes        */ + SHORT\n  466|         /* external file attributes        */ + WORD\n  467|         /* relative offset of local header */ + WORD;\n  468| \n  469|     private static final long CFH_SIG =\n  470|         ZipLong.getValue(ZipArchiveOutputStream.CFH_SIG);\n  471| \n  472|     /**\n  473|      * Reads the central directory of the given archive and populates\n  474|      * the internal tables with ZipArchiveEntry instances.\n  475|      *\n  476|      * <p>The ZipArchiveEntrys will know all data that can be obtained from\n  477|      * the central directory alone, but not the data that requires the\n  478|      * local file header or additional data to be read.</p>\n  479|      *\n  480|      * @return a map of zipentries that didn't have the language\n  481|      * encoding flag set when read.\n  482|      */\n  483|     private Map<ZipArchiveEntry, NameAndComment> populateFromCentralDirectory()\n  484|         throws IOException {\n  485|         HashMap<ZipArchiveEntry, NameAndComment> noUTF8Flag =\n  486|             new HashMap<ZipArchiveEntry, NameAndComment>();\n  487| \n  488|         positionAtCentralDirectory();\n  489| \n  490|         archive.readFully(WORD_BUF);\n  491|         long sig = ZipLong.getValue(WORD_BUF);\n  492| \n  493|         if (sig != CFH_SIG && startsWithLocalFileHeader()) {\n  494|             throw new IOException(\"central directory is empty, can't expand\"\n  495|                                   + \" corrupt archive.\");\n  496|         }\n  497| \n  498|         while (sig == CFH_SIG) {\n  499|             readCentralDirectoryEntry(noUTF8Flag);\n  500|             archive.readFully(WORD_BUF);\n  501|             sig = ZipLong.getValue(WORD_BUF);\n  502|         }\n  503|         return noUTF8Flag;\n  504|     }\n  505| \n  506|     /**\n  507|      * Reads an individual entry of the central directory, creats an\n  508|      * ZipArchiveEntry from it and adds it to the global maps.\n  509|      *\n  510|      * @param noUTF8Flag map used to collect entries that don't have\n  511|      * their UTF-8 flag set and whose name will be set by data read\n  512|      * from the local file header later.  The current entry may be\n  513|      * added to this map.\n  514|      */\n  515|     private void\n  516|         readCentralDirectoryEntry(Map<ZipArchiveEntry, NameAndComment> noUTF8Flag)\n  517|         throws IOException {\n  518|         archive.readFully(CFH_BUF);\n  519|         int off = 0;\n  520|         OffsetEntry offset = new OffsetEntry();\n  521|         Entry ze = new Entry(offset);\n  522| \n  523|         int versionMadeBy = ZipShort.getValue(CFH_BUF, off);\n  524|         off += SHORT;\n  525|         ze.setPlatform((versionMadeBy >> BYTE_SHIFT) & NIBLET_MASK);\n  526| \n  527|         off += SHORT; // skip version info\n  528| \n  529|         final GeneralPurposeBit gpFlag = GeneralPurposeBit.parse(CFH_BUF, off);\n  530|         final boolean hasUTF8Flag = gpFlag.usesUTF8ForNames();\n  531|         final ZipEncoding entryEncoding =\n  532|             hasUTF8Flag ? ZipEncodingHelper.UTF8_ZIP_ENCODING : zipEncoding;\n  533|         ze.setGeneralPurposeBit(gpFlag);\n  534| \n  535|         off += SHORT;\n  536| \n  537|         ze.setMethod(ZipShort.getValue(CFH_BUF, off));\n  538|         off += SHORT;\n  539| ",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "first_line": 544,
+        "last_line": 659,
+        "numbered_source": "  544|         ze.setCrc(ZipLong.getValue(CFH_BUF, off));\n  545|         off += WORD;\n  546| \n  547|         ze.setCompressedSize(ZipLong.getValue(CFH_BUF, off));\n  548|         off += WORD;\n  549| \n  550|         ze.setSize(ZipLong.getValue(CFH_BUF, off));\n  551|         off += WORD;\n  552| \n  553|         int fileNameLen = ZipShort.getValue(CFH_BUF, off);\n  554|         off += SHORT;\n  555| \n  556|         int extraLen = ZipShort.getValue(CFH_BUF, off);\n  557|         off += SHORT;\n  558| \n  559|         int commentLen = ZipShort.getValue(CFH_BUF, off);\n  560|         off += SHORT;\n  561| \n  562|         int diskStart = ZipShort.getValue(CFH_BUF, off);\n  563|         off += SHORT;\n  564| \n  565|         ze.setInternalAttributes(ZipShort.getValue(CFH_BUF, off));\n  566|         off += SHORT;\n  567| \n  568|         ze.setExternalAttributes(ZipLong.getValue(CFH_BUF, off));\n  569|         off += WORD;\n  570| \n  571|         byte[] fileName = new byte[fileNameLen];\n  572|         archive.readFully(fileName);\n  573|         ze.setName(entryEncoding.decode(fileName), fileName);\n  574| \n  575|         // LFH offset,\n  576|         offset.headerOffset = ZipLong.getValue(CFH_BUF, off);\n  577|         // data offset will be filled later\n  578|         entries.add(ze);\n  579| \n  580|         byte[] cdExtraData = new byte[extraLen];\n  581|         archive.readFully(cdExtraData);\n  582|         ze.setCentralDirectoryExtra(cdExtraData);\n  583| \n  584|         setSizesAndOffsetFromZip64Extra(ze, offset, diskStart);\n  585| \n  586|         byte[] comment = new byte[commentLen];\n  587|         archive.readFully(comment);\n  588|         ze.setComment(entryEncoding.decode(comment));\n  589| \n  590|         if (!hasUTF8Flag && useUnicodeExtraFields) {\n  591|             noUTF8Flag.put(ze, new NameAndComment(fileName, comment));\n  592|         }\n  593|     }\n  594| \n  595|     /**\n  596|      * If the entry holds a Zip64 extended information extra field,\n  597|      * read sizes from there if the entry's sizes are set to\n  598|      * 0xFFFFFFFFF, do the same for the offset of the local file\n  599|      * header.\n  600|      *\n  601|      * <p>Ensures the Zip64 extra either knows both compressed and\n  602|      * uncompressed size or neither of both as the internal logic in\n  603|      * ExtraFieldUtils forces the field to create local header data\n  604|      * even if they are never used - and here a field with only one\n  605|      * size would be invalid.</p>\n  606|      */\n  607|     private void setSizesAndOffsetFromZip64Extra(ZipArchiveEntry ze,\n  608|                                                  OffsetEntry offset,\n  609|                                                  int diskStart)\n  610|         throws IOException {\n  611|         Zip64ExtendedInformationExtraField z64 =\n  612|             (Zip64ExtendedInformationExtraField)\n  613|             ze.getExtraField(Zip64ExtendedInformationExtraField.HEADER_ID);\n  614|         if (z64 != null) {\n  615|             boolean hasUncompressedSize = ze.getSize() == ZIP64_MAGIC;\n  616|             boolean hasCompressedSize = ze.getCompressedSize() == ZIP64_MAGIC;\n  617|             boolean hasRelativeHeaderOffset =\n  618|                 offset.headerOffset == ZIP64_MAGIC;\n  619|             z64.reparseCentralDirectoryData(hasUncompressedSize,\n  620|                                             hasCompressedSize,\n  621|                                             hasRelativeHeaderOffset,\n  622|                                             diskStart == ZIP64_MAGIC_SHORT);\n  623| \n  624|             if (hasUncompressedSize) {\n  625|                 ze.setSize(z64.getSize().getLongValue());\n  626|             } else if (hasCompressedSize) {\n  627|                 z64.setSize(new ZipEightByteInteger(ze.getSize()));\n  628|             }\n  629| \n  630|             if (hasCompressedSize) {\n  631|                 ze.setCompressedSize(z64.getCompressedSize().getLongValue());\n  632|             } else if (hasUncompressedSize) {\n  633|                 z64.setCompressedSize(new ZipEightByteInteger(ze.getCompressedSize()));\n  634|             }\n  635| \n  636|             if (hasRelativeHeaderOffset) {\n  637|                 offset.headerOffset =\n  638|                     z64.getRelativeHeaderOffset().getLongValue();\n  639|             }\n  640|         }\n  641|     }\n  642| \n  643|     /**\n  644|      * Length of the \"End of central directory record\" - which is\n  645|      * supposed to be the last structure of the archive - without file\n  646|      * comment.\n  647|      */\n  648|     static final int MIN_EOCD_SIZE =\n  649|         /* end of central dir signature    */ WORD\n  650|         /* number of this disk             */ + SHORT\n  651|         /* number of the disk with the     */\n  652|         /* start of the central directory  */ + SHORT\n  653|         /* total number of entries in      */\n  654|         /* the central dir on this disk    */ + SHORT\n  655|         /* total number of entries in      */\n  656|         /* the central dir                 */ + SHORT\n  657|         /* size of the central directory   */ + WORD\n  658|         /* offset of start of central      */\n  659|         /* directory with respect to       */",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      }
+    ],
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "src/main/java",
+    "suspect_locations": [
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java",
+        260
+      ],
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        619
+      ],
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        584
+      ],
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        499
+      ],
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        218
+      ],
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        193
+      ]
+    ],
+    "suspects_from_stack_trace": true,
+    "test_directory": "src/test/java",
+    "test_source": [
+      {
+        "first_line": 209,
+        "last_line": 259,
+        "numbered_source": "  209|      * @see https://issues.apache.org/jira/browse/COMPRESS-227\n  210|      */\n  211|     public void testDuplicateEntry() throws Exception {\n  212|         File archive = getFile(\"COMPRESS-227.zip\");\n  213|         zf = new ZipFile(archive);\n  214| \n  215|         ZipArchiveEntry ze = zf.getEntry(\"test1.txt\");\n  216|         assertNotNull(ze);\n  217|         assertNotNull(zf.getInputStream(ze));\n  218| \n  219|         int numberOfEntries = 0;\n  220|         for (Iterator<ZipArchiveEntry> it = zf.getEntries(\"test1.txt\");\n  221|              it.hasNext(); ) {\n  222|             numberOfEntries++;\n  223|             ze = it.next();\n  224|             assertNotNull(zf.getInputStream(ze));\n  225|         }\n  226|         assertEquals(2, numberOfEntries);\n  227|     }\n  228| \n  229|     /**\n  230|      * @see https://issues.apache.org/jira/browse/COMPRESS-228\n  231|      */\n  232|     public void testExcessDataInZip64ExtraField() throws Exception {\n  233|         File archive = getFile(\"COMPRESS-228.zip\");\n  234|         zf = new ZipFile(archive);\n  235|         // actually, if we get here, the test already has passed\n  236| \n  237|         ZipArchiveEntry ze = zf.getEntry(\"src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java\");\n  238|         assertEquals(26101, ze.getSize());\n  239|     }\n  240| \n  241|     /*\n  242|      * ordertest.zip has been handcrafted.\n  243|      *\n  244|      * It contains enough files so any random coincidence of\n  245|      * entries.keySet() and central directory order would be unlikely\n  246|      * - in fact testCDOrder fails in svn revision 920284.\n  247|      *\n  248|      * The central directory has ZipFile and ZipUtil swapped so\n  249|      * central directory order is different from entry data order.\n  250|      */\n  251|     private void readOrderTest() throws Exception {\n  252|         File archive = getFile(\"ordertest.zip\");\n  253|         zf = new ZipFile(archive);\n  254|     }\n  255| \n  256|     private static void assertEntryName(ArrayList<ZipArchiveEntry> entries,\n  257|                                         int index,\n  258|                                         String expectedName) {\n  259|         ZipArchiveEntry ze = entries.get(index);",
+        "path": "src/test/java/org/apache/commons/compress/archivers/zip/ZipFileTest.java"
+      }
+    ],
+    "traces": [
+      {
+        "test": "org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField",
+        "trace": "java.util.zip.ZipException: central directory zip64 extended information extra field's length doesn't match central directory data.  Expected length 16 but is 28\n\tat org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField.reparseCentralDirectoryData(Zip64ExtendedInformationExtraField.java:260)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.setSizesAndOffsetFromZip64Extra(ZipFile.java:619)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.readCentralDirectoryEntry(ZipFile.java:584)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.populateFromCentralDirectory(ZipFile.java:499)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:218)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:193)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:154)\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:234)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)\n\tat junit.framework.TestCase.run(TestCase.java:129)\n\tat junit.framework.TestSuite.runTest(TestSuite.java:252)\n\tat junit.framework.TestSuite.run(TestSuite.java:247)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1492)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:878)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1980)"
+      }
+    ]
+  },
+  "pool_digest": "121c1d735fdaa605469427e8c44cd9d13f285758f8eb50c3f1facfc66af98ff0",
+  "replay": null,
+  "success_recorded": false,
+  "training": null
+}

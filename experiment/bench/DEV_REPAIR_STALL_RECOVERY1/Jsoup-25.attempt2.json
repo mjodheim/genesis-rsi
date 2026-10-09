@@ -1,0 +1,16 @@
+{
+  "attempt_digest": "370af772a6d13a7df28b957df2bf3de5bec59554c518a4ca1c39d303a86d70c8",
+  "candidate_digest": "477892846aa22d3ab9924ae762a448fb2aa1e6c9629be21f8a2b55cd4a817c2a",
+  "diagnosis": "type",
+  "verdict": {
+    "candidate_digest": "477892846aa22d3ab9924ae762a448fb2aa1e6c9629be21f8a2b55cd4a817c2a",
+    "feedback": "    [javac] /work/Jsoup-25-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-25-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-25-b/src/main/java/org/jsoup/nodes/Element.java:234: error: cannot find symbol\n    [javac]         prependChild(child);\n    [javac]                      ^\n    [javac]   symbol:   variable child\n    [javac]   location: class Element\n    [javac] 1 error\n    [javac] 4 warnings",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Element.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "533c3f223f21698bfc7a530b171734960b910e2bdef2d03ec76e5be07855314b"
+  }
+}

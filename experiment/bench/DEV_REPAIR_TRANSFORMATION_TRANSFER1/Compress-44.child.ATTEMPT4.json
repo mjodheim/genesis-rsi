@@ -1,0 +1,32 @@
+{
+  "attempt_digest": "e8f371acab6f77cf665458e88b69e725ec102e8dd06a2561bccd122d9c4333e0",
+  "candidate": {
+    "candidate_digest": "555ecd64777f822e1e3d6bf4399deec7463a189fc8bb73e97cb4a65a40cbed10",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+  },
+  "choice": {
+    "candidate_digest": "555ecd64777f822e1e3d6bf4399deec7463a189fc8bb73e97cb4a65a40cbed10",
+    "choice_digest": "280eb2e61837ea79d7236a4ab14241b50ba8467290085d4bff9be8ab0a595345",
+    "index": 4,
+    "prior_verdict_digests": [
+      "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+      "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+      "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c"
+    ],
+    "remaining_pool_size": 29,
+    "selection": "feedback revised"
+  },
+  "verdict": {
+    "candidate_digest": "555ecd64777f822e1e3d6bf4399deec7463a189fc8bb73e97cb4a65a40cbed10",
+    "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of expression\n    [javac]         static return ret;\n    [javac]         ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of type\n    [javac]         static return ret;\n    [javac]                ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: <identifier> expected\n    [javac]         static return ret;\n    [javac]                          ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [javac]            ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [javac]          ",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97"
+  }
+}

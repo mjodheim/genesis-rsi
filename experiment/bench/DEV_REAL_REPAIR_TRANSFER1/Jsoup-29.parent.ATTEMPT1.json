@@ -1,0 +1,21 @@
+{
+  "attempt_digest": "6f38788c98524c6e38a5c87ac1bb11753accfd88c8ae3a1c93b744761984700c",
+  "candidate": {
+    "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+    "content_sha256": "b10edeff77eeb8b8dd925ae4c8c4ec1f75c0774dbd827e10da9f49ad385e51ab",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Document.java"
+  },
+  "verdict": {
+    "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+    "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of expression\n    [javac]         transient return null;\n    [javac]         ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of type\n    [javac]         transient return null;\n    [javac]                   ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:178: error: class, interface, or enum expected\n    [javac]     public String outerHtml() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:180: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:188: error: class, interface, or enum expected\n    [javac]     public Element text(String text) {\n   ",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Document.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "ead127f5bb8a248a6a30cbd1136002299ec1a990998c574c8a4aee8e33434f5f"
+  }
+}

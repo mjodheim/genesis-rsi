@@ -1,0 +1,136 @@
+{
+  "arm_digest": "28cab8c735f53cc142db71fabb10ef765ca1328baedc51c92e3b81d3c61f7141",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "java.io.NotSerializableException: org.mockitousage.IMethods$$EnhancerByMockitoWithCGLIB$$f23d0830",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.000696275,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "extraInterfaces"
+          },
+          "characters": 7438,
+          "output_excerpt": "src/org/mockito/MockSettings.java:30:  *       .extraInterfaces(Bar.class));    \nsrc/org/mockito/MockSettings.java:48:      *   Foo foo = mock(Foo.class, withSettings().extraInterfaces(Bar.class, Baz.class));\nsrc/org/mockito/MockSettings.java:58:     MockSettings extraInterfaces(Class<?>... interfaces);\nsrc/org/mockito/Mockito.java:1545:      *       .extraInterfaces(Bar.class));    \nsrc/org/mockito/exceptions/Reporter.java:438:     public void extraInterfacesDoesNotAcceptNullParameters() {\nsrc/org/mockito/exceptions/Reporter.java:440:                 \"extraInterfaces() does not accept null parameters.\"\nsrc/org/mockito/exceptions/Reporter.java:444:     public void extraInterfacesAcceptsOnlyInterfaces(Class<?> wrongType) {\nsrc/org/mockito/exceptions/Reporter.java:446:                 \"extraInterfaces() accepts only interfaces.\",\nsrc/org/mockito/exceptions/Reporter.java:451:     public void extraInterfacesCannotContainMockedType(Class<?> wrongType) {\nsrc/org/mockito/exceptions/Reporter.java:453:                 \"extraInterfaces() does not accept the same type as the mocked type.\",\nsrc/org/mockito/exceptions/Reporter.java:455:                 \"and you passed the same very interface to the extraInterfaces()\"\nsrc/org/mockito/exceptions/Reporter.java:459:     public void extraInterfacesRequiresAtLeastOneInterface() {\nsrc/org/mockito/exceptions/Reporter.java:461:                 \"extraInterfaces() requires at least one interface.\"\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:15:     private Class<?>[] extraInterfaces;\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:22:         return this.extraInterfaces(java.io.Serializable.class);\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:25:     public MockSettings extraInterfaces(Class<?>... extraInterfaces) {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:26:         if (extraInterfaces == null || extraInterfaces.length == 0) {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:27:       ",
+          "tool": "search_files"
+        },
+        {
+          "arguments": {
+            "text": "Serializable"
+          },
+          "characters": 6999,
+          "output_excerpt": "src/org/mockito/MockSettings.java:7: import java.io.Serializable;\nsrc/org/mockito/MockSettings.java:36: public interface MockSettings extends Serializable {\nsrc/org/mockito/Mockito.java:47:  *      <a href=\"#20\">20. (**New**) Serializable mocks (Since 1.8.1) </a><br/>\nsrc/org/mockito/Mockito.java:590:  * <h3 id=\"20\">20. (**New**) Serializable mocks (Since 1.8.1) </h3>\nsrc/org/mockito/Mockito.java:604:  * The mock can be serialized assuming all the normal <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Serializable.html'>\nsrc/org/mockito/internal/MockitoInvocationHandler.java:7: import java.io.Serializable;\nsrc/org/mockito/internal/MockitoInvocationHandler.java:11: public interface MockitoInvocationHandler extends Serializable {\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:7: import java.io.Serializable;\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:19: public class MethodInterceptorFilter implements MethodInterceptor, Serializable {\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:59:         if (mockSettings.isSerializable())\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:60:             return new SerializableMockitoMethodProxy(methodProxy);\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:65:         if (mockSettings.isSerializable()) {\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:66:             return new SerializableMethod(method);\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:22:         return this.extraInterfaces(java.io.Serializable.class);\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:73:     public boolean isSerializable() {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:74:         return extraInterfaces != null && java.util.Arrays.asList(extraInterfaces).contains(java.io.Serializable.class);\nsrc/org/mockito/internal/creation/SerializableMockitoMethodProxy.java:7: import java.io.Serializable;\nsrc/org/mockito/internal/cre",
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "731ef6ac883ec516077b60b5ca4f99546a37061df3147a96f1e4b8c3b767b0f8",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 206,
+        "prompt_tokens": 4747
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "java.io.NotSerializableException: org.mockitousage.IMethods$$EnhancerByMockitoWithCGLIB$$f23d0830",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.00211635,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "b9d4aaf6b4ace851a02dfeccbcc6b142259ee2084c7294e5ae539401807c2441",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": false,
+          "branch_depth": null,
+          "candidate_digest": null,
+          "causal_checks_passed": false,
+          "causal_evidence": {
+            "explanation": "serializable() stores Serializable via extraInterfaces (line 22). Line 37 assigns the new array directly, so a later extraInterfaces(List.class) call discards Serializable. isSerializable (line 74) then reports false, so the mock is not built as serializable and the CGLIB class fails writeObject. This is an inference from the literal lines; the runtime behavior was not executed.",
+            "facts": [
+              {
+                "line": 22,
+                "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+                "quote": "return this.extraInterfaces(java.io.Serializable.class);",
+                "relation": "present",
+                "term": "extraInterfaces(java.io.Serializable.class)"
+              },
+              {
+                "line": 37,
+                "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+                "quote": "this.extraInterfaces = extraInterfaces;",
+                "relation": "present",
+                "term": "this.extraInterfaces = extraInterfaces;"
+              },
+              {
+                "line": 74,
+                "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+                "quote": "return extraInterfaces != null && java.util.Arrays.asList(extraInterfaces).contains(java.io.Serializable.class);",
+                "relation": "present",
+                "term": "contains(java.io.Serializable.class)"
+              }
+            ],
+            "observed_signal": "java.io.NotSerializableException: org.mockitousage.IMethods$$EnhancerByMockitoWithCGLIB$$f23d0830",
+            "prediction": "Merging arrays at line 37 keeps Serializable in the stored settings, so isSerializable() is true for serializable().extraInterfaces(List.class) and the serialization test should no longer throw NotSerializableException.",
+            "previous_assessment": "none"
+          },
+          "causal_rejection": "source quote does not match src/org/mockito/internal/creation/MockSettingsImpl.java:22 in selected tree",
+          "complete_paths": [],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "Class<?>[] merged = extraInterfaces;\n        if (this.extraInterfaces != null) {\n            merged = new Class<?>[this.extraInterfaces.length + extraInterfaces.length];\n            System.arraycopy(this.extraInterfaces, 0, merged, 0, this.extraInterfaces.length);\n            System.arraycopy(extraInterfaces, 0, merged, this.extraInterfaces.length, extraInterfaces.length);\n        }\n        this.extraInterfaces = merged;",
+                  "search": "this.extraInterfaces = extraInterfaces;"
+                }
+              ],
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+            }
+          ],
+          "hypothesis": "MockSettingsImpl.extraInterfaces() overwrites the previously stored interface array instead of appending. In the failing test, withSettings().serializable() first stores java.io.Serializable in extraInterfaces, then .extraInterfaces(List.class) replaces the array with only List, so isSerializable() returns false and the CGLIB mock is not Serializable. Merging the new interfaces with the existing ones should keep Serializable.",
+          "parent": "",
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+          "rejection": "source quote does not match src/org/mockito/internal/creation/MockSettingsImpl.java:22 in selected tree"
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1807,
+        "prompt_tokens": 11007
+      }
+    }
+  ],
+  "case": "Mockito-17",
+  "causal_baseline_signal": "java.io.NotSerializableException: org.mockitousage.IMethods$$EnhancerByMockitoWithCGLIB$$f23d0830",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 1,
+  "seconds": 8.8,
+  "solved": false,
+  "suspects_from_stack_trace": false,
+  "validated": 0,
+  "verdicts": []
+}

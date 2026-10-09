@@ -1,0 +1,51 @@
+{
+  "generation": 3,
+  "parent_policy_digest": "1043a2f0bcbd2b8f205f7d1fd12ae00b038fb9e42795debcf6ac529fbaeba65e",
+  "policy_digest": "fb63ece777a7e6c8c35c938427539ac11554d309c1a327a6a9c2a917dfddcb7e",
+  "schema": "genesis-repair-strategy-lineage-v1",
+  "strategies": [
+    {
+      "acquired_from_candidate_digest": "d9a13da8ab43c9eba67703764b07d405018ad8e1a52b4296ddef91c81bd3597f",
+      "acquired_from_candidate_id": "exemplar-d9a13da8ab43c9eb",
+      "acquired_from_result_digest": "09242260da38247b65e514763d1a3b8e280d0f842da108f222e814a663d6930b",
+      "delta": -1,
+      "external_model_calls": 0,
+      "host_issue_specific_recipe": false,
+      "kind": "subscript_identifier_delta",
+      "schema": "genesis-acquired-edit-strategy-v1",
+      "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+      "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+      "template_after": "[$IDENT - 1]",
+      "template_before": "[$IDENT]"
+    },
+    {
+      "acquired_from_candidate_digest": "5fe9136009608fd13e78d08878d90ee04ecba581fe56a82de93e186bc9eea9f1",
+      "acquired_from_candidate_id": "exemplar-5fe9136009608fd1",
+      "acquired_from_result_digest": "0b7cf8a5c69c20acf1c3d44fc32facf6f837ae3430c0e28fa5dd0e3b325ddcc8",
+      "delta": 1,
+      "external_model_calls": 0,
+      "host_issue_specific_recipe": false,
+      "kind": "subscript_identifier_delta",
+      "schema": "genesis-acquired-edit-strategy-v1",
+      "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+      "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+      "template_after": "[$IDENT + 1]",
+      "template_before": "[$IDENT]"
+    },
+    {
+      "acquired_from_candidate_digest": "b8139730a63e366782340ac551a9eb18a2f2c52bfdc027cbbffc12a1520fa6a7",
+      "acquired_from_candidate_id": "exemplar-b8139730a63e3667",
+      "acquired_from_result_digest": "bdfaf92806e21e537d995f2ff4caf35047fdd9a38c2dd67001c1df3cd0e2f4e3",
+      "delta": -2,
+      "external_model_calls": 0,
+      "host_issue_specific_recipe": false,
+      "kind": "subscript_identifier_delta",
+      "schema": "genesis-acquired-edit-strategy-v1",
+      "source_of_transformation": "repository_observed_exemplar_plus_evaluator_selection",
+      "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+      "template_after": "[$IDENT - 2]",
+      "template_before": "[$IDENT]"
+    }
+  ],
+  "training_receipt_digest": "bdfaf92806e21e537d995f2ff4caf35047fdd9a38c2dd67001c1df3cd0e2f4e3"
+}

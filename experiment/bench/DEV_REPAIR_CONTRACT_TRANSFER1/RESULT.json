@@ -1,0 +1,518 @@
+{
+  "all_gates_passed": true,
+  "api_cost_usd": 0,
+  "canonical_memory_changed": false,
+  "external_model_calls": 0,
+  "negative_controls_passed": 3,
+  "plan_digest": "42656453d4272d96b5589c2aa7bbe2c044da8d44c0324a17571d257ea303ee3e",
+  "policy_promoted": false,
+  "positive_transfer_cases": 3,
+  "result_digest": "2dd99fc8d9e58bd02159a31e0e3d69d2701a4b070540e2ebceb276d4be4b51e8",
+  "rows": [
+    {
+      "baseline": {
+        "candidate_digest": "0bde3783b4651e35f41f978b7846b55b167b9dcc1bdd52c88a31a276c8dc5e29",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/Parcel-nonnull/classes",
+            "/work/Parcel-nonnull/src/Parcel.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "4789def614c425a76c97f05362b3a35da7885f695eaef0bf7ae7fba06f0f34e3",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.008,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: missing rejection\n\tat Parcel.main(Parcel.java:7)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/Parcel-nonnull/classes",
+            "Parcel"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "4658f3bec34a2237c81dfb7b24db82f854ececc89b4727869f58cdb4cbd17c0f",
+          "returncode": 1,
+          "run_digest": "9e687d549d7d96017f59214473359e82d5931efbedc7b2f802b49d7180d76a53",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.284,
+          "timed_out": false
+        },
+        "verdict_digest": "9b76a6dbfaa7265a8b7bef2a490be87a9ca91522537a6225d350ad7c052b628e"
+      },
+      "case_digest": "66df998a49a96df30088b158de59a6b6de2adc8895f376223f9925225113949b",
+      "generated": 1,
+      "main": "Parcel",
+      "nullable": false,
+      "passed": true,
+      "source_restored": true,
+      "verdicts": [
+        {
+          "candidate_digest": "8e36672eaf3dc2309f65c3cd750968feea6253d95c5698d0d846586d49e551e1",
+          "compile_run": {
+            "command": [
+              "javac",
+              "-d",
+              "/work/Parcel-nonnull/classes",
+              "/work/Parcel-nonnull/src/Parcel.java"
+            ],
+            "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+            "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "returncode": 0,
+            "run_digest": "433983c2faf41605a5f97c0a6d4b058497efa1e8d8d9b83681bc96ee8189621a",
+            "schema": "genesis-defects4j-sandbox-run-v1",
+            "seconds": 0.985,
+            "timed_out": false
+          },
+          "feedback": "",
+          "plausible": true,
+          "stopped_at": "passed",
+          "test_run": {
+            "command": [
+              "java",
+              "-cp",
+              "/work/Parcel-nonnull/classes",
+              "Parcel"
+            ],
+            "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+            "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "returncode": 0,
+            "run_digest": "43752c06e954fcc98a8b877dcab35d7b064f710a7d8474b93c0ba71130226779",
+            "schema": "genesis-defects4j-sandbox-run-v1",
+            "seconds": 0.278,
+            "timed_out": false
+          },
+          "verdict_digest": "956d5a72e910e69908b81da0104b7f8ba3d064abb4044a9580c84aec0b8b27c6"
+        }
+      ],
+      "wrong_contract_verdict": null
+    },
+    {
+      "baseline": {
+        "candidate_digest": "3645481e2f11efdf84cf61572237c9d015fc592e9b55b8124b7e4df7f1385a47",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/Parcel-nullable/classes",
+            "/work/Parcel-nullable/src/Parcel.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "7fa3dd14944cbf0d3c87fb4c568f579cd591300667df6f501251fdd1649924a3",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.126,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/Parcel-nullable/classes",
+            "Parcel"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "157c830841153896802de49448171083724e940198fb7c80615512ff92e3ce45",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.351,
+          "timed_out": false
+        },
+        "verdict_digest": "5cb5a4d5d9e58b21552e5aff0323ea4942936c394412523ab77a5f69464e98b5"
+      },
+      "case_digest": "97a316ef47d312772df59f2854ef93f282e126ac16c77f5a1f74b5f9bd045568",
+      "generated": 0,
+      "main": "Parcel",
+      "nullable": true,
+      "passed": true,
+      "source_restored": true,
+      "verdicts": [],
+      "wrong_contract_verdict": {
+        "candidate_digest": "b13993bb3b99c07e5ce9c455b6d0b6fef151f7c84c8793748dd98f5269a63945",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/Parcel-nullable/classes",
+            "/work/Parcel-nullable/src/Parcel.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "62dd38198f26c89cb0b3c67aa1a6b3c58ccf6859b4868123efb6afe16fd346e4",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.911,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.NullPointerException\n\tat Parcel.<init>(Parcel.java:4)\n\tat Parcel.main(Parcel.java:9)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/Parcel-nullable/classes",
+            "Parcel"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "31f05962680022c6cafdde0876b276b0a8e189c48ad11f26210e6190516c2a0e",
+          "returncode": 1,
+          "run_digest": "397e323019e91c7269c69efcc76f71ce56067a5d72d1b9640e87bc6dccc8b8fa",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.355,
+          "timed_out": false
+        },
+        "verdict_digest": "6e7b109e9a6613185b6f9ec57f5967f8d31d21b77e44c938cc98f5d1a9199ca3"
+      }
+    },
+    {
+      "baseline": {
+        "candidate_digest": "17d2874bdd4beafa2d4d7daffc60758765508895773e081fc2041b13eb96318f",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/PairBox-nonnull/classes",
+            "/work/PairBox-nonnull/src/PairBox.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "b859e6b39900b34085644a6321546121c58cfd200602f6cd465b8aa5dd9cd828",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.915,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: missing rejection\n\tat PairBox.main(PairBox.java:8)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/PairBox-nonnull/classes",
+            "PairBox"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "face1cf52a3a50ebc66d4e2440a6eab3f76294e207ba23680fcfa411a98c694d",
+          "returncode": 1,
+          "run_digest": "43d526deb6eb0bc1d8acbda573929eb7aa0cb554f35de76905325887c14944a0",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.325,
+          "timed_out": false
+        },
+        "verdict_digest": "70381515605496a9796f4bbb9d575f6f55a0835dcde7eb3b9b90c8d9dd0d1ba7"
+      },
+      "case_digest": "5fdbf260059f12893223993fd6cca1006d94282f15747b51f5098e45a5c77726",
+      "generated": 1,
+      "main": "PairBox",
+      "nullable": false,
+      "passed": true,
+      "source_restored": true,
+      "verdicts": [
+        {
+          "candidate_digest": "1f055abdb4f9cca9f361fd05379ed471717a571a01c7cddcaa990fa05ab52da0",
+          "compile_run": {
+            "command": [
+              "javac",
+              "-d",
+              "/work/PairBox-nonnull/classes",
+              "/work/PairBox-nonnull/src/PairBox.java"
+            ],
+            "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+            "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "returncode": 0,
+            "run_digest": "ddbd8ab13e52695f0ccf1b796765b3c90ed4c960fab824ddb71e9bfde948d3b8",
+            "schema": "genesis-defects4j-sandbox-run-v1",
+            "seconds": 0.967,
+            "timed_out": false
+          },
+          "feedback": "",
+          "plausible": true,
+          "stopped_at": "passed",
+          "test_run": {
+            "command": [
+              "java",
+              "-cp",
+              "/work/PairBox-nonnull/classes",
+              "PairBox"
+            ],
+            "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+            "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "returncode": 0,
+            "run_digest": "265cc3840d08b259a005b168eb554ca1abe3dd4b34f0e96ccc392927d7e6d467",
+            "schema": "genesis-defects4j-sandbox-run-v1",
+            "seconds": 0.322,
+            "timed_out": false
+          },
+          "verdict_digest": "87ca31706a9f727148c7df937b972ea2cd88bd22c3c60308db543a5f1e90b1dc"
+        }
+      ],
+      "wrong_contract_verdict": null
+    },
+    {
+      "baseline": {
+        "candidate_digest": "e95fee395e983ee2e1bdac1f03d9794a8fead3b84ba176c95449ab24cbe686b3",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/PairBox-nullable/classes",
+            "/work/PairBox-nullable/src/PairBox.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "85892db107c2015527bb5d08e7c95bde32350468f603d8e7a766bc34c4d94705",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.946,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/PairBox-nullable/classes",
+            "PairBox"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "939491e78baa6fed5e586720b5bb947958d763dcf447fc42eacf1bee5879f610",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.349,
+          "timed_out": false
+        },
+        "verdict_digest": "ca553562563db565bfd2d022a6d8d3feb4ab61a94139d8e1ffb280a7d92e5189"
+      },
+      "case_digest": "05f97bb2c6ecda93dbc41cab95bc740a56ffa6c3d379c7fe86af3f019cf31188",
+      "generated": 0,
+      "main": "PairBox",
+      "nullable": true,
+      "passed": true,
+      "source_restored": true,
+      "verdicts": [],
+      "wrong_contract_verdict": {
+        "candidate_digest": "c5dfab708a2ebf18067f004951930591616ad06fa0c017b2347e465bf10a6f1f",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/PairBox-nullable/classes",
+            "/work/PairBox-nullable/src/PairBox.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "6757ed5c3711aa4d82ba5b22425ffd525cab0984801feb05fb7695bf93b6f285",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.937,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.NullPointerException\n\tat PairBox.<init>(PairBox.java:5)\n\tat PairBox.main(PairBox.java:11)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/PairBox-nullable/classes",
+            "PairBox"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "438ccefe821b2868f53e508c8e364c854fdca27d4fdc54d7d83bb0fbf09c5738",
+          "returncode": 1,
+          "run_digest": "62ed59be3f243529c5fe4e36cc500b2eab1ba1a2c849f4e53e61a15fe37748f4",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.367,
+          "timed_out": false
+        },
+        "verdict_digest": "ac2f35578ff9a4c48b11b971e482addee3984ffcc13a1d5faf89abcb7f3368e9"
+      }
+    },
+    {
+      "baseline": {
+        "candidate_digest": "e36bcacbc2ead68fdf2bcb6be5769c1f89da6755c6f2fd3ce985673c95e137d0",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/MixedBox-nonnull/classes",
+            "/work/MixedBox-nonnull/src/MixedBox.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "d6f163f03b0903d48acf7d191151ee7809b05e22e094ef09c0bd99c0814631b9",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.076,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: missing rejection\n\tat MixedBox.main(MixedBox.java:7)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/MixedBox-nonnull/classes",
+            "MixedBox"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "1b18e5d98e06aa3e88e437b4c91840a0c96be5b99ad3dd4f997f452555e94bfd",
+          "returncode": 1,
+          "run_digest": "1d63ef0333ac4f252c9eb1eae6c6cb55d265f174853c512fe04e4bd127f3dad8",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.338,
+          "timed_out": false
+        },
+        "verdict_digest": "55ae5c01907df4123887f44440466f6c29d4bdfa22b160567f0845300985a6cd"
+      },
+      "case_digest": "8d76a33a6b9542e03d2fe04a93de60077db7f06713fe9a7915ffb212dda1df8b",
+      "generated": 1,
+      "main": "MixedBox",
+      "nullable": false,
+      "passed": true,
+      "source_restored": true,
+      "verdicts": [
+        {
+          "candidate_digest": "e1e30a1e149a49fda73ab1531456dfa111d2f5f848108345e6abafb7971ba9c6",
+          "compile_run": {
+            "command": [
+              "javac",
+              "-d",
+              "/work/MixedBox-nonnull/classes",
+              "/work/MixedBox-nonnull/src/MixedBox.java"
+            ],
+            "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+            "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "returncode": 0,
+            "run_digest": "67190ce258d393f88b67036e9b1d1334496228274ec48e6e28a9f0274e873e8e",
+            "schema": "genesis-defects4j-sandbox-run-v1",
+            "seconds": 0.924,
+            "timed_out": false
+          },
+          "feedback": "",
+          "plausible": true,
+          "stopped_at": "passed",
+          "test_run": {
+            "command": [
+              "java",
+              "-cp",
+              "/work/MixedBox-nonnull/classes",
+              "MixedBox"
+            ],
+            "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+            "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+            "returncode": 0,
+            "run_digest": "4ba41f4ff581f81cd3b7f147a2a76520c08c65b7a9f149f49bd89f7c24cb8250",
+            "schema": "genesis-defects4j-sandbox-run-v1",
+            "seconds": 0.336,
+            "timed_out": false
+          },
+          "verdict_digest": "5e6ddcf8ebab9034e58703187115fbd316e3d1a5013739860135d67fc3daf0ad"
+        }
+      ],
+      "wrong_contract_verdict": null
+    },
+    {
+      "baseline": {
+        "candidate_digest": "4608ecf0e744e5e9634170ab009ac4e83165ddb476abb39b179aeb3a5a02613c",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/MixedBox-nullable/classes",
+            "/work/MixedBox-nullable/src/MixedBox.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "41279bc183e1392f1e96626cd59edd5bb7d80d2e3a23c9adebadb4be381f14d7",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.049,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/MixedBox-nullable/classes",
+            "MixedBox"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "b177061922b7cd6417bc0399aab2fbac4d573546a7c188f76db4d5c60839cb76",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.307,
+          "timed_out": false
+        },
+        "verdict_digest": "1488b526accef58b51ed31cda4e18baea4f0950da3022175273a9b7b934b9b79"
+      },
+      "case_digest": "dea14cccbdf0f7f666674a47daa8faf9c28962c64e4b40d6fda07ab217d58799",
+      "generated": 0,
+      "main": "MixedBox",
+      "nullable": true,
+      "passed": true,
+      "source_restored": true,
+      "verdicts": [],
+      "wrong_contract_verdict": {
+        "candidate_digest": "c072528c4a2adca19a7fa11a0ce8c471564faa4cddd530e9bd9656d12743d66f",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/MixedBox-nullable/classes",
+            "/work/MixedBox-nullable/src/MixedBox.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "706d58a516e0792a0eef3bd0b3c298b3a53d2218c7f20c0688b5cdf35f4e16d0",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.05,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.NullPointerException\n\tat MixedBox.<init>(MixedBox.java:4)\n\tat MixedBox.main(MixedBox.java:9)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/MixedBox-nullable/classes",
+            "MixedBox"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "6ec96c5bac230d85d2b92095b3f4f2c5f2db84f9a9c3aaa95910902d21bd765c",
+          "returncode": 1,
+          "run_digest": "0fbe9775fa9d6994aacb60a69fb5675c0ea70fe3cf117ba5eda8f2e8e72c8cfc",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.372,
+          "timed_out": false
+        },
+        "verdict_digest": "8206caf49281e5a82e152ac6f0be488f1927de9871b24310336b5ac5c221a8c6"
+      }
+    }
+  ],
+  "scope": "authored Java transfer gates; not fresh real bugs or independent RSI evidence"
+}

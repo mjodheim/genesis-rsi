@@ -1,0 +1,30 @@
+{
+  "cases": [
+    "Codec-15",
+    "Csv-16",
+    "Collections-24"
+  ],
+  "models": [
+    [
+      "QWEN",
+      "qwen/qwen3-coder",
+      null
+    ],
+    [
+      "GLM",
+      "z-ai/glm-5.3-flash",
+      "low"
+    ],
+    [
+      "DEEPSEEK",
+      "deepseek/deepseek-v4.1-flash",
+      "low"
+    ]
+  ],
+  "validation_budget": 2,
+  "output_token_limit": 4096,
+  "max_requests_per_round": 4,
+  "scope": "exposed development cases; descriptive comparison only",
+  "cost_accounting": "all call journals, including failed attempts; reasoning tokens are part of completion tokens; cost per suite-passing correction includes unsolved cases",
+  "retry_policy": "no automatic retry; retain aborted calls and unknown costs"
+}

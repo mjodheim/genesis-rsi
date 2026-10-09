@@ -1,0 +1,234 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": null,
+          "plausible_patch": null,
+          "plausible_path": null,
+          "plausible_squashed_sha256": null,
+          "proposed": 0,
+          "rounds": 1,
+          "solved": false,
+          "validated": 0,
+          "verdicts": []
+        }
+      },
+      "case": "Csv-16",
+      "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.00213237,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "CSVRecordIterator"
+                },
+                "result_digest": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+                "tool": "search_files"
+              },
+              {
+                "arguments": {
+                  "text": "hasNext"
+                },
+                "result_digest": "1908d88817ae97f0a2935cb65a21b41722220e69f63fe7dd1f8f350e925267ca",
+                "tool": "search_files"
+              }
+            ],
+            "model": "xiaomi/mimo-v2.6-pro",
+            "prompt_digest": "2ccd69becea269951e86b355751a4f1139b1dfb2c231af1311e9766e4679e021",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.017702799999999998,
+            "response_digest": "be5a6f3bbe252c24c3c0c52b769a8b66dc5580207a1273d3b9d21792fea415a1",
+            "response_id": "gen-1791493670-AL0qBGf4wunhjDjhDYiW",
+            "returned_model": "xiaomi/mimo-v2.6-pro",
+            "routed_provider": "Novita",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 56,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 19
+              },
+              "cost": 0.00213237,
+              "cost_details": {
+                "upstream_inference_completions_cost": 4.872e-05,
+                "upstream_inference_cost": 0.00213237,
+                "upstream_inference_prompt_cost": 0.00208365
+              },
+              "is_byok": false,
+              "prompt_tokens": 4790,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 4846
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0007082646,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 480
+                },
+                "result_digest": "05c6a5df81ff122e4fd1ebd56b5f972c7e35b29b6aad7aad4b242e9979fb2d1d",
+                "tool": "read_file"
+              }
+            ],
+            "model": "xiaomi/mimo-v2.6-pro",
+            "prompt_digest": "f1aa310e3b618a9f4e0608fd4fe3c7338fb1dc4bbd97a54a7f4ec62a5c8671d9",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.0210448,
+            "response_digest": "df650e43f928f5a3076720546ec99849dcdc6b2ca02f8f0a1f6f46a95b830baa",
+            "response_id": "gen-1791493673-2O9Pg8LxxXFDXW4nNswA",
+            "returned_model": "xiaomi/mimo-v2.6-pro",
+            "routed_provider": "Novita",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 59,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 22
+              },
+              "cost": 0.0007082646,
+              "cost_details": {
+                "upstream_inference_completions_cost": 5.133e-05,
+                "upstream_inference_cost": 0.0007082646,
+                "upstream_inference_prompt_cost": 0.0006569346
+              },
+              "is_byok": false,
+              "prompt_tokens": 6207,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 4736,
+                "video_tokens": 0
+              },
+              "total_tokens": 6266
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0008177334,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/test/java/org/apache/commons/csv/CSVParserTest.java",
+                  "start": 990
+                },
+                "result_digest": "fa6fbd389c64430a26863c7d0f35404c607b8c11cd7f4af14719ef0ac99b5463",
+                "tool": "read_file"
+              }
+            ],
+            "model": "xiaomi/mimo-v2.6-pro",
+            "prompt_digest": "452a1dd0c6a455ea545ace36f9e57024795b20b8bc4f4aafd045f4ad184789d1",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.0242658,
+            "response_digest": "25a7f39715cbc7d3b4a6c43e5f113207946aa9105ef1a5abc06d5bc43a37e8a3",
+            "response_id": "gen-1791493678-lkrT2VlkN1FbrOMev9q4",
+            "returned_model": "xiaomi/mimo-v2.6-pro",
+            "routed_provider": "Novita",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 3,
+            "usage": {
+              "completion_tokens": 86,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 35
+              },
+              "cost": 0.0008177334,
+              "cost_details": {
+                "upstream_inference_completions_cost": 7.482e-05,
+                "upstream_inference_cost": 0.0008177334,
+                "upstream_inference_prompt_cost": 0.0007429134
+              },
+              "is_byok": false,
+              "prompt_tokens": 7801,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 6144,
+                "video_tokens": 0
+              },
+              "total_tokens": 7887
+            }
+          },
+          {
+            "benchmark_may_be_in_training_data": true,
+            "budget_refused": true,
+            "cost_usd": 0.0,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "model": "xiaomi/mimo-v2.6-pro",
+            "prompt_digest": "e551c8cbbd85d92724956ae6a485d2562fc8671d1adb40c30c579f6f2e3553ba",
+            "provider": "openrouter",
+            "request_sent": false,
+            "requested": 1,
+            "reserved_cost_usd": 0.028838799999999998,
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 4
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "xiaomi/mimo-v2.6-pro",
+  "name": "DEV_COST_COMPARE2_MIMOPRO_CSV",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "4b9d24d67674195e2ec594c5631aecea5bbb5e98f9198155445e3520ac5473bc",
+  "provider": "openrouter",
+  "result_digest": "591b9af58b8e522ec63d5cdf2cb7eaaf5b22ce93c54fcbc3cfedcb43f3e23b3d",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0037
+    },
+    "solved_per_arm": {
+      "model_explore": 0
+    },
+    "usable_cases": 1
+  }
+}

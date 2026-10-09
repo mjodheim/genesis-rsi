@@ -1,0 +1,83 @@
+{
+  "decisions": [
+    {
+      "basis": "contextual",
+      "complexity": "moderate",
+      "estimated_request_reserve_usd": 0.004531263999999999,
+      "fallback_quality_threshold_relaxed": false,
+      "model": "anthropic/claude-haiku-5.5",
+      "observations": 6,
+      "score": 0.006129454628571429,
+      "suite_passes": 4
+    }
+  ],
+  "known_cost_usd": 0.0014186,
+  "model_calls": [
+    {
+      "applicable": 1,
+      "benchmark_may_be_in_training_data": true,
+      "cost_usd": 0.0014186,
+      "evidence_digest": "b5d49c5f545e2c86c811ecce846a083a808108b1ebcedc4806330e642739f31b",
+      "explore": true,
+      "finish_reason": "tool_calls",
+      "inspections": [],
+      "model": "anthropic/claude-haiku-5.5",
+      "prompt_digest": "7538fe1c06e7084ea2e852d2ee4c0328c84679e69e1ccdce6c75985ef731d3be",
+      "provider": "openrouter",
+      "request_sent": true,
+      "requested": 1,
+      "reserved_cost_usd": 0.00472882,
+      "response_digest": "6f0e6750734497beafbdc937893cc0fcc0c9bd4c548b5e539d2b24e5bc7f249b",
+      "response_id": "gen-1791529424-T1czmO1D6u3n2wUEptLc",
+      "returned_model": "anthropic/claude-haiku-5.5",
+      "routed_provider": "Google",
+      "schema": "genesis-openrouter-proposal-call-v1",
+      "step": 1,
+      "submission_only": false,
+      "tool_choice": "auto",
+      "usage": {
+        "completion_tokens": 1419,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1076
+        },
+        "cost": 0.0014186,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0007095,
+          "upstream_inference_cost": 0.0014186,
+          "upstream_inference_prompt_cost": 0.0007091
+        },
+        "is_byok": false,
+        "prompt_tokens": 7091,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 8510
+      }
+    }
+  ],
+  "reuse_without_llm": false,
+  "scope": "released_development",
+  "solved": true,
+  "solved_without_llm": false,
+  "teacher_digest": "69a684da5e069796bdad18fb0d274337efbf4a321529c6f3ab22e6ac4fe1a690",
+  "total_cost_usd": 0.0014186,
+  "unknown_cost": false,
+  "verdicts": [
+    {
+      "candidate_digest": "5bf2334e8cbda3e47e76fc53bd7efc8f1c76dce1b7c27750e102a888262cbc14",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "openrouter:anthropic/claude-haiku-5.5",
+      "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "a9cb7ec9c3f387708d4606290a4b07bef298dcff9af4ad03b83448c7c2688e72"
+    }
+  ]
+}

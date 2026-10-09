@@ -1,0 +1,51 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "32ead8db334dbeac9aa3d6cdf8b1dd73e2974af9c06dae6b89938d93af1529ac",
+      "id": "retained-32ead8db334dbeac",
+      "label": "retained_subscript_delta:subject.py:45:-1",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position - 1]\n",
+          "expected_absent": false,
+          "expected_sha256": "5910d38e31078f03b59d559a2c974bdd232fe27ac433b6e9afa6e76936fa1b03",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "f97608a567ac01fb62eadbaf2d5ed77774fbc5184ad4cbbd05342997b98726c0",
+      "id": "retained-f97608a567ac01fb",
+      "label": "retained_subscript_delta:subject.py:45:+1",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position + 1]\n",
+          "expected_absent": false,
+          "expected_sha256": "5910d38e31078f03b59d559a2c974bdd232fe27ac433b6e9afa6e76936fa1b03",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    }
+  ],
+  "discover": false,
+  "policy_digest": "1043a2f0bcbd2b8f205f7d1fd12ae00b038fb9e42795debcf6ac529fbaeba65e",
+  "search_digest": "8eef4224f45b37cacc64c66ac5e4cebe5ed6e7b06a518a736c34df4b754e6a14",
+  "source_digest": "bb11e64f81fd0d17092b5a5238bb574b7a165ef578533429be54d39bf87db8ff",
+  "task_digest": "fe2d577c6185a13a4e7475c29111093c819752a227581d9018cc450120f06144"
+}

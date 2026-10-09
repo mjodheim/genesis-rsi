@@ -1,0 +1,254 @@
+{
+  "api_cost_usd": 0,
+  "external_model_calls": 0,
+  "generations": [
+    {
+      "attempts": [
+        {
+          "candidate_digest": "7cef4a1bcf51365a14c1bbfd88876943f33856010f73ec2b6079338db8883124",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "7cef4a1bcf51365a14c1bbfd88876943f33856010f73ec2b6079338db8883124",
+            "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "03332be6fabcad233d8f23a75da3fbfa4aa07de7d0f28c7e0b48b6afa9833cae"
+          }
+        },
+        {
+          "candidate_digest": "79a2f4c51f308379dd651161b1850b74e92f9645fdf5eeb149c45b605f8674fb",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "79a2f4c51f308379dd651161b1850b74e92f9645fdf5eeb149c45b605f8674fb",
+            "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "abab89fa212a065b4730836192838a9a3d8b9c43e27daf57d12b41dcb489d447"
+          }
+        }
+      ],
+      "proposal": {
+        "cause": "initial_search",
+        "generated": 2,
+        "generation": 0,
+        "generation_digest": "6257e2e222517a5bc0db992383eea160b0396b1ebbfc563ae08eeb72c571802c",
+        "new_candidates": 2,
+        "parent_generation_digest": null,
+        "prior_verdict_digests": [],
+        "promoted": false,
+        "requested_candidates": 2,
+        "unique_candidates": 2
+      },
+      "stop_reason": "candidate_pool_exhausted"
+    },
+    {
+      "attempts": [
+        {
+          "candidate_digest": "608c475c57d534daa26141ee17cea0585c3d3b881811b64c2f85a0dd5e6ecaed",
+          "diagnosis": "syntax_or_other_compile",
+          "verdict": {
+            "candidate_digest": "608c475c57d534daa26141ee17cea0585c3d3b881811b64c2f85a0dd5e6ecaed",
+            "feedback": "    [javac] Compiling 1 source file to /work/Math-37-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:132: error: illegal start of expression\n    [javac]             transient double q = imaginary / real;\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: illegal start of type\n    [javac]             return FastMath.abs(real) * FastMath.sqrt(1 + q * q);\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: <identifier> expected\n    [javac]             return FastMath.abs(real) * FastMath.sqrt(1 + q * q);\n    [javac]                                ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: <identifier> expected\n    [javac]             return FastMath.abs(real) * FastMath.sqrt(1 + q * q);\n    [javac]                                     ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: ';' expected",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "18541b7cd9831165df1a528bab502c564c525c7b457c28c13715f2414bb3fb4a"
+          }
+        },
+        {
+          "candidate_digest": "271a01be1faa384251a55deab5d897909a09db6e3a93a600824232d5a980471b",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "271a01be1faa384251a55deab5d897909a09db6e3a93a600824232d5a980471b",
+            "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "0f602f2d461caa2494ee97368b6a6024b04e3b15f7cc0b8e2d3cb6f2db51d243"
+          }
+        },
+        {
+          "candidate_digest": "7928068e05b02607bdee2b74439c94417dc152cfdb1bb1bb8bc28597579334d7",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "7928068e05b02607bdee2b74439c94417dc152cfdb1bb1bb8bc28597579334d7",
+            "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "2f8abb8cd2fb1dfe0420936783336a1dcc7ab397220bd7436d7d4930b56f0a4c"
+          }
+        },
+        {
+          "candidate_digest": "1734f62666e5289f1f49c858a826885838a41fe1d649e4284fbfb3ed621dbfd1",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "1734f62666e5289f1f49c858a826885838a41fe1d649e4284fbfb3ed621dbfd1",
+            "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "7480f78253d6ecad6a08d8667e76529c3dd34dc7ab420c0a363e69954ae7a1e1"
+          }
+        },
+        {
+          "candidate_digest": "9a5f69f8f491503623c9efb2b53208f77186daa2e5bd76af95a960485bbe3752",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "9a5f69f8f491503623c9efb2b53208f77186daa2e5bd76af95a960485bbe3752",
+            "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "c9411b8afcfa4cc4c2e2e0ec6886d91e6457b652972bf4f7fa8f698edd0f5477"
+          }
+        },
+        {
+          "candidate_digest": "b13b2095b8341450fd48e87c7d0d0cfad998137cb64a4969a6b05a5aa547d9cc",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "b13b2095b8341450fd48e87c7d0d0cfad998137cb64a4969a6b05a5aa547d9cc",
+            "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "fcde4f8b5515c5621f80cab2d1c359de988ebb59cdba00851fd1b07a402bcad4"
+          }
+        }
+      ],
+      "proposal": {
+        "cause": "candidate_pool_exhausted",
+        "generated": 8,
+        "generation": 1,
+        "generation_digest": "c77393bd4469756bca53f307cc7cbe7bc081d0ae9d63da7d93d61adbddeaf22d",
+        "new_candidates": 6,
+        "parent_generation_digest": "6257e2e222517a5bc0db992383eea160b0396b1ebbfc563ae08eeb72c571802c",
+        "prior_verdict_digests": [
+          "03332be6fabcad233d8f23a75da3fbfa4aa07de7d0f28c7e0b48b6afa9833cae",
+          "abab89fa212a065b4730836192838a9a3d8b9c43e27daf57d12b41dcb489d447"
+        ],
+        "promoted": false,
+        "requested_candidates": 8,
+        "unique_candidates": 8
+      },
+      "stop_reason": "candidate_pool_exhausted"
+    },
+    {
+      "attempts": [
+        {
+          "candidate_digest": "bd26f7d231b54a5813b8eb87b4880fcac3538ffa1a98341767f1cfe1f3f46740",
+          "diagnosis": "syntax_or_other_compile",
+          "verdict": {
+            "candidate_digest": "bd26f7d231b54a5813b8eb87b4880fcac3538ffa1a98341767f1cfe1f3f46740",
+            "feedback": "    [javac] Compiling 1 source file to /work/Math-37-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:126: error: illegal start of expression\n    [javac]             static double q = real / imaginary;\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:127: error: illegal start of type\n    [javac]             return FastMath.abs(imaginary) * FastMath.sqrt(1 + q * q);\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:127: error: <identifier> expected\n    [javac]             return FastMath.abs(imaginary) * FastMath.sqrt(1 + q * q);\n    [javac]                                ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:127: error: <identifier> expected\n    [javac]             return FastMath.abs(imaginary) * FastMath.sqrt(1 + q * q);\n    [javac]                                          ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:127: er",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "c9fbbf2958bf96a28b9bcb63d68ae45edbee5d0c218b3b1695236d9c0abb7ce4"
+          }
+        },
+        {
+          "candidate_digest": "7fa9e11bd148ab8b954d91d47fc809d3a9c872209ebb3f4bdd30509303700405",
+          "diagnosis": "syntax_or_other_compile",
+          "verdict": {
+            "candidate_digest": "7fa9e11bd148ab8b954d91d47fc809d3a9c872209ebb3f4bdd30509303700405",
+            "feedback": "    [javac] Compiling 1 source file to /work/Math-37-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:463: error: illegal start of expression\n    [javac]             transient return NaN;\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:463: error: illegal start of type\n    [javac]             transient return NaN;\n    [javac]                       ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:463: error: <identifier> expected\n    [javac]             transient return NaN;\n    [javac]                                 ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:465: error: class, interface, or enum expected\n    [javac]         if (Double.isInfinite(real) ||\n    [javac]         ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:468: error: class, interface, or enum expected\n    [javac]         }\n    [javac]         ^\n    [javac] /work/Math-37-b/src/main/java/org",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "e21568f3297b70adda96f53d6b08f6dfdb040f47206cf7e3537f62bc7b28aeba"
+          }
+        },
+        {
+          "candidate_digest": "0ad4fa2173359a64506e91acfcef632c4378508d45f380e378ba223bacbd8a5f",
+          "diagnosis": "syntax_or_other_compile",
+          "verdict": {
+            "candidate_digest": "0ad4fa2173359a64506e91acfcef632c4378508d45f380e378ba223bacbd8a5f",
+            "feedback": "    [javac] Compiling 1 source file to /work/Math-37-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:286: error: illegal start of expression\n    [javac]             transient return NaN;\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:286: error: illegal start of type\n    [javac]             transient return NaN;\n    [javac]                       ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:286: error: <identifier> expected\n    [javac]             transient return NaN;\n    [javac]                                 ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:288: error: class, interface, or enum expected\n    [javac]         if (divisor == 0d) {\n    [javac]         ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:290: error: class, interface, or enum expected\n    [javac]         }\n    [javac]         ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/co",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "8aa51467abe5d374d9700bb1c0e3b5bb4a3d7722b07b70f0fdb606b844d452ba"
+          }
+        },
+        {
+          "candidate_digest": "a231cd1c97cf1a33471c2ce5be622a0dc5e4751aac922cee500f7954664998f8",
+          "diagnosis": "syntax_or_other_compile",
+          "verdict": {
+            "candidate_digest": "a231cd1c97cf1a33471c2ce5be622a0dc5e4751aac922cee500f7954664998f8",
+            "feedback": "    [javac] Compiling 1 source file to /work/Math-37-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:447: error: illegal start of expression\n    [javac]             transient return INF;\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:447: error: illegal start of type\n    [javac]             transient return INF;\n    [javac]                       ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:447: error: <identifier> expected\n    [javac]             transient return INF;\n    [javac]                                 ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:449: error: class, interface, or enum expected\n    [javac]         return createComplex(real * factor.real - imaginary * factor.imaginary,\n    [javac]         ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:451: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] ",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "8c675804883dbd5bf922f3910b9f6e8ab7030d4e05139636afcbe286c4551c61"
+          }
+        }
+      ],
+      "proposal": {
+        "cause": "candidate_pool_exhausted",
+        "generated": 32,
+        "generation": 2,
+        "generation_digest": "0e05e50a70a50a9ef046236adea39e0c5760e6ccb1c1bc3debe0a89a8d844fdf",
+        "new_candidates": 24,
+        "parent_generation_digest": "c77393bd4469756bca53f307cc7cbe7bc081d0ae9d63da7d93d61adbddeaf22d",
+        "prior_verdict_digests": [
+          "03332be6fabcad233d8f23a75da3fbfa4aa07de7d0f28c7e0b48b6afa9833cae",
+          "abab89fa212a065b4730836192838a9a3d8b9c43e27daf57d12b41dcb489d447",
+          "18541b7cd9831165df1a528bab502c564c525c7b457c28c13715f2414bb3fb4a",
+          "0f602f2d461caa2494ee97368b6a6024b04e3b15f7cc0b8e2d3cb6f2db51d243",
+          "2f8abb8cd2fb1dfe0420936783336a1dcc7ab397220bd7436d7d4930b56f0a4c",
+          "7480f78253d6ecad6a08d8667e76529c3dd34dc7ab420c0a363e69954ae7a1e1",
+          "c9411b8afcfa4cc4c2e2e0ec6886d91e6457b652972bf4f7fa8f698edd0f5477",
+          "fcde4f8b5515c5621f80cab2d1c359de988ebb59cdba00851fd1b07a402bcad4"
+        ],
+        "promoted": false,
+        "requested_candidates": 32,
+        "unique_candidates": 32
+      },
+      "stop_reason": "validation_budget_exhausted"
+    }
+  ],
+  "local_digest": "41cf4381b78ec1383adfaf08c941e43efc1bce11e5a8564f02f66062b2c4e380",
+  "promoted": false,
+  "solved": false,
+  "stop_reason": "validation_budget_exhausted",
+  "validated": 12
+}

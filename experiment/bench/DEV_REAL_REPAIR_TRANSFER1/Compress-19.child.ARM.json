@@ -1,0 +1,93 @@
+{
+  "accepted_candidate_digest": null,
+  "api_cost_usd": 0,
+  "arm": "child",
+  "arm_digest": "3439b41e655c4d97a2c77884b1a507d469db5c8c1996be1a449aef2897778e2c",
+  "attempts": [
+    {
+      "candidate": {
+        "candidate_digest": "5f824c21f5dd19af1f91be2cb548a4922127865946b4ecc9e2112389ea0e2568",
+        "content_sha256": "45df034142294cd0ed850805f6a6e12fd0f208ce09dc8f40e2a11ddd4db99ac2",
+        "description": "Bounded retained subscript strategy; delta=-1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      "verdict": {
+        "candidate_digest": "5f824c21f5dd19af1f91be2cb548a4922127865946b4ecc9e2112389ea0e2568",
+        "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+        "full_suite_failures": null,
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "5f5070968ebe0dab08f44b397175b36d2344f5dcd3615760b3b5cd7faa8f65a4"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "0303387733a2425c2d6905579c750e8710ce0c37e01a8cae8320601470fa5065",
+        "content_sha256": "8e74768f8c04c49a5fd7233fef1c5dbda303588a120290463b28e587de264256",
+        "description": "Bounded retained subscript strategy; delta=1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      "verdict": {
+        "candidate_digest": "0303387733a2425c2d6905579c750e8710ce0c37e01a8cae8320601470fa5065",
+        "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+        "full_suite_failures": null,
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "d5120093c17d82aaf34f354a072f1921de7f25b58d79b0c2a41822bf4da97236"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+        "content_sha256": "0099b037d90e12e686db050948c2b724be4abe3144b0cccace82caac2700a985",
+        "description": "Bounded retained subscript strategy; delta=-2",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      "verdict": {
+        "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+        "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+        "full_suite_failures": null,
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "29be101424edd6aea66130dc16edce0fc69c47278f1de3bdc36492314deb53bb"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+        "content_sha256": "ea1df76cc2e8e858a71a14d24bbd583b337a93a83b26d5b4ee8d531bf7712b87",
+        "description": "Bounded retained subscript strategy; delta=-1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      "verdict": {
+        "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+        "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.util.zip.ZipException: central directory zip64 extended information extra field's length doesn't match central directory data.  Expected length 16 but is 28\n\tat org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField.reparseCentralDirectoryData(Zip64ExtendedInformationExtraField.java:260)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.setSizesAndOffsetFromZip64Extra(ZipFile.java:619)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.readCentralDirectoryEntry(ZipFile.java:584)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.populateFromCentralDirectory(ZipFile.java:499)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:218)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:193)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:154)\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:234)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)",
+        "full_suite_failures": null,
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "404a8058fc366e2bec1e71fc8ea12ab6514c22670d5386500838596b98c93429"
+      }
+    }
+  ],
+  "case": "Compress-19",
+  "external_model_calls": 0,
+  "search_digest": "88fdd9ed5e11a9f0b41d8cdbffeb3390eabf1e05a2143f8da736111421d8e07e",
+  "solved": false,
+  "validated": 4
+}

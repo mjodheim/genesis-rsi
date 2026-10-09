@@ -1,0 +1,112 @@
+{
+  "arm_digest": "50e736267a720e4fe3bdec1ad17bc1baccc232125d412138c033495176f7a99f",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000487775,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "extraInterfaces"
+          },
+          "characters": 7438,
+          "tool": "search_files"
+        },
+        {
+          "arguments": {
+            "text": "Serializable"
+          },
+          "characters": 6999,
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "5ac1aac0627b0b22931fb63b7373ed53abe84fdc608383600fe4a5e690359454",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 211,
+        "prompt_tokens": 3059
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.001109875,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+          },
+          "characters": 2633,
+          "tool": "read_file"
+        },
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/jmock/ClassImposterizer.java",
+            "start": "60"
+          },
+          "characters": 2993,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "95357665049eebc0cc84dc2bbc49daf2e2e1fc6cb6b48f151bc8c8edae390c93",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 163,
+        "prompt_tokens": 9520
+      }
+    },
+    {
+      "applicable": 2,
+      "cached_tokens": 3055,
+      "cost_usd": 0.00165415,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "ccc2ce0e8dc52a50face42f50c675f3194724e02a6aec90908e2ac000eb04d17",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 3,
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 1455,
+        "prompt_tokens": 12016
+      }
+    }
+  ],
+  "case": "Mockito-17",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/org/mockito/internal/creation/MockSettingsImpl.java\n+++ b/src/org/mockito/internal/creation/MockSettingsImpl.java\n@@ -34,7 +34,14 @@\n                 new Reporter().extraInterfacesAcceptsOnlyInterfaces(i);\n             }\n         }\n-        this.extraInterfaces = extraInterfaces;\n+        if (this.extraInterfaces != null) {\n+            Class<?>[] merged = new Class<?>[this.extraInterfaces.length + extraInterfaces.length];\n+            System.arraycopy(this.extraInterfaces, 0, merged, 0, this.extraInterfaces.length);\n+            System.arraycopy(extraInterfaces, 0, merged, this.extraInterfaces.length, extraInterfaces.length);\n+            this.extraInterfaces = merged;\n+        } else {\n+            this.extraInterfaces = extraInterfaces;\n+        }\n         return this;\n     }\n \n",
+  "plausible_squashed_sha256": "3beb59373ce0f782534af1b822aca1ef8ab016e9e524556bcf623e6a2dee4305",
+  "rounds": 1,
+  "seconds": 67.3,
+  "solved": true,
+  "suspects_from_stack_trace": false,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "a4756ed6e24f03576dfbc15819e031d8c04fa0e41ad2038af31889776aa54cff",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "f1079f51111d90dc104356bc7dfcdc9be877b19ebd8bdba8df8fea9521aaff17"
+    }
+  ]
+}

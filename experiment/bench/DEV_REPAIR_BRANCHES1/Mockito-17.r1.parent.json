@@ -1,0 +1,101 @@
+{
+  "arm_digest": "956b76c4e9fbb02fcbac4c35cc1c09d804583f5530b16573af6b1eaf93454744",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000544525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "extraInterfaces"
+          },
+          "characters": 7438,
+          "output_excerpt": "src/org/mockito/MockSettings.java:30:  *       .extraInterfaces(Bar.class));    \nsrc/org/mockito/MockSettings.java:48:      *   Foo foo = mock(Foo.class, withSettings().extraInterfaces(Bar.class, Baz.class));\nsrc/org/mockito/MockSettings.java:58:     MockSettings extraInterfaces(Class<?>... interfaces);\nsrc/org/mockito/Mockito.java:1545:      *       .extraInterfaces(Bar.class));    \nsrc/org/mockito/exceptions/Reporter.java:438:     public void extraInterfacesDoesNotAcceptNullParameters() {\nsrc/org/mockito/exceptions/Reporter.java:440:                 \"extraInterfaces() does not accept null parameters.\"\nsrc/org/mockito/exceptions/Reporter.java:444:     public void extraInterfacesAcceptsOnlyInterfaces(Class<?> wrongType) {\nsrc/org/mockito/exceptions/Reporter.java:446:                 \"extraInterfaces() accepts only interfaces.\",\nsrc/org/mockito/exceptions/Reporter.java:451:     public void extraInterfacesCannotContainMockedType(Class<?> wrongType) {\nsrc/org/mockito/exceptions/Reporter.java:453:                 \"extraInterfaces() does not accept the same type as the mocked type.\",\nsrc/org/mockito/exceptions/Reporter.java:455:                 \"and you passed the same very interface to the extraInterfaces()\"\nsrc/org/mockito/exceptions/Reporter.java:459:     public void extraInterfacesRequiresAtLeastOneInterface() {\nsrc/org/mockito/exceptions/Reporter.java:461:                 \"extraInterfaces() requires at least one interface.\"\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:15:     private Class<?>[] extraInterfaces;\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:22:         return this.extraInterfaces(java.io.Serializable.class);\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:25:     public MockSettings extraInterfaces(Class<?>... extraInterfaces) {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:26:         if (extraInterfaces == null || extraInterfaces.length == 0) {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:27:       ",
+          "tool": "search_files"
+        },
+        {
+          "arguments": {
+            "path": "test/org/mockitousage/basicapi/MocksSerializationTest.java",
+            "start": "300"
+          },
+          "characters": 569,
+          "output_excerpt": "300| \n301|         // then\n302|         assertEquals(\"foo\", mock.toString());\n303|     }\n304| \n305|     @Test\n306|     public void shouldBeSerializeAndHaveExtraInterfaces() throws Exception {\n307|         //when\n308|         IMethods mock = mock(IMethods.class, withSettings().serializable().extraInterfaces(List.class));\n309|         IMethods mockTwo = mock(IMethods.class, withSettings().extraInterfaces(List.class).serializable());\n310| \n311|         //then\n312|         serializeAndBack((List) mock);\n313|         serializeAndBack((List) mockTwo);\n314|     }\n315| }",
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "7f0831afc46826a5ec2c8c694ac156ec39254983aa0d1532deab25b6a17a6071",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 278,
+        "prompt_tokens": 3245
+      }
+    },
+    {
+      "applicable": 1,
+      "cached_tokens": 0,
+      "cost_usd": 0.001322375,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "329204ec70d6aeeb499ec2cf589a4f631235530d7d58fbe8788ff390006c5d52",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": true,
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "java.util.List<Class<?>> allInterfaces = new java.util.ArrayList<Class<?>>();\n        if (this.extraInterfaces != null) {\n            allInterfaces.addAll(java.util.Arrays.asList(this.extraInterfaces));\n        }\n        allInterfaces.addAll(java.util.Arrays.asList(extraInterfaces));\n        this.extraInterfaces = allInterfaces.toArray(new Class<?>[allInterfaces.size()]);",
+                  "search": "this.extraInterfaces = extraInterfaces;"
+                }
+              ],
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+            }
+          ],
+          "hypothesis": "MockSettingsImpl.extraInterfaces overwrites the previously stored interfaces, so calling serializable() (which registers java.io.Serializable) followed by extraInterfaces(List.class) drops Serializable and the mock class is not serializable. Appending to the existing interfaces instead of replacing them should keep Serializable.",
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1123,
+        "prompt_tokens": 6851
+      }
+    }
+  ],
+  "case": "Mockito-17",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/org/mockito/internal/creation/MockSettingsImpl.java\n+++ b/src/org/mockito/internal/creation/MockSettingsImpl.java\n@@ -34,7 +34,12 @@\n                 new Reporter().extraInterfacesAcceptsOnlyInterfaces(i);\n             }\n         }\n-        this.extraInterfaces = extraInterfaces;\n+        java.util.List<Class<?>> allInterfaces = new java.util.ArrayList<Class<?>>();\n+        if (this.extraInterfaces != null) {\n+            allInterfaces.addAll(java.util.Arrays.asList(this.extraInterfaces));\n+        }\n+        allInterfaces.addAll(java.util.Arrays.asList(extraInterfaces));\n+        this.extraInterfaces = allInterfaces.toArray(new Class<?>[allInterfaces.size()]);\n         return this;\n     }\n \n",
+  "plausible_squashed_sha256": "97c1b42813fc795b3cee014cb201d13336b01254a601c0ab0c07e0ffead69609",
+  "rounds": 1,
+  "seconds": 64.7,
+  "solved": true,
+  "suspects_from_stack_trace": false,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "216468fbf12ad659a2acfebfedaba356af4843adfd1cb947d9053088e82f9197",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "e3692eae6b57668c5ea4556690b367224d01358325197303aa5ff95d190cc466"
+    }
+  ]
+}

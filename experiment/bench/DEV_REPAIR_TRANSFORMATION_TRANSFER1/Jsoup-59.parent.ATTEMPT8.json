@@ -1,0 +1,36 @@
+{
+  "attempt_digest": "19d1e4bd33e317609bbb6c1b0059ec79c850f31ffaa8f5b76813b6a1d0306657",
+  "candidate": {
+    "candidate_digest": "cbf8088b8980622e0b5689315f5c907fc4b34fad7b36b66f342243bae41bbb9e",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/parser/Token.java"
+  },
+  "choice": {
+    "candidate_digest": "cbf8088b8980622e0b5689315f5c907fc4b34fad7b36b66f342243bae41bbb9e",
+    "choice_digest": "9a56c8397b452d5371aa5af2da90b567379d5ecdecbce2d586e1fd3025a21f92",
+    "index": 8,
+    "prior_verdict_digests": [
+      "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+      "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+      "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+      "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+      "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404",
+      "11310299f06b4656665dd2a3e2f8fb7bb417bc20e65557e0a00912a3464ba4aa",
+      "5139f423a126a9395522c60a9b8720661e42181134b8992b3f14145902216ff3"
+    ],
+    "remaining_pool_size": 25,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "cbf8088b8980622e0b5689315f5c907fc4b34fad7b36b66f342243bae41bbb9e",
+    "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IncompatibleClassChangeError: Expected non-static field org.jsoup.parser.Token$StartTag.tagName\n\tat org.jsoup.parser.Tokeniser.emit(Tokeniser.java:76)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:207)\n\tat org.jsoup.parser.TokeniserState$10.read(TokeniserState.java:163)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)\n\tat org.jsoup.parser.Parser.parse(Parser.java:100)\n\tat org.jsoup.Jsoup.parse(Jsoup.java:58)\n\tat org.jsoup.parser.HtmlParserTest.handlesControlCodeInAttributeName(HtmlParserTest.java:946)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/parser/Token.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "a48527ddce2c99fc37d24714ebb5154631f07ca34af4446457c8481984d6b40f"
+  }
+}

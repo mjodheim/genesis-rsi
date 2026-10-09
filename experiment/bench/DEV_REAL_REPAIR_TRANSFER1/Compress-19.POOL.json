@@ -1,0 +1,299 @@
+{
+  "case": "Compress-19",
+  "evidence_digest": "ecad65fb9ef025807cb8dbe384b256b75b5d999870ab24112c07d090c961f701",
+  "groups": {
+    "observed": [],
+    "retained": [
+      {
+        "candidate_digest": "5f824c21f5dd19af1f91be2cb548a4922127865946b4ecc9e2112389ea0e2568",
+        "content_sha256": "45df034142294cd0ed850805f6a6e12fd0f208ce09dc8f40e2a11ddd4db99ac2",
+        "description": "Bounded retained subscript strategy; delta=-1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "0303387733a2425c2d6905579c750e8710ce0c37e01a8cae8320601470fa5065",
+        "content_sha256": "8e74768f8c04c49a5fd7233fef1c5dbda303588a120290463b28e587de264256",
+        "description": "Bounded retained subscript strategy; delta=1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+        "content_sha256": "0099b037d90e12e686db050948c2b724be4abe3144b0cccace82caac2700a985",
+        "description": "Bounded retained subscript strategy; delta=-2",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+        "content_sha256": "ea1df76cc2e8e858a71a14d24bbd583b337a93a83b26d5b4ee8d531bf7712b87",
+        "description": "Bounded retained subscript strategy; delta=-1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "358e21960ddaf5b6a90199a503d2847a9881bbae7a09e1c09f003a4be99cfde9",
+        "content_sha256": "fe08b20dc64329b270762fb97b798b61cc9110492294ffc456a6e39e6339d877",
+        "description": "Bounded retained subscript strategy; delta=1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "f9662b964950bcdb671096be7f422fb72e964e81d9190065e98db37cae1259b5",
+        "content_sha256": "2be29a09a7b7b79ea9e9281134050a2128c7faeba6e066ef4a514fe0219b2dd1",
+        "description": "Bounded retained subscript strategy; delta=-2",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "8f49aa8ccf4c2708eac32ac69ab4f0c8e7c55a76cf20343564eb571ea420e7e4",
+        "content_sha256": "3914c78d4b10f69495f74f7e50e44e58b75104d1ce2c40efd817fa6bb67511dd",
+        "description": "Bounded retained subscript strategy; delta=-1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "09093f030dcddac4b1770ccfbc1a29b55958f464660cbef8e7823239fb4874b9",
+        "content_sha256": "f849a75cebde0c99d0b0adc3665c4ed6a523e1e4b5a65728e99c0d40d2f82cac",
+        "description": "Bounded retained subscript strategy; delta=1",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "fd6cfb60aebfbf45b6803b87087a63275c0473a796e0e57efef6880475ccac56",
+        "content_sha256": "808582aabcacf40e899cf6fbbfc950b9c7c713c180efb05e21a4192b1e8d8f9c",
+        "description": "Bounded retained subscript strategy; delta=-2",
+        "origin": "learned-strategy:retained",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      }
+    ],
+    "strategist": [
+      {
+        "candidate_digest": "0e4458797f354822e5c205526bbfd7426163a56de730f12815257eb92de9167b",
+        "content_sha256": "771bd658b1270a0b190476ef99b74dcc3bd377f5b5be6c953e02a0341c1f6472",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "4b6de60cda12b625e3839a15eb88120070a0b704fae8e14e7a7ccc5d722f12fb",
+        "content_sha256": "1e46b42df6905fcd862c2ec389ad8f62f3e34295381b50d05a90a5a533df8eb4",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "2ce3eb9400bfaaf4f7e4d69ec3224278b2e20760bef5253585798430a3da3d86",
+        "content_sha256": "c2ff02a90abcb3a5e682044dcb54279aab6a7428b0db55e87d72170c7d9fd966",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "abbec261b6b0d2ea2d98b8288c997db3767016d3b3bc53a04f7c2fa6eff41c73",
+        "content_sha256": "9f3e113582525f75e81523e3902fbe9c0bef00004638a30a19855bf2eab1a37a",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "c9feba68d8307ebe354e6673639a7be035806471c705a0e9ad16190858f9abf4",
+        "content_sha256": "bda1f4cde6f61ec9b9e1329c2c6cd62d5b15c3b0eae8406446e90dcf452ec5b6",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "bb37052657cfde3e50b3dfe5f3bfc90ab5f0b0d0de0ce533e8e0c5c32934d03f",
+        "content_sha256": "53bd9f39d54feedd35acf96b56ed6390878b0240d7ccc86af25de7a2bc905ab4",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "09ca3490c9b41f194cbe972f4a2da36d700f7ecb0d6009b68f910f3247efcc1d",
+        "content_sha256": "1af7da047ce750c8a4ab2cef7ac978ee4f59b98ed907270f999edb94f6fe09dd",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "d299597ce9d7b874d3495a28970a2f6c87dae8e8fa25da8c3d9c7093951e1a5c",
+        "content_sha256": "80cb268defc2e2836d6d62b98fa474bd7ced5696d49905e1242b4e0e6eac1396",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "c3be6b4eb23e090248eeb45ac0ba3a2b9dc1e6b513bdb295366fbc8238cb25f8",
+        "content_sha256": "b164ba662a256a1dab56c6f93213a9e31a01c406a4ece34239fbbe597a607e46",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "013361d0548c7f4edff4b54f26bf4535a32b5febcb20ba8414f4778d77d20a0b",
+        "content_sha256": "4e42c815f51de50e2d3631d4c013059f722b59d6cd10c029732f049f436afab2",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "7a115a4085da859cde83446ab3a3edd336d922d7e34dd2290c5ae4f8e878cc1a",
+        "content_sha256": "e9400740b8f1a80c9ccb6418a90fbe7e32be681ac1e3d2c227eb2acd70fcf2ce",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "dea9718fc2eb0c9afca12ed33d59cf0d67fbcddb56888ff6f6d80aa5c7a850da",
+        "content_sha256": "9352d9748ae402d10551010772b78f84f9251541291ab19f9e061bb1a15922fa",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "705350a81a603dec27546daaebd7d885246fcfa5f43158f697b886c17910b97f",
+        "content_sha256": "35440ea008373fc15fe54617e2c2d321dafb81dd6473cfba34e86363c93f056f",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "d237fc6739bbd2e2ad603242210391a1c134878d2246b7726bc3fda696934e54",
+        "content_sha256": "98866ff66596b12da8bce6d48c5507e1067478f33144be0ea0bb6288875b1a58",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "54615b6b715cd86ebcb9fabb7c10407fcb5958b50910911e4a67be50ad767715",
+        "content_sha256": "2bfbe4323c9693208ffbf53cf12d091397ecb7a83a6cd65a01f190f4e6a27529",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "fe8ccf4c405f2eaacd798d9f2519b67e6f1892b3a471354ca8396179adfbdb42",
+        "content_sha256": "08ad5038a5c19b3a18b14d3e344c91084f7960ee66bc50d31b5c811d1ae04001",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "489ce80ea06a91b6cdf567d14600534157cba19b004a7f393c98756e0b7569f3",
+        "content_sha256": "8027f0ebe16da18cbd386a0b7b3b35c4e44ad8ca02afb1ad80ac49987f42dd53",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "31c9fa1a3ac474372bac5b1b2e57ee1f173c71d5d74898ad6d9ceb6991c4af43",
+        "content_sha256": "df70dc159938175901c66a3f0c613b83710b24edf8a510846d5b73a19a2661de",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "d02079acbe289a120ce3909aa61401c9f8e768224ab124de3efc67d3c35491a0",
+        "content_sha256": "2c38830443bfb818f09ea7b583946b0d34352e3cd4041635a1952ab2ef695973",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "39eb5b0bb0f38413df4b5a007f0bc1943bc07079551c18d18fe39619670dece0",
+        "content_sha256": "acd2aa753e9a877c5242570eaba3fa9d646267b46ae17db3e5d44af74fce8d0a",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "681c283d02dc563a9e5408f62d79cff05a00c3a1200b268cb627cc3a54cb0256",
+        "content_sha256": "d7428c068e5eaf36fc3c67417dd4e0a6e185379e5dc81368883e7f30ed53e858",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "99e922c5e2fb25dfa8a2d2cec512ade1f95687fe75786209b33b864bc0c16943",
+        "content_sha256": "55a5e716b4c7277d9b88ab4b00a152446ee5e9f49816f4b41b9d213f86c1e4f1",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "a72303b32aaedd28d8e6a9637b36cb1d88ce7453676c38f92f031bbc5bf920e8",
+        "content_sha256": "241b89bac979c9f0a895217f5f3bb6589b06d5413db87d7a6f27ebc2a65e235f",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "1dd0b155a396f26dee8479b327d11051a8fa3e61dac7a3422a9aca5fee21807b",
+        "content_sha256": "b3c33a6c94ad78484d51b2597c0095f8ec851c957ddb851c35b42b6076d36edc",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "3adc21af9c5bc419830958f898c1303ee6e6ecd91b8764af396f2a5b4c73d5e7",
+        "content_sha256": "cad2e5ec9ab1f48e943a92632fb614f4c39bc3a70a7d5e82af7d76c2a6bf3dca",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "87a894198b320814c379aa47a07d1e968854c66e99d43fe492eb354550e45191",
+        "content_sha256": "76e3844c816026868ab168bb26b74bce0c90c69a65c685da9610b8f772fdf792",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "b4995a552415db72c04c677f416711152b0043f1d2a7ec0402e0c5679eecaa68",
+        "content_sha256": "ea7c34912225aad1d69b1cd09d2ca7dd22db3eaf101ba02bcd54910f472bd10b",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "a63a1134736b1fed8bc77577023c75aa7c03a924a4d02d9a4dd7eb7c19f2101c",
+        "content_sha256": "f5e267319ad7d8e960c1e3a5a9828a11b57761c6734714047c31ea8cd996da15",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "bf072fab5a27b956650d0606643f298e4083b4420e27a52daf076036ddc68af6",
+        "content_sha256": "9d64be701e5bb9c9683d17846a33cb798b69395b624316d15cb6fac8031e44ba",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "02937fc13325a514d4891d5d756ba620e4e93706f643032dca3803cc78cfd51c",
+        "content_sha256": "901b0775bb35805de642e3cf308ddabbde95c368427c8424cbe3d8b3652c3f19",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      },
+      {
+        "candidate_digest": "165cce551222cd0d0f8b3f021a9dd3e01eb1ad6ccb19f879b78233b7251a2092",
+        "content_sha256": "760e7c57ceb2dc029d5b4d9760adc259f1a5e88965546fc7eeefe06dda6866b2",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java"
+      },
+      {
+        "candidate_digest": "ca035b4b843aa0ed53d4e3432b9bdf739effa12c3cc23941d0e3571ce14a5903",
+        "content_sha256": "4f68baa96abf0b6d79521a6db5f78926701c9e3819260a6d25056fe277337536",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+      }
+    ]
+  },
+  "pool_digest": "121c1d735fdaa605469427e8c44cd9d13f285758f8eb50c3f1facfc66af98ff0"
+}

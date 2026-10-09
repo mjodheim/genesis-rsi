@@ -1,0 +1,267 @@
+{
+  "api_cost_usd": 0,
+  "arm": "parent",
+  "arm_digest": "5a87db6daf170798026046555ccc14254505f7ff4861601f4f909eee671b49e5",
+  "case": "Compress-44",
+  "exact_candidates": 0,
+  "external_model_calls": 0,
+  "learned_candidates": 0,
+  "pool_candidates": 32,
+  "reactive": false,
+  "seconds": 21.164173121971544,
+  "solved": false,
+  "steps": [
+    {
+      "candidate": {
+        "candidate_digest": "47ff7224aabec4d9e1e720161029a201878397606860d4af3f41fc65d8f613cd",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "47ff7224aabec4d9e1e720161029a201878397606860d4af3f41fc65d8f613cd",
+        "choice_digest": "5b34e721e66098d6d16addf500d027feb7794a19a795dc19d88ad0b5e55b7fa6",
+        "index": 1,
+        "prior_verdict_digests": [],
+        "remaining_pool_size": 32,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "47ff7224aabec4d9e1e720161029a201878397606860d4af3f41fc65d8f613cd",
+        "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:38: error: cannot assign a value to final variable in\n    [javac]         this.in = in;\n    [javac]             ^\n    [javac] 1 error\n    [javac] 1 warning",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "09467d17ae1d8915149a730cf2bcf08d76cc9aad39e975206fb1c20de9baab01",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "09467d17ae1d8915149a730cf2bcf08d76cc9aad39e975206fb1c20de9baab01",
+        "choice_digest": "a6274143e3b3ed184ae5e4522440f7929c5939116e950d1210e305bfc019279f",
+        "index": 2,
+        "prior_verdict_digests": [
+          "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc"
+        ],
+        "remaining_pool_size": 31,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "09467d17ae1d8915149a730cf2bcf08d76cc9aad39e975206fb1c20de9baab01",
+        "feedback": "--- org.apache.commons.compress.utils.ChecksumCalculatingInputStreamTest::testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionOne\njunit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException\n\tat org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "7d0407d35765eb69c117b84614b698ca02df3bbf5cd01add267ab5e2ff0b5dd6",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "7d0407d35765eb69c117b84614b698ca02df3bbf5cd01add267ab5e2ff0b5dd6",
+        "choice_digest": "41b08f477eceb05a0a3c83ea47edb05a16d5e1234746a9debd5ec1fb6c830803",
+        "index": 3,
+        "prior_verdict_digests": [
+          "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+          "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc"
+        ],
+        "remaining_pool_size": 30,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "7d0407d35765eb69c117b84614b698ca02df3bbf5cd01add267ab5e2ff0b5dd6",
+        "feedback": "--- org.apache.commons.compress.utils.ChecksumCalculatingInputStreamTest::testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionOne\njunit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException\n\tat org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "555ecd64777f822e1e3d6bf4399deec7463a189fc8bb73e97cb4a65a40cbed10",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "555ecd64777f822e1e3d6bf4399deec7463a189fc8bb73e97cb4a65a40cbed10",
+        "choice_digest": "39c36ce24de6fbb459fa69df92a5ff82e3846c2198e756a4c675d8cb1661edaa",
+        "index": 4,
+        "prior_verdict_digests": [
+          "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+          "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+          "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c"
+        ],
+        "remaining_pool_size": 29,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "555ecd64777f822e1e3d6bf4399deec7463a189fc8bb73e97cb4a65a40cbed10",
+        "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of expression\n    [javac]         static return ret;\n    [javac]         ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of type\n    [javac]         static return ret;\n    [javac]                ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: <identifier> expected\n    [javac]         static return ret;\n    [javac]                          ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [javac]            ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [javac]          ",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "c20c7da9366796ed1ec8e2bfe0ecd32c9f631496923c7270b43f7a63a51a28f0",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "c20c7da9366796ed1ec8e2bfe0ecd32c9f631496923c7270b43f7a63a51a28f0",
+        "choice_digest": "47f75224cad5b67e5fabb2f63a2e5f63fdc00efcd3410cdb718f240b5d5c7374",
+        "index": 5,
+        "prior_verdict_digests": [
+          "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+          "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+          "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c",
+          "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97"
+        ],
+        "remaining_pool_size": 28,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "c20c7da9366796ed1ec8e2bfe0ecd32c9f631496923c7270b43f7a63a51a28f0",
+        "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: illegal start of expression\n    [javac]         transient return ret;\n    [javac]         ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: illegal start of type\n    [javac]         transient return ret;\n    [javac]                   ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: <identifier> expected\n    [javac]         transient return ret;\n    [javac]                             ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:83: error: class, interface, or enum expected\n    [javac]     public long skip(final long n) throws IOException {\n    [javac]            ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:83: error: class, interface, or enum expected\n    [javac]     public long skip(final long n) throws IOException {\n    [jav",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "7266b1f70df2ae17af941ff1a256278f3802446638a24d6a79371d64c3b0ff01"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "4b9e657f78c5aea51d8ab9163b12550046396c8d2b5e8239c6b3bcfc05726c72",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "4b9e657f78c5aea51d8ab9163b12550046396c8d2b5e8239c6b3bcfc05726c72",
+        "choice_digest": "fdb3649d7c3e5f6eb2151b9e88a30c4876a4e90cfcd0ace327b74ae642967f42",
+        "index": 6,
+        "prior_verdict_digests": [
+          "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+          "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+          "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c",
+          "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97",
+          "7266b1f70df2ae17af941ff1a256278f3802446638a24d6a79371d64c3b0ff01"
+        ],
+        "remaining_pool_size": 27,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "4b9e657f78c5aea51d8ab9163b12550046396c8d2b5e8239c6b3bcfc05726c72",
+        "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: illegal start of expression\n    [javac]         static return ret;\n    [javac]         ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: illegal start of type\n    [javac]         static return ret;\n    [javac]                ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: <identifier> expected\n    [javac]         static return ret;\n    [javac]                          ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:83: error: class, interface, or enum expected\n    [javac]     public long skip(final long n) throws IOException {\n    [javac]            ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:83: error: class, interface, or enum expected\n    [javac]     public long skip(final long n) throws IOException {\n    [javac]            ",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "7bed750221aeb4cb0c298382d7458ea2b877d9338cff1e3ed21350ae762c1ca0"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "ea195bb46f8b26efb6f97808c224e0c760752034c53af319d6c3081ea6580fe4",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "ea195bb46f8b26efb6f97808c224e0c760752034c53af319d6c3081ea6580fe4",
+        "choice_digest": "05f6980f44fecab6ff26c9d709812a73f1f73361fb37f6736780fc3ef7ce53a8",
+        "index": 7,
+        "prior_verdict_digests": [
+          "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+          "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+          "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c",
+          "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97",
+          "7266b1f70df2ae17af941ff1a256278f3802446638a24d6a79371d64c3b0ff01",
+          "7bed750221aeb4cb0c298382d7458ea2b877d9338cff1e3ed21350ae762c1ca0"
+        ],
+        "remaining_pool_size": 26,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "ea195bb46f8b26efb6f97808c224e0c760752034c53af319d6c3081ea6580fe4",
+        "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:37: error: cannot assign a value to final variable checksum\n    [javac]         this.checksum = checksum;\n    [javac]             ^\n    [javac] 1 error\n    [javac] 1 warning",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "28fc08cbf0b4e7aa6ce34b500f6b5b25c77026d1cc6b1c195619efbdfc9efdc9"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "43d2c70452e1ed824bb87e2c4ce8588e6b819d1ffc60521ba354caec870435e5",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+      },
+      "choice": {
+        "candidate_digest": "43d2c70452e1ed824bb87e2c4ce8588e6b819d1ffc60521ba354caec870435e5",
+        "choice_digest": "de0a9424e9f2a6f38c2e230aeebb3436cd3397f989338a5ac90cf4295e9b1063",
+        "index": 8,
+        "prior_verdict_digests": [
+          "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+          "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+          "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c",
+          "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97",
+          "7266b1f70df2ae17af941ff1a256278f3802446638a24d6a79371d64c3b0ff01",
+          "7bed750221aeb4cb0c298382d7458ea2b877d9338cff1e3ed21350ae762c1ca0",
+          "28fc08cbf0b4e7aa6ce34b500f6b5b25c77026d1cc6b1c195619efbdfc9efdc9"
+        ],
+        "remaining_pool_size": 25,
+        "selection": "initial priority"
+      },
+      "verdict": {
+        "candidate_digest": "43d2c70452e1ed824bb87e2c4ce8588e6b819d1ffc60521ba354caec870435e5",
+        "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of expression\n    [javac]         transient return ret;\n    [javac]         ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of type\n    [javac]         transient return ret;\n    [javac]                   ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: <identifier> expected\n    [javac]         transient return ret;\n    [javac]                             ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [javac]            ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [j",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "62b4b916a5d9206f4b5b51be5113eb777869be47b2e3bf2d710167ffb2735613"
+      }
+    }
+  ],
+  "validated": 8
+}

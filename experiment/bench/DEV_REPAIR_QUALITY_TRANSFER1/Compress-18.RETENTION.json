@@ -1,0 +1,829 @@
+{
+  "accepted": {
+    "child": null,
+    "parent": null
+  },
+  "analysis_digest": "a0c493b36176a416f2d8c535fb5e143b32c1a95fbbc58729696ef95678f0f6a1",
+  "arms": {
+    "child": {
+      "api_cost_usd": 0,
+      "arm": "child",
+      "arm_digest": "36ac77eb5905f5295eb382da573acb81a9fac6dac0e1f296e6a9d67b4d71d655",
+      "candidate_compilations": 8,
+      "case": "Compress-18",
+      "external_model_calls": 0,
+      "seconds": 39.42417910601944,
+      "solved": false,
+      "steps": [
+        {
+          "candidate": {
+            "candidate_digest": "83363abd95469244c9eb0221c230513e6aaa162ce35e931674195cc6495ce3c1",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-d30b13c48c9d8f99"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "83363abd95469244c9eb0221c230513e6aaa162ce35e931674195cc6495ce3c1",
+            "choice_digest": "2f7ab99cbb794cacc51c2cc9e6ca58119c9f9037c07f5300873ce6afac043e6d",
+            "index": 1,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": []
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "83363abd95469244c9eb0221c230513e6aaa162ce35e931674195cc6495ce3c1",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "b02f6fa9c80015fa23c34983a45fd59bca7aa34c660f2c5c31dbf10076cebfd5",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-950a37f584b085d7"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "b02f6fa9c80015fa23c34983a45fd59bca7aa34c660f2c5c31dbf10076cebfd5",
+            "choice_digest": "8507aa90ed9e5839d9898fa3ee9f7f079ea02804b891072660e413a99ca0ee8d",
+            "index": 2,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "b02f6fa9c80015fa23c34983a45fd59bca7aa34c660f2c5c31dbf10076cebfd5",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "e34624b42030aaa0b97f8994d39fee812f280ef0f97140cbbc1dfe95acea05eb",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-9a6dd704e375e555"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "e34624b42030aaa0b97f8994d39fee812f280ef0f97140cbbc1dfe95acea05eb",
+            "choice_digest": "34e9e7db311dc68f3d50cba38fab068fe8059c4d6aece8d2cf64412dfcbe4878",
+            "index": 3,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "e34624b42030aaa0b97f8994d39fee812f280ef0f97140cbbc1dfe95acea05eb",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-fdbc2ce5a4ef9873"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+            "choice_digest": "9944880cde4a6f79eabb5bb303eb1e7f98b1ac8a3563a1fb607998a145871e3d",
+            "index": 4,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da"
+            ]
+          },
+          "diagnosis": "type",
+          "verdict": {
+            "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+            "feedback": "    [javac] /work/Compress-18-b/maven-build.xml:80: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-18-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Compress-18-b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java:460: error: incompatible types: possible lossy conversion from long to int\n    [javac]             name = name.substring(0, TarConstants.MAXSIZE - 1);\n    [javac]                                                           ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "fb514f0d057390d3d7a033c04ad64ac36bc7fc9d80bf17e827a3940929e4cb8c",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-a3373798364a8d7a"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "fb514f0d057390d3d7a033c04ad64ac36bc7fc9d80bf17e827a3940929e4cb8c",
+            "choice_digest": "19937d050fb059b7447f12d21bb3b35806db1d567928691af4be3a37b477cdfc",
+            "index": 5,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "fb514f0d057390d3d7a033c04ad64ac36bc7fc9d80bf17e827a3940929e4cb8c",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "932d4a1dd54e8e79f8cda4b39aa2002afe81ac31e9fe0aaec87228ae44f3f8c1",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-9c9936882d3633de"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "932d4a1dd54e8e79f8cda4b39aa2002afe81ac31e9fe0aaec87228ae44f3f8c1",
+            "choice_digest": "3a1743cd8298b267b7693bb66e0ab2826eb7f7263bca896ae7929b1deffc21b3",
+            "index": 6,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666",
+              "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "932d4a1dd54e8e79f8cda4b39aa2002afe81ac31e9fe0aaec87228ae44f3f8c1",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "dd128aca0ab320504e2260ef273cc499515d272484b486baeba08871404a1c34"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "c93a8a61fc13fc676e4929fef12b53fd314ca652ca8d6cef5b660c7daad3e709",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-c13324e5953dec79"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "c93a8a61fc13fc676e4929fef12b53fd314ca652ca8d6cef5b660c7daad3e709",
+            "choice_digest": "d8c504d4bd3b1ea527321633d55c952fd08b72376c483c7e5c66ffe0bcf664de",
+            "index": 7,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666",
+              "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7",
+              "dd128aca0ab320504e2260ef273cc499515d272484b486baeba08871404a1c34"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "c93a8a61fc13fc676e4929fef12b53fd314ca652ca8d6cef5b660c7daad3e709",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "2bcc6f358a3a603a6551961581b455165af51a40d2cb50b1a7c815eb03475bc2"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "a1c3916990f63ffb41cb314ec17b4d20e23e73188faf3a42f8f44616d4f048ce",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-b18ea3be0179c1b0"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "a1c3916990f63ffb41cb314ec17b4d20e23e73188faf3a42f8f44616d4f048ce",
+            "choice_digest": "392b23f85b9b09ba50c24cfc4783f7d4e0a6d18444ef2fe9e880cb5c2ba76a87",
+            "index": 8,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666",
+              "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7",
+              "dd128aca0ab320504e2260ef273cc499515d272484b486baeba08871404a1c34",
+              "2bcc6f358a3a603a6551961581b455165af51a40d2cb50b1a7c815eb03475bc2"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "a1c3916990f63ffb41cb314ec17b4d20e23e73188faf3a42f8f44616d4f048ce",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "4f7320419091908e4b8b93b0efacc96bdb3b4a5a2cfcbc3a0e7885989f70c1cd"
+          }
+        }
+      ],
+      "validated": 8
+    },
+    "parent": {
+      "api_cost_usd": 0,
+      "arm": "parent",
+      "arm_digest": "382ec6e807a9677ad64f22df9039d02e236f846a03e4d808485ae4d2f76d73ce",
+      "candidate_compilations": 8,
+      "case": "Compress-18",
+      "external_model_calls": 0,
+      "seconds": 41.06426074297633,
+      "solved": false,
+      "steps": [
+        {
+          "candidate": {
+            "candidate_digest": "83363abd95469244c9eb0221c230513e6aaa162ce35e931674195cc6495ce3c1",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-d30b13c48c9d8f99"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "83363abd95469244c9eb0221c230513e6aaa162ce35e931674195cc6495ce3c1",
+            "choice_digest": "2f7ab99cbb794cacc51c2cc9e6ca58119c9f9037c07f5300873ce6afac043e6d",
+            "index": 1,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": []
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "83363abd95469244c9eb0221c230513e6aaa162ce35e931674195cc6495ce3c1",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "b02f6fa9c80015fa23c34983a45fd59bca7aa34c660f2c5c31dbf10076cebfd5",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-950a37f584b085d7"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "b02f6fa9c80015fa23c34983a45fd59bca7aa34c660f2c5c31dbf10076cebfd5",
+            "choice_digest": "8507aa90ed9e5839d9898fa3ee9f7f079ea02804b891072660e413a99ca0ee8d",
+            "index": 2,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "b02f6fa9c80015fa23c34983a45fd59bca7aa34c660f2c5c31dbf10076cebfd5",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "e34624b42030aaa0b97f8994d39fee812f280ef0f97140cbbc1dfe95acea05eb",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-9a6dd704e375e555"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "e34624b42030aaa0b97f8994d39fee812f280ef0f97140cbbc1dfe95acea05eb",
+            "choice_digest": "34e9e7db311dc68f3d50cba38fab068fe8059c4d6aece8d2cf64412dfcbe4878",
+            "index": 3,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "e34624b42030aaa0b97f8994d39fee812f280ef0f97140cbbc1dfe95acea05eb",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-fdbc2ce5a4ef9873"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+            "choice_digest": "9944880cde4a6f79eabb5bb303eb1e7f98b1ac8a3563a1fb607998a145871e3d",
+            "index": 4,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da"
+            ]
+          },
+          "diagnosis": "type",
+          "verdict": {
+            "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+            "feedback": "    [javac] /work/Compress-18-b/maven-build.xml:80: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-18-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Compress-18-b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java:460: error: incompatible types: possible lossy conversion from long to int\n    [javac]             name = name.substring(0, TarConstants.MAXSIZE - 1);\n    [javac]                                                           ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "fb514f0d057390d3d7a033c04ad64ac36bc7fc9d80bf17e827a3940929e4cb8c",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-a3373798364a8d7a"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "fb514f0d057390d3d7a033c04ad64ac36bc7fc9d80bf17e827a3940929e4cb8c",
+            "choice_digest": "19937d050fb059b7447f12d21bb3b35806db1d567928691af4be3a37b477cdfc",
+            "index": 5,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "fb514f0d057390d3d7a033c04ad64ac36bc7fc9d80bf17e827a3940929e4cb8c",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "932d4a1dd54e8e79f8cda4b39aa2002afe81ac31e9fe0aaec87228ae44f3f8c1",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-9c9936882d3633de"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "932d4a1dd54e8e79f8cda4b39aa2002afe81ac31e9fe0aaec87228ae44f3f8c1",
+            "choice_digest": "3a1743cd8298b267b7693bb66e0ab2826eb7f7263bca896ae7929b1deffc21b3",
+            "index": 6,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666",
+              "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "932d4a1dd54e8e79f8cda4b39aa2002afe81ac31e9fe0aaec87228ae44f3f8c1",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "dd128aca0ab320504e2260ef273cc499515d272484b486baeba08871404a1c34"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "c93a8a61fc13fc676e4929fef12b53fd314ca652ca8d6cef5b660c7daad3e709",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-c13324e5953dec79"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "c93a8a61fc13fc676e4929fef12b53fd314ca652ca8d6cef5b660c7daad3e709",
+            "choice_digest": "d8c504d4bd3b1ea527321633d55c952fd08b72376c483c7e5c66ffe0bcf664de",
+            "index": 7,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666",
+              "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7",
+              "dd128aca0ab320504e2260ef273cc499515d272484b486baeba08871404a1c34"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "c93a8a61fc13fc676e4929fef12b53fd314ca652ca8d6cef5b660c7daad3e709",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "2bcc6f358a3a603a6551961581b455165af51a40d2cb50b1a7c815eb03475bc2"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "a1c3916990f63ffb41cb314ec17b4d20e23e73188faf3a42f8f44616d4f048ce",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "provenance": {
+              "component_operators": [
+                "java_qualified_symbol_substitute"
+              ],
+              "detail": {},
+              "plan": {
+                "component_ids": [
+                  "java-symbol-b18ea3be0179c1b0"
+                ],
+                "component_operators": [
+                  "java_qualified_symbol_substitute"
+                ],
+                "depth": 1,
+                "edit_count": 1,
+                "score": 285
+              }
+            }
+          },
+          "choice": {
+            "candidate_digest": "a1c3916990f63ffb41cb314ec17b4d20e23e73188faf3a42f8f44616d4f048ce",
+            "choice_digest": "392b23f85b9b09ba50c24cfc4783f7d4e0a6d18444ef2fe9e880cb5c2ba76a87",
+            "index": 8,
+            "operators": [
+              "java_qualified_symbol_substitute"
+            ],
+            "prior_verdict_digests": [
+              "76154feac96c86a396142cff4d744d043eb8e07566658730a24951d0f3a54bfd",
+              "305221f0305c48bc09e858ae0bbaee524e7dea95d361e238a4fee2b80a8451b0",
+              "d260bc527d0f3a8808253bb2be62fd4e1127567bd711e291bd43bf9f7bb449da",
+              "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666",
+              "4476d2b863acfca3327f097ac372e4eb551c92efd017b08269e1e187ed02cbf7",
+              "dd128aca0ab320504e2260ef273cc499515d272484b486baeba08871404a1c34",
+              "2bcc6f358a3a603a6551961581b455165af51a40d2cb50b1a7c815eb03475bc2"
+            ]
+          },
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "a1c3916990f63ffb41cb314ec17b4d20e23e73188faf3a42f8f44616d4f048ce",
+            "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "4f7320419091908e4b8b93b0efacc96bdb3b4a5a2cfcbc3a0e7885989f70c1cd"
+          }
+        }
+      ],
+      "validated": 8
+    }
+  },
+  "case": "Compress-18",
+  "replay_verified": false,
+  "retention_digest": "9959b14c15855980526a14765656c8fdace79ad22b011f98ae0a8072ad6a8b75",
+  "success_recorded": false
+}

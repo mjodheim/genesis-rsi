@@ -1,0 +1,1134 @@
+{
+  "records": [
+    {
+      "call": {
+        "cost_usd": 0.0018133,
+        "genome_digest": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+        "prompt_digest": "ea164014275528f298b73bec923a3d272587c3f7a8ab76681079ebc38334fbae",
+        "purpose": "successor",
+        "schema": "genesis-repair-lineage-call-v1"
+      },
+      "label": "local-successor"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.000515775,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "extraInterfaces"
+            },
+            "characters": 7438,
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "Serializable"
+            },
+            "characters": 6999,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "5ac1aac0627b0b22931fb63b7373ed53abe84fdc608383600fe4a5e690359454",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 267,
+          "prompt_tokens": 3059
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r1-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.001069475,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+            },
+            "characters": 2633,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "9bd8721412fa6052fb74691c186f854b5d55e5063af635d5f28baf7f9bdeec07",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 71,
+          "prompt_tokens": 9576
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r1-parent"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 3055,
+        "cost_usd": 0.00166345,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "27e3993459e8b6522dc023b7d248c6a9651024c629b38f201f1018d878e713ae",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 1731,
+          "prompt_tokens": 10729
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r1-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.0005014,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "extraInterfaces"
+            },
+            "characters": 7438,
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "isSerializable"
+            },
+            "characters": 680,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "6a589c2d75b3550a1533d913b0a64989ff4dccf3383b5f21c48488b8d1c665a0",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 179,
+          "prompt_tokens": 3296
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.000865,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+            },
+            "characters": 2633,
+            "tool": "read_file"
+          },
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MethodInterceptorFilter.java",
+              "start": "50"
+            },
+            "characters": 778,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "6c2455fc9b5294fb225bc062954d11ac173f055f1aa633c1a8a675c495f29fe0",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 162,
+          "prompt_tokens": 7017
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 3292,
+        "cost_usd": 0.00142772,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "bc4194acf6db512c7a7feb6c6ed0fd43fc78ac39898368363cb5e15af223f4b7",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 1724,
+          "prompt_tokens": 8620
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 3,
+        "cached_tokens": 0,
+        "cost_usd": 0.001426775,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "912db22eac3fcf26329d5457053528868dd512eca3eba1e8c48bd32ab223dbac",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": 3,
+        "usage": {
+          "completion_tokens": 1147,
+          "prompt_tokens": 6827
+        }
+      },
+      "case": "Jsoup-54",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 0,
+        "cost_usd": 0.00135765,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "c9129eb85e1b4849a64207de77ec74627d1883a58d43b82d0d47253c7da01a0f",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 1068,
+          "prompt_tokens": 6590
+        }
+      },
+      "case": "Jsoup-54",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r1-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.000428525,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            },
+            "characters": 5712,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "1b2d47c311fe76f7a67b56127cd8bb80303ecababd4a417c11ef26446c7d9a7e",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 104,
+          "prompt_tokens": 3013
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r1-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.001671525,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 1,
+        "inspections": [],
+        "prompt_digest": "23706698d210553590976aabc5efb54f3979b3c941d01a67be5df0473f4f917e",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": 1,
+        "usage": {
+          "completion_tokens": 2091,
+          "prompt_tokens": 5508
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r1-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.00050565,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "new Answer"
+            },
+            "characters": 2701,
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "class ReturnsDeepStubs"
+            },
+            "characters": 146,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "3c1ebcd3bc3e61bd8735efc3bf4d9fec29d923a38650961e28cf4d31be2a87e9",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 199,
+          "prompt_tokens": 3250
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.00061495,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+              "start": "40"
+            },
+            "characters": 4133,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "a45b61fccef3158f6deafc0758deaf5fd60c0d42aeee41b72d81961cec5b32db",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 103,
+          "prompt_tokens": 4823
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 1,
+        "cached_tokens": 0,
+        "cost_usd": 0.00161555,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "f728802dc6d41e55a5285cc6ff1add1ef0d2a7896242d7b041165bde45a0a068",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": 1,
+        "usage": {
+          "completion_tokens": 1750,
+          "prompt_tokens": 6594
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.00067615,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/DelegatingMethod.java"
+            },
+            "characters": 1337,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "b6d298d146f251bdccdfdef7f40147464e29d33bc5efefb12f353c08f0014ccf",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 297,
+          "prompt_tokens": 4222
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 4218,
+        "cost_usd": 0.00148408,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "f0a568c52e08d2af5007d19f8975b32413b95ff6d0c93a191332da7d94742d6f",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 2716,
+          "prompt_tokens": 5057
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r1-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 3292,
+        "cost_usd": 0.00012482,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "extraInterfaces"
+            },
+            "characters": 7438,
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "isSerializable"
+            },
+            "characters": 680,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "6a589c2d75b3550a1533d913b0a64989ff4dccf3383b5f21c48488b8d1c665a0",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 183,
+          "prompt_tokens": 3296
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.0008759,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+              "start": "1"
+            },
+            "characters": 2633,
+            "tool": "read_file"
+          },
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MethodInterceptorFilter.java",
+              "start": "50"
+            },
+            "characters": 778,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "d6fba415198676f896d3562b77a5f9fb23f54814f8a9de04a59407766247536b",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 183,
+          "prompt_tokens": 7021
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 3292,
+        "cost_usd": 0.00139022,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "2804d9d88ad727626bc219efe04f288eb0ad058e6148359ae0579a312c8cba04",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 1644,
+          "prompt_tokens": 8645
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.000487775,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "extraInterfaces"
+            },
+            "characters": 7438,
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "Serializable"
+            },
+            "characters": 6999,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "5ac1aac0627b0b22931fb63b7373ed53abe84fdc608383600fe4a5e690359454",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 211,
+          "prompt_tokens": 3059
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.001109875,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+            },
+            "characters": 2633,
+            "tool": "read_file"
+          },
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/jmock/ClassImposterizer.java",
+              "start": "60"
+            },
+            "characters": 2993,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "95357665049eebc0cc84dc2bbc49daf2e2e1fc6cb6b48f151bc8c8edae390c93",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 163,
+          "prompt_tokens": 9520
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 3055,
+        "cost_usd": 0.00165415,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "ccc2ce0e8dc52a50face42f50c675f3194724e02a6aec90908e2ac000eb04d17",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 1455,
+          "prompt_tokens": 12016
+        }
+      },
+      "case": "Mockito-17",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 0,
+        "cost_usd": 0.00132665,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "c9129eb85e1b4849a64207de77ec74627d1883a58d43b82d0d47253c7da01a0f",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 1006,
+          "prompt_tokens": 6590
+        }
+      },
+      "case": "Jsoup-54",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 3,
+        "cached_tokens": 0,
+        "cost_usd": 0.001475775,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "912db22eac3fcf26329d5457053528868dd512eca3eba1e8c48bd32ab223dbac",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": 3,
+        "usage": {
+          "completion_tokens": 1245,
+          "prompt_tokens": 6827
+        }
+      },
+      "case": "Jsoup-54",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.00051265,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            },
+            "characters": 5712,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "3c1ebcd3bc3e61bd8735efc3bf4d9fec29d923a38650961e28cf4d31be2a87e9",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 213,
+          "prompt_tokens": 3250
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 0,
+        "cost_usd": 0.00211655,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "5331a83324b1b62195d017201b3ff49069217c0cfd36d7a177274b613eca8fd1",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 2900,
+          "prompt_tokens": 5854
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.000695775,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            },
+            "characters": 5712,
+            "tool": "read_file"
+          },
+          {
+            "arguments": {
+              "text": "DelegatingMethod"
+            },
+            "characters": 873,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "caca5dd2cdef20d4e9e0b0015331dc0e30fa6543ee075b9de1c1f85c6ba65346",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 154,
+          "prompt_tokens": 4951
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 4947,
+        "cost_usd": 0.00066517,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/DelegatingMethod.java"
+            },
+            "characters": 1337,
+            "tool": "read_file"
+          },
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MethodInterceptorFilter.java",
+              "start": "70"
+            },
+            "characters": 579,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "7dcc92d42a8a6726492d7e7862aa89fce9db00b9e56560655e494e91068552ab",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 637,
+          "prompt_tokens": 7919
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 4947,
+        "cost_usd": 0.00079187,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "MockSettings serializable();"
+            },
+            "characters": 71,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "604bc550599cd43025fd1d867225b6b2bd97efa356ae9fc48c0b92b3883a94d1",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 599,
+          "prompt_tokens": 9376
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 0,
+        "cost_usd": 0.002139325,
+        "final": true,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "7de736a178ed8946b192894cef788678b616ea6daa8a6dd9a8b2dec036cc5750",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 4,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 2070,
+          "prompt_tokens": 9859
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "0d5136ef3c71d10b90329de9b0ef164b308e24abeaef91c0c9dd3c6df8856c1e",
+      "label": "local-r2-child"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.000428525,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            },
+            "characters": 5712,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "1b2d47c311fe76f7a67b56127cd8bb80303ecababd4a417c11ef26446c7d9a7e",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 104,
+          "prompt_tokens": 3013
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.001184525,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "isSerializable()"
+            },
+            "characters": 1009,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "7e5edc36df9bd80635f3d5422af85c7730a984cc4e8888d114c0c7c818c75a33",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 1117,
+          "prompt_tokens": 5508
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.000829225,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+              "start": "[140, 185]"
+            },
+            "characters": 30,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "9783f1723482d9dcdab74fb86998f07d7bc86a8dc4728df9990f3b5343705e5a",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 97,
+          "prompt_tokens": 7055
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 0,
+        "cost_usd": 0.002061375,
+        "final": true,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "7b35a28564f679478925add192327200bcfb0b7e1c364dd37486f49fcd51da5c",
+        "round": 1,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 4,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 2579,
+          "prompt_tokens": 7019
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.0007069,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            },
+            "characters": 5712,
+            "tool": "read_file"
+          },
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/DelegatingMethod.java"
+            },
+            "characters": 1337,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "d40935d450aa216d98384b4bd01e8c779eaf19b7af61281192e423f7080b5b22",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 1,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 192,
+          "prompt_tokens": 4888
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "cost_usd": 0.0013106,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "text": "implements MockitoMethod"
+            },
+            "characters": 266,
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "DelegatingMethod"
+            },
+            "characters": 873,
+            "tool": "search_files"
+          }
+        ],
+        "prompt_digest": "7405034efd4bc65516e27459baa9c407667515d1b13a1679dfd873461f32390f",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 766,
+          "prompt_tokens": 8055
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 0,
+        "cached_tokens": 4884,
+        "cost_usd": 0.00054364,
+        "final": false,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/org/mockito/internal/creation/MethodInterceptorFilter.java",
+              "start": "60"
+            },
+            "characters": 949,
+            "tool": "read_file"
+          }
+        ],
+        "prompt_digest": "1c60b25731a3703c6af80f60e0efa292e1cec46cc8702514bcf6175e8d324c86",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 3,
+        "submitted": null,
+        "usage": {
+          "completion_tokens": 94,
+          "prompt_tokens": 9362
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    },
+    {
+      "call": {
+        "applicable": 2,
+        "cached_tokens": 0,
+        "cost_usd": 0.00248725,
+        "final": true,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "256240ad82f782e6c8b022ccf5341bff230df85e64240b9973153dcf2849e7b9",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 4,
+        "submitted": 2,
+        "usage": {
+          "completion_tokens": 2803,
+          "prompt_tokens": 9689
+        }
+      },
+      "case": "Mockito-23",
+      "genome": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+      "label": "local-r2-parent"
+    }
+  ],
+  "journal_digest": "c0114658329b1e0f4b65dc3cb3da8d4d8cf32281942f9771e86efb3df62a8fbd"
+}

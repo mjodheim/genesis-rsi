@@ -1,0 +1,545 @@
+{
+  "accepted_candidate_digest": {
+    "child": null,
+    "parent": null
+  },
+  "arms": {
+    "child": {
+      "api_cost_usd": 0,
+      "arm": "child",
+      "arm_digest": "78ad9a805148cd32ce6361c5b248f09641c8866030bacbf6075f8814f7a3fd05",
+      "case": "Jsoup-59",
+      "exact_candidates": 0,
+      "external_model_calls": 0,
+      "learned_candidates": 0,
+      "pool_candidates": 32,
+      "reactive": true,
+      "seconds": 27.881392837967724,
+      "solved": false,
+      "steps": [
+        {
+          "candidate": {
+            "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/helper/Validate.java"
+          },
+          "choice": {
+            "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+            "choice_digest": "26e5093ffc612d2608bcf6a6cda3a453e65df09ea93fa2b250b68e0ab8c8e319",
+            "index": 1,
+            "prior_verdict_digests": [],
+            "remaining_pool_size": 32,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:56)\n\tat org.jsoup.nodes.Document.<init>(Document.java:31)\n\tat org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:32)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)\n\tat org.jsoup.parser.Parser.parse(Parser.java:100)\n\tat org.jsoup.Jsoup.parse(Jsoup.java:58)\n\tat org.jsoup.parser.HtmlParserTest.handlesControlCodeInAttributeName(HtmlParserTest.java:946)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/helper/Validate.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "4160c11d1e8bacbb639e44440d8b873da6986102224eb9731fb007b44ba0e314",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java"
+          },
+          "choice": {
+            "candidate_digest": "4160c11d1e8bacbb639e44440d8b873da6986102224eb9731fb007b44ba0e314",
+            "choice_digest": "420c0fd0c257bb7750abab93c84993fc3977ebffc0a756e299c46e500c0e1cf6",
+            "index": 2,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c"
+            ],
+            "remaining_pool_size": 31,
+            "selection": "feedback revised"
+          },
+          "verdict": {
+            "candidate_digest": "4160c11d1e8bacbb639e44440d8b873da6986102224eb9731fb007b44ba0e314",
+            "feedback": "    [javac] /work/Jsoup-59-b/maven-build.xml:77: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-59-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:70: error: illegal start of expression\n    [javac]         transient String old = this.value;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:71: error: illegal start of type\n    [javac]         this.value = value;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:71: error: ';' expected\n    [javac]         this.value = value;\n    [javac]             ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:71: error: <identifier> expected\n    [javac]         this.value = value;\n    [javac]                   ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: illegal start of type\n    [javac]         return old;\n    [javac]         ^\n    [javac] /wo",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Token.java"
+          },
+          "choice": {
+            "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+            "choice_digest": "40473d7ee3b720f526f10e6742d24ecaed74b0ae06dfc60ccc0ff54e559a4804",
+            "index": 3,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb"
+            ],
+            "remaining_pool_size": 30,
+            "selection": "feedback revised"
+          },
+          "verdict": {
+            "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Token.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Tokeniser.java"
+          },
+          "choice": {
+            "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+            "choice_digest": "ce9d2d830eecdab84b5fd511dcd783e5594660575f850d9e052d6c66c9d05ee4",
+            "index": 4,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac"
+            ],
+            "remaining_pool_size": 29,
+            "selection": "feedback revised"
+          },
+          "verdict": {
+            "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Tokeniser.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "9e40074a0c651b3580e8b5112b8354b8eb3b6594fca2d0b8381e32a6d0774e3d",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/TokeniserState.java"
+          },
+          "choice": {
+            "candidate_digest": "9e40074a0c651b3580e8b5112b8354b8eb3b6594fca2d0b8381e32a6d0774e3d",
+            "choice_digest": "40318896f27d560f01a10c20b429576517b3964ff4de9ecd247e9ead7851d6e0",
+            "index": 5,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1"
+            ],
+            "remaining_pool_size": 28,
+            "selection": "feedback revised"
+          },
+          "verdict": {
+            "candidate_digest": "9e40074a0c651b3580e8b5112b8354b8eb3b6594fca2d0b8381e32a6d0774e3d",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/TokeniserState.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "b828d9bfa8ef8748d52f58acab008e0d5097bc68ca0dac3a7148bf30ae4bebda",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java"
+          },
+          "choice": {
+            "candidate_digest": "b828d9bfa8ef8748d52f58acab008e0d5097bc68ca0dac3a7148bf30ae4bebda",
+            "choice_digest": "f009a59eb24b55a312288b63a40a36b7af57031294b191d229086c95dac29ede",
+            "index": 6,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+              "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404"
+            ],
+            "remaining_pool_size": 27,
+            "selection": "feedback revised"
+          },
+          "verdict": {
+            "candidate_digest": "b828d9bfa8ef8748d52f58acab008e0d5097bc68ca0dac3a7148bf30ae4bebda",
+            "feedback": "    [javac] /work/Jsoup-59-b/maven-build.xml:77: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-59-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: illegal start of expression\n    [javac]         static return key;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: illegal start of type\n    [javac]         static return key;\n    [javac]                ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: <identifier> expected\n    [javac]         static return key;\n    [javac]                          ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:51: error: class, interface, or enum expected\n    [javac]     public void setKey(String key) {\n    [javac]            ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:53: error: class, interface, or enum expected\n    [javac]         this.key =",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "5139f423a126a9395522c60a9b8720661e42181134b8992b3f14145902216ff3"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "1f15b01a8a0e733733de3b4f3a2bb4152afeb45030b3748af721bd42dffc08a2",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java"
+          },
+          "choice": {
+            "candidate_digest": "1f15b01a8a0e733733de3b4f3a2bb4152afeb45030b3748af721bd42dffc08a2",
+            "choice_digest": "f1366e9fe21abb7b6373c279f7b5e8542ac121740ab3b07745b90551a7150abd",
+            "index": 7,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+              "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404",
+              "5139f423a126a9395522c60a9b8720661e42181134b8992b3f14145902216ff3"
+            ],
+            "remaining_pool_size": 26,
+            "selection": "feedback revised"
+          },
+          "verdict": {
+            "candidate_digest": "1f15b01a8a0e733733de3b4f3a2bb4152afeb45030b3748af721bd42dffc08a2",
+            "feedback": "    [javac] /work/Jsoup-59-b/maven-build.xml:77: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-59-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: illegal start of expression\n    [javac]         transient return key;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: illegal start of type\n    [javac]         transient return key;\n    [javac]                   ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: <identifier> expected\n    [javac]         transient return key;\n    [javac]                             ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:51: error: class, interface, or enum expected\n    [javac]     public void setKey(String key) {\n    [javac]            ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:53: error: class, interface, or enum expected\n    [javac]    ",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "5238c95adda894379b08348957d0a2a565d48fd0ef3edb2b90c092988d72edbf"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "07d9c0aaf433b5d8d6c92b04feb02235d4af9e264703a45202e063bf6f286a5b",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java"
+          },
+          "choice": {
+            "candidate_digest": "07d9c0aaf433b5d8d6c92b04feb02235d4af9e264703a45202e063bf6f286a5b",
+            "choice_digest": "2cba62734724b5c59e99ed8b74c82049a3aabad5ac981348948a08251979bbb9",
+            "index": 8,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+              "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404",
+              "5139f423a126a9395522c60a9b8720661e42181134b8992b3f14145902216ff3",
+              "5238c95adda894379b08348957d0a2a565d48fd0ef3edb2b90c092988d72edbf"
+            ],
+            "remaining_pool_size": 25,
+            "selection": "feedback revised"
+          },
+          "verdict": {
+            "candidate_digest": "07d9c0aaf433b5d8d6c92b04feb02235d4af9e264703a45202e063bf6f286a5b",
+            "feedback": "    [javac] /work/Jsoup-59-b/maven-build.xml:77: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-59-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: illegal start of expression\n    [javac]         static return old;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: illegal start of type\n    [javac]         static return old;\n    [javac]                ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: <identifier> expected\n    [javac]         static return old;\n    [javac]                          ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:79: error: class, interface, or enum expected\n    [javac]     public String html() {\n    [javac]            ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:82: error: class, interface, or enum expected\n    [javac]         try {\n    [javac]   ",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "fa0843d2980ac2f57e985092db1fa1a8b7d855b53d10d2f4ffe8d41b45c51256"
+          }
+        }
+      ],
+      "validated": 8
+    },
+    "parent": {
+      "api_cost_usd": 0,
+      "arm": "parent",
+      "arm_digest": "a8d5125eaed22f9c0efb8d980481aab2f7ba3bc7182f7359d98ebebd9d19d98d",
+      "case": "Jsoup-59",
+      "exact_candidates": 0,
+      "external_model_calls": 0,
+      "learned_candidates": 0,
+      "pool_candidates": 32,
+      "reactive": false,
+      "seconds": 37.05377432901878,
+      "solved": false,
+      "steps": [
+        {
+          "candidate": {
+            "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/helper/Validate.java"
+          },
+          "choice": {
+            "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+            "choice_digest": "26e5093ffc612d2608bcf6a6cda3a453e65df09ea93fa2b250b68e0ab8c8e319",
+            "index": 1,
+            "prior_verdict_digests": [],
+            "remaining_pool_size": 32,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:56)\n\tat org.jsoup.nodes.Document.<init>(Document.java:31)\n\tat org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:32)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)\n\tat org.jsoup.parser.Parser.parse(Parser.java:100)\n\tat org.jsoup.Jsoup.parse(Jsoup.java:58)\n\tat org.jsoup.parser.HtmlParserTest.handlesControlCodeInAttributeName(HtmlParserTest.java:946)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/helper/Validate.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "4160c11d1e8bacbb639e44440d8b873da6986102224eb9731fb007b44ba0e314",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java"
+          },
+          "choice": {
+            "candidate_digest": "4160c11d1e8bacbb639e44440d8b873da6986102224eb9731fb007b44ba0e314",
+            "choice_digest": "5282592261743781d71a2dd084a7da36979481f692b8a9a9d394df66bc26ca74",
+            "index": 2,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c"
+            ],
+            "remaining_pool_size": 31,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "4160c11d1e8bacbb639e44440d8b873da6986102224eb9731fb007b44ba0e314",
+            "feedback": "    [javac] /work/Jsoup-59-b/maven-build.xml:77: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-59-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:70: error: illegal start of expression\n    [javac]         transient String old = this.value;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:71: error: illegal start of type\n    [javac]         this.value = value;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:71: error: ';' expected\n    [javac]         this.value = value;\n    [javac]             ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:71: error: <identifier> expected\n    [javac]         this.value = value;\n    [javac]                   ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: illegal start of type\n    [javac]         return old;\n    [javac]         ^\n    [javac] /wo",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Token.java"
+          },
+          "choice": {
+            "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+            "choice_digest": "b6bfb394a02be8c3eb28a40204b824ba8b0d49b671c7ae607eb6912b1a9e8abb",
+            "index": 3,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb"
+            ],
+            "remaining_pool_size": 30,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Token.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Tokeniser.java"
+          },
+          "choice": {
+            "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+            "choice_digest": "3da936d8238e7c3019b42a97c87e6ebbe9df2254a64e58486a7cc9e26518cbb8",
+            "index": 4,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac"
+            ],
+            "remaining_pool_size": 29,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Tokeniser.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "9e40074a0c651b3580e8b5112b8354b8eb3b6594fca2d0b8381e32a6d0774e3d",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/TokeniserState.java"
+          },
+          "choice": {
+            "candidate_digest": "9e40074a0c651b3580e8b5112b8354b8eb3b6594fca2d0b8381e32a6d0774e3d",
+            "choice_digest": "8d074bb199b413c3754c2d8f94af9155034d26ce4df565436a502789c86a5e0e",
+            "index": 5,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1"
+            ],
+            "remaining_pool_size": 28,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "9e40074a0c651b3580e8b5112b8354b8eb3b6594fca2d0b8381e32a6d0774e3d",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/TokeniserState.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "e537f06ebcac5b37cd2630ff807fd5ffd959b584bf2358cf9f698abf674e13a4",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/helper/Validate.java"
+          },
+          "choice": {
+            "candidate_digest": "e537f06ebcac5b37cd2630ff807fd5ffd959b584bf2358cf9f698abf674e13a4",
+            "choice_digest": "537356fee1d93826f376992059724bf4a4a4037bc93ec0c862d96bd9889037e4",
+            "index": 6,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+              "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404"
+            ],
+            "remaining_pool_size": 27,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "e537f06ebcac5b37cd2630ff807fd5ffd959b584bf2358cf9f698abf674e13a4",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/helper/Validate.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "11310299f06b4656665dd2a3e2f8fb7bb417bc20e65557e0a00912a3464ba4aa"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "b828d9bfa8ef8748d52f58acab008e0d5097bc68ca0dac3a7148bf30ae4bebda",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java"
+          },
+          "choice": {
+            "candidate_digest": "b828d9bfa8ef8748d52f58acab008e0d5097bc68ca0dac3a7148bf30ae4bebda",
+            "choice_digest": "611465375650ce319f46dbe847bbb7a085ae051682bc48015356ecec3da9ce52",
+            "index": 7,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+              "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404",
+              "11310299f06b4656665dd2a3e2f8fb7bb417bc20e65557e0a00912a3464ba4aa"
+            ],
+            "remaining_pool_size": 26,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "b828d9bfa8ef8748d52f58acab008e0d5097bc68ca0dac3a7148bf30ae4bebda",
+            "feedback": "    [javac] /work/Jsoup-59-b/maven-build.xml:77: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-59-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: illegal start of expression\n    [javac]         static return key;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: illegal start of type\n    [javac]         static return key;\n    [javac]                ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:44: error: <identifier> expected\n    [javac]         static return key;\n    [javac]                          ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:51: error: class, interface, or enum expected\n    [javac]     public void setKey(String key) {\n    [javac]            ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:53: error: class, interface, or enum expected\n    [javac]         this.key =",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Attribute.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "5139f423a126a9395522c60a9b8720661e42181134b8992b3f14145902216ff3"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "cbf8088b8980622e0b5689315f5c907fc4b34fad7b36b66f342243bae41bbb9e",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Token.java"
+          },
+          "choice": {
+            "candidate_digest": "cbf8088b8980622e0b5689315f5c907fc4b34fad7b36b66f342243bae41bbb9e",
+            "choice_digest": "9a56c8397b452d5371aa5af2da90b567379d5ecdecbce2d586e1fd3025a21f92",
+            "index": 8,
+            "prior_verdict_digests": [
+              "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+              "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+              "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+              "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+              "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404",
+              "11310299f06b4656665dd2a3e2f8fb7bb417bc20e65557e0a00912a3464ba4aa",
+              "5139f423a126a9395522c60a9b8720661e42181134b8992b3f14145902216ff3"
+            ],
+            "remaining_pool_size": 25,
+            "selection": "initial priority"
+          },
+          "verdict": {
+            "candidate_digest": "cbf8088b8980622e0b5689315f5c907fc4b34fad7b36b66f342243bae41bbb9e",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IncompatibleClassChangeError: Expected non-static field org.jsoup.parser.Token$StartTag.tagName\n\tat org.jsoup.parser.Tokeniser.emit(Tokeniser.java:76)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:207)\n\tat org.jsoup.parser.TokeniserState$10.read(TokeniserState.java:163)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)\n\tat org.jsoup.parser.Parser.parse(Parser.java:100)\n\tat org.jsoup.Jsoup.parse(Jsoup.java:58)\n\tat org.jsoup.parser.HtmlParserTest.handlesControlCodeInAttributeName(HtmlParserTest.java:946)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/parser/Token.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "a48527ddce2c99fc37d24714ebb5154631f07ca34af4446457c8481984d6b40f"
+          }
+        }
+      ],
+      "validated": 8
+    }
+  },
+  "case": "Jsoup-59",
+  "comparison_digest": "7b3be20428f37094ac9ef2df3f850fce972457aec41e650570540ceac51e5003",
+  "evidence_digest": "4cfd8cf9434b6304c4e0f0d5ec796f3269d2e6a9af20287b3561b89f63f7d53d"
+}

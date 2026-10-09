@@ -1,0 +1,28 @@
+{
+  "attempt_digest": "1f1779775346a3bae0dc6469631bed2042e89f18676ffb809aad6cd2ba31baab",
+  "candidate": {
+    "candidate_digest": "946846b15a6cef6b764589423d1a7d8e0f242984c3a1095aa5927b3751093536",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java"
+  },
+  "choice": {
+    "candidate_digest": "946846b15a6cef6b764589423d1a7d8e0f242984c3a1095aa5927b3751093536",
+    "choice_digest": "01d01fba6b91653b02d5af6421b4108a62e17e76e3ccf8a1c9e0d7aeb15dd469",
+    "index": 1,
+    "prior_verdict_digests": [],
+    "remaining_pool_size": 32,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "946846b15a6cef6b764589423d1a7d8e0f242984c3a1095aa5927b3751093536",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-41-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:328: error: illegal start of expression\n    [javac]         static return var;\n    [javac]         ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:328: error: illegal start of type\n    [javac]         static return var;\n    [javac]                ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:328: warning: as of release 10, 'var' is a restricted local variable type and cannot be used for type declarations or as the element type of an array\n    [javac]         static return var;\n    [javac]                       ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:328: error: <identifier> expected\n    [javac]         static return var;\n    [javac]                          ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "ca1345dfd5e11ce9f40a7b4ed696a7b789b5f85b67bfa7307a5f9786073ee023"
+  }
+}

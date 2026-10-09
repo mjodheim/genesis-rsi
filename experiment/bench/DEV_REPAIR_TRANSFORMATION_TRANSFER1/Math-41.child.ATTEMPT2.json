@@ -1,0 +1,30 @@
+{
+  "attempt_digest": "94f55dc08edca46614637bb000ef3377b7e1744f57c9f0d8f67b5faf06340bf3",
+  "candidate": {
+    "candidate_digest": "2f6ba45d9369fadda4ab94dd7dc18cf5cd871c23f50c157e2eb8483cd296913b",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java"
+  },
+  "choice": {
+    "candidate_digest": "2f6ba45d9369fadda4ab94dd7dc18cf5cd871c23f50c157e2eb8483cd296913b",
+    "choice_digest": "b03055de53f060b99570121b8118a95a75f7979a54998865c82bda897726b3a3",
+    "index": 2,
+    "prior_verdict_digests": [
+      "ca1345dfd5e11ce9f40a7b4ed696a7b789b5f85b67bfa7307a5f9786073ee023"
+    ],
+    "remaining_pool_size": 31,
+    "selection": "feedback revised"
+  },
+  "verdict": {
+    "candidate_digest": "2f6ba45d9369fadda4ab94dd7dc18cf5cd871c23f50c157e2eb8483cd296913b",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-41-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: error: illegal start of expression\n    [javac]         static return var;\n    [javac]         ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: error: illegal start of type\n    [javac]         static return var;\n    [javac]                ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: warning: as of release 10, 'var' is a restricted local variable type and cannot be used for type declarations or as the element type of an array\n    [javac]         static return var;\n    [javac]                       ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: error: <identifier> expected\n    [javac]         static return var;\n    [javac]                          ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "5ed3e991de1a08a83f3ae9514408bcaa8632b3792a2803aae108316b31d440f6"
+  }
+}

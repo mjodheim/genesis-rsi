@@ -1,0 +1,1698 @@
+{
+  "calls_with_unknown_cost": 0,
+  "cases": {
+    "Chart-23": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00068515,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "this.drawLines"
+              },
+              "characters": 1410,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "596bd9112a8743eef0f9acd3881b67525530f3bf4aa53b6a3d39968091cce581",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 468,
+            "prompt_tokens": 3610
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0009321,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 1,
+          "inspections": [],
+          "prompt_digest": "bf82afae8d3ad26c99f7a4cb341c6a44793d83d1dcf3b609d98e5b14b68c24e8",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 781,
+            "prompt_tokens": 4567
+          }
+        }
+      ],
+      "case": "Chart-23",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 7.4,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 0,
+      "verdicts": []
+    },
+    "Cli-19": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0008994,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "processOptionToken"
+              },
+              "characters": 246,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "b4690e982b3742b2462c6472445cc418a6b882043fbae63c543dfe92fc83a532",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 172,
+            "prompt_tokens": 6508
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00093355,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 1,
+          "inspections": [],
+          "prompt_digest": "8bffa4d71a1fa3d917d54d3e61624dd74f119ad5e971ea0fb02e55c1b37901e2",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 226,
+            "prompt_tokens": 6632
+          }
+        }
+      ],
+      "case": "Cli-19",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 3.1,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 0,
+      "verdicts": []
+    },
+    "Cli-5": {
+      "calls": [
+        {
+          "applicable": 2,
+          "cached_tokens": 0,
+          "cost_usd": 0.00136165,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "65cfd72ba703f1806832f4133f4f58e0083e9d20f88e58637d1e9329997186f4",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 991,
+            "prompt_tokens": 6930
+          }
+        }
+      ],
+      "case": "Cli-5",
+      "failing_tests": 2,
+      "plausible_patch": "--- a/src/java/org/apache/commons/cli/Util.java\n+++ b/src/java/org/apache/commons/cli/Util.java\n@@ -33,6 +33,10 @@\n      */\n     static String stripLeadingHyphens(String str)\n     {\n+        if (str == null)\n+        {\n+            return null;\n+        }\n         if (str.startsWith(\"--\"))\n         {\n             return str.substring(2, str.length());\n",
+      "plausible_squashed_sha256": "f03f88321b9077cf7b7f79e8b0ecc76e61fff3c2c3bb48c7d4e4e9b9084f6a16",
+      "rounds": 1,
+      "seconds": 12.8,
+      "solved": true,
+      "suspects_from_stack_trace": true,
+      "validated": 1,
+      "verdicts": [
+        {
+          "candidate_digest": "764e3aab526c9f2319d4a09b704c718c1bccebfbdff89154d4927906e9935bda",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/java/org/apache/commons/cli/Util.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "570fca6021fd14748b270b875593486ebde2b51a36ea75162e18ce91b790310a"
+        }
+      ]
+    },
+    "Compress-24": {
+      "calls": [
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.00128015,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "4f24f7d2aa0439f413f05c93cec46303da297564bc7f6d39a7179eb2797ba2ba",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 1329,
+            "prompt_tokens": 4926
+          }
+        }
+      ],
+      "case": "Compress-24",
+      "failing_tests": 1,
+      "plausible_patch": "--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java\n+++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java\n@@ -128,9 +128,6 @@\n         byte trailer = buffer[end - 1];\n         if (trailer == 0 || trailer == ' '){\n             end--;\n-        } else {\n-            throw new IllegalArgumentException(\n-                    exceptionMessage(buffer, offset, length, end-1, trailer));\n         }\n         trailer = buffer[end - 1];\n         while (start < end - 1 && (trailer == 0 || trailer == ' ')) {\n",
+      "plausible_squashed_sha256": "3a63aecf06f09d61791476d8010b63e8e4baf1c300dc6afe201e918e1ecf369f",
+      "rounds": 1,
+      "seconds": 17.9,
+      "solved": true,
+      "suspects_from_stack_trace": true,
+      "validated": 1,
+      "verdicts": [
+        {
+          "candidate_digest": "a632e3521dd307962371350d78d4a1472773b1b78e999df4aaa053a7ea2372bc",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "99c69449e1275152ab5b3330c5d750d25832f3a9697648631b9e27923c86f200"
+        }
+      ]
+    },
+    "Csv-14": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00139265,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "printAndQuote("
+              },
+              "characters": 296,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "c0666624d7edb87ce1567308c57cc710ed6701d68cfa3741a6c539dc4ecc9dc5",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 377,
+            "prompt_tokens": 9634
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0020011,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "17d9252fa7a95dfcbc761fed7184e4fd0350bb677e1cdc900f39fafdec78a89b",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 1535,
+            "prompt_tokens": 9981
+          }
+        }
+      ],
+      "case": "Csv-14",
+      "failing_tests": 6,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 10.5,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 0,
+      "verdicts": []
+    },
+    "JacksonCore-13": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.000696025,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "_cfgUnqNames"
+              },
+              "characters": 1446,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "6e03db78d89a6bdb749363630148929ec07075a9f5a68753f035ed128293d020",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 299,
+            "prompt_tokens": 4373
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.001464875,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "90a1fe08bb847aca4171d4372ea5039e2c96f622c149b916aff86afb0a68efbe",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 1669,
+            "prompt_tokens": 5264
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0007529,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "_cfgUnqNames"
+              },
+              "characters": 1446,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "5e4bb45499914a6590652b43e756a5105a2f784ae25df62585f186c678734c63",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 221,
+            "prompt_tokens": 5140
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00168495,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "2381e901b0f2b90bfee60dead0ef64cea71a546f3e62aca0dd8b7b89115b9bbf",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 1933,
+            "prompt_tokens": 5953
+          }
+        }
+      ],
+      "case": "JacksonCore-13",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 2,
+      "seconds": 25.0,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 1,
+      "verdicts": [
+        {
+          "candidate_digest": "581c9f3a555c4e2c9d3cdece9ea0287c17e5960c7ae513e032601f2c0e3966fe",
+          "feedback": "--- com.fasterxml.jackson.core.json.TestJsonGeneratorFeatures::testFieldNameQuotingEnabled\njunit.framework.ComparisonFailure: expected:<{[foo]:1}> but was:<{[\"foo\"]:1}>\n\tat junit.framework.Assert.assertEquals(Assert.java:100)\n\tat junit.framework.Assert.assertEquals(Assert.java:107)\n\tat junit.framework.TestCase.assertEquals(TestCase.java:269)\n\tat com.fasterxml.jackson.core.json.TestJsonGeneratorFeatures._testFieldNameQuotingEnabled(TestJsonGeneratorFeatures.java:174)\n\tat com.fasterxml.jackson.core.json.TestJsonGeneratorFeatures.testFieldNameQuotingEnabled(TestJsonGeneratorFeatures.java:139)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/com/fasterxml/jackson/core/json/JsonGeneratorImpl.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "f96eb87b65c3457bcaf1d8099cd4540dff3672fe1b8e8577f4a9cba51703d173"
+        }
+      ]
+    },
+    "JacksonCore-3": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0005764,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "_currInputProcessed"
+              },
+              "characters": 1180,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "76c9cf95349e9f5e190631acd79e5a2051344ca0bd56fff6470b191a5134ea0a",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 314,
+            "prompt_tokens": 3356
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00155325,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "8a71434ef643281e218ae2fdf5f51da6564591c39cf3c47e7ef557e71746525f",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 2132,
+            "prompt_tokens": 4087
+          }
+        }
+      ],
+      "case": "JacksonCore-3",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 12.0,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 0,
+      "verdicts": []
+    },
+    "JacksonDatabind-24": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.001620525,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "withDateFormat("
+              },
+              "characters": 1595,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "f15e777aaa79456c6135f5c099a547ff2477c8f78d6f66f476f8b63ce86879c8",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 413,
+            "prompt_tokens": 11313
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.002074675,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "1e51ba472dd10feb9b10e17a09955b4afe9b4077d1e5d1db8e9c6c484a7bf9aa",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 1147,
+            "prompt_tokens": 12237
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.001773275,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "public BaseSettings withDateFormat(DateFormat df)"
+              },
+              "characters": 127,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "96b5ac8cf8413b228e85e185d01b3376c0b601e2ccce962a1f6ddbc951d537e4",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 533,
+            "prompt_tokens": 12055
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.002111825,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "024bc5a732af74d4bda825f80522bd13289135c6d6c3268ab603ffbe6b0d672e",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 1131,
+            "prompt_tokens": 12503
+          }
+        }
+      ],
+      "case": "JacksonDatabind-24",
+      "failing_tests": 3,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 2,
+      "seconds": 22.8,
+      "solved": false,
+      "suspects_from_stack_trace": true,
+      "validated": 1,
+      "verdicts": [
+        {
+          "candidate_digest": "926b2b0b1768c3d80a377d2ce204025575d442f1b0c769a310f0b13d8ef5426e",
+          "feedback": "--- com.fasterxml.jackson.databind.deser.TestJdkTypes::testInetAddress\njava.net.UnknownHostException: google.com: Temporary failure in name resolution\n\tat java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)\n\tat java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:930)\n\tat java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)\n\tat java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)\n\tat java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)\n\tat java.base/java.net.InetAddress.getAllByName(InetAddress.java:1386)\n\tat java.base/java.net.InetAddress.getAllByName(InetAddress.java:1307)\n\tat java.base/java.net.InetAddress.getByName(InetAddress.java:1257)\n\tat com.fasterxml.jackson.databind.deser.std.FromStringDeserializer$Std._deserialize(FromStringDeserializer.java:249)\n\tat com.fasterxml.jackson.databind.deser.std.FromStringDeserializer.deserialize(FromStringDeserializer.java:122)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/com/fasterxml/jackson/databind/cfg/BaseSettings.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "dd135b4980190e6aa2fb57c5a8f7451e1c427305ce9d877f93912b1a99751903"
+        }
+      ]
+    },
+    "JacksonDatabind-40": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00172015,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "FAIL_ON_NULL_FOR_PRIMITIVES"
+              },
+              "characters": 1703,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "f0fadca775c2bcfab3072b60eea7d60c69dcd660e4b074acd0a986bd47608166",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 590,
+            "prompt_tokens": 11402
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0020096,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "fb49f55a7138a86cca69699668fa5fc25611688e5e866be9c32066c0ba2e186d",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 916,
+            "prompt_tokens": 12719
+          }
+        }
+      ],
+      "case": "JacksonDatabind-40",
+      "failing_tests": 3,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 8.6,
+      "solved": false,
+      "suspects_from_stack_trace": true,
+      "validated": 0,
+      "verdicts": []
+    },
+    "Lang-10": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0017764,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "\\\\s*+"
+              },
+              "characters": 111,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "6e83b767b4fc070b9afd905ca8fe4721d80b69e67a45fdf17a218311550cab3e",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 1346,
+            "prompt_tokens": 8828
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.00185825,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "d48d3c9e24a5a496cbd655495e46bf7f1c155488481acb94638fce80d59706cd",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 1271,
+            "prompt_tokens": 10074
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00157115,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "\\\\s*+"
+              },
+              "characters": 111,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "4fb00f858f5d101398c351296d2751af65557abc452875ea170e4d5045ba62bf",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 874,
+            "prompt_tokens": 9074
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.0015818,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "dd53f4a1b6459e69b3e28a7f192ef52d0d58bac120e70bbad73dcb0a2f5ba0c9",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 751,
+            "prompt_tokens": 9848
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.001875025,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "s*+"
+              },
+              "characters": 111,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "6fc98394ea88e8b3d3686567e1003af44523f2e67fb602745bedc10589b326d8",
+          "round": 3,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 1417,
+            "prompt_tokens": 9333
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.001737975,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "fffcb1151d1b4d232ba68c48cf868fdf14b711afc938bb921319827569589f55",
+          "round": 3,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 890,
+            "prompt_tokens": 10650
+          }
+        }
+      ],
+      "case": "Lang-10",
+      "failing_tests": 2,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 3,
+      "seconds": 205.4,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 3,
+      "verdicts": [
+        {
+          "candidate_digest": "ce8a5793663b0076dcd7acd8ea0be7f4508f17b0d81e2cf0fb029d67388413c8",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/time/FastDateParser.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "64333c3e365312af267a58d835932a34f75c343249985047722199fd6d0d937a"
+        },
+        {
+          "candidate_digest": "e1eab202ae85b1f53173a177181c9b84bf978632a25b4b241876c3f92d101db9",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/time/FastDateParser.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "6cb7d819fa00baf520709bd584c36c5388a8386297103f536ce80ad6258739cb"
+        },
+        {
+          "candidate_digest": "168befa2d4d2443e9fcab164be13482479db95d8b380ec75567766c63e28e742",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/time/FastDateParser.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "b43c87d3c57e0577ced249b93c6e8dc12d20e581afe364979f5cd83a30b5ba11"
+        }
+      ]
+    },
+    "Lang-11": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.001102525,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "path": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
+                "start": "202"
+              },
+              "characters": 5775,
+              "tool": "read_file"
+            }
+          ],
+          "prompt_digest": "9941cb061e506c42351d550f41a4ec5a4ae3dbdc65a7164eb5b9a3c47a86c4a6",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 464,
+            "prompt_tokens": 6965
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.001478475,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "8b886d06bd4c6b694847df80901f378fb20d07711af39beb714e6198590b9dc7",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 785,
+            "prompt_tokens": 9172
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.001027525,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "path": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
+                "start": "201"
+              },
+              "characters": 5807,
+              "tool": "read_file"
+            }
+          ],
+          "prompt_digest": "86c698768900391aa83f22382953a66866140dcb3322128d4ba8ac7fd69e9ef9",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 233,
+            "prompt_tokens": 7289
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.001519275,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "12d59f00803799257902c32d4291781e314cf567dcda7f8abd75da637fcf1a02",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 829,
+            "prompt_tokens": 9279
+          }
+        }
+      ],
+      "case": "Lang-11",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 2,
+      "seconds": 65.0,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 1,
+      "verdicts": [
+        {
+          "candidate_digest": "3130fa477f71473821af2c4e3ba63f5f2b46da1eaeda7ae1221955a99c86dcf0",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "c8f07708ccb2cfceda34af2f284b77645aa865ed062379691cb353ee5b649d7c"
+        }
+      ]
+    },
+    "Lang-17": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00142565,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "path": "src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java",
+                "start": "1"
+              },
+              "characters": 5674,
+              "tool": "read_file"
+            }
+          ],
+          "prompt_digest": "94d65bb1ad59587b13c54090af38c7ea11a8e629f9d81fc5b7fe8e4c89a44aee",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 1087,
+            "prompt_tokens": 7058
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.0023085,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "430fc23db8718179ff17a3a43f9bc2cbdd219935a79378af24d6755f3330cf1f",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 2278,
+            "prompt_tokens": 9984
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00105365,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "path": "src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java",
+                "start": "1"
+              },
+              "characters": 5674,
+              "tool": "read_file"
+            }
+          ],
+          "prompt_digest": "16a7b917dffe19aae400e6643da045f3b2c6879d66314504288ffa60d8c99076",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 251,
+            "prompt_tokens": 7426
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.0020999,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "9de270ce4b58a70ac902370ca32f0fd38e712cb680533c8a1ba934e69eb173c9",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 1936,
+            "prompt_tokens": 9516
+          }
+        }
+      ],
+      "case": "Lang-17",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 2,
+      "seconds": 50.6,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 1,
+      "verdicts": [
+        {
+          "candidate_digest": "91e76fff82ca711a870a5e2b9a7b80a67f3822e6c275cabdfba494bec4010718",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "402d91cac5f70aa6978f1c6efe2644bf07238ac38ffb1cbd516a507bd5d0e992"
+        }
+      ]
+    },
+    "Lang-4": {
+      "calls": [
+        {
+          "applicable": 2,
+          "cached_tokens": 0,
+          "cost_usd": 0.000932525,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "5868af59390a74aa7712e8aff92e1cb25ff30778343f5ea67f1b6600663cf9c4",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 665,
+            "prompt_tokens": 4801
+          }
+        },
+        {
+          "applicable": 2,
+          "cached_tokens": 0,
+          "cost_usd": 0.001481525,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "61dcbcde1bccd637b23d00c6fec677d65179e63996d039723289fcc256efbded",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 1544,
+            "prompt_tokens": 5677
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.002010275,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "bdc7d467a72fbaaaa0cf9cc068d601c816efcd8265576bc063d7f39d4b203183",
+          "round": 3,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 2459,
+            "prompt_tokens": 6247
+          }
+        }
+      ],
+      "case": "Lang-4",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 3,
+      "seconds": 276.7,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 5,
+      "verdicts": [
+        {
+          "candidate_digest": "d297ef80ffc353289e422c7ee36ecdb708b2e1ab5c4721e94cff9e5ffd648a8d",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/text/translate/LookupTranslator.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "74edbd24b9d753cb51d9d8dcd7a27652621c887f046962289d6a3e90c9d4598e"
+        },
+        {
+          "candidate_digest": "d0daa2e55b53c9f86415d62f10c51b9f5de5b33b2267cdde49678736378f680f",
+          "feedback": "--- org.apache.commons.lang3.text.translate.LookupTranslatorTest::testLang882\njunit.framework.AssertionFailedError: Incorrect codepoint consumption expected:<3> but was:<0>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:645)\n\tat org.apache.commons.lang3.text.translate.LookupTranslatorTest.testLang882(LookupTranslatorTest.java:48)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/text/translate/LookupTranslator.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "403c91188294e2c0b969b7454cb3552fcf08b6d7e3a200c320a9ec416137a22a"
+        },
+        {
+          "candidate_digest": "78816f58021bdc924005e6fd41d6845ddbe122453693b672491b00a1794a1142",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/text/translate/LookupTranslator.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "6e74785212f4bfffbe9b1b97c4e4547900744d35b535a5f210055544be882a79"
+        },
+        {
+          "candidate_digest": "e9d8ebac61400a734ab33e687b59ee55099cc666cef03ae7dd0657e329aad67a",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/text/translate/LookupTranslator.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "74fc7e52a3f50813da4c523251ead797f58e2a9d3abc1e0beaaa0c844ec074ec"
+        },
+        {
+          "candidate_digest": "3e6d3dfa9c1016460caefe8a99ca939ce3720649673e1dcef7ffea8d10a96bbc",
+          "feedback": "now failing: org.apache.commons.lang3.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/lang3/text/translate/LookupTranslator.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "734af503bf67a5a02b44fc464ff2e99a07b5ceebf96fc9b261aa94aa4b153eff"
+        }
+      ]
+    },
+    "Lang-59": {
+      "calls": [
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.00095915,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "cdd672b582f6aa571b69150ea9711d7f402af193eca9f2f5c0c67fc316d8b885",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 727,
+            "prompt_tokens": 4766
+          }
+        },
+        {
+          "applicable": 2,
+          "cached_tokens": 0,
+          "cost_usd": 0.0014764,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "0a93118086e62679e379243a41e778c140b365663caed0ace1241370a29bfa56",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 1697,
+            "prompt_tokens": 5024
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.001561525,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 1,
+          "inspections": [],
+          "prompt_digest": "37f8116b07ee156c26dc4085bc66f2b54d9023a5fb6cf1dac8e751215504f4e3",
+          "round": 3,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 1786,
+            "prompt_tokens": 5349
+          }
+        }
+      ],
+      "case": "Lang-59",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 3,
+      "seconds": 73.4,
+      "solved": false,
+      "suspects_from_stack_trace": true,
+      "validated": 3,
+      "verdicts": [
+        {
+          "candidate_digest": "18120d6ba633f09930f4a19d29cab04583594f8087fe10ce5bfafa17c0cb8110",
+          "feedback": "now failing: org.apache.commons.lang.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/java/org/apache/commons/lang/text/StrBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "f57b36f2cd6680a9e17fd6a21d426022dab76bd269e4ccde1f1465f8d91c507e"
+        },
+        {
+          "candidate_digest": "06daa4a05648dbd242c9aa9866ab2b835ea2ea25cf8775715f962f2ad948ccc2",
+          "feedback": "now failing: org.apache.commons.lang.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/java/org/apache/commons/lang/text/StrBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "82f0e18e2b12f0fec85686ecd45e996658b9965046153eeafbecd5feb9d13229"
+        },
+        {
+          "candidate_digest": "101df4a4a299fe3d8b3b1fcaad43dda53d4244aece3f36d8a56bf720f06c4580",
+          "feedback": "now failing: org.apache.commons.lang.SystemUtilsTest::testGetUserHome",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/java/org/apache/commons/lang/text/StrBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "a6b245d048386d5d6abdc979371d9d193d8b22561f55cf363a018f2f50eb8632"
+        }
+      ]
+    },
+    "Lang-61": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.0010499,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "public int indexOf(String str, int startIndex)"
+              },
+              "characters": 112,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "93da6e684cb9983d84600aa8ffc5cc1e2987e3806b6fa7d8d2a75e15d6704d49",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 573,
+            "prompt_tokens": 6108
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.00148525,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 1,
+          "inspections": [],
+          "prompt_digest": "1d060d7cf4911c9a249f1e940e361bd165648e22bca64d81072509a40504956c",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 1359,
+            "prompt_tokens": 6584
+          }
+        }
+      ],
+      "case": "Lang-61",
+      "failing_tests": 2,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 9.2,
+      "solved": false,
+      "suspects_from_stack_trace": true,
+      "validated": 0,
+      "verdicts": []
+    },
+    "Math-33": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.001922525,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "boolean isOptimal()"
+              },
+              "characters": 109,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "738ef7b49460adc593547e9654e18f1145f580cb3f8ca4de2ca8db801a6019e1",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 1916,
+            "prompt_tokens": 7717
+          }
+        },
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.001439675,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "cdc68785f5e1f7c3f0e3bb4be24457a827f570fd4a9510049142d97e4664f8a8",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 597,
+            "prompt_tokens": 9536
+          }
+        },
+        {
+          "applicable": 2,
+          "cached_tokens": 0,
+          "cost_usd": 0.0026464,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "d076928abc49869fd41e5a7f4c3aeb6c258ac06fa6a72a178bd0e468ffedcd50",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 3202,
+            "prompt_tokens": 8364
+          }
+        },
+        {
+          "applicable": 2,
+          "cached_tokens": 0,
+          "cost_usd": 0.00218165,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "c9d97550f1bafa4fd99b450504de14b6ab5ac4edd09a0673277086963b752530",
+          "round": 3,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 1892,
+            "prompt_tokens": 9886
+          }
+        }
+      ],
+      "case": "Math-33",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 3,
+      "seconds": 75.7,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 5,
+      "verdicts": [
+        {
+          "candidate_digest": "46ac50b6e02c849c21b6c9160cc382d3a1a6ad98f63aa13064850a4c02e4e06c",
+          "feedback": "--- org.apache.commons.math3.optimization.linear.SimplexSolverTest::testMath781\njunit.framework.AssertionFailedError\n\tat org.junit.Assert.fail(Assert.java:86)\n\tat org.junit.Assert.assertTrue(Assert.java:41)\n\tat org.junit.Assert.assertTrue(Assert.java:52)\n\tat org.apache.commons.math3.optimization.linear.SimplexSolverTest.testMath781(SimplexSolverTest.java:45)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "32d3d6998ee89142cad412f660f9cfbe7a7c739ae3e1bd24740f9c368a443ab1"
+        },
+        {
+          "candidate_digest": "0c52acd24d5b726fc79e5a11d362ecc1c2b8aa880061686afcdd813d42b75e57",
+          "feedback": "--- org.apache.commons.math3.optimization.linear.SimplexSolverTest::testMath781\njunit.framework.AssertionFailedError\n\tat org.junit.Assert.fail(Assert.java:86)\n\tat org.junit.Assert.assertTrue(Assert.java:41)\n\tat org.junit.Assert.assertTrue(Assert.java:52)\n\tat org.apache.commons.math3.optimization.linear.SimplexSolverTest.testMath781(SimplexSolverTest.java:45)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "172757a2a6e2ab1dcb15bfa90aa2316f90ded6c138ac3b4ddf8cec68c54eae7c"
+        },
+        {
+          "candidate_digest": "afac1abe423ead80a1915cee5a4ea06faeae0b6e0a9ddd2669ffc6508f62d815",
+          "feedback": "--- org.apache.commons.math3.optimization.linear.SimplexSolverTest::testMath781\njunit.framework.AssertionFailedError\n\tat org.junit.Assert.fail(Assert.java:86)\n\tat org.junit.Assert.assertTrue(Assert.java:41)\n\tat org.junit.Assert.assertTrue(Assert.java:52)\n\tat org.apache.commons.math3.optimization.linear.SimplexSolverTest.testMath781(SimplexSolverTest.java:45)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "35ea14a7625f3a9960dd7f328fc291a85e3ace1887588dd6b5593cdb1822c975"
+        },
+        {
+          "candidate_digest": "35f166f8839ca02868b497321ec3f15900cc7ecf8276485b06036659e33aecf5",
+          "feedback": "--- org.apache.commons.math3.optimization.linear.SimplexSolverTest::testMath781\njunit.framework.AssertionFailedError\n\tat org.junit.Assert.fail(Assert.java:86)\n\tat org.junit.Assert.assertTrue(Assert.java:41)\n\tat org.junit.Assert.assertTrue(Assert.java:52)\n\tat org.apache.commons.math3.optimization.linear.SimplexSolverTest.testMath781(SimplexSolverTest.java:45)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "8df1999760a6665c8868818aa190492682dbf35561b240d93e69b6526ce02706"
+        },
+        {
+          "candidate_digest": "8398f9a15b77f3a1f2bf7d1b175b4202fc55457e1cef40fe107bf0c387330449",
+          "feedback": "--- org.apache.commons.math3.optimization.linear.SimplexSolverTest::testMath781\njunit.framework.AssertionFailedError\n\tat org.junit.Assert.fail(Assert.java:86)\n\tat org.junit.Assert.assertTrue(Assert.java:41)\n\tat org.junit.Assert.assertTrue(Assert.java:52)\n\tat org.apache.commons.math3.optimization.linear.SimplexSolverTest.testMath781(SimplexSolverTest.java:45)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)",
+          "full_suite_failures": null,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "a59dc412ac3a22b7a8ee7665ff6e70fe2c559e3116314599f9b87aa34036782d"
+        }
+      ]
+    },
+    "Math-53": {
+      "calls": [
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.0013664,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "3ec9faa16cc9f45f029308c1ab76cfb62a2f5dff50ec3ef74a5b5fca77ab9e01",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 921,
+            "prompt_tokens": 7248
+          }
+        }
+      ],
+      "case": "Math-53",
+      "failing_tests": 1,
+      "plausible_patch": "--- a/src/main/java/org/apache/commons/math/complex/Complex.java\n+++ b/src/main/java/org/apache/commons/math/complex/Complex.java\n@@ -150,6 +150,9 @@\n     public Complex add(Complex rhs)\n         throws NullArgumentException {\n         MathUtils.checkNotNull(rhs);\n+        if (isNaN || rhs.isNaN) {\n+            return NaN;\n+        }\n         return createComplex(real + rhs.getReal(),\n             imaginary + rhs.getImaginary());\n     }\n",
+      "plausible_squashed_sha256": "6ab5e3e65af95377029bd5eb61ed8221d0164d6980fb912f23a13cd11195ebd1",
+      "rounds": 1,
+      "seconds": 94.0,
+      "solved": true,
+      "suspects_from_stack_trace": false,
+      "validated": 1,
+      "verdicts": [
+        {
+          "candidate_digest": "058c7c2bb7fccd03dd1b84355359b7c5ffced28d030ebf0ec24ba0a0bbd4f6ee",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "ff5318f44ccfe808f3af1e555b24d4819533a3657b3824a5892c43084e5ee868"
+        }
+      ]
+    },
+    "Math-90": {
+      "calls": [
+        {
+          "applicable": 1,
+          "cached_tokens": 0,
+          "cost_usd": 0.0009444,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "b98faaf3e958fbe275644146e4658da23b67c212dcff08913bb7a81716e736f7",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 1,
+          "usage": {
+            "completion_tokens": 721,
+            "prompt_tokens": 4672
+          }
+        },
+        {
+          "applicable": 2,
+          "cached_tokens": 0,
+          "cost_usd": 0.0012764,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "b048c6785d046aea2234b938277193e0ca01d69bab0f7bdb261f12db1ae604b6",
+          "round": 2,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": 2,
+          "usage": {
+            "completion_tokens": 1328,
+            "prompt_tokens": 4900
+          }
+        }
+      ],
+      "case": "Math-90",
+      "failing_tests": 1,
+      "plausible_patch": "--- a/src/java/org/apache/commons/math/stat/Frequency.java\n+++ b/src/java/org/apache/commons/math/stat/Frequency.java\n@@ -131,6 +131,9 @@\n             }\n         } catch (ClassCastException ex) {   \n             //TreeMap will throw ClassCastException if v is not comparable\n+            if (!(v instanceof Comparable)) {\n+                throw ex;\n+            }\n             throw new IllegalArgumentException(\"Value not comparable to existing values.\");\n         }\n     }\n",
+      "plausible_squashed_sha256": "d829a09d788a6550ea04e3c86baab8e9dbbbd2f630a5d27b61553e9a012ea952",
+      "rounds": 2,
+      "seconds": 47.3,
+      "solved": true,
+      "suspects_from_stack_trace": true,
+      "validated": 2,
+      "verdicts": [
+        {
+          "candidate_digest": "ac9e14dbd5490f50a5f485a926628d44b7f74bc0eea86679b8a7b4e20f141b3e",
+          "feedback": "now failing: org.apache.commons.math.stat.FrequencyTest::testAdd",
+          "full_suite_failures": 1,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/java/org/apache/commons/math/stat/Frequency.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "full_suite",
+          "verdict_digest": "39285be6c0216646bf0b748c1455079dbeb323c85bfec7ba3d226fa822f7116e"
+        },
+        {
+          "candidate_digest": "e510d23a45bfb61aa87e88ccb41a792791fa64318be87d771244952273576bcd",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "lineage:anthropic/claude-haiku-5.5",
+          "path": "src/java/org/apache/commons/math/stat/Frequency.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "a5c3c2e34f4a808d1534cfd6be8c5b1d9fcf93e6a4ff88d5fa22e9f08f5e8cf6"
+        }
+      ]
+    },
+    "Mockito-20": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.000996775,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "0-arg constructor"
+              },
+              "characters": 1268,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "0443371bd19d967a4420ad145f5be33925e09f7e3553728ce610ede62c01d994",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 276,
+            "prompt_tokens": 6871
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.001080925,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "d49903e53096423620a84cfd6a6f5a393d702f442feb149ff19b7f33979e3185",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 333,
+            "prompt_tokens": 7480
+          }
+        }
+      ],
+      "case": "Mockito-20",
+      "failing_tests": 8,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 4.6,
+      "solved": false,
+      "suspects_from_stack_trace": false,
+      "validated": 0,
+      "verdicts": []
+    },
+    "Time-27": {
+      "calls": [
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.000932275,
+          "final": false,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [
+            {
+              "arguments": {
+                "text": "iMaxParsedDigits"
+              },
+              "characters": 1947,
+              "tool": "search_files"
+            }
+          ],
+          "prompt_digest": "d8e49ee98973a956900ac78a3abcc4aeafe7503aad91793efeb37e8216ee6982",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 1,
+          "submitted": null,
+          "usage": {
+            "completion_tokens": 786,
+            "prompt_tokens": 4315
+          }
+        },
+        {
+          "applicable": 0,
+          "cached_tokens": 0,
+          "cost_usd": 0.000990425,
+          "final": true,
+          "finish_reason": "tool_calls",
+          "inapplicable": 0,
+          "inspections": [],
+          "prompt_digest": "de2e838a7e068ad4ad62c788b36f343baf70105c4e0568bfd9a64c8ff0ae2e0e",
+          "round": 1,
+          "schema": "genesis-repair-lineage-call-v1",
+          "step": 2,
+          "submitted": 0,
+          "usage": {
+            "completion_tokens": 609,
+            "prompt_tokens": 5834
+          }
+        }
+      ],
+      "case": "Time-27",
+      "failing_tests": 1,
+      "plausible_patch": null,
+      "plausible_squashed_sha256": null,
+      "rounds": 1,
+      "seconds": 7.6,
+      "solved": false,
+      "suspects_from_stack_trace": true,
+      "validated": 0,
+      "verdicts": []
+    }
+  },
+  "cost_usd": 0.076675,
+  "evaluation_digest": "61c49b2bb7bd7bc11a896682c1fcf4578d794b9bc6b8874c618c42c69e1def36",
+  "genome_digest": "64d49e22b49c5ef84c730158222c11ed8dd80abc22d51ab37021e1ae8688a595",
+  "label": "gen3",
+  "model_requests": 53,
+  "schema": "genesis-repair-lineage-evaluation-v1",
+  "solved": 4,
+  "validated": 25
+}

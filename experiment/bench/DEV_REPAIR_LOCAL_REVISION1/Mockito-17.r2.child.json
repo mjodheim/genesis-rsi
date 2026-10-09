@@ -1,0 +1,113 @@
+{
+  "arm_digest": "c441cd2ca993c173306da30d03b83429cd7531702f916ca0cb8ddd2af74fa9d5",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 3292,
+      "cost_usd": 0.00012482,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "extraInterfaces"
+          },
+          "characters": 7438,
+          "tool": "search_files"
+        },
+        {
+          "arguments": {
+            "text": "isSerializable"
+          },
+          "characters": 680,
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "6a589c2d75b3550a1533d913b0a64989ff4dccf3383b5f21c48488b8d1c665a0",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 183,
+        "prompt_tokens": 3296
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008759,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+            "start": "1"
+          },
+          "characters": 2633,
+          "tool": "read_file"
+        },
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/MethodInterceptorFilter.java",
+            "start": "50"
+          },
+          "characters": 778,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "d6fba415198676f896d3562b77a5f9fb23f54814f8a9de04a59407766247536b",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 183,
+        "prompt_tokens": 7021
+      }
+    },
+    {
+      "applicable": 2,
+      "cached_tokens": 3292,
+      "cost_usd": 0.00139022,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "2804d9d88ad727626bc219efe04f288eb0ad058e6148359ae0579a312c8cba04",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 3,
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 1644,
+        "prompt_tokens": 8645
+      }
+    }
+  ],
+  "case": "Mockito-17",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/org/mockito/internal/creation/MockSettingsImpl.java\n+++ b/src/org/mockito/internal/creation/MockSettingsImpl.java\n@@ -34,7 +34,14 @@\n                 new Reporter().extraInterfacesAcceptsOnlyInterfaces(i);\n             }\n         }\n-        this.extraInterfaces = extraInterfaces;\n+        if (this.extraInterfaces == null) {\n+            this.extraInterfaces = extraInterfaces;\n+        } else {\n+            Class<?>[] merged = new Class<?>[this.extraInterfaces.length + extraInterfaces.length];\n+            System.arraycopy(this.extraInterfaces, 0, merged, 0, this.extraInterfaces.length);\n+            System.arraycopy(extraInterfaces, 0, merged, this.extraInterfaces.length, extraInterfaces.length);\n+            this.extraInterfaces = merged;\n+        }\n         return this;\n     }\n \n",
+  "plausible_squashed_sha256": "4b2a4cb55262d2c26b0e43a473beaac9bf508f64d85d049d8b4d2cdb2acdcaff",
+  "rounds": 1,
+  "seconds": 68.5,
+  "solved": true,
+  "suspects_from_stack_trace": false,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "ecd9f17f0fdfccb12fb332a3b2a8b4655dee09aa5e11d30fde2599f204cfe6f0",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "3aba1ea15396b45c96c155cfc96b52018f4a59a791183728c67a0ebb6847d42e"
+    }
+  ]
+}

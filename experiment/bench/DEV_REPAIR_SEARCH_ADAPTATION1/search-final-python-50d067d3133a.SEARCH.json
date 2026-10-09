@@ -1,0 +1,93 @@
+{
+  "candidate_set_digest": "f7c890e25cb473bf97ba1f96ed62f5b32e87e4304d1ab0393395e8aececfaa11",
+  "candidates": [
+    {
+      "candidate_digest": "9c79abc5e19d45068926355c56cfe65705dbe923eb1fad2ccca5bdbbda1d62e8",
+      "id": "retained-9c79abc5e19d4506",
+      "label": "retained_subscript_delta:subject.py:45:-1",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position - 1]\n\ndef neighboring(values, position):\n    return values[position + 3]\n",
+          "expected_absent": false,
+          "expected_sha256": "233a4594eae1df6355fe24923ab4279f82ee1aaa57672967d1d1365afad8a394",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "b1808b9120cbd7fcfd28491590a0736a6f3bf81ed09e99c38a4d07e9d02382bd",
+      "id": "retained-b1808b9120cbd7fc",
+      "label": "retained_subscript_delta:subject.py:45:+1",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position + 1]\n\ndef neighboring(values, position):\n    return values[position + 3]\n",
+          "expected_absent": false,
+          "expected_sha256": "233a4594eae1df6355fe24923ab4279f82ee1aaa57672967d1d1365afad8a394",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "9b52aa8648956123198a175b6e81154a00d35ff8bbddf7d8558b740a3836a7a0",
+      "id": "retained-9b52aa8648956123",
+      "label": "retained_subscript_delta:subject.py:45:-2",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position - 2]\n\ndef neighboring(values, position):\n    return values[position + 3]\n",
+          "expected_absent": false,
+          "expected_sha256": "233a4594eae1df6355fe24923ab4279f82ee1aaa57672967d1d1365afad8a394",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": -2,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "02af4a974d48adcf40d766dd2f0c22f5561653004db98a5899ba796c6a79536d",
+      "id": "exemplar-02af4a974d48adcf",
+      "label": "observed_subscript_delta:subject.py:45:+3",
+      "mutations": [
+        {
+          "content_utf8": "def pick(values, position):\n    return values[position + 3]\n\ndef neighboring(values, position):\n    return values[position + 3]\n",
+          "expected_absent": false,
+          "expected_sha256": "233a4594eae1df6355fe24923ab4279f82ee1aaa57672967d1d1365afad8a394",
+          "path": "subject.py"
+        }
+      ],
+      "provenance": {
+        "delta": 3,
+        "exemplar_path": "subject.py",
+        "exemplar_start": 109,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "position",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      }
+    }
+  ],
+  "search_policy_digest": "50d067d3133a293456b1c0c14bc24accf9131d24c3832a7f2506c72e2e11e909",
+  "task_digest": "ad3d94206227732b317089c76b2a0006f0671a72b81c165fc3960f224caa3931"
+}

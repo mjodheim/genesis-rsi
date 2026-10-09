@@ -1,0 +1,268 @@
+{
+  "arm_digest": "32cec35a5e3ba6a64a3a30288f64a157ede8abddcd620e8f78065e1e4102ad17",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000428525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "1b2d47c311fe76f7a67b56127cd8bb80303ecababd4a417c11ef26446c7d9a7e",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 104,
+        "prompt_tokens": 3013
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.001184525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "isSerializable()"
+          },
+          "characters": 1009,
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "7e5edc36df9bd80635f3d5422af85c7730a984cc4e8888d114c0c7c818c75a33",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 1117,
+        "prompt_tokens": 5508
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000829225,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+            "start": "[140, 185]"
+          },
+          "characters": 30,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "9783f1723482d9dcdab74fb86998f07d7bc86a8dc4728df9990f3b5343705e5a",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 3,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 97,
+        "prompt_tokens": 7055
+      }
+    },
+    {
+      "applicable": 2,
+      "cached_tokens": 0,
+      "cost_usd": 0.002061375,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "7b35a28564f679478925add192327200bcfb0b7e1c364dd37486f49fcd51da5c",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 4,
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 2579,
+        "prompt_tokens": 7019
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007069,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "tool": "read_file"
+        },
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/DelegatingMethod.java"
+          },
+          "characters": 1337,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "d40935d450aa216d98384b4bd01e8c779eaf19b7af61281192e423f7080b5b22",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 192,
+        "prompt_tokens": 4888
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0013106,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "implements MockitoMethod"
+          },
+          "characters": 266,
+          "tool": "search_files"
+        },
+        {
+          "arguments": {
+            "text": "DelegatingMethod"
+          },
+          "characters": 873,
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "7405034efd4bc65516e27459baa9c407667515d1b13a1679dfd873461f32390f",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 766,
+        "prompt_tokens": 8055
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 4884,
+      "cost_usd": 0.00054364,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/MethodInterceptorFilter.java",
+            "start": "60"
+          },
+          "characters": 949,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "1c60b25731a3703c6af80f60e0efa292e1cec46cc8702514bcf6175e8d324c86",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 3,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 94,
+        "prompt_tokens": 9362
+      }
+    },
+    {
+      "applicable": 2,
+      "cached_tokens": 0,
+      "cost_usd": 0.00248725,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "256240ad82f782e6c8b022ccf5341bff230df85e64240b9973153dcf2849e7b9",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 4,
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 2803,
+        "prompt_tokens": 9689
+      }
+    }
+  ],
+  "case": "Mockito-23",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 2,
+  "seconds": 175.3,
+  "solved": false,
+  "suspects_from_stack_trace": false,
+  "validated": 4,
+  "verdicts": [
+    {
+      "candidate_digest": "ae0c26819f977d6cf597a9eeb3f10d1f698bbc65032da1dc28e0c556f1bd2154",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.creation.DelegatingMethod\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "59f129dfede76542193c0e6c6635e859e26f532d5a96811be2b41b98914fed19"
+    },
+    {
+      "candidate_digest": "bfaa34a4516f553364205a97c79f00646bce6704ee454c9bc38f11650e84198d",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:345)\n\tat java.base/java.util.concurrent.ConcurrentLinkedQueue.writeObject(ConcurrentLinkedQueue.java:824)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1016)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1487)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "1b24daae919e04748536bcba1597e75256e940a218a481271030213490ca75b3"
+    },
+    {
+      "candidate_digest": "9eb4bd6fe809d6531202a751b4e92b654d94f20137711f825f86ef633a28b8c4",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.util.MockUtil\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "355d6fc442ca84dfffc8fc2c104c93efcca15d1e7ccf5dafd2e0681a420b88ec"
+    },
+    {
+      "candidate_digest": "cc0a2c3bfb11462ec9ef1723e389b7e7a22faa095f14a8a23152e852b0f155f3",
+      "feedback": "    [javac] /work/Mockito-23-b/build.xml:82: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 305 source files to /work/Mockito-23-b/target/classes\n    [javac] /work/Mockito-23-b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:115: error: intersection types are not supported in -source 6\n    [javac]         container.addAnswer((Answer<Object> & Serializable) new Answer<Object>() {\n    [javac]                                             ^\n    [javac]   (use -source 8 or higher to enable intersection types)\n    [javac] 1 error",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "compile",
+      "verdict_digest": "984851fe0074f6a6602332735487e94b9d375228dea29dfd6f152d237925f18d"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "arm_digest": "0fe58fed8f9c8fa60a39fa19ea905afc8a8c894ce781f063bb9ac80003ace518",
+  "calls": [
+    {
+      "applicable": 3,
+      "cached_tokens": 0,
+      "cost_usd": 0.00142965,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "c9129eb85e1b4849a64207de77ec74627d1883a58d43b82d0d47253c7da01a0f",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [
+        {
+          "applicable": true,
+          "edits": [
+            {
+              "replace": "if (key.length() > 0) el.setAttribute(key, attribute.getValue());",
+              "search": "el.setAttribute(key, attribute.getValue());"
+            }
+          ],
+          "hypothesis": "Attribute key '\"' sanitizes to an empty string, which setAttribute rejects with INVALID_CHARACTER_ERR. Skip attributes whose sanitized key is empty.",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": null
+        },
+        {
+          "applicable": true,
+          "edits": [
+            {
+              "replace": "replaceAll(\"[^-a-zA-Z0-9_:.]\", \"_\")",
+              "search": "replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\")"
+            }
+          ],
+          "hypothesis": "Invalid attribute name characters are stripped, yielding an empty or invalid XML name. Instead, substitute invalid characters with '_' so the sanitized key remains a valid, non-empty XML name.",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": null
+        },
+        {
+          "applicable": true,
+          "edits": [
+            {
+              "replace": "try { el.setAttribute(key, attribute.getValue()); } catch (org.w3c.dom.DOMException e) { /* skip invalid attribute name */ }",
+              "search": "el.setAttribute(key, attribute.getValue());"
+            }
+          ],
+          "hypothesis": "Rather than pre-filtering, the DOMException thrown by setAttribute for an invalid name is the failure; catch it and skip that attribute.",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 3,
+      "usage": {
+        "completion_tokens": 1212,
+        "prompt_tokens": 6590
+      }
+    }
+  ],
+  "case": "Jsoup-54",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/main/java/org/jsoup/helper/W3CDom.java\n+++ b/src/main/java/org/jsoup/helper/W3CDom.java\n@@ -123,7 +123,7 @@\n             for (Attribute attribute : source.attributes()) {\n                 // valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]\n                 String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");\n-                    el.setAttribute(key, attribute.getValue());\n+                    if (key.length() > 0) el.setAttribute(key, attribute.getValue());\n             }\n         }\n \n",
+  "plausible_squashed_sha256": "ff73dbd6cc03a359e33cd632d05e63997706e3c5bbc9d7b97418cc5537678705",
+  "rounds": 1,
+  "seconds": 16.2,
+  "solved": true,
+  "suspects_from_stack_trace": true,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "75d94b9cb635794b899c71cd4b73c1f57e0d30845221d83634a694242eba7981",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "cc9a20769d84b16a747ddccabf827a691eecf9209586c4e1355cc49f22a1912c"
+    }
+  ]
+}

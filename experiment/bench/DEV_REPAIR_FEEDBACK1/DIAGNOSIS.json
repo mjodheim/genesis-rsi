@@ -1,0 +1,52 @@
+{
+  "diagnosis_digest": "6bc8dc9dd4c574352814fbb46f5a2d8731cfe36b86b6213ad0cac206fb540308",
+  "interpretation": "No application failure occurred; feedback recovery was not exercised. Combining observed partial edits is blocked by the one-file candidate representation, but existence of a single-file semantic fix is not ruled out. Buggy source also contains a serialization setting selecting SerializableMethod, suggesting cause tracing before modifying the reported symptom class.",
+  "metrics": {
+    "child": {
+      "arm_seconds": 537.8,
+      "inapplicable": 0,
+      "known_api_cost_usd": 0.02106263,
+      "malformed": [],
+      "requests": 20,
+      "solved": 4,
+      "validated": 11
+    },
+    "parent": {
+      "arm_seconds": 367.7,
+      "inapplicable": 0,
+      "known_api_cost_usd": 0.022629165,
+      "malformed": [
+        "ValueError: truncated answer"
+      ],
+      "requests": 20,
+      "solved": 4,
+      "validated": 8
+    }
+  },
+  "observed_exception_transitions": [
+    {
+      "exception_classes": [
+        "org.mockito.internal.creation.DelegatingMethod"
+      ],
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "stage": "failing_tests"
+    },
+    {
+      "exception_classes": [
+        "org.mockito.internal.creation.DelegatingMethod"
+      ],
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "stage": "failing_tests"
+    },
+    {
+      "exception_classes": [
+        "org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2"
+      ],
+      "path": "src/org/mockito/internal/creation/DelegatingMethod.java",
+      "stage": "failing_tests"
+    }
+  ],
+  "policy_promoted": false,
+  "post_result_analysis": true,
+  "result_digest": "51f98834010ad0e1d14ea2725ccd2e4360d7944bd733cebf38b49ed91a7a499a"
+}

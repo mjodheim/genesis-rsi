@@ -1,0 +1,68 @@
+{
+  "diagnosis_digest": "43da1e149cd112c8ed69d771ca26e944a83295057ce9202e499ffa891993c641",
+  "interpretation": "No demonstrated gain. Parsed child proposals changed one file each. A coherent answer/settings repair reveals MockUtil, but the subsequent settings-only candidate reintroduces ReturnsDeepStubs$2. One child response failed argument parsing; exact malformed payload was not retained. Progress transitions are hypotheses, not verified solution components.",
+  "metrics": {
+    "child": {
+      "arm_seconds": 451.7,
+      "inapplicable": 0,
+      "known_api_cost_usd": 0.024116685,
+      "malformed": [
+        "TypeError: string indices must be integers, not 'str'"
+      ],
+      "requests": 22,
+      "solved": 4,
+      "submitted_file_counts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "validated": 9
+    },
+    "parent": {
+      "arm_seconds": 457.6,
+      "inapplicable": 1,
+      "known_api_cost_usd": 0.025220645,
+      "malformed": [],
+      "requests": 20,
+      "solved": 4,
+      "submitted_file_counts": [],
+      "validated": 10
+    }
+  },
+  "multi_file_feature_exercised": false,
+  "observed_exception_transitions": [
+    {
+      "exception_classes": [
+        "org.mockito.internal.creation.DelegatingMethod"
+      ],
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "stage": "failing_tests"
+    },
+    {
+      "exception_classes": [
+        "org.mockito.internal.util.MockUtil"
+      ],
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "stage": "failing_tests"
+    },
+    {
+      "exception_classes": [
+        "org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2"
+      ],
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "stage": "failing_tests"
+    }
+  ],
+  "policy_promoted": false,
+  "post_result_analysis": true,
+  "result_digest": "1d031ee6a969054df55905701b54cb7a0ac23e18f442dee9ab1f43218aefeb60"
+}

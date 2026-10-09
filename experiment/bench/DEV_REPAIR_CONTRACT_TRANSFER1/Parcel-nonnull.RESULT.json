@@ -1,0 +1,85 @@
+{
+  "baseline": {
+    "candidate_digest": "0bde3783b4651e35f41f978b7846b55b167b9dcc1bdd52c88a31a276c8dc5e29",
+    "compile_run": {
+      "command": [
+        "javac",
+        "-d",
+        "/work/Parcel-nonnull/classes",
+        "/work/Parcel-nonnull/src/Parcel.java"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "4789def614c425a76c97f05362b3a35da7885f695eaef0bf7ae7fba06f0f34e3",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 1.008,
+      "timed_out": false
+    },
+    "feedback": "Exception in thread \"main\" java.lang.AssertionError: missing rejection\n\tat Parcel.main(Parcel.java:7)\n",
+    "plausible": false,
+    "stopped_at": "failing_tests",
+    "test_run": {
+      "command": [
+        "java",
+        "-cp",
+        "/work/Parcel-nonnull/classes",
+        "Parcel"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "4658f3bec34a2237c81dfb7b24db82f854ececc89b4727869f58cdb4cbd17c0f",
+      "returncode": 1,
+      "run_digest": "9e687d549d7d96017f59214473359e82d5931efbedc7b2f802b49d7180d76a53",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.284,
+      "timed_out": false
+    },
+    "verdict_digest": "9b76a6dbfaa7265a8b7bef2a490be87a9ca91522537a6225d350ad7c052b628e"
+  },
+  "case_digest": "66df998a49a96df30088b158de59a6b6de2adc8895f376223f9925225113949b",
+  "generated": 1,
+  "main": "Parcel",
+  "nullable": false,
+  "passed": true,
+  "source_restored": true,
+  "verdicts": [
+    {
+      "candidate_digest": "8e36672eaf3dc2309f65c3cd750968feea6253d95c5698d0d846586d49e551e1",
+      "compile_run": {
+        "command": [
+          "javac",
+          "-d",
+          "/work/Parcel-nonnull/classes",
+          "/work/Parcel-nonnull/src/Parcel.java"
+        ],
+        "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+        "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "returncode": 0,
+        "run_digest": "433983c2faf41605a5f97c0a6d4b058497efa1e8d8d9b83681bc96ee8189621a",
+        "schema": "genesis-defects4j-sandbox-run-v1",
+        "seconds": 0.985,
+        "timed_out": false
+      },
+      "feedback": "",
+      "plausible": true,
+      "stopped_at": "passed",
+      "test_run": {
+        "command": [
+          "java",
+          "-cp",
+          "/work/Parcel-nonnull/classes",
+          "Parcel"
+        ],
+        "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+        "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "returncode": 0,
+        "run_digest": "43752c06e954fcc98a8b877dcab35d7b064f710a7d8474b93c0ba71130226779",
+        "schema": "genesis-defects4j-sandbox-run-v1",
+        "seconds": 0.278,
+        "timed_out": false
+      },
+      "verdict_digest": "956d5a72e910e69908b81da0104b7f8ba3d064abb4044a9580c84aec0b8b27c6"
+    }
+  ],
+  "wrong_contract_verdict": null
+}

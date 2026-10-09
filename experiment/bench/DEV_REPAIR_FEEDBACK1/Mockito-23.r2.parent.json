@@ -1,0 +1,174 @@
+{
+  "arm_digest": "bafcfa5f0a16cf82aa90f094042d0dfde66156d942b8fc5e724b3897b4d29391",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 3009,
+      "cost_usd": 8.249e-05,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "1b2d47c311fe76f7a67b56127cd8bb80303ecababd4a417c11ef26446c7d9a7e",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 104,
+        "prompt_tokens": 3013
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.001285025,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "class GenericMetadataSupport"
+          },
+          "characters": 263,
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "c3a72faccc408e6f36a9690201d0121c16268640749d08907590679e7426cbcd",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 1318,
+        "prompt_tokens": 5508
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 3009,
+      "cost_usd": 0.00055669,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "limit": "80",
+            "path": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java",
+            "start": "55"
+          },
+          "characters": 9854,
+          "tool": "read_file"
+        },
+        {
+          "arguments": {
+            "text": "private final"
+          },
+          "characters": 6700,
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "79cc4bb235788d5c81ba84067d6d073f735f5d36aaec2994966e76d06db43a39",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 3,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 268,
+        "prompt_tokens": 6935
+      }
+    },
+    {
+      "applicable": 1,
+      "cached_tokens": 0,
+      "cost_usd": 0.002533375,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "20591b2e03b3a5e16916575a663be1abcf15922d533f01c0b6547fb875b7d7fa",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 4,
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 2187,
+        "prompt_tokens": 13699
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0005764,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "c1651052ea1724ed98a8254c5b2f47a00d2629d5efc1b66fc5ed789ce412c477",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 104,
+        "prompt_tokens": 4196
+      }
+    },
+    {
+      "cached_tokens": 0,
+      "cost_usd": 0.0028219,
+      "final": false,
+      "finish_reason": "length",
+      "malformed": "ValueError: truncated answer",
+      "prompt_digest": "ce5275e1c77390fcbee8fadde591460d2333c4227ee7939948159cc151b8c7f1",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 4096,
+        "prompt_tokens": 6691
+      }
+    }
+  ],
+  "case": "Mockito-23",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 2,
+  "seconds": 81.8,
+  "solved": false,
+  "suspects_from_stack_trace": false,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "ed0cd42a1bae60a49bcd6dc69f3ac311a0d1ed2ac0b8f7dadee036132ce4a559",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$1\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:345)\n\tat java.base/java.util.concurrent.ConcurrentLinkedQueue.writeObject(ConcurrentLinkedQueue.java:824)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1016)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1487)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "e3ed25f56f5aa46ff141ee8d4894f173a0550f1e3fd467e41119b73f19b2fb97"
+    }
+  ]
+}

@@ -1,6 +1,55 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 6 October 2026. The project-defined finite operational L9 gate is passed under the prospectively frozen OE1-v3 criterion; L10 independent replication remains open.**
+**Reader-facing status snapshot — 8 October 2026. The active Genesis v2 frontier is blind repair transfer after the bounded G10 chain. General RSI remains unestablished. The historical finite operational L9 gate is passed; L10 independent replication remains open.**
+
+## Active Genesis v2 frontier — blind repair transfer
+
+The strengthened, project-defined G10 chain passed on 7 October in a bounded,
+host-authored successor family. Its authoritative scope and evidence are in
+[`G10_QUALIFICATION_2026-10-07.md`](G10_QUALIFICATION_2026-10-07.md).
+This does not establish general RSI.
+
+Subsequent external-software trials retained negative results: G11 solved 0/9
+and V2.1 solved 0/3 prospectively frozen Defects4J cases. The
+[`search-space diagnosis`](../experiment/g12/REPAIR_SEARCH_SPACE_DIAGNOSIS_20261008.md)
+found no exact developer repair among the local strategist's candidates on
+11 already-exposed cases without hand-written case-specific operators.
+
+The next recorded experiment is **T1**, preregistered at commit `01b42ba7`
+before execution: 24 held-out cases, three proposer arms (`strategist`,
+`model`, `model_explore`), and ten candidate validations per arm/case.
+See the [bench protocol](REPAIR_BENCH.md) and
+[frozen preregistration](../experiment/bench/TRIAL_T1_PREREG.json).
+Execution began on 8 October and was stopped after model calls failed because
+the authenticated provider session had exhausted its usage quota. See the
+[execution incident](REPAIR_BENCH_T1_EXECUTION_2026-10-08.md).
+No sealed T1 result is available at this snapshot.
+Fixed revisions must remain unopened until the trial result is sealed.
+
+At the owner's request, subsequent development now uses an economical
+OpenRouter repair agent, defaulting to Qwen3 Coder Next with provider price
+ceilings and conservative pre-call cost reservations. T1 is unchanged.
+The [integration chronology](OPENROUTER_REPAIR_INTEGRATION_2026-10-08.md)
+retains the development negative and every interruption. No new held-out
+repair or RSI gate is qualified by this provider integration.
+
+A subsequent owner-requested GLM comparison produced a full-suite-passing
+alternative repair on the already-exposed Codec-15 case at $0.00142348 using
+low reasoning effort. Its developer-fix audit found a different implementation;
+correctness beyond the suite is unestablished. DeepSeek was not invoked because
+GLM met the repair bench's validation predicate. See the
+[GLM development result](GLM_REPAIR_DEVELOPMENT_RESULT_2026-10-08.md).
+
+T1 measures repair capability under the frozen validation budget. A positive
+model-arm result would not itself demonstrate recursive improvement: the next
+step needs reusable lineage-produced machinery, frozen before fresh evaluation,
+with parent, ablation and retention controls. External-model cost and calls must
+be counted during acquisition as well as runtime. A descendant must then improve
+the production of a further descendant under matched budgets, rather than only
+solve more bugs. These are future evidence requirements, not additional T1
+acceptance predicates or a newly qualified gate.
+
+The L/M/A sections below preserve the historical research navigation.
 
 ## Active RSI frontier
 
@@ -303,9 +352,248 @@ accepted. The original matrix is left unchanged and the navigation correction is
 The original machine-readable matrix remains at
 [`audits/HYPOTHESIS_VALIDATION_MATRIX_2026-09-05.json`](audits/HYPOTHESIS_VALIDATION_MATRIX_2026-09-05.json).
 
+## Development model cost comparison, 8 October 2026
+
+A three-case exposed-development comparison tested Qwen3 Coder, GLM-5.3 Flash,
+DeepSeek V4.1 Flash and DeepSeek V4 Pro. GLM produced one full-suite pass; the
+other configurations produced none. Total journaled API spend was $0.038189,
+including unsuccessful and truncated responses. Conservative budget guards and
+model/tool errors limit ability comparisons. No held-out gate or general RSI
+claim follows. Exact costs, tokens and preserved aborted outcomes are documented
+in [the comparison report](REPAIR_MODEL_COST_COMPARISON_2026-10-08.md).
+
+## Economical development routing and retained repairs, 8 October 2026
+
+The second exposed-development model cohort tested MiMo V2.6 Flash/Pro,
+Claude Haiku/Sonnet 5.5 and GPT-6 Luna. Haiku passed all three developer suites
+for $0.013029 total; Luna passed one for $0.003091 total. A development-only
+router now ranks affordable models using complexity proxies, released outcome
+costs and a configurable reliability threshold. It attempts retained,
+previously validated local repair patterns before external calls and revalidates
+every proposal. This is retained development experience, not general understanding
+or an independently established RSI gate. See the
+[model and reuse report](ADAPTIVE_REPAIR_MODELS_2026-10-08.md).
+
+## Three further development bugs and durable local learning, 8 October 2026
+
+Compress-6 passed the developer suite on the first deterministic local candidate,
+without a model call. Its newly recorded recipe was loaded from a fresh database
+reader and passed a memory-only replay. Gson-2 and Jsoup-68 remain unsolved;
+Haiku assistance hit HTTP 404 on Gson, and Luna assistance did not repair Jsoup.
+Known API spend is $0.006471; one API error has unknown cost, so total spend is
+not asserted. The verified development memory is now retained at the active path
+recorded in `experiment/bench/ADAPTIVE_REPAIR_ACTIVE_MEMORY.json`. This is an
+exposed-development result, not fresh transfer or general RSI. The API error
+currently excludes Haiku under the conservative unknown-cost policy. See the
+[three-bug trial report](ADAPTIVE_THREE_BUGS_2026-10-08.md).
+
+## Haiku compatibility fixed and the two failed bugs retried, 8 October 2026
+
+A controlled API check confirmed that Haiku 5.5 rejects forced named tools;
+the fourth exploratory request caused the earlier HTTP 404. The proposer now
+uses auto selection with only the submission tool on its last request. An
+append-only diagnostic review restores Haiku routing while preserving the
+unknown old charge. Gson-2 passed with Luna and Jsoup-68 passed with Haiku,
+for $0.008731 in new retry API costs. A second defect in recipe lookup omitted
+repaired dependencies absent from the stack trace; that lookup is now fixed.
+Both repairs passed a separately recorded memory-only replay and their full
+verified history is in the active development database (84 events). This
+supersedes the operational Haiku exclusion noted above, without changing any
+old trial result or asserting general RSI. See the
+[404 diagnosis and retry report](HAIKU_404_RETRIES_2026-10-08.md).
+
 ## Claim boundary
+
+The 9 October real-development follow-up on Jsoup-29, Math-66 and Compress-19
+found no autonomous suite pass (parent and adapted search: 0/3 each, four
+validations per arm/case). Observation-derived offset candidates were inactive,
+so the two orderings produced the same attempted candidates; the adapted policy
+was not promoted. Subsequent, separately attributed training repaired Jsoup with
+Luna and Compress with Haiku, durably retained both patches and passed their
+model-free full-suite replays. Math remains unsolved. New API spend was
+$0.0172782, including failures. Canonical development memory is now 124 events
+with its original 84-event prefix preserved. No general RSI or autonomous
+primitive invention is asserted. See
+[the real-project report](REAL_REPAIR_TRANSFER_DEVELOPMENT_2026-10-09.md).
+
+On 9 October 2026, two frozen model-free DEVELOPMENT experiments connected
+exemplar-derived repair rules to parent/descendant promotion and a mutable
+search ordering. Three acquisition cycles passed nine final authored
+Python/JavaScript/Java transfer probes (empty-policy baseline: zero). A
+training-outcome diagnosis then selected an authored observation-first search
+ordering: three subsequent probes passed in both arms with twelve versus three
+candidate validations. This is bounded parameter acquisition and search-policy
+adaptation on one authored bug family, not independent real-project evidence,
+new semantic primitive invention or general RSI. The active real-bug repair
+memory remains separate. See
+[the development report](REPAIR_SELF_IMPROVEMENT_DEVELOPMENT_2026-10-09.md).
 
 Mira Genesis does not currently claim AGI, general intelligence, consciousness, unrestricted
 self-rewrite, open-ended evolution, open-ended recursive self-improvement, unrestricted repository
 authority or unrestricted network authority. The strongest positive results remain bounded,
 predeclared mechanism results with explicit ceilings.
+
+### 9 October 2026 — lexical acquisition and three new real development trials
+
+`DEV_REPAIR_TRANSFORMATION_TRANSFER1` adds an authored lexical identifier-binding
+substrate, optional own-outcome local search and durable policy proposals. Three
+acquisition generations yield three attributed rules; authored Java renamed/layout
+positives pass 2/4/6, with negative controls rejected. These are not semantic
+precondition learning or endogenous primitive invention.
+
+Prospectively selected Jsoup-59 / Math-41 / Compress-44 yield 0/3 parent and 0/3
+child at eight validations per case, no LLM. Learned candidates are absent on
+all three causal views; 34/48 validations fail compilation. Only Jsoup's attempted
+order changes. Strategist descriptions collapse operator provenance to
+`repair_plan`, limiting feedback. Policy promotion is rejected; all 49 new
+negative/decision events are admitted separately, preserving the canonical
+124-event prefix (173 total). No new success or replay is claimed. API cost $0
+excludes infrastructure/development. General RSI remains undemonstrated.
+
+Next work: operator-provenance preservation, explicitly budgeted compiler-aware
+selection, broader expression abstractions and learned behavioural conditions,
+then a newly frozen development transfer. Do not reuse these exposed cases as
+fresh tests or reinterpret the frozen rejection. See
+`docs/REPAIR_TRANSFORMATION_LEARNING_2026-10-09.md` and the stored result/audit/
+diagnosis/memory-admission records. An evidence audit is not independent replication.
+
+### 9 October 2026 — compiler-grounded quality and assisted acquisition
+
+`DEV_REPAIR_QUALITY_TRANSFER1` preserves component-operator provenance, ranks
+from 48 released outcomes, projects smaller expressions from verified recipes,
+uses the existing Java AST/partial-type analyser inside Docker and counts every
+attempted candidate compilation. Legacy defaults remain preserved. Three exposed
+teacher cases (Jsoup-59 / Math-41 / Compress-44) pass with Haiku, with durable
+full-suite replays: five requests, $0.0063859, no new unknown charges. Assisted
+competence remains attributed; seven rule proposals do not prove real transfer.
+
+New public development Jsoup-25 / Math-37 / Compress-18 comparisons yield 0/3
+in both arms, 16 candidate compilation attempts each and two compile failures
+each. Jsoup's source localisation is empty; no learned rule activates. Removing
+17 Math candidates from the pool does not produce measured repair gain. Reject
+policy promotion; admit all 50 events separately, preserving the canonical
+173-event prefix (223 total). No fresh transfer success or general RSI is claimed.
+
+A later explicit opt-in assertion/API localisation helper supplies 12 production
+locations and 64 candidates for the now-exposed Jsoup case, with no repair attempt.
+That engineering smoke does not amend the frozen failure or count as fresh evidence.
+Next priorities: causal call traversal, broader/multiline/algorithmic acquisition,
+semantic guards and independently separated real transfer. See
+`docs/REPAIR_QUALITY_LEARNING_2026-10-09.md`; audits are stored-evidence checks,
+not independent execution replication.
+
+9 October 2026 — exposed failed-search recovery: explicit bounded generation lineage,
+stop reasons and own-verdict reranking now operate without requiring a prior success.
+On Jsoup-25/Math-37/Compress-18, three search generations per case still yield 0/3
+local repairs (36 validations). Separately, economical assisted recovery yields 3/3
+full-suite repairs plus new-reader replay, known API USD 0.01377242. All failures
+and three successes admitted: canonical memory 223→292. No policy promotion or
+general RSI claim. See REPAIR_STALL_RECOVERY_2026-10-09.md. Mutation-language
+coverage remains the next substantive deficit; pool expansion alone is insufficient.
+
+9 October 2026 — first explicit-contract insertion capability: one rule acquired
+from the verified assisted Compress-44 recipe now abstracts constructor/reference
+parameter bindings. Authored isolated Java gates show 3/3 distinct positive layouts,
+3/3 nullable controls without proposals, and 3/3 deliberately wrong contracts rejected
+by execution (12 candidate/fixture compiles, zero API calls). This is developer-authored
+projection with supplied contracts, not automatic nullability inference or fresh
+real-bug transfer. Canonical memory remains 292 events; no policy promoted. See
+REPAIR_CONTRACT_LEARNING_2026-10-09.md. Latest Jsoup set expansion, Math numerical
+rewrite and Compress cleanup still require additional capabilities/evidence.
+
+9 October 2026 — self-revising repair lineages: a repair agent's configuration was
+rewritten by the same external model from its own development results, inside a fixed
+per-case envelope. LINEAGE1 promoted one successor (8 against 4 of 20 development
+cases); the preregistered held-out trial L1 is **negative** (19 against 21 of 40,
+one-sided exact sign test p = 0.94), and the evolved improver text wrote worse
+successors than the seed's. LINEAGE1 exposed an apparatus defect: tests that need a
+network or a home directory made some cases unwinnable. With that separated and two
+evaluations per configuration, LINEAGE2 rejected all four successors (37 to 39 against
+43 of 60 case runs) and consumed no held-out case. No recursive improvement is shown.
+See REPAIR_LINEAGE_2026-10-09.md. T1 remains unsealed.
+
+9 October 2026 — local configuration revision pilot: external Haiku changes one
+allowed leaf (instructions), guided only by LINEAGE2 seed training observations.
+On the first three already-exposed selection cases (Mockito-17/Jsoup-54/Mockito-23),
+two new paired evaluations each yield 4/6 parent and 4/6 descendant, zero gains/losses.
+No larger-test qualification or policy promotion. Total known API USD 0.04255552,
+38 requests, zero unknown bills. Descendant's seven Mockito-23 candidates compile
+but fail triggers; parent also exhibits an inapplicable-only early stop. The next
+apparatus experiment is bounded application-failure feedback; repair-language and
+semantic hypothesis coverage remain substantive deficits. Canonical memory remains
+292 events; no held-out consumed. See REPAIR_LOCAL_REVISION_2026-10-09.md.
+
+## Repair feedback development — 9 October 2026
+
+Opt-in edit-application recovery and bounded training-only history of rejected
+descendants are implemented. Thirty focused tests pass, including an offline
+two-generation loop. No live API call, fresh real-bug comparison or promotion
+has occurred. This remains authored instrument development; see
+[REPAIR_FEEDBACK_2026-10-09.md](REPAIR_FEEDBACK_2026-10-09.md).
+
+## Feedback ablation result — 9 October 2026
+
+DEV_REPAIR_FEEDBACK1 is complete: parent 4/6, child 4/6 on three exposed bugs
+with two repetitions. Forty calls cost USD 0.043691795, no unknown receipts.
+No inapplicable patch occurred, so application recovery was never triggered.
+No promotion; canonical memory remains 292 events. Post-result analysis records
+partial serialization repairs that expose different blockers, the one-file candidate
+limit and an existing settings-driven serialization mechanism. These observations
+are hypotheses for future development, not a verified solution. See
+[REPAIR_FEEDBACK_TRIAL_2026-10-09.md](REPAIR_FEEDBACK_TRIAL_2026-10-09.md).
+
+## Coordinated-file pilot — 9 October 2026
+
+DEV_REPAIR_TRANSACTIONS1: parent 4/6, child 4/6 on three exposed Java bugs
+with two repetitions, USD 0.049337330 for 42 calls. All twelve parsed child
+proposals modify one file, so the multi-file path was not exercised. One
+child argument-parsing failure is retained and its raw arguments are unavailable.
+Exception transitions include a return to a previous blocker after dropping
+a partial edit; branch-based cumulative repair is a prospective hypothesis.
+No promotion or reserved-case consumption; canonical memory stays at 292 events.
+See [REPAIR_TRANSACTIONS_2026-10-09.md](REPAIR_TRANSACTIONS_2026-10-09.md).
+
+After closing DEV_REPAIR_TRANSACTIONS1, prospective typed file-layout rejection
+retains malformed input and permits correction within unused planned requests.
+Ninety-two focused tests pass. This is offline hardening; no new live measurement
+or retrospective repair of the failed pilot is claimed.
+
+## Case-local repair branches — 9 October 2026
+
+DEV_REPAIR_BRANCHES1: both arms 4/6, 36 API calls costing USD 0.043858125.
+The child exercised two- and three-file validation, but used no graded-parent
+extension or virtual read. Two child submissions were inapplicable; one proposed
+serializability for an already serializable class. There is no measured gain.
+One hundred focused tests pass. No promotion, reserved-case use or canonical
+memory mutation (292 events). Common four-round allocation is manually authored
+and differs from historical pilots. See
+[REPAIR_BRANCHES_2026-10-09.md](REPAIR_BRANCHES_2026-10-09.md).
+
+## Branch-selection strategy — 9 October 2026
+
+DEV_REPAIR_BRANCH_STRATEGY1: both arms 4/6, 38 calls costing USD 0.051932875.
+The authored child playbook exercised three extensions and two virtual reads,
+with branch use in both hard-case repetitions and depth two. Child cost increased
+without a repaired-case gain. Contradictions between observed exceptions and
+proposed causal explanations remain. No promotion or canonical memory update;
+102 focused tests pass. See
+[REPAIR_BRANCH_STRATEGY_2026-10-09.md](REPAIR_BRANCH_STRATEGY_2026-10-09.md).
+
+## Strict evidence-checking regression — 9 October 2026
+
+DEV_REPAIR_CAUSAL_EVIDENCE1: reference 4/6, checked child 0/6; USD 0.054540250
+for 38 calls. Boundary whitespace in correctly located source citations caused
+pre-validation rejection on both easy cases in both repetitions. The hard case
+still failed four host-checked candidates. The negative result is retained;
+113 focused tests pass, no promotion or canonical memory update. See
+[REPAIR_CAUSAL_EVIDENCE_2026-10-09.md](REPAIR_CAUSAL_EVIDENCE_2026-10-09.md).
+
+## Citation-interface correction — 9 October 2026
+
+The strict regression was preserved before boundary-whitespace tolerance was
+added. DEV_REPAIR_CAUSAL_EVIDENCE2: reference 2/3, checked child 2/3, 17 calls
+costing USD 0.023600225. Easy-case validation is restored; no paired gain.
+The hard-case child stops on a malformed final submission whose raw item was
+not retained; the reference stops after repeating a graded candidate. No policy
+promotion or canonical memory update. 116 focused tests pass. See
+[REPAIR_CAUSAL_EVIDENCE_NORMALIZED_2026-10-09.md](REPAIR_CAUSAL_EVIDENCE_NORMALIZED_2026-10-09.md).

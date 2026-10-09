@@ -1,0 +1,51 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "8b1fb65b7a92a70f4d04ba757e483b05add5df8559eded81ec95624200ac710a",
+      "id": "retained-8b1fb65b7a92a70f",
+      "label": "retained_subscript_delta:Subject.java:90:-1",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int position) { return values[position - 1]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "f6b2d28c53ed0037f7cde9f81d7b3f2b44b7fd985c2406905a1232c08c450a34",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "378e8a0eda29924dd43744d836203749be5c223754447d4025550191ea6c1980",
+      "id": "retained-378e8a0eda29924d",
+      "label": "retained_subscript_delta:Subject.java:90:+1",
+      "mutations": [
+        {
+          "content_utf8": "public class Subject {\n public static int pick(int[] values, int position) { return values[position + 1]; }\n}\n",
+          "expected_absent": false,
+          "expected_sha256": "f6b2d28c53ed0037f7cde9f81d7b3f2b44b7fd985c2406905a1232c08c450a34",
+          "path": "Subject.java"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    }
+  ],
+  "discover": false,
+  "policy_digest": "1043a2f0bcbd2b8f205f7d1fd12ae00b038fb9e42795debcf6ac529fbaeba65e",
+  "search_digest": "c5d90c09ac880c2b641fb30e0f6efa024dc9d4630d2abfcaea8c5f30ec7384e3",
+  "source_digest": "a27603abb74d0d0c67d83c9782530ab07ccf276ac6b697d10913c4592cd06323",
+  "task_digest": "b3a1a06621cab46310a7c6bd36f13db1656747439b59f2668c7b866cd630af05"
+}

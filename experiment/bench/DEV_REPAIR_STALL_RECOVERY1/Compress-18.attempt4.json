@@ -1,0 +1,16 @@
+{
+  "attempt_digest": "5c8aa3eb796d093f8c8ef4452b29dd9016e0ed6a668cbc382de2fbddfc2b210e",
+  "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+  "diagnosis": "type",
+  "verdict": {
+    "candidate_digest": "eacdad22c24ae30c919b22c30739f32c75094623c2b6a3726563ee74bfbc64e6",
+    "feedback": "    [javac] /work/Compress-18-b/maven-build.xml:80: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-18-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Compress-18-b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java:460: error: incompatible types: possible lossy conversion from long to int\n    [javac]             name = name.substring(0, TarConstants.MAXSIZE - 1);\n    [javac]                                                           ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "af8440af5d85dc70a1adb34bdb39b04ae79adac189d08fcb74fa9e8013fd4666"
+  }
+}

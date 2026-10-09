@@ -1,0 +1,28 @@
+{
+  "attempt_digest": "38889a9925ad32d94c9efee3612e97de0ba28a66c830551bb8bec4c3f8e87166",
+  "candidate": {
+    "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/helper/Validate.java"
+  },
+  "choice": {
+    "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+    "choice_digest": "26e5093ffc612d2608bcf6a6cda3a453e65df09ea93fa2b250b68e0ab8c8e319",
+    "index": 1,
+    "prior_verdict_digests": [],
+    "remaining_pool_size": 32,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "c9e330e35cb558138233b4dd5d90c9df73f0fcd0ca374c012d0225b15d8fcaad",
+    "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:56)\n\tat org.jsoup.nodes.Document.<init>(Document.java:31)\n\tat org.jsoup.parser.TreeBuilder.initialiseParse(TreeBuilder.java:32)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:42)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)\n\tat org.jsoup.parser.Parser.parse(Parser.java:100)\n\tat org.jsoup.Jsoup.parse(Jsoup.java:58)\n\tat org.jsoup.parser.HtmlParserTest.handlesControlCodeInAttributeName(HtmlParserTest.java:946)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/helper/Validate.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c"
+  }
+}

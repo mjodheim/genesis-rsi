@@ -1,0 +1,727 @@
+{
+  "accepted": {
+    "candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+    "content_sha256": "5f81e04c15ec2a724f8330e31a06eb55f78de1ada60561ae34bbd19507b325e8",
+    "description": "{\"hypothesis\": \"Control characters such as \\\\06 are removed by String.trim() in Token.Tag.newAttribute, leaving an empty attribute name that then reaches the Attribute/BooleanAttribute constructor and throws. Skip attributes whose trimmed name is empty, so they are dropped instead of raising.\", \"path\": \"src/main/java/org/jsoup/parser/Token.java\", \"edits\": [{\"search\": \"if (pendingAttributeName != null) {\\n                // the tokeniser\", \"replace\": \"if (pendingAttributeName != null && pendingAttributeName.trim().length() > 0) {\\n                // the tokeniser\"}]}",
+    "origin": "openrouter:anthropic/claude-haiku-5.5",
+    "path": "src/main/java/org/jsoup/parser/Token.java",
+    "provenance": null
+  },
+  "case": "Jsoup-59",
+  "new_events": [
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0019091,
+        "evidence_digest": "4cfd8cf9434b6304c4e0f0d5ec796f3269d2e6a9af20287b3561b89f63f7d53d",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d7224b8a47178e298069aa9b0451d8a67334b202adeaf9854c896ae1df14e30a",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005651051,
+        "response_digest": "879d2742f67dffb3ab36448db645f3438a49d42e466e4a2de1d9a5825fed9ccd",
+        "response_id": "gen-1791527450-XXibE46PkT0DokxoZMNk",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 1735,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 1462
+          },
+          "cost": 0.0019091,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0008675,
+            "upstream_inference_cost": 0.0019091,
+            "upstream_inference_prompt_cost": 0.0010416
+          },
+          "is_byok": false,
+          "prompt_tokens": 10416,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 12151
+        }
+      },
+      "kind": "call",
+      "previous_digest": "57159757fb7d3fed32e4e7847a8f6688c85a2be25a11cf7bcef6736152809794",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+        "evidence_digest": "4cfd8cf9434b6304c4e0f0d5ec796f3269d2e6a9af20287b3561b89f63f7d53d",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 2,
+          "family": "9ceded3d21b0dc644dcb53689b98f422aeb8e02438d89ed82f6e5930e2391569",
+          "source_chars": 16377,
+          "source_files": 5
+        },
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "verdict": {
+          "candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/jsoup/parser/Token.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "51f8558b42219ccabcab476204d758fbcfecb0d538ed2ffefeee8f5fde247b34"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "71951b441382538cc64f37fea282f8bdcefe193a3b8b90a83499053796ce5cb1",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+        "edits": [
+          [
+            "            if (attributes == null)\n                attributes = new Attributes();\n\n            if (pendingAttributeName != null) {\n                // the tokeniser has skipped whitespace control chars, but trimming could collapse to empty for other control codes, so verify here\n                pendingAttributeName = pendingAttributeName.trim();\n                    Attribute attribute;\n",
+            "            if (attributes == null)\n                attributes = new Attributes();\n\n            if (pendingAttributeName != null && pendingAttributeName.trim().length() > 0) {\n                // the tokeniser has skipped whitespace control chars, but trimming could collapse to empty for other control codes, so verify here\n                pendingAttributeName = pendingAttributeName.trim();\n                    Attribute attribute;\n"
+          ]
+        ],
+        "explanation": "{\"hypothesis\": \"Control characters such as \\\\06 are removed by String.trim() in Token.Tag.newAttribute, leaving an empty attribute name that then reaches the Attribute/BooleanAttribute constructor and throws. Skip attributes whose trimmed name is empty, so they are dropped instead of raising.\", \"path\": \"src/main/java/org/jsoup/parser/Token.java\", \"edits\": [{\"search\": \"if (pendingAttributeName != null) {\\n                // the tokeniser\", \"replace\": \"if (pendingAttributeName != null && pendingAttributeName.trim().length() > 0) {\\n                // the tokeniser\"}]}",
+        "family": "9ceded3d21b0dc644dcb53689b98f422aeb8e02438d89ed82f6e5930e2391569",
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "path": "src/main/java/org/jsoup/parser/Token.java",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/jsoup/parser/Token.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "51f8558b42219ccabcab476204d758fbcfecb0d538ed2ffefeee8f5fde247b34"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "59cd111a7f05aae3d672a0b7a00f3430a40da7f185673ade46e76a31a0b85ddd",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "policy": {
+          "generation": 1,
+          "parent_policy_digest": "",
+          "policy_digest": "8b6a1fd8e1b8c26105734d970f3f274ccb57279b5276fd46d870a6969d8ede6d",
+          "promoted": false,
+          "rejected": [
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "unsupported or nongeneralizable edit",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "unsupported or nongeneralizable edit",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "2dbd5453632180fd1f05b82f19a7f110a17f2e06e4b72befcfae9f8b2a0bead4"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "a84e320f41e8aa06fb4538af0363c14eab1a1275f3bac366e555f909ffe4786a"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "ff299a129d1952df4f27817595285a541ae8d5a6ad1dc470c4cb8135877b90b3"
+            }
+          ],
+          "rules": [
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "CSVRecord"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "CSVParser"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "literal": "CSVParser"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "CSVRecord"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "explanation": "Previously suite-validated exact-text repair; explanation limited to archived patch.",
+              "family": "expression_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [
+                "CSVParser"
+              ],
+              "origin": "released-trial:DEV_COST_COMPARE2_HAIKU_CSV",
+              "rule_digest": "00e11862a9d7b8c66f70b9a7f54e4d94c53819e83fb9e743fe8edaccde3bc7ca",
+              "source_candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+              "source_recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15",
+              "source_verdict_digest": "d4b368a4dd8026e9981763e447b2a31252d13a651f9b9476719489edec13a5d7",
+              "template_digest": "1ecc16b61f8da67018e4591c332d370972467ccb979848ede493838a38793d21"
+            },
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "return"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": "?"
+                },
+                {
+                  "literal": "TextNode"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "normaliseWhitespace"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "text"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "trim"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ":"
+                },
+                {
+                  "literal": "\"\""
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "return"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": "?"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "text"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "trim"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ":"
+                },
+                {
+                  "literal": "\"\""
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "explanation": "{\"hypothesis\": \"Document.title() must normalize whitespace in title text explicitly because title elements preserve whitespace for markup output.\", \"path\": \"src/main/java/org/jsoup/nodes/Document.java\", \"edits\": [{\"search\": \"return titleEl != null ? titleEl.text().trim() : \\\"\\\";\", \"replace\": \"return titleEl != null ? TextNode.normaliseWhitespace(titleEl.text()).trim() : \\\"\\\";\"}]}",
+              "family": "call_structure_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [
+                "TextNode",
+                "normaliseWhitespace"
+              ],
+              "origin": "openrouter:openai/gpt-6-luna",
+              "rule_digest": "6447bca06e4cf4ab41ff709b5ff2b626387948a30df71078bf554c62c76f954c",
+              "source_candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+              "source_recipe_digest": "0ab9fe33881cb9f263eb69e93183ed1340ac9b2b09e5691d85e976d2517e9fe7",
+              "source_verdict_digest": "c0b79e6f24b0387f735aa6dd76e50c1f08423f09398b1c6bca6af285b3cf5e98",
+              "template_digest": "d5a6d4cb6c6bd7cd1579a272139288800f6c66d9a20d445d7e8c6375cdcd96ab"
+            },
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": "<"
+                },
+                {
+                  "bind": "$1"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "bind": "$1"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "explanation": "{\"hypothesis\": \"reparseCentralDirectoryData rejects any raw central-directory extra data whose length differs from the expected length; archives with excess trailing data (COMPRESS-228) must be accepted. Only a buffer shorter than expected is an error, so the comparison should be '<' instead of '!='.\", \"path\": \"src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java\", \"edits\": [{\"search\": \"            if (rawCentralDirectoryData.length != expectedLength) {\", \"replace\": \"            if (rawCentralDirectoryData.length < expectedLength) {\"}]}",
+              "family": "relational_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [],
+              "origin": "openrouter:anthropic/claude-haiku-5.5",
+              "rule_digest": "f414468e2e62ecad1484c29d7251bfabe91aa02aac42e932a5d2f4358c8296ef",
+              "source_candidate_digest": "c297ddbf1b520f68ffdcbb52fd8e004561e1cb4cf5fa9be428d96023bff500fc",
+              "source_recipe_digest": "ae32d704c5d332f1b4bd33af36ee6c72c93c1deb4a1588a55ca45f2a04ee38fe",
+              "source_verdict_digest": "fbe7e15e155eed910cb666531b20367f3732beab685aa56d2605359787ff2cbe",
+              "template_digest": "2841b93e57786a870c090c8068b544bb79b664f3fce6b8e6e1a12b2a502a101e"
+            },
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": "&&"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "trim"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ">"
+                },
+                {
+                  "literal": "0"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "explanation": "{\"hypothesis\": \"Control characters such as \\\\06 are removed by String.trim() in Token.Tag.newAttribute, leaving an empty attribute name that then reaches the Attribute/BooleanAttribute constructor and throws. Skip attributes whose trimmed name is empty, so they are dropped instead of raising.\", \"path\": \"src/main/java/org/jsoup/parser/Token.java\", \"edits\": [{\"search\": \"if (pendingAttributeName != null) {\\n                // the tokeniser\", \"replace\": \"if (pendingAttributeName != null && pendingAttributeName.trim().length() > 0) {\\n                // the tokeniser\"}]}",
+              "family": "call_structure_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [
+                "length",
+                "trim"
+              ],
+              "origin": "openrouter:anthropic/claude-haiku-5.5",
+              "rule_digest": "2f897b43f5e7d873b9bf5bb3caa1a3898ca0c57496ec226940ce94a8806fd8cd",
+              "source_candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+              "source_recipe_digest": "65f7a3bad35f34dc6f8295666902d8c6746189b29c681c8fddb3c2370e26226a",
+              "source_verdict_digest": "51f8558b42219ccabcab476204d758fbcfecb0d538ed2ffefeee8f5fde247b34",
+              "template_digest": "c33a38fef31ca6957b14b2e853724e108748e16be508afd546019d6c2e36fb25"
+            }
+          ],
+          "schema": "genesis-java-lexical-repair-policy-v1",
+          "scope": "released development proposal; requires separate transfer gate",
+          "training_memory_digest": "2837384419a78b938724d68f5cf37e6fbdf5e70a5d2f684c3448bcbb7a314f0b"
+        },
+        "promoted": false,
+        "source_candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e"
+      },
+      "kind": "transformation_proposal",
+      "previous_digest": "65f7a3bad35f34dc6f8295666902d8c6746189b29c681c8fddb3c2370e26226a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0019091,
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 2,
+          "family": "9ceded3d21b0dc644dcb53689b98f422aeb8e02438d89ed82f6e5930e2391569",
+          "source_chars": 16377,
+          "source_files": 5
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "ebfc664f7bf59060a1c13547067b26944b4e04eebdd19d61f43d87f0b4f2d112",
+      "scope": "released_development"
+    }
+  ],
+  "replay": {
+    "candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+    "feedback": null,
+    "full_suite_failures": 0,
+    "origin": "retained-experience",
+    "path": "src/main/java/org/jsoup/parser/Token.java",
+    "plausible": true,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "passed",
+    "verdict_digest": "ba6c19f8d59e14843bd96cb31ea2945e611e9b3ea909886e5153f9b94d35693d"
+  },
+  "result": {
+    "decisions": [
+      {
+        "basis": "released_comparison",
+        "complexity": "complex",
+        "estimated_request_reserve_usd": 0.005481876,
+        "fallback_quality_threshold_relaxed": false,
+        "model": "anthropic/claude-haiku-5.5",
+        "observations": 3,
+        "score": 0.0057847425,
+        "suite_passes": 3
+      }
+    ],
+    "known_cost_usd": 0.0019091,
+    "model_calls": [
+      {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0019091,
+        "evidence_digest": "4cfd8cf9434b6304c4e0f0d5ec796f3269d2e6a9af20287b3561b89f63f7d53d",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d7224b8a47178e298069aa9b0451d8a67334b202adeaf9854c896ae1df14e30a",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005651051,
+        "response_digest": "879d2742f67dffb3ab36448db645f3438a49d42e466e4a2de1d9a5825fed9ccd",
+        "response_id": "gen-1791527450-XXibE46PkT0DokxoZMNk",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 1735,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 1462
+          },
+          "cost": 0.0019091,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0008675,
+            "upstream_inference_cost": 0.0019091,
+            "upstream_inference_prompt_cost": 0.0010416
+          },
+          "is_byok": false,
+          "prompt_tokens": 10416,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 12151
+        }
+      }
+    ],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": true,
+    "solved_without_llm": false,
+    "total_cost_usd": 0.0019091,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+        "feedback": null,
+        "full_suite_failures": 0,
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "path": "src/main/java/org/jsoup/parser/Token.java",
+        "plausible": true,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "passed",
+        "verdict_digest": "51f8558b42219ccabcab476204d758fbcfecb0d538ed2ffefeee8f5fde247b34"
+      }
+    ]
+  },
+  "scope": "exposed development training; no fresh-transfer score",
+  "teacher_digest": "609ae041747b0a8fcd82e0317e19f4bb2eb115e88de215bb192c502639420d35"
+}

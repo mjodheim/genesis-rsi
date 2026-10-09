@@ -1,0 +1,93 @@
+{
+  "candidate_set_digest": "f4bfc317bd87e227364a9a27635b4c1fbaeba21682f5892fe7b60887107a3bca",
+  "candidates": [
+    {
+      "candidate_digest": "3689398cdb6aadc9ad11af4fe24fe0a839b6df0e5657993d91e83aa0dcff57b5",
+      "id": "exemplar-3689398cdb6aadc9",
+      "label": "observed_subscript_delta:subject.js:47:+2",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, position) { return values[position + 2]; }\nfunction neighboring(values, position) { return values[position + 2]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "5c5bdfc2a2958c766845df1b06fa89dc94d49cd44150b647a7fed6b6cafa6b26",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": 2,
+        "exemplar_path": "subject.js",
+        "exemplar_start": 115,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "position",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      }
+    },
+    {
+      "candidate_digest": "e465bef05c79e31bafa239d96123d63671d33ad7226a08b54764d5cc414273af",
+      "id": "retained-e465bef05c79e31b",
+      "label": "retained_subscript_delta:subject.js:47:-1",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, position) { return values[position - 1]; }\nfunction neighboring(values, position) { return values[position + 2]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "5c5bdfc2a2958c766845df1b06fa89dc94d49cd44150b647a7fed6b6cafa6b26",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "d43c62d020d7082e9497b865e4f1a713208c8655c348ae45835cdf89291b9df7",
+      "id": "retained-d43c62d020d7082e",
+      "label": "retained_subscript_delta:subject.js:47:+1",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, position) { return values[position + 1]; }\nfunction neighboring(values, position) { return values[position + 2]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "5c5bdfc2a2958c766845df1b06fa89dc94d49cd44150b647a7fed6b6cafa6b26",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "e45976f32b5c76012e3cc9e0c18af7e1f6c37da97c1ac2d760de53761ce54da7",
+      "id": "retained-e45976f32b5c7601",
+      "label": "retained_subscript_delta:subject.js:47:-2",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, position) { return values[position - 2]; }\nfunction neighboring(values, position) { return values[position + 2]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "5c5bdfc2a2958c766845df1b06fa89dc94d49cd44150b647a7fed6b6cafa6b26",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": -2,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "9745be27f7c6496f8cce60737fc8cbae1ed2301a96eef83594edaf8c6af07cb8",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    }
+  ],
+  "search_policy_digest": "96c375ca16bb0da6f079f70f2a5d2f9c4a9eac4d7c94a49e4ec81120fa565fce",
+  "task_digest": "7bf44a465594f8bc7ddcb853459723e23644109f26553b91778ef09eefb886a2"
+}

@@ -1,0 +1,176 @@
+{
+  "canonical_memory_events": 292,
+  "diagnosis_digest": "02e1716c2710a571bc0d3cc0f0d68f5ccefad2e3947d18e87a4f69cba969c27f",
+  "hard_case_traces": [
+    {
+      "arm": "parent",
+      "case": "Mockito-23",
+      "duplicate_proposals": [
+        {
+          "candidate_digest": "f018fdb80cfbd2c5a7826299a3c82799bd813342eb5ea3948de041c7a90854c2",
+          "round": 3
+        }
+      ],
+      "last_call": {
+        "applicable": 1,
+        "cached_tokens": 0,
+        "cost_usd": 0.00200735,
+        "final": true,
+        "finish_reason": "tool_calls",
+        "inapplicable": 0,
+        "inspections": [],
+        "prompt_digest": "a7c31d0b2825e55d1de05ff8237f4950add7317a8a559bf088be263cddf68ade",
+        "round": 3,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submission_results": [
+          {
+            "applicable": true,
+            "branch_depth": 0,
+            "candidate_digest": "f018fdb80cfbd2c5a7826299a3c82799bd813342eb5ea3948de041c7a90854c2",
+            "complete_paths": [
+              "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            ],
+            "files": [
+              {
+                "edits": [
+                  {
+                    "replace": "        return new ReturnsDeepStubs();",
+                    "search": "        return new ReturnsDeepStubs() {\n            @Override\n            protected GenericMetadataSupport actualParameterizedType(Object mock) {\n                return returnTypeGenericMetadata;\n            }\n        };"
+                  },
+                  {
+                    "replace": "        container.addAnswer(new MockReturningAnswer(mock), false);",
+                    "search": "        container.addAnswer(new Answer<Object>() {\n            public Object answer(InvocationOnMock invocation) throws Throwable {\n                return mock;\n            }\n        }, false);"
+                  },
+                  {
+                    "replace": "    private static class MockReturningAnswer implements Answer<Object>, Serializable {\n        private static final long serialVersionUID = 1L;\n        private final Object mock;\n\n        MockReturningAnswer(Object mock) {\n            this.mock = mock;\n        }\n\n        public Object answer(InvocationOnMock invocation) throws Throwable {\n            return mock;\n        }\n    }\n\n    protected GenericMetadataSupport actualParameterizedType(Object mock) {",
+                    "search": "    protected GenericMetadataSupport actualParameterizedType(Object mock) {"
+                  }
+                ],
+                "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+              }
+            ],
+            "hypothesis": "Observation: the capturing anonymous ReturnsDeepStubs subclass (attempt 1) and the anonymous Answer in recordDeepStubMock (attempt 2) each fail serialization in turn, so both are non-Serializable captures reachable from the deep-stub mock's default answer and invocation container. Cause: both anonymous classes capture state and are not Serializable. Fix: make the default answer a plain serializable ReturnsDeepStubs and replace the recordDeepStubMock anonymous Answer with a static Serializable MockReturningAnswer that holds the mock. Refutation: if NotSerializableException still names ReturnsDeepStubs$N, MockReturningAnswer, or only DelegatingMethod (org.mockito.internal.creation.DelegatingMethod, reached via the invocation/method stored in the container), then the non-serializable chain continues beyond ReturnsDeepStubs and this single-file repair is incomplete.",
+            "parent": "",
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+            "rejection": null
+          }
+        ],
+        "submitted": 1,
+        "usage": {
+          "completion_tokens": 1908,
+          "prompt_tokens": 9034
+        }
+      },
+      "verdicts": [
+        {
+          "candidate": "5f3260ae95a51d1b1854b4fad801c3d5f6e37bb63e78635f216a63965cfc5463",
+          "signal": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$1"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "f018fdb80cfbd2c5a7826299a3c82799bd813342eb5ea3948de041c7a90854c2",
+          "signal": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMethod"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    },
+    {
+      "arm": "child",
+      "case": "Mockito-23",
+      "duplicate_proposals": [],
+      "last_call": {
+        "applicable": 0,
+        "cached_tokens": 0,
+        "causal_observation": {
+          "candidate_digest": "28220e037f618aafc35b5c26e85f8e0023ab5f33683643354f3a054d6ad71ca0",
+          "observed_signal": "java.io.NotSerializableException: org.mockito.internal.util.MockUtil",
+          "previous_assessment": "signal_changed",
+          "stage": "failing_tests"
+        },
+        "cost_usd": 0.00257945,
+        "final": true,
+        "finish_reason": "tool_calls",
+        "inapplicable": 1,
+        "inspections": [],
+        "prompt_digest": "0ea6e4dfdda6201235400a319802450d6153c099c870388a55c226f0fe4fe693",
+        "round": 2,
+        "schema": "genesis-repair-lineage-call-v1",
+        "step": 2,
+        "submission_results": [
+          {
+            "applicable": false,
+            "branch_depth": null,
+            "candidate_digest": null,
+            "causal_checks_passed": false,
+            "causal_evidence": null,
+            "causal_rejection": "causal_evidence must be an object",
+            "complete_paths": [],
+            "files": null,
+            "hypothesis": null,
+            "parent": null,
+            "path": "<invalid files layout>",
+            "rejection": "causal_evidence must be an object"
+          }
+        ],
+        "submitted": 1,
+        "usage": {
+          "completion_tokens": 2507,
+          "prompt_tokens": 11858
+        }
+      },
+      "verdicts": [
+        {
+          "candidate": "28220e037f618aafc35b5c26e85f8e0023ab5f33683643354f3a054d6ad71ca0",
+          "signal": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.util.MockUtil"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    }
+  ],
+  "held_out_consumed": false,
+  "interpretation": "Corrected citation interface permits both easy repairs, but there is no paired repair gain. Single-repetition exposed development only; not general RSI.",
+  "metrics": {
+    "child": {
+      "checked_applicable": 3,
+      "completion_tokens": 9297,
+      "cost_usd": 0.010978749999999999,
+      "evidence_rejections": 1,
+      "inapplicable": 1,
+      "prompt_tokens": 53746,
+      "requests": 7,
+      "seconds": 152.1,
+      "solved": 2,
+      "validated": 3
+    },
+    "parent": {
+      "checked_applicable": 0,
+      "completion_tokens": 8663,
+      "cost_usd": 0.012621475,
+      "evidence_rejections": 0,
+      "inapplicable": 1,
+      "prompt_tokens": 69909,
+      "requests": 10,
+      "seconds": 196.0,
+      "solved": 2,
+      "validated": 4
+    }
+  },
+  "policy_promoted": false,
+  "remaining_limitations": [
+    "Reference repeats an already graded candidate and the arm stops with no fresh candidate.",
+    "Child final proposal exposes null hypothesis/files/parent/evidence; actual raw item was not retained, so its precise malformed layout cannot be diagnosed.",
+    "Final inapplicable submission stops the arm before all global requests are used.",
+    "Literal source consistency is not verification of the causal explanation."
+  ],
+  "result_digest": "261941d2220261973ece01f0d2b090f584f60d4787df49802651a5d2ccfebd30"
+}

@@ -1,0 +1,53 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "0b851913a2ddc2dcceb18da05818155a3b62105c2f1f359188ec877c904ed71d",
+      "id": "retained-0b851913a2ddc2dc",
+      "label": "retained_subscript_delta:subject.js:43:-1",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, slot) { return values[slot - 1]; }\nfunction neighboring(values, slot) { return values[slot + 1]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "68d4b46f43e98ee53a97d3949b26098ddba3d413cdead9e46e9a4fc4488e97c4",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "5fe9136009608fd13e78d08878d90ee04ecba581fe56a82de93e186bc9eea9f1",
+      "id": "exemplar-5fe9136009608fd1",
+      "label": "observed_subscript_delta:subject.js:43:+1",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, slot) { return values[slot + 1]; }\nfunction neighboring(values, slot) { return values[slot + 1]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "68d4b46f43e98ee53a97d3949b26098ddba3d413cdead9e46e9a4fc4488e97c4",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "exemplar_path": "subject.js",
+        "exemplar_start": 103,
+        "external_model_calls": 0,
+        "generator": "repository_exemplar_mutations",
+        "identifier": "slot",
+        "operator": "observed_subscript_delta",
+        "strategy_origin": "repository_observation"
+      }
+    }
+  ],
+  "discover": true,
+  "policy_digest": "d74a89856db1e15feedc32ef3c36d1cf1eb10f65e09136288afedaee5c346710",
+  "search_digest": "0d1e8b53c9cb70be5dc69a578de9ff38e3b38dabf941c9ddca2bc323bfcb3dc0",
+  "source_digest": "233dd753c487ec841c858deb82ea5bcfbcd6becd978ab13839be504ed11f64ee",
+  "task_digest": "5fe81b679d8f99458a5428b9066e21c938175efd81daed6ff1a28206a238c5aa"
+}

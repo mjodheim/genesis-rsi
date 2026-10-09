@@ -1,0 +1,83 @@
+{
+  "baseline": {
+    "candidate_digest": "e95fee395e983ee2e1bdac1f03d9794a8fead3b84ba176c95449ab24cbe686b3",
+    "compile_run": {
+      "command": [
+        "javac",
+        "-d",
+        "/work/PairBox-nullable/classes",
+        "/work/PairBox-nullable/src/PairBox.java"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "85892db107c2015527bb5d08e7c95bde32350468f603d8e7a766bc34c4d94705",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.946,
+      "timed_out": false
+    },
+    "feedback": "",
+    "plausible": true,
+    "stopped_at": "passed",
+    "test_run": {
+      "command": [
+        "java",
+        "-cp",
+        "/work/PairBox-nullable/classes",
+        "PairBox"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "939491e78baa6fed5e586720b5bb947958d763dcf447fc42eacf1bee5879f610",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.349,
+      "timed_out": false
+    },
+    "verdict_digest": "ca553562563db565bfd2d022a6d8d3feb4ab61a94139d8e1ffb280a7d92e5189"
+  },
+  "case_digest": "05f97bb2c6ecda93dbc41cab95bc740a56ffa6c3d379c7fe86af3f019cf31188",
+  "generated": 0,
+  "main": "PairBox",
+  "nullable": true,
+  "passed": true,
+  "source_restored": true,
+  "verdicts": [],
+  "wrong_contract_verdict": {
+    "candidate_digest": "c5dfab708a2ebf18067f004951930591616ad06fa0c017b2347e465bf10a6f1f",
+    "compile_run": {
+      "command": [
+        "javac",
+        "-d",
+        "/work/PairBox-nullable/classes",
+        "/work/PairBox-nullable/src/PairBox.java"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "6757ed5c3711aa4d82ba5b22425ffd525cab0984801feb05fb7695bf93b6f285",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.937,
+      "timed_out": false
+    },
+    "feedback": "Exception in thread \"main\" java.lang.NullPointerException\n\tat PairBox.<init>(PairBox.java:5)\n\tat PairBox.main(PairBox.java:11)\n",
+    "plausible": false,
+    "stopped_at": "failing_tests",
+    "test_run": {
+      "command": [
+        "java",
+        "-cp",
+        "/work/PairBox-nullable/classes",
+        "PairBox"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "438ccefe821b2868f53e508c8e364c854fdca27d4fdc54d7d83bb0fbf09c5738",
+      "returncode": 1,
+      "run_digest": "62ed59be3f243529c5fe4e36cc500b2eab1ba1a2c849f4e53e61a15fe37748f4",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 0.367,
+      "timed_out": false
+    },
+    "verdict_digest": "ac2f35578ff9a4c48b11b971e482addee3984ffcc13a1d5faf89abcb7f3368e9"
+  }
+}

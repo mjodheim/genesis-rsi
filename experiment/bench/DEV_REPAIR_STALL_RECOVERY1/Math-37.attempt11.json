@@ -1,0 +1,16 @@
+{
+  "attempt_digest": "503af8a18d6743fac5c61a3d9c8920008a228efe6b5f1067188a2c38a239d0ff",
+  "candidate_digest": "0ad4fa2173359a64506e91acfcef632c4378508d45f380e378ba223bacbd8a5f",
+  "diagnosis": "syntax_or_other_compile",
+  "verdict": {
+    "candidate_digest": "0ad4fa2173359a64506e91acfcef632c4378508d45f380e378ba223bacbd8a5f",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-37-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:286: error: illegal start of expression\n    [javac]             transient return NaN;\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:286: error: illegal start of type\n    [javac]             transient return NaN;\n    [javac]                       ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:286: error: <identifier> expected\n    [javac]             transient return NaN;\n    [javac]                                 ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:288: error: class, interface, or enum expected\n    [javac]         if (divisor == 0d) {\n    [javac]         ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:290: error: class, interface, or enum expected\n    [javac]         }\n    [javac]         ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/co",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "8aa51467abe5d374d9700bb1c0e3b5bb4a3d7722b07b70f0fdb606b844d452ba"
+  }
+}

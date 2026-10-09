@@ -1,0 +1,1172 @@
+{
+  "accepted_candidate_digest": null,
+  "accepted_origin": null,
+  "case": "Jsoup-68",
+  "evidence": {
+    "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+    "failing_tests": [
+      "org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans"
+    ],
+    "fixed_revision_consulted": false,
+    "production_source": [
+      {
+        "first_line": 11,
+        "last_line": 91,
+        "numbered_source": "   11|  * @author Jonathan Hedley, jonathan@hedley.net\n   12|  */\n   13| public class Tag {\n   14|     private static final Map<String, Tag> tags = new HashMap<>(); // map of known tags\n   15| \n   16|     private String tagName;\n   17|     private boolean isBlock = true; // block or inline\n   18|     private boolean formatAsBlock = true; // should be formatted as a block\n   19|     private boolean canContainInline = true; // only pcdata if not\n   20|     private boolean empty = false; // can hold nothing; e.g. img\n   21|     private boolean selfClosing = false; // can self close (<foo />). used for unknown tags that self close, without forcing them as empty.\n   22|     private boolean preserveWhitespace = false; // for pre, textarea, script etc\n   23|     private boolean formList = false; // a control that appears in forms: input, textarea, output etc\n   24|     private boolean formSubmit = false; // a control that can be submitted in a form: input etc\n   25| \n   26|     private Tag(String tagName) {\n   27|         this.tagName = tagName;\n   28|     }\n   29| \n   30|     /**\n   31|      * Get this tag's name.\n   32|      *\n   33|      * @return the tag's name\n   34|      */\n   35|     public String getName() {\n   36|         return tagName;\n   37|     }\n   38| \n   39|     /**\n   40|      * Get a Tag by name. If not previously defined (unknown), returns a new generic tag, that can do anything.\n   41|      * <p>\n   42|      * Pre-defined tags (P, DIV etc) will be ==, but unknown tags are not registered and will only .equals().\n   43|      * </p>\n   44|      * \n   45|      * @param tagName Name of tag, e.g. \"p\". Case insensitive.\n   46|      * @param settings used to control tag name sensitivity\n   47|      * @return The tag, either defined or new generic.\n   48|      */\n   49|     public static Tag valueOf(String tagName, ParseSettings settings) {\n   50|         Validate.notNull(tagName);\n   51|         Tag tag = tags.get(tagName);\n   52| \n   53|         if (tag == null) {\n   54|             tagName = settings.normalizeTag(tagName);\n   55|             Validate.notEmpty(tagName);\n   56|             tag = tags.get(tagName);\n   57| \n   58|             if (tag == null) {\n   59|                 // not defined: create default; go anywhere, do anything! (incl be inside a <p>)\n   60|                 tag = new Tag(tagName);\n   61|                 tag.isBlock = false;\n   62|             }\n   63|         }\n   64|         return tag;\n   65|     }\n   66| \n   67|     /**\n   68|      * Get a Tag by name. If not previously defined (unknown), returns a new generic tag, that can do anything.\n   69|      * <p>\n   70|      * Pre-defined tags (P, DIV etc) will be ==, but unknown tags are not registered and will only .equals().\n   71|      * </p>\n   72|      *\n   73|      * @param tagName Name of tag, e.g. \"p\". <b>Case sensitive</b>.\n   74|      * @return The tag, either defined or new generic.\n   75|      */\n   76|     public static Tag valueOf(String tagName) {\n   77|         return valueOf(tagName, ParseSettings.preserveCase);\n   78|     }\n   79| \n   80|     /**\n   81|      * Gets if this is a block tag.\n   82|      *\n   83|      * @return if block tag\n   84|      */\n   85|     public boolean isBlock() {\n   86|         return isBlock;\n   87|     }\n   88| \n   89|     /**\n   90|      * Gets if this tag should be formatted as a block (or as inline)\n   91|      *",
+        "path": "src/main/java/org/jsoup/parser/Tag.java"
+      },
+      {
+        "first_line": 97,
+        "last_line": 249,
+        "numbered_source": "   97|             if (StringUtil.in(contextTag, \"title\", \"textarea\"))\n   98|                 tokeniser.transition(TokeniserState.Rcdata);\n   99|             else if (StringUtil.in(contextTag, \"iframe\", \"noembed\", \"noframes\", \"style\", \"xmp\"))\n  100|                 tokeniser.transition(TokeniserState.Rawtext);\n  101|             else if (contextTag.equals(\"script\"))\n  102|                 tokeniser.transition(TokeniserState.ScriptData);\n  103|             else if (contextTag.equals((\"noscript\")))\n  104|                 tokeniser.transition(TokeniserState.Data); // if scripting enabled, rawtext\n  105|             else if (contextTag.equals(\"plaintext\"))\n  106|                 tokeniser.transition(TokeniserState.Data);\n  107|             else\n  108|                 tokeniser.transition(TokeniserState.Data); // default\n  109| \n  110|             root = new Element(Tag.valueOf(\"html\", settings), baseUri);\n  111|             doc.appendChild(root);\n  112|             stack.add(root);\n  113|             resetInsertionMode();\n  114| \n  115|             // setup form element to nearest form on context (up ancestor chain). ensures form controls are associated\n  116|             // with form correctly\n  117|             Elements contextChain = context.parents();\n  118|             contextChain.add(0, context);\n  119|             for (Element parent: contextChain) {\n  120|                 if (parent instanceof FormElement) {\n  121|                     formElement = (FormElement) parent;\n  122|                     break;\n  123|                 }\n  124|             }\n  125|         }\n  126| \n  127|         runParser();\n  128|         if (context != null)\n  129|             return root.childNodes();\n  130|         else\n  131|             return doc.childNodes();\n  132|     }\n  133| \n  134|     @Override\n  135|     protected boolean process(Token token) {\n  136|         currentToken = token;\n  137|         return this.state.process(token, this);\n  138|     }\n  139| \n  140|     boolean process(Token token, HtmlTreeBuilderState state) {\n  141|         currentToken = token;\n  142|         return state.process(token, this);\n  143|     }\n  144| \n  145|     void transition(HtmlTreeBuilderState state) {\n  146|         this.state = state;\n  147|     }\n  148| \n  149|     HtmlTreeBuilderState state() {\n  150|         return state;\n  151|     }\n  152| \n  153|     void markInsertionMode() {\n  154|         originalState = state;\n  155|     }\n  156| \n  157|     HtmlTreeBuilderState originalState() {\n  158|         return originalState;\n  159|     }\n  160| \n  161|     void framesetOk(boolean framesetOk) {\n  162|         this.framesetOk = framesetOk;\n  163|     }\n  164| \n  165|     boolean framesetOk() {\n  166|         return framesetOk;\n  167|     }\n  168| \n  169|     Document getDocument() {\n  170|         return doc;\n  171|     }\n  172| \n  173|     String getBaseUri() {\n  174|         return baseUri;\n  175|     }\n  176| \n  177|     void maybeSetBaseUri(Element base) {\n  178|         if (baseUriSetFromDoc) // only listen to the first <base href> in parse\n  179|             return;\n  180| \n  181|         String href = base.absUrl(\"href\");\n  182|         if (href.length() != 0) { // ignore <base target> etc\n  183|             baseUri = href;\n  184|             baseUriSetFromDoc = true;\n  185|             doc.setBaseUri(href); // set on the doc so doc.createElement(Tag) will get updated base, and to update all descendants\n  186|         }\n  187|     }\n  188| \n  189|     boolean isFragmentParsing() {\n  190|         return fragmentParsing;\n  191|     }\n  192| \n  193|     void error(HtmlTreeBuilderState state) {\n  194|         if (errors.canAddError())\n  195|             errors.add(new ParseError(reader.pos(), \"Unexpected token [%s] when in state [%s]\", currentToken.tokenType(), state));\n  196|     }\n  197| \n  198|     Element insert(Token.StartTag startTag) {\n  199|         // handle empty unknown tags\n  200|         // when the spec expects an empty tag, will directly hit insertEmpty, so won't generate this fake end tag.\n  201|         if (startTag.isSelfClosing()) {\n  202|             Element el = insertEmpty(startTag);\n  203|             stack.add(el);\n  204|             tokeniser.transition(TokeniserState.Data); // handles <script />, otherwise needs breakout steps from script data\n  205|             tokeniser.emit(emptyEnd.reset().name(el.tagName()));  // ensure we get out of whatever state we are in. emitted for yielded processing\n  206|             return el;\n  207|         }\n  208|         \n  209|         Element el = new Element(Tag.valueOf(startTag.name(), settings), baseUri, settings.normalizeAttributes(startTag.attributes));\n  210|         insert(el);\n  211|         return el;\n  212|     }\n  213| \n  214|     Element insertStartTag(String startTagName) {\n  215|         Element el = new Element(Tag.valueOf(startTagName, settings), baseUri);\n  216|         insert(el);\n  217|         return el;\n  218|     }\n  219| \n  220|     void insert(Element el) {\n  221|         insertNode(el);\n  222|         stack.add(el);\n  223|     }\n  224| \n  225|     Element insertEmpty(Token.StartTag startTag) {\n  226|         Tag tag = Tag.valueOf(startTag.name(), settings);\n  227|         Element el = new Element(tag, baseUri, startTag.attributes);\n  228|         insertNode(el);\n  229|         if (startTag.isSelfClosing()) {\n  230|             if (tag.isKnownTag()) {\n  231|                 if (!tag.isEmpty())\n  232|                     tokeniser.error(\"Tag cannot be self closing; not a void tag\");\n  233|             }\n  234|             else // unknown tag, remember this is self closing for output\n  235|                 tag.setSelfClosing();\n  236|         }\n  237|         return el;\n  238|     }\n  239| \n  240|     FormElement insertForm(Token.StartTag startTag, boolean onStack) {\n  241|         Tag tag = Tag.valueOf(startTag.name(), settings);\n  242|         FormElement el = new FormElement(tag, baseUri, startTag.attributes);\n  243|         setFormElement(el);\n  244|         insertNode(el);\n  245|         if (onStack)\n  246|             stack.add(el);\n  247|         return el;\n  248|     }\n  249| ",
+        "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java"
+      },
+      {
+        "first_line": 265,
+        "last_line": 345,
+        "numbered_source": "  265|                         tb.insert(c);\n  266|                         tb.framesetOk(false);\n  267|                     }\n  268|                     break;\n  269|                 }\n  270|                 case Comment: {\n  271|                     tb.insert(t.asComment());\n  272|                     break;\n  273|                 }\n  274|                 case Doctype: {\n  275|                     tb.error(this);\n  276|                     return false;\n  277|                 }\n  278|                 case StartTag:\n  279|                     Token.StartTag startTag = t.asStartTag();\n  280|                     // todo - refactor to a switch statement\n  281|                     String name = startTag.normalName();\n  282|                     if (name.equals(\"a\")) {\n  283|                         if (tb.getActiveFormattingElement(\"a\") != null) {\n  284|                             tb.error(this);\n  285|                             tb.processEndTag(\"a\");\n  286| \n  287|                             // still on stack?\n  288|                             Element remainingA = tb.getFromStack(\"a\");\n  289|                             if (remainingA != null) {\n  290|                                 tb.removeFromActiveFormattingElements(remainingA);\n  291|                                 tb.removeFromStack(remainingA);\n  292|                             }\n  293|                         }\n  294|                         tb.reconstructFormattingElements();\n  295|                         Element a = tb.insert(startTag);\n  296|                         tb.pushActiveFormattingElements(a);\n  297|                     } else if (StringUtil.inSorted(name, Constants.InBodyStartEmptyFormatters)) {\n  298|                         tb.reconstructFormattingElements();\n  299|                         tb.insertEmpty(startTag);\n  300|                         tb.framesetOk(false);\n  301|                     } else if (StringUtil.inSorted(name, Constants.InBodyStartPClosers)) {\n  302|                         if (tb.inButtonScope(\"p\")) {\n  303|                             tb.processEndTag(\"p\");\n  304|                         }\n  305|                         tb.insert(startTag);\n  306|                     } else if (name.equals(\"span\")) {\n  307|                         // same as final else, but short circuits lots of checks\n  308|                         tb.reconstructFormattingElements();\n  309|                         tb.insert(startTag);\n  310|                     } else if (name.equals(\"li\")) {\n  311|                         tb.framesetOk(false);\n  312|                         ArrayList<Element> stack = tb.getStack();\n  313|                         for (int i = stack.size() - 1; i > 0; i--) {\n  314|                             Element el = stack.get(i);\n  315|                             if (el.nodeName().equals(\"li\")) {\n  316|                                 tb.processEndTag(\"li\");\n  317|                                 break;\n  318|                             }\n  319|                             if (tb.isSpecial(el) && !StringUtil.inSorted(el.nodeName(), Constants.InBodyStartLiBreakers))\n  320|                                 break;\n  321|                         }\n  322|                         if (tb.inButtonScope(\"p\")) {\n  323|                             tb.processEndTag(\"p\");\n  324|                         }\n  325|                         tb.insert(startTag);\n  326|                     } else if (name.equals(\"html\")) {\n  327|                         tb.error(this);\n  328|                         // merge attributes onto real html\n  329|                         Element html = tb.getStack().get(0);\n  330|                         for (Attribute attribute : startTag.getAttributes()) {\n  331|                             if (!html.hasAttr(attribute.getKey()))\n  332|                                 html.attributes().put(attribute);\n  333|                         }\n  334|                     } else if (StringUtil.inSorted(name, Constants.InBodyStartToHead)) {\n  335|                         return tb.process(t, InHead);\n  336|                     } else if (name.equals(\"body\")) {\n  337|                         tb.error(this);\n  338|                         ArrayList<Element> stack = tb.getStack();\n  339|                         if (stack.size() == 1 || (stack.size() > 2 && !stack.get(1).nodeName().equals(\"body\"))) {\n  340|                             // only in fragment case\n  341|                             return false; // ignore\n  342|                         } else {\n  343|                             tb.framesetOk(false);\n  344|                             Element body = stack.get(1);\n  345|                             for (Attribute attribute : startTag.getAttributes()) {",
+        "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java"
+      },
+      {
+        "first_line": 667,
+        "last_line": 747,
+        "numbered_source": "  667|                         // same as final fall through, but saves short circuit\n  668|                         return anyOtherEndTag(t, tb);\n  669|                     } else if (name.equals(\"li\")) {\n  670|                         if (!tb.inListItemScope(name)) {\n  671|                             tb.error(this);\n  672|                             return false;\n  673|                         } else {\n  674|                             tb.generateImpliedEndTags(name);\n  675|                             if (!tb.currentElement().nodeName().equals(name))\n  676|                                 tb.error(this);\n  677|                             tb.popStackToClose(name);\n  678|                         }\n  679|                     } else if (name.equals(\"body\")) {\n  680|                         if (!tb.inScope(\"body\")) {\n  681|                             tb.error(this);\n  682|                             return false;\n  683|                         } else {\n  684|                             // todo: error if stack contains something not dd, dt, li, optgroup, option, p, rp, rt, tbody, td, tfoot, th, thead, tr, body, html\n  685|                             tb.transition(AfterBody);\n  686|                         }\n  687|                     } else if (name.equals(\"html\")) {\n  688|                         boolean notIgnored = tb.processEndTag(\"body\");\n  689|                         if (notIgnored)\n  690|                             return tb.process(endTag);\n  691|                     } else if (name.equals(\"form\")) {\n  692|                         Element currentForm = tb.getFormElement();\n  693|                         tb.setFormElement(null);\n  694|                         if (currentForm == null || !tb.inScope(name)) {\n  695|                             tb.error(this);\n  696|                             return false;\n  697|                         } else {\n  698|                             tb.generateImpliedEndTags();\n  699|                             if (!tb.currentElement().nodeName().equals(name))\n  700|                                 tb.error(this);\n  701|                             // remove currentForm from stack. will shift anything under up.\n  702|                             tb.removeFromStack(currentForm);\n  703|                         }\n  704|                     } else if (name.equals(\"p\")) {\n  705|                         if (!tb.inButtonScope(name)) {\n  706|                             tb.error(this);\n  707|                             tb.processStartTag(name); // if no p to close, creates an empty <p></p>\n  708|                             return tb.process(endTag);\n  709|                         } else {\n  710|                             tb.generateImpliedEndTags(name);\n  711|                             if (!tb.currentElement().nodeName().equals(name))\n  712|                                 tb.error(this);\n  713|                             tb.popStackToClose(name);\n  714|                         }\n  715|                     } else if (StringUtil.inSorted(name, Constants.DdDt)) {\n  716|                         if (!tb.inScope(name)) {\n  717|                             tb.error(this);\n  718|                             return false;\n  719|                         } else {\n  720|                             tb.generateImpliedEndTags(name);\n  721|                             if (!tb.currentElement().nodeName().equals(name))\n  722|                                 tb.error(this);\n  723|                             tb.popStackToClose(name);\n  724|                         }\n  725|                     } else if (StringUtil.inSorted(name, Constants.Headings)) {\n  726|                         if (!tb.inScope(Constants.Headings)) {\n  727|                             tb.error(this);\n  728|                             return false;\n  729|                         } else {\n  730|                             tb.generateImpliedEndTags(name);\n  731|                             if (!tb.currentElement().nodeName().equals(name))\n  732|                                 tb.error(this);\n  733|                             tb.popStackToClose(Constants.Headings);\n  734|                         }\n  735|                     } else if (name.equals(\"sarcasm\")) {\n  736|                         // *sigh*\n  737|                         return anyOtherEndTag(t, tb);\n  738|                     } else if (StringUtil.inSorted(name, Constants.InBodyStartApplets)) {\n  739|                         if (!tb.inScope(\"name\")) {\n  740|                             if (!tb.inScope(name)) {\n  741|                                 tb.error(this);\n  742|                                 return false;\n  743|                             }\n  744|                             tb.generateImpliedEndTags();\n  745|                             if (!tb.currentElement().nodeName().equals(name))\n  746|                                 tb.error(this);\n  747|                             tb.popStackToClose(name);",
+        "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java"
+      },
+      {
+        "first_line": 26,
+        "last_line": 90,
+        "numbered_source": "   26| \n   27|     abstract ParseSettings defaultSettings();\n   28| \n   29|     protected void initialiseParse(Reader input, String baseUri, ParseErrorList errors, ParseSettings settings) {\n   30|         Validate.notNull(input, \"String input must not be null\");\n   31|         Validate.notNull(baseUri, \"BaseURI must not be null\");\n   32| \n   33|         doc = new Document(baseUri);\n   34|         this.settings = settings;\n   35|         reader = new CharacterReader(input);\n   36|         this.errors = errors;\n   37|         currentToken = null;\n   38|         tokeniser = new Tokeniser(reader, errors);\n   39|         stack = new ArrayList<>(32);\n   40|         this.baseUri = baseUri;\n   41|     }\n   42| \n   43|     Document parse(Reader input, String baseUri, ParseErrorList errors, ParseSettings settings) {\n   44|         initialiseParse(input, baseUri, errors, settings);\n   45|         runParser();\n   46|         return doc;\n   47|     }\n   48| \n   49|     protected void runParser() {\n   50|         while (true) {\n   51|             Token token = tokeniser.read();\n   52|             process(token);\n   53|             token.reset();\n   54| \n   55|             if (token.type == Token.TokenType.EOF)\n   56|                 break;\n   57|         }\n   58|     }\n   59| \n   60|     protected abstract boolean process(Token token);\n   61| \n   62|     protected boolean processStartTag(String name) {\n   63|         if (currentToken == start) { // don't recycle an in-use token\n   64|             return process(new Token.StartTag().name(name));\n   65|         }\n   66|         return process(start.reset().name(name));\n   67|     }\n   68| \n   69|     public boolean processStartTag(String name, Attributes attrs) {\n   70|         if (currentToken == start) { // don't recycle an in-use token\n   71|             return process(new Token.StartTag().nameAttr(name, attrs));\n   72|         }\n   73|         start.reset();\n   74|         start.nameAttr(name, attrs);\n   75|         return process(start);\n   76|     }\n   77| \n   78|     protected boolean processEndTag(String name) {\n   79|         if (currentToken == end) { // don't recycle an in-use token\n   80|             return process(new Token.EndTag().name(name));\n   81|         }\n   82|         return process(end.reset().name(name));\n   83|     }\n   84| \n   85| \n   86|     protected Element currentElement() {\n   87|         int size = stack.size();\n   88|         return size > 0 ? stack.get(size-1) : null;\n   89|     }\n   90| }",
+        "path": "src/main/java/org/jsoup/parser/TreeBuilder.java"
+      }
+    ],
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "src/main/java",
+    "suspect_locations": [
+      [
+        "src/main/java/org/jsoup/parser/Tag.java",
+        51
+      ],
+      [
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+        209
+      ],
+      [
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+        305
+      ],
+      [
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+        137
+      ],
+      [
+        "src/main/java/org/jsoup/parser/TreeBuilder.java",
+        66
+      ],
+      [
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+        707
+      ]
+    ],
+    "suspects_from_stack_trace": true,
+    "test_directory": "src/test/java",
+    "test_source": [],
+    "traces": [
+      {
+        "test": "org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans",
+        "trace": "java.lang.StackOverflowError\n\tat java.base/java.util.HashMap.hash(HashMap.java:340)\n\tat java.base/java.util.HashMap.get(HashMap.java:553)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:51)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:209)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)"
+      }
+    ]
+  },
+  "memory_after_digest": "d6f59b432e257cbc4f2d6f70cc46c6904354b04f6f2d50198d9eb2fcad7cfa56",
+  "memory_before_digest": "22510476199b4b75ffc732d637e26b3ccaed3d1beb19b9d99de68eccec715be5",
+  "new_memory_events": [
+    {
+      "data": {
+        "candidate_digest": "afb2d5c0bb7882bf551dc49015d47b43eb89bea2cfc6d437739a8089fd73f748",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "afb2d5c0bb7882bf551dc49015d47b43eb89bea2cfc6d437739a8089fd73f748",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:282)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "e0464f63d3e924cc4f9f23bef059f1a29aee4cb28ef0b0e6a1fafe6b0794b3e3"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "eb105d766ef02baeb57f52f998659064c6a665c0cb2ab0feabd8074e06071505",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6f5051c822692538aef7cd40bd6c4bfb30e6381aa819caac5313d631b7cf1231",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6f5051c822692538aef7cd40bd6c4bfb30e6381aa819caac5313d631b7cf1231",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat org.jsoup.helper.ChangeNotifyingArrayList.<init>(ChangeNotifyingArrayList.java:11)\n\tat org.jsoup.nodes.Element$NodeList.<init>(Element.java:1422)\n\tat org.jsoup.nodes.Element.ensureChildNodes(Element.java:89)\n\tat org.jsoup.nodes.Element.appendChild(Element.java:406)\n\tat org.jsoup.parser.HtmlTreeBuilder.insertNode(HtmlTreeBuilder.java:273)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:221)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:210)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "2680bc7f8e5c4daf5bfba21ae2c37cd4216d3667ebcf962c82d62d559125ae8e"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "5587bd56b35508a17361c742e9a76ae9c5af4a0ac2f329e37c00b86bfec1d356",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "43f0310e215c736cc61dd3c5cf5245db4ffd0417ff2c084d4351c36c5aa372de",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "43f0310e215c736cc61dd3c5cf5245db4ffd0417ff2c084d4351c36c5aa372de",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat java.base/java.util.HashMap.hash(HashMap.java:340)\n\tat java.base/java.util.HashMap.get(HashMap.java:553)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:51)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:209)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/Tag.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "ff1b25e26a02b7c18641f57c3749c319a5367f34e37d0f97bd8ce7f56bc583b5"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "782d7edaa17ff3772bd3683fd7924bd6844aa49f05bc0ca8563571e7a09513ea",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "e2349c3f494f417f89e47c298200e76d55f7dad39e35e2e04362eac5171feccf",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "e2349c3f494f417f89e47c298200e76d55f7dad39e35e2e04362eac5171feccf",
+          "feedback": "    [javac] /work/Jsoup-68-b/maven-build.xml:84: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-68-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of expression\n    [javac]         transient return doc;\n    [javac]         ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of type\n    [javac]         transient return doc;\n    [javac]                   ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: <identifier> expected\n    [javac]         transient return doc;\n    [javac]                             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:49: error: class, interface, or enum expected\n    [javac]     protected void runParser() {\n    [javac]               ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:52: error: class, interface, or enum expected\n    [javac]             process(token);\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:53: error: class, interface, or enum expected\n    [javac]             token.reset();\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/parser/TreeBuilder.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "eca15d073546262b6936558dfab6dcb0bf1b899c745d8219b0e321166d3bbb1a"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "94ff1d48a672713c2834de858afbb43a075af6473b8f0ee66678f4e0d380e6f5",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0009418,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testHandlesDeepSpans"
+            },
+            "result_digest": "ad35f9fa1351d8cfc9d2f91afc92427b9dd8f040280936b43832d176a8911e1c",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "064196683a9a46ce395bb2fa0799f3a631b9e91a54c808aa79cdf502fbc343e3",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006130397,
+        "response_digest": "b4b97de739680924795f3021bd3020d383b33f5406ad16a95fb703492f523550",
+        "response_id": "gen-1791495443-Bf8hBKiIe7ZHP5QxEwkK",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 22,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0009418,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.1e-05,
+            "upstream_inference_cost": 0.0009418,
+            "upstream_inference_prompt_cost": 0.0009308
+          },
+          "is_byok": false,
+          "prompt_tokens": 7447,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7444,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7469
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3c60f268bfd25c67bf1c8db0a3284fa4da6c564a3821f265c55c448055fa2fab",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 9.9365e-05,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java",
+              "start": 1065
+            },
+            "result_digest": "7deb3df87f36a453eeb617869992f0d4d9849120b285e1fc953771553e2ae1d3",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "3c8438d5542da815183bea069bf2ae61a99681f0b79638bfc63e48a13a1ad181",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006170999,
+        "response_digest": "cfae96c7d904c202fe95954b15b260561b48444803a7ed07e71a98b35cd62f78",
+        "response_id": "gen-1791495445-ups1y3O4dvLZGz1jQbUo",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 34,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 9.9365e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.7e-05,
+            "upstream_inference_cost": 9.9365e-05,
+            "upstream_inference_prompt_cost": 8.2365e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 7508,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 61,
+            "cached_tokens": 7444,
+            "video_tokens": 0
+          },
+          "total_tokens": 7542
+        }
+      },
+      "kind": "call",
+      "previous_digest": "ce53c4f7496be3292c735289684e16801c91b55be91f67682521d8efadd0d0b4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000173975,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "boolean inButtonScope"
+            },
+            "result_digest": "b3de62e4cd63b9a5f04f63273d42e07a250201fb8e64a36876dbf9cd11c61286",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "31b7bfc6d1f41567651cf9c60d6be7cdebbe075673f81f3bc66c3f19af0ed5f6",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.00627715,
+        "response_digest": "adf9f909cb6b324ac7f0854e48ad33b33ad0ad8e6a90658d9c576f057ce75ee7",
+        "response_id": "gen-1791495448-0KMGgoFdTZpyPQRYt0AK",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 136,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 113
+          },
+          "cost": 0.000173975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 6.8e-05,
+            "upstream_inference_cost": 0.000173975,
+            "upstream_inference_prompt_cost": 0.000105975
+          },
+          "is_byok": false,
+          "prompt_tokens": 7753,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 245,
+            "cached_tokens": 7505,
+            "video_tokens": 0
+          },
+          "total_tokens": 7889
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3982edcc01cdd51aa5f61436bc5bb51a186838bd1e8c5ec667523bd756e4c0b9",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0001975,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "63217658c1061be45395fa1affba6117baa5c3192264cb58d4f6ae8738510aca",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006617620999999999,
+        "response_digest": "fc6aa8862780d4151810e3886801a48d88829f2c36967f9884bca96e63b7cd51",
+        "response_id": "gen-1791495453-wmL2got7eeXoTuMMkHq6",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "usage": {
+          "completion_tokens": 173,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0001975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 8.65e-05,
+            "upstream_inference_cost": 0.0001975,
+            "upstream_inference_prompt_cost": 0.000111
+          },
+          "is_byok": false,
+          "prompt_tokens": 7925,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 172,
+            "cached_tokens": 7620,
+            "video_tokens": 0
+          },
+          "total_tokens": 8098
+        }
+      },
+      "kind": "call",
+      "previous_digest": "a003ee60e854fff037883ba7c233884f4fa23d55eb233ba3519ce4a283fbac49",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "32a33b84ab92f32b5c32b0debdff46c46861740c979b53682ef2b8c926769f5e",
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "origin": "openrouter:openai/gpt-6-luna",
+        "verdict": {
+          "candidate_digest": "32a33b84ab92f32b5c32b0debdff46c46861740c979b53682ef2b8c926769f5e",
+          "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njunit.framework.AssertionFailedError: expected:<1> but was:<2>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:645)\n\tat org.junit.Assert.assertEquals(Assert.java:631)\n\tat org.jsoup.parser.HtmlParserTest.testHandlesDeepSpans(HtmlParserTest.java:1082)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "c147c2880b5a0b12d39a5ab8abb0863a6f53c8cf09d1d0f07bd389540415f43f"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "818537ff1e92119f291ee59532324b34d4ddbf1b62906a0724a32fd9551ec9bf",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000988425,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testHandlesDeepSpans"
+            },
+            "result_digest": "ad35f9fa1351d8cfc9d2f91afc92427b9dd8f040280936b43832d176a8911e1c",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d4364c8ce1f70dd55f3c6d9e8a57a76fb732655f8e0b99f5ec00de1fb5c41218",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006304924999999999,
+        "response_digest": "e2d4d3553ba9a16bfa385e21f7f5bc443772c9affee8f1162b8c1c059bc53753",
+        "response_id": "gen-1791495461-6ptMgZfOOBT294Mh05Uq",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 22,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000988425,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.1e-05,
+            "upstream_inference_cost": 0.000988425,
+            "upstream_inference_prompt_cost": 0.000977425
+          },
+          "is_byok": false,
+          "prompt_tokens": 7820,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7817,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7842
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3d1dcb9cfdbd5c53324012fcb1540ce08a132539c10fc37140fd3fec65ee98d8",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000103095,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java",
+              "start": 1065
+            },
+            "result_digest": "7deb3df87f36a453eeb617869992f0d4d9849120b285e1fc953771553e2ae1d3",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "a0678af076cf377ce3a283b3450b7e569055a793527e1e6c07d52a175665c9ed",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006345527,
+        "response_digest": "d8654e1abe770f3b849adce94fe7175ce62f1f8fc9c30c3ba8c4155c928d3a83",
+        "response_id": "gen-1791495462-9SggIMVWyoO1YiV5dL5G",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 34,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000103095,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.7e-05,
+            "upstream_inference_cost": 0.000103095,
+            "upstream_inference_prompt_cost": 8.6095e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 7881,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 61,
+            "cached_tokens": 7817,
+            "video_tokens": 0
+          },
+          "total_tokens": 7915
+        }
+      },
+      "kind": "call",
+      "previous_digest": "434148b72ac8b2fa3cdc8092dc214a1cea415b77fb1d85bc44ffd31b52cb4c44",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000221205,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "inButtonScope"
+            },
+            "result_digest": "b5f7e8698e7b7a67f75d94f14cbee7aa01e71a6015aafd798b5ccc1543496c4e",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "f3cfabcd689b89a09f5fddefe787cb13a5376ba877f450616ddca3cabe90eddf",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006451678,
+        "response_digest": "c15e1ab6a9a8cfb86de74ba8151d5d285dd1477d91a748d81851dd5777a9efe9",
+        "response_id": "gen-1791495464-tT30zaDCrvOx1PhKZKMC",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 223,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 201
+          },
+          "cost": 0.000221205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0001115,
+            "upstream_inference_cost": 0.000221205,
+            "upstream_inference_prompt_cost": 0.000109705
+          },
+          "is_byok": false,
+          "prompt_tokens": 8126,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 245,
+            "cached_tokens": 7878,
+            "video_tokens": 0
+          },
+          "total_tokens": 8349
+        }
+      },
+      "kind": "call",
+      "previous_digest": "1c55c0f2bafb6bdfacc9c1535d449a7d6a40ed463b9654995763970b31e36223",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00024123,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "494e1b45cea7df18b0781848f304dad16cb9908d4f89a609332359a6daf7b734",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006944860999999999,
+        "response_digest": "edccabf649955ff3a30249471c20e4162d09f2cd0be4a9ab401822a5b85ab24f",
+        "response_id": "gen-1791495468-R3PVAX4GdE2VhLbexc1j",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "usage": {
+          "completion_tokens": 146,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00024123,
+          "cost_details": {
+            "upstream_inference_completions_cost": 7.3e-05,
+            "upstream_inference_cost": 0.00024123,
+            "upstream_inference_prompt_cost": 0.00016823
+          },
+          "is_byok": false,
+          "prompt_tokens": 8726,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 600,
+            "cached_tokens": 7993,
+            "video_tokens": 0
+          },
+          "total_tokens": 8872
+        }
+      },
+      "kind": "call",
+      "previous_digest": "2aa3aae9bbaf9de2dbef6fce5d65bd003dee85c56214ad64a9f55d47762328ec",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.002966595,
+        "features": {
+          "complexity": "complex",
+          "failing_tests": 1,
+          "family": "2d4b9ad5df4058772fe8aa3406b030d3d8ba15ae8887d569da48f44d1beed62e",
+          "source_chars": 21757,
+          "source_files": 4
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "872cd88256063b09ab1bd16bad9f000cebb96b59fee5b396c8a8aaaaf64e447a",
+      "scope": "released_development"
+    }
+  ],
+  "patch": null,
+  "plan_digest": "a133d5cf96db23ca593266a623c43c2107555ea53a3a4b706596b85664996124",
+  "replay": null,
+  "result": {
+    "decisions": [
+      {
+        "basis": "released_comparison",
+        "complexity": "complex",
+        "estimated_request_reserve_usd": 0.005483795,
+        "fallback_quality_threshold_relaxed": true,
+        "model": "openai/gpt-6-luna",
+        "observations": 3,
+        "score": 0.005359340625,
+        "suite_passes": 1
+      }
+    ],
+    "known_cost_usd": 0.002966595,
+    "model_calls": [
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0009418,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testHandlesDeepSpans"
+            },
+            "result_digest": "ad35f9fa1351d8cfc9d2f91afc92427b9dd8f040280936b43832d176a8911e1c",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "064196683a9a46ce395bb2fa0799f3a631b9e91a54c808aa79cdf502fbc343e3",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006130397,
+        "response_digest": "b4b97de739680924795f3021bd3020d383b33f5406ad16a95fb703492f523550",
+        "response_id": "gen-1791495443-Bf8hBKiIe7ZHP5QxEwkK",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 22,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0009418,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.1e-05,
+            "upstream_inference_cost": 0.0009418,
+            "upstream_inference_prompt_cost": 0.0009308
+          },
+          "is_byok": false,
+          "prompt_tokens": 7447,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7444,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7469
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 9.9365e-05,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java",
+              "start": 1065
+            },
+            "result_digest": "7deb3df87f36a453eeb617869992f0d4d9849120b285e1fc953771553e2ae1d3",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "3c8438d5542da815183bea069bf2ae61a99681f0b79638bfc63e48a13a1ad181",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006170999,
+        "response_digest": "cfae96c7d904c202fe95954b15b260561b48444803a7ed07e71a98b35cd62f78",
+        "response_id": "gen-1791495445-ups1y3O4dvLZGz1jQbUo",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 34,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 9.9365e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.7e-05,
+            "upstream_inference_cost": 9.9365e-05,
+            "upstream_inference_prompt_cost": 8.2365e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 7508,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 61,
+            "cached_tokens": 7444,
+            "video_tokens": 0
+          },
+          "total_tokens": 7542
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000173975,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "boolean inButtonScope"
+            },
+            "result_digest": "b3de62e4cd63b9a5f04f63273d42e07a250201fb8e64a36876dbf9cd11c61286",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "31b7bfc6d1f41567651cf9c60d6be7cdebbe075673f81f3bc66c3f19af0ed5f6",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.00627715,
+        "response_digest": "adf9f909cb6b324ac7f0854e48ad33b33ad0ad8e6a90658d9c576f057ce75ee7",
+        "response_id": "gen-1791495448-0KMGgoFdTZpyPQRYt0AK",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 136,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 113
+          },
+          "cost": 0.000173975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 6.8e-05,
+            "upstream_inference_cost": 0.000173975,
+            "upstream_inference_prompt_cost": 0.000105975
+          },
+          "is_byok": false,
+          "prompt_tokens": 7753,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 245,
+            "cached_tokens": 7505,
+            "video_tokens": 0
+          },
+          "total_tokens": 7889
+        }
+      },
+      {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0001975,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "63217658c1061be45395fa1affba6117baa5c3192264cb58d4f6ae8738510aca",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006617620999999999,
+        "response_digest": "fc6aa8862780d4151810e3886801a48d88829f2c36967f9884bca96e63b7cd51",
+        "response_id": "gen-1791495453-wmL2got7eeXoTuMMkHq6",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "usage": {
+          "completion_tokens": 173,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0001975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 8.65e-05,
+            "upstream_inference_cost": 0.0001975,
+            "upstream_inference_prompt_cost": 0.000111
+          },
+          "is_byok": false,
+          "prompt_tokens": 7925,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 172,
+            "cached_tokens": 7620,
+            "video_tokens": 0
+          },
+          "total_tokens": 8098
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000988425,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testHandlesDeepSpans"
+            },
+            "result_digest": "ad35f9fa1351d8cfc9d2f91afc92427b9dd8f040280936b43832d176a8911e1c",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d4364c8ce1f70dd55f3c6d9e8a57a76fb732655f8e0b99f5ec00de1fb5c41218",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006304924999999999,
+        "response_digest": "e2d4d3553ba9a16bfa385e21f7f5bc443772c9affee8f1162b8c1c059bc53753",
+        "response_id": "gen-1791495461-6ptMgZfOOBT294Mh05Uq",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "usage": {
+          "completion_tokens": 22,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000988425,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.1e-05,
+            "upstream_inference_cost": 0.000988425,
+            "upstream_inference_prompt_cost": 0.000977425
+          },
+          "is_byok": false,
+          "prompt_tokens": 7820,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7817,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7842
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000103095,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java",
+              "start": 1065
+            },
+            "result_digest": "7deb3df87f36a453eeb617869992f0d4d9849120b285e1fc953771553e2ae1d3",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "a0678af076cf377ce3a283b3450b7e569055a793527e1e6c07d52a175665c9ed",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006345527,
+        "response_digest": "d8654e1abe770f3b849adce94fe7175ce62f1f8fc9c30c3ba8c4155c928d3a83",
+        "response_id": "gen-1791495462-9SggIMVWyoO1YiV5dL5G",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "usage": {
+          "completion_tokens": 34,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000103095,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.7e-05,
+            "upstream_inference_cost": 0.000103095,
+            "upstream_inference_prompt_cost": 8.6095e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 7881,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 61,
+            "cached_tokens": 7817,
+            "video_tokens": 0
+          },
+          "total_tokens": 7915
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000221205,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "inButtonScope"
+            },
+            "result_digest": "b5f7e8698e7b7a67f75d94f14cbee7aa01e71a6015aafd798b5ccc1543496c4e",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "f3cfabcd689b89a09f5fddefe787cb13a5376ba877f450616ddca3cabe90eddf",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006451678,
+        "response_digest": "c15e1ab6a9a8cfb86de74ba8151d5d285dd1477d91a748d81851dd5777a9efe9",
+        "response_id": "gen-1791495464-tT30zaDCrvOx1PhKZKMC",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "usage": {
+          "completion_tokens": 223,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 201
+          },
+          "cost": 0.000221205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0001115,
+            "upstream_inference_cost": 0.000221205,
+            "upstream_inference_prompt_cost": 0.000109705
+          },
+          "is_byok": false,
+          "prompt_tokens": 8126,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 245,
+            "cached_tokens": 7878,
+            "video_tokens": 0
+          },
+          "total_tokens": 8349
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00024123,
+        "evidence_digest": "55689744219eab7a053a0b38ffc56dd16a4040317a5180fb98538bdf3f117f0c",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "494e1b45cea7df18b0781848f304dad16cb9908d4f89a609332359a6daf7b734",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006944860999999999,
+        "response_digest": "edccabf649955ff3a30249471c20e4162d09f2cd0be4a9ab401822a5b85ab24f",
+        "response_id": "gen-1791495468-R3PVAX4GdE2VhLbexc1j",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "usage": {
+          "completion_tokens": 146,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00024123,
+          "cost_details": {
+            "upstream_inference_completions_cost": 7.3e-05,
+            "upstream_inference_cost": 0.00024123,
+            "upstream_inference_prompt_cost": 0.00016823
+          },
+          "is_byok": false,
+          "prompt_tokens": 8726,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 600,
+            "cached_tokens": 7993,
+            "video_tokens": 0
+          },
+          "total_tokens": 8872
+        }
+      }
+    ],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": false,
+    "solved_without_llm": false,
+    "total_cost_usd": 0.002966595,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "afb2d5c0bb7882bf551dc49015d47b43eb89bea2cfc6d437739a8089fd73f748",
+        "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:282)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilder.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "e0464f63d3e924cc4f9f23bef059f1a29aee4cb28ef0b0e6a1fafe6b0794b3e3"
+      },
+      {
+        "candidate_digest": "6f5051c822692538aef7cd40bd6c4bfb30e6381aa819caac5313d631b7cf1231",
+        "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat org.jsoup.helper.ChangeNotifyingArrayList.<init>(ChangeNotifyingArrayList.java:11)\n\tat org.jsoup.nodes.Element$NodeList.<init>(Element.java:1422)\n\tat org.jsoup.nodes.Element.ensureChildNodes(Element.java:89)\n\tat org.jsoup.nodes.Element.appendChild(Element.java:406)\n\tat org.jsoup.parser.HtmlTreeBuilder.insertNode(HtmlTreeBuilder.java:273)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:221)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:210)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "2680bc7f8e5c4daf5bfba21ae2c37cd4216d3667ebcf962c82d62d559125ae8e"
+      },
+      {
+        "candidate_digest": "43f0310e215c736cc61dd3c5cf5245db4ffd0417ff2c084d4351c36c5aa372de",
+        "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njava.lang.StackOverflowError\n\tat java.base/java.util.HashMap.hash(HashMap.java:340)\n\tat java.base/java.util.HashMap.get(HashMap.java:553)\n\tat org.jsoup.parser.Tag.valueOf(Tag.java:51)\n\tat org.jsoup.parser.HtmlTreeBuilder.insert(HtmlTreeBuilder.java:209)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:305)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.TreeBuilder.processStartTag(TreeBuilder.java:66)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:707)\n\tat org.jsoup.parser.HtmlTreeBuilder.process(HtmlTreeBuilder.java:137)\n\tat org.jsoup.parser.HtmlTreeBuilderState$7.process(HtmlTreeBuilderState.java:708)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/parser/Tag.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "ff1b25e26a02b7c18641f57c3749c319a5367f34e37d0f97bd8ce7f56bc583b5"
+      },
+      {
+        "candidate_digest": "e2349c3f494f417f89e47c298200e76d55f7dad39e35e2e04362eac5171feccf",
+        "feedback": "    [javac] /work/Jsoup-68-b/maven-build.xml:84: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-68-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of expression\n    [javac]         transient return doc;\n    [javac]         ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: illegal start of type\n    [javac]         transient return doc;\n    [javac]                   ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:46: error: <identifier> expected\n    [javac]         transient return doc;\n    [javac]                             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:49: error: class, interface, or enum expected\n    [javac]     protected void runParser() {\n    [javac]               ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:52: error: class, interface, or enum expected\n    [javac]             process(token);\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java/org/jsoup/parser/TreeBuilder.java:53: error: class, interface, or enum expected\n    [javac]             token.reset();\n    [javac]             ^\n    [javac] /work/Jsoup-68-b/src/main/java",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/parser/TreeBuilder.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "eca15d073546262b6936558dfab6dcb0bf1b899c745d8219b0e321166d3bbb1a"
+      },
+      {
+        "candidate_digest": "32a33b84ab92f32b5c32b0debdff46c46861740c979b53682ef2b8c926769f5e",
+        "feedback": "--- org.jsoup.parser.HtmlParserTest::testHandlesDeepSpans\njunit.framework.AssertionFailedError: expected:<1> but was:<2>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:645)\n\tat org.junit.Assert.assertEquals(Assert.java:631)\n\tat org.jsoup.parser.HtmlParserTest.testHandlesDeepSpans(HtmlParserTest.java:1082)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "openrouter:openai/gpt-6-luna",
+        "path": "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "c147c2880b5a0b12d39a5ab8abb0863a6f53c8cf09d1d0f07bd389540415f43f"
+      }
+    ]
+  },
+  "result_digest": "ee184ce774469b71a1b45f3c226bbafc5c27855c88a48865c1c651b849011160",
+  "success_recorded": false,
+  "usable": true
+}

@@ -1,0 +1,32 @@
+{
+  "attempt_digest": "d49bd91fea14db425c663a50af55d9a0b5d3850aab71bcf36439c01d306ee2a4",
+  "candidate": {
+    "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/parser/Tokeniser.java"
+  },
+  "choice": {
+    "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+    "choice_digest": "3da936d8238e7c3019b42a97c87e6ebbe9df2254a64e58486a7cc9e26518cbb8",
+    "index": 4,
+    "prior_verdict_digests": [
+      "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+      "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+      "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac"
+    ],
+    "remaining_pool_size": 29,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "fe9604cb0e7ecb3eb4270d4bad647ec2bd7a3bfc84272389ab2c50ac77be87a4",
+    "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/parser/Tokeniser.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1"
+  }
+}

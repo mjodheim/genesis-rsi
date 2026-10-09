@@ -1,0 +1,186 @@
+{
+  "accepted_candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+  "accepted_origin": "strategist",
+  "case": "Compress-6",
+  "evidence": {
+    "evidence_digest": "498a50f237b1d9d6b5ccd78fc1cc0a3e10369fcd986d3f2ba86a2d950848b193",
+    "failing_tests": [
+      "org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testNotEquals"
+    ],
+    "fixed_revision_consulted": false,
+    "production_source": [
+      {
+        "first_line": 1,
+        "last_line": 201,
+        "numbered_source": "    1| /*\n    2|  *  Licensed to the Apache Software Foundation (ASF) under one or more\n    3|  *  contributor license agreements.  See the NOTICE file distributed with\n    4|  *  this work for additional information regarding copyright ownership.\n    5|  *  The ASF licenses this file to You under the Apache License, Version 2.0\n    6|  *  (the \"License\"); you may not use this file except in compliance with\n    7|  *  the License.  You may obtain a copy of the License at\n    8|  *\n    9|  *      http://www.apache.org/licenses/LICENSE-2.0\n   10|  *\n   11|  *  Unless required by applicable law or agreed to in writing, software\n   12|  *  distributed under the License is distributed on an \"AS IS\" BASIS,\n   13|  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   14|  *  See the License for the specific language governing permissions and\n   15|  *  limitations under the License.\n   16|  *\n   17|  */\n   18| package org.apache.commons.compress.archivers.zip;\n   19| \n   20| import java.io.File;\n   21| import java.util.Date;\n   22| import java.util.LinkedHashMap;\n   23| import java.util.zip.ZipException;\n   24| import org.apache.commons.compress.archivers.ArchiveEntry;\n   25| \n   26| /**\n   27|  * Extension that adds better handling of extra fields and provides\n   28|  * access to the internal and external file attributes.\n   29|  *\n   30|  * @NotThreadSafe\n   31|  */\n   32| public class ZipArchiveEntry extends java.util.zip.ZipEntry\n   33|     implements ArchiveEntry, Cloneable {\n   34| \n   35|     public static final int PLATFORM_UNIX = 3;\n   36|     public static final int PLATFORM_FAT  = 0;\n   37|     private static final int SHORT_MASK = 0xFFFF;\n   38|     private static final int SHORT_SHIFT = 16;\n   39| \n   40|     /**\n   41|      * The {@link java.util.zip.ZipEntry} base class only supports\n   42|      * the compression methods STORED and DEFLATED. We override the\n   43|      * field so that any compression methods can be used.\n   44|      * <p>\n   45|      * The default value -1 means that the method has not been specified.\n   46|      *\n   47|      * @see <a href=\"https://issues.apache.org/jira/browse/COMPRESS-93\"\n   48|      *        >COMPRESS-93</a>\n   49|      */\n   50|     private int method = -1;\n   51| \n   52|     private int internalAttributes = 0;\n   53|     private int platform = PLATFORM_FAT;\n   54|     private long externalAttributes = 0;\n   55|     private LinkedHashMap/*<ZipShort, ZipExtraField>*/ extraFields = null;\n   56|     private String name = null;\n   57| \n   58|     /**\n   59|      * Creates a new zip entry with the specified name.\n   60|      * @param name the name of the entry\n   61|      */\n   62|     public ZipArchiveEntry(String name) {\n   63|         super(name);\n   64|     }\n   65| \n   66|     /**\n   67|      * Creates a new zip entry with fields taken from the specified zip entry.\n   68|      * @param entry the entry to get fields from\n   69|      * @throws ZipException on error\n   70|      */\n   71|     public ZipArchiveEntry(java.util.zip.ZipEntry entry) throws ZipException {\n   72|         super(entry);\n   73|         setName(entry.getName());\n   74|         byte[] extra = entry.getExtra();\n   75|         if (extra != null) {\n   76|             setExtraFields(ExtraFieldUtils.parse(extra));\n   77|         } else {\n   78|             // initializes extra data to an empty byte array\n   79|             setExtra();\n   80|         }\n   81|         setMethod(entry.getMethod());\n   82|     }\n   83| \n   84|     /**\n   85|      * Creates a new zip entry with fields taken from the specified zip entry.\n   86|      * @param entry the entry to get fields from\n   87|      * @throws ZipException on error\n   88|      */\n   89|     public ZipArchiveEntry(ZipArchiveEntry entry) throws ZipException {\n   90|         this((java.util.zip.ZipEntry) entry);\n   91|         setInternalAttributes(entry.getInternalAttributes());\n   92|         setExternalAttributes(entry.getExternalAttributes());\n   93|         setExtraFields(entry.getExtraFields());\n   94|     }\n   95| \n   96|     /**\n   97|      */\n   98|     protected ZipArchiveEntry() {\n   99|         this(\"\");\n  100|     }\n  101| \n  102|     public ZipArchiveEntry(File inputFile, String entryName) {\n  103|         this(inputFile.isDirectory() && !entryName.endsWith(\"/\") ? \n  104|              entryName + \"/\" : entryName);\n  105|         if (inputFile.isFile()){\n  106|             setSize(inputFile.length());\n  107|         }\n  108|         setTime(inputFile.lastModified());\n  109|         // TODO are there any other fields we can set here?\n  110|     }\n  111| \n  112|     /**\n  113|      * Overwrite clone.\n  114|      * @return a cloned copy of this ZipArchiveEntry\n  115|      */\n  116|     public Object clone() {\n  117|         ZipArchiveEntry e = (ZipArchiveEntry) super.clone();\n  118| \n  119|         e.extraFields = extraFields != null ? (LinkedHashMap) extraFields.clone() : null;\n  120|         e.setInternalAttributes(getInternalAttributes());\n  121|         e.setExternalAttributes(getExternalAttributes());\n  122|         e.setExtraFields(getExtraFields());\n  123|         return e;\n  124|     }\n  125| \n  126|     /**\n  127|      * Checks whether the compression method of this entry is supported,\n  128|      * i.e. whether the content of this entry can be accessed.\n  129|      *\n  130|      * @since Commons Compress 1.1\n  131|      * @see <a href=\"https://issues.apache.org/jira/browse/COMPRESS-93\"\n  132|      *         >COMPRESS-93</a>\n  133|      * @return <code>true</code> if the compression method is known\n  134|      *         and supported, <code>false</code> otherwise\n  135|      */\n  136|     public boolean isSupportedCompressionMethod() {\n  137|         return method == STORED || method == DEFLATED;\n  138|     }\n  139| \n  140|     /**\n  141|      * Returns the compression method of this entry, or -1 if the\n  142|      * compression method has not been specified.\n  143|      *\n  144|      * @return compression method\n  145|      */\n  146|     public int getMethod() {\n  147|         return method;\n  148|     }\n  149| \n  150|     /**\n  151|      * Sets the compression method of this entry.\n  152|      *\n  153|      * @param method compression method\n  154|      */\n  155|     public void setMethod(int method) {\n  156|         if (method < 0) {\n  157|             throw new IllegalArgumentException(\n  158|                     \"ZIP compression method can not be negative: \" + method);\n  159|         }\n  160|         this.method = method;\n  161|     }\n  162| \n  163|     /**\n  164|      * Retrieves the internal file attributes.\n  165|      *\n  166|      * @return the internal file attributes\n  167|      */\n  168|     public int getInternalAttributes() {\n  169|         return internalAttributes;\n  170|     }\n  171| \n  172|     /**\n  173|      * Sets the internal file attributes.\n  174|      * @param value an <code>int</code> value\n  175|      */\n  176|     public void setInternalAttributes(int value) {\n  177|         internalAttributes = value;\n  178|     }\n  179| \n  180|     /**\n  181|      * Retrieves the external file attributes.\n  182|      * @return the external file attributes\n  183|      */\n  184|     public long getExternalAttributes() {\n  185|         return externalAttributes;\n  186|     }\n  187| \n  188|     /**\n  189|      * Sets the external file attributes.\n  190|      * @param value an <code>long</code> value\n  191|      */\n  192|     public void setExternalAttributes(long value) {\n  193|         externalAttributes = value;\n  194|     }\n  195| \n  196|     /**\n  197|      * Sets Unix permissions in a way that is understood by Info-Zip's\n  198|      * unzip command.\n  199|      * @param mode an <code>int</code> value\n  200|      */\n  201|     public void setUnixMode(int mode) {",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java"
+      }
+    ],
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "src/main/java",
+    "suspect_locations": [
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+        1
+      ]
+    ],
+    "suspects_from_stack_trace": false,
+    "test_directory": "src/test/java",
+    "test_source": [
+      {
+        "first_line": 205,
+        "last_line": 232,
+        "numbered_source": "  205|         assertEquals(-1, entry.getMethod());\n  206|         assertFalse(entry.isSupportedCompressionMethod());\n  207| \n  208|         entry.setMethod(ZipArchiveEntry.STORED);\n  209|         assertEquals(ZipArchiveEntry.STORED, entry.getMethod());\n  210|         assertTrue(entry.isSupportedCompressionMethod());\n  211| \n  212|         entry.setMethod(ZipArchiveEntry.DEFLATED);\n  213|         assertEquals(ZipArchiveEntry.DEFLATED, entry.getMethod());\n  214|         assertTrue(entry.isSupportedCompressionMethod());\n  215| \n  216|         // Test the unsupported \"imploded\" compression method (6)\n  217|         entry.setMethod(6);\n  218|         assertEquals(6, entry.getMethod());\n  219|         assertFalse(entry.isSupportedCompressionMethod());\n  220|     }\n  221| \n  222|     /**\n  223|      * Test case for\n  224|      * <a href=\"https://issues.apache.org/jira/browse/COMPRESS-94\"\n  225|      * >COMPRESS-94</a>.\n  226|      */\n  227|     public void testNotEquals() {\n  228|         ZipArchiveEntry entry1 = new ZipArchiveEntry(\"foo\");\n  229|         ZipArchiveEntry entry2 = new ZipArchiveEntry(\"bar\");\n  230|         assertFalse(entry1.equals(entry2));\n  231|     }\n  232| }",
+        "path": "src/test/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntryTest.java"
+      }
+    ],
+    "traces": [
+      {
+        "test": "org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testNotEquals",
+        "trace": "junit.framework.AssertionFailedError\n\tat junit.framework.Assert.fail(Assert.java:55)\n\tat junit.framework.Assert.assertTrue(Assert.java:22)\n\tat junit.framework.Assert.assertFalse(Assert.java:39)\n\tat junit.framework.Assert.assertFalse(Assert.java:47)\n\tat junit.framework.TestCase.assertFalse(TestCase.java:219)\n\tat org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest.testNotEquals(ZipArchiveEntryTest.java:230)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)\n\tat junit.framework.TestCase.run(TestCase.java:129)\n\tat junit.framework.TestSuite.runTest(TestSuite.java:252)\n\tat junit.framework.TestSuite.run(TestSuite.java:247)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1492)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:878)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1980)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:830)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2287)"
+      }
+    ]
+  },
+  "memory_after_digest": "266d59884497b8a5429d872e1ab81504224c0e21f74c356f9f39aa224d0812d7",
+  "memory_before_digest": "3be250298350f7d89789600d8100919971d4272b122ebc86ec9eb2d5fb4b6798",
+  "new_memory_events": [
+    {
+      "data": {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "evidence_digest": "498a50f237b1d9d6b5ccd78fc1cc0a3e10369fcd986d3f2ba86a2d950848b193",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7823,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "9556939250cf805df0a5cf14e7255f18996c66ba2acb9f90cba3b1d3b3c63777"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "edits": [
+          [
+            "     */\n    public ZipArchiveEntry(String name) {\n        super(name);\n    }\n\n    /**\n",
+            "     */\n    public ZipArchiveEntry(String name) {\n        super(name);\n        this.name = name;\n    }\n\n    /**\n"
+          ]
+        ],
+        "explanation": "Local repair operator: repair_plan",
+        "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+        "origin": "strategist",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "9556939250cf805df0a5cf14e7255f18996c66ba2acb9f90cba3b1d3b3c63777"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "dc485e8952ef056d00d68162c3eaa6e9c6dbf6dcdd305c0a7efd9d120f860c30",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "evidence_digest": "498a50f237b1d9d6b5ccd78fc1cc0a3e10369fcd986d3f2ba86a2d950848b193",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7823,
+          "source_files": 1
+        },
+        "origin": "retained-experience",
+        "verdict": {
+          "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "retained-experience",
+          "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "1e083e9cdd7faaaf3e2290c7c9f9a00427d366bd87c329f11bff5922f4cac469"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "2dbd5453632180fd1f05b82f19a7f110a17f2e06e4b72befcfae9f8b2a0bead4",
+      "scope": "released_development"
+    }
+  ],
+  "patch": "--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java\n+++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java\n@@ -61,6 +61,7 @@\n      */\n     public ZipArchiveEntry(String name) {\n         super(name);\n+        this.name = name;\n     }\n \n     /**\n",
+  "plan_digest": "a133d5cf96db23ca593266a623c43c2107555ea53a3a4b706596b85664996124",
+  "replay": {
+    "decisions": [],
+    "known_cost_usd": 0,
+    "model_calls": [],
+    "reuse_without_llm": true,
+    "scope": "released_development",
+    "solved": true,
+    "solved_without_llm": true,
+    "total_cost_usd": 0,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "feedback": null,
+        "full_suite_failures": 0,
+        "origin": "retained-experience",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+        "plausible": true,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "passed",
+        "verdict_digest": "1e083e9cdd7faaaf3e2290c7c9f9a00427d366bd87c329f11bff5922f4cac469"
+      }
+    ]
+  },
+  "result": {
+    "decisions": [],
+    "known_cost_usd": 0,
+    "model_calls": [],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": true,
+    "solved_without_llm": true,
+    "total_cost_usd": 0,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "7f8f306632fcb7c69d6d1a36aa921cbc9e1605a9ce1863f69a5a62358a5ec18c",
+        "feedback": null,
+        "full_suite_failures": 0,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+        "plausible": true,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "passed",
+        "verdict_digest": "9556939250cf805df0a5cf14e7255f18996c66ba2acb9f90cba3b1d3b3c63777"
+      }
+    ]
+  },
+  "result_digest": "1fd31f73c206416d8d875c257d2acc3aca11771e09aac5f33a7f38ef3f972551",
+  "success_recorded": true,
+  "usable": true
+}

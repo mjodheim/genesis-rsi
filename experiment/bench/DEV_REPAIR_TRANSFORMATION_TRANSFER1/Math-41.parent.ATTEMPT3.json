@@ -1,0 +1,31 @@
+{
+  "attempt_digest": "53f1b97246cab265bed81edabc75e9fc95ceed5bf461306f467371c7dc18b926",
+  "candidate": {
+    "candidate_digest": "4e825ae8620dfb80cdc71147f1d38ab5e06f6f9599184a811e69282699490d4a",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java"
+  },
+  "choice": {
+    "candidate_digest": "4e825ae8620dfb80cdc71147f1d38ab5e06f6f9599184a811e69282699490d4a",
+    "choice_digest": "25c0ec6b18803c52ace14db45376c2eebaea2cd1f9668b600c97ee99c7d08d45",
+    "index": 3,
+    "prior_verdict_digests": [
+      "ca1345dfd5e11ce9f40a7b4ed696a7b789b5f85b67bfa7307a5f9786073ee023",
+      "5ed3e991de1a08a83f3ae9514408bcaa8632b3792a2803aae108316b31d440f6"
+    ],
+    "remaining_pool_size": 30,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "4e825ae8620dfb80cdc71147f1d38ab5e06f6f9599184a811e69282699490d4a",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-41-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:516: error: cannot assign a value to final variable accum2\n    [javac]                     accum2 += weights[i] * dev;\n    [javac]                     ^\n    [javac] 1 error\n    [javac] 4 warnings",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "fe67b1d2858fe0f0e3e0d902b8f8fa24ea6e71e0e9637fbd14a7759d648651fc"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "arm_digest": "35e795dcafe9c9869f12cd03c97db912db554610e96eb58ea025dc4471d81075",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.00058965,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "extraInterfaces"
+          },
+          "characters": 7438,
+          "output_excerpt": "src/org/mockito/MockSettings.java:30:  *       .extraInterfaces(Bar.class));    \nsrc/org/mockito/MockSettings.java:48:      *   Foo foo = mock(Foo.class, withSettings().extraInterfaces(Bar.class, Baz.class));\nsrc/org/mockito/MockSettings.java:58:     MockSettings extraInterfaces(Class<?>... interfaces);\nsrc/org/mockito/Mockito.java:1545:      *       .extraInterfaces(Bar.class));    \nsrc/org/mockito/exceptions/Reporter.java:438:     public void extraInterfacesDoesNotAcceptNullParameters() {\nsrc/org/mockito/exceptions/Reporter.java:440:                 \"extraInterfaces() does not accept null parameters.\"\nsrc/org/mockito/exceptions/Reporter.java:444:     public void extraInterfacesAcceptsOnlyInterfaces(Class<?> wrongType) {\nsrc/org/mockito/exceptions/Reporter.java:446:                 \"extraInterfaces() accepts only interfaces.\",\nsrc/org/mockito/exceptions/Reporter.java:451:     public void extraInterfacesCannotContainMockedType(Class<?> wrongType) {\nsrc/org/mockito/exceptions/Reporter.java:453:                 \"extraInterfaces() does not accept the same type as the mocked type.\",\nsrc/org/mockito/exceptions/Reporter.java:455:                 \"and you passed the same very interface to the extraInterfaces()\"\nsrc/org/mockito/exceptions/Reporter.java:459:     public void extraInterfacesRequiresAtLeastOneInterface() {\nsrc/org/mockito/exceptions/Reporter.java:461:                 \"extraInterfaces() requires at least one interface.\"\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:15:     private Class<?>[] extraInterfaces;\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:22:         return this.extraInterfaces(java.io.Serializable.class);\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:25:     public MockSettings extraInterfaces(Class<?>... extraInterfaces) {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:26:         if (extraInterfaces == null || extraInterfaces.length == 0) {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:27:       ",
+          "tool": "search_files"
+        },
+        {
+          "arguments": {
+            "text": "Serializable"
+          },
+          "characters": 6999,
+          "output_excerpt": "src/org/mockito/MockSettings.java:7: import java.io.Serializable;\nsrc/org/mockito/MockSettings.java:36: public interface MockSettings extends Serializable {\nsrc/org/mockito/Mockito.java:47:  *      <a href=\"#20\">20. (**New**) Serializable mocks (Since 1.8.1) </a><br/>\nsrc/org/mockito/Mockito.java:590:  * <h3 id=\"20\">20. (**New**) Serializable mocks (Since 1.8.1) </h3>\nsrc/org/mockito/Mockito.java:604:  * The mock can be serialized assuming all the normal <a href='http://java.sun.com/j2se/1.5.0/docs/api/java/io/Serializable.html'>\nsrc/org/mockito/internal/MockitoInvocationHandler.java:7: import java.io.Serializable;\nsrc/org/mockito/internal/MockitoInvocationHandler.java:11: public interface MockitoInvocationHandler extends Serializable {\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:7: import java.io.Serializable;\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:19: public class MethodInterceptorFilter implements MethodInterceptor, Serializable {\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:59:         if (mockSettings.isSerializable())\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:60:             return new SerializableMockitoMethodProxy(methodProxy);\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:65:         if (mockSettings.isSerializable()) {\nsrc/org/mockito/internal/creation/MethodInterceptorFilter.java:66:             return new SerializableMethod(method);\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:22:         return this.extraInterfaces(java.io.Serializable.class);\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:73:     public boolean isSerializable() {\nsrc/org/mockito/internal/creation/MockSettingsImpl.java:74:         return extraInterfaces != null && java.util.Arrays.asList(extraInterfaces).contains(java.io.Serializable.class);\nsrc/org/mockito/internal/creation/SerializableMockitoMethodProxy.java:7: import java.io.Serializable;\nsrc/org/mockito/internal/cre",
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "49eeb53f12b30005f02bd8d6403b245b99884656ad2862754ecd28b55dc06b81",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 189,
+        "prompt_tokens": 3962
+      }
+    },
+    {
+      "applicable": 1,
+      "cached_tokens": 0,
+      "cost_usd": 0.001678025,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "468f1a9dd10648e37a087a58ffaf7911ab472c98d6865ab1a3cbd86b721c391c",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": true,
+          "branch_depth": 0,
+          "candidate_digest": "e5e9d7386ab9e88b1c593601aed525e8835a5acd38d48b7f1af661e2f9da52e6",
+          "complete_paths": [
+            "src/org/mockito/internal/creation/MockSettingsImpl.java"
+          ],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "if (this.extraInterfaces != null) {\n            java.util.Set<Class<?>> merged = new java.util.LinkedHashSet<Class<?>>(java.util.Arrays.asList(this.extraInterfaces));\n            merged.addAll(java.util.Arrays.asList(extraInterfaces));\n            this.extraInterfaces = merged.toArray(new Class<?>[merged.size()]);\n        } else {\n            this.extraInterfaces = extraInterfaces;\n        }",
+                  "search": "this.extraInterfaces = extraInterfaces;"
+                }
+              ],
+              "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+            }
+          ],
+          "hypothesis": "Observation: the failing test calls serializable() and then extraInterfaces(List.class) (or the reverse order), and the mock is not serializable. MockSettingsImpl.serializable() is implemented as extraInterfaces(java.io.Serializable.class), and isSerializable() checks whether extraInterfaces contains Serializable. Causal explanation: extraInterfaces(...) overwrites the stored array with this.extraInterfaces = extraInterfaces, so a previously added java.io.Serializable marker is lost when a later extraInterfaces call is made. Fix: merge the new interfaces with any already-stored ones, preserving order and removing duplicates. Parent is the original tree. Refutation: if the test still throws NotSerializableException after this change, the overwrite is not the cause and the serialization path or the CGLIB-generated class's Serializable handling is at fault.",
+          "parent": "",
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1130,
+        "prompt_tokens": 10205
+      }
+    }
+  ],
+  "case": "Mockito-17",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/org/mockito/internal/creation/MockSettingsImpl.java\n+++ b/src/org/mockito/internal/creation/MockSettingsImpl.java\n@@ -34,7 +34,13 @@\n                 new Reporter().extraInterfacesAcceptsOnlyInterfaces(i);\n             }\n         }\n-        this.extraInterfaces = extraInterfaces;\n+        if (this.extraInterfaces != null) {\n+            java.util.Set<Class<?>> merged = new java.util.LinkedHashSet<Class<?>>(java.util.Arrays.asList(this.extraInterfaces));\n+            merged.addAll(java.util.Arrays.asList(extraInterfaces));\n+            this.extraInterfaces = merged.toArray(new Class<?>[merged.size()]);\n+        } else {\n+            this.extraInterfaces = extraInterfaces;\n+        }\n         return this;\n     }\n \n",
+  "plausible_squashed_sha256": "81efc5cc3f197dfb06cce2efc2fd471ec89d42f325ec287379a71c59126731e0",
+  "rounds": 1,
+  "seconds": 63.4,
+  "solved": true,
+  "suspects_from_stack_trace": false,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "e5e9d7386ab9e88b1c593601aed525e8835a5acd38d48b7f1af661e2f9da52e6",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "ed1c8a7af47ea7c649d0e4c0c127bf516d7214efbb89b93aea128307be1aae54"
+    }
+  ]
+}

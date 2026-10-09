@@ -1,0 +1,59 @@
+{
+  "arm_digest": "ef0f82b2993e3afd260e3ef81b7addce05b1d15fe927959217e4712f9da0f675",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000428525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "1b2d47c311fe76f7a67b56127cd8bb80303ecababd4a417c11ef26446c7d9a7e",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 104,
+        "prompt_tokens": 3013
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.001671525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "23706698d210553590976aabc5efb54f3979b3c941d01a67be5df0473f4f917e",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 2091,
+        "prompt_tokens": 5508
+      }
+    }
+  ],
+  "case": "Mockito-23",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 1,
+  "seconds": 10.7,
+  "solved": false,
+  "suspects_from_stack_trace": false,
+  "validated": 0,
+  "verdicts": []
+}

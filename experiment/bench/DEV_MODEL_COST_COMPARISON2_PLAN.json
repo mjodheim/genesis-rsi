@@ -1,0 +1,56 @@
+{
+  "scope": "exposed development comparison; not fresh or general RSI evidence",
+  "cases": [
+    "Codec-15",
+    "Csv-16",
+    "Collections-24"
+  ],
+  "models": [
+    [
+      "MIMOFLASH",
+      "xiaomi/mimo-v2.6-flash",
+      0.35,
+      1.3,
+      0.03,
+      0.06
+    ],
+    [
+      "MIMOPRO",
+      "xiaomi/mimo-v2.6-pro",
+      0.5,
+      1.3,
+      0.04,
+      0.08
+    ],
+    [
+      "HAIKU",
+      "anthropic/claude-haiku-5.5",
+      0.35,
+      1.3,
+      0.03,
+      0.06
+    ],
+    [
+      "LUNA",
+      "openai/gpt-6-luna",
+      0.35,
+      1.3,
+      0.03,
+      0.06
+    ],
+    [
+      "SONNET",
+      "anthropic/claude-sonnet-5.5",
+      2.1,
+      10.5,
+      0.12,
+      0.24
+    ]
+  ],
+  "reasoning": "low",
+  "output_tokens": 4096,
+  "validation_budget": 2,
+  "retry": "none; isolated per-case trial so one failure does not skip subsequent cases",
+  "reservation_policy": "price-aware ceilings; Sonnet and MiMo Pro ceilings raised to admit their advertised tariffs; unequal dollar limits disclosed",
+  "temperature": "omitted for routes that do not support it; source changes frozen per protocol"
+}

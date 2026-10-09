@@ -1,0 +1,234 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": null,
+          "plausible_patch": null,
+          "plausible_path": null,
+          "plausible_squashed_sha256": null,
+          "proposed": 0,
+          "rounds": 1,
+          "solved": false,
+          "validated": 0,
+          "verdicts": []
+        }
+      },
+      "case": "Csv-16",
+      "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000217776,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 201
+                },
+                "result_digest": "49fd9033c97e845d6d23d2dc9d1165fc0ff6a302693d94c72ab4ece4f8ceec34",
+                "tool": "read_file"
+              }
+            ],
+            "model": "deepseek/deepseek-v4.1-flash",
+            "prompt_digest": "2ccd69becea269951e86b355751a4f1139b1dfb2c231af1311e9766e4679e021",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.013998849999999998,
+            "response_digest": "0ce34e95cecb89e83d2c3265af79fc8cf1ecc3d224de205c63ed01e69ea1b540",
+            "response_id": "gen-1791492984-dI4zBfjruq9qlBZW9cei",
+            "returned_model": "deepseek/deepseek-v4.1-flash",
+            "routed_provider": "Relace",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 90,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 22
+              },
+              "cost": 0.000217776,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.000108,
+                "upstream_inference_cost": 0.000217776,
+                "upstream_inference_prompt_cost": 0.000109776
+              },
+              "is_byok": false,
+              "prompt_tokens": 4574,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 4664
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0002676,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "text": "hasNext"
+                },
+                "result_digest": "1908d88817ae97f0a2935cb65a21b41722220e69f63fe7dd1f8f350e925267ca",
+                "tool": "search_files"
+              },
+              {
+                "arguments": {
+                  "text": "iterator"
+                },
+                "result_digest": "6352f16f698f5522288c701cbb53383d015995a647adb475769d9d18cbfaee0f",
+                "tool": "search_files"
+              }
+            ],
+            "model": "deepseek/deepseek-v4.1-flash",
+            "prompt_digest": "cd37f6fba5f62612fd85d58430f0ad54fdc6bc6657a2bf1b50786cb8015f4a67",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.017204149999999998,
+            "response_digest": "2ab7980e6d06aebd421740a57fde5187fd9ce7e0bbc21b3006aea7a4c2a6e337",
+            "response_id": "gen-1791492985-edMUO2ygjDGu3lgAcZnS",
+            "returned_model": "deepseek/deepseek-v4.1-flash",
+            "routed_provider": "Relace",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 88,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 22
+              },
+              "cost": 0.0002676,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.0001056,
+                "upstream_inference_cost": 0.0002676,
+                "upstream_inference_prompt_cost": 0.000162
+              },
+              "is_byok": false,
+              "prompt_tokens": 6750,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 6838
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.000352584,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 500
+                },
+                "result_digest": "4fba6957beb29ae780712cbe6a230e9468b56a40015d204348fdbf8acdfb3116",
+                "tool": "read_file"
+              }
+            ],
+            "model": "deepseek/deepseek-v4.1-flash",
+            "prompt_digest": "6dd0dec675d252ec83e1ddf83d9973714d8e4b9afe087816163fb519ae602080",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.022234,
+            "response_digest": "9b5e3ab24de2a977f3fb1c0154a9e78af59b59d0f07a4ef4a341cfd0fe4ab509",
+            "response_id": "gen-1791492991-gCwHhDxrWbd3vWQ5zFqD",
+            "returned_model": "deepseek/deepseek-v4.1-flash",
+            "routed_provider": "Relace",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 3,
+            "usage": {
+              "completion_tokens": 83,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 16
+              },
+              "cost": 0.000352584,
+              "cost_details": {
+                "upstream_inference_completions_cost": 9.96e-05,
+                "upstream_inference_cost": 0.000352584,
+                "upstream_inference_prompt_cost": 0.000252984
+              },
+              "is_byok": false,
+              "prompt_tokens": 10541,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 10624
+            }
+          },
+          {
+            "benchmark_may_be_in_training_data": true,
+            "budget_refused": true,
+            "cost_usd": 0.0,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "model": "deepseek/deepseek-v4.1-flash",
+            "prompt_digest": "59f822195dc8180de519398832f1f1d19db6a5fcb49c2390f8bdedfd9a489716",
+            "provider": "openrouter",
+            "request_sent": false,
+            "requested": 1,
+            "reserved_cost_usd": 0.024145699999999996,
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 4
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "name": "DEV_COST_COMPARE1_DEEPSEEK_CSV",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "2bb41e267ae6fad0a375f93e20cdab1dd4f32170d141147556a3a83cdde04872",
+  "provider": "openrouter",
+  "result_digest": "2207afe44c189f239924e3d8914b0e0fb649027456f044c91b96f3bc7b274cdd",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0008
+    },
+    "solved_per_arm": {
+      "model_explore": 0
+    },
+    "usable_cases": 1
+  }
+}

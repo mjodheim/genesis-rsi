@@ -1,0 +1,151 @@
+{
+  "arm_digest": "73979e7200fef0311ac1ce4a40ca2580b5f166a7690e250445ef53876be79553",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.001621525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "42cd46708c49f0a0d46d4ee84a172ffe8c70b5803cfd9f22d1205b5d5cd31b38",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [
+        {
+          "applicable": false,
+          "branch_depth": null,
+          "candidate_digest": null,
+          "causal_checks_passed": false,
+          "causal_evidence": {
+            "explanation": "Line 125 strips every character outside [-a-zA-Z0-9_:.] from the key. The test's attribute key '\"' therefore becomes an empty string. Line 126 then passes that empty name to setAttribute, which the Xerces DOM rejects with INVALID_CHARACTER_ERR, as the stack trace shows.",
+            "facts": [
+              {
+                "line": 125,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");",
+                "relation": "present",
+                "term": "replaceAll"
+              },
+              {
+                "line": 126,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "el.setAttribute(key, attribute.getValue());",
+                "relation": "present",
+                "term": "el.setAttribute(key"
+              }
+            ],
+            "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+            "prediction": "Guarding the setAttribute call so that empty keys are skipped should remove the DOMException for handlesInvalidAttributeNames. The attribute named 'name\"' sanitizes to 'name', which is valid and still gets set.",
+            "previous_assessment": "none"
+          },
+          "causal_rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:125 in selected tree",
+          "complete_paths": [],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "if (key.length() > 0) el.setAttribute(key, attribute.getValue());",
+                  "search": "el.setAttribute(key, attribute.getValue());"
+                }
+              ],
+              "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+            }
+          ],
+          "hypothesis": "copyAttributes sanitizes attribute keys with replaceAll, so an attribute whose key contains only invalid characters (the key '\"' in the test) becomes an empty string. Calling setAttribute with an empty name makes the W3C DOM throw INVALID_CHARACTER_ERR. Skipping empty sanitized keys should stop the exception.",
+          "parent": "",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:125 in selected tree"
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1175,
+        "prompt_tokens": 8273
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.0016942,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "36fe4e12a2a0598ed65b0767efbf8717f0d6f0ad1de80de38bfd2a2a2db1ac55",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": false,
+          "branch_depth": null,
+          "candidate_digest": null,
+          "causal_checks_passed": false,
+          "causal_evidence": {
+            "explanation": "Line 125 of the excerpt strips every character outside [-a-zA-Z0-9_:.] from the key, so the test's key '\"' becomes an empty string. Line 126 then passes that empty name to setAttribute, which the Xerces DOM rejects with INVALID_CHARACTER_ERR, matching the stack trace at W3CDom.java:126.",
+            "facts": [
+              {
+                "line": 126,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "el.setAttribute(key, attribute.getValue());",
+                "relation": "present",
+                "term": "el.setAttribute(key"
+              }
+            ],
+            "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+            "prediction": "Skipping empty sanitized keys should remove the DOMException for handlesInvalidAttributeNames. The attribute 'name\"' sanitizes to 'name', which is valid and still gets set.",
+            "previous_assessment": "none"
+          },
+          "causal_rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:126 in selected tree",
+          "complete_paths": [],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "if (key.length() > 0) el.setAttribute(key, attribute.getValue());",
+                  "search": "el.setAttribute(key, attribute.getValue());"
+                }
+              ],
+              "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+            }
+          ],
+          "hypothesis": "copyAttributes sanitizes attribute keys with replaceAll, so an attribute whose key contains only invalid characters (the key '\"' in the test) becomes an empty string. Calling setAttribute with an empty name makes the W3C DOM throw INVALID_CHARACTER_ERR. Skipping empty sanitized keys should stop the exception.",
+          "parent": "",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:126 in selected tree"
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1103,
+        "prompt_tokens": 9424
+      }
+    }
+  ],
+  "case": "Jsoup-54",
+  "causal_baseline_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 1,
+  "seconds": 9.8,
+  "solved": false,
+  "suspects_from_stack_trace": true,
+  "validated": 0,
+  "verdicts": []
+}

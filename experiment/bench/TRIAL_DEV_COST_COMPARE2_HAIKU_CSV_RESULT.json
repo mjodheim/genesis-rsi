@@ -1,0 +1,223 @@
+{
+  "benchmark_may_be_in_model_training_data": true,
+  "cases": [
+    {
+      "arms": {
+        "model_explore": {
+          "first_plausible_rank": 1,
+          "plausible_patch": "--- a/src/main/java/org/apache/commons/csv/CSVParser.java\n+++ b/src/main/java/org/apache/commons/csv/CSVParser.java\n@@ -303,6 +303,9 @@\n \n     private final Token reusableToken = new Token();\n \n+    /** Lookahead record buffered by Iterator.hasNext(); shared across iterators. */\n+    private CSVRecord current;\n+\n     /**\n      * Customized CSV parser using the given {@link CSVFormat}\n      *\n@@ -521,7 +524,6 @@\n     @Override\n     public Iterator<CSVRecord> iterator() {\n         return new Iterator<CSVRecord>() {\n-        private CSVRecord current;\n   \n         private CSVRecord getNextRecord() {\n             try {\n@@ -537,11 +539,11 @@\n             if (CSVParser.this.isClosed()) {\n                 return false;\n             }\n-            if (this.current == null) {\n-                this.current = this.getNextRecord();\n+            if (CSVParser.this.current == null) {\n+                CSVParser.this.current = this.getNextRecord();\n             }\n   \n-            return this.current != null;\n+            return CSVParser.this.current != null;\n         }\n   \n         @Override\n@@ -549,8 +551,8 @@\n             if (CSVParser.this.isClosed()) {\n                 throw new NoSuchElementException(\"CSVParser has been closed\");\n             }\n-            CSVRecord next = this.current;\n-            this.current = null;\n+            CSVRecord next = CSVParser.this.current;\n+            CSVParser.this.current = null;\n   \n             if (next == null) {\n                 // hasNext() wasn't called before\n",
+          "plausible_path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+          "plausible_squashed_sha256": "2cf666934e38bd53e8ba0e6f123d80f0fe5284092cc0bcd9f0fe508b6ab387d5",
+          "proposed": 1,
+          "rounds": 1,
+          "solved": true,
+          "validated": 1,
+          "verdicts": [
+            {
+              "candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+              "feedback": null,
+              "full_suite_failures": 0,
+              "origin": "openrouter:anthropic/claude-haiku-5.5",
+              "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+              "plausible": true,
+              "schema": "genesis-repair-bench-verdict-v1",
+              "stopped_at": "passed",
+              "verdict_digest": "aa498a539bc17e34d1935a6a9d168a9f353407b323e5243e27c8c5023362c7fa"
+            }
+          ]
+        }
+      },
+      "case": "Csv-16",
+      "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+      "failing_tests": 1,
+      "model_calls": {
+        "model": [],
+        "model_explore": [
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0007579,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 202
+                },
+                "result_digest": "6751bc1211f3e48872086a0e304f93878240be92486594fb38be67eead77c6a9",
+                "tool": "read_file"
+              },
+              {
+                "arguments": {
+                  "text": "getNextRecord"
+                },
+                "result_digest": "ec962bac6954bef0cfa4c2c73f7ba2df5ae658c7de1f3cc4fe5a2a312fb69eff",
+                "tool": "search_files"
+              }
+            ],
+            "model": "anthropic/claude-haiku-5.5",
+            "prompt_digest": "2ccd69becea269951e86b355751a4f1139b1dfb2c231af1311e9766e4679e021",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.013991849999999998,
+            "response_digest": "c64ed360c2708aea0a961474c21f79c58491262e6211fe2dbefda67a6612d814",
+            "response_id": "gen-1791493785-ISRVmVwdaPz6YpSkVlu7",
+            "returned_model": "anthropic/claude-haiku-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 1,
+            "usage": {
+              "completion_tokens": 170,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 29
+              },
+              "cost": 0.0007579,
+              "cost_details": {
+                "upstream_inference_completions_cost": 8.5e-05,
+                "upstream_inference_cost": 0.0007579,
+                "upstream_inference_prompt_cost": 0.0006729
+              },
+              "is_byok": false,
+              "prompt_tokens": 6729,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 6899
+            }
+          },
+          {
+            "applicable": 0,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0010439,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [
+              {
+                "arguments": {
+                  "path": "src/main/java/org/apache/commons/csv/CSVParser.java",
+                  "start": 505
+                },
+                "result_digest": "d099a7cda7bfd763545ffa542dbc3386974f13006a12aa16d6c5a7e62af98dc2",
+                "tool": "read_file"
+              }
+            ],
+            "model": "anthropic/claude-haiku-5.5",
+            "prompt_digest": "2e939a2d2565569a91949514ad6ece7b698d323248a2b701a502f84db79d8af9",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.017720049999999998,
+            "response_digest": "fb7eb9fd4d073dfce1b69caff1719a4fbc9b157c57df77c693ad924358fbd998",
+            "response_id": "gen-1791493787-C0mnX4qmlC0VZm56Bk3Z",
+            "returned_model": "anthropic/claude-haiku-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 2,
+            "usage": {
+              "completion_tokens": 91,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 0
+              },
+              "cost": 0.0010439,
+              "cost_details": {
+                "upstream_inference_completions_cost": 4.55e-05,
+                "upstream_inference_cost": 0.0010439,
+                "upstream_inference_prompt_cost": 0.0009984
+              },
+              "is_byok": false,
+              "prompt_tokens": 9984,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 10075
+            }
+          },
+          {
+            "applicable": 1,
+            "benchmark_may_be_in_training_data": true,
+            "cost_usd": 0.0020646,
+            "evidence_digest": "434fb1acb3245215cfe29704ab42bacfb67cec37b2631a640b4d3c07a5b0b5a4",
+            "explore": true,
+            "finish_reason": "tool_calls",
+            "inspections": [],
+            "model": "anthropic/claude-haiku-5.5",
+            "prompt_digest": "3d8a66e2ece8eb58eeed05b3fe915582fa5d1b6ae5196d67076a770aee3827b8",
+            "provider": "openrouter",
+            "request_sent": true,
+            "requested": 1,
+            "reserved_cost_usd": 0.0195124,
+            "response_digest": "5c8f6ced37988d8c6f28fc952eef656328c5616098afc95ce756293a00e3678c",
+            "response_id": "gen-1791493788-62KRLYEMrVyThAyZ3lyF",
+            "returned_model": "anthropic/claude-haiku-5.5",
+            "routed_provider": "Google",
+            "schema": "genesis-openrouter-proposal-call-v1",
+            "step": 3,
+            "usage": {
+              "completion_tokens": 1800,
+              "completion_tokens_details": {
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "reasoning_tokens": 1216
+              },
+              "cost": 0.0020646,
+              "cost_details": {
+                "upstream_inference_completions_cost": 0.0009,
+                "upstream_inference_cost": 0.0020646,
+                "upstream_inference_prompt_cost": 0.0011646
+              },
+              "is_byok": false,
+              "prompt_tokens": 11646,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "video_tokens": 0
+              },
+              "total_tokens": 13446
+            }
+          }
+        ]
+      },
+      "suspects_from_stack_trace": false,
+      "usable": true
+    }
+  ],
+  "cost_scope": "sealed cases only; all attempted calls retained separately in workspace call journals",
+  "fixed_revision_consulted": false,
+  "held_out": false,
+  "model": "anthropic/claude-haiku-5.5",
+  "name": "DEV_COST_COMPARE2_HAIKU_CSV",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "428a9c1eca5bd6161b5e4dd653afa3736d6ef4605ccb1472d6b5c5365ef5e078",
+  "provider": "openrouter",
+  "result_digest": "48deb3d4b972b27d6cd9f3d77029d3247e5b2405f3b80052df25fbebbab85ee6",
+  "sandbox_probe_digest": "1bff10c99b19c5ed4d05b5580b3d4dac80eee18e09495f99e591b207205bcb8b",
+  "schema": "genesis-repair-bench-result-v1",
+  "summary": {
+    "cases": 1,
+    "cases_with_a_failed_model_call_per_arm": {
+      "model_explore": 0
+    },
+    "model_cost_usd_per_arm": {
+      "model_explore": 0.0039
+    },
+    "solved_per_arm": {
+      "model_explore": 1
+    },
+    "usable_cases": 1
+  }
+}

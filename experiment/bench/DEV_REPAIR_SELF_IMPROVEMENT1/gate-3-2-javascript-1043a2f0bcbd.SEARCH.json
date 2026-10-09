@@ -1,0 +1,51 @@
+{
+  "candidates": [
+    {
+      "candidate_digest": "2adb571ee68436c187f88114e45ed414b4db01e30d3af4ecb95315ba2d576973",
+      "id": "retained-2adb571ee68436c1",
+      "label": "retained_subscript_delta:subject.js:47:-1",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, position) { return values[position - 1]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "8d428e62d6643fa127346c0598898a2afcc185d1a440ebe042ac57024531d9c2",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": -1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "96ad7f28a6d3d8d5c4a4f1a810fd3ab751b7b53b1c94c736745a0ad7117322d6",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    },
+    {
+      "candidate_digest": "8cf50197c131858caa69ef938b766b72a83194f055f3cd133910c165937b66f9",
+      "id": "retained-8cf50197c131858c",
+      "label": "retained_subscript_delta:subject.js:47:+1",
+      "mutations": [
+        {
+          "content_utf8": "function pick(values, position) { return values[position + 1]; }\nmodule.exports = {pick};\n",
+          "expected_absent": false,
+          "expected_sha256": "8d428e62d6643fa127346c0598898a2afcc185d1a440ebe042ac57024531d9c2",
+          "path": "subject.js"
+        }
+      ],
+      "provenance": {
+        "delta": 1,
+        "external_model_calls": 0,
+        "generator": "retained_acquired_strategy",
+        "operator": "retained_subscript_delta",
+        "strategy_digest": "b3cd9e2fd00ad565ab9c2c5e9aa5acd108bcccfa4bb4a4283a92e9803ad8d2f5",
+        "strategy_origin": "prior_evaluated_acquisition"
+      }
+    }
+  ],
+  "discover": false,
+  "policy_digest": "1043a2f0bcbd2b8f205f7d1fd12ae00b038fb9e42795debcf6ac529fbaeba65e",
+  "search_digest": "f1f8f0f85aa0ed4df631570ce32a215cd19638cb562f7ffa79f08983e1e58a39",
+  "source_digest": "bb72ad783971eda59b99f1562987626846e4362952d22422b042f75716f95334",
+  "task_digest": "a55e524baa104554f6642f2dc1eb2549ff6e4ba1aa8bb0232d599fbf4abf962c"
+}

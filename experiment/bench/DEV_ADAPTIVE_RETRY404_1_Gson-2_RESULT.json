@@ -1,0 +1,1017 @@
+{
+  "aborted": true,
+  "accepted_origin": "openrouter:openai/gpt-6-luna",
+  "case": "Gson-2",
+  "error_type": "ValueError",
+  "evidence": {
+    "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+    "failing_tests": [
+      "com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch"
+    ],
+    "fixed_revision_consulted": false,
+    "production_source": [
+      {
+        "first_line": 661,
+        "last_line": 741,
+        "numbered_source": "  661|    * Writes the JSON for {@code jsonElement} to {@code writer}.\n  662|    * @throws JsonIOException if there was a problem writing to the writer\n  663|    */\n  664|   public void toJson(JsonElement jsonElement, JsonWriter writer) throws JsonIOException {\n  665|     boolean oldLenient = writer.isLenient();\n  666|     writer.setLenient(true);\n  667|     boolean oldHtmlSafe = writer.isHtmlSafe();\n  668|     writer.setHtmlSafe(htmlSafe);\n  669|     boolean oldSerializeNulls = writer.getSerializeNulls();\n  670|     writer.setSerializeNulls(serializeNulls);\n  671|     try {\n  672|       Streams.write(jsonElement, writer);\n  673|     } catch (IOException e) {\n  674|       throw new JsonIOException(e);\n  675|     } finally {\n  676|       writer.setLenient(oldLenient);\n  677|       writer.setHtmlSafe(oldHtmlSafe);\n  678|       writer.setSerializeNulls(oldSerializeNulls);\n  679|     }\n  680|   }\n  681| \n  682|   /**\n  683|    * This method deserializes the specified Json into an object of the specified class. It is not\n  684|    * suitable to use if the specified class is a generic type since it will not have the generic\n  685|    * type information because of the Type Erasure feature of Java. Therefore, this method should not\n  686|    * be used if the desired type is a generic type. Note that this method works fine if the any of\n  687|    * the fields of the specified object are generics, just the object itself should not be a\n  688|    * generic type. For the cases when the object is of generic type, invoke\n  689|    * {@link #fromJson(String, Type)}. If you have the Json in a {@link Reader} instead of\n  690|    * a String, use {@link #fromJson(Reader, Class)} instead.\n  691|    *\n  692|    * @param <T> the type of the desired object\n  693|    * @param json the string from which the object is to be deserialized\n  694|    * @param classOfT the class of T\n  695|    * @return an object of type T from the string. Returns {@code null} if {@code json} is {@code null}.\n  696|    * @throws JsonSyntaxException if json is not a valid representation for an object of type\n  697|    * classOfT\n  698|    */\n  699|   public <T> T fromJson(String json, Class<T> classOfT) throws JsonSyntaxException {\n  700|     Object object = fromJson(json, (Type) classOfT);\n  701|     return Primitives.wrap(classOfT).cast(object);\n  702|   }\n  703| \n  704|   /**\n  705|    * This method deserializes the specified Json into an object of the specified type. This method\n  706|    * is useful if the specified object is a generic type. For non-generic objects, use\n  707|    * {@link #fromJson(String, Class)} instead. If you have the Json in a {@link Reader} instead of\n  708|    * a String, use {@link #fromJson(Reader, Type)} instead.\n  709|    *\n  710|    * @param <T> the type of the desired object\n  711|    * @param json the string from which the object is to be deserialized\n  712|    * @param typeOfT The specific genericized type of src. You can obtain this type by using the\n  713|    * {@link com.google.gson.reflect.TypeToken} class. For example, to get the type for\n  714|    * {@code Collection<Foo>}, you should use:\n  715|    * <pre>\n  716|    * Type typeOfT = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();\n  717|    * </pre>\n  718|    * @return an object of type T from the string. Returns {@code null} if {@code json} is {@code null}.\n  719|    * @throws JsonParseException if json is not a valid representation for an object of type typeOfT\n  720|    * @throws JsonSyntaxException if json is not a valid representation for an object of type\n  721|    */\n  722|   @SuppressWarnings(\"unchecked\")\n  723|   public <T> T fromJson(String json, Type typeOfT) throws JsonSyntaxException {\n  724|     if (json == null) {\n  725|       return null;\n  726|     }\n  727|     StringReader reader = new StringReader(json);\n  728|     T target = (T) fromJson(reader, typeOfT);\n  729|     return target;\n  730|   }\n  731| \n  732|   /**\n  733|    * This method deserializes the Json read from the specified reader into an object of the\n  734|    * specified class. It is not suitable to use if the specified class is a generic type since it\n  735|    * will not have the generic type information because of the Type Erasure feature of Java.\n  736|    * Therefore, this method should not be used if the desired type is a generic type. Note that\n  737|    * this method works fine if the any of the fields of the specified object are generics, just the\n  738|    * object itself should not be a generic type. For the cases when the object is of generic type,\n  739|    * invoke {@link #fromJson(Reader, Type)}. If you have the Json in a String form instead of a\n  740|    * {@link Reader}, use {@link #fromJson(String, Class)} instead.\n  741|    *",
+        "path": "gson/src/main/java/com/google/gson/Gson.java"
+      }
+    ],
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "gson/src/main/java",
+    "suspect_locations": [
+      [
+        "gson/src/main/java/com/google/gson/Gson.java",
+        701
+      ]
+    ],
+    "suspects_from_stack_trace": true,
+    "test_directory": "gson/src/test/java",
+    "test_source": [
+      {
+        "first_line": 598,
+        "last_line": 648,
+        "numbered_source": "  598|     object.add(\"foo\", new JsonPrimitive(1));\n  599|     object.add(\"bar\", new JsonPrimitive(2));\n  600|     assertEquals(\"{\\\"foo\\\":1,\\\"bar\\\":2}\", gson.toJson(object, JsonElement.class));\n  601|   }\n  602| \n  603|   public void testJsonObjectDeserialization() {\n  604|     JsonObject object = new JsonObject();\n  605|     object.add(\"foo\", new JsonPrimitive(1));\n  606|     object.add(\"bar\", new JsonPrimitive(2));\n  607| \n  608|     String json = \"{\\\"foo\\\":1,\\\"bar\\\":2}\";\n  609|     JsonElement actual = gson.fromJson(json, JsonElement.class);\n  610|     assertEquals(object, actual);\n  611| \n  612|     JsonObject actualObj = gson.fromJson(json, JsonObject.class);\n  613|     assertEquals(object, actualObj);\n  614|   }\n  615| \n  616|   public void testJsonNullDeserialization() {\n  617|     assertEquals(JsonNull.INSTANCE, gson.fromJson(\"null\", JsonElement.class));\n  618|     assertEquals(JsonNull.INSTANCE, gson.fromJson(\"null\", JsonNull.class));\n  619|   }\n  620| \n  621|   public void testJsonElementTypeMismatch() {\n  622|     try {\n  623|       gson.fromJson(\"\\\"abc\\\"\", JsonObject.class);\n  624|       fail();\n  625|     } catch (JsonSyntaxException expected) {\n  626|       assertEquals(\"Expected a com.google.gson.JsonObject but was com.google.gson.JsonPrimitive\",\n  627|           expected.getMessage());\n  628|     }\n  629|   }\n  630| \n  631|   private static class ClassWithBigDecimal {\n  632|     BigDecimal value;\n  633|     ClassWithBigDecimal(String value) {\n  634|       this.value = new BigDecimal(value);\n  635|     }\n  636|     String getExpectedJson() {\n  637|       return \"{\\\"value\\\":\" + value.toEngineeringString() + \"}\";\n  638|     }\n  639|   }\n  640| \n  641|   private static class ClassWithBigInteger {\n  642|     BigInteger value;\n  643|     ClassWithBigInteger(String value) {\n  644|       this.value = new BigInteger(value);\n  645|     }\n  646|     String getExpectedJson() {\n  647|       return \"{\\\"value\\\":\" + value + \"}\";\n  648|     }",
+        "path": "gson/src/test/java/com/google/gson/functional/DefaultTypeAdaptersTest.java"
+      }
+    ],
+    "traces": [
+      {
+        "test": "com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch",
+        "trace": "java.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)\n\tat junit.framework.TestCase.run(TestCase.java:129)\n\tat junit.framework.TestSuite.runTest(TestSuite.java:252)\n\tat junit.framework.TestSuite.run(TestSuite.java:247)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1492)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:878)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:1980)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeTests(JUnitTask.java:830)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:2287)\n\tat org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)\n\tat jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)"
+      }
+    ]
+  },
+  "new_memory_events": [
+    {
+      "data": {
+        "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "2a12b049fd9dfb9490e6d53b44e8eff005208f1178e9e1b00b69f578e22386b8"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "08b2de48976c6fccb16c6d8f2f7d566d1f57e82b9e2fc01201147cee8e88aa6f",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "54bd84e37222e7021150850f475309dc162fdf0ac5680c46fdcfeb5464361224"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "4a9cd3bd1b6d73a73ea7c92a99535d41cdd568ee9f7bad4093e564427ec4464e",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+          "feedback": "    [javac] /work/Gson-2-b/gson/maven-build.xml:73: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Gson-2-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Gson-2-b/gson/src/main/java/com/google/gson/Gson.java:209: error: incompatible types: TypeAdapter<BigInteger> cannot be converted to TypeAdapterFactory\n    [javac]     factories.add(TypeAdapters.BIG_INTEGER);\n    [javac]                               ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "cbdd3640d1108e19fb480ddf0e5d011898ec3759ef7fccf8a8c382054fa02d1a"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "59d9f6ed025914f3fa3bd94db1360d3f277cfb35c6624638095a1c6cd9e845e7",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+          "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "gson/src/main/java/com/google/gson/Gson.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "9f95dd4b6444f496d3c995bad12013971dc28cfdbd4a2acc087509de410815dc"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "a90c3a29c936c67c6e2551a1c139c20133d7868d3e1f3391af9bca58fc55b8d6",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0011058,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "JsonSyntaxException"
+            },
+            "result_digest": "2a03088144f13284a47c7b28a8b82888c25298fb171ec43f1c4ef4c73153e811",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0045612610000000005,
+        "response_digest": "8fbbb2d19477b63a5599e42513e602dab7eb6670de0ee21bf97915e59c1f9e9d",
+        "response_id": "gen-1791496009-0sr19NG34LjXr9FcgVln",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 833,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 730
+          },
+          "cost": 0.0011058,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0004165,
+            "upstream_inference_cost": 0.0011058,
+            "upstream_inference_prompt_cost": 0.0006893
+          },
+          "is_byok": false,
+          "prompt_tokens": 6893,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7726
+        }
+      },
+      "kind": "call",
+      "previous_digest": "25827a1f42d2c096a14f4596eafd4564dad7ee7c2558fc51f093677a048f17c4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0014956,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "fb3408d16b29de7f22fa7f49418fec7d919892a3cf66eb498ed386ad58a5f9b9",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005878502999999999,
+        "response_digest": "ba35934cbf05e90ae4b42c80f9ca53cc7f0558fa7743c00ade95ed30ad5b3514",
+        "response_id": "gen-1791496014-AnqxpymCPrHg7aszeQBb",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 676,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 296
+          },
+          "cost": 0.0014956,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000338,
+            "upstream_inference_cost": 0.0014956,
+            "upstream_inference_prompt_cost": 0.0011576
+          },
+          "is_byok": false,
+          "prompt_tokens": 11576,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 12252
+        }
+      },
+      "kind": "call",
+      "previous_digest": "be07235861246bf34bb2717439a5400d0f804863a2a59cf096102c5203c0536b",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0026014000000000002,
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "db02383a42653e25266487f9c59e79106920f5d371e82a2c13372e7890410786",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00049205,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004560352,
+        "response_digest": "d883488513d13ceaca0abf3f2d92a4f3f4bf264ec1ab23ff581b4279a085cd71",
+        "response_id": "gen-1791496017-BcvzzkC0mH11dmzt0duN",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 20,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00049205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1e-05,
+            "upstream_inference_cost": 0.00049205,
+            "upstream_inference_prompt_cost": 0.00048205
+          },
+          "is_byok": false,
+          "prompt_tokens": 3857,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 3854,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 3877
+        }
+      },
+      "kind": "call",
+      "previous_digest": "dd56a7ea41ed3ca2b5da4ef8465e2df880f11d7bbb648adfea888df19390896a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 9.209e-05,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "JSON_ELEMENT"
+            },
+            "result_digest": "4c1adf75895fed9c9bbfa28405b0cb5581a44e53c0e0342bd187ea0f5f7dbac2",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5b35cdcf626ce0647ad1c8c7a1d9fbcffbe7a8583873f3fe10508068e6c7863f",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004725587999999999,
+        "response_digest": "da07d6010260d76e40afad18adcf4cbb0e614a0e97aed3a60e28d007005cb4fe",
+        "response_id": "gen-1791496018-IJsLouvOHJoL2hGfJu5O",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 19,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 9.209e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 9.5e-06,
+            "upstream_inference_cost": 9.209e-05,
+            "upstream_inference_prompt_cost": 8.259e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 4207,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 350,
+            "cached_tokens": 3854,
+            "video_tokens": 0
+          },
+          "total_tokens": 4226
+        }
+      },
+      "kind": "call",
+      "previous_digest": "f96ec33ec7986c279f2f1ae2f16a4008dd9d48ce9e5e03550573bea8111b11e6",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 8.6465e-05,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+              "start": 643
+            },
+            "result_digest": "1fd4e1ee01d6b22949a7fa477ebb99c31534692af813bf34cadb04d630d08063",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5952e4e74ecb88de7bfcedd64b76182ab44d22d9a7bd4f1e6b8e0e3ecd7f5d65",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004833557,
+        "response_digest": "986b3adbd9f8bd9988464886588ad8472b73d749cf29de4fffabc1d25fd3ecdd",
+        "response_id": "gen-1791496022-G73eu1GpD5JTjkSeNfE8",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 37,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 8.6465e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.85e-05,
+            "upstream_inference_cost": 8.6465e-05,
+            "upstream_inference_prompt_cost": 6.7965e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 4412,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 205,
+            "cached_tokens": 4204,
+            "video_tokens": 0
+          },
+          "total_tokens": 4449
+        }
+      },
+      "kind": "call",
+      "previous_digest": "17482814d61f8f92f8745b663e997bd75756395aa7689638195344fd0691e31c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0009785,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "0ec9068322aa4340bbfa658e0c8abcd9e10b873bb6c1a13d5309e8684cc7abb2",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005713468999999999,
+        "response_digest": "4861dd457f39f811e2ff3914701a27874c665970c7e43c64d219bc426f65754a",
+        "response_id": "gen-1791496023-N8G8vcYO95bll4Oq08AB",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 320,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0009785,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.00016,
+            "upstream_inference_cost": 0.0009785,
+            "upstream_inference_prompt_cost": 0.0008185
+          },
+          "is_byok": false,
+          "prompt_tokens": 6561,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 6496,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 6881
+        }
+      },
+      "kind": "call",
+      "previous_digest": "06b750378db838a556f94e0bafe4808c7b9a079f27ce840c87c2e812558c7306",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "origin": "openrouter:openai/gpt-6-luna",
+        "verdict": {
+          "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "482409e0ee32904c5dc5fee0f85c6f3f9ebcd3af074a90af61db9b140e0e0c9d"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "ddf356d48fe049a4c1d61071c84c9fbd64b440d844537dfed5ffdfd82d2af10e",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+        "edits": [
+          [
+            "        if (!clazz.isAssignableFrom(requestedType)) {\n          return null;\n        }\n        return (TypeAdapter<T2>) typeAdapter;\n\n      }\n      @Override public String toString() {\n",
+            "        if (!clazz.isAssignableFrom(requestedType)) {\n          return null;\n        }\n        return new TypeAdapter<T2>() {\n          @Override public T2 read(JsonReader in) throws IOException {\n            T1 result = typeAdapter.read(in);\n            if (result != null && !requestedType.isInstance(result)) {\n              throw new JsonSyntaxException(\"Expected a \" + requestedType.getName()\n                  + \" but was \" + result.getClass().getName());\n            }\n            return (T2) result;\n          }\n          @Override public void write(JsonWriter out, T2 value) throws IOException {\n            typeAdapter.write(out, (T1) value);\n          }\n        };\n\n      }\n      @Override public String toString() {\n"
+          ]
+        ],
+        "explanation": "{\"hypothesis\": \"The JsonElement hierarchy adapter returns a primitive for a requested JsonObject/JsonArray subtype without validating the runtime subtype, so fail with the established JsonSyntaxException rather than allowing Class.cast to throw.\", \"path\": \"gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java\", \"edits\": [{\"search\": \"        return (TypeAdapter<T2>) typeAdapter;\\n\\n      }\\n      @Override public String toString() {\\n        return \\\"Factory[typeHierarchy=\\\" + clazz.getName() + \\\",adapter=\\\" + typeAdapter + \\\"]\\\";\", \"replace\": \"        return new TypeAdapter<T2>() {\\n          @Override public T2 read(JsonReader in) throws IOException {\\n            T1 result = typeAdapter.read(in);\\n            if (result != null && !requestedType.isInstance(result)) {\\n              throw new JsonSyntaxException(\\\"Expected a \\\" + requestedType.getName()\\n                  + \\\" but was \\\" + result.getClass().getName());\\n            }\\n            return (T2) result;\\n          }\\n          @Override public void write(JsonWriter out, T2 value) throws IOException {\\n            typeAdapter.write(out, (T1) value);\\n          }\\n        };\\n\\n      }\\n      @Override public String toString() {\\n        return \\\"Factory[typeHierarchy=\\\" + clazz.getName() + \\\",adapter=\\\" + typeAdapter + \\\"]\\\";\"}]}",
+        "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+        "origin": "openrouter:openai/gpt-6-luna",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "482409e0ee32904c5dc5fee0f85c6f3f9ebcd3af074a90af61db9b140e0e0c9d"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "7ce2ece478a25619849ca817b8e0a6959e4c5a943ff1d2ef157f4491d83f133a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0016491049999999999,
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "f8c7f9aee68e481c652822b0f95b6e1e3dffd31db5bcf5d1f5969158995b96be",
+          "source_chars": 4767,
+          "source_files": 1
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "a84e320f41e8aa06fb4538af0363c14eab1a1275f3bac366e555f909ffe4786a",
+      "scope": "released_development"
+    }
+  ],
+  "plan_digest": "788e8de15e236c4d1156035e791e5506a0d5fe19fbec64fb10fa5195c0361de4",
+  "replay": {
+    "decisions": [],
+    "known_cost_usd": 0,
+    "model_calls": [],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": false,
+    "solved_without_llm": false,
+    "total_cost_usd": 0,
+    "unknown_cost": false,
+    "verdicts": []
+  },
+  "result": {
+    "decisions": [
+      {
+        "basis": "released_comparison",
+        "complexity": "simple",
+        "estimated_request_reserve_usd": 0.003886682,
+        "fallback_quality_threshold_relaxed": false,
+        "model": "anthropic/claude-haiku-5.5",
+        "observations": 3,
+        "score": 0.005286244375,
+        "suite_passes": 3
+      },
+      {
+        "basis": "released_comparison",
+        "complexity": "simple",
+        "estimated_request_reserve_usd": 0.003886682,
+        "fallback_quality_threshold_relaxed": true,
+        "model": "openai/gpt-6-luna",
+        "observations": 3,
+        "score": 0.004361144999999999,
+        "suite_passes": 1
+      }
+    ],
+    "known_cost_usd": 0.004250505,
+    "model_calls": [
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0011058,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          },
+          {
+            "arguments": {
+              "text": "JsonSyntaxException"
+            },
+            "result_digest": "2a03088144f13284a47c7b28a8b82888c25298fb171ec43f1c4ef4c73153e811",
+            "tool": "search_files"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0045612610000000005,
+        "response_digest": "8fbbb2d19477b63a5599e42513e602dab7eb6670de0ee21bf97915e59c1f9e9d",
+        "response_id": "gen-1791496009-0sr19NG34LjXr9FcgVln",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 833,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 730
+          },
+          "cost": 0.0011058,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0004165,
+            "upstream_inference_cost": 0.0011058,
+            "upstream_inference_prompt_cost": 0.0006893
+          },
+          "is_byok": false,
+          "prompt_tokens": 6893,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7726
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0014956,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "fb3408d16b29de7f22fa7f49418fec7d919892a3cf66eb498ed386ad58a5f9b9",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005878502999999999,
+        "response_digest": "ba35934cbf05e90ae4b42c80f9ca53cc7f0558fa7743c00ade95ed30ad5b3514",
+        "response_id": "gen-1791496014-AnqxpymCPrHg7aszeQBb",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 676,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 296
+          },
+          "cost": 0.0014956,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000338,
+            "upstream_inference_cost": 0.0014956,
+            "upstream_inference_prompt_cost": 0.0011576
+          },
+          "is_byok": false,
+          "prompt_tokens": 11576,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 12252
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00049205,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "Expected a "
+            },
+            "result_digest": "cf60b42c12d3472001f8bdd3d7eb53fc0f0c339562634c015a904f89a5816508",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d9c166ffd0acc54eb9fd6060055c07222186d081fea57a7436b3a67f8544a395",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004560352,
+        "response_digest": "d883488513d13ceaca0abf3f2d92a4f3f4bf264ec1ab23ff581b4279a085cd71",
+        "response_id": "gen-1791496017-BcvzzkC0mH11dmzt0duN",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 20,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00049205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1e-05,
+            "upstream_inference_cost": 0.00049205,
+            "upstream_inference_prompt_cost": 0.00048205
+          },
+          "is_byok": false,
+          "prompt_tokens": 3857,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 3854,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 3877
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 9.209e-05,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "JSON_ELEMENT"
+            },
+            "result_digest": "4c1adf75895fed9c9bbfa28405b0cb5581a44e53c0e0342bd187ea0f5f7dbac2",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5b35cdcf626ce0647ad1c8c7a1d9fbcffbe7a8583873f3fe10508068e6c7863f",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004725587999999999,
+        "response_digest": "da07d6010260d76e40afad18adcf4cbb0e614a0e97aed3a60e28d007005cb4fe",
+        "response_id": "gen-1791496018-IJsLouvOHJoL2hGfJu5O",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 19,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 9.209e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 9.5e-06,
+            "upstream_inference_cost": 9.209e-05,
+            "upstream_inference_prompt_cost": 8.259e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 4207,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 350,
+            "cached_tokens": 3854,
+            "video_tokens": 0
+          },
+          "total_tokens": 4226
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 8.6465e-05,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+              "start": 643
+            },
+            "result_digest": "1fd4e1ee01d6b22949a7fa477ebb99c31534692af813bf34cadb04d630d08063",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5952e4e74ecb88de7bfcedd64b76182ab44d22d9a7bd4f1e6b8e0e3ecd7f5d65",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004833557,
+        "response_digest": "986b3adbd9f8bd9988464886588ad8472b73d749cf29de4fffabc1d25fd3ecdd",
+        "response_id": "gen-1791496022-G73eu1GpD5JTjkSeNfE8",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 37,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 8.6465e-05,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.85e-05,
+            "upstream_inference_cost": 8.6465e-05,
+            "upstream_inference_prompt_cost": 6.7965e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 4412,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 205,
+            "cached_tokens": 4204,
+            "video_tokens": 0
+          },
+          "total_tokens": 4449
+        }
+      },
+      {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0009785,
+        "evidence_digest": "ff69d28750833a418068b45861f20904131939d5bd6912d479536d73d6949fef",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "0ec9068322aa4340bbfa658e0c8abcd9e10b873bb6c1a13d5309e8684cc7abb2",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005713468999999999,
+        "response_digest": "4861dd457f39f811e2ff3914701a27874c665970c7e43c64d219bc426f65754a",
+        "response_id": "gen-1791496023-N8G8vcYO95bll4Oq08AB",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 320,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0009785,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.00016,
+            "upstream_inference_cost": 0.0009785,
+            "upstream_inference_prompt_cost": 0.0008185
+          },
+          "is_byok": false,
+          "prompt_tokens": 6561,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 6496,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 6881
+        }
+      }
+    ],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": true,
+    "solved_without_llm": false,
+    "total_cost_usd": 0.004250505,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "d5df8ee898f6c9a31ba2bb7e468a473666f1b5671cfb132765fa41569d5f6fbc",
+        "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "2a12b049fd9dfb9490e6d53b44e8eff005208f1178e9e1b00b69f578e22386b8"
+      },
+      {
+        "candidate_digest": "95e113180491c74b740ce254053ffd8687ef4123cff5ec98c5cff02fc185704b",
+        "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "54bd84e37222e7021150850f475309dc162fdf0ac5680c46fdcfeb5464361224"
+      },
+      {
+        "candidate_digest": "6daabebefcd39c951157b5c39a26a2d474a97297b167f21466ed38d5f6c8a1ca",
+        "feedback": "    [javac] /work/Gson-2-b/gson/maven-build.xml:73: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Gson-2-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Gson-2-b/gson/src/main/java/com/google/gson/Gson.java:209: error: incompatible types: TypeAdapter<BigInteger> cannot be converted to TypeAdapterFactory\n    [javac]     factories.add(TypeAdapters.BIG_INTEGER);\n    [javac]                               ^\n    [javac] Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n    [javac] 1 error\n    [javac] 4 warnings",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "cbdd3640d1108e19fb480ddf0e5d011898ec3759ef7fccf8a8c382054fa02d1a"
+      },
+      {
+        "candidate_digest": "e3c2adf774d04a1b517cc31b2d8acb9938b3ce4f74872e6fdbd45d3f96138c62",
+        "feedback": "--- com.google.gson.functional.DefaultTypeAdaptersTest::testJsonElementTypeMismatch\njava.lang.ClassCastException: Cannot cast com.google.gson.JsonPrimitive to com.google.gson.JsonObject\n\tat java.base/java.lang.Class.cast(Class.java:3606)\n\tat com.google.gson.Gson.fromJson(Gson.java:701)\n\tat com.google.gson.functional.DefaultTypeAdaptersTest.testJsonElementTypeMismatch(DefaultTypeAdaptersTest.java:623)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "gson/src/main/java/com/google/gson/Gson.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "9f95dd4b6444f496d3c995bad12013971dc28cfdbd4a2acc087509de410815dc"
+      },
+      {
+        "candidate_digest": "7dab4a08df9cc36816bff95ee1f05fc4aedff7b36866e89e6aeee4384e5f9518",
+        "feedback": null,
+        "full_suite_failures": 0,
+        "origin": "openrouter:openai/gpt-6-luna",
+        "path": "gson/src/main/java/com/google/gson/internal/bind/TypeAdapters.java",
+        "plausible": true,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "passed",
+        "verdict_digest": "482409e0ee32904c5dc5fee0f85c6f3f9ebcd3af074a90af61db9b140e0e0c9d"
+      }
+    ]
+  },
+  "result_digest": "fffd80bfa291665d3fa119c8573d2faec875829ff48d1df7bc60b37c0e31c92f",
+  "success_recorded": true
+}
