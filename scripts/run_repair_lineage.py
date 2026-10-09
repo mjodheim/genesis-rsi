@@ -35,6 +35,7 @@ from genesis.repair_lineage import (  # noqa: E402
     SEED_GENOME, Envelope, Ledger, checked_genome, exact_sign_test, genome_digest, lineage_proposer,
     promotes, training_report, write_successor, descendant_report,
 )
+from genesis.repair_causal_evidence import observation as causal_observation
 from genesis.trust_root import digest_of  # noqa: E402
 
 BENCH = ROOT / "experiment/bench"
@@ -130,7 +131,8 @@ def restore(workspace: Path, case: str, source_directory: str) -> None:
 
 
 def run_case(workspace: Path, case: str, genome: dict, envelope: Envelope, ledger: Ledger, label: str,
-             *, application_feedback: bool = False, multi_file: bool = False, branching: bool = False) -> dict:
+             *, application_feedback: bool = False, multi_file: bool = False, branching: bool = False,
+             causal_checks: bool = False) -> dict:
     evidence = prepare(workspace, case)["evidence"]
     restore(workspace, case, evidence["source_directory"])
     calls = Journal(workspace / "calls.jsonl", {"case": case, "genome": genome_digest(genome), "label": label})
@@ -138,7 +140,7 @@ def run_case(workspace: Path, case: str, genome: dict, envelope: Envelope, ledge
     arm = run_arm(
         sandbox_for(workspace), f"{case}-b", evidence,
         lineage_proposer(genome, envelope, ledger, calls, application_feedback=application_feedback,
-                         multi_file=multi_file, branching=branching),
+                         multi_file=multi_file, branching=branching, causal_checks=causal_checks),
         envelope.validations, max_rounds=genome["search"]["rounds"],
     )
     return {
@@ -148,6 +150,7 @@ def run_case(workspace: Path, case: str, genome: dict, envelope: Envelope, ledge
         "failing_tests": len(evidence["failing_tests"]),
         "suspects_from_stack_trace": evidence["suspects_from_stack_trace"],
         "seconds": round(time.monotonic() - started, 1),
+        **({"causal_baseline_signal": causal_observation(evidence, [])['observed_signal']} if causal_checks else {}),
     }
 
 

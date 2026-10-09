@@ -18,7 +18,7 @@ the container boundary, exactly as for every other proposer.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import json
 from pathlib import Path
 import threading
@@ -30,6 +30,7 @@ from genesis.openrouter_repair import READ, SEARCH, SUBMIT, _allowed, _request, 
 from genesis.repair_bench import Candidate, History, Proposer, _excerpts, apply_edits, apply_transaction
 from genesis.trust_root import digest_of
 from genesis.repair_branches import archive_prompt, extend_branch, find_parent, read_branch
+from genesis.repair_causal_evidence import EVIDENCE_SCHEMA, check as check_causal_evidence, context as causal_context, observation as causal_observation
 
 GENOME_SCHEMA = "genesis-repair-lineage-genome-v1"
 CALL_SCHEMA = "genesis-repair-lineage-call-v1"
@@ -61,6 +62,10 @@ BRANCH_SUBMIT = json.loads(json.dumps(MULTI_SUBMIT))
 _branch_item = BRANCH_SUBMIT["function"]["parameters"]["properties"]["candidates"]["items"]
 _branch_item["properties"]["parent"] = {"type": "string", "description": "Validated case-local candidate digest, or empty string for the original buggy tree."}
 _branch_item["required"].append("parent")
+CAUSAL_SUBMIT = json.loads(json.dumps(BRANCH_SUBMIT))
+_causal_item = CAUSAL_SUBMIT["function"]["parameters"]["properties"]["candidates"]["items"]
+_causal_item["properties"]["causal_evidence"] = EVIDENCE_SCHEMA
+_causal_item["required"].append("causal_evidence")
 BRANCH_READ = json.loads(json.dumps(READ))
 BRANCH_READ["function"]["parameters"]["properties"]["branch"] = {
     "type": "string", "description": "Case-local candidate digest to inspect virtual source; empty or omitted reads the original."}
@@ -258,11 +263,14 @@ def lineage_proposer(
     application_feedback: bool = False,
     multi_file: bool = False,
     branching: bool = False,
+    causal_checks: bool = False,
 ) -> Proposer:
     """The proposer a genome defines, for one case. ``calls`` receives every request made."""
     genome = checked_genome(genome)
     if branching and not multi_file:
         raise GenomeError("candidate branches require coordinated-file mode")
+    if causal_checks and not (branching and application_feedback):
+        raise GenomeError("causal checks require branches and application feedback")
     if not fits(genome, envelope):
         raise GenomeError("the genome plans more requests than the envelope allows")
     search = genome["search"]
@@ -278,8 +286,9 @@ def lineage_proposer(
             {"role": "user", "content": [{
                 "type": "text", "cache_control": {"type": "ephemeral"},
                 "text": render_case(genome, root, evidence, wanted, history,
-                                    envelope.prompt_characters - (2000 if branching else 0)) +
-                        ("\n" + archive_prompt(history) if branching else "")} ]},
+                                    envelope.prompt_characters - (2000 if branching else 0) - (4000 if causal_checks else 0)) +
+                        ("\n" + archive_prompt(history) if branching else "") +
+                        ("\n" + causal_context(evidence, history) if causal_checks else "")} ]},
         ]
         if multi_file:
             messages[0]["content"] += (
@@ -300,7 +309,13 @@ def lineage_proposer(
                 "candidate may change at most three files. A parent that still fails is a hypothesis, "
                 "not a verified repair: extend, revise or abandon it according to test feedback."
             )
-        submit_tool = BRANCH_SUBMIT if branching else MULTI_SUBMIT if multi_file else SUBMIT
+        if causal_checks:
+            messages[0]["content"] += (
+                "\nEvidence consistency mode: every candidate requires causal_evidence. Match "
+                "the host observation and assessment, cite exact lines from the selected source "
+                "tree and distinguish literal source facts from unverified causal explanations."
+            )
+        submit_tool = CAUSAL_SUBMIT if causal_checks else BRANCH_SUBMIT if branching else MULTI_SUBMIT if multi_file else SUBMIT
         read_tool = BRANCH_READ if branching else READ
         steps = search["inspection_requests"] + 1
         for step in range(steps):
@@ -318,6 +333,8 @@ def lineage_proposer(
             used += 1
             record: dict = {"schema": CALL_SCHEMA, "round": rounds, "step": step + 1, "final": final,
                             "prompt_digest": digest_of(messages), "submitted": None}
+            if causal_checks:
+                record['causal_observation'] = causal_observation(evidence, history)
             raw, cost = _send(payload, envelope, ledger, transport)
             record.update({"cost_usd": cost, "usage": {
                 key: raw.get("usage", {}).get(key) for key in ("prompt_tokens", "completion_tokens")},
@@ -358,6 +375,13 @@ def lineage_proposer(
                                         parent = find_parent(history, parent_identity)
                                         candidate = extend_branch(root, evidence, parent, files,
                                             f"lineage:{envelope.model}", described[:6000]) if parent is not None and isinstance(hypothesis, str) else None
+                                causal_record = item.get("causal_evidence") if isinstance(item, Mapping) else None
+                                causal_rejection = check_causal_evidence(root, evidence, history, parent_identity, causal_record) if causal_checks else None
+                                if causal_rejection:
+                                    candidate = None
+                                elif causal_checks and candidate is not None:
+                                    candidate = replace(candidate, provenance={**(candidate.provenance or {}),
+                                        "causal_evidence": causal_record})
                                 if candidate is None:
                                     inapplicable += 1
                                 else:
@@ -367,7 +391,7 @@ def lineage_proposer(
                                 submission_results.append({"path": paths,
                                     "hypothesis": hypothesis, "files": files,
                                     "applicable": candidate is not None,
-                                    "rejection": None if candidate is not None else
+                                    "rejection": None if candidate is not None else causal_rejection or
                                     "transaction rejected: require 1-3 distinct existing production files and unique changed edits" +
                                     ("; branch parent must be a graded archive digest; search text must match the selected virtual source" if branching else "")})
                                 if branching:
@@ -375,6 +399,10 @@ def lineage_proposer(
                                         "candidate_digest": candidate.digest if candidate else None,
                                         "complete_paths": [path for path, _ in candidate.files] if candidate else [],
                                         "branch_depth": (candidate.provenance or {}).get("branch_depth", 0) if candidate else None})
+                                if causal_checks:
+                                    submission_results[-1].update({"causal_evidence": causal_record,
+                                        "causal_rejection": causal_rejection,
+                                        "causal_checks_passed": causal_rejection is None})
                                 continue
                             path = str(item["path"])
                             edits = [(edit["search"], edit["replace"]) for edit in item["edits"]]

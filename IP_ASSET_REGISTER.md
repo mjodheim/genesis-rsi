@@ -294,3 +294,8 @@ reserved-task qualification is claimed by the exposed-development pilot.
 development comparison follow PUBLIC_AGPL_COMMERCIAL_OPTION. Pre-review is in
 docs/IP_REVIEWS/REPAIR_BRANCH_STRATEGY_REVIEW_2026-10-09.md. Anthony directs research;
 Codex assists. This is a strategy intervention, not self-learned improvement.
+
+9 October 2026 — opt-in literal causal-evidence consistency checks and prediction
+receipts follow PUBLIC_AGPL_COMMERCIAL_OPTION. Pre-review precedes implementation
+in docs/IP_REVIEWS/REPAIR_CAUSAL_EVIDENCE_REVIEW_2026-10-09.md. Anthony directs work;
+Codex assists authored development. No semantic proof or general RSI is claimed.
