@@ -541,3 +541,14 @@ partial serialization repairs that expose different blockers, the one-file candi
 limit and an existing settings-driven serialization mechanism. These observations
 are hypotheses for future development, not a verified solution. See
 [REPAIR_FEEDBACK_TRIAL_2026-10-09.md](REPAIR_FEEDBACK_TRIAL_2026-10-09.md).
+
+## Coordinated-file pilot — 9 October 2026
+
+DEV_REPAIR_TRANSACTIONS1: parent 4/6, child 4/6 on three exposed Java bugs
+with two repetitions, USD 0.049337330 for 42 calls. All twelve parsed child
+proposals modify one file, so the multi-file path was not exercised. One
+child argument-parsing failure is retained and its raw arguments are unavailable.
+Exception transitions include a return to a previous blocker after dropping
+a partial edit; branch-based cumulative repair is a prospective hypothesis.
+No promotion or reserved-case consumption; canonical memory stays at 292 events.
+See [REPAIR_TRANSACTIONS_2026-10-09.md](REPAIR_TRANSACTIONS_2026-10-09.md).
