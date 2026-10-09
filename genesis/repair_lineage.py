@@ -237,6 +237,7 @@ def _send(payload: dict, envelope: Envelope, ledger: Ledger, transport: Callable
 
 def lineage_proposer(
     genome: Mapping, envelope: Envelope, ledger: Ledger, calls: list[dict], *, transport: Callable | None = None,
+    application_feedback: bool = False,
 ) -> Proposer:
     """The proposer a genome defines, for one case. ``calls`` receives every request made."""
     genome = checked_genome(genome)
@@ -289,6 +290,7 @@ def lineage_proposer(
                 messages.append({key: value for key, value in message.items()
                                  if key in ("role", "content", "tool_calls", "reasoning_details")})
                 inspections, submitted, inapplicable = [], None, 0
+                submission_results = []
                 for call in tool_calls:
                     name = call["function"]["name"]
                     arguments = json.loads(call["function"]["arguments"])
@@ -301,16 +303,41 @@ def lineage_proposer(
                             described = f"Hypothesis: {item['hypothesis']}\nFile: {path}\n" + "\n".join(
                                 f"- replaced:\n{search_text}\n  with:\n{replace}" for search_text, replace in edits)
                             candidate = None
+                            rejection = "path outside production sources"
                             if path.startswith(evidence["source_directory"].rstrip("/") + "/"):
                                 try:
                                     _allowed(root, path, evidence)
                                     candidate = apply_edits(root, path, edits, f"lineage:{envelope.model}", described[:2500])
-                                except ValueError:
+                                    if application_feedback and candidate is None:
+                                        text = (root / path).read_text(encoding="utf-8", errors="replace")
+                                        rejection = "empty or unchanged edit sequence"
+                                        for index, (old, new) in enumerate(edits, 1):
+                                            matches = text.count(old) if old else 0
+                                            if not old or old == new or matches != 1:
+                                                rejection = f"edit {index}: search matches={matches}; nonempty unique search and changed replacement required"
+                                                break
+                                            text = text.replace(old, new)
+                                except (ValueError, OSError) as error:
                                     candidate = None
+                                    rejection = "production path refused: " + type(error).__name__
                             if candidate is None:
                                 inapplicable += 1
                             else:
                                 candidates.append(candidate)
+                            if application_feedback:
+                                submission_results.append({"path": path, "hypothesis": item["hypothesis"],
+                                    "edits": [{"search": a, "replace": b} for a, b in edits],
+                                    "applicable": candidate is not None,
+                                    "rejection": None if candidate is not None else rejection})
+                        if application_feedback:
+                            messages.append({"role": "tool", "tool_call_id": call["id"],
+                                "content": json.dumps({"applicable": len(candidates),
+                                    "inapplicable": inapplicable,
+                                    "results": [{key: item[key] for key in ("path", "applicable", "rejection")}
+                                                for item in submission_results],
+                                    "instruction": "Rejected edits must change a permitted production file, with each "
+                                    "nonempty search occurring exactly once and a different replacement. "
+                                    "Read the actual source and correct the edits within the remaining requests."})})
                         continue
                     try:
                         if final:
@@ -320,15 +347,21 @@ def lineage_proposer(
                         result = "Inspection refused: " + type(error).__name__
                     inspections.append({"tool": name, "arguments": {
                         key: str(value)[:120] for key, value in arguments.items()}, "characters": len(result)})
+                    if application_feedback:
+                        inspections[-1]["output_excerpt"] = result[:2000]
                     messages.append({"role": "tool", "tool_call_id": call["id"], "content": result})
                 record.update({"inspections": inspections, "submitted": submitted, "inapplicable": inapplicable,
                                "applicable": len(candidates)})
+                if application_feedback:
+                    record["submission_results"] = submission_results
             except (ValueError, KeyError, TypeError, IndexError) as error:
                 record["malformed"] = f"{type(error).__name__}: {error}"[:160]
                 calls.append(record)
                 return []
             calls.append(record)
             if record["submitted"] is not None:
+                if application_feedback and record["submitted"] and not candidates and not final:
+                    continue
                 return candidates
         return []
 
@@ -395,7 +428,7 @@ def describe_envelope(envelope: Envelope) -> str:
     )
 
 
-def training_report(evaluation: Mapping, training_cases: Sequence[str]) -> str:
+def training_report(evaluation: Mapping, training_cases: Sequence[str], *, detailed: bool = False) -> str:
     """What a genome's own run on the training cases showed, case names withheld."""
     lines, solved = [], 0
     stages: dict[str, int] = {}
@@ -413,10 +446,15 @@ def training_report(evaluation: Mapping, training_cases: Sequence[str]) -> str:
             f"not applicable {sum(call.get('inapplicable') or 0 for call in calls)}, "
             f"validated {case['validated']}")
         for call in calls:
+            if detailed:
+                for result in call.get("submission_results", []):
+                    lines.append("- submitted edit: " + json.dumps(result, ensure_ascii=False)[:3000])
             if call.get("malformed"):
                 lines.append(f"- request {call['step']}: unusable answer ({call['malformed']})")
             for look in call.get("inspections") or []:
                 lines.append(f"- {look['tool']}({json.dumps(look['arguments'], ensure_ascii=False)})")
+                if detailed and look.get("output_excerpt"):
+                    lines.append("  observed output: " + look["output_excerpt"])
         for verdict in case["verdicts"]:
             stages[verdict["stopped_at"]] = stages.get(verdict["stopped_at"], 0) + 1
             feedback = (verdict.get("feedback") or "").strip().replace("\n", " | ")[:260]
@@ -428,6 +466,28 @@ def training_report(evaluation: Mapping, training_cases: Sequence[str]) -> str:
         + "."
     )
     return head + "\n\n" + "\n".join(lines)
+
+
+def descendant_report(parent_report: str, attempts: Sequence[Mapping], limit: int = 24_000) -> str:
+    """Bounded cumulative training-only history; callers supply no selection outcomes.
+
+    Retain one summary per attempted generation, including invalid successors, then
+    distribute the remaining character budget equally across recent detailed reports.
+    An archive entry does not authorise deployment or alter promotion criteria.
+    """
+    if limit < 1000:
+        raise ValueError("report limit must be at least 1000 characters")
+    recent = list(attempts[-8:])
+    head = parent_report[:limit // 2] + "\n\n## Previous descendant attempts (training only)\n"
+    if not recent:
+        return head[:limit]
+    summaries = [json.dumps({key: attempt.get(key) for key in
+                            ("generation", "genome_digest", "rationale", "status")},
+                           ensure_ascii=False)[:500] for attempt in recent]
+    available = max(0, limit - len(head) - sum(len(s) + 2 for s in summaries))
+    share = max(0, available // len(recent) - 2)
+    return (head + "\n\n".join(summary + "\n" + str(attempt.get("training_report", ""))[:share]
+                                   for summary, attempt in zip(summaries, recent)))[:limit]
 
 
 def write_successor(

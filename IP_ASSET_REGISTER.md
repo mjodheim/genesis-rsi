@@ -262,3 +262,10 @@ PUBLIC_AGPL_COMMERCIAL_OPTION under continued RSI authorisation. Review precedes
 implementation in docs/IP_REVIEWS/REPAIR_LOCAL_REVISION_REVIEW_2026-10-09.md.
 OpenAI Codex assists; external-model origin, exposed-development scope and
 human-authored revision constraints remain explicit.
+
+9 October 2026 — bounded opt-in repair application feedback and cumulative
+training-only descendant reports follow PUBLIC_AGPL_COMMERCIAL_OPTION under
+continued RSI authorisation. Review precedes implementation in
+docs/IP_REVIEWS/REPAIR_FEEDBACK_REVIEW_2026-10-09.md. OpenAI Codex provides
+substantial assistance; authored infrastructure and offline verification are not
+claims of autonomous invention or general RSI. Historical results remain unchanged.

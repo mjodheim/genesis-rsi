@@ -33,7 +33,7 @@ from genesis.defects4j_sandbox import Defects4JSandbox, SandboxLimits  # noqa: E
 from genesis.repair_bench import RepairBenchError, collect_evidence, next_held_out, run_arm  # noqa: E402
 from genesis.repair_lineage import (  # noqa: E402
     SEED_GENOME, Envelope, Ledger, checked_genome, exact_sign_test, genome_digest, lineage_proposer,
-    promotes, training_report, write_successor,
+    promotes, training_report, write_successor, descendant_report,
 )
 from genesis.trust_root import digest_of  # noqa: E402
 
@@ -129,13 +129,15 @@ def restore(workspace: Path, case: str, source_directory: str) -> None:
     )
 
 
-def run_case(workspace: Path, case: str, genome: dict, envelope: Envelope, ledger: Ledger, label: str) -> dict:
+def run_case(workspace: Path, case: str, genome: dict, envelope: Envelope, ledger: Ledger, label: str,
+             *, application_feedback: bool = False) -> dict:
     evidence = prepare(workspace, case)["evidence"]
     restore(workspace, case, evidence["source_directory"])
     calls = Journal(workspace / "calls.jsonl", {"case": case, "genome": genome_digest(genome), "label": label})
     started = time.monotonic()
     arm = run_arm(
-        sandbox_for(workspace), f"{case}-b", evidence, lineage_proposer(genome, envelope, ledger, calls),
+        sandbox_for(workspace), f"{case}-b", evidence,
+        lineage_proposer(genome, envelope, ledger, calls, application_feedback=application_feedback),
         envelope.validations, max_rounds=genome["search"]["rounds"],
     )
     return {
@@ -149,17 +151,18 @@ def run_case(workspace: Path, case: str, genome: dict, envelope: Envelope, ledge
 
 
 def evaluate(workspace: Path, genome: dict, cases: list[str], envelope: Envelope, ledger: Ledger, label: str,
-             parallel: int) -> dict:
+             parallel: int, *, application_feedback: bool = False) -> dict:
     """One genome on every case. A finished case is kept; an interrupted run resumes."""
     digest = genome_digest(genome)
-    folder = workspace / "runs" / f"{label}-{digest[:12]}"
+    folder = workspace / "runs" / f"{label}-{digest[:12]}{'-feedback' if application_feedback else ''}"
     folder.mkdir(parents=True, exist_ok=True)
 
     def one(case: str) -> dict:
         target = folder / f"{case}.json"
         if target.exists():
             return json.loads(target.read_text(encoding="utf-8"))
-        outcome = run_case(workspace, case, genome, envelope, ledger, label)
+        outcome = run_case(workspace, case, genome, envelope, ledger, label,
+                           application_feedback=application_feedback)
         target.write_text(json.dumps(outcome, sort_keys=True), encoding="utf-8")
         print(f"  {label} {case}: {'solved' if outcome['solved'] else 'unsolved'} "
               f"({outcome['validated']} validated, {outcome['seconds']:.0f}s, spent {ledger.spent:.3f})", flush=True)
@@ -180,11 +183,13 @@ def evaluate(workspace: Path, genome: dict, cases: list[str], envelope: Envelope
 
 
 def evaluate_runs(workspace: Path, genome: dict, cases: list[str], envelope: Envelope, ledger: Ledger, label: str,
-                  parallel: int, replicates: int) -> dict:
+                  parallel: int, replicates: int, *, application_feedback: bool = False) -> dict:
     """``replicates`` independent evaluations of one genome, merged; a case run is named ``case#n``."""
     if replicates == 1:
-        return evaluate(workspace, genome, cases, envelope, ledger, label, parallel)
-    runs = [evaluate(workspace, genome, cases, envelope, ledger, f"{label}-r{number}", parallel)
+        return evaluate(workspace, genome, cases, envelope, ledger, label, parallel,
+                        application_feedback=application_feedback)
+    runs = [evaluate(workspace, genome, cases, envelope, ledger, f"{label}-r{number}", parallel,
+                     application_feedback=application_feedback)
             for number in range(1, replicates + 1)]
     body = {
         "schema": "genesis-repair-lineage-evaluation-v1", "label": label, "genome_digest": runs[0]["genome_digest"],
@@ -227,6 +232,8 @@ def successor(workspace: Path, tag: str, parent: dict, report: str, envelope: En
 
 
 def plan(arguments: argparse.Namespace) -> int:
+    if arguments.cumulative_feedback and not arguments.no_meta:
+        raise SystemExit("cumulative feedback currently requires --no-meta")
     folder = BENCH / arguments.name
     if (folder / "PLAN.json").exists():
         raise SystemExit("PLAN.json already exists")
@@ -267,6 +274,7 @@ def plan(arguments: argparse.Namespace) -> int:
         "separate_environment": arguments.separate_environment,
         "replicates": arguments.replicates, "promotion_margin": arguments.margin,
         "meta_comparison": not arguments.no_meta,
+        "cumulative_feedback": arguments.cumulative_feedback,
         "training_cases": usable[0::2][:arguments.training], "selection_cases": usable[1::2][:arguments.selection],
         "skipped_unusable": skipped,
         "seed_genome": seed, "seed_genome_digest": genome_digest(seed),
@@ -274,7 +282,9 @@ def plan(arguments: argparse.Namespace) -> int:
         "spending_ceiling_usd": arguments.ceiling,
         "successor_rule": "the current genome's improver text, its own results on the training cases (names "
                           "withheld; first replicate) and the envelope are given to the same model, which writes "
-                          "one successor",
+                          "one successor" + ("; bounded reports of the last eight attempted descendants, "
+                          "including rejected variants, are also supplied; selection outcomes are excluded"
+                          if arguments.cumulative_feedback else ""),
         "promotion_rule": "every genome is evaluated `replicates` times on every development case; a successor "
                           "replaces its parent when it repairs at least `promotion_margin` more case runs in total "
                           "and no fewer selection case runs; the parent's recorded evaluation is not rerun",
@@ -315,15 +325,21 @@ def evolve(arguments: argparse.Namespace) -> int:
     training_all = run_names(recorded["training_cases"], replicates)
     selection = run_names(recorded["selection_cases"], replicates)
     current = recorded["seed_genome"]
+    feedback = recorded.get("cumulative_feedback", False)
+    attempts = []
     current_eval = evaluate_runs(arguments.workspace, current, cases, envelope, ledger, "gen0", arguments.parallel,
-                                 replicates)
+                                 replicates, application_feedback=feedback)
     seal(folder / "GEN0_EVALUATION.json", {k: v for k, v in current_eval.items() if k != "evaluation_digest"},
          "evaluation_digest")
     print(f"gen0 solved {current_eval['solved']}/{len(cases) * replicates}", flush=True)
     generations, current_generation = [], 0
     for number in range(1, recorded["generations"] + 1):
-        written = successor(arguments.workspace, f"gen{number}", current,
-                            training_report(current_eval, training), envelope, ledger)
+        report = training_report(current_eval, training, detailed=feedback)
+        if feedback:
+            report = descendant_report(report, attempts)
+        written = successor(arguments.workspace, f"gen{number}", current, report, envelope, ledger)
+        attempt = {"generation": number, "rationale": written["rationale"],
+                   "status": "no_valid_successor" if written["genome"] is None else "unevaluated"}
         entry = {"generation": number, "parent_generation": current_generation,
                  "parent_digest": genome_digest(current), "rationale": written["rationale"],
                  "successor_calls": written["calls"], "genome": written["genome"]}
@@ -334,10 +350,15 @@ def evolve(arguments: argparse.Namespace) -> int:
         else:
             child = written["genome"]
             child_eval = evaluate_runs(arguments.workspace, child, cases, envelope, ledger, f"gen{number}",
-                                       arguments.parallel, replicates)
+                                       arguments.parallel, replicates, application_feedback=feedback)
             seal(folder / f"GEN{number}_EVALUATION.json",
                  {k: v for k, v in child_eval.items() if k != "evaluation_digest"}, "evaluation_digest")
             promoted = promotes(child_eval, current_eval, selection, margin)
+            attempt.update({"status": "evaluated", "genome_digest": genome_digest(child),
+                            "training_report": "Configuration changes: " + json.dumps({
+                                key: value for key, value in child.items() if value != current.get(key)
+                            }, ensure_ascii=False)[:3000] + "\n" +
+                            training_report(child_eval, training, detailed=feedback)})
             entry.update({
                 "genome_digest": genome_digest(child), "decision": "promoted" if promoted else "rejected",
                 "child": {"solved": child_eval["solved"], "training": solved_on(child_eval, training_all),
@@ -347,11 +368,13 @@ def evolve(arguments: argparse.Namespace) -> int:
             })
             if promoted:
                 current, current_eval, current_generation = child, child_eval, number
+        attempts.append(attempt)
         generations.append(entry)
         print(f"gen{number}: {entry['decision']} {entry.get('child')} vs parent {entry.get('parent')}", flush=True)
     body = {
         "schema": "genesis-repair-lineage-v1", "name": recorded["name"], "plan_digest": recorded["plan_digest"],
         "generations": generations, "final_generation": current_generation,
+        "training_attempts": attempts if feedback else [],
         "final_genome": current, "final_genome_digest": genome_digest(current),
         "seed_genome_digest": recorded["seed_genome_digest"],
         "improver_text_changed": current["improver"] != recorded["seed_genome"]["improver"],
@@ -439,6 +462,7 @@ def freeze(arguments: argparse.Namespace) -> int:
         "plan_digest": recorded["plan_digest"], "lineage_digest": lineage["lineage_digest"],
         "envelope": recorded["envelope"], "spending_ceiling_usd": arguments.ceiling,
         "separate_environment": recorded.get("separate_environment", False),
+        "cumulative_feedback": recorded.get("cumulative_feedback", False),
         "arm_order": "seed first on even-numbered cases, final first on odd-numbered ones",
         "primary_comparison": "cases repaired by final versus by seed among usable cases; exact one-sided sign "
                               "test on the cases only one arm repairs",
@@ -490,7 +514,8 @@ def heldout(arguments: argparse.Namespace) -> int:
             outcome = {"case": case, "usable": False, "reason": prepared["reason"], "arms": {}}
         else:
             order = ("seed", "final") if index % 2 == 0 else ("final", "seed")
-            arms = {arm: run_case(arguments.workspace, case, genomes[arm], envelope, ledger, f"trial-{arm}")
+            arms = {arm: run_case(arguments.workspace, case, genomes[arm], envelope, ledger, f"trial-{arm}",
+                                 application_feedback=prereg.get("cumulative_feedback", False))
                     for arm in order}
             outcome = {"case": case, "usable": True, "order": list(order), "arms": arms}
         saved.write_text(json.dumps(outcome, sort_keys=True), encoding="utf-8")
@@ -549,6 +574,8 @@ def main() -> int:
             command.add_argument("--skip-exposed-projects", action="store_true")
             command.add_argument("--separate-environment", action="store_true")
             command.add_argument("--no-meta", action="store_true")
+            command.add_argument("--cumulative-feedback", action="store_true",
+                                 help="experimental edit recovery and training history; requires --no-meta")
         if name in ("freeze", "heldout"):
             command.add_argument("--trial", required=True)
         if name == "freeze":

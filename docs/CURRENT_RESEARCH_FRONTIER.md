@@ -522,3 +522,11 @@ but fail triggers; parent also exhibits an inapplicable-only early stop. The nex
 apparatus experiment is bounded application-failure feedback; repair-language and
 semantic hypothesis coverage remain substantive deficits. Canonical memory remains
 292 events; no held-out consumed. See REPAIR_LOCAL_REVISION_2026-10-09.md.
+
+## Repair feedback development — 9 October 2026
+
+Opt-in edit-application recovery and bounded training-only history of rejected
+descendants are implemented. Thirty focused tests pass, including an offline
+two-generation loop. No live API call, fresh real-bug comparison or promotion
+has occurred. This remains authored instrument development; see
+[REPAIR_FEEDBACK_2026-10-09.md](REPAIR_FEEDBACK_2026-10-09.md).
