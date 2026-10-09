@@ -1,0 +1,243 @@
+{
+  "canonical_memory_events": 292,
+  "diagnosis_digest": "787b69579fa9edd26c684da3a489da869a0593b7f49c50c63a3bd6ec76121b3e",
+  "held_out_consumed": false,
+  "interpretation": "Branch use reproduced in both child repetitions but no repaired-case gain, with greater child API cost. Authored playbook intervention, not autonomous learning.",
+  "metrics": {
+    "child": {
+      "applicable_extensions": 3,
+      "cost_usd": 0.03178575,
+      "inapplicable": 0,
+      "malformed_calls": 0,
+      "maximum_branch_depth": 2,
+      "requests": 22,
+      "seconds": 603.7,
+      "solved": 4,
+      "validated": 12,
+      "virtual_reads": 2
+    },
+    "parent": {
+      "applicable_extensions": 0,
+      "cost_usd": 0.020147125000000002,
+      "inapplicable": 0,
+      "malformed_calls": 1,
+      "maximum_branch_depth": 0,
+      "requests": 16,
+      "seconds": 345.4,
+      "solved": 4,
+      "validated": 7,
+      "virtual_reads": 0
+    }
+  },
+  "next_hypothesis": "Require concise structured observed failure, source citation, predicted transition and contradiction check before selecting an extension; measure causal evidence quality rather than branch count.",
+  "policy_promoted": false,
+  "remaining_failure": "Child repetition two changed hypotheses despite unchanged ReturnsDeepStubs$2 exception; generic metadata was repeatedly described as nonserializable although the original declaration implements Serializable. Rationale is not reliably grounded in inspected source and verdicts.",
+  "result_digest": "8b9bf8c4338f93161fcc3caa39579641cfe6c408f5f5aa36f5ad3bab4c99f0c1",
+  "serialization_traces": [
+    {
+      "arm": "parent",
+      "case": "Mockito-23",
+      "proposals": [
+        {
+          "candidate": "4c712e8c228d4b71c3bf6c9349912101d8168da5f770c709e451e6b7671bddd1",
+          "hypothesis": "The anonymous ReturnsDeepStubs subclass created in returnsDeepStubsAnswerUsing captures the non-serializable GenericMetadataSupport parameter (ReturnsDeepStubs$2), so serializing a deep-stub mock fails. Replace the anonymous class with a static nested subclass that holds the metadata in a transient field and falls back to the default lookup when it is null after deserialization.",
+          "parent": "",
+          "round": 1
+        },
+        {
+          "candidate": "315cbfb9a15e84a122240b436e979b500c538fda96452a9d710707c2e5535c36",
+          "hypothesis": "Two non-serializable anonymous classes are stored in the serialized mock: the default answer ReturnsDeepStubs$2 captures the non-serializable GenericMetadataSupport, and the stubbing Answer created in recordDeepStubMock ($1) does not implement Serializable. Replace both with named serializable classes; the metadata one keeps the metadata in a transient field and falls back to the default lookup after deserialization.",
+          "parent": "",
+          "round": 2
+        }
+      ],
+      "replicate": 1,
+      "rounds": 3,
+      "verdicts": [
+        {
+          "candidate": "4c712e8c228d4b71c3bf6c9349912101d8168da5f770c709e451e6b7671bddd1",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$1",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "315cbfb9a15e84a122240b436e979b500c538fda96452a9d710707c2e5535c36",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMethod",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    },
+    {
+      "arm": "child",
+      "case": "Mockito-23",
+      "proposals": [
+        {
+          "candidate": "5f3260ae95a51d1b1854b4fad801c3d5f6e37bb63e78635f216a63965cfc5463",
+          "hypothesis": "The anonymous ReturnsDeepStubs subclass created in returnsDeepStubsAnswerUsing captures the non-serializable GenericMetadataSupport local (and the enclosing instance), so serializing a deep-stub mock fails with NotSerializableException on ReturnsDeepStubs$2. Removing the capture by returning a plain ReturnsDeepStubs, which falls back to inferring the metadata from the mock's type to mock, should let the answer serialize. Refuted if the test still throws NotSerializableException for ReturnsDeepStubs$2 or another captured field.",
+          "parent": "",
+          "round": 1
+        },
+        {
+          "candidate": "34518af2d74c8351a9b535b033d3d3154b439b606299b64b97381a19798c6e5b",
+          "hypothesis": "Observation: after the previous attempt removed the capture in returnsDeepStubsAnswerUsing, the failure moved to ReturnsDeepStubs$1, the anonymous Answer created in recordDeepStubMock, which does not implement Serializable and is stored as the mock's answer container entry. Causal explanation: that anonymous Answer is serialized along with the deep-stub mock, so it must be serializable. Fix: replace it with a named static nested Answer that implements Serializable and holds the mock. Parent is the attempt-1 branch, so only this delta is new. Refuted if the test still throws NotSerializableException for an anonymous ReturnsDeepStubs$N class or another non-serializable class.",
+          "parent": "5f3260ae95a51d1b1854b4fad801c3d5f6e37bb63e78635f216a63965cfc5463",
+          "round": 2
+        },
+        {
+          "candidate": "0ced03fa02e2d950b5fd4dfec50e5f9adc12cc2ec7142f5cd66aa1f148531ffc",
+          "hypothesis": "Observation: after attempt 2, the failure moved to org.mockito.internal.creation.DelegatingMethod, which is non-serializable and is reached through an invocation stored in a deep-stub mock's container. Causal explanation: the nested deep-stub mocks are created with withSettings() in withSettingsUsing, so they are not marked serializable, and their invocation handler therefore keeps the non-serializable DelegatingMethod instead of a serializable method wrapper. Fix: mark the nested deep-stub mock settings as serializable so they are created with the serializable method representation. Parent is the attempt-2 branch, so only this delta is new. Refuted if the test still throws NotSerializableException for DelegatingMethod or any other class after this change.",
+          "parent": "34518af2d74c8351a9b535b033d3d3154b439b606299b64b97381a19798c6e5b",
+          "round": 3
+        },
+        {
+          "candidate": "3ec7811d62896802692dc026deec63b52f36cfb4f6fecabe869ca7a41362a22e",
+          "hypothesis": "Observation: the serialization failures walk through ReturnsDeepStubs fields and anonymous classes: the anonymous ReturnsDeepStubs subclass captures a non-serializable GenericMetadataSupport, the anonymous Answer in recordDeepStubMock is not Serializable, and the ReturnsDeepStubs.mockitoCore field holds a MockitoCore whose MockUtil is not serializable. Causal explanation: all three must be removed from the serialized object graph together. Fix: return a plain ReturnsDeepStubs (type inferred from the mock), replace the anonymous Answer with a static Serializable ReturnsMockAnswer holding the mock, create MockitoCore on demand instead of storing it, and mark nested deep-stub settings serializable. Parent is empty, so this is a complete candidate from the original tree. Refuted if the test still throws NotSerializableException for any class in ReturnsDeepStubs or MockitoCore.",
+          "parent": "",
+          "round": 4
+        }
+      ],
+      "replicate": 1,
+      "rounds": 4,
+      "verdicts": [
+        {
+          "candidate": "5f3260ae95a51d1b1854b4fad801c3d5f6e37bb63e78635f216a63965cfc5463",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$1",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "34518af2d74c8351a9b535b033d3d3154b439b606299b64b97381a19798c6e5b",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMethod",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "0ced03fa02e2d950b5fd4dfec50e5f9adc12cc2ec7142f5cd66aa1f148531ffc",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.util.MockUtil",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "3ec7811d62896802692dc026deec63b52f36cfb4f6fecabe869ca7a41362a22e",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.util.MockUtil",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    },
+    {
+      "arm": "parent",
+      "case": "Mockito-23",
+      "proposals": [
+        {
+          "candidate": "2418c4d94f1d2e14c0153a3535f2b43a835576b5954f685c62b2ff94017a41fe",
+          "hypothesis": "The stubbing answer registered in recordDeepStubMock is an anonymous non-Serializable Answer (ReturnsDeepStubs$2) that captures the deep-stub mock; when the mock is serialized, its stubbings are serialized and fail. Replace it with a named static Serializable Answer class so the stubbing can be serialized.",
+          "parent": "",
+          "round": 1
+        }
+      ],
+      "replicate": 2,
+      "rounds": 2,
+      "verdicts": [
+        {
+          "candidate": "2418c4d94f1d2e14c0153a3535f2b43a835576b5954f685c62b2ff94017a41fe",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMethod",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    },
+    {
+      "arm": "child",
+      "case": "Mockito-23",
+      "proposals": [
+        {
+          "candidate": "75f32b68256a0a6bda394a9681fc11a84cb9033948cd67300812c2359cab608a",
+          "hypothesis": "The deep-stub answer is an anonymous inner class (ReturnsDeepStubs$2) that captures the non-serializable GenericMetadataSupport local 'returnTypeGenericMetadata', so serialization fails. Replacing it with a static nested subclass that stores only the Class<?> to mock (Serializable) and rebuilds the metadata via GenericMetadataSupport.inferFrom should let the mock serialize. Parent is the original tree. Refuted if the test still throws NotSerializableException naming a GenericMetadataSupport-related or other non-serializable class, or if the rebuilt answer breaks generic resolution in other deep-stub tests.",
+          "parent": "",
+          "round": 1
+        },
+        {
+          "candidate": "7beee97bb3a20f931bf4beed1938bd95cc31a3819847793cfbef3fd8d9c7a3fd",
+          "hypothesis": "Observation: after the prior attempt removed the anonymous ReturnsDeepStubs$2 from the active deep-stub path, the serialization failure may come from the non-serializable MockitoCore instance held in the ReturnsDeepStubs field, which is serialized along with the answer. Causal explanation: the answer object graph still contains a non-Serializable MockitoCore. Fix: make the field transient and lazily recreate it. Refuted if the test still throws NotSerializableException naming a class other than MockitoCore, or if MockitoCore is in fact Serializable and the failure is elsewhere.",
+          "parent": "75f32b68256a0a6bda394a9681fc11a84cb9033948cd67300812c2359cab608a",
+          "round": 2
+        },
+        {
+          "candidate": "5f3260ae95a51d1b1854b4fad801c3d5f6e37bb63e78635f216a63965cfc5463",
+          "hypothesis": "Observation: the failing object is the anonymous ReturnsDeepStubs$2 created in returnsDeepStubsAnswerUsing, which captures the non-serializable GenericMetadataSupport local returnTypeGenericMetadata (and this$0). Causal explanation: serializing the deep-stub mock's default answer drags in the captured metadata. Fix: stop capturing the metadata; return a plain ReturnsDeepStubs whose actualParameterizedType uses the inherited default (which infers the type from the mock's CreationSettings), so the answer holds no non-serializable captured state. Parent is the original tree. Refuted if the test still throws NotSerializableException naming ReturnsDeepStubs$2 or any class, or if other deep-stub generic tests fail because nested generic resolution is lost.",
+          "parent": "",
+          "round": 3
+        },
+        {
+          "candidate": "1648aa0ef64901cea914c93aaa793e4cd2617f51419e1be8c8c3b1d196395866",
+          "hypothesis": "Observation: the failing serialization path runs through the anonymous ReturnsDeepStubs$2 created in returnsDeepStubsAnswerUsing, and the earlier attempts that only replaced that anonymous class still failed. Causal explanation: the default answer is serialized with a non-serializable MockitoCore field and a captured GenericMetadataSupport. Fix: store only the raw Class<?> in a static serializable nested answer, and make mockitoCore transient with lazy re-creation. Parent is the original tree, not an earlier attempt. Refuted if the test still throws NotSerializableException naming ReturnsDeepStubs$2, a GenericMetadataSupport, or MockitoCore.",
+          "parent": "",
+          "round": 4
+        }
+      ],
+      "replicate": 2,
+      "rounds": 4,
+      "verdicts": [
+        {
+          "candidate": "75f32b68256a0a6bda394a9681fc11a84cb9033948cd67300812c2359cab608a",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "7beee97bb3a20f931bf4beed1938bd95cc31a3819847793cfbef3fd8d9c7a3fd",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "5f3260ae95a51d1b1854b4fad801c3d5f6e37bb63e78635f216a63965cfc5463",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$1",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "1648aa0ef64901cea914c93aaa793e4cd2617f51419e1be8c8c3b1d196395866",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$1",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    }
+  ]
+}

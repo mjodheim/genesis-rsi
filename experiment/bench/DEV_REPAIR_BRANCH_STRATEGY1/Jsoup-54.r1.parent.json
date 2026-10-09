@@ -1,0 +1,70 @@
+{
+  "arm_digest": "19d7403672f092228a021b94c4b32afb63908008ca7b6fd78a9c45c663f408a2",
+  "calls": [
+    {
+      "applicable": 1,
+      "cached_tokens": 0,
+      "cost_usd": 0.001243025,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "52cd768af6352fbb684aad8f2691c179ad460b532f313f071b57adb49760c6c5",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [
+        {
+          "applicable": true,
+          "branch_depth": 0,
+          "candidate_digest": "75d94b9cb635794b899c71cd4b73c1f57e0d30845221d83634a694242eba7981",
+          "complete_paths": [
+            "src/main/java/org/jsoup/helper/W3CDom.java"
+          ],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "if (key.length() > 0) el.setAttribute(key, attribute.getValue());",
+                  "search": "el.setAttribute(key, attribute.getValue());"
+                }
+              ],
+              "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+            }
+          ],
+          "hypothesis": "Attribute keys that contain only invalid XML name characters (e.g. the key '\"') are sanitized to an empty string, and el.setAttribute(\"\", ...) throws INVALID_CHARACTER_ERR. Skip attributes whose sanitized key is empty.",
+          "parent": "",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 721,
+        "prompt_tokens": 7061
+      }
+    }
+  ],
+  "case": "Jsoup-54",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/main/java/org/jsoup/helper/W3CDom.java\n+++ b/src/main/java/org/jsoup/helper/W3CDom.java\n@@ -123,7 +123,7 @@\n             for (Attribute attribute : source.attributes()) {\n                 // valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]\n                 String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");\n-                    el.setAttribute(key, attribute.getValue());\n+                    if (key.length() > 0) el.setAttribute(key, attribute.getValue());\n             }\n         }\n \n",
+  "plausible_squashed_sha256": "ff73dbd6cc03a359e33cd632d05e63997706e3c5bbc9d7b97418cc5537678705",
+  "rounds": 1,
+  "seconds": 13.9,
+  "solved": true,
+  "suspects_from_stack_trace": true,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "75d94b9cb635794b899c71cd4b73c1f57e0d30845221d83634a694242eba7981",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "cc9a20769d84b16a747ddccabf827a691eecf9209586c4e1355cc49f22a1912c"
+    }
+  ]
+}

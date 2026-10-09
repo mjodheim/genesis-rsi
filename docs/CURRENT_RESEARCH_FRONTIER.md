@@ -568,3 +568,13 @@ One hundred focused tests pass. No promotion, reserved-case use or canonical
 memory mutation (292 events). Common four-round allocation is manually authored
 and differs from historical pilots. See
 [REPAIR_BRANCHES_2026-10-09.md](REPAIR_BRANCHES_2026-10-09.md).
+
+## Branch-selection strategy — 9 October 2026
+
+DEV_REPAIR_BRANCH_STRATEGY1: both arms 4/6, 38 calls costing USD 0.051932875.
+The authored child playbook exercised three extensions and two virtual reads,
+with branch use in both hard-case repetitions and depth two. Child cost increased
+without a repaired-case gain. Contradictions between observed exceptions and
+proposed causal explanations remain. No promotion or canonical memory update;
+102 focused tests pass. See
+[REPAIR_BRANCH_STRATEGY_2026-10-09.md](REPAIR_BRANCH_STRATEGY_2026-10-09.md).
