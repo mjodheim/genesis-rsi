@@ -269,3 +269,9 @@ continued RSI authorisation. Review precedes implementation in
 docs/IP_REVIEWS/REPAIR_FEEDBACK_REVIEW_2026-10-09.md. OpenAI Codex provides
 substantial assistance; authored infrastructure and offline verification are not
 claims of autonomous invention or general RSI. Historical results remain unchanged.
+
+9 October 2026 — exposed-development feedback ablation follows the standing
+PUBLIC_AGPL_COMMERCIAL_OPTION. The prospective review is
+docs/IP_REVIEWS/REPAIR_FEEDBACK_TRIAL_REVIEW_2026-10-09.md. Codex-assisted
+instrumentation and external-model proposals are attributed; no generality or
+active-promotion claim is authorised by this small comparison.
