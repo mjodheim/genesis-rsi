@@ -1,0 +1,136 @@
+{
+  "arm_digest": "a813473a46b3212fc404d7b4e2ce8983226b8a5077d8697c78c4aa5189127377",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.000667025,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "output_excerpt": "1| /*\n2|  * Copyright (c) 2007 Mockito contributors\n3|  * This program is made available under the terms of the MIT License.\n4|  */\n5| package org.mockito.internal.stubbing.defaultanswers;\n6| \n7| import static org.mockito.Mockito.*;\n8| \n9| import java.io.Serializable;\n10| \n11| import org.mockito.MockSettings;\n12| import org.mockito.internal.InternalMockHandler;\n13| import org.mockito.internal.MockitoCore;\n14| import org.mockito.internal.creation.settings.CreationSettings;\n15| import org.mockito.internal.stubbing.InvocationContainerImpl;\n16| import org.mockito.internal.stubbing.StubbedInvocationMatcher;\n17| import org.mockito.internal.util.MockUtil;\n18| import org.mockito.internal.util.reflection.GenericMetadataSupport;\n19| import org.mockito.invocation.InvocationOnMock;\n20| import org.mockito.stubbing.Answer;\n21| \n22| /**\n23|  * Returning deep stub implementation.\n24|  *\n25|  * Will return previously created mock if the invocation matches.\n26|  *\n27|  * <p>Supports nested generic information, with this answer you can write code like this :\n28|  *\n29|  * <pre class=\"code\"><code class=\"java\">\n30|  *     interface GenericsNest&lt;K extends Comparable&lt;K&gt; & Cloneable&gt; extends Map&lt;K, Set&lt;Number&gt;&gt; {}\n31|  *\n32|  *     GenericsNest&lt;?&gt; mock = mock(GenericsNest.class, new ReturnsGenericDeepStubs());\n33|  *     Number number = mock.entrySet().iterator().next().getValue().iterator().next();\n34|  * </code></pre>\n35|  * </p>\n36|  *\n37|  * @see org.mockito.Mockito#RETURNS_DEEP_STUBS\n38|  * @see org.mockito.Answers#RETURNS_DEEP_STUBS\n39|  */\n40| public class ReturnsDeepStubs implements Answer<Object>, Serializable {\n41|     \n42|     private static final long serialVersionUID = -7105341425736035847L;\n43| \n44|     private MockitoCore mockitoCore = new MockitoCore();\n45|     private ReturnsEmptyValues delegate = new ReturnsEmptyValues();\n46| \n47|     public Object answer(InvocationOnMock invocation) throws Throwable {\n48|         GenericMetadataSupport retur",
+          "tool": "read_file"
+        },
+        {
+          "arguments": {
+            "text": "class ReturnsDeepStubs"
+          },
+          "characters": 146,
+          "output_excerpt": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:40: public class ReturnsDeepStubs implements Answer<Object>, Serializable {",
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "02df0b8880d025fbed3502509849d9e3a59e5021f3aa994753adff7d3cd43723",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 160,
+        "prompt_tokens": 4697
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.0020524,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "3797e9b9bdf3f0adb6a6391ce38f72e4e2ada7a1b63f705e9ad5795f4c7ece52",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": false,
+          "branch_depth": null,
+          "candidate_digest": null,
+          "causal_checks_passed": false,
+          "causal_evidence": {
+            "explanation": "Line 104 creates an anonymous subclass ($2) of a Serializable class; line 107 makes it capture the local returnTypeGenericMetadata, whose type is not declared Serializable in this file. Serialization of the mock's default answer therefore reaches the non-serializable captured object. This is an unverified inference since GenericMetadataSupport's declaration was not inspected.",
+            "facts": [
+              {
+                "line": 104,
+                "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+                "quote": "return new ReturnsDeepStubs() {",
+                "relation": "present",
+                "term": "return new ReturnsDeepStubs() {"
+              },
+              {
+                "line": 107,
+                "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+                "quote": "return returnTypeGenericMetadata;",
+                "relation": "present",
+                "term": "returnTypeGenericMetadata"
+              },
+              {
+                "line": 40,
+                "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+                "quote": "public class ReturnsDeepStubs implements Answer<Object>, Serializable {",
+                "relation": "present",
+                "term": "Serializable"
+              }
+            ],
+            "observed_signal": "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+            "prediction": "Replacing the anonymous override with a plain new ReturnsDeepStubs() removes the captured non-serializable reference, so the NotSerializableException for ReturnsDeepStubs$2 should no longer occur. Refuted if the same exception persists or a different non-serializable class appears.",
+            "previous_assessment": "none"
+          },
+          "causal_rejection": "source quote does not match src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:104 in selected tree",
+          "complete_paths": [],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "        return new ReturnsDeepStubs();",
+                  "search": "        return new ReturnsDeepStubs() {\n            @Override\n            protected GenericMetadataSupport actualParameterizedType(Object mock) {\n                return returnTypeGenericMetadata;\n            }\n        };"
+                }
+              ],
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            }
+          ],
+          "hypothesis": "The NotSerializableException is caused by the anonymous ReturnsDeepStubs subclass created in returnsDeepStubsAnswerUsing, which captures the final local returnTypeGenericMetadata (a GenericMetadataSupport, not Serializable) and serializes it as a field of the answer stored in the mock's default answer. Removing the capture by not overriding actualParameterizedType should remove that non-serializable field from the serialized graph.",
+          "parent": "",
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+          "rejection": "source quote does not match src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:104 in selected tree"
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 2449,
+        "prompt_tokens": 7170
+      }
+    }
+  ],
+  "case": "Mockito-23",
+  "causal_baseline_signal": "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 1,
+  "seconds": 12.2,
+  "solved": false,
+  "suspects_from_stack_trace": false,
+  "validated": 0,
+  "verdicts": []
+}

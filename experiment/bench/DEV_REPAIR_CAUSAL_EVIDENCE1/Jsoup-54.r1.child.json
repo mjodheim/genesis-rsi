@@ -1,0 +1,151 @@
+{
+  "arm_digest": "7c23b2a691d607406881374b0c43db8ccbdd4d0fae0f68b50979d6d75e3eba11",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.001725025,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "42cd46708c49f0a0d46d4ee84a172ffe8c70b5803cfd9f22d1205b5d5cd31b38",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [
+        {
+          "applicable": false,
+          "branch_depth": null,
+          "candidate_digest": null,
+          "causal_checks_passed": false,
+          "causal_evidence": {
+            "explanation": "The test attribute key is a lone double quote. Line 125 strips it, leaving an empty string. Line 126 then calls setAttribute with that empty name, which the W3C DOM rejects with INVALID_CHARACTER_ERR, matching the stack trace at W3CDom.java:126.",
+            "facts": [
+              {
+                "line": 125,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");",
+                "relation": "present",
+                "term": "replaceAll"
+              },
+              {
+                "line": 126,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "el.setAttribute(key, attribute.getValue());",
+                "relation": "present",
+                "term": "setAttribute"
+              }
+            ],
+            "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+            "prediction": "Guarding the setAttribute call with a non-empty key check skips the empty-named attribute, so fromJsoup no longer throws and handlesInvalidAttributeNames passes.",
+            "previous_assessment": "none"
+          },
+          "causal_rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:125 in selected tree",
+          "complete_paths": [],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "if (key.length() > 0) el.setAttribute(key, attribute.getValue());",
+                  "search": "el.setAttribute(key, attribute.getValue());"
+                }
+              ],
+              "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+            }
+          ],
+          "hypothesis": "copyAttributes sanitizes attribute keys with replaceAll, so the key '\"' becomes an empty string. Passing an empty name to Element.setAttribute throws INVALID_CHARACTER_ERR. Skipping attributes whose sanitized key is empty should remove the exception while keeping valid attributes.",
+          "parent": "",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:125 in selected tree"
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1382,
+        "prompt_tokens": 8273
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "causal_observation": {
+        "candidate_digest": null,
+        "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+        "previous_assessment": "none",
+        "stage": "baseline"
+      },
+      "cost_usd": 0.0016723,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "65ef0df68310bd3b3784542c2137654b0682da53db1cfb02f3ac23022793d22c",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": false,
+          "branch_depth": null,
+          "candidate_digest": null,
+          "causal_checks_passed": false,
+          "causal_evidence": {
+            "explanation": "The test attribute key is a lone double quote. The sanitizing regex on the preceding line strips it, leaving an empty string. The setAttribute call at line 126 then receives an empty name, which the W3C DOM rejects with INVALID_CHARACTER_ERR, matching the stack trace at W3CDom.java:126.",
+            "facts": [
+              {
+                "line": 126,
+                "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+                "quote": "el.setAttribute(key, attribute.getValue());",
+                "relation": "present",
+                "term": "setAttribute"
+              }
+            ],
+            "observed_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+            "prediction": "Guarding the setAttribute call with a non-empty key check skips the empty-named attribute, so fromJsoup no longer throws and handlesInvalidAttributeNames passes.",
+            "previous_assessment": "none"
+          },
+          "causal_rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:126 in selected tree",
+          "complete_paths": [],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "if (key.length() > 0) el.setAttribute(key, attribute.getValue());",
+                  "search": "el.setAttribute(key, attribute.getValue());"
+                }
+              ],
+              "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+            }
+          ],
+          "hypothesis": "copyAttributes sanitizes attribute keys with replaceAll, so the key '\"' becomes an empty string. Passing an empty name to Element.setAttribute throws INVALID_CHARACTER_ERR. Skipping attributes whose sanitized key is empty should remove the exception while keeping valid attributes.",
+          "parent": "",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:126 in selected tree"
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1018,
+        "prompt_tokens": 9630
+      }
+    }
+  ],
+  "case": "Jsoup-54",
+  "causal_baseline_signal": "org.w3c.dom.DOMException: INVALID_CHARACTER_ERR: An invalid or illegal XML character is specified.",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 1,
+  "seconds": 10.2,
+  "solved": false,
+  "suspects_from_stack_trace": true,
+  "validated": 0,
+  "verdicts": []
+}

@@ -1,0 +1,220 @@
+{
+  "canonical_memory_events": 292,
+  "diagnosis_digest": "a6e39993122e3568907a03b5beae6912caecfc932fc19b170bd179c7140a41e5",
+  "interpretation": "Strict citation formatting causes a severe regression. Correctly located code with omitted indentation is rejected. Grounding does not prove causality and no repair gain is observed.",
+  "metrics": {
+    "child": {
+      "cost_usd": 0.028554075,
+      "evidence_rejections": 7,
+      "extensions": 0,
+      "requests": 18,
+      "seconds": 275.0,
+      "solved": 0,
+      "validated": 4
+    },
+    "parent": {
+      "cost_usd": 0.025986175,
+      "evidence_rejections": 0,
+      "extensions": 1,
+      "requests": 20,
+      "seconds": 441.9,
+      "solved": 4,
+      "validated": 9
+    }
+  },
+  "policy_promoted": false,
+  "rejected_source_facts": [
+    {
+      "case": "Mockito-17",
+      "facts": [
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 37,
+          "matching_trimmed_lines": [
+            37
+          ],
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 22,
+          "matching_trimmed_lines": [
+            22
+          ],
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 74,
+          "matching_trimmed_lines": [
+            74
+          ],
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+        }
+      ],
+      "rejection": "source quote does not match src/org/mockito/internal/creation/MockSettingsImpl.java:37 in selected tree",
+      "replicate": 1,
+      "round": 1
+    },
+    {
+      "case": "Jsoup-54",
+      "facts": [
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 125,
+          "matching_trimmed_lines": [
+            125
+          ],
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 126,
+          "matching_trimmed_lines": [
+            126
+          ],
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+        }
+      ],
+      "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:125 in selected tree",
+      "replicate": 1,
+      "round": 1
+    },
+    {
+      "case": "Jsoup-54",
+      "facts": [
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 126,
+          "matching_trimmed_lines": [
+            126
+          ],
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+        }
+      ],
+      "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:126 in selected tree",
+      "replicate": 1,
+      "round": 1
+    },
+    {
+      "case": "Mockito-17",
+      "facts": [
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 22,
+          "matching_trimmed_lines": [
+            22
+          ],
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 37,
+          "matching_trimmed_lines": [
+            37
+          ],
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 74,
+          "matching_trimmed_lines": [
+            74
+          ],
+          "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+        }
+      ],
+      "rejection": "source quote does not match src/org/mockito/internal/creation/MockSettingsImpl.java:22 in selected tree",
+      "replicate": 2,
+      "round": 1
+    },
+    {
+      "case": "Jsoup-54",
+      "facts": [
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 125,
+          "matching_trimmed_lines": [
+            125
+          ],
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 126,
+          "matching_trimmed_lines": [
+            126
+          ],
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+        }
+      ],
+      "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:125 in selected tree",
+      "replicate": 2,
+      "round": 1
+    },
+    {
+      "case": "Jsoup-54",
+      "facts": [
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 126,
+          "matching_trimmed_lines": [
+            126
+          ],
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+        }
+      ],
+      "rejection": "source quote does not match src/main/java/org/jsoup/helper/W3CDom.java:126 in selected tree",
+      "replicate": 2,
+      "round": 1
+    },
+    {
+      "case": "Mockito-23",
+      "facts": [
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 104,
+          "matching_trimmed_lines": [
+            104
+          ],
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": false,
+          "line": 107,
+          "matching_trimmed_lines": [
+            107
+          ],
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+        },
+        {
+          "boundary_whitespace_match": true,
+          "exact_match": true,
+          "line": 40,
+          "matching_trimmed_lines": [
+            40
+          ],
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+        }
+      ],
+      "rejection": "source quote does not match src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:104 in selected tree",
+      "replicate": 2,
+      "round": 1
+    }
+  ],
+  "result_digest": "66e0564dd0c2c1cc100fc5dffbea11e7a27174e4ede68d3463dccc9ae55a2c9d"
+}

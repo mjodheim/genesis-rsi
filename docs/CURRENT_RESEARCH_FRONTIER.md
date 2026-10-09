@@ -578,3 +578,12 @@ without a repaired-case gain. Contradictions between observed exceptions and
 proposed causal explanations remain. No promotion or canonical memory update;
 102 focused tests pass. See
 [REPAIR_BRANCH_STRATEGY_2026-10-09.md](REPAIR_BRANCH_STRATEGY_2026-10-09.md).
+
+## Strict evidence-checking regression — 9 October 2026
+
+DEV_REPAIR_CAUSAL_EVIDENCE1: reference 4/6, checked child 0/6; USD 0.054540250
+for 38 calls. Boundary whitespace in correctly located source citations caused
+pre-validation rejection on both easy cases in both repetitions. The hard case
+still failed four host-checked candidates. The negative result is retained;
+113 focused tests pass, no promotion or canonical memory update. See
+[REPAIR_CAUSAL_EVIDENCE_2026-10-09.md](REPAIR_CAUSAL_EVIDENCE_2026-10-09.md).
