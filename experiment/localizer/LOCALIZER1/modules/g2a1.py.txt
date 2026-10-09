@@ -1,0 +1,257 @@
+"""Fault localizer, generation two.
+
+localize(case) returns up to six [path, line] entries, most suspect first.
+Signals, strongest first:
+  1. production frames of the failing traces, in trace order;
+  2. the method enclosing each top production frame, and the project-class
+     methods that this method calls by name (one reference hop);
+  3. production methods whose names the failing test calls (failing line, then the lines above);
+  4. production files whose identifiers share words with the failure message and test names.
+Entries closer than forty lines to a stronger entry in the same file are skipped.
+"""
+import math
+import os
+import re
+
+FRAME = re.compile(r"^\s+at ([\w.$]+)\.([\w$<>]+)\(([\w$]+)\.java:(\d+)\)", re.MULTILINE)
+DECL = re.compile(
+    r"^\s*(?:@\w+(?:\([^)]*\))?\s+)*"
+    r"(?:(?:public|protected|private|static|final|abstract|synchronized|native|default)\s+)*"
+    r"(?:<[^>]*>\s+)?([\w.$]+)(?:<[^;(){}=]*>)?(?:\[\])*\s+(\w+)\s*\(")
+CALL = re.compile(r"\b(\w+)\s*\(")
+TYPE_REF = re.compile(r"\b([A-Z]\w*)\b")
+WORD = re.compile(r"[A-Z]+(?=[A-Z][a-z])|[A-Z]?[a-z][a-z0-9]*|[A-Z]+[0-9]*")
+IDENT = re.compile(r"[A-Za-z_]\w*")
+NOT_TYPE = {"return", "new", "throw", "else", "case", "yield", "package", "import",
+            "extends", "implements"}
+NOT_NAME = {"if", "for", "while", "switch", "catch", "synchronized", "return", "new",
+            "throw", "super", "this"}
+NOT_CALL = {"if", "for", "while", "switch", "catch", "new", "super", "this", "return",
+            "fail", "synchronized", "throw"}
+STOP = {"the", "and", "not", "was", "but", "expected", "actual", "should", "with", "for",
+        "from", "null", "true", "false", "java", "lang", "junit", "exception", "error",
+        "failure", "assertion", "failed", "test", "expecting", "returned", "expect", "got",
+        "equal", "equals", "assert", "are", "this", "that", "org", "com", "src", "main"}
+MAX_FILE = 400000
+MAX_FILES = 4000
+
+
+def _words(text):
+    out = []
+    for w in re.findall(r"[A-Za-z][A-Za-z0-9]*", text):
+        for p in WORD.findall(w):
+            p = p.lower()
+            if len(p) >= 3 and p not in STOP and not p.isdigit():
+                out.append(p)
+    return out
+
+
+def _index(root, subdir):
+    texts = {}
+    base = os.path.join(root, subdir) if subdir else root
+    if not os.path.isdir(base):
+        return texts
+    for dp, dn, fn in os.walk(base):
+        dn.sort()
+        for f in sorted(fn):
+            if not f.endswith(".java"):
+                continue
+            full = os.path.join(dp, f)
+            rel = os.path.relpath(full, root).replace(os.sep, "/")
+            try:
+                with open(full, encoding="utf-8", errors="replace") as fh:
+                    text = fh.read()
+            except OSError:
+                continue
+            if len(text) > MAX_FILE:
+                continue
+            texts[rel] = text
+            if len(texts) >= MAX_FILES:
+                return texts
+    return texts
+
+
+def _decls(lines):
+    out = []
+    for i, line in enumerate(lines, 1):
+        m = DECL.match(line)
+        if m and m.group(1) not in NOT_TYPE and m.group(2) not in NOT_NAME:
+            out.append((m.group(2), i))
+    return out
+
+
+def _enclosing(lines, ln):
+    """Line number of the nearest method declaration at or above ln."""
+    start = min(ln, len(lines)) - 1
+    for i in range(start, max(-1, start - 200), -1):
+        m = DECL.match(lines[i])
+        if m and m.group(2) not in NOT_NAME and m.group(1) not in NOT_TYPE:
+            return i + 1
+    return None
+
+
+def _maps(texts, subdir):
+    prefix = subdir + "/" if subdir else ""
+    fqn, stem = {}, {}
+    for rel in texts:
+        rest = rel[len(prefix):-5] if rel.startswith(prefix) else rel[:-5]
+        fqn[rest.replace("/", ".")] = rel
+        stem.setdefault(rel.rsplit("/", 1)[-1][:-5], []).append(rel)
+    return fqn, stem
+
+
+def _resolve(classname, filestem, fqn, stem):
+    top = classname.split("$")[0]
+    if top in fqn:
+        return fqn[top]
+    cands = stem.get(filestem, [])
+    return cands[0] if len(cands) == 1 else None
+
+
+def _run(case):
+    root = case["root"]
+    src = case["source_directory"].strip("/")
+    tst = case["test_directory"].strip("/")
+    report = case.get("report") or ""
+    failing = case.get("failing_tests") or []
+
+    ptexts = _index(root, src)
+    ttexts = _index(root, tst)
+    pfqn, pstem = _maps(ptexts, src)
+    tfqn, tstem = _maps(ttexts, tst)
+    plines = {rel: text.splitlines() for rel, text in ptexts.items()}
+    tlines = {rel: text.splitlines() for rel, text in ttexts.items()}
+
+    pdecl = {}
+    tokens = {}
+    df = {}
+    for rel, lines in plines.items():
+        for name, ln in _decls(lines):
+            pdecl.setdefault(name, []).append((rel, ln))
+        toks = set()
+        for ident in set(IDENT.findall(ptexts[rel])):
+            toks.update(_words(ident))
+        tokens[rel] = toks
+        for t in toks:
+            df[t] = df.get(t, 0) + 1
+    n_files = max(len(plines), 1)
+
+    def idf(t):
+        return math.log((n_files + 1) / (df.get(t, 0) + 1)) + 1.0
+
+    cands = []
+
+    # 1. production frames in trace order, and their test-side callers
+    prod_hits, test_hits, seen = [], [], set()
+    for cls, meth, stem_name, ln in FRAME.findall(report):
+        ln = int(ln)
+        p = _resolve(cls, stem_name, pfqn, pstem)
+        if p is not None:
+            if (p, ln) not in seen and 1 <= ln <= len(plines[p]):
+                seen.add((p, ln))
+                prod_hits.append((p, ln))
+            continue
+        t = _resolve(cls, stem_name, tfqn, tstem)
+        if t is not None and 1 <= ln <= len(tlines[t]):
+            test_hits.append((t, ln))
+    for i, (p, ln) in enumerate(prod_hits[:10]):
+        cands.append((100 - 4 * i, p, ln))
+
+    # 2. enclosing method of the top frames, and one hop to project classes it calls
+    for i, (p, ln) in enumerate(prod_hits[:3]):
+        lines = plines[p]
+        d = _enclosing(lines, ln)
+        if d is None:
+            continue
+        cands.append((95 - 5 * i, p, d))
+        body = "\n".join(lines[d - 1: d + 60])
+        calls = set(CALL.findall(body)) - NOT_CALL
+        text = ptexts[p]
+        refs = sorted(set(TYPE_REF.findall(text)))[:40]
+        for t in refs:
+            cs = pstem.get(t, [])
+            if len(cs) != 1 or cs[0] == p:
+                continue
+            rel = cs[0]
+            for name, dl in _decls(plines[rel]):
+                if name in calls:
+                    cands.append((45 - 3 * i, rel, dl))
+
+    # 3. production methods called by the failing test lines
+    for t, ln in test_hits[:3]:
+        lines = tlines[t]
+        fail_line = lines[ln - 1]
+        window = lines[max(0, ln - 13): ln]
+        fail_names = set(CALL.findall(fail_line))
+        win_names = set(n for l in window for n in CALL.findall(l)) - fail_names
+        for names, score in ((fail_names, 55), (win_names, 35)):
+            for name in names:
+                if name in NOT_CALL or name.startswith(("assert", "test", "fail")):
+                    continue
+                decls = pdecl.get(name, [])
+                if not decls or len(decls) > 8:
+                    continue
+                for rel, dl in decls[:3]:
+                    cands.append((score, rel, dl))
+
+    # 4. production files sharing words with the message and failing test names
+    msg_lines = [l for l in report.splitlines()
+                 if not re.match(r"^\s+at |^\s*\d+\||^Test source|^---|^Tree", l)]
+    msg = " ".join(msg_lines)[:1500]
+    test_names = [ft.split("::")[-1] for ft in failing]
+    M = set(_words(msg))
+    for name in test_names:
+        M.update(_words(name))
+    scored = []
+    for rel, toks in tokens.items():
+        common = M & toks
+        if not common:
+            continue
+        s = sum(idf(t) for t in common)
+        stem_words = set(_words(rel.rsplit("/", 1)[-1][:-5]))
+        s += sum(2 * idf(t) for t in common if t in stem_words)
+        scored.append((s, rel, common))
+    scored.sort(key=lambda x: (-x[0], x[1]))
+    for rank, (s, rel, common) in enumerate(scored[:5]):
+        base = 25 - 2 * rank
+        best = []
+        for name, dl in _decls(plines[rel]):
+            ov = sum(idf(t) for t in set(_words(name)) & common)
+            if ov > 0:
+                best.append((ov, dl))
+        best.sort(key=lambda x: (-x[0], x[1]))
+        if best:
+            for ov, dl in best[:2]:
+                cands.append((base, rel, dl))
+        else:
+            top_tok = max(common, key=idf)
+            for i, line in enumerate(plines[rel], 1):
+                if top_tok in line.lower():
+                    cands.append((base, rel, i))
+                    break
+
+    # greedy selection, diverse by 40-line windows
+    cands.sort(key=lambda c: -c[0])
+    out = []
+    for score, path, line in cands:
+        if any(p == path and abs(l - line) <= 40 for p, l in out):
+            continue
+        out.append([path, int(line)])
+        if len(out) == 6:
+            break
+
+    if not out:
+        for ft in failing:
+            name = re.sub(r"Tests?$", "", ft.split("::")[0].rsplit(".", 1)[-1])
+            cs = pstem.get(name, [])
+            if len(cs) == 1:
+                out.append([cs[0], 1])
+                break
+    return out[:6]
+
+
+def localize(case):
+    try:
+        return _run(case)
+    except Exception:
+        return []

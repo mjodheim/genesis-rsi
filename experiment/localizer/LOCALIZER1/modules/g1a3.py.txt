@@ -1,0 +1,165 @@
+"""Generation one of the fault localizer.
+
+Signals, strongest first:
+  1. production frames of the stack traces (top frame first, decaying with depth);
+  2. identifiers on the test lines named by the traces: a called method or a capitalised
+     type referenced there is resolved to its production declaration;
+  3. words of the failing test's name matched against production declarations.
+
+Returned entries are deduplicated so that no two lie within forty lines of each other in
+the same file, which spreads the six slots over distinct regions.
+"""
+import os
+import re
+
+FRAME = re.compile(r"^\s+at ([\w.$]+)\.([\w$<>]+)\(([\w$]+\.java):(\d+)\)", re.MULTILINE)
+CLASS = re.compile(r"\b(?:class|interface|enum)\s+([A-Za-z_$][\w$]*)")
+DECL = re.compile(
+    r"^\s*(?:@\w+\s+)*(?:(?:public|protected|private|static|final|synchronized|abstract|native|default)\s+)*"
+    r"(?:<[^>]*>\s*)?[\w$.<>\[\], ?]+\s+([A-Za-z_$][\w$]*)\s*\(")
+NOT_METHOD = {"if", "for", "while", "switch", "catch", "return", "new", "else", "synchronized", "throw"}
+STOP = {"test", "should", "with", "when", "from", "that", "this", "some", "returns", "then", "into"}
+MAX_FILES = 4000
+WINDOW = 40
+
+
+def index_java(root, base):
+    out = {}
+    start = os.path.join(root, base)
+    if not os.path.isdir(start):
+        return out
+    count = 0
+    for d, dirs, files in os.walk(start):
+        dirs.sort()
+        for f in sorted(files):
+            if f.endswith(".java") and count < MAX_FILES:
+                rel = os.path.relpath(os.path.join(d, f), root).replace(os.sep, "/")
+                out.setdefault(f, []).append(rel)
+                count += 1
+    return out
+
+
+def pick(index, classname, filename):
+    cands = index.get(filename, [])
+    if not cands:
+        return None
+    if len(cands) == 1:
+        return cands[0]
+    pkg = classname.split("$")[0].replace(".", "/") + ".java"
+    for c in cands:
+        if c == pkg or c.endswith("/" + pkg):
+            return c
+    return None
+
+
+def words(name):
+    parts = re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])|\d+", name)
+    return {p.lower() for p in parts if len(p) >= 4}
+
+
+def localize(case):
+    root = case["root"]
+    prod = index_java(root, case["source_directory"])
+    tests = index_java(root, case["test_directory"])
+
+    cache = {}
+
+    def lines_of(rel):
+        if rel not in cache:
+            try:
+                with open(os.path.join(root, rel), encoding="utf-8", errors="replace") as fh:
+                    cache[rel] = fh.read().split("\n")
+            except OSError:
+                cache[rel] = []
+        return cache[rel]
+
+    # Scan production declarations once.
+    decls = {}      # method name -> [(path, line)]
+    classes = {}    # class name -> [(path, line)]
+    for filename, paths in prod.items():
+        for rel in paths:
+            for i, line in enumerate(lines_of(rel), 1):
+                s = line.strip()
+                if s.startswith(("//", "*", "/*")):
+                    continue
+                m = CLASS.search(line)
+                if m:
+                    classes.setdefault(m.group(1), []).append((rel, i))
+                m = DECL.match(line)
+                if m and not line.rstrip().endswith(";") and not s.startswith(
+                        ("return", "throw", "new ", "else")):
+                    name = m.group(1)
+                    if name not in NOT_METHOD:
+                        decls.setdefault(name, []).append((rel, i))
+
+    scores = {}
+
+    def add(path, line, score):
+        key = (path, line)
+        if score > scores.get(key, -1):
+            scores[key] = score
+
+    # 1 and 2: walk the frames of the reports.
+    depth = 0
+    test_lines_seen = 0
+    for classname, _method, filename, line in FRAME.findall(case["report"]):
+        lineno = int(line)
+        rel = pick(prod, classname, filename)
+        if rel is not None:
+            add(rel, lineno, max(60, 100 - 2 * depth))
+            depth += 1
+            continue
+        trel = pick(tests, classname, filename)
+        if trel is None or test_lines_seen >= 3:
+            continue
+        test_lines_seen += 1
+        tlines = lines_of(trel)
+        if not (1 <= lineno <= len(tlines)):
+            continue
+        text = tlines[lineno - 1]
+        for call in re.findall(r"([A-Za-z_$][\w$]*)\s*\(", text):
+            if call.startswith(("assert", "fail")) or call in NOT_METHOD or call in {"super", "this"}:
+                continue
+            targets = decls.get(call, [])
+            if len(targets) <= 3:
+                for p, l in targets:
+                    add(p, l, 70)
+        for typ in re.findall(r"\b([A-Z][\w$]*)\b", text):
+            targets = classes.get(typ, [])
+            if len(targets) <= 2:
+                for p, l in targets:
+                    add(p, l, 55)
+
+    # 3: test-name words against production declarations.
+    test_words = set()
+    for name in case["failing_tests"]:
+        method = name.split("::")[-1]
+        test_words |= {w for w in words(method) if w not in STOP}
+    if test_words:
+        for name_map in (decls, classes):
+            for name, targets in name_map.items():
+                overlap = len(words(name) & test_words)
+                if overlap and len(targets) <= 3:
+                    for p, l in targets:
+                        add(p, l, 10 * overlap)
+
+    # Selection: best first, skipping entries that fall inside an already chosen window.
+    chosen = []
+    for (path, line), _ in sorted(scores.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1])):
+        if any(p == path and abs(l - line) <= WINDOW for p, l in chosen):
+            continue
+        chosen.append((path, line))
+        if len(chosen) == 6:
+            break
+
+    if not chosen:
+        # A trace that never enters production code still names the test: fall back to the
+        # production class the test is named after.
+        for name in case["failing_tests"]:
+            base = re.sub(r"Tests?$", "", name.split("::")[0].split(".")[-1])
+            rel = pick(prod, base, base + ".java")
+            if rel is not None:
+                chosen.append((rel, 1))
+                break
+
+    return [[p, l] for p, l in chosen]
