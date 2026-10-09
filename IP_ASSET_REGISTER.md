@@ -213,3 +213,12 @@ This register does not claim that:
 - `Mira Genesis` is a registered trademark;
 - an AI system is a legal author or inventor;
 - an external maintainer's material belongs to Mira Genesis.
+
+Prospective repair-transformation review — 9 October 2026: bounded Java lexical
+abstraction of verified development recipes, own-outcome local search and
+separate transfer/promotion gates follow PUBLIC_AGPL_COMMERCIAL_OPTION under
+the standing owner disposition. Anthony authorised implementation and three
+new trials. Review preceded enabling implementation in
+`docs/IP_REVIEWS/REPAIR_TRANSFORMATION_LEARNING_REVIEW_2026-10-09.md`.
+OpenAI Codex assists with development; assisted repairs retain model attribution.
+No independent/general RSI gate or new authority is claimed.

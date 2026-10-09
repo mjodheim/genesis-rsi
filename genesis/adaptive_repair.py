@@ -209,7 +209,9 @@ def solve_development(root: Path, evidence: dict, router: EconomicRouter, valida
                       *, role: str, budget_usd: float = .05, validation_budget: int = 4,
                       max_models: int = 2, proposer_factory=openrouter_proposer, local_proposer=None,
                       local_validation_budget: int = 4, allow_llm: bool = True,
-                      max_rounds_per_model: int = 1, fallback_router=None):
+                      max_rounds_per_model: int = 1, fallback_router=None,
+                      local_feedback_rounds: int = 1, transformation_policy=None,
+                      learn_transformation_proposals: bool = False):
     """Validate memory first, then bounded price/outcome-aware model proposals.
 
     The supplied validator owns execution authority and must return real full-suite
@@ -218,10 +220,23 @@ def solve_development(root: Path, evidence: dict, router: EconomicRouter, valida
     """
     if role != 'released_development': raise ValueError('development-only service')
     if (not math.isfinite(budget_usd) or budget_usd <= 0 or validation_budget <= 0
-        or max_models <= 0 or local_validation_budget < 0 or max_rounds_per_model <= 0):
+        or max_models <= 0 or local_validation_budget < 0 or max_rounds_per_model <= 0
+        or type(local_feedback_rounds) is not int or local_feedback_rounds <= 0):
         raise ValueError('positive finite budgets required')
     root = Path(root); features = task_features(evidence); ledger = _CallLedger(router.experience)
     history = []; decisions = []; accepted = None; unknown = False
+    if transformation_policy is not None:
+        if local_proposer is not None: raise ValueError('choose one local proposer')
+        from genesis.repair_transformation_learning import proposer
+        local_proposer = proposer(transformation_policy)
+
+    def retain(candidate, verdict):
+        router.experience.retain(root, evidence, candidate, verdict, role=role)
+        if learn_transformation_proposals:
+            from genesis.repair_transformation_learning import acquire
+            proposal = acquire(router.experience.events(), transformation_policy)
+            router.experience.append('transformation_proposal', dict(policy=proposal,
+                source_candidate_digest=candidate.digest, promoted=False))
 
     def check(candidate):
         verdict = validate_candidate(candidate)
@@ -235,17 +250,25 @@ def solve_development(root: Path, evidence: dict, router: EconomicRouter, valida
 
     for candidate in router.experience.candidates(root, evidence, min(2, validation_budget)):
         if check(candidate): accepted = candidate; break
-    if accepted is None and local_proposer is not None and len(history) < validation_budget:
-        remaining = min(local_validation_budget, validation_budget-len(history))
-        if remaining:
-            seen = {candidate.digest for candidate, _ in history}
-            proposals = local_proposer(root, evidence, (), remaining)
-            for candidate in proposals[:remaining]:
-                if candidate.digest in seen: continue
-                seen.add(candidate.digest)
-                if check(candidate):
-                    router.experience.retain(root, evidence, candidate, history[-1][1], role=role)
-                    accepted = candidate; break
+    local_used = 0
+    for _ in range(local_feedback_rounds):
+        if accepted is not None or local_proposer is None: break
+        remaining = min(local_validation_budget-local_used, validation_budget-len(history))
+        if remaining <= 0: break
+        seen = {candidate.digest for candidate, _ in history}
+        proposals = local_proposer(root, evidence, tuple(history), remaining)
+        fresh = []
+        for candidate in proposals:
+            if candidate.digest not in seen:
+                fresh.append(candidate); seen.add(candidate.digest)
+        if not fresh: break
+        # One observation at a time in reactive mode; legacy batch mode is unchanged.
+        chosen = fresh[:1] if local_feedback_rounds > 1 else fresh[:remaining]
+        for candidate in chosen:
+            local_used += 1
+            if check(candidate):
+                retain(candidate, history[-1][1])
+                accepted = candidate; break
     tried = set()
     while allow_llm and accepted is None and len(history) < validation_budget and len(tried) < max_models:
         spent = sum(c['cost_usd'] for c in ledger if c.get('cost_usd') is not None)
@@ -271,7 +294,7 @@ def solve_development(root: Path, evidence: dict, router: EconomicRouter, valida
             fresh = [candidate for candidate in proposals if candidate.digest not in seen]
             for candidate in fresh[:validation_budget-len(history)]:
                 if check(candidate):
-                    router.experience.retain(root, evidence, candidate, history[-1][1], role=role)
+                    retain(candidate, history[-1][1])
                     accepted = candidate; break
             if accepted is not None or not fresh or any(c.get('cost_usd') is None for c in ledger[start:]): break
         current = ledger[start:]; unknown = any(c.get('cost_usd') is None for c in current)
