@@ -1,0 +1,90 @@
+{
+  "policy_digest": "382240b8e43972956d3bac0607f7d4dbb3bf13c37faabfef8db6bc345fe65e08",
+  "promoted": false,
+  "rejected": [
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "2dbd5453632180fd1f05b82f19a7f110a17f2e06e4b72befcfae9f8b2a0bead4"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "a84e320f41e8aa06fb4538af0363c14eab1a1275f3bac366e555f909ffe4786a"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "ff299a129d1952df4f27817595285a541ae8d5a6ad1dc470c4cb8135877b90b3"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "0ab9fe33881cb9f263eb69e93183ed1340ac9b2b09e5691d85e976d2517e9fe7"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "ae32d704c5d332f1b4bd33af36ee6c72c93c1deb4a1588a55ca45f2a04ee38fe"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "65f7a3bad35f34dc6f8295666902d8c6746189b29c681c8fddb3c2370e26226a"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "1cdde518fc8550b0d7a31a9b545705ea4502b1261dcb84782d8e46c93fcc810c"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "eb7993091d8f4d1a2cab5f89f832b8cdcd69efbc033a838e0c34043a1735064f"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "6dfd83429388f07a7a730bfc3eab22515294ffe095996c2ddff889cf6c9f8f76"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "6dfd83429388f07a7a730bfc3eab22515294ffe095996c2ddff889cf6c9f8f76"
+    },
+    {
+      "reason": "not pure supported null-check insertion",
+      "source_recipe_digest": "47bbc78443f95b2a9a67701532ec1eccaf4e36152ac20e7fbbe711cb5ede55dc"
+    }
+  ],
+  "rules": [
+    {
+      "guards": [
+        "explicit nonnull contract",
+        "constructor reference parameter",
+        "no existing conditional or throw",
+        "no explicit constructor delegation",
+        "full-suite revalidation"
+      ],
+      "kind": "constructor_reference_nonnull",
+      "origin": "openrouter:anthropic/claude-haiku-5.5",
+      "projection": "authored reference-parameter binding; omit diagnostic message",
+      "rule_digest": "1370e01ca338512c685451c1630cbd439c8ddc1028c081f321237b987250e082",
+      "source_candidate_digest": "eaec65c9b701b7b6e6576e097a8c8e9fe89273a356cab1c33abab5cebfa7b3ba",
+      "source_recipe_digest": "9b4008cf06310a2d5062bfc65f6b4d60d5d4a9dbe42aef78b344b9e8d1eaa744",
+      "source_verdict_digest": "cc297ed8218c4f7c367b7ab5f1c31dc2afd4a24903d51961ded3b650ffe33939",
+      "training_checked_parameters": [
+        "checksum",
+        "in"
+      ]
+    }
+  ],
+  "schema": "genesis-contract-repair-policy-v1",
+  "training_memory_digest": "da8f047ed1965438571af3a8506a88ef72c7b7d6ed2b234ac3405127d41cc8f1"
+}

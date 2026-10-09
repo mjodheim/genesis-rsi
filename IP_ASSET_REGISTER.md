@@ -244,3 +244,9 @@ Prospective failed-search recovery review — 9 October 2026: bounded failure-de
 search generations and explicit stall diagnoses follow PUBLIC_AGPL_COMMERCIAL_OPTION.
 Review precedes implementation in docs/IP_REVIEWS/REPAIR_STALL_RECOVERY_REVIEW_2026-10-09.md.
 Anthony authorises iteration; OpenAI Codex assists. Existing frozen outcomes remain unchanged.
+
+9 October 2026 — contract-guarded insertion learning follows
+PUBLIC_AGPL_COMMERCIAL_OPTION under Anthony's authorisation to start transferable
+capabilities. Review precedes implementation in
+`docs/IP_REVIEWS/REPAIR_CONTRACT_RULE_REVIEW_2026-10-09.md`. OpenAI Codex assists;
+model-derived provenance and explicit supplied-contract limits remain visible.

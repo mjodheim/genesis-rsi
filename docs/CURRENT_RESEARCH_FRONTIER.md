@@ -490,3 +490,13 @@ full-suite repairs plus new-reader replay, known API USD 0.01377242. All failure
 and three successes admitted: canonical memory 223→292. No policy promotion or
 general RSI claim. See REPAIR_STALL_RECOVERY_2026-10-09.md. Mutation-language
 coverage remains the next substantive deficit; pool expansion alone is insufficient.
+
+9 October 2026 — first explicit-contract insertion capability: one rule acquired
+from the verified assisted Compress-44 recipe now abstracts constructor/reference
+parameter bindings. Authored isolated Java gates show 3/3 distinct positive layouts,
+3/3 nullable controls without proposals, and 3/3 deliberately wrong contracts rejected
+by execution (12 candidate/fixture compiles, zero API calls). This is developer-authored
+projection with supplied contracts, not automatic nullability inference or fresh
+real-bug transfer. Canonical memory remains 292 events; no policy promoted. See
+REPAIR_CONTRACT_LEARNING_2026-10-09.md. Latest Jsoup set expansion, Math numerical
+rewrite and Compress cleanup still require additional capabilities/evidence.

@@ -25,6 +25,7 @@ from genesis.trust_root import digest_of
 from genesis.repair_stall_recovery import recover
 from genesis.repair_quality_learning import operator_policy
 from genesis.repair_proposers import strategist_proposer
+from genesis.repair_contract_learning import generate as contract_candidates, validate_policy as validate_contract_policy
 
 
 def sealed(path, field):
@@ -89,7 +90,10 @@ def main():
     p.add_argument('--minimum-success-rate',type=float,default=.5)
     p.add_argument('--localize-assertions',action='store_true',help='Opt in to static production API localisation when stack frames are absent')
     p.add_argument('--recover-stalls',action='store_true',help='Try bounded failure-derived local generations before model assistance')
+    p.add_argument('--contract-policy',type=Path,help='Explicit opt-in learned constructor insertion policy')
+    p.add_argument('--nonnull-contracts',type=Path,help='Caller-supplied production path/constructor/parameter contracts')
     args=p.parse_args()
+    if bool(args.contract_policy)!=bool(args.nonnull_contracts):raise ValueError('policy and explicit contracts required together')
     if args.output.exists():raise ValueError('refusing to overwrite result before execution')
     split=sealed(ROOT/'experiment/bench/REPAIR_BENCH_SPLIT_V1.json','split_digest')
     if args.case not in split['development']:raise ValueError('only exposed development cases allowed')
@@ -135,9 +139,18 @@ def main():
             store.retain(root,evidence,local_candidate,recovery['generations'][-1]['attempts'][-1]['verdict'],role='released_development')
     router=EconomicRouter(options,store,minimum_observed_success_rate=args.minimum_success_rate)
     ranking=[{**{k:v for k,v in r.items() if k!='option'},'model':r['option'].model} for r in router.rank(evidence,args.budget)]
+    contract_proposer=None
+    if args.contract_policy:
+        insertion_policy=json.loads(args.contract_policy.read_text());validate_contract_policy(insertion_policy)
+        contracts=json.loads(args.nonnull_contracts.read_text())
+        def contract_proposer(project_root,case_evidence,history,remaining):
+            tried={c.digest for c,_ in history}
+            return [c for c in contract_candidates(project_root,case_evidence,insertion_policy,contracts)
+                    if c.digest not in tried][:remaining]
     result=solve_development(root,evidence,router,
         lambda c:validate(sandbox,directory,c,evidence['failing_tests']),role='released_development',
-        budget_usd=args.budget,max_models=args.max_models)
+        budget_usd=args.budget,max_models=args.max_models,
+        local_proposer=contract_proposer,local_feedback_rounds=4 if contract_proposer else 1)
     candidate=result.pop('candidate')
     body=dict(schema='genesis-adaptive-repair-development-v1',case=args.case,
         evidence=evidence,features=task_features(evidence),initial_ranking=ranking,
