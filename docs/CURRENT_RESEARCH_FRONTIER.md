@@ -587,3 +587,13 @@ pre-validation rejection on both easy cases in both repetitions. The hard case
 still failed four host-checked candidates. The negative result is retained;
 113 focused tests pass, no promotion or canonical memory update. See
 [REPAIR_CAUSAL_EVIDENCE_2026-10-09.md](REPAIR_CAUSAL_EVIDENCE_2026-10-09.md).
+
+## Citation-interface correction — 9 October 2026
+
+The strict regression was preserved before boundary-whitespace tolerance was
+added. DEV_REPAIR_CAUSAL_EVIDENCE2: reference 2/3, checked child 2/3, 17 calls
+costing USD 0.023600225. Easy-case validation is restored; no paired gain.
+The hard-case child stops on a malformed final submission whose raw item was
+not retained; the reference stops after repeating a graded candidate. No policy
+promotion or canonical memory update. 116 focused tests pass. See
+[REPAIR_CAUSAL_EVIDENCE_NORMALIZED_2026-10-09.md](REPAIR_CAUSAL_EVIDENCE_NORMALIZED_2026-10-09.md).
