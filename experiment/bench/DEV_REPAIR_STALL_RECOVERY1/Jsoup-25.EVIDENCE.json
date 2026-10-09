@@ -1,0 +1,193 @@
+{
+  "evidence_digest": "6a6cd96d90c21ce07efae1221a1cdcfaf800e1fffd6ff21ba553c9388e5d76fe",
+  "failing_tests": [
+    "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea"
+  ],
+  "fixed_revision_consulted": false,
+  "original_evidence_digest": "173119df46dd69d4b5fb85abcfe9fa61cbfa97fa50a933b4256a0e529e95ea2c",
+  "production_source": [
+    {
+      "first_line": 1,
+      "last_line": 229,
+      "numbered_source": "    1| package org.jsoup;\n    2| \n    3| import org.jsoup.nodes.Document;\n    4| import org.jsoup.parser.Parser;\n    5| import org.jsoup.safety.Cleaner;\n    6| import org.jsoup.safety.Whitelist;\n    7| import org.jsoup.helper.DataUtil;\n    8| import org.jsoup.helper.HttpConnection;\n    9| \n   10| import java.io.File;\n   11| import java.io.IOException;\n   12| import java.io.InputStream;\n   13| import java.net.URL;\n   14| \n   15| /**\n   16|  The core public access point to the jsoup functionality.\n   17| \n   18|  @author Jonathan Hedley */\n   19| public class Jsoup {\n   20|     private Jsoup() {}\n   21| \n   22|     /**\n   23|      Parse HTML into a Document. The parser will make a sensible, balanced document tree out of any HTML.\n   24| \n   25|      @param html    HTML to parse\n   26|      @param baseUri The URL where the HTML was retrieved from. Used to resolve relative URLs to absolute URLs, that occur\n   27|      before the HTML declares a {@code <base href>} tag.\n   28|      @return sane HTML\n   29|      */\n   30|     public static Document parse(String html, String baseUri) {\n   31|         return Parser.parse(html, baseUri);\n   32|     }\n   33| \n   34|     /**\n   35|      Parse HTML into a Document, using the provided Parser. You can provide an alternate parser, such as a simple XML\n   36|      (non-HTML) parser.\n   37| \n   38|      @param html    HTML to parse\n   39|      @param baseUri The URL where the HTML was retrieved from. Used to resolve relative URLs to absolute URLs, that occur\n   40|      before the HTML declares a {@code <base href>} tag.\n   41|      @param parser alternate {@link Parser#xmlParser() parser} to use.\n   42|      @return sane HTML\n   43|      */\n   44|     public static Document parse(String html, String baseUri, Parser parser) {\n   45|         return parser.parseInput(html, baseUri);\n   46|     }\n   47| \n   48|     /**\n   49|      Parse HTML into a Document. As no base URI is specified, absolute URL detection relies on the HTML including a\n   50|      {@code <base href>} tag.\n   51| \n   52|      @param html HTML to parse\n   53|      @return sane HTML\n   54| \n   55|      @see #parse(String, String)\n   56|      */\n   57|     public static Document parse(String html) {\n   58|         return Parser.parse(html, \"\");\n   59|     }\n   60| \n   61|     /**\n   62|      * Creates a new {@link Connection} to a URL. Use to fetch and parse a HTML page.\n   63|      * <p>\n   64|      * Use examples:\n   65|      * <ul>\n   66|      *  <li><code>Document doc = Jsoup.connect(\"http://example.com\").userAgent(\"Mozilla\").data(\"name\", \"jsoup\").get();</code></li>\n   67|      *  <li><code>Document doc = Jsoup.connect(\"http://example.com\").cookie(\"auth\", \"token\").post();\n   68|      * </ul>\n   69|      * @param url URL to connect to. The protocol must be {@code http} or {@code https}.\n   70|      * @return the connection. You can add data, cookies, and headers; set the user-agent, referrer, method; and then execute.\n   71|      */\n   72|     public static Connection connect(String url) {\n   73|         return HttpConnection.connect(url);\n   74|     }\n   75| \n   76|     /**\n   77|      Parse the contents of a file as HTML.\n   78| \n   79|      @param in          file to load HTML from\n   80|      @param charsetName (optional) character set of file contents. Set to {@code null} to determine from {@code http-equiv} meta tag, if\n   81|      present, or fall back to {@code UTF-8} (which is often safe to do).\n   82|      @param baseUri     The URL where the HTML was retrieved from, to resolve relative links against.\n   83|      @return sane HTML\n   84| \n   85|      @throws IOException if the file could not be found, or read, or if the charsetName is invalid.\n   86|      */\n   87|     public static Document parse(File in, String charsetName, String baseUri) throws IOException {\n   88|         return DataUtil.load(in, charsetName, baseUri);\n   89|     }\n   90| \n   91|     /**\n   92|      Parse the contents of a file as HTML. The location of the file is used as the base URI to qualify relative URLs.\n   93| \n   94|      @param in          file to load HTML from\n   95|      @param charsetName (optional) character set of file contents. Set to {@code null} to determine from {@code http-equiv} meta tag, if\n   96|      present, or fall back to {@code UTF-8} (which is often safe to do).\n   97|      @return sane HTML\n   98| \n   99|      @throws IOException if the file could not be found, or read, or if the charsetName is invalid.\n  100|      @see #parse(File, String, String)\n  101|      */\n  102|     public static Document parse(File in, String charsetName) throws IOException {\n  103|         return DataUtil.load(in, charsetName, in.getAbsolutePath());\n  104|     }\n  105| \n  106|      /**\n  107|      Read an input stream, and parse it to a Document.\n  108| \n  109|      @param in          input stream to read. Make sure to close it after parsing.\n  110|      @param charsetName (optional) character set of file contents. Set to {@code null} to determine from {@code http-equiv} meta tag, if\n  111|      present, or fall back to {@code UTF-8} (which is often safe to do).\n  112|      @param baseUri     The URL where the HTML was retrieved from, to resolve relative links against.\n  113|      @return sane HTML\n  114| \n  115|      @throws IOException if the file could not be found, or read, or if the charsetName is invalid.\n  116|      */\n  117|     public static Document parse(InputStream in, String charsetName, String baseUri) throws IOException {\n  118|         return DataUtil.load(in, charsetName, baseUri);\n  119|     }\n  120| \n  121|     /**\n  122|      Read an input stream, and parse it to a Document. You can provide an alternate parser, such as a simple XML\n  123|      (non-HTML) parser.\n  124| \n  125|      @param in          input stream to read. Make sure to close it after parsing.\n  126|      @param charsetName (optional) character set of file contents. Set to {@code null} to determine from {@code http-equiv} meta tag, if\n  127|      present, or fall back to {@code UTF-8} (which is often safe to do).\n  128|      @param baseUri     The URL where the HTML was retrieved from, to resolve relative links against.\n  129|      @param parser alternate {@link Parser#xmlParser() parser} to use.\n  130|      @return sane HTML\n  131| \n  132|      @throws IOException if the file could not be found, or read, or if the charsetName is invalid.\n  133|      */\n  134|     public static Document parse(InputStream in, String charsetName, String baseUri, Parser parser) throws IOException {\n  135|         return DataUtil.load(in, charsetName, baseUri, parser);\n  136|     }\n  137| \n  138|     /**\n  139|      Parse a fragment of HTML, with the assumption that it forms the {@code body} of the HTML.\n  140| \n  141|      @param bodyHtml body HTML fragment\n  142|      @param baseUri  URL to resolve relative URLs against.\n  143|      @return sane HTML document\n  144| \n  145|      @see Document#body()\n  146|      */\n  147|     public static Document parseBodyFragment(String bodyHtml, String baseUri) {\n  148|         return Parser.parseBodyFragment(bodyHtml, baseUri);\n  149|     }\n  150| \n  151|     /**\n  152|      Parse a fragment of HTML, with the assumption that it forms the {@code body} of the HTML.\n  153| \n  154|      @param bodyHtml body HTML fragment\n  155|      @return sane HTML document\n  156| \n  157|      @see Document#body()\n  158|      */\n  159|     public static Document parseBodyFragment(String bodyHtml) {\n  160|         return Parser.parseBodyFragment(bodyHtml, \"\");\n  161|     }\n  162| \n  163|     /**\n  164|      Fetch a URL, and parse it as HTML. Provided for compatibility; in most cases use {@link #connect(String)} instead.\n  165|      <p>\n  166|      The encoding character set is determined by the content-type header or http-equiv meta tag, or falls back to {@code UTF-8}.\n  167| \n  168|      @param url           URL to fetch (with a GET). The protocol must be {@code http} or {@code https}.\n  169|      @param timeoutMillis Connection and read timeout, in milliseconds. If exceeded, IOException is thrown.\n  170|      @return The parsed HTML.\n  171| \n  172|      @throws IOException If the final server response != 200 OK (redirects are followed), or if there's an error reading\n  173|      the response stream.\n  174| \n  175|      @see #connect(String)\n  176|      */\n  177|     public static Document parse(URL url, int timeoutMillis) throws IOException {\n  178|         Connection con = HttpConnection.connect(url);\n  179|         con.timeout(timeoutMillis);\n  180|         return con.get();\n  181|     }\n  182| \n  183|     /**\n  184|      Get safe HTML from untrusted input HTML, by parsing input HTML and filtering it through a white-list of permitted\n  185|      tags and attributes.\n  186| \n  187|      @param bodyHtml  input untrusted HTML\n  188|      @param baseUri   URL to resolve relative URLs against\n  189|      @param whitelist white-list of permitted HTML elements\n  190|      @return safe HTML\n  191| \n  192|      @see Cleaner#clean(Document)\n  193|      */\n  194|     public static String clean(String bodyHtml, String baseUri, Whitelist whitelist) {\n  195|         Document dirty = parseBodyFragment(bodyHtml, baseUri);\n  196|         Cleaner cleaner = new Cleaner(whitelist);\n  197|         Document clean = cleaner.clean(dirty);\n  198|         return clean.body().html();\n  199|     }\n  200| \n  201|     /**\n  202|      Get safe HTML from untrusted input HTML, by parsing input HTML and filtering it through a white-list of permitted\n  203|      tags and attributes.\n  204| \n  205|      @param bodyHtml  input untrusted HTML\n  206|      @param whitelist white-list of permitted HTML elements\n  207|      @return safe HTML\n  208| \n  209|      @see Cleaner#clean(Document)\n  210|      */\n  211|     public static String clean(String bodyHtml, Whitelist whitelist) {\n  212|         return clean(bodyHtml, \"\", whitelist);\n  213|     }\n  214| \n  215|     /**\n  216|      Test if the input HTML has only tags and attributes allowed by the Whitelist. Useful for form validation. The input HTML should\n  217|      still be run through the cleaner to set up enforced attributes, and to tidy the output.\n  218|      @param bodyHtml HTML to test\n  219|      @param whitelist whitelist to test against\n  220|      @return true if no tags or attributes were removed; false otherwise\n  221|      @see #clean(String, org.jsoup.safety.Whitelist) \n  222|      */\n  223|     public static boolean isValid(String bodyHtml, Whitelist whitelist) {\n  224|         Document dirty = parseBodyFragment(bodyHtml, \"\");\n  225|         Cleaner cleaner = new Cleaner(whitelist);\n  226|         return cleaner.isValid(dirty);\n  227|     }\n  228|     \n  229| }",
+      "path": "src/main/java/org/jsoup/Jsoup.java"
+    },
+    {
+      "first_line": 718,
+      "last_line": 1104,
+      "numbered_source": "  718|      * Find elements that directly contain the specified string. The search is case insensitive. The text must appear directly\n  719|      * in the element, not in any of its descendants.\n  720|      * @param searchText to look for in the element's own text\n  721|      * @return elements that contain the string, case insensitive.\n  722|      * @see Element#ownText()\n  723|      */\n  724|     public Elements getElementsContainingOwnText(String searchText) {\n  725|         return Collector.collect(new Evaluator.ContainsOwnText(searchText), this);\n  726|     }\n  727|     \n  728|     /**\n  729|      * Find elements whose text matches the supplied regular expression.\n  730|      * @param pattern regular expression to match text against\n  731|      * @return elements matching the supplied regular expression.\n  732|      * @see Element#text()\n  733|      */\n  734|     public Elements getElementsMatchingText(Pattern pattern) {\n  735|         return Collector.collect(new Evaluator.Matches(pattern), this);\n  736|     }\n  737|     \n  738|     /**\n  739|      * Find elements whose text matches the supplied regular expression.\n  740|      * @param regex regular expression to match text against. You can use <a href=\"http://java.sun.com/docs/books/tutorial/essential/regex/pattern.html#embedded\">embedded flags</a> (such as (?i) and (?m) to control regex options.\n  741|      * @return elements matching the supplied regular expression.\n  742|      * @see Element#text()\n  743|      */\n  744|     public Elements getElementsMatchingText(String regex) {\n  745|         Pattern pattern;\n  746|         try {\n  747|             pattern = Pattern.compile(regex);\n  748|         } catch (PatternSyntaxException e) {\n  749|             throw new IllegalArgumentException(\"Pattern syntax error: \" + regex, e);\n  750|         }\n  751|         return getElementsMatchingText(pattern);\n  752|     }\n  753|     \n  754|     /**\n  755|      * Find elements whose own text matches the supplied regular expression.\n  756|      * @param pattern regular expression to match text against\n  757|      * @return elements matching the supplied regular expression.\n  758|      * @see Element#ownText()\n  759|      */\n  760|     public Elements getElementsMatchingOwnText(Pattern pattern) {\n  761|         return Collector.collect(new Evaluator.MatchesOwn(pattern), this);\n  762|     }\n  763|     \n  764|     /**\n  765|      * Find elements whose text matches the supplied regular expression.\n  766|      * @param regex regular expression to match text against. You can use <a href=\"http://java.sun.com/docs/books/tutorial/essential/regex/pattern.html#embedded\">embedded flags</a> (such as (?i) and (?m) to control regex options.\n  767|      * @return elements matching the supplied regular expression.\n  768|      * @see Element#ownText()\n  769|      */\n  770|     public Elements getElementsMatchingOwnText(String regex) {\n  771|         Pattern pattern;\n  772|         try {\n  773|             pattern = Pattern.compile(regex);\n  774|         } catch (PatternSyntaxException e) {\n  775|             throw new IllegalArgumentException(\"Pattern syntax error: \" + regex, e);\n  776|         }\n  777|         return getElementsMatchingOwnText(pattern);\n  778|     }\n  779|     \n  780|     /**\n  781|      * Find all elements under this element (including self, and children of children).\n  782|      * \n  783|      * @return all elements\n  784|      */\n  785|     public Elements getAllElements() {\n  786|         return Collector.collect(new Evaluator.AllElements(), this);\n  787|     }\n  788| \n  789|     /**\n  790|      * Gets the combined text of this element and all its children.\n  791|      * <p>\n  792|      * For example, given HTML {@code <p>Hello <b>there</b> now!</p>}, {@code p.text()} returns {@code \"Hello there now!\"}\n  793|      *\n  794|      * @return unencoded text, or empty string if none.\n  795|      * @see #ownText()\n  796|      * @see #textNodes()\n  797|      */\n  798|     public String text() {\n  799|         StringBuilder sb = new StringBuilder();\n  800|         text(sb);\n  801|         return sb.toString().trim();\n  802|     }\n  803| \n  804|     private void text(StringBuilder accum) {\n  805|         appendWhitespaceIfBr(this, accum);\n  806|         \n  807|         for (Node child : childNodes) {\n  808|             if (child instanceof TextNode) {\n  809|                 TextNode textNode = (TextNode) child;\n  810|                 appendNormalisedText(accum, textNode);\n  811|             } else if (child instanceof Element) {\n  812|                 Element element = (Element) child;\n  813|                 if (accum.length() > 0 && element.isBlock() && !TextNode.lastCharIsWhitespace(accum))\n  814|                     accum.append(\" \");\n  815|                 element.text(accum);\n  816|             }\n  817|         }\n  818|     }\n  819| \n  820|     /**\n  821|      * Gets the text owned by this element only; does not get the combined text of all children.\n  822|      * <p>\n  823|      * For example, given HTML {@code <p>Hello <b>there</b> now!</p>}, {@code p.ownText()} returns {@code \"Hello now!\"},\n  824|      * whereas {@code p.text()} returns {@code \"Hello there now!\"}.\n  825|      * Note that the text within the {@code b} element is not returned, as it is not a direct child of the {@code p} element.\n  826|      *\n  827|      * @return unencoded text, or empty string if none.\n  828|      * @see #text()\n  829|      * @see #textNodes()\n  830|      */\n  831|     public String ownText() {\n  832|         StringBuilder sb = new StringBuilder();\n  833|         ownText(sb);\n  834|         return sb.toString().trim();\n  835|     }\n  836| \n  837|     private void ownText(StringBuilder accum) {\n  838|         for (Node child : childNodes) {\n  839|             if (child instanceof TextNode) {\n  840|                 TextNode textNode = (TextNode) child;\n  841|                 appendNormalisedText(accum, textNode);\n  842|             } else if (child instanceof Element) {\n  843|                 appendWhitespaceIfBr((Element) child, accum);\n  844|             }\n  845|         }\n  846|     }\n  847| \n  848|     private void appendNormalisedText(StringBuilder accum, TextNode textNode) {\n  849|         String text = textNode.getWholeText();\n  850| \n  851|         if (!preserveWhitespace()) {\n  852|             text = TextNode.normaliseWhitespace(text);\n  853|             if (TextNode.lastCharIsWhitespace(accum))\n  854|                 text = TextNode.stripLeadingWhitespace(text);\n  855|         }\n  856|         accum.append(text);\n  857|     }\n  858| \n  859|     private static void appendWhitespaceIfBr(Element element, StringBuilder accum) {\n  860|         if (element.tag.getName().equals(\"br\") && !TextNode.lastCharIsWhitespace(accum))\n  861|             accum.append(\" \");\n  862|     }\n  863| \n  864|     boolean preserveWhitespace() {\n  865|         return tag.preserveWhitespace() || parent() != null && parent().preserveWhitespace();\n  866|     }\n  867| \n  868|     /**\n  869|      * Set the text of this element. Any existing contents (text or elements) will be cleared\n  870|      * @param text unencoded text\n  871|      * @return this element\n  872|      */\n  873|     public Element text(String text) {\n  874|         Validate.notNull(text);\n  875| \n  876|         empty();\n  877|         TextNode textNode = new TextNode(text, baseUri);\n  878|         appendChild(textNode);\n  879| \n  880|         return this;\n  881|     }\n  882| \n  883|     /**\n  884|      Test if this element has any text content (that is not just whitespace).\n  885|      @return true if element has non-blank text content.\n  886|      */\n  887|     public boolean hasText() {\n  888|         for (Node child: childNodes) {\n  889|             if (child instanceof TextNode) {\n  890|                 TextNode textNode = (TextNode) child;\n  891|                 if (!textNode.isBlank())\n  892|                     return true;\n  893|             } else if (child instanceof Element) {\n  894|                 Element el = (Element) child;\n  895|                 if (el.hasText())\n  896|                     return true;\n  897|             }\n  898|         }\n  899|         return false;\n  900|     }\n  901| \n  902|     /**\n  903|      * Get the combined data of this element. Data is e.g. the inside of a {@code script} tag.\n  904|      * @return the data, or empty string if none\n  905|      *\n  906|      * @see #dataNodes()\n  907|      */\n  908|     public String data() {\n  909|         StringBuilder sb = new StringBuilder();\n  910| \n  911|         for (Node childNode : childNodes) {\n  912|             if (childNode instanceof DataNode) {\n  913|                 DataNode data = (DataNode) childNode;\n  914|                 sb.append(data.getWholeData());\n  915|             } else if (childNode instanceof Element) {\n  916|                 Element element = (Element) childNode;\n  917|                 String elementData = element.data();\n  918|                 sb.append(elementData);\n  919|             }\n  920|         }\n  921|         return sb.toString();\n  922|     }   \n  923| \n  924|     /**\n  925|      * Gets the literal value of this element's \"class\" attribute, which may include multiple class names, space\n  926|      * separated. (E.g. on <code>&lt;div class=\"header gray\"></code> returns, \"<code>header gray</code>\")\n  927|      * @return The literal class attribute, or <b>empty string</b> if no class attribute set.\n  928|      */\n  929|     public String className() {\n  930|         return attr(\"class\");\n  931|     }\n  932| \n  933|     /**\n  934|      * Get all of the element's class names. E.g. on element {@code <div class=\"header gray\"}>},\n  935|      * returns a set of two elements {@code \"header\", \"gray\"}. Note that modifications to this set are not pushed to\n  936|      * the backing {@code class} attribute; use the {@link #classNames(java.util.Set)} method to persist them.\n  937|      * @return set of classnames, empty if no class attribute\n  938|      */\n  939|     public Set<String> classNames() {\n  940|         if (classNames == null) {\n  941|             String[] names = className().split(\"\\\\s+\");\n  942|             classNames = new LinkedHashSet<String>(Arrays.asList(names));\n  943|         }\n  944|         return classNames;\n  945|     }\n  946| \n  947|     /**\n  948|      Set the element's {@code class} attribute to the supplied class names.\n  949|      @param classNames set of classes\n  950|      @return this element, for chaining\n  951|      */\n  952|     public Element classNames(Set<String> classNames) {\n  953|         Validate.notNull(classNames);\n  954|         attributes.put(\"class\", StringUtil.join(classNames, \" \"));\n  955|         return this;\n  956|     }\n  957| \n  958|     /**\n  959|      * Tests if this element has a class. Case insensitive.\n  960|      * @param className name of class to check for\n  961|      * @return true if it does, false if not\n  962|      */\n  963|     public boolean hasClass(String className) {\n  964|         Set<String> classNames = classNames();\n  965|         for (String name : classNames) {\n  966|             if (className.equalsIgnoreCase(name))\n  967|                 return true;\n  968|         }\n  969|         return false;\n  970|     }\n  971| \n  972|     /**\n  973|      Add a class name to this element's {@code class} attribute.\n  974|      @param className class name to add\n  975|      @return this element\n  976|      */\n  977|     public Element addClass(String className) {\n  978|         Validate.notNull(className);\n  979| \n  980|         Set<String> classes = classNames();\n  981|         classes.add(className);\n  982|         classNames(classes);\n  983| \n  984|         return this;\n  985|     }\n  986| \n  987|     /**\n  988|      Remove a class name from this element's {@code class} attribute.\n  989|      @param className class name to remove\n  990|      @return this element\n  991|      */\n  992|     public Element removeClass(String className) {\n  993|         Validate.notNull(className);\n  994| \n  995|         Set<String> classes = classNames();\n  996|         classes.remove(className);\n  997|         classNames(classes);\n  998| \n  999|         return this;\n 1000|     }\n 1001| \n 1002|     /**\n 1003|      Toggle a class name on this element's {@code class} attribute: if present, remove it; otherwise add it.\n 1004|      @param className class name to toggle\n 1005|      @return this element\n 1006|      */\n 1007|     public Element toggleClass(String className) {\n 1008|         Validate.notNull(className);\n 1009| \n 1010|         Set<String> classes = classNames();\n 1011|         if (classes.contains(className))\n 1012|             classes.remove(className);\n 1013|         else\n 1014|             classes.add(className);\n 1015|         classNames(classes);\n 1016| \n 1017|         return this;\n 1018|     }\n 1019|     \n 1020|     /**\n 1021|      * Get the value of a form element (input, textarea, etc).\n 1022|      * @return the value of the form element, or empty string if not set.\n 1023|      */\n 1024|     public String val() {\n 1025|         if (tagName().equals(\"textarea\"))\n 1026|             return text();\n 1027|         else\n 1028|             return attr(\"value\");\n 1029|     }\n 1030|     \n 1031|     /**\n 1032|      * Set the value of a form element (input, textarea, etc).\n 1033|      * @param value value to set\n 1034|      * @return this element (for chaining)\n 1035|      */\n 1036|     public Element val(String value) {\n 1037|         if (tagName().equals(\"textarea\"))\n 1038|             text(value);\n 1039|         else\n 1040|             attr(\"value\", value);\n 1041|         return this;\n 1042|     }\n 1043| \n 1044|     void outerHtmlHead(StringBuilder accum, int depth, Document.OutputSettings out) {\n 1045|         if (accum.length() > 0 && out.prettyPrint() && (tag.formatAsBlock() || (parent() != null && parent().tag().formatAsBlock())))\n 1046|             indent(accum, depth, out);\n 1047|         accum\n 1048|                 .append(\"<\")\n 1049|                 .append(tagName());\n 1050|         attributes.html(accum, out);\n 1051| \n 1052|         if (childNodes.isEmpty() && tag.isSelfClosing())\n 1053|             accum.append(\" />\");\n 1054|         else\n 1055|             accum.append(\">\");\n 1056|     }\n 1057| \n 1058|     void outerHtmlTail(StringBuilder accum, int depth, Document.OutputSettings out) {\n 1059|         if (!(childNodes.isEmpty() && tag.isSelfClosing())) {\n 1060|             if (out.prettyPrint() && !childNodes.isEmpty() && tag.formatAsBlock())\n 1061|                 indent(accum, depth, out);\n 1062|             accum.append(\"</\").append(tagName()).append(\">\");\n 1063|         }\n 1064|     }\n 1065| \n 1066|     /**\n 1067|      * Retrieves the element's inner HTML. E.g. on a {@code <div>} with one empty {@code <p>}, would return\n 1068|      * {@code <p></p>}. (Whereas {@link #outerHtml()} would return {@code <div><p></p></div>}.)\n 1069|      * \n 1070|      * @return String of HTML.\n 1071|      * @see #outerHtml()\n 1072|      */\n 1073|     public String html() {\n 1074|         StringBuilder accum = new StringBuilder();\n 1075|         html(accum); \n 1076|         return accum.toString().trim();\n 1077|     }\n 1078| \n 1079|     private void html(StringBuilder accum) {\n 1080|         for (Node node : childNodes)\n 1081|             node.outerHtml(accum);\n 1082|     }\n 1083|     \n 1084|     /**\n 1085|      * Set this element's inner HTML. Clears the existing HTML first.\n 1086|      * @param html HTML to parse and set into this element\n 1087|      * @return this element\n 1088|      * @see #append(String)\n 1089|      */\n 1090|     public Element html(String html) {\n 1091|         empty();\n 1092|         append(html);\n 1093|         return this;\n 1094|     }\n 1095| \n 1096|     public String toString() {\n 1097|         return outerHtml();\n 1098|     }\n 1099| \n 1100|     @Override\n 1101|     public boolean equals(Object o) {\n 1102|         return this == o;\n 1103|     }\n 1104| ",
+      "path": "src/main/java/org/jsoup/nodes/Element.java"
+    }
+  ],
+  "schema": "genesis-repair-bench-evidence-v1",
+  "source_directory": "src/main/java",
+  "static_localization": {
+    "method": "test API method references; literals excluded",
+    "references": [
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 30,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 44,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 57,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 87,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 102,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 117,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 134,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 177,
+        "method": "parse",
+        "owner": "Jsoup",
+        "path": "src/main/java/org/jsoup/Jsoup.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 798,
+        "method": "text",
+        "owner": "Element",
+        "path": "src/main/java/org/jsoup/nodes/Element.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 804,
+        "method": "text",
+        "owner": "Element",
+        "path": "src/main/java/org/jsoup/nodes/Element.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 873,
+        "method": "text",
+        "owner": "Element",
+        "path": "src/main/java/org/jsoup/nodes/Element.java"
+      },
+      {
+        "failing_test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+        "hypothesis": "declared production method called by failing test; static, not executed coverage",
+        "line": 1024,
+        "method": "val",
+        "owner": "Element",
+        "path": "src/main/java/org/jsoup/nodes/Element.java"
+      }
+    ],
+    "runtime_coverage": false,
+    "source_files": 2
+  },
+  "suspect_locations": [
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      30
+    ],
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      44
+    ],
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      57
+    ],
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      87
+    ],
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      102
+    ],
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      117
+    ],
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      134
+    ],
+    [
+      "src/main/java/org/jsoup/Jsoup.java",
+      177
+    ],
+    [
+      "src/main/java/org/jsoup/nodes/Element.java",
+      798
+    ],
+    [
+      "src/main/java/org/jsoup/nodes/Element.java",
+      804
+    ],
+    [
+      "src/main/java/org/jsoup/nodes/Element.java",
+      873
+    ],
+    [
+      "src/main/java/org/jsoup/nodes/Element.java",
+      1024
+    ]
+  ],
+  "suspects_from_stack_trace": false,
+  "test_directory": "src/test/java",
+  "test_source": [
+    {
+      "first_line": 159,
+      "last_line": 209,
+      "numbered_source": "  159| \n  160|         String s = \"<p>Hello</p><script>obj.insert('<a rel=\\\"none\\\" />');\\ni++;</script><p>There</p>\";\n  161|         Document doc = Jsoup.parse(s);\n  162|         assertEquals(\"Hello There\", doc.text());\n  163|         assertEquals(\"obj.insert('<a rel=\\\"none\\\" />');\\ni++;\", doc.data());\n  164|     }\n  165| \n  166|     @Test public void handlesTextAfterData() {\n  167|         String h = \"<html><body>pre <script>inner</script> aft</body></html>\";\n  168|         Document doc = Jsoup.parse(h);\n  169|         assertEquals(\"<html><head></head><body>pre <script>inner</script> aft</body></html>\", TextUtil.stripNewlines(doc.html()));\n  170|     }\n  171| \n  172|     @Test public void handlesTextArea() {\n  173|         Document doc = Jsoup.parse(\"<textarea>Hello</textarea>\");\n  174|         Elements els = doc.select(\"textarea\");\n  175|         assertEquals(\"Hello\", els.text());\n  176|         assertEquals(\"Hello\", els.val());\n  177|     }\n  178| \n  179|     @Test public void preservesSpaceInTextArea() {\n  180|         // preserve because the tag is marked as preserve white space\n  181|         Document doc = Jsoup.parse(\"<textarea>\\n\\tOne\\n\\tTwo\\n\\tThree\\n</textarea>\");\n  182|         String expect = \"One\\n\\tTwo\\n\\tThree\"; // the leading and trailing spaces are dropped as a convenience to authors\n  183|         Element el = doc.select(\"textarea\").first();\n  184|         assertEquals(expect, el.text());\n  185|         assertEquals(expect, el.val());\n  186|         assertEquals(expect, el.html());\n  187|         assertEquals(\"<textarea>\\n\\t\" + expect + \"\\n</textarea>\", el.outerHtml()); // but preserved in round-trip html\n  188|     }\n  189| \n  190|     @Test public void preservesSpaceInScript() {\n  191|         // preserve because it's content is a data node\n  192|         Document doc = Jsoup.parse(\"<script>\\nOne\\n\\tTwo\\n\\tThree\\n</script>\");\n  193|         String expect = \"\\nOne\\n\\tTwo\\n\\tThree\\n\";\n  194|         Element el = doc.select(\"script\").first();\n  195|         assertEquals(expect, el.data());\n  196|         assertEquals(\"One\\n\\tTwo\\n\\tThree\", el.html());\n  197|         assertEquals(\"<script>\" + expect + \"</script>\", el.outerHtml());\n  198|     }\n  199| \n  200|     @Test public void doesNotCreateImplicitLists() {\n  201|         // old jsoup used to wrap this in <ul>, but that's not to spec\n  202|         String h = \"<li>Point one<li>Point two\";\n  203|         Document doc = Jsoup.parse(h);\n  204|         Elements ol = doc.select(\"ul\"); // should NOT have created a default ul.\n  205|         assertEquals(0, ol.size());\n  206|         Elements lis = doc.select(\"li\");\n  207|         assertEquals(2, lis.size());\n  208|         assertEquals(\"body\", lis.first().parent().tagName());\n  209| ",
+      "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java"
+    }
+  ],
+  "traces": [
+    {
+      "test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+      "trace": "junit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "attempt_digest": "c474281ec7da88bd7971d9d091f30ab58ff8dc89a2f987fba7d81bb13d1235b0",
+  "candidate_digest": "b13b2095b8341450fd48e87c7d0d0cfad998137cb64a4969a6b05a5aa547d9cc",
+  "diagnosis": "behaviour",
+  "verdict": {
+    "candidate_digest": "b13b2095b8341450fd48e87c7d0d0cfad998137cb64a4969a6b05a5aa547d9cc",
+    "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "fcde4f8b5515c5621f80cab2d1c359de988ebb59cdba00851fd1b07a402bcad4"
+  }
+}

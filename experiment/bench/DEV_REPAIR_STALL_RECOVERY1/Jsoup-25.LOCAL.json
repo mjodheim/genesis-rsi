@@ -1,0 +1,254 @@
+{
+  "api_cost_usd": 0,
+  "external_model_calls": 0,
+  "generations": [
+    {
+      "attempts": [
+        {
+          "candidate_digest": "1bd2bfd3e3855ab97cc4130d1f8ea59f934b99f349b5e0005dc2ddc5ec280b42",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "1bd2bfd3e3855ab97cc4130d1f8ea59f934b99f349b5e0005dc2ddc5ec280b42",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "aaad5c6540d4dc504acdb48a0fc8c47bc7183392a2b3c7e30102fbd8073b5b48"
+          }
+        },
+        {
+          "candidate_digest": "477892846aa22d3ab9924ae762a448fb2aa1e6c9629be21f8a2b55cd4a817c2a",
+          "diagnosis": "type",
+          "verdict": {
+            "candidate_digest": "477892846aa22d3ab9924ae762a448fb2aa1e6c9629be21f8a2b55cd4a817c2a",
+            "feedback": "    [javac] /work/Jsoup-25-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-25-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-25-b/src/main/java/org/jsoup/nodes/Element.java:234: error: cannot find symbol\n    [javac]         prependChild(child);\n    [javac]                      ^\n    [javac]   symbol:   variable child\n    [javac]   location: class Element\n    [javac] 1 error\n    [javac] 4 warnings",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Element.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "533c3f223f21698bfc7a530b171734960b910e2bdef2d03ec76e5be07855314b"
+          }
+        }
+      ],
+      "proposal": {
+        "cause": "initial_search",
+        "generated": 2,
+        "generation": 0,
+        "generation_digest": "6257e2e222517a5bc0db992383eea160b0396b1ebbfc563ae08eeb72c571802c",
+        "new_candidates": 2,
+        "parent_generation_digest": null,
+        "prior_verdict_digests": [],
+        "promoted": false,
+        "requested_candidates": 2,
+        "unique_candidates": 2
+      },
+      "stop_reason": "candidate_pool_exhausted"
+    },
+    {
+      "attempts": [
+        {
+          "candidate_digest": "6e77664316c03c1e1f909c69ff88814ec0e7675c54d3a378329af62928766ab2",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "6e77664316c03c1e1f909c69ff88814ec0e7675c54d3a378329af62928766ab2",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "65e4cf2f519b9f4d9c5938cae44e681657b58629f8c045f15159711c05c4c66e"
+          }
+        },
+        {
+          "candidate_digest": "f85cfde0de20c20d804c101e16ca47af5892d232801100376237d7e964090420",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "f85cfde0de20c20d804c101e16ca47af5892d232801100376237d7e964090420",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "9d5a86dcbb166dc7da160ea08568196e7e24cb6b95b42b259f665da6e8150049"
+          }
+        },
+        {
+          "candidate_digest": "1a5f67914f200360c981ad24a21f7fbe6b149fd6a976aae7f81c20621821c4be",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "1a5f67914f200360c981ad24a21f7fbe6b149fd6a976aae7f81c20621821c4be",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "584a00c08d8ce84fc0b125cc7fe2eff4554a4ccf3393dce7abb6ae8d7d290370"
+          }
+        },
+        {
+          "candidate_digest": "e05c671b5ac316f20cf198e97ef679f088f0796c203048649425d0dbbde31c61",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "e05c671b5ac316f20cf198e97ef679f088f0796c203048649425d0dbbde31c61",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Element.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "3885a07f678631a53780533a4d84f714e0c2cf9457ea276ea47ca2227626bb6b"
+          }
+        },
+        {
+          "candidate_digest": "e6396a24ddb84d9beb8fdb1afd5b89788d1f21e4765c5514e09ede73b38291d0",
+          "diagnosis": "type",
+          "verdict": {
+            "candidate_digest": "e6396a24ddb84d9beb8fdb1afd5b89788d1f21e4765c5514e09ede73b38291d0",
+            "feedback": "    [javac] /work/Jsoup-25-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-25-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-25-b/src/main/java/org/jsoup/nodes/Element.java:345: error: cannot find symbol\n    [javac]         prependChild(node);\n    [javac]                      ^\n    [javac]   symbol:   variable node\n    [javac]   location: class Element\n    [javac] 1 error\n    [javac] 4 warnings",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Element.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "5a910f1c23de7ce5bb17e40e828f5ccc4962d2916056e7b3bbe4eede79771ca9"
+          }
+        },
+        {
+          "candidate_digest": "3c9dbdedf36dba20c6cae369e0545cd7fe2d3f07309c1bb382595a4f7ce39434",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "3c9dbdedf36dba20c6cae369e0545cd7fe2d3f07309c1bb382595a4f7ce39434",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Element.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "7f888e3b5d21cdf585dd6feeb49894f8b1cdb963b3ac5e6e427c1a761057f5f9"
+          }
+        }
+      ],
+      "proposal": {
+        "cause": "candidate_pool_exhausted",
+        "generated": 8,
+        "generation": 1,
+        "generation_digest": "ea84d1af82f98de9f7193236e2ac2584d14699ab68f11058066e860bd524b53d",
+        "new_candidates": 6,
+        "parent_generation_digest": "6257e2e222517a5bc0db992383eea160b0396b1ebbfc563ae08eeb72c571802c",
+        "prior_verdict_digests": [
+          "aaad5c6540d4dc504acdb48a0fc8c47bc7183392a2b3c7e30102fbd8073b5b48",
+          "533c3f223f21698bfc7a530b171734960b910e2bdef2d03ec76e5be07855314b"
+        ],
+        "promoted": false,
+        "requested_candidates": 8,
+        "unique_candidates": 8
+      },
+      "stop_reason": "candidate_pool_exhausted"
+    },
+    {
+      "attempts": [
+        {
+          "candidate_digest": "3ddd1b9f5d7abb66ebb7826642613e88bb2c34ad7ca890af082ed6c7b7e366d4",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "3ddd1b9f5d7abb66ebb7826642613e88bb2c34ad7ca890af082ed6c7b7e366d4",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "7c944b0b27814639f6851449859af48c22266d8cd77eed351c6ce783e227b752"
+          }
+        },
+        {
+          "candidate_digest": "1ba71ad3fa48b2917cc85ec7c10080f39d9c65f872c9d613fed2e0fb8a38479c",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "1ba71ad3fa48b2917cc85ec7c10080f39d9c65f872c9d613fed2e0fb8a38479c",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "df63fbad7e5a04705dbb7ed08680719b933d792a8507d20d31dad4c4add430f2"
+          }
+        },
+        {
+          "candidate_digest": "e6816ff6105aab29fc842b398d4baf261d28947264b8d1c247554abac80f00eb",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "e6816ff6105aab29fc842b398d4baf261d28947264b8d1c247554abac80f00eb",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "cb66b7615e303b2fe3c21f3b4e8ff5e60a87e5c3331877e06308593caa45cab2"
+          }
+        },
+        {
+          "candidate_digest": "a2b53c8d222e5d4330dd2b46153877e30fd989115f39c55b9239c2b1309284f9",
+          "diagnosis": "behaviour",
+          "verdict": {
+            "candidate_digest": "a2b53c8d222e5d4330dd2b46153877e30fd989115f39c55b9239c2b1309284f9",
+            "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/Jsoup.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "a2b5a9b52a831dcd0223a85b661616b91a600eca9ede9c839d8eeba8af92b368"
+          }
+        }
+      ],
+      "proposal": {
+        "cause": "candidate_pool_exhausted",
+        "generated": 32,
+        "generation": 2,
+        "generation_digest": "b502d89fc12e94e50d8a7e84a1671e3abba65804c8bb1582c5c13e4e97538e44",
+        "new_candidates": 24,
+        "parent_generation_digest": "ea84d1af82f98de9f7193236e2ac2584d14699ab68f11058066e860bd524b53d",
+        "prior_verdict_digests": [
+          "aaad5c6540d4dc504acdb48a0fc8c47bc7183392a2b3c7e30102fbd8073b5b48",
+          "533c3f223f21698bfc7a530b171734960b910e2bdef2d03ec76e5be07855314b",
+          "65e4cf2f519b9f4d9c5938cae44e681657b58629f8c045f15159711c05c4c66e",
+          "9d5a86dcbb166dc7da160ea08568196e7e24cb6b95b42b259f665da6e8150049",
+          "584a00c08d8ce84fc0b125cc7fe2eff4554a4ccf3393dce7abb6ae8d7d290370",
+          "3885a07f678631a53780533a4d84f714e0c2cf9457ea276ea47ca2227626bb6b",
+          "5a910f1c23de7ce5bb17e40e828f5ccc4962d2916056e7b3bbe4eede79771ca9",
+          "7f888e3b5d21cdf585dd6feeb49894f8b1cdb963b3ac5e6e427c1a761057f5f9"
+        ],
+        "promoted": false,
+        "requested_candidates": 32,
+        "unique_candidates": 32
+      },
+      "stop_reason": "validation_budget_exhausted"
+    }
+  ],
+  "local_digest": "b9362769846be348f2ab8324cfccdff67a4d5143fa52377337e9bcd6771e0c02",
+  "promoted": false,
+  "solved": false,
+  "stop_reason": "validation_budget_exhausted",
+  "validated": 12
+}

@@ -481,3 +481,12 @@ Next priorities: causal call traversal, broader/multiline/algorithmic acquisitio
 semantic guards and independently separated real transfer. See
 `docs/REPAIR_QUALITY_LEARNING_2026-10-09.md`; audits are stored-evidence checks,
 not independent execution replication.
+
+9 October 2026 — exposed failed-search recovery: explicit bounded generation lineage,
+stop reasons and own-verdict reranking now operate without requiring a prior success.
+On Jsoup-25/Math-37/Compress-18, three search generations per case still yield 0/3
+local repairs (36 validations). Separately, economical assisted recovery yields 3/3
+full-suite repairs plus new-reader replay, known API USD 0.01377242. All failures
+and three successes admitted: canonical memory 223→292. No policy promotion or
+general RSI claim. See REPAIR_STALL_RECOVERY_2026-10-09.md. Mutation-language
+coverage remains the next substantive deficit; pool expansion alone is insufficient.

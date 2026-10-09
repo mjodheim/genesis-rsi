@@ -1,0 +1,16 @@
+{
+  "attempt_digest": "c625063fdfb9dbb79842781580874b4494624f8cb657e2ccc934a73e0bd9549e",
+  "candidate_digest": "608c475c57d534daa26141ee17cea0585c3d3b881811b64c2f85a0dd5e6ecaed",
+  "diagnosis": "syntax_or_other_compile",
+  "verdict": {
+    "candidate_digest": "608c475c57d534daa26141ee17cea0585c3d3b881811b64c2f85a0dd5e6ecaed",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-37-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:132: error: illegal start of expression\n    [javac]             transient double q = imaginary / real;\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: illegal start of type\n    [javac]             return FastMath.abs(real) * FastMath.sqrt(1 + q * q);\n    [javac]             ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: <identifier> expected\n    [javac]             return FastMath.abs(real) * FastMath.sqrt(1 + q * q);\n    [javac]                                ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: <identifier> expected\n    [javac]             return FastMath.abs(real) * FastMath.sqrt(1 + q * q);\n    [javac]                                     ^\n    [javac] /work/Math-37-b/src/main/java/org/apache/commons/math/complex/Complex.java:133: error: ';' expected",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "18541b7cd9831165df1a528bab502c564c525c7b457c28c13715f2414bb3fb4a"
+  }
+}

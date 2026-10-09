@@ -1,0 +1,16 @@
+{
+  "attempt_digest": "c938d10a21a16a75fff1f0ef6eda124781fa7a2209edc09769d1ec9c39d4d085",
+  "candidate_digest": "1ba71ad3fa48b2917cc85ec7c10080f39d9c65f872c9d613fed2e0fb8a38479c",
+  "diagnosis": "behaviour",
+  "verdict": {
+    "candidate_digest": "1ba71ad3fa48b2917cc85ec7c10080f39d9c65f872c9d613fed2e0fb8a38479c",
+    "feedback": "--- org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea\njunit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/Jsoup.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "df63fbad7e5a04705dbb7ed08680719b933d792a8507d20d31dad4c4add430f2"
+  }
+}

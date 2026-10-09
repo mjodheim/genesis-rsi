@@ -13,12 +13,20 @@ def audit(path):
     result=json.loads((path/'RESULT.json').read_text());checked(result,'result_digest')
     if result['plan_digest']!=plan['plan_digest']:raise ValueError('plan mismatch')
     for name,identity in plan['machinery'].items():
-        if hashlib.sha256((path/'snapshot'/name).read_bytes()).hexdigest()!=identity:raise ValueError('snapshot mismatch')
+        source=path/'snapshot'/name
+        if not source.exists():source=ROOT/name
+        if hashlib.sha256(source.read_bytes()).hexdigest()!=identity:raise ValueError('snapshot mismatch; use archived machinery or its source commit')
     if result['all_solved']!=all(r['solved'] for r in result['outcomes']):raise ValueError('success count mismatch')
     if [r['case'] for r in result['outcomes']]!=plan['cases']:raise ValueError('case order mismatch')
     initial=result['initial_events'];events=result['events']
     if digest_of(initial)!=plan['initial_memory_digest'] or events[:len(initial)]!=initial:raise ValueError('history changed')
-    if RepairExperience(path/'experience.sqlite').events()!=events or digest_of(events)!=result['final_memory_digest']:raise ValueError('database mismatch')
+    if digest_of(events)!=result['final_memory_digest']:raise ValueError('memory digest mismatch')
+    previous=''
+    for event in events:
+        if event['previous_digest']!=previous:raise ValueError('memory chain mismatch')
+        previous=digest_of(event)
+    database=path/'experience.sqlite'
+    if database.exists() and RepairExperience(database).events()!=events:raise ValueError('database mismatch')
     for row in result['outcomes']:
         local=row['local'];seen=set();prior=[];parent=None
         for generation in local['generations']:

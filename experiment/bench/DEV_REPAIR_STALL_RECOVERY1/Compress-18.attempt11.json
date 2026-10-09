@@ -1,0 +1,16 @@
+{
+  "attempt_digest": "655080b73cad9c623978ec149b14293edb9f73c7e47c9921b6ad3b3954649ea8",
+  "candidate_digest": "70ede05239614707d261aef029aec4c9b084290a96f244af90d8d361212baae3",
+  "diagnosis": "behaviour",
+  "verdict": {
+    "candidate_digest": "70ede05239614707d261aef029aec4c9b084290a96f244af90d8d361212baae3",
+    "feedback": "--- org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest::testWriteNonAsciiDirectoryNamePosixMode\njava.io.IOException: request to write '15' bytes exceeds size in header of '0' bytes for entry './PaxHeaders.X/fvv/'\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.write(TarArchiveOutputStream.java:387)\n\tat java.base/java.io.OutputStream.write(OutputStream.java:122)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:489)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:314)\n\tat org.apache.commons.compress.archivers.tar.TarArchiveOutputStreamTest.testWriteNonAsciiDirectoryNamePosixMode(TarArchiveOutputStreamTest.java:418)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "0a9bc3ea63735f5efd6de9db21e0952ad11241e6bebe264a323277bad9185fb5"
+  }
+}
