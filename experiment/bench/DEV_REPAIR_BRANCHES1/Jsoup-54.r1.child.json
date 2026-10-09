@@ -1,0 +1,70 @@
+{
+  "arm_digest": "01cadf8bae99203495da9b6e029ba87e7c7de7a76b680d77021cef0e0140b2d9",
+  "calls": [
+    {
+      "applicable": 1,
+      "cached_tokens": 0,
+      "cost_usd": 0.001373525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "52cd768af6352fbb684aad8f2691c179ad460b532f313f071b57adb49760c6c5",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [
+        {
+          "applicable": true,
+          "branch_depth": 0,
+          "candidate_digest": "bc6bd8259d7cca477dad3feab432800eff20c7ee4cd484c44f61b3edf1a918bc",
+          "complete_paths": [
+            "src/main/java/org/jsoup/helper/W3CDom.java"
+          ],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "                if (key.length() == 0) continue; // sanitized to nothing; not a valid XML attribute name\n                el.setAttribute(key, attribute.getValue());",
+                  "search": "                    el.setAttribute(key, attribute.getValue());"
+                }
+              ],
+              "path": "src/main/java/org/jsoup/helper/W3CDom.java"
+            }
+          ],
+          "hypothesis": "Attribute keys that contain only invalid XML name characters (e.g. the key '\"') are sanitized to an empty string, and setAttribute(\"\") throws INVALID_CHARACTER_ERR. Skip attributes whose sanitized key is empty.",
+          "parent": "",
+          "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 982,
+        "prompt_tokens": 7061
+      }
+    }
+  ],
+  "case": "Jsoup-54",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/main/java/org/jsoup/helper/W3CDom.java\n+++ b/src/main/java/org/jsoup/helper/W3CDom.java\n@@ -123,7 +123,8 @@\n             for (Attribute attribute : source.attributes()) {\n                 // valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]\n                 String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");\n-                    el.setAttribute(key, attribute.getValue());\n+                if (key.length() == 0) continue; // sanitized to nothing; not a valid XML attribute name\n+                el.setAttribute(key, attribute.getValue());\n             }\n         }\n \n",
+  "plausible_squashed_sha256": "b9279397c59396695a28713e800177e2529cc9a1fd6ab1aa845bb7045e4ce673",
+  "rounds": 1,
+  "seconds": 14.7,
+  "solved": true,
+  "suspects_from_stack_trace": true,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "bc6bd8259d7cca477dad3feab432800eff20c7ee4cd484c44f61b3edf1a918bc",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "b67d810053411b065e39efc9a7c498f2f78e8e2a2d1d5666db8fe09ff8d482a0"
+    }
+  ]
+}

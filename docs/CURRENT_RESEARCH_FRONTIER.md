@@ -557,3 +557,14 @@ After closing DEV_REPAIR_TRANSACTIONS1, prospective typed file-layout rejection
 retains malformed input and permits correction within unused planned requests.
 Ninety-two focused tests pass. This is offline hardening; no new live measurement
 or retrospective repair of the failed pilot is claimed.
+
+## Case-local repair branches — 9 October 2026
+
+DEV_REPAIR_BRANCHES1: both arms 4/6, 36 API calls costing USD 0.043858125.
+The child exercised two- and three-file validation, but used no graded-parent
+extension or virtual read. Two child submissions were inapplicable; one proposed
+serializability for an already serializable class. There is no measured gain.
+One hundred focused tests pass. No promotion, reserved-case use or canonical
+memory mutation (292 events). Common four-round allocation is manually authored
+and differs from historical pilots. See
+[REPAIR_BRANCHES_2026-10-09.md](REPAIR_BRANCHES_2026-10-09.md).

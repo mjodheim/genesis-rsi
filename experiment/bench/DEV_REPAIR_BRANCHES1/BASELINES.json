@@ -1,0 +1,32 @@
+{
+  "baselines_digest": "4594d0cd06dbba7ad30e107b8d11c07a8ea453bd131c916ce9e1f46ca2802975",
+  "cases": [
+    {
+      "case": "Mockito-17",
+      "evidence_digest": "77156b24788fcae4f3b4530cb4042ee5e3e8f647e0c18c624f34c40920d27d66",
+      "failing_tests": [
+        "org.mockitousage.basicapi.MocksSerializationTest::shouldBeSerializeAndHaveExtraInterfaces"
+      ],
+      "production_restored": true,
+      "tolerated_baseline_failures": []
+    },
+    {
+      "case": "Jsoup-54",
+      "evidence_digest": "0dd4ec85cdd07c8e8e1fc6d1b004b9a790cb24bf4431ed25ebd4f5a7502f881d",
+      "failing_tests": [
+        "org.jsoup.helper.W3CDomTest::handlesInvalidAttributeNames"
+      ],
+      "production_restored": true,
+      "tolerated_baseline_failures": []
+    },
+    {
+      "case": "Mockito-23",
+      "evidence_digest": "6720d82ef80a4e2d603464138f2067d49d7aec0051fe0ad7fd014578ea64c280",
+      "failing_tests": [
+        "org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs"
+      ],
+      "production_restored": true,
+      "tolerated_baseline_failures": []
+    }
+  ]
+}

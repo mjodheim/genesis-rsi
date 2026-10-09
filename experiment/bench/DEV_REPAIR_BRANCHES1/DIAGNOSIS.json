@@ -1,0 +1,194 @@
+{
+  "branch_feature_exercised": false,
+  "canonical_memory_events": 292,
+  "diagnosis_digest": "8be060bd33c78273d9a6ab1e6827b7f8d42a0bc0ece418fa52961cf536486984",
+  "held_out_consumed": false,
+  "interpretation": "No measured gain; neither inherited branch edits nor virtual branch reads exercised. Multi-file proposals validated but failed. Exception movement is not proof of a useful stepping stone.",
+  "known_rejection_causes": [
+    "Mockito-23 r1 parent: null files layout at final submission",
+    "Mockito-23 r1 child round4: required parent omitted",
+    "Mockito-23 r2 child: exact search omits existing implements Serializable; already serializable class"
+  ],
+  "metrics": {
+    "child": {
+      "applicable_extensions": 0,
+      "cost_usd": 0.021433925,
+      "inapplicable": 2,
+      "maximum_complete_files": 3,
+      "requests": 16,
+      "seconds": 341.7,
+      "solved": 4,
+      "validated": 7,
+      "virtual_reads": 0
+    },
+    "parent": {
+      "applicable_extensions": 0,
+      "cost_usd": 0.022424200000000002,
+      "inapplicable": 1,
+      "maximum_complete_files": 1,
+      "requests": 20,
+      "seconds": 444.7,
+      "solved": 4,
+      "validated": 10,
+      "virtual_reads": 0
+    }
+  },
+  "multi_file_feature_exercised": true,
+  "next_hypothesis": "Train evidence-backed parent selection and virtual-source inspection; distinguish causal settings repair from making successive exception classes serializable. Measure on exposed development before fresh cases.",
+  "policy_promoted": false,
+  "result_digest": "c70df72168a3bd31fe522a15e6b48033a26fc828a0b4009dd223ab9fb51f39dc",
+  "serialization_traces": [
+    {
+      "arm": "parent",
+      "case": "Mockito-23",
+      "rejections": [
+        {
+          "files": null,
+          "parent": null,
+          "reason": "transaction rejected: require 1-3 distinct existing production files and unique changed edits",
+          "round": 2
+        }
+      ],
+      "replicate": 1,
+      "rounds": 2,
+      "verdicts": [
+        {
+          "candidate": "1a3b51418a921da8cf01c44f7e832431d7ce14e57c27780873a305a9800adfab",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.util.MockUtil",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    },
+    {
+      "arm": "child",
+      "case": "Mockito-23",
+      "rejections": [
+        {
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "        return recordDeepStubMock(createNewDeepStubMock(returnTypeGenericMetadata, invocation), container);",
+                  "search": "        return recordDeepStubMock(createNewDeepStubMock(returnTypeGenericMetadata), container);"
+                },
+                {
+                  "replace": "    private Object createNewDeepStubMock(GenericMetadataSupport returnTypeGenericMetadata, InvocationOnMock invocation) {\n        MockSettings settings = withSettingsUsing(returnTypeGenericMetadata);\n        if (new MockUtil().getMockHandler(invocation.getMock()).getMockSettings().isSerializable()) {\n            settings = settings.serializable();\n        }\n        return mockitoCore.mock(\n                returnTypeGenericMetadata.rawType(),\n                settings\n        );\n    }",
+                  "search": "    private Object createNewDeepStubMock(GenericMetadataSupport returnTypeGenericMetadata) {\n        return mockitoCore.mock(\n                returnTypeGenericMetadata.rawType(),\n                withSettingsUsing(returnTypeGenericMetadata)\n        );\n    }"
+                }
+              ],
+              "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+            }
+          ],
+          "parent": null,
+          "reason": "transaction rejected: require 1-3 distinct existing production files and unique changed edits; branch parent must be a graded archive digest; search text must match the selected virtual source",
+          "round": 4
+        }
+      ],
+      "replicate": 1,
+      "rounds": 4,
+      "verdicts": [
+        {
+          "candidate": "68f7fb295504a0e2d5889ffe4cab0f39dd5af08d02e3ba59d14a3c3a36288be6",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMethod",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "f0e47c11c8e5245e91397c11ca7554b30d05072820b5023fd0746a4c59abe3b2",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMockitoMethodProxy",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "b3b0ba9264c14399fd0d9fc0d8cf679a64c8d871a4385187abb285e0316d6ac6",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMockitoMethodProxy",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    },
+    {
+      "arm": "parent",
+      "case": "Mockito-23",
+      "rejections": [],
+      "replicate": 2,
+      "rounds": 4,
+      "verdicts": [
+        {
+          "candidate": "bd32b2d47bc3111d54a61fa9850ac7e4d32b11271f6bbc05e52f1eaff06e42a9",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "71fa396cfdfd804b1fde2188f93bdc096ec827ea807ca8d81f55fa0c131cb0ad",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$1",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "23f742030332918e725a6bf56868e3216e9265b18826de9e8f1187e869f65a0b",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.creation.DelegatingMethod",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        },
+        {
+          "candidate": "509d621484ae583091886a4ac5700cb36a961e4248259bb4c38434308eab46f3",
+          "feedback_head": [
+            "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs",
+            "java.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2",
+            "\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)"
+          ],
+          "stage": "failing_tests"
+        }
+      ]
+    },
+    {
+      "arm": "child",
+      "case": "Mockito-23",
+      "rejections": [
+        {
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "public abstract class GenericMetadataSupport implements java.io.Serializable {",
+                  "search": "public abstract class GenericMetadataSupport {"
+                }
+              ],
+              "path": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java"
+            }
+          ],
+          "parent": "",
+          "reason": "transaction rejected: require 1-3 distinct existing production files and unique changed edits; branch parent must be a graded archive digest; search text must match the selected virtual source",
+          "round": 1
+        }
+      ],
+      "replicate": 2,
+      "rounds": 1,
+      "verdicts": []
+    }
+  ]
+}

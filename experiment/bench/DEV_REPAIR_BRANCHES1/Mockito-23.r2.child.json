@@ -1,0 +1,92 @@
+{
+  "arm_digest": "30d6a4faf1f767c8f398fc698c18e6053fc9099c249ac6e9cb6655cf27eb8c48",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.0005034,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "output_excerpt": "1| /*\n2|  * Copyright (c) 2007 Mockito contributors\n3|  * This program is made available under the terms of the MIT License.\n4|  */\n5| package org.mockito.internal.stubbing.defaultanswers;\n6| \n7| import static org.mockito.Mockito.*;\n8| \n9| import java.io.Serializable;\n10| \n11| import org.mockito.MockSettings;\n12| import org.mockito.internal.InternalMockHandler;\n13| import org.mockito.internal.MockitoCore;\n14| import org.mockito.internal.creation.settings.CreationSettings;\n15| import org.mockito.internal.stubbing.InvocationContainerImpl;\n16| import org.mockito.internal.stubbing.StubbedInvocationMatcher;\n17| import org.mockito.internal.util.MockUtil;\n18| import org.mockito.internal.util.reflection.GenericMetadataSupport;\n19| import org.mockito.invocation.InvocationOnMock;\n20| import org.mockito.stubbing.Answer;\n21| \n22| /**\n23|  * Returning deep stub implementation.\n24|  *\n25|  * Will return previously created mock if the invocation matches.\n26|  *\n27|  * <p>Supports nested generic information, with this answer you can write code like this :\n28|  *\n29|  * <pre class=\"code\"><code class=\"java\">\n30|  *     interface GenericsNest&lt;K extends Comparable&lt;K&gt; & Cloneable&gt; extends Map&lt;K, Set&lt;Number&gt;&gt; {}\n31|  *\n32|  *     GenericsNest&lt;?&gt; mock = mock(GenericsNest.class, new ReturnsGenericDeepStubs());\n33|  *     Number number = mock.entrySet().iterator().next().getValue().iterator().next();\n34|  * </code></pre>\n35|  * </p>\n36|  *\n37|  * @see org.mockito.Mockito#RETURNS_DEEP_STUBS\n38|  * @see org.mockito.Answers#RETURNS_DEEP_STUBS\n39|  */\n40| public class ReturnsDeepStubs implements Answer<Object>, Serializable {\n41|     \n42|     private static final long serialVersionUID = -7105341425736035847L;\n43| \n44|     private MockitoCore mockitoCore = new MockitoCore();\n45|     private ReturnsEmptyValues delegate = new ReturnsEmptyValues();\n46| \n47|     public Object answer(InvocationOnMock invocation) throws Throwable {\n48|         GenericMetadataSupport retur",
+          "tool": "read_file"
+        },
+        {
+          "arguments": {
+            "text": "ReturnsDeepStubs"
+          },
+          "characters": 1066,
+          "output_excerpt": "src/org/mockito/Answers.java:9: import org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs;\nsrc/org/mockito/Answers.java:62:     RETURNS_DEEP_STUBS(new ReturnsDeepStubs()),\nsrc/org/mockito/internal/stubbing/defaultanswers/Answers.java:26:     RETURNS_DEEP_STUBS(new ReturnsDeepStubs()),\nsrc/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:40: public class ReturnsDeepStubs implements Answer<Object>, Serializable {\nsrc/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:81:      * {@link ReturnsDeepStubs} answer in which we will store the returned type generic metadata.\nsrc/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:103:     private ReturnsDeepStubs returnsDeepStubsAnswerUsing(final GenericMetadataSupport returnTypeGenericMetadata) {\nsrc/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java:104:         return new ReturnsDeepStubs() {\nsrc/org/mockito/internal/util/reflection/GenericMetadataSupport.java:56:  * @see org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs",
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "03075975268a486910fd2ac3d48b1b5e6ed3075f4a8ac6b7576d667a4fee4e74",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 136,
+        "prompt_tokens": 3484
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.001353475,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 1,
+      "inspections": [],
+      "prompt_digest": "8671f557c196986bf04797ce275d1ab88be367efe1db37adbd7ad23fc985f728",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": false,
+          "branch_depth": null,
+          "candidate_digest": null,
+          "complete_paths": [],
+          "files": [
+            {
+              "edits": [
+                {
+                  "replace": "public abstract class GenericMetadataSupport implements java.io.Serializable {",
+                  "search": "public abstract class GenericMetadataSupport {"
+                }
+              ],
+              "path": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java"
+            }
+          ],
+          "hypothesis": "The anonymous ReturnsDeepStubs$2 captures a GenericMetadataSupport that is not Serializable, so serializing a deep-stub mock fails. Making GenericMetadataSupport implement Serializable should let the captured answer serialize.",
+          "parent": "",
+          "path": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java",
+          "rejection": "transaction rejected: require 1-3 distinct existing production files and unique changed edits; branch parent must be a graded archive digest; search text must match the selected virtual source"
+        }
+      ],
+      "submitted": 1,
+      "usage": {
+        "completion_tokens": 1268,
+        "prompt_tokens": 6389
+      }
+    }
+  ],
+  "case": "Mockito-23",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 1,
+  "seconds": 7.6,
+  "solved": false,
+  "suspects_from_stack_trace": false,
+  "validated": 0,
+  "verdicts": []
+}
