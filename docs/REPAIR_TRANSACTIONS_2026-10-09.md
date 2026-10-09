@@ -77,3 +77,19 @@ Any subsequent hardening is prospective and must not replace this failed model c
 No policy is promoted, no held-out case is consumed and canonical memory remains
 292 events. Successful patches and verdicts are retained in the experiment artifacts.
 No general RSI or independent autonomous learning claim follows.
+
+## Prospective argument hardening after the pilot
+
+After closing the result, the parser now rejects malformed file layouts without
+attempting to index strings as file objects. Unsupported layouts are retained in
+the call record and receive the normal rejection feedback; a correction is possible
+only within remaining planned requests. Transaction construction checks container,
+path and edit types before using them. Record verification enforces the applied-file
+limit on applicable proposals, rather than treating a rejected malformed response
+as a resource grant.
+
+Four additional offline cases cover null, string, object and string-list layouts,
+followed by a valid correction using a scripted model. Ninety-two focused tests pass.
+No new live call was made for this hardening. The exact historical malformed payload
+is unavailable, so these tests cannot establish that it would have been recovered.
+The forty-two original receipts and failed result remain unchanged.

@@ -319,16 +319,20 @@ def lineage_proposer(
                         for item in arguments["candidates"][:wanted]:
                             submitted += 1
                             if multi_file:
-                                described = "Hypothesis: " + item["hypothesis"] + "\nFiles and edits: " + json.dumps(item["files"])
-                                candidate = apply_transaction(root, item["files"], evidence["source_directory"],
+                                files = item.get("files") if isinstance(item, Mapping) else None
+                                hypothesis = item.get("hypothesis") if isinstance(item, Mapping) else None
+                                described = "Hypothesis: " + str(hypothesis) + "\nFiles and edits: " + json.dumps(files)
+                                candidate = apply_transaction(root, files, evidence["source_directory"],
                                                               f"lineage:{envelope.model}", described[:6000],
-                                                              test_directory=evidence["test_directory"])
+                                                              test_directory=evidence["test_directory"]) if isinstance(hypothesis, str) else None
                                 if candidate is None:
                                     inapplicable += 1
                                 else:
                                     candidates.append(candidate)
-                                submission_results.append({"path": ", ".join(f["path"] for f in item["files"]),
-                                    "hypothesis": item["hypothesis"], "files": item["files"],
+                                paths = ", ".join(str(f.get("path", "<missing>")) if isinstance(f, Mapping)
+                                                  else "<invalid file>" for f in files) if isinstance(files, list) else "<invalid files layout>"
+                                submission_results.append({"path": paths,
+                                    "hypothesis": hypothesis, "files": files,
                                     "applicable": candidate is not None,
                                     "rejection": None if candidate is not None else
                                     "transaction rejected: require 1-3 distinct existing production files and unique changed edits"})

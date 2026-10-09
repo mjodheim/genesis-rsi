@@ -295,11 +295,16 @@ def _production_target(root: Path, path: str, source_directory: str,
 def apply_transaction(root: Path, files: Sequence[Mapping], source_directory: str,
                       origin: str, description: str = "", *, test_directory: str | None = None) -> Candidate | None:
     """Construct all edits without writing any file; reject the whole invalid batch."""
-    if not 1 <= len(files) <= 3:
+    if not isinstance(files, (list, tuple)) or not 1 <= len(files) <= 3:
         return None
     proposed, seen = [], set()
     try:
         for item in files:
+            if (not isinstance(item, Mapping) or not isinstance(item.get("path"), str)
+                    or not isinstance(item.get("edits"), (list, tuple))
+                    or not all(isinstance(edit, Mapping) and isinstance(edit.get("search"), str)
+                               and isinstance(edit.get("replace"), str) for edit in item["edits"])):
+                return None
             path = item["path"]
             target = _production_target(root, path, source_directory, test_directory)
             canonical = target.resolve()

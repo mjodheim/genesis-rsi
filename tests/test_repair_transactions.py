@@ -142,3 +142,18 @@ def test_model_can_submit_coordinated_repairs_and_legacy_shape_stays_unchanged(t
     shape = seen[0]["tools"][0]["function"]["parameters"]["properties"]["candidates"]["items"]
     assert shape["required"] == ["hypothesis", "files"]
     assert calls[0]["submission_results"][0]["files"] == files
+
+
+@pytest.mark.parametrize("files", [None, "src/A.java", {"path": "src/A.java"}, ["src/A.java"]])
+def test_malformed_file_layout_is_retained_rejected_and_can_be_corrected(tmp_path, files):
+    evidence = setup(tmp_path)
+    valid = [dict(path="src/A.java", edits=[dict(search="return 1;", replace="return 0;")])]
+    send, seen = scripted(answer("submit_repairs", dict(candidates=[dict(hypothesis="repair", files=files)])),
+                          answer("submit_repairs", dict(candidates=[dict(hypothesis="repair", files=valid)])))
+    calls = []
+    proposer = lineage_proposer(genome(inspection_requests=1, rounds=1), Envelope(model="test/model"),
+                               Ledger(1), calls, transport=send, application_feedback=True, multi_file=True)
+    assert len(proposer(tmp_path, evidence, (), 6)) == 1
+    assert len(seen) == 2 and calls[0]["inapplicable"] == 1
+    assert "malformed" not in calls[0] and calls[0]["submission_results"][0]["files"] == files
+    assert "transaction rejected" in seen[1]["messages"][-2]["content"]

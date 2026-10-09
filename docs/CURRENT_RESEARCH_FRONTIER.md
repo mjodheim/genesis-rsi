@@ -552,3 +552,8 @@ Exception transitions include a return to a previous blocker after dropping
 a partial edit; branch-based cumulative repair is a prospective hypothesis.
 No promotion or reserved-case consumption; canonical memory stays at 292 events.
 See [REPAIR_TRANSACTIONS_2026-10-09.md](REPAIR_TRANSACTIONS_2026-10-09.md).
+
+After closing DEV_REPAIR_TRANSACTIONS1, prospective typed file-layout rejection
+retains malformed input and permits correction within unused planned requests.
+Ninety-two focused tests pass. This is offline hardening; no new live measurement
+or retrospective repair of the failed pilot is claimed.

@@ -99,7 +99,8 @@ def verify(output):
                 for proposal in call.get("submission_results", []):
                     if ("files" in proposal) != (arm == "child"):
                         raise ValueError("wrong submission mode")
-                    if arm == "child" and not 1 <= len(proposal["files"]) <= 3:
+                    if arm == "child" and proposal.get("applicable") and (
+                            not isinstance(proposal["files"], list) or not 1 <= len(proposal["files"]) <= 3):
                         raise ValueError("file limit exceeded")
     actual = [dict(case=r["case"], label=r["label"], call=r["call"]) for r in journal["calls"]]
     if actual != receipts:
