@@ -81,3 +81,17 @@ def test_rejected_premise_can_be_corrected_within_existing_request_budget(tmp_pa
 def test_causal_gate_requires_feedback_and_branches():
     with pytest.raises(GenomeError, match='require'):
         lineage_proposer(genome(), Envelope(model='test/model'), Ledger(1), [], causal_checks=True)
+
+
+def test_citation_formatting_is_tolerated_but_literal_content_and_line_stay_exact(tmp_path):
+    evidence = setup(tmp_path)
+    source = '    class A implements Serializable { String s = " a "; }   '
+    (tmp_path/'src/A.java').write_text(source+'\nclass B {}\n')
+    r = record(evidence, [], source.strip())
+    assert check(tmp_path, evidence, [], '', r) is None
+    bad = deepcopy(r); bad['facts'][0]['quote'] = source.strip().replace('" a "','"a"')
+    assert 'does not match' in check(tmp_path, evidence, [], '', bad)
+    bad = deepcopy(r); bad['facts'][0]['line'] = 2
+    assert 'does not match' in check(tmp_path, evidence, [], '', bad)
+    bad = deepcopy(r); bad['facts'][0]['relation'] = 'absent'
+    assert 'contradicts quoted line' in check(tmp_path, evidence, [], '', bad)

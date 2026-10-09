@@ -10,3 +10,8 @@ quotes and failure observations provide bounded factual checks, not a semantic
 proof of causality, autonomous learning or general RSI. No private bank, fixed
 revision or credential disclosure. Historical results are retained unchanged;
 new machinery and budgets must be frozen before live calls.
+
+After preserving the completed strict-quote regression, prospectively permit
+boundary-whitespace normalisation of cited lines. Internal code characters,
+line numbers, branch identity, term checks and exact patch edits stay guarded.
+This is a citation-interface correction; historical outcomes are not replaced.

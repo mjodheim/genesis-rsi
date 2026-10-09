@@ -49,8 +49,9 @@ def observation(evidence, history):
 def context(evidence, history):
     return ('## Host evidence consistency record\n' + json.dumps(observation(evidence, history)) +
         '\nEvery candidate needs causal_evidence matching this observed_signal and previous_assessment. '
-        'Quote 1-3 exact complete production source lines (without numbered prefixes), with path, '
-        '1-based line, term and relation present/absent IN THAT LINE. Quotes refer to the selected '
+        'Quote 1-3 complete production source lines (without numbered prefixes; boundary spaces '
+        'are optional, internal characters must match), with path, 1-based line, term and relation '
+        'present/absent IN THE NORMALIZED SOURCE LINE. Quotes refer to the selected '
         'parent virtual tree, or original for parent="". Read declarations before making absence '
         'claims. Facts establish literal text only; do not infer an entire object graph from a line. '
         'Explain the mechanism and predict removal of the observed signal. signal_unchanged means '
@@ -87,14 +88,15 @@ def check(root, evidence, history, parent_identity, record):
             number, quote, term = fact['line'], fact['quote'], fact['term']
             if type(number) is not int or not 1 <= number <= len(lines):
                 return 'source line outside file'
-            if not isinstance(quote, str) or not quote.strip() or len(quote) > 2000 or quote != lines[number - 1]:
+            if not isinstance(quote, str) or not quote.strip() or len(quote) > 2000 or quote.strip() != lines[number - 1].strip():
                 return f'source quote does not match {path}:{number} in selected tree'
             if not isinstance(term, str) or not term.strip() or len(term) > 300:
                 return 'source fact term must be nonempty and bounded'
             if fact.get('relation') not in ('present', 'absent'):
                 return 'source fact relation must be present or absent'
-            if (term in quote) != (fact['relation'] == 'present'):
-                return f'source fact contradicts quoted line: term {term!r} is ' + ('present' if term in quote else 'absent')
+            present = term in lines[number - 1].strip()
+            if present != (fact['relation'] == 'present'):
+                return f'source fact contradicts quoted line: term {term!r} is ' + ('present' if present else 'absent')
     except (RepairBenchError, ValueError, OSError, KeyError, TypeError):
         return 'source fact path or layout refused'
     return None

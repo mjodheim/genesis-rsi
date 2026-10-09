@@ -6,6 +6,7 @@ from genesis.repair_lineage import SEED_GENOME, genome_digest
 from genesis.repair_local_revision import paired_summary
 from genesis.repair_self_improvement import sealed
 from scripts.run_repair_causal_evidence_trial import verify
+from scripts.run_repair_causal_evidence_normalized_trial import verify as verify_normalized
 
 
 def fixture(folder, incorrect=False):
@@ -33,12 +34,14 @@ def fixture(folder, incorrect=False):
         (folder/name).write_text(json.dumps(body))
 
 
-def test_evidence_receipts_match_previous_external_verdict(tmp_path):
+@pytest.mark.parametrize('verify', [verify, verify_normalized])
+def test_evidence_receipts_match_previous_external_verdict(tmp_path, verify):
     fixture(tmp_path)
     assert verify(tmp_path)['calls'] == 3
 
 
-def test_false_prediction_assessment_is_rejected_even_if_receipts_agree(tmp_path):
+@pytest.mark.parametrize('verify', [verify, verify_normalized])
+def test_false_prediction_assessment_is_rejected_even_if_receipts_agree(tmp_path, verify):
     fixture(tmp_path, incorrect=True)
     with pytest.raises(ValueError, match='previous prediction assessment'):
         verify(tmp_path)
