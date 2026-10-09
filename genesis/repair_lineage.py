@@ -29,6 +29,7 @@ from typing import Callable, Mapping, Sequence
 from genesis.openrouter_repair import READ, SEARCH, SUBMIT, _allowed, _request, inspect_tool
 from genesis.repair_bench import Candidate, History, Proposer, _excerpts, apply_edits, apply_transaction
 from genesis.trust_root import digest_of
+from genesis.repair_branches import archive_prompt, extend_branch, find_parent, read_branch
 
 GENOME_SCHEMA = "genesis-repair-lineage-genome-v1"
 CALL_SCHEMA = "genesis-repair-lineage-call-v1"
@@ -55,6 +56,14 @@ _item["properties"] = {"hypothesis": {"type": "string"}, "files": {
     "type": "array", "minItems": 1, "maxItems": 3, "items": {
         "type": "object", "additionalProperties": False, "required": ["path", "edits"],
         "properties": _file_properties}}}
+
+BRANCH_SUBMIT = json.loads(json.dumps(MULTI_SUBMIT))
+_branch_item = BRANCH_SUBMIT["function"]["parameters"]["properties"]["candidates"]["items"]
+_branch_item["properties"]["parent"] = {"type": "string", "description": "Validated case-local candidate digest, or empty string for the original buggy tree."}
+_branch_item["required"].append("parent")
+BRANCH_READ = json.loads(json.dumps(READ))
+BRANCH_READ["function"]["parameters"]["properties"]["branch"] = {
+    "type": "string", "description": "Case-local candidate digest to inspect virtual source; empty or omitted reads the original."}
 
 SEED_GENOME = {
     "system": (
@@ -248,9 +257,12 @@ def lineage_proposer(
     genome: Mapping, envelope: Envelope, ledger: Ledger, calls: list[dict], *, transport: Callable | None = None,
     application_feedback: bool = False,
     multi_file: bool = False,
+    branching: bool = False,
 ) -> Proposer:
     """The proposer a genome defines, for one case. ``calls`` receives every request made."""
     genome = checked_genome(genome)
+    if branching and not multi_file:
+        raise GenomeError("candidate branches require coordinated-file mode")
     if not fits(genome, envelope):
         raise GenomeError("the genome plans more requests than the envelope allows")
     search = genome["search"]
@@ -265,7 +277,9 @@ def lineage_proposer(
             # The case description is resent at every step of a round: let the provider cache it.
             {"role": "user", "content": [{
                 "type": "text", "cache_control": {"type": "ephemeral"},
-                "text": render_case(genome, root, evidence, wanted, history, envelope.prompt_characters)}]},
+                "text": render_case(genome, root, evidence, wanted, history,
+                                    envelope.prompt_characters - (2000 if branching else 0)) +
+                        ("\n" + archive_prompt(history) if branching else "")} ]},
         ]
         if multi_file:
             messages[0]["content"] += (
@@ -276,7 +290,18 @@ def lineage_proposer(
                 "edits are not retained automatically; include every required edit in a complete "
                 "candidate. Keep tests unchanged."
             )
-        submit_tool = MULTI_SUBMIT if multi_file else SUBMIT
+        if branching:
+            messages[0]["content"] += (
+                "\nCandidate-branch mode overrides the original-tree edit rule: every candidate "
+                "must specify parent. Use empty string to start from the original; otherwise "
+                "use a digest from the case-local archive. Edits in files then match that parent's "
+                "virtual source, and unedited parent changes are retained automatically. Use "
+                "read_file(path, start, branch=digest) to inspect it before editing. Each complete "
+                "candidate may change at most three files. A parent that still fails is a hypothesis, "
+                "not a verified repair: extend, revise or abandon it according to test feedback."
+            )
+        submit_tool = BRANCH_SUBMIT if branching else MULTI_SUBMIT if multi_file else SUBMIT
+        read_tool = BRANCH_READ if branching else READ
         steps = search["inspection_requests"] + 1
         for step in range(steps):
             if used >= envelope.requests:
@@ -286,7 +311,7 @@ def lineage_proposer(
                 messages.append({"role": "system", "content": _FINAL_STEP})
             payload = {
                 "model": envelope.model, "messages": messages, "tool_choice": "auto",
-                "tools": [submit_tool] if final else [submit_tool, READ, SEARCH], "max_tokens": envelope.max_tokens,
+                "tools": [submit_tool] if final else [submit_tool, read_tool, SEARCH], "max_tokens": envelope.max_tokens,
                 "provider": {"require_parameters": True, "allow_fallbacks": True, "sort": "price",
                              "max_price": dict(envelope.max_price)},
             }
@@ -325,6 +350,14 @@ def lineage_proposer(
                                 candidate = apply_transaction(root, files, evidence["source_directory"],
                                                               f"lineage:{envelope.model}", described[:6000],
                                                               test_directory=evidence["test_directory"]) if isinstance(hypothesis, str) else None
+                                parent_identity = item.get("parent") if isinstance(item, Mapping) else None
+                                if branching:
+                                    if not isinstance(parent_identity, str):
+                                        candidate = None
+                                    elif parent_identity:
+                                        parent = find_parent(history, parent_identity)
+                                        candidate = extend_branch(root, evidence, parent, files,
+                                            f"lineage:{envelope.model}", described[:6000]) if parent is not None and isinstance(hypothesis, str) else None
                                 if candidate is None:
                                     inapplicable += 1
                                 else:
@@ -335,7 +368,13 @@ def lineage_proposer(
                                     "hypothesis": hypothesis, "files": files,
                                     "applicable": candidate is not None,
                                     "rejection": None if candidate is not None else
-                                    "transaction rejected: require 1-3 distinct existing production files and unique changed edits"})
+                                    "transaction rejected: require 1-3 distinct existing production files and unique changed edits" +
+                                    ("; branch parent must be a graded archive digest; search text must match the selected virtual source" if branching else "")})
+                                if branching:
+                                    submission_results[-1].update({"parent": parent_identity,
+                                        "candidate_digest": candidate.digest if candidate else None,
+                                        "complete_paths": [path for path, _ in candidate.files] if candidate else [],
+                                        "branch_depth": (candidate.provenance or {}).get("branch_depth", 0) if candidate else None})
                                 continue
                             path = str(item["path"])
                             edits = [(edit["search"], edit["replace"]) for edit in item["edits"]]
@@ -381,7 +420,7 @@ def lineage_proposer(
                     try:
                         if final:
                             raise ValueError("inspection disabled")
-                        result = inspect_tool(root, evidence, name, arguments)
+                        result = read_branch(root, evidence, history, arguments) if branching and name == "read_file" else inspect_tool(root, evidence, name, arguments)
                     except (ValueError, OSError, KeyError, TypeError) as error:
                         result = "Inspection refused: " + type(error).__name__
                     inspections.append({"tool": name, "arguments": {

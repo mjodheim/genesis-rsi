@@ -282,3 +282,10 @@ precedes implementation in docs/IP_REVIEWS/REPAIR_TRANSACTIONS_REVIEW_2026-10-09
 Codex assists substantially; the new representation is authored infrastructure,
 not autonomous primitive invention. Compiler/test gates and historical results
 remain unchanged; independent generality and active promotion are not claimed.
+
+9 October 2026 — case-local validated-candidate branches, virtual source reads
+and inherited complete repairs follow PUBLIC_AGPL_COMMERCIAL_OPTION. Review
+precedes implementation in docs/IP_REVIEWS/REPAIR_BRANCHES_REVIEW_2026-10-09.md.
+Anthony directs research; Codex substantially assists authored infrastructure.
+External model proposals remain attributed; no general RSI, active promotion or
+reserved-task qualification is claimed by the exposed-development pilot.
