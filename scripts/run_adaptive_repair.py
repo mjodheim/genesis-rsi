@@ -22,6 +22,9 @@ from genesis.defects4j_sandbox import Defects4JSandbox
 from genesis.repair_bench import Candidate, collect_evidence, validate
 from genesis.openrouter_repair import _allowed
 from genesis.trust_root import digest_of
+from genesis.repair_stall_recovery import recover
+from genesis.repair_quality_learning import operator_policy
+from genesis.repair_proposers import strategist_proposer
 
 
 def sealed(path, field):
@@ -85,6 +88,7 @@ def main():
     p.add_argument('--output',type=Path,required=True);p.add_argument('--max-models',type=int,default=2)
     p.add_argument('--minimum-success-rate',type=float,default=.5)
     p.add_argument('--localize-assertions',action='store_true',help='Opt in to static production API localisation when stack frames are absent')
+    p.add_argument('--recover-stalls',action='store_true',help='Try bounded failure-derived local generations before model assistance')
     args=p.parse_args()
     if args.output.exists():raise ValueError('refusing to overwrite result before execution')
     split=sealed(ROOT/'experiment/bench/REPAIR_BENCH_SPLIT_V1.json','split_digest')
@@ -117,6 +121,18 @@ def main():
                             'released-trial:'+args.learn_trial,'Previously suite-validated exact-text repair; explanation limited to archived patch.')
         learning=validate(sandbox,directory,candidate,evidence['failing_tests'])
         store.retain(root,evidence,candidate,learning,role='released_development')
+    recovery=None
+    if args.recover_stalls:
+        recovery=recover(lambda size,history:strategist_proposer(size,preserve_provenance=True)(root,evidence,(),size),
+            operator_policy([]),lambda c:validate(sandbox,directory,c,evidence['failing_tests']),
+            generation_sizes=(2,8,32),budget=12)
+        local_candidate=recovery.pop('accepted')
+        for generation in recovery['generations']:
+            store.append('search_generation',generation['proposal'])
+            for attempt in generation['attempts']:
+                store.append('local_validation',attempt)
+        if local_candidate:
+            store.retain(root,evidence,local_candidate,recovery['generations'][-1]['attempts'][-1]['verdict'],role='released_development')
     router=EconomicRouter(options,store,minimum_observed_success_rate=args.minimum_success_rate)
     ranking=[{**{k:v for k,v in r.items() if k!='option'},'model':r['option'].model} for r in router.rank(evidence,args.budget)]
     result=solve_development(root,evidence,router,
@@ -125,7 +141,7 @@ def main():
     candidate=result.pop('candidate')
     body=dict(schema='genesis-adaptive-repair-development-v1',case=args.case,
         evidence=evidence,features=task_features(evidence),initial_ranking=ranking,
-        learning_verdict=learning,result=result,candidate_digest=candidate.digest if candidate else None,
+        learning_verdict=learning,stall_recovery=recovery,result=result,candidate_digest=candidate.digest if candidate else None,
         sandbox_probe=probe,plausible_is_not_correct=True,general_understanding_demonstrated=False,
         memory_source='explicit released-development trial(s) and online outcomes')
     if args.output.exists():raise ValueError('refusing to overwrite result')

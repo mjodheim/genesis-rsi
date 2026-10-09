@@ -239,3 +239,8 @@ are excluded and static hypotheses are not runtime coverage. Review precedes
 publication in `docs/IP_REVIEWS/ASSERTION_LOCALIZATION_REVIEW_2026-10-09.md`.
 Frozen quality-trial results remain unchanged; exposed-case engineering checks
 are separately labelled. OpenAI Codex assists with development.
+
+Prospective failed-search recovery review — 9 October 2026: bounded failure-derived
+search generations and explicit stall diagnoses follow PUBLIC_AGPL_COMMERCIAL_OPTION.
+Review precedes implementation in docs/IP_REVIEWS/REPAIR_STALL_RECOVERY_REVIEW_2026-10-09.md.
+Anthony authorises iteration; OpenAI Codex assists. Existing frozen outcomes remain unchanged.
