@@ -1,0 +1,341 @@
+"""Generation two of the fault localizer.
+
+Signals:
+  * production stack frames (innermost first, decaying weight), plus the enclosing
+    declaration of the two innermost ones;
+  * declarations in production sources whose names are called from the failing test body or
+    from test frames (weighted by rarity), or appear in the traces;
+  * prose overlap: words in comments and string literals of the failing test and of the failure
+    message, matched against comments and string literals of production lines (IDF weighted);
+  * issue numbers from test names and test comments matched against production prose;
+  * rare identifiers used by the test or the stack matched against every production line;
+  * file-level bonus for production files named after the failing test class.
+Selection is greedy with a 20-line suppression radius and at most four entries per file.
+Work is bounded by a deterministic budget on files and bytes read, not by the clock.
+"""
+import bisect
+import math
+import os
+import re
+
+KEYWORDS = {
+    "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const",
+    "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally", "float",
+    "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long", "native",
+    "new", "package", "private", "protected", "public", "return", "short", "static", "strictfp",
+    "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try", "void",
+    "volatile", "while", "true", "false", "null", "var", "yield",
+}
+NOT_TYPE = {"return", "new", "throw", "else", "case", "yield", "throws", "import", "package",
+            "assert", "extends", "implements", "instanceof"}
+STOP = {"test", "tests", "the", "and", "with", "for", "not", "should", "can", "was", "when", "from",
+        "into", "that", "this", "has", "have", "are", "but", "all", "expected", "actual", "assertion",
+        "failed", "fail", "failure", "junit", "framework", "exception", "error", "true", "false",
+        "null", "will", "shall", "string", "object", "method", "class", "returns", "return"}
+
+FRAME = re.compile(r"at\s+([\w.$]+)\.([\w$<>-]+)\(([^():\s]+):(\d+)\)")
+DECL = re.compile(
+    r"^\s*(?:@[\w.]+(?:\([^)]*\))?\s+)*"
+    r"(?:(?:public|protected|private|static|final|abstract|synchronized|native|default|strictfp)\s+)*"
+    r"(?:<[^>]*>\s*)?"
+    r"([\w.$]+(?:<[^;=(){}]*>)?(?:\[\])*)\s+([A-Za-z_$][\w$]*)\s*\(([^)]*)")
+CTOR = re.compile(r"^\s*(?:(?:public|protected|private)\s+)?([A-Z][\w$]*)\s*\(([^)]*)")
+CLASS = re.compile(r"\b(?:class|interface|enum)\s+([A-Za-z_$][\w$]*)")
+IDENT = re.compile(r"[A-Za-z_$][\w$]*")
+TOKEN = re.compile(r"[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+")
+WORDS = re.compile(r"[A-Za-z]{3,}")
+STRLIT = re.compile(r'"((?:[^"\\]|\\.)*)"')
+ISSUE = re.compile(r"(?<!\d)\d{3,}(?!\d)")
+COMMENT_LINE = re.compile(r"^\s*(//|/\*|\*)")
+
+MAX_FILES = 6000
+MAX_BYTES = 20_000_000
+
+
+def tokens(s):
+    return {t.lower() for t in TOKEN.findall(s) if len(t) >= 3 and t.lower() not in STOP}
+
+
+def words(s):
+    return {w.lower() for w in WORDS.findall(s)} - STOP
+
+
+def prose(raw):
+    """Natural-language content of a line: comment text and string literals."""
+    s = raw.strip()
+    if COMMENT_LINE.match(raw):
+        return s
+    parts = STRLIT.findall(raw)
+    if "//" in raw:
+        parts.append(raw.split("//", 1)[1])
+    return " ".join(parts)
+
+
+def parse(text, base):
+    lines = text.splitlines()
+    decls = []
+    classes = {}
+    prose_list = []
+    for i, raw in enumerate(lines, 1):
+        p = prose(raw)
+        if p:
+            prose_list.append((i, p))
+        s = raw.strip()
+        if not s or s.startswith(("*", "/*", "//")):
+            continue
+        code = raw.split("//", 1)[0]
+        m = CLASS.search(code)
+        if m:
+            classes.setdefault(m.group(1), i)
+        m = DECL.match(code)
+        if m:
+            typ = m.group(1).split("<")[0].split(".")[-1]
+            name = m.group(2)
+            if typ not in NOT_TYPE and name not in KEYWORDS:
+                decls.append((i, name, m.group(3)))
+                continue
+        m = CTOR.match(code)
+        if m and m.group(1) == base:
+            decls.append((i, base, m.group(2)))
+    return {"lines": lines, "decls": decls, "base": base, "classes": classes, "prose": prose_list}
+
+
+def span_bounds(parsed, line):
+    lines = parsed["lines"]
+    starts = [d[0] for d in parsed["decls"]]
+    idx = bisect.bisect_right(starts, line) - 1
+    start = starts[idx] if idx >= 0 else max(1, line - 10)
+    end = starts[idx + 1] if idx + 1 < len(starts) else len(lines) + 1
+    end = min(end, start + 80)
+    end = max(end, line + 1)
+    return start, end
+
+
+def span_info(parsed, line):
+    s, e = span_bounds(parsed, line)
+    seg = parsed["lines"][s - 1:e - 1]
+    text = "\n".join(seg)
+    pro = " ".join(prose(x) for x in seg)
+    return set(IDENT.findall(text)), words(pro), set(ISSUE.findall(pro))
+
+
+def localize(case):
+    root = case["root"]
+    src = case.get("source_directory", "") or ""
+    tst = case.get("test_directory", "") or ""
+    report = case.get("report", "") or ""
+    failing = case.get("failing_tests", []) or []
+
+    budget = {"files": 0, "bytes": 0}
+
+    def index(base):
+        out = {}
+        if not base:
+            return out
+        full = os.path.join(root, base)
+        if not os.path.isdir(full):
+            return out
+        for dp, dn, fn in os.walk(full):
+            dn.sort()
+            for f in sorted(fn):
+                if not f.endswith(".java"):
+                    continue
+                if budget["files"] >= MAX_FILES or budget["bytes"] >= MAX_BYTES:
+                    return out
+                p = os.path.join(dp, f)
+                try:
+                    with open(p, encoding="utf-8", errors="replace") as h:
+                        text = h.read(1000000)
+                except OSError:
+                    continue
+                budget["files"] += 1
+                budget["bytes"] += len(text)
+                rel = os.path.relpath(p, root).replace(os.sep, "/")
+                out[rel] = parse(text, f[:-5])
+        return out
+
+    prod = index(src)
+    tests = index(tst)
+
+    def resolve(fqn, fname, idx):
+        top = fqn.split("$")[0]
+        suffix = top.replace(".", "/") + ".java"
+        matches = [k for k in idx if k == suffix or k.endswith("/" + suffix)]
+        if matches:
+            return min(matches, key=lambda k: (len(k), k))
+        by_name = [k for k in idx if k.endswith("/" + fname)]
+        if len(by_name) == 1:
+            return by_name[0]
+        return None
+
+    frames = FRAME.findall(report)
+    report_ids = set(IDENT.findall(report))
+    frame_methods = {m for _, m, _, _ in frames if re.fullmatch(r"[A-Za-z_$][\w$]*", m)}
+
+    A = set()          # identifiers used by the failing tests
+    T = set()          # tokens of failing test method names
+    P = set()          # prose words of the failing tests and of the message
+    NUMS = set()       # issue-like numbers from test names and comments
+    test_classes = set()
+    for t in failing:
+        cls_part, _, meth = t.partition("::")
+        simple = cls_part.split(".")[-1].split("$")[0]
+        test_classes.add(simple)
+        NUMS |= set(ISSUE.findall(simple))
+        if not meth:
+            continue
+        NUMS |= set(ISSUE.findall(meth))
+        T |= tokens(meth)
+        P |= tokens(meth)
+        for k, parsed in tests.items():
+            if os.path.basename(k) != simple + ".java":
+                continue
+            for line, name, _ in parsed["decls"]:
+                if name == meth:
+                    ids, pw, nums = span_info(parsed, line)
+                    A |= ids
+                    P |= pw
+                    NUMS |= nums
+    for fqn, meth, fname, ln in frames:
+        rel = resolve(fqn, fname, tests)
+        if rel:
+            ids, pw, nums = span_info(tests[rel], int(ln))
+            A |= ids
+            P |= pw
+            NUMS |= nums
+    msg_lines = [x for x in report.splitlines()
+                 if x.strip() and not FRAME.search(x) and not x.startswith("---")][:3]
+    P |= words(" ".join(msg_lines))
+
+    prod_counts = {}
+    for parsed in prod.values():
+        for _, name, _ in parsed["decls"]:
+            prod_counts[name] = prod_counts.get(name, 0) + 1
+
+    def count(name):
+        return max(1, prod_counts.get(name, 1))
+
+    cands = {}
+
+    def add(key, score):
+        if score > cands.get(key, -1.0):
+            cands[key] = score
+
+    # production stack frames, and the enclosing declaration of the innermost ones
+    rank = 0
+    seen = set()
+    prod_frames = []
+    for fqn, meth, fname, ln in frames:
+        rel = resolve(fqn, fname, prod)
+        if not rel:
+            continue
+        prod_frames.append((rel, int(ln)))
+        key = (rel, int(ln))
+        if key in seen:
+            continue
+        seen.add(key)
+        add(key, max(0.3, 2.6 - 0.2 * rank))
+        rank += 1
+    for r, (rel, ln) in enumerate(prod_frames[:2]):
+        starts = [d[0] for d in prod[rel]["decls"]]
+        idx = bisect.bisect_right(starts, ln) - 1
+        if idx >= 0:
+            add((rel, starts[idx]), 0.9 - 0.3 * r)
+
+    # rare identifiers used by the test or the stack, matched against every production line
+    R = {x for x in (A | frame_methods) if len(x) >= 4 and x not in KEYWORDS}
+    hits = []
+    ldf = {}
+    if R:
+        for rel, parsed in prod.items():
+            for i, raw in enumerate(parsed["lines"], 1):
+                ids = set(IDENT.findall(raw)) & R
+                if ids:
+                    hits.append((rel, i, ids))
+                    for x in ids:
+                        ldf[x] = ldf.get(x, 0) + 1
+        for rel, i, ids in hits:
+            add((rel, i), min(2.0, 0.6 * sum(1 / math.sqrt(ldf[x]) for x in ids)))
+
+    # prose overlap between test text and production comments/strings
+    prose_lines = []
+    pdf = {}
+    for rel, parsed in prod.items():
+        for i, text in parsed["prose"]:
+            w = words(text)
+            if not w:
+                continue
+            prose_lines.append((rel, i, w, set(ISSUE.findall(text))))
+            for x in w:
+                pdf[x] = pdf.get(x, 0) + 1
+    N = max(1, len(prose_lines))
+    for rel, i, w, nums in prose_lines:
+        shared = w & P
+        s = 0.0
+        if shared:
+            s += min(3.0, 0.5 * sum(math.log(1 + N / pdf[x]) for x in shared))
+        if nums & NUMS:
+            s += 1.0
+        if s > 0:
+            add((rel, i), s)
+
+    # declarations and class references
+    for rel, parsed in prod.items():
+        base = parsed["base"]
+        for line, name, params in parsed["decls"]:
+            c = count(name) ** 0.5
+            s = 0.0
+            if name in A:
+                s += 2.0 / c
+            if name in frame_methods:
+                s += 1.2 / c
+            if name in report_ids:
+                s += 0.6 / c
+            ov = len(tokens(name) & T) + 0.5 * len(tokens(params) & T)
+            s += 0.4 * ov
+            if base in A:
+                s += 0.5
+            if base in report_ids:
+                s += 0.3
+            if s >= 0.4:
+                add((rel, line), s)
+        if base in A and base in parsed["classes"]:
+            add((rel, parsed["classes"][base]), 0.8)
+
+    # file-level bonus for production files named after the failing test class
+    names = set()
+    for tc in test_classes:
+        stripped = re.sub(r"^Test|Tests?$", "", tc)
+        if stripped:
+            names.add(stripped)
+            names.add(stripped.split("_")[0])
+    fb = {rel: 0.4 for rel in prod if os.path.basename(rel)[:-5] in names}
+    for key in list(cands):
+        cands[key] += fb.get(key[0], 0.0)
+
+    # last-resort fallbacks
+    if not cands:
+        for tc in test_classes:
+            stripped = re.sub(r"^Test|Tests?$", "", tc)
+            for rel in prod:
+                if stripped and os.path.basename(rel) == stripped + ".java":
+                    add((rel, 1), 0.1)
+    if not cands:
+        for rel in sorted(prod):
+            base = os.path.basename(rel).lower()
+            if any(t in base for t in T if len(t) >= 4):
+                add((rel, 1), 0.05)
+
+    ordered = sorted(cands.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    chosen = []
+    per_file = {}
+    for (p, l), _ in ordered:
+        if per_file.get(p, 0) >= 4:
+            continue
+        if any(p == cp and abs(l - cl) <= 20 for cp, cl in chosen):
+            continue
+        chosen.append((p, l))
+        per_file[p] = per_file.get(p, 0) + 1
+        if len(chosen) == 6:
+            break
+    return [[p, l] for p, l in chosen]

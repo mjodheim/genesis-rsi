@@ -1,0 +1,173 @@
+"""Generation one of the fault localizer.
+
+Candidates come from three sources and are ranked by score:
+  * production frames of the failing stack traces (earlier frames weigh more);
+  * rare identifiers of the failure message, of the test method name and of the calls made on
+    the failing test line, looked up in production sources (rarer matches weigh more);
+  * a fallback on the test class name when nothing else exists.
+
+Selection is greedy and spreads picks: a candidate within forty lines of an already chosen
+entry in the same file is skipped, since that entry already covers it.
+"""
+import os
+import re
+
+FRAME = re.compile(r"^\s+at ([\w.$]+)\.[\w$<>]+\(([\w$]+\.java):(\d+)\)")
+WORD = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
+CALL = re.compile(r"\b([A-Za-z_]\w{3,})\s*\(")
+CAMEL = re.compile(r"[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+")
+STOP = frozenset("""
+that this with from into when then than have has had were will would should could
+expected actual null true false java javax junit assert assertion failed failure error
+exception unexpected class string object value values test tests method returns return
+public private static final void else throws comparison equals result index
+""".split())
+MAX_DF = 12
+MAX_LINES = 200
+
+
+def _walk(root, base):
+    found = {}
+    if not base:
+        return found
+    top = os.path.join(root, base)
+    for dirpath, _, names in os.walk(top):
+        for name in names:
+            if name.endswith(".java"):
+                full = os.path.join(dirpath, name)
+                rel = os.path.relpath(full, root).replace(os.sep, "/")
+                found[rel] = full
+    return found
+
+
+def _read(path):
+    try:
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            return fh.read().splitlines()
+    except OSError:
+        return []
+
+
+def _split_blocks(report):
+    blocks = []
+    for line in report.splitlines():
+        if line.startswith("--- "):
+            blocks.append({"name": line[4:].strip(), "lines": []})
+        elif blocks:
+            blocks[-1]["lines"].append(line)
+    return blocks
+
+
+def _localize(case):
+    root = case["root"]
+    src = case["source_directory"].strip("/")
+    tdir = case["test_directory"].strip("/")
+    prod = _walk(root, src)
+    tests = _walk(root, tdir)
+
+    def resolve(classname, table):
+        outer = classname.split("$", 1)[0].replace(".", "/") + ".java"
+        for base in (src, tdir):
+            rel = (base + "/" + outer) if base else outer
+            if rel in table:
+                return rel
+        return None
+
+    blocks = _split_blocks(case.get("report", ""))
+    cand = {}
+    query = {}
+    test_line_cache = {}
+
+    def add_query(tok, weight):
+        low = tok.lower()
+        if len(low) >= 4 and low not in STOP:
+            query[low] = max(query.get(low, 0.0), weight)
+
+    for block in blocks:
+        prod_frames = []
+        test_frame = None
+        message_lines = []
+        seen_frame = False
+        for line in block["lines"]:
+            m = FRAME.match(line)
+            if m:
+                seen_frame = True
+                classname, _, lineno = m.group(1), m.group(2), int(m.group(3))
+                rel = resolve(classname, prod)
+                if rel is not None:
+                    prod_frames.append((rel, lineno))
+                elif test_frame is None:
+                    trel = resolve(classname, tests)
+                    if trel is not None:
+                        test_frame = (trel, lineno)
+            elif not seen_frame and not re.match(r"^\s*\d+\|", line):
+                message_lines.append(line)
+
+        for k, (rel, lineno) in enumerate(prod_frames):
+            key = (rel, lineno)
+            cand[key] = cand.get(key, 0.0) + 10.0 / (1 + k)
+
+        for line in message_lines:
+            for m in WORD.finditer(line):
+                add_query(m.group(0), 3.0)
+
+        name = block["name"].split("::")[-1]
+        for w in CAMEL.findall(name):
+            if w.lower() != "test":
+                add_query(w, 1.5)
+
+        if test_frame is not None:
+            trel, tline = test_frame
+            if trel not in test_line_cache:
+                test_line_cache[trel] = _read(os.path.join(root, tests[trel]))
+            lines = test_line_cache[trel]
+            if 0 < tline <= len(lines):
+                for m in CALL.finditer(lines[tline - 1]):
+                    add_query(m.group(1), 2.0)
+
+    if query and prod:
+        occ = {}
+        for rel, full in sorted(prod.items()):
+            for idx, text in enumerate(_read(full), 1):
+                for m in WORD.finditer(text):
+                    low = m.group(0).lower()
+                    if low in query:
+                        occ.setdefault(low, {}).setdefault(rel, []).append(idx)
+        for tok, weight in query.items():
+            files = occ.get(tok)
+            if not files:
+                continue
+            df = len(files)
+            total = sum(len(v) for v in files.values())
+            if df > MAX_DF or total > MAX_LINES:
+                continue
+            for rel, lines in files.items():
+                for ln in lines:
+                    key = (rel, ln)
+                    cand[key] = cand.get(key, 0.0) + weight / df
+
+    if not cand:
+        for block in blocks:
+            name = block["name"].split("::")[0]
+            simple = re.sub(r"Tests?$", "", name.rsplit(".", 1)[-1])
+            for pkg_rel in prod:
+                if pkg_rel.endswith("/" + simple + ".java") or pkg_rel == simple + ".java":
+                    cand.setdefault((pkg_rel, 1), 0.1)
+                    break
+
+    ordered = sorted(cand.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    picked = []
+    for (rel, line), _ in ordered:
+        if any(p[0] == rel and abs(p[1] - line) <= 40 for p in picked):
+            continue
+        picked.append((rel, line))
+        if len(picked) == 6:
+            break
+    return [[rel, line] for rel, line in picked]
+
+
+def localize(case):
+    try:
+        return _localize(case)
+    except Exception:
+        return []

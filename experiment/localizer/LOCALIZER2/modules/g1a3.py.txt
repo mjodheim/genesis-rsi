@@ -1,0 +1,222 @@
+"""Generation one of the fault localizer.
+
+Evidence sources, combined by score:
+  * production frames of the failing traces (top frames weigh most),
+  * production methods called from the body of each failing test method,
+  * production classes referenced by that body, by the traces, and the class the
+    test class is named after (the class under test).
+
+Candidates are ranked and greedily selected so that no two returned entries lie in
+the same file within forty lines of each other, which spreads the six slots over
+distinct edit regions. Falls back to the stack-trace rule of generation zero.
+"""
+import os
+import re
+
+FRAME = re.compile(r"^\s+at ([\w.$]+)\.[\w$<>]+\(([\w$]+\.java):(\d+)\)", re.MULTILINE)
+DECL = re.compile(
+    r"^\s*(?:@\w+(?:\([^)]*\))?\s+)*"
+    r"(?:(?:public|protected|private|static|final|abstract|synchronized|native|default)\s+)*"
+    r"(?:<[^>]*>\s*)?[\w.$<>\[\],? ]+?\s+(\w+)\s*\("
+)
+CALL = re.compile(r"\b([a-z_]\w*)\s*\(")
+CLASSREF = re.compile(r"\b([A-Z]\w*)\b")
+LEADING_KEYWORDS = {"return", "new", "throw", "else", "case", "yield", "assert", "import", "package"}
+GENERIC_CALLS = {
+    "if", "for", "while", "switch", "catch", "return", "new", "super", "this", "synchronized",
+    "throw", "fail", "println", "print", "add", "get", "put", "set", "size", "equals", "toString",
+    "hashCode", "of", "valueOf", "append", "contains", "isEmpty", "run", "main", "test", "setUp",
+    "tearDown", "assertEquals", "assertTrue", "assertFalse", "assertNull", "assertNotNull",
+}
+WINDOW = 40
+MAX_FILE_BYTES = 400000
+
+
+def java_files(root, directory):
+    base = os.path.join(root, directory)
+    out = []
+    if not os.path.isdir(base):
+        return out
+    for dp, dn, fn in os.walk(base):
+        dn.sort()
+        for f in sorted(fn):
+            if f.endswith(".java"):
+                out.append(os.path.relpath(os.path.join(dp, f), root).replace(os.sep, "/"))
+    return out
+
+
+def read_lines(root, rel):
+    full = os.path.join(root, rel)
+    try:
+        if os.path.getsize(full) > MAX_FILE_BYTES:
+            return []
+        with open(full, encoding="utf-8", errors="replace") as fh:
+            return fh.read().split("\n")
+    except OSError:
+        return []
+
+
+def declared_name(line):
+    m = DECL.match(line)
+    if not m:
+        return None
+    words = line.split()
+    if words and words[0] in LEADING_KEYWORDS:
+        return None
+    return m.group(1)
+
+
+def method_index(root, paths):
+    idx = {}
+    for p in paths:
+        for i, line in enumerate(read_lines(root, p), 1):
+            name = declared_name(line)
+            if name:
+                idx.setdefault(name, []).append((p, i))
+    return idx
+
+
+def find_method_body(lines, name):
+    """Return the 1-based line numbers of the method named `name`, or []."""
+    for i, line in enumerate(lines):
+        if declared_name(line) != name:
+            continue
+        depth, seen, body = 0, False, []
+        for j in range(i, min(len(lines), i + 400)):
+            body.append(j + 1)
+            opens, closes = lines[j].count("{"), lines[j].count("}")
+            if opens:
+                seen = True
+            depth += opens - closes
+            if seen and depth <= 0:
+                break
+        return body
+    return []
+
+
+def resolve_frame(classname, fname, prod, stems):
+    outer = classname.split("$", 1)[0]
+    suffix = outer.replace(".", "/") + ".java"
+    for p in prod:
+        if p == suffix or p.endswith("/" + suffix):
+            return p
+    matches = stems.get(fname[:-5], [])
+    return matches[0] if len(matches) == 1 else None
+
+
+def _score(case):
+    root = case["root"]
+    prod = java_files(root, case["source_directory"])
+    tests = java_files(root, case["test_directory"])
+    midx = method_index(root, prod)
+    stems = {}
+    for p in prod:
+        stems.setdefault(os.path.basename(p)[:-5], []).append(p)
+
+    cand = {}
+    bonus = {}
+
+    def add(p, line, score):
+        cand[(p, line)] = cand.get((p, line), 0.0) + score
+
+    def boost(p, score):
+        bonus[p] = bonus.get(p, 0.0) + score
+
+    # 1. production frames of the traces, top frames first
+    report = case["report"]
+    rank = 0
+    for classname, fname, line in FRAME.findall(report):
+        path = resolve_frame(classname, fname, prod, stems)
+        if path is None:
+            continue
+        add(path, int(line), max(1.0, 10.0 - 0.7 * rank))
+        rank += 1
+        if rank >= 10:
+            break
+
+    # 2. the failing test methods: calls, referenced classes, class under test
+    test_files_by_stem = {}
+    for t in tests:
+        test_files_by_stem.setdefault(os.path.basename(t)[:-5], []).append(t)
+    for name in case["failing_tests"]:
+        cls, _, meth = name.partition("::")
+        simple = cls.rsplit(".", 1)[-1]
+        under_test = re.sub(r"^Test(?=[A-Z])|Tests?$", "", simple)
+        for p in stems.get(under_test, []):
+            boost(p, 2.0)
+        text_lines = []
+        for t in test_files_by_stem.get(simple, []):
+            lines = read_lines(root, t)
+            body = find_method_body(lines, meth)
+            if body:
+                text_lines = [lines[k - 1] for k in body]
+                break
+        text = "\n".join(text_lines)
+        for ident in CALL.findall(text):
+            if ident in GENERIC_CALLS or ident.startswith(("assert", "fail")):
+                continue
+            defs = midx.get(ident, [])
+            if defs and len(defs) <= 20:
+                for p, line in defs:
+                    add(p, line, 4.0 / len(defs))
+        for ident in set(CLASSREF.findall(text)):
+            for p in stems.get(ident, []):
+                boost(p, 1.0)
+
+    # 3. class names mentioned in the traces' messages
+    for ident in set(CLASSREF.findall(report)):
+        for p in stems.get(ident, []):
+            boost(p, 0.5)
+
+    # file-level bonus applies to all candidates in that file
+    totals = {}
+    for (p, line), s in cand.items():
+        totals[(p, line)] = s + bonus.get(p, 0.0)
+    files_with_candidates = {p for p, _ in totals}
+    for p, b in bonus.items():
+        if p not in files_with_candidates and b >= 2.0:
+            totals[(p, 1)] = b * 0.5
+
+    ranked = sorted(totals.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    chosen = []
+    for (p, line), _ in ranked:
+        if any(q == p and abs(line - m) <= WINDOW for q, m in chosen):
+            continue
+        chosen.append((p, line))
+        if len(chosen) == 6:
+            break
+    return [[p, line] for p, line in chosen]
+
+
+def _fallback(case):
+    root = case["root"]
+    source = case["source_directory"]
+
+    def resolve(classname):
+        path = source + "/" + classname.split("$", 1)[0].replace(".", "/") + ".java"
+        return path if os.path.isfile(os.path.join(root, path)) else None
+
+    suspects = []
+    for classname, _, line in FRAME.findall(case["report"]):
+        path = resolve(classname)
+        if path is not None and [path, int(line)] not in suspects:
+            suspects.append([path, int(line)])
+    if not suspects:
+        for name in case["failing_tests"]:
+            path = resolve(re.sub(r"Tests?$", "", name.split("::")[0]))
+            if path is not None and [path, 1] not in suspects:
+                suspects.append([path, 1])
+    return suspects[:6]
+
+
+def localize(case):
+    try:
+        result = _score(case)
+    except Exception:
+        result = []
+    if not result:
+        try:
+            result = _fallback(case)
+        except Exception:
+            result = []
+    return result[:6]

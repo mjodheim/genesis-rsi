@@ -1,0 +1,201 @@
+"""Generation one of the fault localizer.
+
+Signals, strongest first:
+  1. production frames of the failing traces (top of stack first, shared frames boosted);
+  2. lines of production code that share rare words with the failure: words of the failure
+     message, string literals of the failing test body, and the words of the test method name;
+  3. production classes whose simple name is used in the failing test body;
+  4. the production class the test class is named after (old fallback).
+
+Picks are taken greedily and a pick is skipped when a higher-ranked pick already covers its
+file within forty lines, so the six slots spread over distinct edit regions.
+"""
+import math
+import os
+import re
+from collections import Counter
+
+FRAME = re.compile(r"^\s+at ([\w.$]+)\.[\w$<>]+\(([\w$]+\.java):(\d+)\)", re.MULTILINE)
+WORD = re.compile(r"[A-Za-z]\w{3,}")
+STOP = {
+    "expected", "actual", "but", "was", "junit", "framework", "assertion", "failed", "error",
+    "comparison", "failure", "exception", "java", "lang", "null", "true", "false", "with",
+    "from", "this", "that", "have", "should", "could", "would", "test", "tests", "assert",
+    "assertequals", "assertnull", "assertnotnull", "assertsame", "fail", "message", "unexpected",
+    "class", "object", "string", "for", "not", "the", "and", "org", "com", "util", "void",
+    "public", "private", "protected", "static", "return", "throws", "new", "found", "value",
+}
+MAX_FILES = 4000
+MAX_BYTES = 60000 * 20
+
+
+def index_java(root, rel_dir):
+    out = {}
+    base = os.path.join(root, rel_dir) if rel_dir else root
+    if not os.path.isdir(base):
+        return out
+    total = 0
+    for dirpath, dirnames, filenames in os.walk(base):
+        dirnames.sort()
+        for name in sorted(filenames):
+            if not name.endswith(".java"):
+                continue
+            if len(out) >= MAX_FILES or total > MAX_BYTES:
+                return out
+            full = os.path.join(dirpath, name)
+            try:
+                with open(full, encoding="utf-8", errors="replace") as fh:
+                    text = fh.read()
+            except OSError:
+                continue
+            total += len(text)
+            rel = os.path.relpath(full, root).replace(os.sep, "/")
+            out[rel] = text.split("\n")
+    return out
+
+
+def find_by_class(files, classname):
+    pkg = classname.split("$", 1)[0].replace(".", "/") + ".java"
+    for key in files:
+        if key == pkg or key.endswith("/" + pkg):
+            return key
+    return None
+
+
+def camel_words(name):
+    return [w.lower() for w in re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])|\d+", name)
+            if len(w) >= 4]
+
+
+def localize(case):
+    root = case["root"]
+    src_dir = case.get("source_directory", "") or ""
+    tst_dir = case.get("test_directory", "") or ""
+    prod = index_java(root, src_dir)
+    tests = index_java(root, tst_dir) if tst_dir else {}
+
+    def simple_stem(path):
+        return os.path.basename(path)[:-5]
+
+    stems = {}
+    for path in prod:
+        stems.setdefault(simple_stem(path), []).append(path)
+
+    cands = {}
+
+    def add(path, line, score):
+        key = (path, line)
+        if score > cands.get(key, -1e9):
+            cands[key] = score
+
+    frame_info = {}      # (path, line) -> [min depth, set of trace indices]
+    query = Counter()    # lower-case word -> weight
+    report = case.get("report", "") or ""
+    blocks = re.split(r"^--- ", report, flags=re.MULTILINE)[1:]
+    if not blocks and case.get("failing_tests"):
+        blocks = [name + "\n" for name in case["failing_tests"]]
+
+    for t_index, block in enumerate(blocks):
+        lines = block.split("\n")
+        header = lines[0].strip()
+        name = header.split()[0] if header.split() else ""
+        cls, _, meth = name.partition("::")
+        depth = 0
+        for m in FRAME.finditer(block):
+            classname, _, line = m.group(1), m.group(2), int(m.group(3))
+            path = find_by_class(prod, classname)
+            if path is None:
+                continue
+            key = (path, line)
+            info = frame_info.setdefault(key, [depth, set()])
+            info[0] = min(info[0], depth)
+            info[1].add(t_index)
+            depth += 1
+        msg_lines = []
+        for ln in lines[1:]:
+            if re.match(r"^\s+at ", ln):
+                break
+            msg_lines.append(ln)
+        for w in WORD.findall(" ".join(msg_lines)):
+            w = w.lower()
+            if w not in STOP:
+                query[w] += 2.0
+        for w in camel_words(meth):
+            if w not in STOP and w != "test":
+                query[w] += 1.0
+        test_path = find_by_class(tests, cls) if tests else None
+        if test_path and meth:
+            tlines = tests[test_path]
+            start = None
+            for i, ln in enumerate(tlines):
+                if re.search(r"\b" + re.escape(meth) + r"\s*\(", ln):
+                    start = i
+                    break
+            if start is not None:
+                end = min(len(tlines), start + 80)
+                for j in range(start + 1, end):
+                    if re.match(r"^\s{0,4}(public|private|protected|static|void|@|/\*\*)", tlines[j]):
+                        end = j
+                        break
+                body = "\n".join(tlines[start:end])
+                for lit in re.findall(r'"((?:[^"\\]|\\.)*)"', body):
+                    for w in WORD.findall(lit):
+                        w = w.lower()
+                        if w not in STOP:
+                            query[w] += 1.0
+                for ident in set(re.findall(r"\b[A-Z]\w{3,}\b", body)):
+                    for path in stems.get(ident, []):
+                        add(path, 1, 10.0)
+
+    # Frame candidates: production frames, boosted when several failing tests share them.
+    for (path, line), (depth, hits) in frame_info.items():
+        add(path, line, 60.0 + 3.0 * len(hits) - 0.5 * min(depth, 20))
+
+    # Word-overlap candidates in production code.
+    if query and prod:
+        df = Counter()
+        file_words = {}
+        for path, lines in prod.items():
+            words = set()
+            for ln in lines:
+                words.update(w.lower() for w in WORD.findall(ln))
+            file_words[path] = words
+            df.update(words)
+        n_files = len(prod)
+        idf = {w: math.log(1.0 + n_files / (1.0 + df[w])) for w in query if df[w]}
+        scored = []
+        for path in sorted(prod):
+            lines = prod[path]
+            if not any(w in file_words[path] for w in idf):
+                continue
+            for i, ln in enumerate(lines):
+                if len(ln) > 400:
+                    continue
+                s = 0.0
+                for w in set(x.lower() for x in WORD.findall(ln)):
+                    if w in idf:
+                        s += query[w] * idf[w]
+                if s > 0:
+                    scored.append((s, path, i + 1))
+        if scored:
+            top = max(s for s, _, _ in scored)
+            scored.sort(key=lambda x: (-x[0], x[1], x[2]))
+            for s, path, line in scored[:60]:
+                add(path, line, 45.0 * s / top)
+
+    # Fallback: the production class the test class is named after.
+    for header_name in case.get("failing_tests", []) or []:
+        cls = header_name.split("::")[0]
+        stem = re.sub(r"Tests?$", "", cls.split(".")[-1].split("$")[0])
+        for path in stems.get(stem, [])[:1]:
+            add(path, 1, 5.0)
+
+    ordered = sorted(cands.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    chosen = []
+    for (path, line), _ in ordered:
+        if any(p == path and abs(l - line) <= 40 for p, l in chosen):
+            continue
+        chosen.append((path, line))
+        if len(chosen) == 6:
+            break
+    return [[p, l] for p, l in chosen]
