@@ -39,7 +39,12 @@ def within_envelope(case: dict, envelope: dict) -> bool:
 def audit_lineage(folder: Path) -> dict:
     plan = sealed(folder / "PLAN.json", "plan_digest")
     lineage = sealed(folder / "LINEAGE.json", "lineage_digest")
-    cases = plan["training_cases"] + plan["selection_cases"]
+    replicates, margin = plan.get("replicates", 1), plan.get("promotion_margin", 1)
+
+    def runs(names: list[str]) -> list[str]:
+        return list(names) if replicates == 1 else [f"{n}#{r}" for r in range(1, replicates + 1) for n in names]
+
+    cases, selection = runs(plan["training_cases"] + plan["selection_cases"]), runs(plan["selection_cases"])
     assert lineage["plan_digest"] == plan["plan_digest"]
     assert genome_digest(plan["seed_genome"]) == plan["seed_genome_digest"] == lineage["seed_genome_digest"]
     assert not set(plan["training_cases"]) & set(plan["selection_cases"])
@@ -57,7 +62,7 @@ def audit_lineage(folder: Path) -> dict:
             assert sorted(evaluation["cases"]) == sorted(cases)
             assert all(within_envelope(case, plan["envelope"]) for case in evaluation["cases"].values())
             assert evaluation["solved"] == sum(case["solved"] for case in evaluation["cases"].values())
-            expected = promotes(evaluation, evaluations[current_generation], plan["selection_cases"])
+            expected = promotes(evaluation, evaluations[current_generation], selection, margin)
             assert (entry["decision"] == "promoted") == expected
             evaluations[entry["generation"]] = evaluation
             if expected:
@@ -66,7 +71,7 @@ def audit_lineage(folder: Path) -> dict:
     assert current_generation == lineage["final_generation"]
     assert genome_digest(current) == lineage["final_genome_digest"] == genome_digest(lineage["final_genome"])
     return {
-        "development_cases": len(cases), "decisions": decisions, "final_generation": current_generation,
+        "development_case_runs": len(cases), "decisions": decisions, "final_generation": current_generation,
         "solved_per_evaluated_generation": {number: record["solved"] for number, record in evaluations.items()},
         "development_cost_usd": round(sum(record["cost_usd"] for record in evaluations.values()), 6),
     }

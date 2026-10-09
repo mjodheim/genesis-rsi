@@ -133,13 +133,19 @@ def _excerpts(root: Path, locations: Sequence[tuple[str, int]], radius: int, bud
 
 def collect_evidence(
     sandbox: Defects4JSandbox, directory: str, *, max_locations: int = 6, radius: int = 40,
-    source_budget: int = 48_000, localize_assertions: bool = False,
+    source_budget: int = 48_000, localize_assertions: bool = False, separate_environment: bool = False,
 ) -> dict:
     """What the buggy revision's own failing tests show: names, traces, and the code they reach.
 
     Runs the relevant tests in the container, then reads ``failing_tests``. Production frames of the
     stack traces give line-level suspects; test frames give the failing test's own source. The
     fixed revision is never consulted.
+
+    With ``separate_environment`` the failing tests are narrowed to the ones Defects4J declares as
+    triggering the defect, and the whole suite is run once on the unmodified buggy revision. Tests
+    that fail there without being triggers fail because of where they run (no network, no home
+    directory), not because of the defect: they are recorded as ``tolerated_failures`` and a
+    candidate is not blamed for them.
     """
     source_dir = sandbox.export(directory, "dir.src.classes").output.strip()
     test_dir = sandbox.export(directory, "dir.src.tests").output.strip()
@@ -155,6 +161,25 @@ def collect_evidence(
         raise RepairBenchError(f"{directory}: the buggy revision fails no relevant test")
     root = sandbox.workspace / directory
     report = (root / "failing_tests").read_text(encoding="utf-8", errors="replace")[:400_000]
+    environment: dict = {}
+    if separate_environment:
+        triggers = set(sandbox.export(directory, "tests.trigger").output.split())
+        kept = [name for name in failing if name in triggers]
+        if not kept:
+            raise RepairBenchError(f"{directory}: none of the declared trigger tests fails here")
+        pieces = _HEADER.split(report)
+        report = "".join(
+            f"--- {pieces[index]}\n{pieces[index + 1]}" for index in range(1, len(pieces) - 1, 2)
+            if pieces[index] in triggers)
+        whole = sandbox.test(directory)
+        if not whole.ok:
+            raise RepairBenchError(f"{directory}: the full suite did not run on the buggy revision")
+        baseline = sandbox.failing_tests(directory)
+        environment = {
+            "trigger_tests": sorted(triggers),
+            "tolerated_failures": sorted((set(baseline) | set(failing)) - triggers),
+        }
+        failing = kept
 
     def resolve(classname: str, base: str) -> str | None:
         path = f"{base}/{classname.split('$', 1)[0].replace('.', '/')}.java"
@@ -193,6 +218,7 @@ def collect_evidence(
         "production_source": _excerpts(
             root, production[:max_locations], 200 if fallback else radius, source_budget),
         "fixed_revision_consulted": False,
+        **environment,
     }
     evidence = {**body, "evidence_digest": digest_of(body)}
     if localize_assertions:
@@ -242,11 +268,15 @@ def apply_edits(
     return Candidate(path=path, content=text, origin=origin, description=description)
 
 
-def validate(sandbox: Defects4JSandbox, directory: str, candidate: Candidate, failing: Sequence[str]) -> dict:
+def validate(
+    sandbox: Defects4JSandbox, directory: str, candidate: Candidate, failing: Sequence[str],
+    tolerated: Sequence[str] = (),
+) -> dict:
     """Compile the candidate, run the tests that failed, then the whole suite. Restores the file.
 
     ``plausible`` means the full developer test suite passes. It does not mean the repair is
-    correct: a patch can satisfy the tests and still be wrong.
+    correct: a patch can satisfy the tests and still be wrong. Tests named in ``tolerated`` already
+    failed on the unmodified revision for reasons of environment and are not held against it.
     """
     target = sandbox.workspace / directory / candidate.path
     original = target.read_bytes()
@@ -274,7 +304,7 @@ def validate(sandbox: Defects4JSandbox, directory: str, candidate: Candidate, fa
                 stage = "full_suite"
                 run = sandbox.test(directory)
                 if run.ok:
-                    remaining = sandbox.failing_tests(directory)
+                    remaining = [name for name in sandbox.failing_tests(directory) if name not in set(tolerated)]
                     if not remaining:
                         stage = "passed"
                     else:
@@ -326,7 +356,8 @@ def run_arm(
             break
         solved = False
         for candidate in fresh[:budget - len(history)]:
-            verdict = validate(sandbox, directory, candidate, evidence["failing_tests"])
+            verdict = validate(sandbox, directory, candidate, evidence["failing_tests"],
+                               evidence.get("tolerated_failures", ()))
             history.append((candidate, verdict))
             if verdict["plausible"]:
                 solved = True

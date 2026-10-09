@@ -207,3 +207,64 @@ def test_a_failed_model_call_is_retried_once_and_recorded_as_a_failure_not_as_an
     proposer = model_proposer("some-model", 5, calls, executable=refused, retry_wait_seconds=0)
     assert list(proposer(tmp_path, EVIDENCE, (), 5)) == []
     assert calls[0]["attempts"] == 2 and calls[0]["call_failed"] is True
+
+
+def test_a_failure_of_the_environment_is_not_held_against_a_candidate(tmp_path) -> None:
+    sandbox = _case(tmp_path)
+    blamed = validate(sandbox, "case", Candidate("A.java", "REGRESSION elsewhere", "t"), ["x.T::t"])
+    spared = validate(sandbox, "case", Candidate("A.java", "REGRESSION elsewhere", "t"), ["x.T::t"], ["x.T::t"])
+    assert (blamed["plausible"], spared["plausible"]) == (False, True)
+
+
+class _EnvironmentSandbox:
+    """A buggy revision where one trigger fails and two other tests fail for want of a network."""
+
+    def __init__(self, workspace: Path, triggers: str) -> None:
+        self.workspace, self.triggers = workspace, triggers
+
+    def export(self, directory: str, prop: str) -> _Run:
+        run = _Run(True)
+        run.output = {"dir.src.classes": "src", "dir.src.tests": "test", "tests.trigger": self.triggers}[prop]
+        return run
+
+    def compile(self, directory: str) -> _Run:
+        return _Run(True)
+
+    def test(self, directory: str, *, single_test: str | None = None, relevant_only: bool = False) -> _Run:
+        report = (
+            "--- p.ATest::bug\njava.lang.AssertionError\n\tat p.A.value(A.java:2)\n"
+            "--- p.ATest::host\njava.net.UnknownHostException\n\tat p.Net.lookup(Net.java:1)\n"
+        ) + ("" if relevant_only else "--- q.BTest::home\njava.lang.AssertionError\n")
+        (self.workspace / directory / "failing_tests").write_text(report, encoding="utf-8")
+        return _Run(True)
+
+    def failing_tests(self, directory: str) -> list[str]:
+        text = (self.workspace / directory / "failing_tests").read_text(encoding="utf-8")
+        return [line[4:] for line in text.splitlines() if line.startswith("--- ")]
+
+
+def _environment_case(tmp_path: Path, triggers: str) -> _EnvironmentSandbox:
+    for name in ("case/src/p", "case/test/p"):
+        (tmp_path / name).mkdir(parents=True)
+    (tmp_path / "case/src/p/A.java").write_text("class A {\n int value() { return 1; }\n}\n", encoding="utf-8")
+    (tmp_path / "case/src/p/Net.java").write_text("class Net {}\n", encoding="utf-8")
+    return _EnvironmentSandbox(tmp_path, triggers)
+
+
+def test_evidence_keeps_the_declared_triggers_and_sets_environment_failures_aside(tmp_path) -> None:
+    from genesis.repair_bench import collect_evidence
+
+    plain = collect_evidence(_environment_case(tmp_path, "p.ATest::bug"), "case")
+    assert plain["failing_tests"] == ["p.ATest::bug", "p.ATest::host"] and "tolerated_failures" not in plain
+    evidence = collect_evidence(_environment_case(tmp_path / "again", "p.ATest::bug"), "case", separate_environment=True)
+    assert evidence["failing_tests"] == ["p.ATest::bug"]
+    assert evidence["tolerated_failures"] == ["p.ATest::host", "q.BTest::home"]
+    assert [trace["test"] for trace in evidence["traces"]] == ["p.ATest::bug"]
+    assert evidence["suspect_locations"] == [["src/p/A.java", 2]]
+
+
+def test_a_case_whose_triggers_do_not_fail_here_is_unusable(tmp_path) -> None:
+    from genesis.repair_bench import RepairBenchError, collect_evidence
+
+    with pytest.raises(RepairBenchError):
+        collect_evidence(_environment_case(tmp_path, "p.Other::test"), "case", separate_environment=True)

@@ -102,7 +102,7 @@ def sandbox_for(workspace: Path) -> Defects4JSandbox:
     return Defects4JSandbox(workspace, limits=SandboxLimits(timeout_seconds=2400))
 
 
-def prepare(workspace: Path, case: str) -> dict:
+def prepare(workspace: Path, case: str, separate_environment: bool = False) -> dict:
     """Check the buggy revision out and collect its evidence once. Cached in the workspace."""
     cache = workspace / "evidence" / f"{case}.json"
     if cache.exists():
@@ -112,7 +112,8 @@ def prepare(workspace: Path, case: str) -> dict:
     try:
         if not (workspace / directory).is_dir() and not sandbox.checkout(project, int(bug), "b", directory).ok:
             raise RepairBenchError("checkout failed")
-        outcome = {"case": case, "usable": True, "evidence": collect_evidence(sandbox, directory)}
+        outcome = {"case": case, "usable": True, "evidence": collect_evidence(
+            sandbox, directory, separate_environment=separate_environment)}
     except RepairBenchError as error:
         outcome = {"case": case, "usable": False, "reason": str(error)}
     cache.parent.mkdir(parents=True, exist_ok=True)
@@ -178,6 +179,31 @@ def evaluate(workspace: Path, genome: dict, cases: list[str], envelope: Envelope
     return {**body, "evaluation_digest": digest_of(body)}
 
 
+def evaluate_runs(workspace: Path, genome: dict, cases: list[str], envelope: Envelope, ledger: Ledger, label: str,
+                  parallel: int, replicates: int) -> dict:
+    """``replicates`` independent evaluations of one genome, merged; a case run is named ``case#n``."""
+    if replicates == 1:
+        return evaluate(workspace, genome, cases, envelope, ledger, label, parallel)
+    runs = [evaluate(workspace, genome, cases, envelope, ledger, f"{label}-r{number}", parallel)
+            for number in range(1, replicates + 1)]
+    body = {
+        "schema": "genesis-repair-lineage-evaluation-v1", "label": label, "genome_digest": runs[0]["genome_digest"],
+        "replicates": replicates,
+        "cases": {f"{name}#{number}": outcome for number, run in enumerate(runs, 1)
+                  for name, outcome in run["cases"].items()},
+        "solved_per_replicate": [run["solved"] for run in runs],
+    }
+    for key in ("solved", "validated", "model_requests", "cost_usd", "calls_with_unknown_cost"):
+        body[key] = round(sum(run[key] for run in runs), 6)
+    return {**body, "evaluation_digest": digest_of(body)}
+
+
+def run_names(cases: list[str], replicates: int, only_first: bool = False) -> list[str]:
+    if replicates == 1:
+        return list(cases)
+    return [f"{case}#{number}" for number in range(1, (1 if only_first else replicates) + 1) for case in cases]
+
+
 def solved_on(evaluation: dict, names: list[str]) -> int:
     return sum(bool(evaluation["cases"][name]["solved"]) for name in names)
 
@@ -210,6 +236,13 @@ def plan(arguments: argparse.Namespace) -> int:
         raise SystemExit("the Defects4J boundary does not hold; refusing to run")
     wanted = arguments.training + arguments.selection
     order = list(reversed(split["development"]))  # hash order from the end: decided by the split, not by us
+    excluded: set[str] = set()
+    for earlier in arguments.exclude_plans:
+        previous = sealed(BENCH / earlier / "PLAN.json", "plan_digest")
+        excluded |= set(previous["training_cases"] + previous["selection_cases"])
+    if arguments.skip_exposed_projects:
+        order = [case for case in order if case.rsplit("-", 1)[0] not in split["exposed_projects"]]
+    order = [case for case in order if case not in excluded]
     usable, skipped, cursor = [], [], 0
     while len(usable) < wanted:
         batch = order[cursor:cursor + arguments.parallel]
@@ -217,7 +250,7 @@ def plan(arguments: argparse.Namespace) -> int:
             raise SystemExit("development cases exhausted")
         cursor += len(batch)
         with ThreadPoolExecutor(max_workers=arguments.parallel) as pool:
-            for outcome in pool.map(lambda case: prepare(arguments.workspace, case), batch):
+            for outcome in pool.map(lambda case: prepare(arguments.workspace, case, arguments.separate_environment), batch):
                 (usable if outcome["usable"] else skipped).append(
                     outcome["case"] if outcome["usable"] else {"case": outcome["case"], "reason": outcome["reason"]})
                 print(outcome["case"], "usable" if outcome["usable"] else outcome["reason"], flush=True)
@@ -230,15 +263,21 @@ def plan(arguments: argparse.Namespace) -> int:
         "split_digest": split["split_digest"],
         "development_case_rule": "development cases in reverse split order; the first usable ones, alternately "
                                  "training and selection",
+        "excluded_plans": list(arguments.exclude_plans), "skip_exposed_projects": arguments.skip_exposed_projects,
+        "separate_environment": arguments.separate_environment,
+        "replicates": arguments.replicates, "promotion_margin": arguments.margin,
+        "meta_comparison": not arguments.no_meta,
         "training_cases": usable[0::2][:arguments.training], "selection_cases": usable[1::2][:arguments.selection],
         "skipped_unusable": skipped,
         "seed_genome": seed, "seed_genome_digest": genome_digest(seed),
         "envelope": envelope.record(), "generations": arguments.generations,
         "spending_ceiling_usd": arguments.ceiling,
         "successor_rule": "the current genome's improver text, its own results on the training cases (names "
-                          "withheld) and the envelope are given to the same model, which writes one successor",
-        "promotion_rule": "a successor replaces its parent when it repairs strictly more development cases and "
-                          "no fewer selection cases; the parent's recorded evaluation is not rerun",
+                          "withheld; first replicate) and the envelope are given to the same model, which writes "
+                          "one successor",
+        "promotion_rule": "every genome is evaluated `replicates` times on every development case; a successor "
+                          "replaces its parent when it repairs at least `promotion_margin` more case runs in total "
+                          "and no fewer selection case runs; the parent's recorded evaluation is not rerun",
         "meta_rule": "from the seed genome and its recorded training report, two successors are written with the "
                      "seed improver text (generation 1 counts as the first) and two with the final genome's "
                      "improver text; each is evaluated on all development cases; the comparison is void if the "
@@ -271,12 +310,16 @@ def evolve(arguments: argparse.Namespace) -> int:
     folder, recorded, envelope, ledger, cases = _context(arguments)
     if (folder / "LINEAGE.json").exists():
         raise SystemExit("LINEAGE.json already exists; a lineage is grown once")
-    training, selection = recorded["training_cases"], recorded["selection_cases"]
+    replicates, margin = recorded.get("replicates", 1), recorded.get("promotion_margin", 1)
+    training = run_names(recorded["training_cases"], replicates, only_first=True)
+    training_all = run_names(recorded["training_cases"], replicates)
+    selection = run_names(recorded["selection_cases"], replicates)
     current = recorded["seed_genome"]
-    current_eval = evaluate(arguments.workspace, current, cases, envelope, ledger, "gen0", arguments.parallel)
+    current_eval = evaluate_runs(arguments.workspace, current, cases, envelope, ledger, "gen0", arguments.parallel,
+                                 replicates)
     seal(folder / "GEN0_EVALUATION.json", {k: v for k, v in current_eval.items() if k != "evaluation_digest"},
          "evaluation_digest")
-    print(f"gen0 solved {current_eval['solved']}/{len(cases)}", flush=True)
+    print(f"gen0 solved {current_eval['solved']}/{len(cases) * replicates}", flush=True)
     generations, current_generation = [], 0
     for number in range(1, recorded["generations"] + 1):
         written = successor(arguments.workspace, f"gen{number}", current,
@@ -290,15 +333,16 @@ def evolve(arguments: argparse.Namespace) -> int:
             entry.update({"decision": "identical_to_parent", "genome_digest": genome_digest(current)})
         else:
             child = written["genome"]
-            child_eval = evaluate(arguments.workspace, child, cases, envelope, ledger, f"gen{number}", arguments.parallel)
+            child_eval = evaluate_runs(arguments.workspace, child, cases, envelope, ledger, f"gen{number}",
+                                       arguments.parallel, replicates)
             seal(folder / f"GEN{number}_EVALUATION.json",
                  {k: v for k, v in child_eval.items() if k != "evaluation_digest"}, "evaluation_digest")
-            promoted = promotes(child_eval, current_eval, selection)
+            promoted = promotes(child_eval, current_eval, selection, margin)
             entry.update({
                 "genome_digest": genome_digest(child), "decision": "promoted" if promoted else "rejected",
-                "child": {"solved": child_eval["solved"], "training": solved_on(child_eval, training),
+                "child": {"solved": child_eval["solved"], "training": solved_on(child_eval, training_all),
                           "selection": solved_on(child_eval, selection)},
-                "parent": {"solved": current_eval["solved"], "training": solved_on(current_eval, training),
+                "parent": {"solved": current_eval["solved"], "training": solved_on(current_eval, training_all),
                            "selection": solved_on(current_eval, selection)},
             })
             if promoted:
@@ -322,6 +366,8 @@ def meta(arguments: argparse.Namespace) -> int:
     lineage = sealed(folder / "LINEAGE.json", "lineage_digest")
     if (folder / "META.json").exists():
         raise SystemExit("META.json already exists")
+    if not recorded.get("meta_comparison", True) or recorded.get("replicates", 1) != 1:
+        raise SystemExit("this plan does not include the improver comparison")
     if not lineage["improver_text_changed"]:
         seal(folder / "META.json", {"schema": "genesis-repair-lineage-meta-v1", "void": True,
              "reason": "the improver text never changed", "lineage_digest": lineage["lineage_digest"]}, "meta_digest")
@@ -392,6 +438,7 @@ def freeze(arguments: argparse.Namespace) -> int:
         "final_generation": lineage["final_generation"],
         "plan_digest": recorded["plan_digest"], "lineage_digest": lineage["lineage_digest"],
         "envelope": recorded["envelope"], "spending_ceiling_usd": arguments.ceiling,
+        "separate_environment": recorded.get("separate_environment", False),
         "arm_order": "seed first on even-numbered cases, final first on odd-numbered ones",
         "primary_comparison": "cases repaired by final versus by seed among usable cases; exact one-sided sign "
                               "test on the cases only one arm repairs",
@@ -438,7 +485,7 @@ def heldout(arguments: argparse.Namespace) -> int:
         saved = store / f"{case}.json"
         if saved.exists():
             return json.loads(saved.read_text(encoding="utf-8"))
-        prepared = prepare(arguments.workspace, case)
+        prepared = prepare(arguments.workspace, case, prereg.get("separate_environment", False))
         if not prepared["usable"]:
             outcome = {"case": case, "usable": False, "reason": prepared["reason"], "arms": {}}
         else:
@@ -496,6 +543,12 @@ def main() -> int:
             command.add_argument("--generations", type=int, default=4)
             command.add_argument("--model", default="anthropic/claude-haiku-5.5")
             command.add_argument("--ceiling", type=float, default=1.5)
+            command.add_argument("--replicates", type=int, default=1)
+            command.add_argument("--margin", type=int, default=1)
+            command.add_argument("--exclude-plans", nargs="*", default=[])
+            command.add_argument("--skip-exposed-projects", action="store_true")
+            command.add_argument("--separate-environment", action="store_true")
+            command.add_argument("--no-meta", action="store_true")
         if name in ("freeze", "heldout"):
             command.add_argument("--trial", required=True)
         if name == "freeze":

@@ -198,3 +198,11 @@ def test_exact_sign_test():
     assert exact_sign_test(0, 0) == 1.0
     assert exact_sign_test(0, 5) == pytest.approx(1 / 32)
     assert exact_sign_test(3, 3) == pytest.approx(42 / 64)
+
+
+def test_promotion_margin_guards_against_a_lucky_run():
+    parent = evaluation({"t1#1": True, "t1#2": False, "s1#1": False, "s1#2": False})
+    one_more = evaluation({"t1#1": True, "t1#2": True, "s1#1": False, "s1#2": False})
+    three_more = evaluation({"t1#1": True, "t1#2": True, "s1#1": True, "s1#2": True})
+    assert promotes(one_more, parent, ["s1#1", "s1#2"]) and not promotes(one_more, parent, ["s1#1", "s1#2"], margin=3)
+    assert promotes(three_more, parent, ["s1#1", "s1#2"], margin=3)

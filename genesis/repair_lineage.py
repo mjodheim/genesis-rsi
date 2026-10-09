@@ -479,12 +479,13 @@ def write_successor(
     return {"genome": None, "rationale": "", "calls": calls}
 
 
-def promotes(child: Mapping, parent: Mapping, selection_cases: Sequence[str]) -> bool:
-    """A successor replaces its parent only by repairing more cases, without losing on the
-    selection cases, whose results no improver is ever shown."""
+def promotes(child: Mapping, parent: Mapping, selection_cases: Sequence[str], margin: int = 1) -> bool:
+    """A successor replaces its parent only by repairing at least ``margin`` more case runs,
+    without losing on the selection cases, whose results no improver is ever shown."""
     def count(evaluation: Mapping, names: Sequence[str] | None = None) -> int:
         return sum(bool(case["solved"]) for name, case in evaluation["cases"].items() if names is None or name in names)
-    return count(child) > count(parent) and count(child, selection_cases) >= count(parent, selection_cases)
+    return (count(child) - count(parent) >= margin
+            and count(child, selection_cases) >= count(parent, selection_cases))
 
 
 def exact_sign_test(only_first: int, only_second: int) -> float:
