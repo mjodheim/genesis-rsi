@@ -1,0 +1,274 @@
+{
+  "arm_digest": "9b1eab127dd6a66e1b92207f8710e3b7f907ec0fe5886f7bcc5352f6d2047f6b",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000428525,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "output_excerpt": "1| /*\n2|  * Copyright (c) 2007 Mockito contributors\n3|  * This program is made available under the terms of the MIT License.\n4|  */\n5| package org.mockito.internal.stubbing.defaultanswers;\n6| \n7| import static org.mockito.Mockito.*;\n8| \n9| import java.io.Serializable;\n10| \n11| import org.mockito.MockSettings;\n12| import org.mockito.internal.InternalMockHandler;\n13| import org.mockito.internal.MockitoCore;\n14| import org.mockito.internal.creation.settings.CreationSettings;\n15| import org.mockito.internal.stubbing.InvocationContainerImpl;\n16| import org.mockito.internal.stubbing.StubbedInvocationMatcher;\n17| import org.mockito.internal.util.MockUtil;\n18| import org.mockito.internal.util.reflection.GenericMetadataSupport;\n19| import org.mockito.invocation.InvocationOnMock;\n20| import org.mockito.stubbing.Answer;\n21| \n22| /**\n23|  * Returning deep stub implementation.\n24|  *\n25|  * Will return previously created mock if the invocation matches.\n26|  *\n27|  * <p>Supports nested generic information, with this answer you can write code like this :\n28|  *\n29|  * <pre class=\"code\"><code class=\"java\">\n30|  *     interface GenericsNest&lt;K extends Comparable&lt;K&gt; & Cloneable&gt; extends Map&lt;K, Set&lt;Number&gt;&gt; {}\n31|  *\n32|  *     GenericsNest&lt;?&gt; mock = mock(GenericsNest.class, new ReturnsGenericDeepStubs());\n33|  *     Number number = mock.entrySet().iterator().next().getValue().iterator().next();\n34|  * </code></pre>\n35|  * </p>\n36|  *\n37|  * @see org.mockito.Mockito#RETURNS_DEEP_STUBS\n38|  * @see org.mockito.Answers#RETURNS_DEEP_STUBS\n39|  */\n40| public class ReturnsDeepStubs implements Answer<Object>, Serializable {\n41|     \n42|     private static final long serialVersionUID = -7105341425736035847L;\n43| \n44|     private MockitoCore mockitoCore = new MockitoCore();\n45|     private ReturnsEmptyValues delegate = new ReturnsEmptyValues();\n46| \n47|     public Object answer(InvocationOnMock invocation) throws Throwable {\n48|         GenericMetadataSupport retur",
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "1b2d47c311fe76f7a67b56127cd8bb80303ecababd4a417c11ef26446c7d9a7e",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 104,
+        "prompt_tokens": 3013
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000940025,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "class GenericMetadataSupport"
+          },
+          "characters": 263,
+          "output_excerpt": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java:59: public abstract class GenericMetadataSupport implements Serializable {\ntest/org/mockito/internal/util/reflection/GenericMetadataSupportTest.java:21: public class GenericMetadataSupportTest {",
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "96a9e0cc91698f6e583c1acab0b912b76e0c55aee655581a7591c2f966a02063",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 628,
+        "prompt_tokens": 5508
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 3009,
+      "cost_usd": 0.00041219,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "end": "200",
+            "path": "src/org/mockito/internal/util/reflection/GenericMetadataSupport.java",
+            "start": "55"
+          },
+          "characters": 9854,
+          "output_excerpt": "55|  * @see #resolveGenericReturnType(Method)\n56|  * @see org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs\n57|  */\n58| @Incubating\n59| public abstract class GenericMetadataSupport implements Serializable {\n60| \n61|     // public static MockitoLogger logger = new ConsoleMockitoLogger();\n62| \n63|     /**\n64|      * Represents actual type variables resolved for current class.\n65|      */\n66|     protected Map<TypeVariable, Type> contextualActualTypeParameters = new HashMap<TypeVariable, Type>();\n67| \n68| \n69|     protected void registerTypeVariablesOn(Type classType) {\n70|         if (!(classType instanceof ParameterizedType)) {\n71|             return;\n72|         }\n73|         ParameterizedType parameterizedType = (ParameterizedType) classType;\n74|         TypeVariable[] typeParameters = ((Class<?>) parameterizedType.getRawType()).getTypeParameters();\n75|         Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();\n76|         for (int i = 0; i < actualTypeArguments.length; i++) {\n77|             TypeVariable typeParameter = typeParameters[i];\n78|             Type actualTypeArgument = actualTypeArguments[i];\n79| \n80|             if (actualTypeArgument instanceof WildcardType) {\n81|                 contextualActualTypeParameters.put(typeParameter, boundsOf((WildcardType) actualTypeArgument));\n82|             } else {\n83|                 contextualActualTypeParameters.put(typeParameter, actualTypeArgument);\n84|             }\n85|             // logger.log(\"For '\" + parameterizedType + \"' found type variable : { '\" + typeParameter + \"(\" + System.identityHashCode(typeParameter) + \")\" + \"' : '\" + actualTypeArgument + \"(\" + System.identityHashCode(typeParameter) + \")\" + \"' }\");\n86|         }\n87|     }\n88| \n89|     protected void registerTypeParametersOn(TypeVariable[] typeParameters) {\n90|         for (TypeVariable typeParameter : typeParameters) {\n91|             contextualActualTypeParameters.put(typeParameter, boundsOf(typeParameter));\n92|",
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "f314326c762f096c835bb5d6d782302684271296e85f6ff0e02b1cb8b181a669",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 3,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 117,
+        "prompt_tokens": 6245
+      }
+    },
+    {
+      "applicable": 2,
+      "cached_tokens": 0,
+      "cost_usd": 0.002717875,
+      "final": true,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "c2bcd9a8afd21eca01e08363f02bd6e4e103a993999e54c4a606ffcf2e629134",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 4,
+      "submission_results": [
+        {
+          "applicable": true,
+          "edits": [
+            {
+              "replace": "class SerializableMockAnswer implements Answer<Object>, Serializable { public Object answer(InvocationOnMock invocation) throws Throwable { return mock; } }\n        container.addAnswer(new SerializableMockAnswer() {",
+              "search": "container.addAnswer(new Answer<Object>() {"
+            }
+          ],
+          "hypothesis": "The anonymous Answer created in recordDeepStubMock (the $2 class in the trace) captures the deep-stub mock and is not Serializable, so when the mock's stubbed-answer container is serialized it fails. Wrap it in a local Serializable Answer class so the stored answer can be serialized while still returning the captured mock.",
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+          "rejection": null
+        },
+        {
+          "applicable": true,
+          "edits": [
+            {
+              "replace": "return mockSettings.serializable()",
+              "search": "return mockSettings"
+            }
+          ],
+          "hypothesis": "Deep-stub mocks are created without serializable() settings, so the created mock is not serializable; enabling serializable mode on the settings used for deep-stub mocks should let the whole mock graph serialize.",
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 3286,
+        "prompt_tokens": 10049
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.000622275,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java"
+          },
+          "characters": 5712,
+          "output_excerpt": "1| /*\n2|  * Copyright (c) 2007 Mockito contributors\n3|  * This program is made available under the terms of the MIT License.\n4|  */\n5| package org.mockito.internal.stubbing.defaultanswers;\n6| \n7| import static org.mockito.Mockito.*;\n8| \n9| import java.io.Serializable;\n10| \n11| import org.mockito.MockSettings;\n12| import org.mockito.internal.InternalMockHandler;\n13| import org.mockito.internal.MockitoCore;\n14| import org.mockito.internal.creation.settings.CreationSettings;\n15| import org.mockito.internal.stubbing.InvocationContainerImpl;\n16| import org.mockito.internal.stubbing.StubbedInvocationMatcher;\n17| import org.mockito.internal.util.MockUtil;\n18| import org.mockito.internal.util.reflection.GenericMetadataSupport;\n19| import org.mockito.invocation.InvocationOnMock;\n20| import org.mockito.stubbing.Answer;\n21| \n22| /**\n23|  * Returning deep stub implementation.\n24|  *\n25|  * Will return previously created mock if the invocation matches.\n26|  *\n27|  * <p>Supports nested generic information, with this answer you can write code like this :\n28|  *\n29|  * <pre class=\"code\"><code class=\"java\">\n30|  *     interface GenericsNest&lt;K extends Comparable&lt;K&gt; & Cloneable&gt; extends Map&lt;K, Set&lt;Number&gt;&gt; {}\n31|  *\n32|  *     GenericsNest&lt;?&gt; mock = mock(GenericsNest.class, new ReturnsGenericDeepStubs());\n33|  *     Number number = mock.entrySet().iterator().next().getValue().iterator().next();\n34|  * </code></pre>\n35|  * </p>\n36|  *\n37|  * @see org.mockito.Mockito#RETURNS_DEEP_STUBS\n38|  * @see org.mockito.Answers#RETURNS_DEEP_STUBS\n39|  */\n40| public class ReturnsDeepStubs implements Answer<Object>, Serializable {\n41|     \n42|     private static final long serialVersionUID = -7105341425736035847L;\n43| \n44|     private MockitoCore mockitoCore = new MockitoCore();\n45|     private ReturnsEmptyValues delegate = new ReturnsEmptyValues();\n46| \n47|     public Object answer(InvocationOnMock invocation) throws Throwable {\n48|         GenericMetadataSupport retur",
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "cd3d54c1e58e21a892db05212ad0974f15ad5e1ffd25305c81649b48e907597e",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submission_results": [],
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 103,
+        "prompt_tokens": 4567
+      }
+    },
+    {
+      "applicable": 2,
+      "cached_tokens": 0,
+      "cost_usd": 0.002344675,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "548add5e0caf8eeb723824b5bbe843099542cdefbce244126b7b6461dd9bf278",
+      "round": 2,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submission_results": [
+        {
+          "applicable": true,
+          "edits": [
+            {
+              "replace": "    private abstract static class SerializableDeepStubAnswer implements Answer<Object>, Serializable {\n    }\n\n    private Object recordDeepStubMock(final Object mock, InvocationContainerImpl container) throws Throwable {",
+              "search": "    private Object recordDeepStubMock(final Object mock, InvocationContainerImpl container) throws Throwable {"
+            },
+            {
+              "replace": "        container.addAnswer(new SerializableDeepStubAnswer() {",
+              "search": "        container.addAnswer(new Answer<Object>() {"
+            },
+            {
+              "replace": "        return mockSettings.serializable()\n                .defaultAnswer(",
+              "search": "        return mockSettings\n                .defaultAnswer("
+            }
+          ],
+          "hypothesis": "The anonymous Answer in recordDeepStubMock (ReturnsDeepStubs$2) is not Serializable. Introduce a Serializable abstract nested answer class and make the anonymous answer extend it. Also make deep-stub mock settings serializable so the captured mock can be serialized (the MockUtil NotSerializableException shows the mock itself must be serializable).",
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+          "rejection": null
+        },
+        {
+          "applicable": true,
+          "edits": [
+            {
+              "replace": "    private abstract static class SerializableDeepStubAnswer implements Answer<Object>, Serializable {\n    }\n\n    private Object recordDeepStubMock(final Object mock, InvocationContainerImpl container) throws Throwable {",
+              "search": "    private Object recordDeepStubMock(final Object mock, InvocationContainerImpl container) throws Throwable {"
+            },
+            {
+              "replace": "        container.addAnswer(new SerializableDeepStubAnswer() {",
+              "search": "        container.addAnswer(new Answer<Object>() {"
+            }
+          ],
+          "hypothesis": "Only the recorded answer is at fault: make the anonymous answer in recordDeepStubMock serializable by extending a Serializable abstract nested class, leaving mock settings unchanged.",
+          "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+          "rejection": null
+        }
+      ],
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 3049,
+        "prompt_tokens": 7061
+      }
+    }
+  ],
+  "case": "Mockito-23",
+  "failing_tests": 1,
+  "plausible_patch": null,
+  "plausible_squashed_sha256": null,
+  "rounds": 2,
+  "seconds": 211.5,
+  "solved": false,
+  "suspects_from_stack_trace": false,
+  "validated": 4,
+  "verdicts": [
+    {
+      "candidate_digest": "6f0a3ef90625febbf69e6f8301c6fced9e5ce914409d8adc596a61de9cb2a309",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.util.MockUtil\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "1dd007c6731afc0490c7007a0f1080326d03dfdae95ad3c726dcb2803b9a0a73"
+    },
+    {
+      "candidate_digest": "753256de13013fb25e8a64afc5596251f5c0909731c6073378a6416b99e01173",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.stubbing.defaultanswers.ReturnsDeepStubs$2\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:345)\n\tat java.base/java.util.concurrent.ConcurrentLinkedQueue.writeObject(ConcurrentLinkedQueue.java:824)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1016)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1487)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "eb50dfd30c6f8285ecd1a2cc02c117fa650fafa78f9959bb8585810c8a397998"
+    },
+    {
+      "candidate_digest": "537701cdee9c7e809a7cad1f9656df67592bc57c50be626559985ec433b48566",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.util.MockUtil\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "6379820ffc7a7e541ddcabf28fddffa24f99cdfe4ebdde21bdbf77b51d239597"
+    },
+    {
+      "candidate_digest": "f0e5dd9f79a4ce3a2477e91c8f7fa73e6cd91446c21b9aebd55779be73f68d06",
+      "feedback": "--- org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs\njava.io.NotSerializableException: org.mockito.internal.util.MockUtil\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)\n\tat java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1500)\n\tat java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1423)\n\tat java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1169)\n\tat java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1543)",
+      "full_suite_failures": null,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+      "plausible": false,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "failing_tests",
+      "verdict_digest": "ac508f152746f02a37b74b5014f8107206f504c303d3b4b0b8a08bff652bf79c"
+    }
+  ]
+}

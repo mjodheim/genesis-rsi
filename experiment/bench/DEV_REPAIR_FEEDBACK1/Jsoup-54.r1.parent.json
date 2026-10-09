@@ -1,0 +1,45 @@
+{
+  "arm_digest": "4cdae9a7a94c979182c073a2479bacfbeb279ce5e6bae2f1ef23d2cfe09a7d39",
+  "calls": [
+    {
+      "applicable": 2,
+      "cached_tokens": 6586,
+      "cost_usd": 0.00074076,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "c9129eb85e1b4849a64207de77ec74627d1883a58d43b82d0d47253c7da01a0f",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 1349,
+        "prompt_tokens": 6590
+      }
+    }
+  ],
+  "case": "Jsoup-54",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/main/java/org/jsoup/helper/W3CDom.java\n+++ b/src/main/java/org/jsoup/helper/W3CDom.java\n@@ -123,6 +123,7 @@\n             for (Attribute attribute : source.attributes()) {\n                 // valid xml attribute names are: ^[a-zA-Z_:][-a-zA-Z0-9_:.]\n                 String key = attribute.getKey().replaceAll(\"[^-a-zA-Z0-9_:.]\", \"\");\n+                    if (key.length() == 0) continue;\n                     el.setAttribute(key, attribute.getValue());\n             }\n         }\n",
+  "plausible_squashed_sha256": "6b77596ec71c24b6445ecc8e6616098fc40ff315dbcdef76d8a3f8f2e6ad2c77",
+  "rounds": 1,
+  "seconds": 15.2,
+  "solved": true,
+  "suspects_from_stack_trace": true,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "5917034be8e2f7342ae8b2cdd61c052100a53b18210051711b8a343ad966ba6a",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/main/java/org/jsoup/helper/W3CDom.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "fccc37915001971dc6970e227e608cc06259f7307e71a52079057110df09259d"
+    }
+  ]
+}

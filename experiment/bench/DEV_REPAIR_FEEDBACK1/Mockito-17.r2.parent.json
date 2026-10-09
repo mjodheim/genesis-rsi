@@ -1,0 +1,104 @@
+{
+  "arm_digest": "84bae113ddb212b626dda8466534fcb84cb807b25eda6350cedf6859a4d3f37b",
+  "calls": [
+    {
+      "applicable": 0,
+      "cached_tokens": 3055,
+      "cost_usd": 0.00014795,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "text": "extraInterfaces"
+          },
+          "characters": 7438,
+          "tool": "search_files"
+        },
+        {
+          "arguments": {
+            "text": "Serializable"
+          },
+          "characters": 6999,
+          "tool": "search_files"
+        }
+      ],
+      "prompt_digest": "5ac1aac0627b0b22931fb63b7373ed53abe84fdc608383600fe4a5e690359454",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 1,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 234,
+        "prompt_tokens": 3059
+      }
+    },
+    {
+      "applicable": 0,
+      "cached_tokens": 0,
+      "cost_usd": 0.001115175,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [
+        {
+          "arguments": {
+            "path": "src/org/mockito/internal/creation/MockSettingsImpl.java"
+          },
+          "characters": 2633,
+          "tool": "read_file"
+        }
+      ],
+      "prompt_digest": "69ac2dcb6360fae3e298b66abf4c127e7b0fc93b2622510d85ca5b884d21bdcd",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 2,
+      "submitted": null,
+      "usage": {
+        "completion_tokens": 169,
+        "prompt_tokens": 9543
+      }
+    },
+    {
+      "applicable": 2,
+      "cached_tokens": 3055,
+      "cost_usd": 0.00157045,
+      "final": false,
+      "finish_reason": "tool_calls",
+      "inapplicable": 0,
+      "inspections": [],
+      "prompt_digest": "56fdf5604e49295c4638f61b2096ee1de68956d04281103a1395fdb82dbccae8",
+      "round": 1,
+      "schema": "genesis-repair-lineage-call-v1",
+      "step": 3,
+      "submitted": 2,
+      "usage": {
+        "completion_tokens": 1532,
+        "prompt_tokens": 10794
+      }
+    }
+  ],
+  "case": "Mockito-17",
+  "failing_tests": 1,
+  "plausible_patch": "--- a/src/org/mockito/internal/creation/MockSettingsImpl.java\n+++ b/src/org/mockito/internal/creation/MockSettingsImpl.java\n@@ -34,7 +34,12 @@\n                 new Reporter().extraInterfacesAcceptsOnlyInterfaces(i);\n             }\n         }\n-        this.extraInterfaces = extraInterfaces;\n+        java.util.List<Class<?>> all = new java.util.ArrayList<Class<?>>();\n+        if (this.extraInterfaces != null) {\n+            all.addAll(java.util.Arrays.asList(this.extraInterfaces));\n+        }\n+        all.addAll(java.util.Arrays.asList(extraInterfaces));\n+        this.extraInterfaces = all.toArray(new Class<?>[all.size()]);\n         return this;\n     }\n \n",
+  "plausible_squashed_sha256": "d52b55c75d202e4a6ebed98c8683a255c2b4364532a9c59c0e4a97df7e11e43e",
+  "rounds": 1,
+  "seconds": 67.9,
+  "solved": true,
+  "suspects_from_stack_trace": false,
+  "validated": 1,
+  "verdicts": [
+    {
+      "candidate_digest": "ea1d53be44b03fed449a89672431fed99f4a1c953bb9c49ca1ba26fe306fcd02",
+      "feedback": null,
+      "full_suite_failures": 0,
+      "origin": "lineage:anthropic/claude-haiku-5.5",
+      "path": "src/org/mockito/internal/creation/MockSettingsImpl.java",
+      "plausible": true,
+      "schema": "genesis-repair-bench-verdict-v1",
+      "stopped_at": "passed",
+      "verdict_digest": "c019165724e80247d17213a00a74169be389ce0415c715770ee154892a66ec3d"
+    }
+  ]
+}

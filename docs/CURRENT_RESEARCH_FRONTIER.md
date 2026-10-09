@@ -530,3 +530,14 @@ descendants are implemented. Thirty focused tests pass, including an offline
 two-generation loop. No live API call, fresh real-bug comparison or promotion
 has occurred. This remains authored instrument development; see
 [REPAIR_FEEDBACK_2026-10-09.md](REPAIR_FEEDBACK_2026-10-09.md).
+
+## Feedback ablation result — 9 October 2026
+
+DEV_REPAIR_FEEDBACK1 is complete: parent 4/6, child 4/6 on three exposed bugs
+with two repetitions. Forty calls cost USD 0.043691795, no unknown receipts.
+No inapplicable patch occurred, so application recovery was never triggered.
+No promotion; canonical memory remains 292 events. Post-result analysis records
+partial serialization repairs that expose different blockers, the one-file candidate
+limit and an existing settings-driven serialization mechanism. These observations
+are hypotheses for future development, not a verified solution. See
+[REPAIR_FEEDBACK_TRIAL_2026-10-09.md](REPAIR_FEEDBACK_TRIAL_2026-10-09.md).
