@@ -293,6 +293,10 @@ def evolve(arguments) -> None:
         promoted = False
         if best is not None:
             attempt, training, source = best
+            for other in state["attempts"]:
+                if (other["generation"] == generation and other is not attempt
+                        and (other["training_localized"] or 0) > champion_training["localized"]):
+                    other["outcome"] = "better on training, not the best of its generation"
             selection = measure(source, roles["selection"])
             comparison = lineage.compare(selection, state["evaluations"][champion]["selection"])
             attempt["selection"] = comparison
