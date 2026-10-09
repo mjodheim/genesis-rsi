@@ -289,3 +289,8 @@ precedes implementation in docs/IP_REVIEWS/REPAIR_BRANCHES_REVIEW_2026-10-09.md.
 Anthony directs research; Codex substantially assists authored infrastructure.
 External model proposals remain attributed; no general RSI, active promotion or
 reserved-task qualification is claimed by the exposed-development pilot.
+
+9 October 2026 — an authored evidence-driven branch-selection playbook and paired
+development comparison follow PUBLIC_AGPL_COMMERCIAL_OPTION. Pre-review is in
+docs/IP_REVIEWS/REPAIR_BRANCH_STRATEGY_REVIEW_2026-10-09.md. Anthony directs research;
+Codex assists. This is a strategy intervention, not self-learned improvement.
