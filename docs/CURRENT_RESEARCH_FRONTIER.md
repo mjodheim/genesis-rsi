@@ -511,3 +511,14 @@ network or a home directory made some cases unwinnable. With that separated and 
 evaluations per configuration, LINEAGE2 rejected all four successors (37 to 39 against
 43 of 60 case runs) and consumed no held-out case. No recursive improvement is shown.
 See REPAIR_LINEAGE_2026-10-09.md. T1 remains unsealed.
+
+9 October 2026 — local configuration revision pilot: external Haiku changes one
+allowed leaf (instructions), guided only by LINEAGE2 seed training observations.
+On the first three already-exposed selection cases (Mockito-17/Jsoup-54/Mockito-23),
+two new paired evaluations each yield 4/6 parent and 4/6 descendant, zero gains/losses.
+No larger-test qualification or policy promotion. Total known API USD 0.04255552,
+38 requests, zero unknown bills. Descendant's seven Mockito-23 candidates compile
+but fail triggers; parent also exhibits an inapplicable-only early stop. The next
+apparatus experiment is bounded application-failure feedback; repair-language and
+semantic hypothesis coverage remain substantive deficits. Canonical memory remains
+292 events; no held-out consumed. See REPAIR_LOCAL_REVISION_2026-10-09.md.
