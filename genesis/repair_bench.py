@@ -11,7 +11,7 @@ Nothing here generates a repair. Proposers are passed in.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import difflib
 import hashlib
 from pathlib import Path
@@ -208,6 +208,7 @@ class Candidate:
     content: str
     origin: str
     description: str = ""
+    provenance: dict | None = field(default=None, compare=False, hash=False)
 
     @property
     def digest(self) -> str:

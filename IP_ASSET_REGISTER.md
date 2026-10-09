@@ -222,3 +222,12 @@ new trials. Review preceded enabling implementation in
 `docs/IP_REVIEWS/REPAIR_TRANSFORMATION_LEARNING_REVIEW_2026-10-09.md`.
 OpenAI Codex assists with development; assisted repairs retain model attribution.
 No independent/general RSI gate or new authority is claimed.
+
+Prospective compiler-grounded repair quality review — 9 October 2026:
+operator provenance, existing sandboxed Java AST/type analysis, expression
+projection and outcome-aware selection follow PUBLIC_AGPL_COMMERCIAL_OPTION.
+Anthony authorises end-to-end development and teacher/fresh-transfer trials.
+Review precedes enabling publication in
+`docs/IP_REVIEWS/REPAIR_QUALITY_LEARNING_REVIEW_2026-10-09.md`.
+OpenAI Codex assists; external teacher origins remain attributed. No general RSI
+or independent-maintainer gate is claimed.

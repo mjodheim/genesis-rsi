@@ -203,7 +203,7 @@ def model_proposer(
     return propose
 
 
-def strategist_proposer(count: int) -> Proposer:
+def strategist_proposer(count: int, *, preserve_provenance: bool = False) -> Proposer:
     """The existing operator families, focused on the files the failure reaches. No model call."""
 
     def propose(root: Path, evidence: Mapping, history: History, remaining: int) -> Sequence[Candidate]:
@@ -221,7 +221,10 @@ def strategist_proposer(count: int) -> Proposer:
         )
         return [
             Candidate(path=item["path"], content=item["content_utf8"], origin="strategist",
-                      description="Local repair operator: " + str(item.get("operator", "unknown")))
+                      description="Local repair operator: " + str(item.get("operator", "unknown")),
+                      provenance=dict(plan=item.get("plan", {}), detail=item.get("detail", {}),
+                          component_operators=item.get("component_operators") or item.get("plan", {}).get("component_operators", []))
+                      if preserve_provenance else None)
             for item in generated["candidates"][:count]
         ]
 
