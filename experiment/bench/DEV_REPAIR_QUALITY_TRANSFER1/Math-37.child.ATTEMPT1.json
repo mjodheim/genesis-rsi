@@ -1,0 +1,46 @@
+{
+  "attempt_digest": "2743fbd3f46414ff296721651052b77b229c1315c52d0da1652032f9896aafa2",
+  "candidate": {
+    "candidate_digest": "7cef4a1bcf51365a14c1bbfd88876943f33856010f73ec2b6079338db8883124",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "provenance": {
+      "component_operators": [
+        "java_qualified_symbol_substitute"
+      ],
+      "detail": {},
+      "plan": {
+        "component_ids": [
+          "java-symbol-5b4793b07ac3e5f4"
+        ],
+        "component_operators": [
+          "java_qualified_symbol_substitute"
+        ],
+        "depth": 1,
+        "edit_count": 1,
+        "score": 330
+      }
+    }
+  },
+  "choice": {
+    "candidate_digest": "7cef4a1bcf51365a14c1bbfd88876943f33856010f73ec2b6079338db8883124",
+    "choice_digest": "415dc2e54cd5d0dbd493dd78ce2c9a3cbbfca20f280e1c1240afee610f071af7",
+    "index": 1,
+    "operators": [
+      "java_qualified_symbol_substitute"
+    ],
+    "prior_verdict_digests": []
+  },
+  "diagnosis": "behaviour",
+  "verdict": {
+    "candidate_digest": "7cef4a1bcf51365a14c1bbfd88876943f33856010f73ec2b6079338db8883124",
+    "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "03332be6fabcad233d8f23a75da3fbfa4aa07de7d0f28c7e0b48b6afa9833cae"
+  }
+}

@@ -456,3 +456,28 @@ then a newly frozen development transfer. Do not reuse these exposed cases as
 fresh tests or reinterpret the frozen rejection. See
 `docs/REPAIR_TRANSFORMATION_LEARNING_2026-10-09.md` and the stored result/audit/
 diagnosis/memory-admission records. An evidence audit is not independent replication.
+
+### 9 October 2026 — compiler-grounded quality and assisted acquisition
+
+`DEV_REPAIR_QUALITY_TRANSFER1` preserves component-operator provenance, ranks
+from 48 released outcomes, projects smaller expressions from verified recipes,
+uses the existing Java AST/partial-type analyser inside Docker and counts every
+attempted candidate compilation. Legacy defaults remain preserved. Three exposed
+teacher cases (Jsoup-59 / Math-41 / Compress-44) pass with Haiku, with durable
+full-suite replays: five requests, $0.0063859, no new unknown charges. Assisted
+competence remains attributed; seven rule proposals do not prove real transfer.
+
+New public development Jsoup-25 / Math-37 / Compress-18 comparisons yield 0/3
+in both arms, 16 candidate compilation attempts each and two compile failures
+each. Jsoup's source localisation is empty; no learned rule activates. Removing
+17 Math candidates from the pool does not produce measured repair gain. Reject
+policy promotion; admit all 50 events separately, preserving the canonical
+173-event prefix (223 total). No fresh transfer success or general RSI is claimed.
+
+A later explicit opt-in assertion/API localisation helper supplies 12 production
+locations and 64 candidates for the now-exposed Jsoup case, with no repair attempt.
+That engineering smoke does not amend the frozen failure or count as fresh evidence.
+Next priorities: causal call traversal, broader/multiline/algorithmic acquisition,
+semantic guards and independently separated real transfer. See
+`docs/REPAIR_QUALITY_LEARNING_2026-10-09.md`; audits are stored-evidence checks,
+not independent execution replication.

@@ -1,0 +1,53 @@
+{
+  "attempt_digest": "4521f8d6338d84db0e7209e49fd563c70bd65ee32320a423086822e8add2d201",
+  "candidate": {
+    "candidate_digest": "b13b2095b8341450fd48e87c7d0d0cfad998137cb64a4969a6b05a5aa547d9cc",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "provenance": {
+      "component_operators": [
+        "java_qualified_symbol_substitute"
+      ],
+      "detail": {},
+      "plan": {
+        "component_ids": [
+          "java-symbol-42637ebfb9162865"
+        ],
+        "component_operators": [
+          "java_qualified_symbol_substitute"
+        ],
+        "depth": 1,
+        "edit_count": 1,
+        "score": 285
+      }
+    }
+  },
+  "choice": {
+    "candidate_digest": "b13b2095b8341450fd48e87c7d0d0cfad998137cb64a4969a6b05a5aa547d9cc",
+    "choice_digest": "cec5c7fda79b6ac477bdb03e6e50e0d40b402c3bc17f1b15af1c6765828dca08",
+    "index": 7,
+    "operators": [
+      "java_qualified_symbol_substitute"
+    ],
+    "prior_verdict_digests": [
+      "03332be6fabcad233d8f23a75da3fbfa4aa07de7d0f28c7e0b48b6afa9833cae",
+      "abab89fa212a065b4730836192838a9a3d8b9c43e27daf57d12b41dcb489d447",
+      "0f602f2d461caa2494ee97368b6a6024b04e3b15f7cc0b8e2d3cb6f2db51d243",
+      "2f8abb8cd2fb1dfe0420936783336a1dcc7ab397220bd7436d7d4930b56f0a4c",
+      "7480f78253d6ecad6a08d8667e76529c3dd34dc7ab420c0a363e69954ae7a1e1",
+      "c9411b8afcfa4cc4c2e2e0ec6886d91e6457b652972bf4f7fa8f698edd0f5477"
+    ]
+  },
+  "diagnosis": "behaviour",
+  "verdict": {
+    "candidate_digest": "b13b2095b8341450fd48e87c7d0d0cfad998137cb64a4969a6b05a5aa547d9cc",
+    "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "fcde4f8b5515c5621f80cab2d1c359de988ebb59cdba00851fd1b07a402bcad4"
+  }
+}

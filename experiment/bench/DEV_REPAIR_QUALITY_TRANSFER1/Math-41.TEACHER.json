@@ -1,0 +1,1085 @@
+{
+  "accepted": {
+    "candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+    "content_sha256": "1d6370659fd7436a72939c0233903a1de5e5be023841d6add5fef943c1564b5d",
+    "description": "{\"hypothesis\": \"The weight-sum loop in the weighted evaluate(values, weights, mean, begin, length) iterates over the whole weights array (0..weights.length) instead of the requested segment [begin, begin+length), so for a sub-array the denominator sumWts includes weights outside the segment and the variance is wrong. Restricting the loop to the segment fixes it.\", \"path\": \"src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java\", \"edits\": [{\"search\": \"                for (int i = 0; i < weights.length; i++) {\\n                    sumWts += weights[i];\\n                }\", \"replace\": \"                for (int i = begin; i < begin + length; i++) {\\n                    sumWts += weights[i];\\n                }\"}]}",
+    "origin": "openrouter:anthropic/claude-haiku-5.5",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "provenance": null
+  },
+  "case": "Math-41",
+  "new_events": [
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0007638,
+        "evidence_digest": "9c845fe254bf85a499b5ff1d2272adbfa82ec9d81d2ee2f2b6a9444229d2546b",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+              "start": 200
+            },
+            "result_digest": "c019998d6dc194cb61de82e93a144988b9caee4616aae19a997aa6522764ddfd",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "bbe0704bac1c9777b9a432d60a017ce9292df9882cf93265bc07df2684b805b8",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004651959,
+        "response_digest": "9652cfc27bcc520fadc7bf53f184ef6fac80a3278ae92507e523fa854c92711e",
+        "response_id": "gen-1791527516-Imbce0mWOg7oFVSGlkOo",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 140,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 40
+          },
+          "cost": 0.0007638,
+          "cost_details": {
+            "upstream_inference_completions_cost": 7e-05,
+            "upstream_inference_cost": 0.0007638,
+            "upstream_inference_prompt_cost": 0.0006938
+          },
+          "is_byok": false,
+          "prompt_tokens": 6938,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7078
+        }
+      },
+      "kind": "call",
+      "previous_digest": "77016dca074e722292c1e52ec28ceb23f7787c0570048c24acc6654dd055138d",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0010859,
+        "evidence_digest": "9c845fe254bf85a499b5ff1d2272adbfa82ec9d81d2ee2f2b6a9444229d2546b",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+              "start": 400
+            },
+            "result_digest": "e6de9d26f1dac657a62bab5821cf71713d0a90becb5c06ab619c23a0f221aa87",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "1b251d52afe5c54bd4b0a2eeb518de7a2b9a0653a359e0fc4205a4999ee459b4",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005779018,
+        "response_digest": "bc29d235bdf9d3ad9ef87dea98ae504eae58cf40b8630cbbc8e268485be3133c",
+        "response_id": "gen-1791527518-qIMSaV9mbB2NsJfHqGY2",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 99,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0010859,
+          "cost_details": {
+            "upstream_inference_completions_cost": 4.95e-05,
+            "upstream_inference_cost": 0.0010859,
+            "upstream_inference_prompt_cost": 0.0010364
+          },
+          "is_byok": false,
+          "prompt_tokens": 10364,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 10463
+        }
+      },
+      "kind": "call",
+      "previous_digest": "a48addb0df3c7f23320a577d1c783fa706de56ef8cf8595fb7b99994a46d10be",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0016536,
+        "evidence_digest": "9c845fe254bf85a499b5ff1d2272adbfa82ec9d81d2ee2f2b6a9444229d2546b",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "21d06a4858c53931e8edf70b7d073020c8a933f957f8b20b805550922fa0b5a8",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0067846749999999996,
+        "response_digest": "a3b46ca3a2c4f7a2d0be6e087cef7008965d2ae5c8d942a50663e0dbd98bf728",
+        "response_id": "gen-1791527520-YDQD3XbOYGDQ3H3fe5Cj",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 554,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 245
+          },
+          "cost": 0.0016536,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000277,
+            "upstream_inference_cost": 0.0016536,
+            "upstream_inference_prompt_cost": 0.0013766
+          },
+          "is_byok": false,
+          "prompt_tokens": 13766,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 14320
+        }
+      },
+      "kind": "call",
+      "previous_digest": "3cea02171797de15e37ac97d07e9b4fe11c2e29389431d8aa81b3e11a6111846",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+        "evidence_digest": "9c845fe254bf85a499b5ff1d2272adbfa82ec9d81d2ee2f2b6a9444229d2546b",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 9029,
+          "source_files": 1
+        },
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "verdict": {
+          "candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "cfc268664f68f26b36a73394a42c45eef09afd5b330ad45500b7d40aa34dc834"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "1542315ada05410e953c1f0ede0d5433e0d612dbdcd7a6c6ed29c6658b3f1e93",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+        "edits": [
+          [
+            "                }\n\n                double sumWts = 0;\n                for (int i = 0; i < weights.length; i++) {\n                    sumWts += weights[i];\n                }\n\n",
+            "                }\n\n                double sumWts = 0;\n                for (int i = begin; i < begin + length; i++) {\n                    sumWts += weights[i];\n                }\n\n"
+          ]
+        ],
+        "explanation": "{\"hypothesis\": \"The weight-sum loop in the weighted evaluate(values, weights, mean, begin, length) iterates over the whole weights array (0..weights.length) instead of the requested segment [begin, begin+length), so for a sub-array the denominator sumWts includes weights outside the segment and the variance is wrong. Restricting the loop to the segment fixes it.\", \"path\": \"src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java\", \"edits\": [{\"search\": \"                for (int i = 0; i < weights.length; i++) {\\n                    sumWts += weights[i];\\n                }\", \"replace\": \"                for (int i = begin; i < begin + length; i++) {\\n                    sumWts += weights[i];\\n                }\"}]}",
+        "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:anthropic/claude-haiku-5.5",
+          "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "cfc268664f68f26b36a73394a42c45eef09afd5b330ad45500b7d40aa34dc834"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "df91c5c4a254575958d80c4625a4be5a13c96a8e12545f1189050ee0135b2c19",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "policy": {
+          "generation": 1,
+          "parent_policy_digest": "",
+          "policy_digest": "e67be22ee192507bcacf021a8fca0cabacdc3ed9022494746d1e97be6fc46e7c",
+          "promoted": false,
+          "rejected": [
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "unsupported or nongeneralizable edit",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "unsupported or nongeneralizable edit",
+              "recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "2dbd5453632180fd1f05b82f19a7f110a17f2e06e4b72befcfae9f8b2a0bead4"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "a84e320f41e8aa06fb4538af0363c14eab1a1275f3bac366e555f909ffe4786a"
+            },
+            {
+              "reason": "not a bounded replacement",
+              "recipe_digest": "ff299a129d1952df4f27817595285a541ae8d5a6ad1dc470c4cb8135877b90b3"
+            }
+          ],
+          "rules": [
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "CSVRecord"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "CSVParser"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "literal": "CSVParser"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "CSVRecord"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "literal": "this"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "current"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "explanation": "Previously suite-validated exact-text repair; explanation limited to archived patch.",
+              "family": "expression_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [
+                "CSVParser"
+              ],
+              "origin": "released-trial:DEV_COST_COMPARE2_HAIKU_CSV",
+              "rule_digest": "00e11862a9d7b8c66f70b9a7f54e4d94c53819e83fb9e743fe8edaccde3bc7ca",
+              "source_candidate_digest": "778d5717f69b208b10718d4d2f40a472d4f35db4e21693cb1fe872977745d3bf",
+              "source_recipe_digest": "de7ce17037a6fbd6535a301dcb8a5bb8e94136761731d475cb04bc67704a5c15",
+              "source_verdict_digest": "d4b368a4dd8026e9981763e447b2a31252d13a651f9b9476719489edec13a5d7",
+              "template_digest": "1ecc16b61f8da67018e4591c332d370972467ccb979848ede493838a38793d21"
+            },
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "return"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": "?"
+                },
+                {
+                  "literal": "TextNode"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "normaliseWhitespace"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "text"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "trim"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ":"
+                },
+                {
+                  "literal": "\"\""
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "return"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": "?"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "text"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "trim"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ":"
+                },
+                {
+                  "literal": "\"\""
+                },
+                {
+                  "literal": ";"
+                }
+              ],
+              "explanation": "{\"hypothesis\": \"Document.title() must normalize whitespace in title text explicitly because title elements preserve whitespace for markup output.\", \"path\": \"src/main/java/org/jsoup/nodes/Document.java\", \"edits\": [{\"search\": \"return titleEl != null ? titleEl.text().trim() : \\\"\\\";\", \"replace\": \"return titleEl != null ? TextNode.normaliseWhitespace(titleEl.text()).trim() : \\\"\\\";\"}]}",
+              "family": "call_structure_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [
+                "TextNode",
+                "normaliseWhitespace"
+              ],
+              "origin": "openrouter:openai/gpt-6-luna",
+              "rule_digest": "6447bca06e4cf4ab41ff709b5ff2b626387948a30df71078bf554c62c76f954c",
+              "source_candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+              "source_recipe_digest": "0ab9fe33881cb9f263eb69e93183ed1340ac9b2b09e5691d85e976d2517e9fe7",
+              "source_verdict_digest": "c0b79e6f24b0387f735aa6dd76e50c1f08423f09398b1c6bca6af285b3cf5e98",
+              "template_digest": "d5a6d4cb6c6bd7cd1579a272139288800f6c66d9a20d445d7e8c6375cdcd96ab"
+            },
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": "<"
+                },
+                {
+                  "bind": "$1"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "bind": "$1"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "explanation": "{\"hypothesis\": \"reparseCentralDirectoryData rejects any raw central-directory extra data whose length differs from the expected length; archives with excess trailing data (COMPRESS-228) must be accepted. Only a buffer shorter than expected is an error, so the comparison should be '<' instead of '!='.\", \"path\": \"src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java\", \"edits\": [{\"search\": \"            if (rawCentralDirectoryData.length != expectedLength) {\", \"replace\": \"            if (rawCentralDirectoryData.length < expectedLength) {\"}]}",
+              "family": "relational_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [],
+              "origin": "openrouter:anthropic/claude-haiku-5.5",
+              "rule_digest": "f414468e2e62ecad1484c29d7251bfabe91aa02aac42e932a5d2f4358c8296ef",
+              "source_candidate_digest": "c297ddbf1b520f68ffdcbb52fd8e004561e1cb4cf5fa9be428d96023bff500fc",
+              "source_recipe_digest": "ae32d704c5d332f1b4bd33af36ee6c72c93c1deb4a1588a55ca45f2a04ee38fe",
+              "source_verdict_digest": "fbe7e15e155eed910cb666531b20367f3732beab685aa56d2605359787ff2cbe",
+              "template_digest": "2841b93e57786a870c090c8068b544bb79b664f3fce6b8e6e1a12b2a502a101e"
+            },
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": "&&"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "trim"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": ">"
+                },
+                {
+                  "literal": "0"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "if"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "!="
+                },
+                {
+                  "literal": "null"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "explanation": "{\"hypothesis\": \"Control characters such as \\\\06 are removed by String.trim() in Token.Tag.newAttribute, leaving an empty attribute name that then reaches the Attribute/BooleanAttribute constructor and throws. Skip attributes whose trimmed name is empty, so they are dropped instead of raising.\", \"path\": \"src/main/java/org/jsoup/parser/Token.java\", \"edits\": [{\"search\": \"if (pendingAttributeName != null) {\\n                // the tokeniser\", \"replace\": \"if (pendingAttributeName != null && pendingAttributeName.trim().length() > 0) {\\n                // the tokeniser\"}]}",
+              "family": "call_structure_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [
+                "length",
+                "trim"
+              ],
+              "origin": "openrouter:anthropic/claude-haiku-5.5",
+              "rule_digest": "2f897b43f5e7d873b9bf5bb3caa1a3898ca0c57496ec226940ce94a8806fd8cd",
+              "source_candidate_digest": "0ad1dbfbc3e32eb7557ddbb429a6285ec91fd75e0d31bb3cfbceb9d67d140a1e",
+              "source_recipe_digest": "65f7a3bad35f34dc6f8295666902d8c6746189b29c681c8fddb3c2370e26226a",
+              "source_verdict_digest": "51f8558b42219ccabcab476204d758fbcfecb0d538ed2ffefeee8f5fde247b34",
+              "template_digest": "c33a38fef31ca6957b14b2e853724e108748e16be508afd546019d6c2e36fb25"
+            },
+            {
+              "abstraction": "authored lexical identifier binding; not semantic invention",
+              "after": [
+                {
+                  "literal": "for"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": "int"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "begin"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "<"
+                },
+                {
+                  "literal": "begin"
+                },
+                {
+                  "literal": "+"
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "++"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "before": [
+                {
+                  "literal": "for"
+                },
+                {
+                  "literal": "("
+                },
+                {
+                  "literal": "int"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "="
+                },
+                {
+                  "literal": "0"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "<"
+                },
+                {
+                  "literal": "weights"
+                },
+                {
+                  "literal": "."
+                },
+                {
+                  "literal": "length"
+                },
+                {
+                  "literal": ";"
+                },
+                {
+                  "bind": "$0"
+                },
+                {
+                  "literal": "++"
+                },
+                {
+                  "literal": ")"
+                },
+                {
+                  "literal": "{"
+                }
+              ],
+              "explanation": "{\"hypothesis\": \"The weight-sum loop in the weighted evaluate(values, weights, mean, begin, length) iterates over the whole weights array (0..weights.length) instead of the requested segment [begin, begin+length), so for a sub-array the denominator sumWts includes weights outside the segment and the variance is wrong. Restricting the loop to the segment fixes it.\", \"path\": \"src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java\", \"edits\": [{\"search\": \"                for (int i = 0; i < weights.length; i++) {\\n                    sumWts += weights[i];\\n                }\", \"replace\": \"                for (int i = begin; i < begin + length; i++) {\\n                    sumWts += weights[i];\\n                }\"}]}",
+              "family": "expression_change",
+              "guards": [
+                "Java production only",
+                "near observed failure",
+                "consistent identifier binding",
+                "API and literal tokens preserved",
+                "introduced identifiers already occur in source",
+                "compile, triggering tests and full-suite revalidation required"
+              ],
+              "introduced_identifiers": [
+                "begin"
+              ],
+              "origin": "openrouter:anthropic/claude-haiku-5.5",
+              "rule_digest": "da001af4dbada56ef18f6bb8d30cb67f8b62883b11d18d8447239bcf1a83e2f0",
+              "source_candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+              "source_recipe_digest": "1cdde518fc8550b0d7a31a9b545705ea4502b1261dcb84782d8e46c93fcc810c",
+              "source_verdict_digest": "cfc268664f68f26b36a73394a42c45eef09afd5b330ad45500b7d40aa34dc834",
+              "template_digest": "c3424f29952af6ffcebc1726078717ba2410ec709c1bd00ed75651591626b198"
+            }
+          ],
+          "schema": "genesis-java-lexical-repair-policy-v1",
+          "scope": "released development proposal; requires separate transfer gate",
+          "training_memory_digest": "1b99963bf9c9bf03e6e7d4851a77b5f37035beccb8f4f65f5c98b49fa7700f44"
+        },
+        "promoted": false,
+        "source_candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06"
+      },
+      "kind": "transformation_proposal",
+      "previous_digest": "1cdde518fc8550b0d7a31a9b545705ea4502b1261dcb84782d8e46c93fcc810c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0035033,
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 9029,
+          "source_files": 1
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "a1fa16b86c7b9d7610ef62204f2b1aac7c78dc7caa4cbb85573c0fdb3f242983",
+      "scope": "released_development"
+    }
+  ],
+  "replay": {
+    "candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+    "feedback": null,
+    "full_suite_failures": 0,
+    "origin": "retained-experience",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "plausible": true,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "passed",
+    "verdict_digest": "f634604fd9a83805a043e0752ed94b6a768a86eeae9407e76adaf8e87881a308"
+  },
+  "result": {
+    "decisions": [
+      {
+        "basis": "contextual",
+        "complexity": "moderate",
+        "estimated_request_reserve_usd": 0.004429557,
+        "fallback_quality_threshold_relaxed": false,
+        "model": "anthropic/claude-haiku-5.5",
+        "observations": 3,
+        "score": 0.007255565416666668,
+        "suite_passes": 2
+      }
+    ],
+    "known_cost_usd": 0.0035033,
+    "model_calls": [
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0007638,
+        "evidence_digest": "9c845fe254bf85a499b5ff1d2272adbfa82ec9d81d2ee2f2b6a9444229d2546b",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+              "start": 200
+            },
+            "result_digest": "c019998d6dc194cb61de82e93a144988b9caee4616aae19a997aa6522764ddfd",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "bbe0704bac1c9777b9a432d60a017ce9292df9882cf93265bc07df2684b805b8",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.004651959,
+        "response_digest": "9652cfc27bcc520fadc7bf53f184ef6fac80a3278ae92507e523fa854c92711e",
+        "response_id": "gen-1791527516-Imbce0mWOg7oFVSGlkOo",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 140,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 40
+          },
+          "cost": 0.0007638,
+          "cost_details": {
+            "upstream_inference_completions_cost": 7e-05,
+            "upstream_inference_cost": 0.0007638,
+            "upstream_inference_prompt_cost": 0.0006938
+          },
+          "is_byok": false,
+          "prompt_tokens": 6938,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 7078
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0010859,
+        "evidence_digest": "9c845fe254bf85a499b5ff1d2272adbfa82ec9d81d2ee2f2b6a9444229d2546b",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+              "start": 400
+            },
+            "result_digest": "e6de9d26f1dac657a62bab5821cf71713d0a90becb5c06ab619c23a0f221aa87",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "1b251d52afe5c54bd4b0a2eeb518de7a2b9a0653a359e0fc4205a4999ee459b4",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005779018,
+        "response_digest": "bc29d235bdf9d3ad9ef87dea98ae504eae58cf40b8630cbbc8e268485be3133c",
+        "response_id": "gen-1791527518-qIMSaV9mbB2NsJfHqGY2",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 99,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.0010859,
+          "cost_details": {
+            "upstream_inference_completions_cost": 4.95e-05,
+            "upstream_inference_cost": 0.0010859,
+            "upstream_inference_prompt_cost": 0.0010364
+          },
+          "is_byok": false,
+          "prompt_tokens": 10364,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 10463
+        }
+      },
+      {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.0016536,
+        "evidence_digest": "9c845fe254bf85a499b5ff1d2272adbfa82ec9d81d2ee2f2b6a9444229d2546b",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "21d06a4858c53931e8edf70b7d073020c8a933f957f8b20b805550922fa0b5a8",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0067846749999999996,
+        "response_digest": "a3b46ca3a2c4f7a2d0be6e087cef7008965d2ae5c8d942a50663e0dbd98bf728",
+        "response_id": "gen-1791527520-YDQD3XbOYGDQ3H3fe5Cj",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 554,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 245
+          },
+          "cost": 0.0016536,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000277,
+            "upstream_inference_cost": 0.0016536,
+            "upstream_inference_prompt_cost": 0.0013766
+          },
+          "is_byok": false,
+          "prompt_tokens": 13766,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 14320
+        }
+      }
+    ],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": true,
+    "solved_without_llm": false,
+    "total_cost_usd": 0.0035033,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "6d9c6d5b3b3ca94c0ea95a6588bf1d148c125e8e56243ff86e08271f3d69cf06",
+        "feedback": null,
+        "full_suite_failures": 0,
+        "origin": "openrouter:anthropic/claude-haiku-5.5",
+        "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+        "plausible": true,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "passed",
+        "verdict_digest": "cfc268664f68f26b36a73394a42c45eef09afd5b330ad45500b7d40aa34dc834"
+      }
+    ]
+  },
+  "scope": "exposed development training; no fresh-transfer score",
+  "teacher_digest": "3c3b49e01f0a47b1fc43ca02cbf9181bac11ee6e08d4969c608bcb5fe47cb464"
+}

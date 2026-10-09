@@ -1,0 +1,27 @@
+{
+  "evidence_digest": "173119df46dd69d4b5fb85abcfe9fa61cbfa97fa50a933b4256a0e529e95ea2c",
+  "failing_tests": [
+    "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea"
+  ],
+  "fixed_revision_consulted": false,
+  "production_source": [],
+  "schema": "genesis-repair-bench-evidence-v1",
+  "source_directory": "src/main/java",
+  "suspect_locations": [],
+  "suspects_from_stack_trace": false,
+  "test_directory": "src/test/java",
+  "test_source": [
+    {
+      "first_line": 159,
+      "last_line": 209,
+      "numbered_source": "  159| \n  160|         String s = \"<p>Hello</p><script>obj.insert('<a rel=\\\"none\\\" />');\\ni++;</script><p>There</p>\";\n  161|         Document doc = Jsoup.parse(s);\n  162|         assertEquals(\"Hello There\", doc.text());\n  163|         assertEquals(\"obj.insert('<a rel=\\\"none\\\" />');\\ni++;\", doc.data());\n  164|     }\n  165| \n  166|     @Test public void handlesTextAfterData() {\n  167|         String h = \"<html><body>pre <script>inner</script> aft</body></html>\";\n  168|         Document doc = Jsoup.parse(h);\n  169|         assertEquals(\"<html><head></head><body>pre <script>inner</script> aft</body></html>\", TextUtil.stripNewlines(doc.html()));\n  170|     }\n  171| \n  172|     @Test public void handlesTextArea() {\n  173|         Document doc = Jsoup.parse(\"<textarea>Hello</textarea>\");\n  174|         Elements els = doc.select(\"textarea\");\n  175|         assertEquals(\"Hello\", els.text());\n  176|         assertEquals(\"Hello\", els.val());\n  177|     }\n  178| \n  179|     @Test public void preservesSpaceInTextArea() {\n  180|         // preserve because the tag is marked as preserve white space\n  181|         Document doc = Jsoup.parse(\"<textarea>\\n\\tOne\\n\\tTwo\\n\\tThree\\n</textarea>\");\n  182|         String expect = \"One\\n\\tTwo\\n\\tThree\"; // the leading and trailing spaces are dropped as a convenience to authors\n  183|         Element el = doc.select(\"textarea\").first();\n  184|         assertEquals(expect, el.text());\n  185|         assertEquals(expect, el.val());\n  186|         assertEquals(expect, el.html());\n  187|         assertEquals(\"<textarea>\\n\\t\" + expect + \"\\n</textarea>\", el.outerHtml()); // but preserved in round-trip html\n  188|     }\n  189| \n  190|     @Test public void preservesSpaceInScript() {\n  191|         // preserve because it's content is a data node\n  192|         Document doc = Jsoup.parse(\"<script>\\nOne\\n\\tTwo\\n\\tThree\\n</script>\");\n  193|         String expect = \"\\nOne\\n\\tTwo\\n\\tThree\\n\";\n  194|         Element el = doc.select(\"script\").first();\n  195|         assertEquals(expect, el.data());\n  196|         assertEquals(\"One\\n\\tTwo\\n\\tThree\", el.html());\n  197|         assertEquals(\"<script>\" + expect + \"</script>\", el.outerHtml());\n  198|     }\n  199| \n  200|     @Test public void doesNotCreateImplicitLists() {\n  201|         // old jsoup used to wrap this in <ul>, but that's not to spec\n  202|         String h = \"<li>Point one<li>Point two\";\n  203|         Document doc = Jsoup.parse(h);\n  204|         Elements ol = doc.select(\"ul\"); // should NOT have created a default ul.\n  205|         assertEquals(0, ol.size());\n  206|         Elements lis = doc.select(\"li\");\n  207|         assertEquals(2, lis.size());\n  208|         assertEquals(\"body\", lis.first().parent().tagName());\n  209| ",
+      "path": "src/test/java/org/jsoup/parser/HtmlParserTest.java"
+    }
+  ],
+  "traces": [
+    {
+      "test": "org.jsoup.parser.HtmlParserTest::preservesSpaceInTextArea",
+      "trace": "junit.framework.AssertionFailedError: expected:<One[\n\tTwo\n\t]Three> but was:<One[ Two ]Three>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.parser.HtmlParserTest.preservesSpaceInTextArea(HtmlParserTest.java:184)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)"
+    }
+  ]
+}

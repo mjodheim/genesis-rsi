@@ -1,0 +1,70 @@
+{
+  "API_cost_per_verified_real_transfer_capacity": null,
+  "cases": [
+    {
+      "case": "Jsoup-25",
+      "child_pool": 0,
+      "learned_candidates": 0,
+      "parent_pool": 0,
+      "source_analysis_queries": 0,
+      "stages": {
+        "child": {},
+        "parent": {}
+      },
+      "structural_rejections": 0
+    },
+    {
+      "case": "Math-37",
+      "child_pool": 47,
+      "learned_candidates": 0,
+      "parent_pool": 64,
+      "source_analysis_queries": 1,
+      "stages": {
+        "child": {
+          "compile": 1,
+          "failing_tests": 7
+        },
+        "parent": {
+          "compile": 1,
+          "failing_tests": 7
+        }
+      },
+      "structural_rejections": 17
+    },
+    {
+      "case": "Compress-18",
+      "child_pool": 64,
+      "learned_candidates": 0,
+      "parent_pool": 64,
+      "source_analysis_queries": 1,
+      "stages": {
+        "child": {
+          "compile": 1,
+          "failing_tests": 7
+        },
+        "parent": {
+          "compile": 1,
+          "failing_tests": 7
+        }
+      },
+      "structural_rejections": 0
+    }
+  ],
+  "command_inventory": {
+    "defects4j checkout": 6,
+    "defects4j compile": 44,
+    "defects4j export": 3,
+    "defects4j test": 52,
+    "java -Xmx192m": 2,
+    "java -cp": 24,
+    "javac -d": 24,
+    "javac -proc:none": 1,
+    "sh -c": 13
+  },
+  "diagnosis_digest": "0ebc4039f6074625b9a42299cc6a6f446de0ee23578d65020c996d48bb26d5d7",
+  "guard_acquisition_limitation": "Syntactic/type guards and empirical operator ranking; semantic applicability and unsupported multiline insertion are not learned.",
+  "observation": "No learned rule activated; Jsoup has no legacy source localisation; no combined policy gain observed.",
+  "reason": "No new real transfer success; dividing teacher cost by same-case replay would be misleading.",
+  "scope": "post-result development diagnosis; independent replication not claimed",
+  "source_result_digest": "a99165a53e92039112d7840e3f89af8f68a09a15319f7450dfc834a570184c7d"
+}

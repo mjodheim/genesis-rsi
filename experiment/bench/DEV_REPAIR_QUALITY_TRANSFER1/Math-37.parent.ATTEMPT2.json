@@ -1,0 +1,48 @@
+{
+  "attempt_digest": "edc8ce09e1b1762df7dbb05e638f42784cf41cf42b5f77cadd5a11044399cc49",
+  "candidate": {
+    "candidate_digest": "79a2f4c51f308379dd651161b1850b74e92f9645fdf5eeb149c45b605f8674fb",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "provenance": {
+      "component_operators": [
+        "java_qualified_symbol_substitute"
+      ],
+      "detail": {},
+      "plan": {
+        "component_ids": [
+          "java-symbol-f9f66226cebcad5b"
+        ],
+        "component_operators": [
+          "java_qualified_symbol_substitute"
+        ],
+        "depth": 1,
+        "edit_count": 1,
+        "score": 285
+      }
+    }
+  },
+  "choice": {
+    "candidate_digest": "79a2f4c51f308379dd651161b1850b74e92f9645fdf5eeb149c45b605f8674fb",
+    "choice_digest": "02b4707abdd8c741802204f8959b4d90f93a01224444215d5d35f5b6573fea44",
+    "index": 2,
+    "operators": [
+      "java_qualified_symbol_substitute"
+    ],
+    "prior_verdict_digests": [
+      "03332be6fabcad233d8f23a75da3fbfa4aa07de7d0f28c7e0b48b6afa9833cae"
+    ]
+  },
+  "diagnosis": "behaviour",
+  "verdict": {
+    "candidate_digest": "79a2f4c51f308379dd651161b1850b74e92f9645fdf5eeb149c45b605f8674fb",
+    "feedback": "--- org.apache.commons.math.complex.ComplexTest::testTanhInf\njunit.framework.AssertionFailedError: expected:<1.0> but was:<NaN>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:77)\n\tat org.apache.commons.math.TestUtils.assertSame(TestUtils.java:85)\n\tat org.apache.commons.math.complex.ComplexTest.testTanhInf(ComplexTest.java:1054)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/complex/Complex.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "abab89fa212a065b4730836192838a9a3d8b9c43e27daf57d12b41dcb489d447"
+  }
+}

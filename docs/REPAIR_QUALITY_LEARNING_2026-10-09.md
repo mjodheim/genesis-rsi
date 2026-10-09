@@ -68,3 +68,95 @@ acceleration cannot be established by three public cases.
 The run is one-shot and preserves interruptions. Audit verifies stored evidence
 and its snapshots; it is not independent execution replication. Results will be
 appended after execution, including any negative or abort verdict.
+
+## Completed observations
+
+The code/protocol was committed and pushed before the teacher and transfer run.
+The teacher solved all three exposed development bugs with Haiku, and all three
+accepted repairs passed full-suite fresh-reader replay:
+
+| Teacher development case | Known API cost | Durable replay |
+|---|---:|---|
+| Jsoup-59, empty trimmed attribute name | $0.0019091 | passed |
+| Math-41, weighted variance array segment | $0.0035033 | passed |
+| Compress-44, constructor null arguments | $0.0009735 | passed |
+
+**Five API requests cost $0.0063859**, failed/read/proposal requests included;
+all new charges are known. Historical unknown charges remain unknown. Runtime,
+infrastructure and developer effort are excluded. This is three assisted repairs,
+not three autonomous inventions. Their exact recipes entered durable memory.
+The extractor retains five lexical rules and derives two smaller expression
+proposals. The multiline constructor insertion is outside this acquisition
+substrate; a durable recipe is not automatically a generalized capability.
+The authored substrate gate still passes six positives and rejects its controls.
+It does not test the two new teacher-derived rules on independent real tasks.
+
+| Fresh public Java development case | Parent / child solved | Candidate compilation attempts per arm | Learned candidates |
+|---|---|---:|---:|
+| Jsoup-25 | no / no | 0 / 0 | 0 |
+| Math-37 | no / no | 8 / 8 | 0 |
+| Compress-18 | no / no | 8 / 8 | 0 |
+
+There is **0/3 success in either arm** and no quality-policy promotion. The
+32 attempted candidates include four compilation failures, two in each arm;
+all remaining attempts fail triggering tests. The child removes 17 known-invalid
+modifier proposals from Math's 64-candidate pool, but this does not improve the
+observed solved-case or tested compilation result. These are different cases
+from the previous 34/48-failure cohort, so comparing those rates across cohorts
+would not establish a causal gain. No learned expression activated on these
+causal views. Jsoup has no production trace and the legacy naming fallback
+finds no class, so both arms receive empty pools. Zero attempts is a localisation
+failure, not a successful reduction of repair cost.
+
+All analysis/compiler commands are inventoried in
+[DIAGNOSIS](../experiment/bench/DEV_REPAIR_QUALITY_TRANSFER1/DIAGNOSIS.json), including
+shared original preparation, trusted helper compilation, two source analysis
+queries, authored gate compilation and teacher replays. Every candidate's explicit
+project compilation is counted. There is no extra candidate compiler screen.
+Passing compilations alone are not sufficient to solve a bug. A cost per verified
+new real transfer capability cannot be reported because no such success exists.
+
+The verified complete 50-event suffix enters canonical development memory:
+**173 → 223**, including three successful recipes, teacher calls, failed attempts,
+proposals and the rejection decision. Memory admission is separate from policy
+promotion. All six buggy source/test trees were checked and restored.
+[RESULT](../experiment/bench/DEV_REPAIR_QUALITY_TRANSFER1/RESULT.json),
+[VERIFICATION](../experiment/bench/DEV_REPAIR_QUALITY_TRANSFER1/VERIFICATION.json),
+[DECISION](../experiment/bench/DEV_REPAIR_QUALITY_TRANSFER1/DECISION.json) and
+[PROMOTION](../experiment/bench/DEV_REPAIR_QUALITY_TRANSFER1/PROMOTION.json)
+preserve the evidence. Audit verifies stored records, not independent execution.
+
+## Subsequent localisation engineering
+
+The completed result is unchanged. A prospective opt-in `localize_assertions`
+argument to `collect_evidence`, exposed by adaptive repair's
+`--localize-assertions`, infers bounded production method hypotheses from calls
+and local variable declarations in the failing test method. Expected literals,
+strings and comments cannot become code templates. Ambiguous class names,
+symlinks and nonproduction targets are excluded. This is static API evidence,
+not runtime coverage, an executed call graph or causal proof. Default behaviour
+is preserved; the rejected quality policy is not activated automatically.
+
+A separate now-exposed Jsoup-25 engineering check yields 12 method locations in
+Jsoup/Element and 64 existing-operator candidates, versus the empty original
+pool. It performs no repair validation and claims no repair success or fresh
+transfer. See
+[ASSERTION_LOCALIZATION_DEV_CHECK](../experiment/bench/DEV_REPAIR_QUALITY_TRANSFER1/ASSERTION_LOCALIZATION_DEV_CHECK.json).
+The new helper is written after the frozen run and is not included in its earlier
+machinery snapshot. Research reproduction uses that earlier snapshot.
+
+Validation before execution: 117 focused tests, including real sandboxed Java AST
+analysis. Subsequent localisation tests verify literal independence, ambiguity,
+source boundaries and preservation of existing stack-derived evidence. Full
+focused-suite and repository checks are repeated after this successor change.
+
+General RSI is not demonstrated and the research objective remains incomplete.
+Remaining priorities are better causal localisation beyond direct calls,
+acquisition of multiline/state/algorithmic repairs, semantic applicability
+conditions and separate demonstrations of real transfer across generations.
+Adding a syntactic/type guard does not establish those capabilities.
+
+Final verification: **121 focused tests pass**, with no skip on this host; the
+repository import, orphan, dependency and citation checks pass. The adaptive CLI
+exposes the new opt-in localisation flag. The original result and its audit are
+unchanged after the post-result helper was added.

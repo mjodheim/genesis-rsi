@@ -231,3 +231,11 @@ Review precedes enabling publication in
 `docs/IP_REVIEWS/REPAIR_QUALITY_LEARNING_REVIEW_2026-10-09.md`.
 OpenAI Codex assists; external teacher origins remain attributed. No general RSI
 or independent-maintainer gate is claimed.
+
+Prospective assertion-localisation review — 9 October 2026: under the same owner
+authorisation and PUBLIC_AGPL_COMMERCIAL_OPTION, an explicit opt-in fallback may
+infer production method locations from failing-test API calls. Expected literals
+are excluded and static hypotheses are not runtime coverage. Review precedes
+publication in `docs/IP_REVIEWS/ASSERTION_LOCALIZATION_REVIEW_2026-10-09.md`.
+Frozen quality-trial results remain unchanged; exposed-case engineering checks
+are separately labelled. OpenAI Codex assists with development.

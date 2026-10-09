@@ -133,7 +133,7 @@ def _excerpts(root: Path, locations: Sequence[tuple[str, int]], radius: int, bud
 
 def collect_evidence(
     sandbox: Defects4JSandbox, directory: str, *, max_locations: int = 6, radius: int = 40,
-    source_budget: int = 48_000,
+    source_budget: int = 48_000, localize_assertions: bool = False,
 ) -> dict:
     """What the buggy revision's own failing tests show: names, traces, and the code they reach.
 
@@ -194,7 +194,11 @@ def collect_evidence(
             root, production[:max_locations], 200 if fallback else radius, source_budget),
         "fixed_revision_consulted": False,
     }
-    return {**body, "evidence_digest": digest_of(body)}
+    evidence = {**body, "evidence_digest": digest_of(body)}
+    if localize_assertions:
+        from genesis.repair_source_localization import enrich
+        return enrich(root, evidence)
+    return evidence
 
 
 # -- candidates and validation ----------------------------------------------------------------

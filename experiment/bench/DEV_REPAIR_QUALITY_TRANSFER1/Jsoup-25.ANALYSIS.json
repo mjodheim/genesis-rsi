@@ -1,0 +1,44 @@
+{
+  "analysis_compiler_invocations": 0,
+  "analysis_digest": "d08f3d5ff097470e60c319b782651e119fed57b42ac28de582a131bcc0911fe8",
+  "analysis_runs": [],
+  "helper_compiler_invocations": 1,
+  "reports": {},
+  "setup_runs": [
+    {
+      "command": [
+        "javac",
+        "-proc:none",
+        "-d",
+        "/work/quality-analyzer",
+        "/work/quality-analyzer/GenesisJavaAnalyzer.java"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "returncode": 0,
+      "run_digest": "58d062f5297f9a095bfab8b80fa54f15fa72bb717dcb3d7bbe18c0551d293e70",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 1.419,
+      "timed_out": false
+    },
+    {
+      "command": [
+        "defects4j",
+        "export",
+        "-p",
+        "cp.compile",
+        "-w",
+        "/work/Jsoup-25-b"
+      ],
+      "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+      "output_sha256": "9e3ef0e9c8cff0ac6b7299651d6b0eb80feb9a23cd24a85b576c746f75511958",
+      "returncode": 0,
+      "run_digest": "a0bd394fadf6687910a6c106561ff9bac09f9412df53a0f4a17f3acc22364db1",
+      "schema": "genesis-defects4j-sandbox-run-v1",
+      "seconds": 1.445,
+      "timed_out": false
+    }
+  ],
+  "source_only": true,
+  "type_resolution_partial": true
+}

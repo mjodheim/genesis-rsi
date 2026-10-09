@@ -84,6 +84,7 @@ def main():
     p.add_argument('--learn-trial');p.add_argument('--budget',type=float,default=.05)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--max-models',type=int,default=2)
     p.add_argument('--minimum-success-rate',type=float,default=.5)
+    p.add_argument('--localize-assertions',action='store_true',help='Opt in to static production API localisation when stack frames are absent')
     args=p.parse_args()
     if args.output.exists():raise ValueError('refusing to overwrite result before execution')
     split=sealed(ROOT/'experiment/bench/REPAIR_BENCH_SPLIT_V1.json','split_digest')
@@ -94,7 +95,7 @@ def main():
     project,bug=args.case.rsplit('-',1);directory=args.case+'-b'
     if not (args.workspace/directory).is_dir() and not sandbox.checkout(project,int(bug),'b',directory).ok:
         raise ValueError('checkout failed')
-    evidence=collect_evidence(sandbox,directory); root=args.workspace/directory
+    evidence=collect_evidence(sandbox,directory,localize_assertions=args.localize_assertions); root=args.workspace/directory
     store=RepairExperience(args.memory)
     for path in args.comparison:import_comparison(store,path)
     catalog=json.loads(args.catalog.read_text())
