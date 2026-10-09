@@ -500,3 +500,14 @@ projection with supplied contracts, not automatic nullability inference or fresh
 real-bug transfer. Canonical memory remains 292 events; no policy promoted. See
 REPAIR_CONTRACT_LEARNING_2026-10-09.md. Latest Jsoup set expansion, Math numerical
 rewrite and Compress cleanup still require additional capabilities/evidence.
+
+9 October 2026 — self-revising repair lineages: a repair agent's configuration was
+rewritten by the same external model from its own development results, inside a fixed
+per-case envelope. LINEAGE1 promoted one successor (8 against 4 of 20 development
+cases); the preregistered held-out trial L1 is **negative** (19 against 21 of 40,
+one-sided exact sign test p = 0.94), and the evolved improver text wrote worse
+successors than the seed's. LINEAGE1 exposed an apparatus defect: tests that need a
+network or a home directory made some cases unwinnable. With that separated and two
+evaluations per configuration, LINEAGE2 rejected all four successors (37 to 39 against
+43 of 60 case runs) and consumed no held-out case. No recursive improvement is shown.
+See REPAIR_LINEAGE_2026-10-09.md. T1 remains unsealed.
