@@ -1,0 +1,36 @@
+{
+  "attempt_digest": "bd89b50c6379c5fd2e965dce1e3d9a824e497adf67b9453580877e92af7858e0",
+  "candidate": {
+    "candidate_digest": "07d9c0aaf433b5d8d6c92b04feb02235d4af9e264703a45202e063bf6f286a5b",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Attribute.java"
+  },
+  "choice": {
+    "candidate_digest": "07d9c0aaf433b5d8d6c92b04feb02235d4af9e264703a45202e063bf6f286a5b",
+    "choice_digest": "2cba62734724b5c59e99ed8b74c82049a3aabad5ac981348948a08251979bbb9",
+    "index": 8,
+    "prior_verdict_digests": [
+      "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+      "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb",
+      "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac",
+      "0c7dfe70fa5f0659b6566c18ce018c752a53f513a2e2dc2a09c24a41f85fa4f1",
+      "e66a4cf8ac4479f09af40f9c35975d97dc173f21cb048af8e898e336480ab404",
+      "5139f423a126a9395522c60a9b8720661e42181134b8992b3f14145902216ff3",
+      "5238c95adda894379b08348957d0a2a565d48fd0ef3edb2b90c092988d72edbf"
+    ],
+    "remaining_pool_size": 25,
+    "selection": "feedback revised"
+  },
+  "verdict": {
+    "candidate_digest": "07d9c0aaf433b5d8d6c92b04feb02235d4af9e264703a45202e063bf6f286a5b",
+    "feedback": "    [javac] /work/Jsoup-59-b/maven-build.xml:77: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 2 source files to /work/Jsoup-59-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: illegal start of expression\n    [javac]         static return old;\n    [javac]         ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: illegal start of type\n    [javac]         static return old;\n    [javac]                ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:72: error: <identifier> expected\n    [javac]         static return old;\n    [javac]                          ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:79: error: class, interface, or enum expected\n    [javac]     public String html() {\n    [javac]            ^\n    [javac] /work/Jsoup-59-b/src/main/java/org/jsoup/nodes/Attribute.java:82: error: class, interface, or enum expected\n    [javac]         try {\n    [javac]   ",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Attribute.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "fa0843d2980ac2f57e985092db1fa1a8b7d855b53d10d2f4ffe8d41b45c51256"
+  }
+}

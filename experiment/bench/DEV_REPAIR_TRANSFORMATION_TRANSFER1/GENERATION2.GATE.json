@@ -1,0 +1,950 @@
+{
+  "gate_digest": "f121be55c0680ced80b0c4e1162a67d97a07726936075cd2296ab0014d6243ec",
+  "generation": 2,
+  "negative_controls_accepted": 0,
+  "policy_digest": "667867d47591ce98d53e00565803992c8e01cd671a6ac7174b674b58239da2f1",
+  "positives_solved": 4,
+  "scope": "authored substrate gate; semantic counterexamples reject plausible-looking edits",
+  "tests": [
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "82a9d6a10b37f6dea17eac8f204f41732b27ffce8128cc9916d8abadbd1cb88e",
+            "content_sha256": "599cda6db1c3cd66338eb33e7b3a7f4897714482c7d171b591f04827435ffa2d",
+            "description": "Hypothesis call_structure_change from openrouter:openai/gpt-6-luna; full-suite validation required",
+            "origin": "learned-transformation:6447bca06e4cf4ab41ff709b5ff2b626387948a30df71078bf554c62c76f954c",
+            "path": "src/Example.java"
+          },
+          "verdict": {
+            "candidate_digest": "82a9d6a10b37f6dea17eac8f204f41732b27ffce8128cc9916d8abadbd1cb88e",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-call_structure_change-c0-v1/classes",
+                "/work/gate-g2-call_structure_change-c0-v1/src/Example.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "12e09ae23d15c9c5ed1a68613e64dc7ace73b67b0688ac366366ad752c35e65f",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 1.015,
+              "timed_out": false
+            },
+            "feedback": "",
+            "plausible": true,
+            "stopped_at": "passed",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-call_structure_change-c0-v1/classes",
+                "Example"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "31788848fec845f87004d490815a28ec52bcd320f62b6f5f9aef1dcb4d5cb2ef",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.371,
+              "timed_out": false
+            },
+            "verdict_digest": "ad27634047699733a372887f58636573798b69b3b51318010da3d7f75489a76b"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "f3c133229584b5764856199715231fa61f48240d7c0decffbb70e3198543f538",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-call_structure_change-c0-v1/classes",
+            "/work/gate-g2-call_structure_change-c0-v1/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "ca3579278550fac41fbb035da62965c73eeae8960dc574159fc2c57ccdc31b6d",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.174,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: whitespace contract\n\tat Example.main(Example.java:8)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-call_structure_change-c0-v1/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "bbb1185291b7fd91daa17e07ce8bc9139775df4fbf6526c7fcf274ce10d447e3",
+          "returncode": 1,
+          "run_digest": "2aa2b8590d8f6cc86842cc7f7aee30af006d20a19dfca9baa97d2278e5a4220c",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.313,
+          "timed_out": false
+        },
+        "verdict_digest": "ab29a0b6084edfeaf868a1d3f67b0417d2712ffdda1156c181a0dced16f09f5b"
+      },
+      "control": false,
+      "expected_candidate_success": true,
+      "family": "call_structure_change",
+      "solved": true,
+      "source_digest": "e32bc69bef0c82e0d66a5b6b530459b431fcbe0be79bb7ebafb13ca949da8351",
+      "source_restored": true,
+      "variant": 1
+    },
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "58c61853cf1eeae2b719eaac74c98d4e2edd961c9ff3ffc3f8a3d75fb5312bed",
+            "content_sha256": "1f7113353b07c9c4d8bacc12e63c5ef1e5630efbf2677f4ea337ab546fc04bd6",
+            "description": "Hypothesis call_structure_change from openrouter:openai/gpt-6-luna; full-suite validation required",
+            "origin": "learned-transformation:6447bca06e4cf4ab41ff709b5ff2b626387948a30df71078bf554c62c76f954c",
+            "path": "src/Example.java"
+          },
+          "verdict": {
+            "candidate_digest": "58c61853cf1eeae2b719eaac74c98d4e2edd961c9ff3ffc3f8a3d75fb5312bed",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-call_structure_change-c0-v2/classes",
+                "/work/gate-g2-call_structure_change-c0-v2/src/Example.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "046dbfe5987c494c68bbaf93101cf87632f3ab9734f930353b84fb375bfe97ee",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 1.01,
+              "timed_out": false
+            },
+            "feedback": "",
+            "plausible": true,
+            "stopped_at": "passed",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-call_structure_change-c0-v2/classes",
+                "Example"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "d0fda75d2a527bd620eed1532177219cfb5dfa80ed8c8957ca6e5c535b935e9e",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.332,
+              "timed_out": false
+            },
+            "verdict_digest": "bc57ee0981b1d190294062af8b70339de750ca161702ca04fc33b46184b2019f"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "09996e608618ea93d546615c3ce61597f78965f908a1d40667f447d4a0d71218",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-call_structure_change-c0-v2/classes",
+            "/work/gate-g2-call_structure_change-c0-v2/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "7ee3f1e90632b473ec45ce4e4e4cd35b4e6afc74d462f90c13b43152ad737d7c",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.16,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: whitespace contract\n\tat Example.main(Example.java:9)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-call_structure_change-c0-v2/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "2516321e29c2937395f3a6c45c159fcc08bfa985e05ad468d50d575792f4fbc5",
+          "returncode": 1,
+          "run_digest": "88f48dd39f227d05346bd39f35cc39b75900ab0ffa78b95abe9f9bd3fc667a2f",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.325,
+          "timed_out": false
+        },
+        "verdict_digest": "0dbd441271a951d7c017af840968b4283c56864e542bc292003295d6411eb71f"
+      },
+      "control": false,
+      "expected_candidate_success": true,
+      "family": "call_structure_change",
+      "solved": true,
+      "source_digest": "45231d3ec8a18e3c748582fbe76992c452c12e5128965cb5f234c196ca4aea24",
+      "source_restored": true,
+      "variant": 2
+    },
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "8b4e63bffcfba5828b5ad69913b074290730aa99984ceb62c0d6164fb8b7fc3c",
+            "content_sha256": "d98a18fa30f07ede85f93942e71749dc8af491806207b68daed4780028853c90",
+            "description": "Hypothesis call_structure_change from openrouter:openai/gpt-6-luna; full-suite validation required",
+            "origin": "learned-transformation:6447bca06e4cf4ab41ff709b5ff2b626387948a30df71078bf554c62c76f954c",
+            "path": "src/Example.java"
+          },
+          "verdict": {
+            "candidate_digest": "8b4e63bffcfba5828b5ad69913b074290730aa99984ceb62c0d6164fb8b7fc3c",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-call_structure_change-c1-v1/classes",
+                "/work/gate-g2-call_structure_change-c1-v1/src/Example.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "ba89bfacd56e19e15fc2f73614f4d55743e2dc5c679017464e12bd3201db19a8",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.883,
+              "timed_out": false
+            },
+            "feedback": "Exception in thread \"main\" java.lang.AssertionError: whitespace contract\n\tat Example.main(Example.java:8)\n",
+            "plausible": false,
+            "stopped_at": "failing_tests",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-call_structure_change-c1-v1/classes",
+                "Example"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "bbb1185291b7fd91daa17e07ce8bc9139775df4fbf6526c7fcf274ce10d447e3",
+              "returncode": 1,
+              "run_digest": "2531af1e50383404ab4949e5e6c95ddb23329e3efd93431c37922a19de2002fe",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.353,
+              "timed_out": false
+            },
+            "verdict_digest": "7ea77f4edafda5a37db6c3e885439a5d9de1522f8f60d30b7f919537b97e6abe"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "354e146023a5af33baad03ef4732bbfcb36acd2354847507806d89a4f87273e7",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-call_structure_change-c1-v1/classes",
+            "/work/gate-g2-call_structure_change-c1-v1/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "002afcf5aa8bade980e746c120b841f2412b11530caf60d99b62413e54abc930",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.916,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-call_structure_change-c1-v1/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "030b95c3caa008c90da5e2b043f4cfb70ccf82c95dc17775856fd138f0f57297",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.332,
+          "timed_out": false
+        },
+        "verdict_digest": "4f268127566d630cdf0bd7464a1e76255dd338b74f4bf9b338d49235f532227d"
+      },
+      "control": true,
+      "expected_candidate_success": false,
+      "family": "call_structure_change",
+      "solved": false,
+      "source_digest": "16ad3005d11623c2e28a012d026ec41b8259f9046cdd3a790720b8217344291a",
+      "source_restored": true,
+      "variant": 1
+    },
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "b4fb771725597b4b2336d6c78c2ef2384c771b25b21019875a927befa0b3f562",
+            "content_sha256": "2466e1d67bab7492859b5f5e0bc7d07eac2ff6d48d9f4dd7a79e0d3e75ea8700",
+            "description": "Hypothesis call_structure_change from openrouter:openai/gpt-6-luna; full-suite validation required",
+            "origin": "learned-transformation:6447bca06e4cf4ab41ff709b5ff2b626387948a30df71078bf554c62c76f954c",
+            "path": "src/Example.java"
+          },
+          "verdict": {
+            "candidate_digest": "b4fb771725597b4b2336d6c78c2ef2384c771b25b21019875a927befa0b3f562",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-call_structure_change-c1-v2/classes",
+                "/work/gate-g2-call_structure_change-c1-v2/src/Example.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "cc4894967ba1608cbdca7c8f4c69d1e431bfc0fa8bc8dee0784cdedad032593f",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 1.103,
+              "timed_out": false
+            },
+            "feedback": "Exception in thread \"main\" java.lang.AssertionError: whitespace contract\n\tat Example.main(Example.java:8)\n",
+            "plausible": false,
+            "stopped_at": "failing_tests",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-call_structure_change-c1-v2/classes",
+                "Example"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "bbb1185291b7fd91daa17e07ce8bc9139775df4fbf6526c7fcf274ce10d447e3",
+              "returncode": 1,
+              "run_digest": "0cf259ebbb8c524dd6f28622dc46dd356e9edaa864739e6167edb1643a655789",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.356,
+              "timed_out": false
+            },
+            "verdict_digest": "d75e8e8b31866a40351c559fb5c8f4c4da5ce72aa4d48de084f478376d9a258d"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "b6fd408fb5efd9839ae076c3c24a75807db5d20d02ba3966ca6b614d5905958c",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-call_structure_change-c1-v2/classes",
+            "/work/gate-g2-call_structure_change-c1-v2/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "8868f9fe4285dbc03ee19212923effd19bdef65632c5f738bf18af6438fdfb6a",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.034,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-call_structure_change-c1-v2/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "f4dd7a883a3ed9fb47b9709e551f3cd537d76ff0eea112bd5c3aec1e5524e7b6",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.378,
+          "timed_out": false
+        },
+        "verdict_digest": "2bb762b81874b80616d01a0a793482d4971b8015639f4de612b3149be137af49"
+      },
+      "control": true,
+      "expected_candidate_success": false,
+      "family": "call_structure_change",
+      "solved": false,
+      "source_digest": "6ba6f4a2c35b867040a4a4608c76bff80b6bddf1b2ae16be776ed132df1b0aa3",
+      "source_restored": true,
+      "variant": 2
+    },
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "ffb4f3e34b1cf66ae9f3840a5417a08111508d02538e4fd720aa5ab550f9843c",
+            "content_sha256": "19a2ae906b667b6acfd16fb1aa9bb0b17baf067334d333f2e0c5096d21f1bbcc",
+            "description": "Hypothesis expression_change from released-trial:DEV_COST_COMPARE2_HAIKU_CSV; full-suite validation required",
+            "origin": "learned-transformation:00e11862a9d7b8c66f70b9a7f54e4d94c53819e83fb9e743fe8edaccde3bc7ca",
+            "path": "src/CSVParser.java"
+          },
+          "verdict": {
+            "candidate_digest": "ffb4f3e34b1cf66ae9f3840a5417a08111508d02538e4fd720aa5ab550f9843c",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-expression_change-c0-v1/classes",
+                "/work/gate-g2-expression_change-c0-v1/src/CSVParser.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "377715156f51500d3cdf06bb5e33a52a0a6188742db424407136e56feda86290",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 1.083,
+              "timed_out": false
+            },
+            "feedback": "",
+            "plausible": true,
+            "stopped_at": "passed",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-expression_change-c0-v1/classes",
+                "CSVParser"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "1c14b80fb66bc968a25d2e701a8cd2074c6fa277b41fee3e89715e92e193d210",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.324,
+              "timed_out": false
+            },
+            "verdict_digest": "5ce37216646fe7914e6d7444a345d5a24f0415a82f9741b9a9e158d23f6c584f"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "baec2933f1072a5e2e464d75dc8e512536659e6d7ac729c0e225c849e56a9fc9",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-expression_change-c0-v1/classes",
+            "/work/gate-g2-expression_change-c0-v1/src/CSVParser.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "e01e3d207924b767035c589f531ed032bc8de42e71d7e88be92b58283a694855",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.155,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: owner contract\n\tat CSVParser.main(CSVParser.java:14)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-expression_change-c0-v1/classes",
+            "CSVParser"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "581bb6496c1a3dbb36534ee6c7b0427402f286076325537ab0c8da1afae03810",
+          "returncode": 1,
+          "run_digest": "4b4f94a8cd8ed819f8657b5bbe500176a1e1ba4bc2dea3000c1e5a373df9113d",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.305,
+          "timed_out": false
+        },
+        "verdict_digest": "437194e6bdb55e42e15b3f04a56ef77ff97b31463bdbb07e8b831f254622122b"
+      },
+      "control": false,
+      "expected_candidate_success": true,
+      "family": "expression_change",
+      "solved": true,
+      "source_digest": "4366ab494a0fe786fc0bf0c77030c3738d90f94081a17724c626497ae7735945",
+      "source_restored": true,
+      "variant": 1
+    },
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "9610233843f00dddcd4e1b2ccf7e96347eafae855c3eb860b2c95046e1977b9c",
+            "content_sha256": "33b86d339ad2f28b823a79f64c2161f627a4bc4252a3d230d56bf2a7dbbaafd3",
+            "description": "Hypothesis expression_change from released-trial:DEV_COST_COMPARE2_HAIKU_CSV; full-suite validation required",
+            "origin": "learned-transformation:00e11862a9d7b8c66f70b9a7f54e4d94c53819e83fb9e743fe8edaccde3bc7ca",
+            "path": "src/CSVParser.java"
+          },
+          "verdict": {
+            "candidate_digest": "9610233843f00dddcd4e1b2ccf7e96347eafae855c3eb860b2c95046e1977b9c",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-expression_change-c0-v2/classes",
+                "/work/gate-g2-expression_change-c0-v2/src/CSVParser.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "0454889bc89544c9b378c98de7df1dbfae92d141c4bfc33a1bdf20ef858ef9ab",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 1.134,
+              "timed_out": false
+            },
+            "feedback": "",
+            "plausible": true,
+            "stopped_at": "passed",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-expression_change-c0-v2/classes",
+                "CSVParser"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "a82900e6bce8cb4ec61cb525ab4f30f80fa95aa79c3686e959ba83330f44831a",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.335,
+              "timed_out": false
+            },
+            "verdict_digest": "a310ef3d19f03d0ead174e715c08cd62e56a80a9fd2177f63c5912ce9575c5fb"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "53f9398c6d1bdce1adc170a277440ec9a60bc5b565d26bf92690dfa5aecb855c",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-expression_change-c0-v2/classes",
+            "/work/gate-g2-expression_change-c0-v2/src/CSVParser.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "908161a1813f9002c01c538346103937a3a1ca6e6b0d863b9c6d335477d21f02",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.041,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: owner contract\n\tat CSVParser.main(CSVParser.java:14)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-expression_change-c0-v2/classes",
+            "CSVParser"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "581bb6496c1a3dbb36534ee6c7b0427402f286076325537ab0c8da1afae03810",
+          "returncode": 1,
+          "run_digest": "f59696bfc7122fb1c644261f3fa8f02097114dcbdb75b6958e188b9e43bed01e",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.368,
+          "timed_out": false
+        },
+        "verdict_digest": "86bdd009bd2ec6042d9d7c4ce6071e900b036f0a16167707015519d8d6a3181d"
+      },
+      "control": false,
+      "expected_candidate_success": true,
+      "family": "expression_change",
+      "solved": true,
+      "source_digest": "15af3bc83adb9674804db3dbc16c820647afd28d51610fb8eaa77762837e178d",
+      "source_restored": true,
+      "variant": 2
+    },
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "5d96718b1f1b06971794296586f4d78535e484652854de6ee068325b2214e581",
+            "content_sha256": "a51e1223df9ee4b81564521c46aa506067e6a9ff7f3100305d6ec1f858e0fdf5",
+            "description": "Hypothesis expression_change from released-trial:DEV_COST_COMPARE2_HAIKU_CSV; full-suite validation required",
+            "origin": "learned-transformation:00e11862a9d7b8c66f70b9a7f54e4d94c53819e83fb9e743fe8edaccde3bc7ca",
+            "path": "src/CSVParser.java"
+          },
+          "verdict": {
+            "candidate_digest": "5d96718b1f1b06971794296586f4d78535e484652854de6ee068325b2214e581",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-expression_change-c1-v1/classes",
+                "/work/gate-g2-expression_change-c1-v1/src/CSVParser.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "2a47d92bf0827bab57b94b4e0cf603c2954c40c11dde4b42ff694542e52fec7f",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 1.042,
+              "timed_out": false
+            },
+            "feedback": "Exception in thread \"main\" java.lang.AssertionError: owner contract\n\tat CSVParser.main(CSVParser.java:13)\n",
+            "plausible": false,
+            "stopped_at": "failing_tests",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-expression_change-c1-v1/classes",
+                "CSVParser"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "13353b106c46f151d4df4d1944a3efff049eb661cd9a76c20716a4390a00b98d",
+              "returncode": 1,
+              "run_digest": "4d4949bace8f58d20e6e4c4e035ce8de10f5e940ed4d450faf7a832c1575d4a3",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.371,
+              "timed_out": false
+            },
+            "verdict_digest": "8cee43977241386850f341d92ea6755851a5ef9f29904b8e04f733158d2c33cd"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "ef081379a7f3c3d51a16d5f3ad77b9353f034dfba7e501992816a7f464ed4c42",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-expression_change-c1-v1/classes",
+            "/work/gate-g2-expression_change-c1-v1/src/CSVParser.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "2a74c6674bf34717b697257fb71d02830bbe3d4d0b56dde26bd5a0a7750ec7eb",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.086,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-expression_change-c1-v1/classes",
+            "CSVParser"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "9e55712c502f06d7fca53c2d1018939a6aab7fdbdeba0134a292c43880e265e0",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.268,
+          "timed_out": false
+        },
+        "verdict_digest": "eccf36fe98e58c10643b0b2f74db58f3703aa790c537ef43ab2e8c976d4c14eb"
+      },
+      "control": true,
+      "expected_candidate_success": false,
+      "family": "expression_change",
+      "solved": false,
+      "source_digest": "326549f3e9c9bd11ae7eb05f065788c790fd230488117406d4474908c7a70711",
+      "source_restored": true,
+      "variant": 1
+    },
+    {
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "4a8c449663d8157f831c9b6bd2c6bcd1695db7c8b1e2055defd89c069915d7da",
+            "content_sha256": "e32a59c6fc18233d28919a9f95352984b79900def932f75885d5cf8a984bea35",
+            "description": "Hypothesis expression_change from released-trial:DEV_COST_COMPARE2_HAIKU_CSV; full-suite validation required",
+            "origin": "learned-transformation:00e11862a9d7b8c66f70b9a7f54e4d94c53819e83fb9e743fe8edaccde3bc7ca",
+            "path": "src/CSVParser.java"
+          },
+          "verdict": {
+            "candidate_digest": "4a8c449663d8157f831c9b6bd2c6bcd1695db7c8b1e2055defd89c069915d7da",
+            "compile_run": {
+              "command": [
+                "javac",
+                "-d",
+                "/work/gate-g2-expression_change-c1-v2/classes",
+                "/work/gate-g2-expression_change-c1-v2/src/CSVParser.java"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+              "returncode": 0,
+              "run_digest": "479d5e99cd1bb3946b6fecc3c40eb5dd645616e5494160763a52705fa904a7f0",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.952,
+              "timed_out": false
+            },
+            "feedback": "Exception in thread \"main\" java.lang.AssertionError: owner contract\n\tat CSVParser.main(CSVParser.java:14)\n",
+            "plausible": false,
+            "stopped_at": "failing_tests",
+            "test_run": {
+              "command": [
+                "java",
+                "-cp",
+                "/work/gate-g2-expression_change-c1-v2/classes",
+                "CSVParser"
+              ],
+              "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+              "output_sha256": "581bb6496c1a3dbb36534ee6c7b0427402f286076325537ab0c8da1afae03810",
+              "returncode": 1,
+              "run_digest": "075b278bacda83db9d547cb791e8f5ee059556f2f84942f1745a8588b632d572",
+              "schema": "genesis-defects4j-sandbox-run-v1",
+              "seconds": 0.347,
+              "timed_out": false
+            },
+            "verdict_digest": "e96c4bf30657f9946d95207bfa9b174d59c6bc4d0d630060408cce1888ecc607"
+          }
+        }
+      ],
+      "baseline": {
+        "candidate_digest": "8f280e6ec5328132481b46f4b5da3eb80fc187133f23b4dc1068c3f51173443f",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-expression_change-c1-v2/classes",
+            "/work/gate-g2-expression_change-c1-v2/src/CSVParser.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "532bc8c82601cdf2b533e55378819bb47262a18fb76df5df3045a48fc36ae07e",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.084,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-expression_change-c1-v2/classes",
+            "CSVParser"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "ce84c4e54558d9e250e0b9b157101d8c56aa8bf7172115aadd72eb8fd92fdc4f",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.292,
+          "timed_out": false
+        },
+        "verdict_digest": "15d77e989d397e19f96a9a1c466f065bae7a4c428d5d1f10a7217a41ab1a6bfd"
+      },
+      "control": true,
+      "expected_candidate_success": false,
+      "family": "expression_change",
+      "solved": false,
+      "source_digest": "025fa2df74cba2322d797b9ea1f4dcdc0d37d7cc7d1a70f495169c4b9cba56e5",
+      "source_restored": true,
+      "variant": 2
+    },
+    {
+      "attempts": [],
+      "baseline": {
+        "candidate_digest": "f027629f6ff84f16b23710a8ccfed0d1aa97f3c56299041f30f88794e4fe1de2",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-relational_change-c0-v1/classes",
+            "/work/gate-g2-relational_change-c0-v1/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "a58a270f8159dfe298eab3f4bb157728d2d16d8b2d60de5558302405978b1a6e",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.933,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: length contract\n\tat Example.main(Example.java:6)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-relational_change-c0-v1/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "3035fcff022d11be18c072964ec169255c3b49102fe286e42acf25628f4529a4",
+          "returncode": 1,
+          "run_digest": "6ab4db852b00a228759425ed7b05c5472c948b6f911137bc55755d78f3862c43",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.312,
+          "timed_out": false
+        },
+        "verdict_digest": "f5e4a72a8e441b61a0af7a0826beba47b7dc28f7f8cabcae22f25f2eb2e8be1c"
+      },
+      "control": false,
+      "expected_candidate_success": false,
+      "family": "relational_change",
+      "solved": false,
+      "source_digest": "7cb3f699dfd9f22b9c14e6b0f9404e6980720e5fde027231379df63ec7b7fe39",
+      "source_restored": true,
+      "variant": 1
+    },
+    {
+      "attempts": [],
+      "baseline": {
+        "candidate_digest": "fc16d519f8e45741bcd47045474a97fcb933d6d9e226c26fbbd0fad3ad48ae72",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-relational_change-c0-v2/classes",
+            "/work/gate-g2-relational_change-c0-v2/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "7a2bcad6d47482934f96d11325a642fd5ca595c72b716bb30838dca5acd5717d",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.93,
+          "timed_out": false
+        },
+        "feedback": "Exception in thread \"main\" java.lang.AssertionError: length contract\n\tat Example.main(Example.java:7)\n",
+        "plausible": false,
+        "stopped_at": "failing_tests",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-relational_change-c0-v2/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "c5fea90827cd983123dc73372c59b44c9360871a61cdc11d4c48d6dc0d1999b7",
+          "returncode": 1,
+          "run_digest": "14e6c59b35c6927f612b416ed12b9fe4e549146c86a9de7787f42507fcae3142",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.277,
+          "timed_out": false
+        },
+        "verdict_digest": "7948b54123b0af70ef1a9a4fc17dee15dae044b56fc21a4e0d7e72390980375b"
+      },
+      "control": false,
+      "expected_candidate_success": false,
+      "family": "relational_change",
+      "solved": false,
+      "source_digest": "a0276fc55db718ac60e9f41c9bf99aea0048a9612de76f287de693bbea002bdd",
+      "source_restored": true,
+      "variant": 2
+    },
+    {
+      "attempts": [],
+      "baseline": {
+        "candidate_digest": "8af61a1c28999240df7543429f384f14f847564a435e574c7dba32d76c2f7925",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-relational_change-c1-v1/classes",
+            "/work/gate-g2-relational_change-c1-v1/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "acd611d72e8fdc57040b139d33289c46eec2c70acad1db288caf51e63234494b",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 1.007,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-relational_change-c1-v1/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "4d359844891f3c1d01372205b0fcc2274fc7e0570a8e3d1bdb625b2ca1d6ab73",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.286,
+          "timed_out": false
+        },
+        "verdict_digest": "bf60b5d6588e368d11442bed65e7fb9d4c3cda30651f85df8ba34f667e2097e4"
+      },
+      "control": true,
+      "expected_candidate_success": false,
+      "family": "relational_change",
+      "solved": false,
+      "source_digest": "b6522d9f005b7dc8c262b38e40ddf3c30f5af7c8c8801ffad7c822b62bf9b0a0",
+      "source_restored": true,
+      "variant": 1
+    },
+    {
+      "attempts": [],
+      "baseline": {
+        "candidate_digest": "f6b60eecd9f0fe53d7ca9cd9c9d6a66620ecfbac148576c41109c8fd51f611d2",
+        "compile_run": {
+          "command": [
+            "javac",
+            "-d",
+            "/work/gate-g2-relational_change-c1-v2/classes",
+            "/work/gate-g2-relational_change-c1-v2/src/Example.java"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "ea9a35269c78484ff1c9444d5c2f1fe88e5a2c8ef76be759f22f43e119c997b8",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.998,
+          "timed_out": false
+        },
+        "feedback": "",
+        "plausible": true,
+        "stopped_at": "passed",
+        "test_run": {
+          "command": [
+            "java",
+            "-cp",
+            "/work/gate-g2-relational_change-c1-v2/classes",
+            "Example"
+          ],
+          "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+          "output_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "returncode": 0,
+          "run_digest": "6cf60db41e4a959a213a69b3ddb8adfae88771cb9d1fe5fcd1fd0703b5f54c00",
+          "schema": "genesis-defects4j-sandbox-run-v1",
+          "seconds": 0.329,
+          "timed_out": false
+        },
+        "verdict_digest": "7d5ff7b57490ee3271b56aa9174326ce8c23069c8cbbe91e667ba2ea68242297"
+      },
+      "control": true,
+      "expected_candidate_success": false,
+      "family": "relational_change",
+      "solved": false,
+      "source_digest": "9b8f7abc83c9343ef7c5ed50917f810ebc1e15f703728de336820628a96d64eb",
+      "source_restored": true,
+      "variant": 2
+    }
+  ]
+}

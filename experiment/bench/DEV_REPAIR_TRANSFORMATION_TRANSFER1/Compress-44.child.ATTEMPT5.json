@@ -1,0 +1,33 @@
+{
+  "attempt_digest": "96c9d712507e6d95ab7f625629b15919fd5fdca623f56a8d426c44b93a58b328",
+  "candidate": {
+    "candidate_digest": "c20c7da9366796ed1ec8e2bfe0ecd32c9f631496923c7270b43f7a63a51a28f0",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+  },
+  "choice": {
+    "candidate_digest": "c20c7da9366796ed1ec8e2bfe0ecd32c9f631496923c7270b43f7a63a51a28f0",
+    "choice_digest": "eef5eb97fe1a5e5fe959dd6d3ac51ba38b199d9bfed4c1b1c099c2b9db3d198b",
+    "index": 5,
+    "prior_verdict_digests": [
+      "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+      "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+      "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c",
+      "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97"
+    ],
+    "remaining_pool_size": 28,
+    "selection": "feedback revised"
+  },
+  "verdict": {
+    "candidate_digest": "c20c7da9366796ed1ec8e2bfe0ecd32c9f631496923c7270b43f7a63a51a28f0",
+    "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: illegal start of expression\n    [javac]         transient return ret;\n    [javac]         ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: illegal start of type\n    [javac]         transient return ret;\n    [javac]                   ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:79: error: <identifier> expected\n    [javac]         transient return ret;\n    [javac]                             ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:83: error: class, interface, or enum expected\n    [javac]     public long skip(final long n) throws IOException {\n    [javac]            ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:83: error: class, interface, or enum expected\n    [javac]     public long skip(final long n) throws IOException {\n    [jav",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "7266b1f70df2ae17af941ff1a256278f3802446638a24d6a79371d64c3b0ff01"
+  }
+}

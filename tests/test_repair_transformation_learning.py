@@ -106,6 +106,13 @@ def test_search_feedback_uses_own_outcomes_and_equal_budget(tmp_path):
 
 
 def test_authored_transfer_gates_execute_java_in_isolation(tmp_path):
+    import shutil
+    import subprocess
+    if not shutil.which('docker'):
+        pytest.skip('Docker is required for the executable Java gate')
+    available=subprocess.run(['docker','image','inspect','genesis-defects4j:8c16da8'],capture_output=True,timeout=10)
+    if available.returncode:
+        pytest.skip('Build deploy/defects4j before running the executable Java gate')
     from genesis.defects4j_sandbox import Defects4JSandbox, SandboxLimits
     from scripts.run_repair_transformation_trial import exercise_source,java_verdict
     policy=acquire([

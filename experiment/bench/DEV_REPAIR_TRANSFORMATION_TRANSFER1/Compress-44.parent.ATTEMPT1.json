@@ -1,0 +1,28 @@
+{
+  "attempt_digest": "601db772676fa572edaab5ad1bc6f44d5799982521a69b036fe445cfd81a7071",
+  "candidate": {
+    "candidate_digest": "47ff7224aabec4d9e1e720161029a201878397606860d4af3f41fc65d8f613cd",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+  },
+  "choice": {
+    "candidate_digest": "47ff7224aabec4d9e1e720161029a201878397606860d4af3f41fc65d8f613cd",
+    "choice_digest": "5b34e721e66098d6d16addf500d027feb7794a19a795dc19d88ad0b5e55b7fa6",
+    "index": 1,
+    "prior_verdict_digests": [],
+    "remaining_pool_size": 32,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "47ff7224aabec4d9e1e720161029a201878397606860d4af3f41fc65d8f613cd",
+    "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:38: error: cannot assign a value to final variable in\n    [javac]         this.in = in;\n    [javac]             ^\n    [javac] 1 error\n    [javac] 1 warning",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc"
+  }
+}

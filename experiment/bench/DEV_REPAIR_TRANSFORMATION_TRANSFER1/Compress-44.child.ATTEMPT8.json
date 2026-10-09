@@ -1,0 +1,36 @@
+{
+  "attempt_digest": "2908ce470e3a29dc86a13978916ef8c1a46474c006343b21498cb0c74042a29b",
+  "candidate": {
+    "candidate_digest": "43d2c70452e1ed824bb87e2c4ce8588e6b819d1ffc60521ba354caec870435e5",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+  },
+  "choice": {
+    "candidate_digest": "43d2c70452e1ed824bb87e2c4ce8588e6b819d1ffc60521ba354caec870435e5",
+    "choice_digest": "1c6f1fd32911895c988f9f6295d6edbeb1d4b998ecb0f06d326e52ff624f6de6",
+    "index": 8,
+    "prior_verdict_digests": [
+      "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+      "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+      "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c",
+      "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97",
+      "7266b1f70df2ae17af941ff1a256278f3802446638a24d6a79371d64c3b0ff01",
+      "7bed750221aeb4cb0c298382d7458ea2b877d9338cff1e3ed21350ae762c1ca0",
+      "28fc08cbf0b4e7aa6ce34b500f6b5b25c77026d1cc6b1c195619efbdfc9efdc9"
+    ],
+    "remaining_pool_size": 25,
+    "selection": "feedback revised"
+  },
+  "verdict": {
+    "candidate_digest": "43d2c70452e1ed824bb87e2c4ce8588e6b819d1ffc60521ba354caec870435e5",
+    "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of expression\n    [javac]         transient return ret;\n    [javac]         ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: illegal start of type\n    [javac]         transient return ret;\n    [javac]                   ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:53: error: <identifier> expected\n    [javac]         transient return ret;\n    [javac]                             ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [javac]            ^\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:63: error: class, interface, or enum expected\n    [javac]     public int read(final byte[] b) throws IOException {\n    [j",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "62b4b916a5d9206f4b5b51be5113eb777869be47b2e3bf2d710167ffb2735613"
+  }
+}

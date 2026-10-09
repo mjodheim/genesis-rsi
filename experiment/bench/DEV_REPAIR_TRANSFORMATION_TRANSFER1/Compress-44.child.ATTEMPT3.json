@@ -1,0 +1,31 @@
+{
+  "attempt_digest": "bb7a6d70f311f59903459280809237a49faba48a4cb7c7ad119040203c878180",
+  "candidate": {
+    "candidate_digest": "7d0407d35765eb69c117b84614b698ca02df3bbf5cd01add267ab5e2ff0b5dd6",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+  },
+  "choice": {
+    "candidate_digest": "7d0407d35765eb69c117b84614b698ca02df3bbf5cd01add267ab5e2ff0b5dd6",
+    "choice_digest": "313fbaa4ca74e6cb1ab7be42ec27963ee507a8d0d10878fcd7579bcc076e7252",
+    "index": 3,
+    "prior_verdict_digests": [
+      "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+      "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc"
+    ],
+    "remaining_pool_size": 30,
+    "selection": "feedback revised"
+  },
+  "verdict": {
+    "candidate_digest": "7d0407d35765eb69c117b84614b698ca02df3bbf5cd01add267ab5e2ff0b5dd6",
+    "feedback": "--- org.apache.commons.compress.utils.ChecksumCalculatingInputStreamTest::testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionOne\njunit.framework.AssertionFailedError: Expected exception: java.lang.NullPointerException\n\tat org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c"
+  }
+}

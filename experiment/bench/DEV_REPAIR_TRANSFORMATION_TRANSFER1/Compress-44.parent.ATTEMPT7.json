@@ -1,0 +1,35 @@
+{
+  "attempt_digest": "2ae75b41789564b64d02be845d4e4f2c2ae648b405f0eced3263ca42ea1daf49",
+  "candidate": {
+    "candidate_digest": "ea195bb46f8b26efb6f97808c224e0c760752034c53af319d6c3081ea6580fe4",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java"
+  },
+  "choice": {
+    "candidate_digest": "ea195bb46f8b26efb6f97808c224e0c760752034c53af319d6c3081ea6580fe4",
+    "choice_digest": "05f6980f44fecab6ff26c9d709812a73f1f73361fb37f6736780fc3ef7ce53a8",
+    "index": 7,
+    "prior_verdict_digests": [
+      "926323e26c5fbb1ee938c52d3cc1ae6a46d85792988f936b69ee547672ed0bfc",
+      "d12122a90ce7b99d7616e3cfa3fe3024735e27c7afbe4f8707051afc1d6064dc",
+      "c9343b537af149a8d96793bf147277ab76d01b9ac36f381a3366ae2e4d1a987c",
+      "5179a12d400387325b2e92d57b822c3e987f9e3e4ba39d20c984d7da3bba2b97",
+      "7266b1f70df2ae17af941ff1a256278f3802446638a24d6a79371d64c3b0ff01",
+      "7bed750221aeb4cb0c298382d7458ea2b877d9338cff1e3ed21350ae762c1ca0"
+    ],
+    "remaining_pool_size": 26,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "ea195bb46f8b26efb6f97808c224e0c760752034c53af319d6c3081ea6580fe4",
+    "feedback": "    [javac] /work/Compress-44-b/maven-build.xml:92: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Compress-44-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 7\n    [javac] /work/Compress-44-b/src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java:37: error: cannot assign a value to final variable checksum\n    [javac]         this.checksum = checksum;\n    [javac]             ^\n    [javac] 1 error\n    [javac] 1 warning",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "28fc08cbf0b4e7aa6ce34b500f6b5b25c77026d1cc6b1c195619efbdfc9efdc9"
+  }
+}

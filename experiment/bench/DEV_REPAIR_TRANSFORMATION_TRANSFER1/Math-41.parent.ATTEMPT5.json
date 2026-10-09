@@ -1,0 +1,33 @@
+{
+  "attempt_digest": "110af16130721c192a2f035280ede4953d11a857542a04f1917939e8a5064a90",
+  "candidate": {
+    "candidate_digest": "fe95d05eff3fd94270d150aa92b88672a987a96ab153ccce16608c9147113ce7",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java"
+  },
+  "choice": {
+    "candidate_digest": "fe95d05eff3fd94270d150aa92b88672a987a96ab153ccce16608c9147113ce7",
+    "choice_digest": "1683b4d7555acc1199d81be0b9c1bb1c9a4e0069b202e41dec1d015e8dac9274",
+    "index": 5,
+    "prior_verdict_digests": [
+      "ca1345dfd5e11ce9f40a7b4ed696a7b789b5f85b67bfa7307a5f9786073ee023",
+      "5ed3e991de1a08a83f3ae9514408bcaa8632b3792a2803aae108316b31d440f6",
+      "fe67b1d2858fe0f0e3e0d902b8f8fa24ea6e71e0e9637fbd14a7759d648651fc",
+      "b1219ce06333704f7aed9eba22a745e9c4d94174031a099a8e03760d9f9a24b6"
+    ],
+    "remaining_pool_size": 28,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "fe95d05eff3fd94270d150aa92b88672a987a96ab153ccce16608c9147113ce7",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-41-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: error: illegal start of expression\n    [javac]         transient return var;\n    [javac]         ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: error: illegal start of type\n    [javac]         transient return var;\n    [javac]                   ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: warning: as of release 10, 'var' is a restricted local variable type and cannot be used for type declarations or as the element type of an array\n    [javac]         transient return var;\n    [javac]                          ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:424: error: <identifier> expected\n    [javac]         transient return var;\n    [javac]                             ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/st",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "6b94096acf3f76b778a6ecea131f42eac68c7ef9f4930ef129254ecc0606260a"
+  }
+}

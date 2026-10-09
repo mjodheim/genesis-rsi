@@ -1,0 +1,31 @@
+{
+  "attempt_digest": "7481cdbffeda1c9a2392b9100abef6f8334463976b2a0e9496fddc7120f88488",
+  "candidate": {
+    "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/parser/Token.java"
+  },
+  "choice": {
+    "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+    "choice_digest": "b6bfb394a02be8c3eb28a40204b824ba8b0d49b671c7ae607eb6912b1a9e8abb",
+    "index": 3,
+    "prior_verdict_digests": [
+      "70a5fe485b1aa04eaeddd06e3aacf4bc6180f24debe08489a93f37edf155a49c",
+      "f51a7e95b4f7d6526ac75c38da2d737fcc978fd3c96ed92286789b570c3f8ecb"
+    ],
+    "remaining_pool_size": 30,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "55f505c6142874d2b1d7dfc965efeffdca3912f2c7ac866b9efe3571e8c5891d",
+    "feedback": "--- org.jsoup.parser.HtmlParserTest::handlesControlCodeInAttributeName\njava.lang.IllegalArgumentException: String must not be empty\n\tat org.jsoup.helper.Validate.notEmpty(Validate.java:92)\n\tat org.jsoup.nodes.Attribute.<init>(Attribute.java:35)\n\tat org.jsoup.parser.Token$Tag.newAttribute(Token.java:110)\n\tat org.jsoup.parser.Token$Tag.finaliseTag(Token.java:128)\n\tat org.jsoup.parser.Tokeniser.emitTagPending(Tokeniser.java:206)\n\tat org.jsoup.parser.TokeniserState$40.read(TokeniserState.java:815)\n\tat org.jsoup.parser.Tokeniser.read(Tokeniser.java:50)\n\tat org.jsoup.parser.TreeBuilder.runParser(TreeBuilder.java:49)\n\tat org.jsoup.parser.TreeBuilder.parse(TreeBuilder.java:43)\n\tat org.jsoup.parser.HtmlTreeBuilder.parse(HtmlTreeBuilder.java:56)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/parser/Token.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "01738c0cb05064660c453d99cb70427a36131371ef9be8d5b49a8e666a937bac"
+  }
+}

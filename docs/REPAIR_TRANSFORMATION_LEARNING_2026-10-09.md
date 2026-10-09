@@ -70,3 +70,62 @@ RSI, multilingual generality, multi-edit synthesis or recursive acceleration.
 Runs are one-shot: an interruption produces an abort record and never silently
 rewrites the protocol. The audit checks stored evidence; it is not independent
 execution replication. Results will be appended after execution.
+
+## Observed results
+
+The preregistered code and protocol were committed and pushed before execution.
+All three real cases completed without interruption or external model calls.
+
+| Public Java development case | Parent solved / child solved | Parent compile failures / child compile failures | Learned candidates |
+|---|---|---|---:|
+| Jsoup-59 | no / no | 2/8 / 4/8 | 0 |
+| Math-41 | no / no | 8/8 / 8/8 | 0 |
+| Compress-44 | no / no | 6/8 / 6/8 | 0 |
+
+There were **0/3 successes in each arm**, 24 candidate validations per arm,
+**34 compilation failures out of 48 validations**, and no gain. The policy was
+not promoted. The feedback controller changed the attempted order only for
+Jsoup; Math and Compress used identical sequences. Its behavioural-hypothesis
+labels are limited by the existing strategist adapter: all local descriptions
+say `repair_plan`, hiding component-operator provenance. Jsoup's child had more
+compilation failures. A shorter run time is not evidence of better repair.
+
+No learned rule produced a candidate in these causal source views. Thus the
+trial supplies no positive or negative measurement of those rules' repair
+efficacy on applicable real bugs; it shows that their current structural forms
+and bounded focus do not cover this selected set. It does not establish absence
+of solutions in every larger generator configuration. The module remains an
+explicit opt-in experimental capability, not the default active repair policy.
+
+The three authored acquisition generations passed: 2, 4 and 6 positive transfers
+respectively, with no accepted negative controls. This demonstrates identifier/
+layout transfer within the authored forms and rejection by executable behavioural
+tests, not learned semantic preconditions, autonomous primitive invention or
+recursive acceleration. Guards remain syntactic plus mandatory validation.
+
+There is no new successful repair or success replay to claim. All 48 failed
+validations and the rule/decision receipt entered the canonical development
+memory as a verified 49-event suffix: **124 → 173 events**, with all prior
+successes, failures and unknown historical charges preserved. Proposed capabilities
+and failures can be inspected by future invocations; they are not promoted policy.
+New API requests/cost: **0 / $0**. Runtime infrastructure and development are excluded.
+
+[Result](../experiment/bench/DEV_REPAIR_TRANSFORMATION_TRANSFER1/RESULT.json),
+[verification](../experiment/bench/DEV_REPAIR_TRANSFORMATION_TRANSFER1/VERIFICATION.json),
+[decision](../experiment/bench/DEV_REPAIR_TRANSFORMATION_TRANSFER1/DECISION.json),
+[post-result diagnosis](../experiment/bench/DEV_REPAIR_TRANSFORMATION_TRANSFER1/DIAGNOSIS.json)
+and [memory admission](../experiment/bench/DEV_REPAIR_TRANSFORMATION_TRANSFER1/PROMOTION.json)
+preserve the complete record. The stored-evidence auditor recomputes acquisition,
+controls, budgets, outcomes and promotion; its snapshot/chain verification is not
+independent execution replication. All production and test trees were restored.
+
+Validation: 108 focused tests passed before the real trial, including isolated
+Java execution; three additional transactional memory-admission tests passed.
+The final 12 learning/admission tests also pass with no skip on this host.
+Repository import, orphan, dependency and citation checks pass.
+
+The next prospective priority is preserving operator metadata and screening
+compiler-invalid candidates under a counted budget, together with broader
+expression abstractions and behavioural guard acquisition. Retuning these three
+cases and presenting them as fresh transfer would be invalid. General RSI remains
+undemonstrated; the five-part research objective is not scientifically completed.

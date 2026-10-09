@@ -1,0 +1,35 @@
+{
+  "attempt_digest": "c60781efe3ab9416dbe3e07dddd69b96ba87fbc86a701870edf45cd095c2838b",
+  "candidate": {
+    "candidate_digest": "b147c427351af679a1d4291c7d93203db6e9beaaed9655b2eb2d4e70ef36ebdd",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java"
+  },
+  "choice": {
+    "candidate_digest": "b147c427351af679a1d4291c7d93203db6e9beaaed9655b2eb2d4e70ef36ebdd",
+    "choice_digest": "1c707ea1a9d26e85956f2802d0991e6c098a10a31ae28b92687b8041329cf115",
+    "index": 7,
+    "prior_verdict_digests": [
+      "ca1345dfd5e11ce9f40a7b4ed696a7b789b5f85b67bfa7307a5f9786073ee023",
+      "5ed3e991de1a08a83f3ae9514408bcaa8632b3792a2803aae108316b31d440f6",
+      "fe67b1d2858fe0f0e3e0d902b8f8fa24ea6e71e0e9637fbd14a7759d648651fc",
+      "b1219ce06333704f7aed9eba22a745e9c4d94174031a099a8e03760d9f9a24b6",
+      "6b94096acf3f76b778a6ecea131f42eac68c7ef9f4930ef129254ecc0606260a",
+      "e2e348b4d7331446a7d19883f0fdd699f7bc6b8328b7e374044414ec50ea6988"
+    ],
+    "remaining_pool_size": 26,
+    "selection": "feedback revised"
+  },
+  "verdict": {
+    "candidate_digest": "b147c427351af679a1d4291c7d93203db6e9beaaed9655b2eb2d4e70ef36ebdd",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-41-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:600: error: illegal start of expression\n    [javac]         static return result;\n    [javac]         ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:600: error: illegal start of type\n    [javac]         static return result;\n    [javac]                ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:600: error: <identifier> expected\n    [javac]         static return result;\n    [javac]                             ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:611: error: class, interface, or enum expected\n    [javac]     public static void copy(Variance source, Variance dest)\n    [javac]                   ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:614: error: class, interface, or enum expected\n",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "c99dbdcd4c72d1dffeec8e0b10d026425057826e91de6da4bd3d6810580a7b27"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "attempt_digest": "1ffef495af2113d9441ff79352d67af32b80b421e4fd31a81a25d3dbfc979163",
+  "candidate": {
+    "candidate_digest": "dfe5430308d3dab4bbe6941fcfada8649f0068cfa1468b2173767bbfc7501189",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java"
+  },
+  "choice": {
+    "candidate_digest": "dfe5430308d3dab4bbe6941fcfada8649f0068cfa1468b2173767bbfc7501189",
+    "choice_digest": "4f505ccb0a0692249aa0e42b6b4d7f2a478266992ad2866f1410110fa20da620",
+    "index": 8,
+    "prior_verdict_digests": [
+      "ca1345dfd5e11ce9f40a7b4ed696a7b789b5f85b67bfa7307a5f9786073ee023",
+      "5ed3e991de1a08a83f3ae9514408bcaa8632b3792a2803aae108316b31d440f6",
+      "fe67b1d2858fe0f0e3e0d902b8f8fa24ea6e71e0e9637fbd14a7759d648651fc",
+      "b1219ce06333704f7aed9eba22a745e9c4d94174031a099a8e03760d9f9a24b6",
+      "6b94096acf3f76b778a6ecea131f42eac68c7ef9f4930ef129254ecc0606260a",
+      "e2e348b4d7331446a7d19883f0fdd699f7bc6b8328b7e374044414ec50ea6988",
+      "c99dbdcd4c72d1dffeec8e0b10d026425057826e91de6da4bd3d6810580a7b27"
+    ],
+    "remaining_pool_size": 25,
+    "selection": "initial priority"
+  },
+  "verdict": {
+    "candidate_digest": "dfe5430308d3dab4bbe6941fcfada8649f0068cfa1468b2173767bbfc7501189",
+    "feedback": "    [javac] Compiling 1 source file to /work/Math-41-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:98: error: cannot assign a value to final variable moment\n    [javac]         moment = new SecondMoment();\n    [javac]         ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:113: error: cannot assign a value to final variable moment\n    [javac]         this.moment = m2;\n    [javac]             ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:125: error: cannot assign a value to final variable moment\n    [javac]         moment = new SecondMoment();\n    [javac]         ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:140: error: cannot assign a value to final variable moment\n    [javac]         this.moment = m2;\n    [javac]             ^\n    [javac] /work/Math-41-b/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java:616: error: cannot a",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "783629a7854ed789d62094d89cd308ef19a3da554904312364df30e551b06118"
+  }
+}
