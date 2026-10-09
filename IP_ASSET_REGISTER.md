@@ -250,3 +250,9 @@ PUBLIC_AGPL_COMMERCIAL_OPTION under Anthony's authorisation to start transferabl
 capabilities. Review precedes implementation in
 `docs/IP_REVIEWS/REPAIR_CONTRACT_RULE_REVIEW_2026-10-09.md`. OpenAI Codex assists;
 model-derived provenance and explicit supplied-contract limits remain visible.
+
+9 October 2026 — self-revising repair lineage follows PUBLIC_AGPL_COMMERCIAL_OPTION
+under Anthony's authorisation to continue toward recursive improvement. Review precedes
+implementation in `docs/IP_REVIEWS/REPAIR_LINEAGE_REVIEW_2026-10-09.md`. Configurations
+are written by an external model inside a fixed envelope; held-out scoring happens once,
+after the lineage is frozen. No general RSI claim.
