@@ -256,3 +256,9 @@ under Anthony's authorisation to continue toward recursive improvement. Review p
 implementation in `docs/IP_REVIEWS/REPAIR_LINEAGE_REVIEW_2026-10-09.md`. Configurations
 are written by an external model inside a fixed envelope; held-out scoring happens once,
 after the lineage is frozen. No general RSI claim.
+
+9 October 2026 — local single-leaf genome revision follows
+PUBLIC_AGPL_COMMERCIAL_OPTION under continued RSI authorisation. Review precedes
+implementation in docs/IP_REVIEWS/REPAIR_LOCAL_REVISION_REVIEW_2026-10-09.md.
+OpenAI Codex assists; external-model origin, exposed-development scope and
+human-authored revision constraints remain explicit.
