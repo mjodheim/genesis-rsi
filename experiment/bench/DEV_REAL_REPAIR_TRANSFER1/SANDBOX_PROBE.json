@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "container_started": true,
+    "no_capability": true,
+    "no_name_resolution": true,
+    "no_network_interface_but_loopback": true,
+    "no_new_privileges": true,
+    "no_outbound_connection": true,
+    "pinned_benchmark_revision": true,
+    "root_filesystem_read_only": true,
+    "unprivileged_uid": true,
+    "workspace_writable": true
+  },
+  "image": "sha256:f047b3d0af5908396077f6f1635891e396cf2e73b4625e1a9f4064c3739b656c",
+  "isolated": true,
+  "observed": {
+    "capabilities": "0000000000000000",
+    "dns": "no",
+    "interfaces": "lo,",
+    "network": "no",
+    "no_new_privs": "1",
+    "revision": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+    "root_writable": "no",
+    "uid": "1000",
+    "work_writable": "yes"
+  },
+  "probe_digest": "9876508081222c4c05fce626ff1ec4dfa3065c76f2686c11a837ad4b2746ae17",
+  "schema": "genesis-defects4j-sandbox-probe-v1"
+}

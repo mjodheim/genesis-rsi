@@ -1,0 +1,21 @@
+{
+  "attempt_digest": "e202d1542574739960e26949a5786094d473027a469fcd5eaa3c0b5d4193f8f5",
+  "candidate": {
+    "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+    "content_sha256": "f16643d7325e1d41a12d7e4824fb4d89e86e5e48ffe428338331207b98bc0286",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java"
+  },
+  "verdict": {
+    "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+    "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "979594dd1bead50779d8a3ab08ff00e201c5e8e16e584faf26abe470ff4205cb"
+  }
+}

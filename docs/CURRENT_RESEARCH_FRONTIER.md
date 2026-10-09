@@ -404,6 +404,18 @@ old trial result or asserting general RSI. See the
 
 ## Claim boundary
 
+The 9 October real-development follow-up on Jsoup-29, Math-66 and Compress-19
+found no autonomous suite pass (parent and adapted search: 0/3 each, four
+validations per arm/case). Observation-derived offset candidates were inactive,
+so the two orderings produced the same attempted candidates; the adapted policy
+was not promoted. Subsequent, separately attributed training repaired Jsoup with
+Luna and Compress with Haiku, durably retained both patches and passed their
+model-free full-suite replays. Math remains unsolved. New API spend was
+$0.0172782, including failures. Canonical development memory is now 124 events
+with its original 84-event prefix preserved. No general RSI or autonomous
+primitive invention is asserted. See
+[the real-project report](REAL_REPAIR_TRANSFER_DEVELOPMENT_2026-10-09.md).
+
 On 9 October 2026, two frozen model-free DEVELOPMENT experiments connected
 exemplar-derived repair rules to parent/descendant promotion and a mutable
 search ordering. Three acquisition cycles passed nine final authored

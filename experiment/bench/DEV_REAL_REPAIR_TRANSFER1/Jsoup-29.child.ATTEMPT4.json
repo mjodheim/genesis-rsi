@@ -1,0 +1,21 @@
+{
+  "attempt_digest": "e75f1a2524da55d34ddb0ec46b9bbcb1c85e042ddea7629268031257de67a4cd",
+  "candidate": {
+    "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+    "content_sha256": "6846d52c4e31cb88d9dc7d4e4f5f803e837205b2a5583fb81323e4f32c753ca1",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Document.java"
+  },
+  "verdict": {
+    "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+    "feedback": "--- org.jsoup.nodes.DocumentTest::testTitles\njunit.framework.AssertionFailedError: expected:<Hello[ there] now> but was:<Hello[\nthere   \n  ] now>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.nodes.DocumentTest.testTitles(DocumentTest.java:37)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Document.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "a6317c5096eafcdd3e8f609c1636b8eacd36441c507f2723cfebd35aff2b757c"
+  }
+}

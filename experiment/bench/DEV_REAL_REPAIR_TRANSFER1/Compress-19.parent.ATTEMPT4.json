@@ -1,0 +1,21 @@
+{
+  "attempt_digest": "bddb8738c0b5b1370aead63a28321ae9c56bde0d1c3fd51d37130022fd24feae",
+  "candidate": {
+    "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+    "content_sha256": "ea1df76cc2e8e858a71a14d24bbd583b337a93a83b26d5b4ee8d531bf7712b87",
+    "description": "Bounded retained subscript strategy; delta=-1",
+    "origin": "learned-strategy:retained",
+    "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+  },
+  "verdict": {
+    "candidate_digest": "2832e5304bb7c63c3d687b02eecf70d603812fe585d24c89b79e6416473dfd69",
+    "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.util.zip.ZipException: central directory zip64 extended information extra field's length doesn't match central directory data.  Expected length 16 but is 28\n\tat org.apache.commons.compress.archivers.zip.Zip64ExtendedInformationExtraField.reparseCentralDirectoryData(Zip64ExtendedInformationExtraField.java:260)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.setSizesAndOffsetFromZip64Extra(ZipFile.java:619)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.readCentralDirectoryEntry(ZipFile.java:584)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.populateFromCentralDirectory(ZipFile.java:499)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:218)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:193)\n\tat org.apache.commons.compress.archivers.zip.ZipFile.<init>(ZipFile.java:154)\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:234)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)",
+    "full_suite_failures": null,
+    "origin": "learned-strategy:retained",
+    "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "404a8058fc366e2bec1e71fc8ea12ab6514c22670d5386500838596b98c93429"
+  }
+}

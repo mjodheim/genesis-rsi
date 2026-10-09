@@ -1,0 +1,93 @@
+{
+  "accepted_candidate_digest": null,
+  "api_cost_usd": 0,
+  "arm": "parent",
+  "arm_digest": "26815e4168e103b8daf7478a1095ff4c24b4e9e05909f91e6de1aeba10c0ba1c",
+  "attempts": [
+    {
+      "candidate": {
+        "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+        "content_sha256": "b10edeff77eeb8b8dd925ae4c8c4ec1f75c0774dbd827e10da9f49ad385e51ab",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java"
+      },
+      "verdict": {
+        "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+        "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of expression\n    [javac]         transient return null;\n    [javac]         ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of type\n    [javac]         transient return null;\n    [javac]                   ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:178: error: class, interface, or enum expected\n    [javac]     public String outerHtml() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:180: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:188: error: class, interface, or enum expected\n    [javac]     public Element text(String text) {\n   ",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "ead127f5bb8a248a6a30cbd1136002299ec1a990998c574c8a4aee8e33434f5f"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+        "content_sha256": "47f636491aeff3450aae4c5835d44cb41736430a40b0fb54bbc1558af94bc056",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java"
+      },
+      "verdict": {
+        "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+        "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of expression\n    [javac]             transient return charsetEncoder;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of type\n    [javac]             transient return charsetEncoder;\n    [javac]                       ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: <identifier> expected\n    [javac]             transient return charsetEncoder;\n    [javac]                                            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/D",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "a95af7e97616e5c576acf2640e4d1bf37e1d13ddfb4d18131966725409161e9c"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+        "content_sha256": "d5b0b7e0304424f602fad554fd712cc3d94004a6d74fab1ca6ec5edb77acf98b",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java"
+      },
+      "verdict": {
+        "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+        "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of expression\n    [javac]             static return this;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of type\n    [javac]             static return this;\n    [javac]                    ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:336: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:343: error: class, interface, or enum expected\n    [javac]     public Document ou",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "e030150ca83d347eb90202146680ca046272e2aee0655f9b9b7235cff5ccc862"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+        "content_sha256": "6846d52c4e31cb88d9dc7d4e4f5f803e837205b2a5583fb81323e4f32c753ca1",
+        "description": "Local repair operator: repair_plan",
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java"
+      },
+      "verdict": {
+        "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+        "feedback": "--- org.jsoup.nodes.DocumentTest::testTitles\njunit.framework.AssertionFailedError: expected:<Hello[ there] now> but was:<Hello[\nthere   \n  ] now>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.nodes.DocumentTest.testTitles(DocumentTest.java:37)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "a6317c5096eafcdd3e8f609c1636b8eacd36441c507f2723cfebd35aff2b757c"
+      }
+    }
+  ],
+  "case": "Jsoup-29",
+  "external_model_calls": 0,
+  "search_digest": "4ea5948e65dc5f1eefb9a1082010c9e00f17f62885a616ea8816546f768d873e",
+  "solved": false,
+  "validated": 4
+}

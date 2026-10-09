@@ -1,0 +1,999 @@
+{
+  "accepted_candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+  "arms": {
+    "child": {
+      "accepted_candidate_digest": null,
+      "api_cost_usd": 0,
+      "arm": "child",
+      "arm_digest": "8cad97795ed965252377c13709c86943f849623aec26336ac37e3705c83858a0",
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+            "content_sha256": "b10edeff77eeb8b8dd925ae4c8c4ec1f75c0774dbd827e10da9f49ad385e51ab",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+            "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of expression\n    [javac]         transient return null;\n    [javac]         ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of type\n    [javac]         transient return null;\n    [javac]                   ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:178: error: class, interface, or enum expected\n    [javac]     public String outerHtml() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:180: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:188: error: class, interface, or enum expected\n    [javac]     public Element text(String text) {\n   ",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "ead127f5bb8a248a6a30cbd1136002299ec1a990998c574c8a4aee8e33434f5f"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+            "content_sha256": "47f636491aeff3450aae4c5835d44cb41736430a40b0fb54bbc1558af94bc056",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+            "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of expression\n    [javac]             transient return charsetEncoder;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of type\n    [javac]             transient return charsetEncoder;\n    [javac]                       ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: <identifier> expected\n    [javac]             transient return charsetEncoder;\n    [javac]                                            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/D",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "a95af7e97616e5c576acf2640e4d1bf37e1d13ddfb4d18131966725409161e9c"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+            "content_sha256": "d5b0b7e0304424f602fad554fd712cc3d94004a6d74fab1ca6ec5edb77acf98b",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+            "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of expression\n    [javac]             static return this;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of type\n    [javac]             static return this;\n    [javac]                    ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:336: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:343: error: class, interface, or enum expected\n    [javac]     public Document ou",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "e030150ca83d347eb90202146680ca046272e2aee0655f9b9b7235cff5ccc862"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+            "content_sha256": "6846d52c4e31cb88d9dc7d4e4f5f803e837205b2a5583fb81323e4f32c753ca1",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+            "feedback": "--- org.jsoup.nodes.DocumentTest::testTitles\njunit.framework.AssertionFailedError: expected:<Hello[ there] now> but was:<Hello[\nthere   \n  ] now>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.nodes.DocumentTest.testTitles(DocumentTest.java:37)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "a6317c5096eafcdd3e8f609c1636b8eacd36441c507f2723cfebd35aff2b757c"
+          }
+        }
+      ],
+      "case": "Jsoup-29",
+      "external_model_calls": 0,
+      "search_digest": "c8769aa5a07d9f9bf415871ceb5305639f3c753a675fde2540d41726d4d93b40",
+      "solved": false,
+      "validated": 4
+    },
+    "parent": {
+      "accepted_candidate_digest": null,
+      "api_cost_usd": 0,
+      "arm": "parent",
+      "arm_digest": "26815e4168e103b8daf7478a1095ff4c24b4e9e05909f91e6de1aeba10c0ba1c",
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+            "content_sha256": "b10edeff77eeb8b8dd925ae4c8c4ec1f75c0774dbd827e10da9f49ad385e51ab",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+            "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of expression\n    [javac]         transient return null;\n    [javac]         ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of type\n    [javac]         transient return null;\n    [javac]                   ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:178: error: class, interface, or enum expected\n    [javac]     public String outerHtml() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:180: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:188: error: class, interface, or enum expected\n    [javac]     public Element text(String text) {\n   ",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "ead127f5bb8a248a6a30cbd1136002299ec1a990998c574c8a4aee8e33434f5f"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+            "content_sha256": "47f636491aeff3450aae4c5835d44cb41736430a40b0fb54bbc1558af94bc056",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+            "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of expression\n    [javac]             transient return charsetEncoder;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of type\n    [javac]             transient return charsetEncoder;\n    [javac]                       ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: <identifier> expected\n    [javac]             transient return charsetEncoder;\n    [javac]                                            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/D",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "a95af7e97616e5c576acf2640e4d1bf37e1d13ddfb4d18131966725409161e9c"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+            "content_sha256": "d5b0b7e0304424f602fad554fd712cc3d94004a6d74fab1ca6ec5edb77acf98b",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+            "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of expression\n    [javac]             static return this;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of type\n    [javac]             static return this;\n    [javac]                    ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:336: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:343: error: class, interface, or enum expected\n    [javac]     public Document ou",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "compile",
+            "verdict_digest": "e030150ca83d347eb90202146680ca046272e2aee0655f9b9b7235cff5ccc862"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+            "content_sha256": "6846d52c4e31cb88d9dc7d4e4f5f803e837205b2a5583fb81323e4f32c753ca1",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java"
+          },
+          "verdict": {
+            "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+            "feedback": "--- org.jsoup.nodes.DocumentTest::testTitles\njunit.framework.AssertionFailedError: expected:<Hello[ there] now> but was:<Hello[\nthere   \n  ] now>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.nodes.DocumentTest.testTitles(DocumentTest.java:37)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/jsoup/nodes/Document.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "a6317c5096eafcdd3e8f609c1636b8eacd36441c507f2723cfebd35aff2b757c"
+          }
+        }
+      ],
+      "case": "Jsoup-29",
+      "external_model_calls": 0,
+      "search_digest": "4ea5948e65dc5f1eefb9a1082010c9e00f17f62885a616ea8816546f768d873e",
+      "solved": false,
+      "validated": 4
+    }
+  },
+  "case": "Jsoup-29",
+  "evidence": {
+    "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+    "failing_tests": [
+      "org.jsoup.nodes.DocumentTest::testTitles"
+    ],
+    "fixed_revision_consulted": false,
+    "production_source": [
+      {
+        "first_line": 1,
+        "last_line": 201,
+        "numbered_source": "    1| package org.jsoup.nodes;\n    2| \n    3| import org.jsoup.helper.Validate;\n    4| import org.jsoup.parser.Tag;\n    5| import org.jsoup.select.Elements;\n    6| \n    7| import java.nio.charset.Charset;\n    8| import java.nio.charset.CharsetEncoder;\n    9| import java.util.ArrayList;\n   10| import java.util.List;\n   11| \n   12| /**\n   13|  A HTML Document.\n   14| \n   15|  @author Jonathan Hedley, jonathan@hedley.net */\n   16| public class Document extends Element {\n   17|     private OutputSettings outputSettings = new OutputSettings();\n   18|     private QuirksMode quirksMode = QuirksMode.noQuirks;\n   19| \n   20|     /**\n   21|      Create a new, empty Document.\n   22|      @param baseUri base URI of document\n   23|      @see org.jsoup.Jsoup#parse\n   24|      @see #createShell\n   25|      */\n   26|     public Document(String baseUri) {\n   27|         super(Tag.valueOf(\"#root\"), baseUri);\n   28|     }\n   29| \n   30|     /**\n   31|      Create a valid, empty shell of a document, suitable for adding more elements to.\n   32|      @param baseUri baseUri of document\n   33|      @return document with html, head, and body elements.\n   34|      */\n   35|     static public Document createShell(String baseUri) {\n   36|         Validate.notNull(baseUri);\n   37| \n   38|         Document doc = new Document(baseUri);\n   39|         Element html = doc.appendElement(\"html\");\n   40|         html.appendElement(\"head\");\n   41|         html.appendElement(\"body\");\n   42| \n   43|         return doc;\n   44|     }\n   45| \n   46|     /**\n   47|      Accessor to the document's {@code head} element.\n   48|      @return {@code head}\n   49|      */\n   50|     public Element head() {\n   51|         return findFirstElementByTagName(\"head\", this);\n   52|     }\n   53| \n   54|     /**\n   55|      Accessor to the document's {@code body} element.\n   56|      @return {@code body}\n   57|      */\n   58|     public Element body() {\n   59|         return findFirstElementByTagName(\"body\", this);\n   60|     }\n   61| \n   62|     /**\n   63|      Get the string contents of the document's {@code title} element.\n   64|      @return Trimmed title, or empty string if none set.\n   65|      */\n   66|     public String title() {\n   67|         // title is a preserve whitespace tag (for document output), but normalised here\n   68|         Element titleEl = getElementsByTag(\"title\").first();\n   69|         return titleEl != null ? titleEl.text().trim() : \"\";\n   70|     }\n   71| \n   72|     /**\n   73|      Set the document's {@code title} element. Updates the existing element, or adds {@code title} to {@code head} if\n   74|      not present\n   75|      @param title string to set as title\n   76|      */\n   77|     public void title(String title) {\n   78|         Validate.notNull(title);\n   79|         Element titleEl = getElementsByTag(\"title\").first();\n   80|         if (titleEl == null) { // add to head\n   81|             head().appendElement(\"title\").text(title);\n   82|         } else {\n   83|             titleEl.text(title);\n   84|         }\n   85|     }\n   86| \n   87|     /**\n   88|      Create a new Element, with this document's base uri. Does not make the new element a child of this document.\n   89|      @param tagName element tag name (e.g. {@code a})\n   90|      @return new element\n   91|      */\n   92|     public Element createElement(String tagName) {\n   93|         return new Element(Tag.valueOf(tagName), this.baseUri());\n   94|     }\n   95| \n   96|     /**\n   97|      Normalise the document. This happens after the parse phase so generally does not need to be called.\n   98|      Moves any text content that is not in the body element into the body.\n   99|      @return this document after normalisation\n  100|      */\n  101|     public Document normalise() {\n  102|         Element htmlEl = findFirstElementByTagName(\"html\", this);\n  103|         if (htmlEl == null)\n  104|             htmlEl = appendElement(\"html\");\n  105|         if (head() == null)\n  106|             htmlEl.prependElement(\"head\");\n  107|         if (body() == null)\n  108|             htmlEl.appendElement(\"body\");\n  109| \n  110|         // pull text nodes out of root, html, and head els, and push into body. non-text nodes are already taken care\n  111|         // of. do in inverse order to maintain text order.\n  112|         normaliseTextNodes(head());\n  113|         normaliseTextNodes(htmlEl);\n  114|         normaliseTextNodes(this);\n  115| \n  116|         normaliseStructure(\"head\", htmlEl);\n  117|         normaliseStructure(\"body\", htmlEl);\n  118|         \n  119|         return this;\n  120|     }\n  121| \n  122|     // does not recurse.\n  123|     private void normaliseTextNodes(Element element) {\n  124|         List<Node> toMove = new ArrayList<Node>();\n  125|         for (Node node: element.childNodes) {\n  126|             if (node instanceof TextNode) {\n  127|                 TextNode tn = (TextNode) node;\n  128|                 if (!tn.isBlank())\n  129|                     toMove.add(tn);\n  130|             }\n  131|         }\n  132| \n  133|         for (int i = toMove.size()-1; i >= 0; i--) {\n  134|             Node node = toMove.get(i);\n  135|             element.removeChild(node);\n  136|             body().prependChild(new TextNode(\" \", \"\"));\n  137|             body().prependChild(node);\n  138|         }\n  139|     }\n  140| \n  141|     // merge multiple <head> or <body> contents into one, delete the remainder, and ensure they are owned by <html>\n  142|     private void normaliseStructure(String tag, Element htmlEl) {\n  143|         Elements elements = this.getElementsByTag(tag);\n  144|         Element master = elements.first(); // will always be available as created above if not existent\n  145|         if (elements.size() > 1) { // dupes, move contents to master\n  146|             List<Node> toMove = new ArrayList<Node>();\n  147|             for (int i = 1; i < elements.size(); i++) {\n  148|                 Node dupe = elements.get(i);\n  149|                 for (Node node : dupe.childNodes)\n  150|                     toMove.add(node);\n  151|                 dupe.remove();\n  152|             }\n  153| \n  154|             for (Node dupe : toMove)\n  155|                 master.appendChild(dupe);\n  156|         }\n  157|         // ensure parented by <html>\n  158|         if (!master.parent().equals(htmlEl)) {\n  159|             htmlEl.appendChild(master); // includes remove()            \n  160|         }\n  161|     }\n  162| \n  163|     // fast method to get first by tag name, used for html, head, body finders\n  164|     private Element findFirstElementByTagName(String tag, Node node) {\n  165|         if (node.nodeName().equals(tag))\n  166|             return (Element) node;\n  167|         else {\n  168|             for (Node child: node.childNodes) {\n  169|                 Element found = findFirstElementByTagName(tag, child);\n  170|                 if (found != null)\n  171|                     return found;\n  172|             }\n  173|         }\n  174|         return null;\n  175|     }\n  176| \n  177|     @Override\n  178|     public String outerHtml() {\n  179|         return super.html(); // no outer wrapper tag\n  180|     }\n  181| \n  182|     /**\n  183|      Set the text of the {@code body} of this document. Any existing nodes within the body will be cleared.\n  184|      @param text unencoded text\n  185|      @return this document\n  186|      */\n  187|     @Override\n  188|     public Element text(String text) {\n  189|         body().text(text); // overridden to not nuke doc structure\n  190|         return this;\n  191|     }\n  192| \n  193|     @Override\n  194|     public String nodeName() {\n  195|         return \"#document\";\n  196|     }\n  197| \n  198|     @Override\n  199|     public Document clone() {\n  200|         Document clone = (Document) super.clone();\n  201|         clone.outputSettings = this.outputSettings.clone();",
+        "path": "src/main/java/org/jsoup/nodes/Document.java"
+      }
+    ],
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "src/main/java",
+    "suspect_locations": [
+      [
+        "src/main/java/org/jsoup/nodes/Document.java",
+        1
+      ]
+    ],
+    "suspects_from_stack_trace": false,
+    "test_directory": "src/test/java",
+    "test_source": [
+      {
+        "first_line": 12,
+        "last_line": 62,
+        "numbered_source": "   12|  @author Jonathan Hedley, jonathan@hedley.net */\n   13| public class DocumentTest {\n   14|     @Test public void setTextPreservesDocumentStructure() {\n   15|         Document doc = Jsoup.parse(\"<p>Hello</p>\");\n   16|         doc.text(\"Replaced\");\n   17|         assertEquals(\"Replaced\", doc.text());\n   18|         assertEquals(\"Replaced\", doc.body().text());\n   19|         assertEquals(1, doc.select(\"head\").size());\n   20|     }\n   21|     \n   22|     @Test public void testTitles() {\n   23|         Document noTitle = Jsoup.parse(\"<p>Hello</p>\");\n   24|         Document withTitle = Jsoup.parse(\"<title>First</title><title>Ignore</title><p>Hello</p>\");\n   25|         \n   26|         assertEquals(\"\", noTitle.title());\n   27|         noTitle.title(\"Hello\");\n   28|         assertEquals(\"Hello\", noTitle.title());\n   29|         assertEquals(\"Hello\", noTitle.select(\"title\").first().text());\n   30|         \n   31|         assertEquals(\"First\", withTitle.title());\n   32|         withTitle.title(\"Hello\");\n   33|         assertEquals(\"Hello\", withTitle.title());\n   34|         assertEquals(\"Hello\", withTitle.select(\"title\").first().text());\n   35| \n   36|         Document normaliseTitle = Jsoup.parse(\"<title>   Hello\\nthere   \\n   now   \\n\");\n   37|         assertEquals(\"Hello there now\", normaliseTitle.title());\n   38|     }\n   39| \n   40|     @Test public void testOutputEncoding() {\n   41|         Document doc = Jsoup.parse(\"<p title=\u03c0>\u03c0 & < > </p>\");\n   42|         // default is utf-8\n   43|         assertEquals(\"<p title=\\\"\u03c0\\\">\u03c0 &amp; &lt; &gt; </p>\", doc.body().html());\n   44|         assertEquals(\"UTF-8\", doc.outputSettings().charset().displayName());\n   45| \n   46|         doc.outputSettings().charset(\"ascii\");\n   47|         assertEquals(Entities.EscapeMode.base, doc.outputSettings().escapeMode());\n   48|         assertEquals(\"<p title=\\\"&#960;\\\">&#960; &amp; &lt; &gt; </p>\", doc.body().html());\n   49| \n   50|         doc.outputSettings().escapeMode(Entities.EscapeMode.extended);\n   51|         assertEquals(\"<p title=\\\"&pi;\\\">&pi; &amp; &lt; &gt; </p>\", doc.body().html());\n   52|     }\n   53| \n   54|     @Test public void testXhtmlReferences() {\n   55|         Document doc = Jsoup.parse(\"&lt; &gt; &amp; &quot; &apos; &times;\");\n   56|         doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);\n   57|         assertEquals(\"&lt; &gt; &amp; &quot; &apos; \u00d7\", doc.body().html());\n   58|     }\n   59| \n   60|     @Test public void testNormalisesStructure() {\n   61|         Document doc = Jsoup.parse(\"<html><head><script>one</script><noscript><p>two</p></noscript></head><body><p>three</p></body><p>four</p></html>\");\n   62|         assertEquals(\"<html><head><script>one</script><noscript></noscript></head><body><p>two</p><p>three</p><p>four</p></body></html>\", TextUtil.stripNewlines(doc.html()));",
+        "path": "src/test/java/org/jsoup/nodes/DocumentTest.java"
+      }
+    ],
+    "traces": [
+      {
+        "test": "org.jsoup.nodes.DocumentTest::testTitles",
+        "trace": "junit.framework.AssertionFailedError: expected:<Hello[ there] now> but was:<Hello[\nthere   \n  ] now>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.nodes.DocumentTest.testTitles(DocumentTest.java:37)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)"
+      }
+    ]
+  },
+  "new_memory_events": [
+    {
+      "data": {
+        "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7896,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+          "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of expression\n    [javac]         transient return null;\n    [javac]         ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of type\n    [javac]         transient return null;\n    [javac]                   ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:178: error: class, interface, or enum expected\n    [javac]     public String outerHtml() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:180: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:188: error: class, interface, or enum expected\n    [javac]     public Element text(String text) {\n   ",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/nodes/Document.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "ead127f5bb8a248a6a30cbd1136002299ec1a990998c574c8a4aee8e33434f5f"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "ea5cb2e3bf9aaeb25c939650b2e2f160169852744b4100b9808fd46677a286c7",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7896,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+          "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of expression\n    [javac]             transient return charsetEncoder;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of type\n    [javac]             transient return charsetEncoder;\n    [javac]                       ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: <identifier> expected\n    [javac]             transient return charsetEncoder;\n    [javac]                                            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/D",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/nodes/Document.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "a95af7e97616e5c576acf2640e4d1bf37e1d13ddfb4d18131966725409161e9c"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "3191f22d4c1fa94eee50850abe2ebbfca575942460e0bfbcdc962d40f4ce1650",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7896,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+          "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of expression\n    [javac]             static return this;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of type\n    [javac]             static return this;\n    [javac]                    ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:336: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:343: error: class, interface, or enum expected\n    [javac]     public Document ou",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/nodes/Document.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "compile",
+          "verdict_digest": "e030150ca83d347eb90202146680ca046272e2aee0655f9b9b7235cff5ccc862"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "7bf5c41bc22545a1548f91634d977957529d51dbb57de9a0d4b069219662805f",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7896,
+          "source_files": 1
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+          "feedback": "--- org.jsoup.nodes.DocumentTest::testTitles\njunit.framework.AssertionFailedError: expected:<Hello[ there] now> but was:<Hello[\nthere   \n  ] now>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.nodes.DocumentTest.testTitles(DocumentTest.java:37)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/jsoup/nodes/Document.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "a6317c5096eafcdd3e8f609c1636b8eacd36441c507f2723cfebd35aff2b757c"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "ccd5ff8779e1b0053a5f0044e5e881b39ed0566f498ab91e7f95ae63ab28bb7a",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000702175,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "preserveWhitespace"
+            },
+            "result_digest": "2d8bd9dbdf3199d4165a94c235f776e30f8044d3b3b8358f1d662a617c1479dc",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "b3fd856b1ad755ec80982b234ec3d71a98d162b0a00d211a8ea5f4da07111810",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005097066,
+        "response_digest": "a6729fe4337a5d486e2972d8cf7af92cad8c1cda6b0a0f88d90ed2af1e5a0a8a",
+        "response_id": "gen-1791498780-hmTYfpPBLeKuOJTahxFZ",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 20,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000702175,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1e-05,
+            "upstream_inference_cost": 0.000702175,
+            "upstream_inference_prompt_cost": 0.000692175
+          },
+          "is_byok": false,
+          "prompt_tokens": 5538,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 5535,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 5558
+        }
+      },
+      "kind": "call",
+      "previous_digest": "d198bf214eefd435a8b4a90f9560c1bd9285f2400d4d81ab43bb957605fa0092",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000115775,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/jsoup/nodes/Element.java",
+              "start": 805
+            },
+            "result_digest": "4b3ed3cd9070944da31a6b2680c80c4c7fdea9227ee4d42cac508ec51a21a2d8",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "e12c5899b22304dadd2c7e59d0c50f8961d5ae1285af2b9b92f6348a38195341",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005262302,
+        "response_digest": "120b1ddde87c696a5ead449e6d3c9680d5681e7a67bcba3a7697d9059a5bafa5",
+        "response_id": "gen-1791498781-5FTfX9DoiAjODd0Lkq5W",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 32,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000115775,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.6e-05,
+            "upstream_inference_cost": 0.000115775,
+            "upstream_inference_prompt_cost": 9.9775e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 5891,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 353,
+            "cached_tokens": 5535,
+            "video_tokens": 0
+          },
+          "total_tokens": 5923
+        }
+      },
+      "kind": "call",
+      "previous_digest": "8973a39969bac469dd4fadec2532634f56eac0c98564552ac2a7fa7c7759f141",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000340555,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/jsoup/nodes/TextNode.java",
+              "start": 1
+            },
+            "result_digest": "8689d3a40f08602ce48454daa8831f3008c5477907953abeef728119bc313f36",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "7c9be39153859675329f5541f45a7aca4f487b4857ff03aa87ee831374c04466",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006109691999999999,
+        "response_digest": "d665b2926d26b21217b0ca6b2836dba2887d4909a75a7c436f914039e9cae3f5",
+        "response_id": "gen-1791498782-au4qafOWlkL0OhyGogZO",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 69,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 35
+          },
+          "cost": 0.000340555,
+          "cost_details": {
+            "upstream_inference_completions_cost": 3.45e-05,
+            "upstream_inference_cost": 0.000340555,
+            "upstream_inference_prompt_cost": 0.000306055
+          },
+          "is_byok": false,
+          "prompt_tokens": 7866,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1975,
+            "cached_tokens": 5888,
+            "video_tokens": 0
+          },
+          "total_tokens": 7935
+        }
+      },
+      "kind": "call",
+      "previous_digest": "a16714a8580c925d1b64436c486e3b9d7f3fce185b7d8f6bc326684ea5687d2b",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00123975,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "432d4e2ef6264b38b7afa1d269cdb05117344a9e9a658f663f07eb411544efb1",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007012530999999999,
+        "response_digest": "f35fa5a3d44c67265b0944108d5b5ed6261cbb009b5143884f4cb3901660ad58",
+        "response_id": "gen-1791498785-bpNPkpz5K0OfkqcsrorU",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 104,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00123975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 5.2e-05,
+            "upstream_inference_cost": 0.00123975,
+            "upstream_inference_prompt_cost": 0.00118775
+          },
+          "is_byok": false,
+          "prompt_tokens": 9515,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 9450,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9619
+        }
+      },
+      "kind": "call",
+      "previous_digest": "b6c4a5eebb9f761824150b648b22e16f60da8dc3362c82a9d921a1eca62d66da",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7896,
+          "source_files": 1
+        },
+        "origin": "openrouter:openai/gpt-6-luna",
+        "verdict": {
+          "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "src/main/java/org/jsoup/nodes/Document.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "c0b79e6f24b0387f735aa6dd76e50c1f08423f09398b1c6bca6af285b3cf5e98"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "eff435854a8f9b61d40d2da39026d5af1ce0547af6668c70bca13bb9f6b01885",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+        "edits": [
+          [
+            "    public String title() {\n        // title is a preserve whitespace tag (for document output), but normalised here\n        Element titleEl = getElementsByTag(\"title\").first();\n        return titleEl != null ? titleEl.text().trim() : \"\";\n    }\n\n    /**\n",
+            "    public String title() {\n        // title is a preserve whitespace tag (for document output), but normalised here\n        Element titleEl = getElementsByTag(\"title\").first();\n        return titleEl != null ? TextNode.normaliseWhitespace(titleEl.text()).trim() : \"\";\n    }\n\n    /**\n"
+          ]
+        ],
+        "explanation": "{\"hypothesis\": \"Document.title() must normalize whitespace in title text explicitly because title elements preserve whitespace for markup output.\", \"path\": \"src/main/java/org/jsoup/nodes/Document.java\", \"edits\": [{\"search\": \"return titleEl != null ? titleEl.text().trim() : \\\"\\\";\", \"replace\": \"return titleEl != null ? TextNode.normaliseWhitespace(titleEl.text()).trim() : \\\"\\\";\"}]}",
+        "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+        "origin": "openrouter:openai/gpt-6-luna",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "preconditions": "matching symptom family; unique production-source context; full-suite revalidation",
+        "verdict": {
+          "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "src/main/java/org/jsoup/nodes/Document.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "c0b79e6f24b0387f735aa6dd76e50c1f08423f09398b1c6bca6af285b3cf5e98"
+        }
+      },
+      "kind": "recipe",
+      "previous_digest": "3e344877ed4c8bdef269776085d46a3271ef3c5a452f7d64424c0e4940b9cd00",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0023982549999999997,
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7896,
+          "source_files": 1
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": true
+      },
+      "kind": "attempt",
+      "previous_digest": "0ab9fe33881cb9f263eb69e93183ed1340ac9b2b09e5691d85e976d2517e9fe7",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "features": {
+          "complexity": "simple",
+          "failing_tests": 1,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 7896,
+          "source_files": 1
+        },
+        "origin": "retained-experience",
+        "verdict": {
+          "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+          "feedback": null,
+          "full_suite_failures": 0,
+          "origin": "retained-experience",
+          "path": "src/main/java/org/jsoup/nodes/Document.java",
+          "plausible": true,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "passed",
+          "verdict_digest": "25419a8e606e1bd61fe479c1069410ccefd09c5a1e043be09fe6d107a34ed4ee"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "8b84e3ad07016563d0182bc02d1d493f3c8c6f7d473861060310b96e2bacc0ab",
+      "scope": "released_development"
+    }
+  ],
+  "patch": "--- a/src/main/java/org/jsoup/nodes/Document.java\n+++ b/src/main/java/org/jsoup/nodes/Document.java\n@@ -66,7 +66,7 @@\n     public String title() {\n         // title is a preserve whitespace tag (for document output), but normalised here\n         Element titleEl = getElementsByTag(\"title\").first();\n-        return titleEl != null ? titleEl.text().trim() : \"\";\n+        return titleEl != null ? TextNode.normaliseWhitespace(titleEl.text()).trim() : \"\";\n     }\n \n     /**\n",
+  "pool_digest": "0093667816c44546a9d7c123e00d098350c661d70d041d7718d79df72d8a0858",
+  "replay": {
+    "decisions": [],
+    "known_cost_usd": 0,
+    "model_calls": [],
+    "reuse_without_llm": true,
+    "scope": "released_development",
+    "solved": true,
+    "solved_without_llm": true,
+    "total_cost_usd": 0,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+        "feedback": null,
+        "full_suite_failures": 0,
+        "origin": "retained-experience",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": true,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "passed",
+        "verdict_digest": "25419a8e606e1bd61fe479c1069410ccefd09c5a1e043be09fe6d107a34ed4ee"
+      }
+    ]
+  },
+  "replay_verified": true,
+  "success_recorded": true,
+  "training": {
+    "accepted_origin": "openrouter:openai/gpt-6-luna",
+    "assisted": true,
+    "decisions": [
+      {
+        "basis": "contextual",
+        "complexity": "simple",
+        "estimated_request_reserve_usd": 0.004281491,
+        "fallback_quality_threshold_relaxed": false,
+        "model": "openai/gpt-6-luna",
+        "observations": 1,
+        "score": 0.004447947,
+        "suite_passes": 1
+      }
+    ],
+    "known_cost_usd": 0.0023982549999999997,
+    "model_calls": [
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000702175,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "preserveWhitespace"
+            },
+            "result_digest": "2d8bd9dbdf3199d4165a94c235f776e30f8044d3b3b8358f1d662a617c1479dc",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "b3fd856b1ad755ec80982b234ec3d71a98d162b0a00d211a8ea5f4da07111810",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005097066,
+        "response_digest": "a6729fe4337a5d486e2972d8cf7af92cad8c1cda6b0a0f88d90ed2af1e5a0a8a",
+        "response_id": "gen-1791498780-hmTYfpPBLeKuOJTahxFZ",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 20,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000702175,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1e-05,
+            "upstream_inference_cost": 0.000702175,
+            "upstream_inference_prompt_cost": 0.000692175
+          },
+          "is_byok": false,
+          "prompt_tokens": 5538,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 5535,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 5558
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000115775,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/jsoup/nodes/Element.java",
+              "start": 805
+            },
+            "result_digest": "4b3ed3cd9070944da31a6b2680c80c4c7fdea9227ee4d42cac508ec51a21a2d8",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "e12c5899b22304dadd2c7e59d0c50f8961d5ae1285af2b9b92f6348a38195341",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.005262302,
+        "response_digest": "120b1ddde87c696a5ead449e6d3c9680d5681e7a67bcba3a7697d9059a5bafa5",
+        "response_id": "gen-1791498781-5FTfX9DoiAjODd0Lkq5W",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 32,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000115775,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.6e-05,
+            "upstream_inference_cost": 0.000115775,
+            "upstream_inference_prompt_cost": 9.9775e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 5891,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 353,
+            "cached_tokens": 5535,
+            "video_tokens": 0
+          },
+          "total_tokens": 5923
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000340555,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/jsoup/nodes/TextNode.java",
+              "start": 1
+            },
+            "result_digest": "8689d3a40f08602ce48454daa8831f3008c5477907953abeef728119bc313f36",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "7c9be39153859675329f5541f45a7aca4f487b4857ff03aa87ee831374c04466",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006109691999999999,
+        "response_digest": "d665b2926d26b21217b0ca6b2836dba2887d4909a75a7c436f914039e9cae3f5",
+        "response_id": "gen-1791498782-au4qafOWlkL0OhyGogZO",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 69,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 35
+          },
+          "cost": 0.000340555,
+          "cost_details": {
+            "upstream_inference_completions_cost": 3.45e-05,
+            "upstream_inference_cost": 0.000340555,
+            "upstream_inference_prompt_cost": 0.000306055
+          },
+          "is_byok": false,
+          "prompt_tokens": 7866,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1975,
+            "cached_tokens": 5888,
+            "video_tokens": 0
+          },
+          "total_tokens": 7935
+        }
+      },
+      {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00123975,
+        "evidence_digest": "748f5cfc9a382dd326a6b81af69925e99a96f60a4db302a76cf2c764776e7427",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "432d4e2ef6264b38b7afa1d269cdb05117344a9e9a658f663f07eb411544efb1",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007012530999999999,
+        "response_digest": "f35fa5a3d44c67265b0944108d5b5ed6261cbb009b5143884f4cb3901660ad58",
+        "response_id": "gen-1791498785-bpNPkpz5K0OfkqcsrorU",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 104,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00123975,
+          "cost_details": {
+            "upstream_inference_completions_cost": 5.2e-05,
+            "upstream_inference_cost": 0.00123975,
+            "upstream_inference_prompt_cost": 0.00118775
+          },
+          "is_byok": false,
+          "prompt_tokens": 9515,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 9450,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9619
+        }
+      }
+    ],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": true,
+    "solved_without_llm": false,
+    "total_cost_usd": 0.0023982549999999997,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "6dea50b12169175e4cc370f93ff303d0bbac56c1017a577bbabbb23232d5398f",
+        "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of expression\n    [javac]         transient return null;\n    [javac]         ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:174: error: illegal start of type\n    [javac]         transient return null;\n    [javac]                   ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:178: error: class, interface, or enum expected\n    [javac]     public String outerHtml() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:180: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:188: error: class, interface, or enum expected\n    [javac]     public Element text(String text) {\n   ",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "ead127f5bb8a248a6a30cbd1136002299ec1a990998c574c8a4aee8e33434f5f"
+      },
+      {
+        "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+        "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of expression\n    [javac]             transient return charsetEncoder;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of type\n    [javac]             transient return charsetEncoder;\n    [javac]                       ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: <identifier> expected\n    [javac]             transient return charsetEncoder;\n    [javac]                                            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/D",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "a95af7e97616e5c576acf2640e4d1bf37e1d13ddfb4d18131966725409161e9c"
+      },
+      {
+        "candidate_digest": "5eac0a77de7839b7ced00311f9dbe8e22454240a01fc1d4fbec137e11c34ce57",
+        "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of expression\n    [javac]             static return this;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:260: error: illegal start of type\n    [javac]             static return this;\n    [javac]                    ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:336: error: class, interface, or enum expected\n    [javac]     }\n    [javac]     ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:343: error: class, interface, or enum expected\n    [javac]     public Document ou",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "compile",
+        "verdict_digest": "e030150ca83d347eb90202146680ca046272e2aee0655f9b9b7235cff5ccc862"
+      },
+      {
+        "candidate_digest": "abd3fe8cbd205e97142ed90925dd63637dbbc414bbe7baa44252e4e3108b1581",
+        "feedback": "--- org.jsoup.nodes.DocumentTest::testTitles\njunit.framework.AssertionFailedError: expected:<Hello[ there] now> but was:<Hello[\nthere   \n  ] now>\n\tat org.junit.Assert.assertEquals(Assert.java:115)\n\tat org.junit.Assert.assertEquals(Assert.java:144)\n\tat org.jsoup.nodes.DocumentTest.testTitles(DocumentTest.java:37)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "a6317c5096eafcdd3e8f609c1636b8eacd36441c507f2723cfebd35aff2b757c"
+      },
+      {
+        "candidate_digest": "f79d8b2168959f4e78400779b8715416b244931e14de947e48289a43137642f5",
+        "feedback": null,
+        "full_suite_failures": 0,
+        "origin": "openrouter:openai/gpt-6-luna",
+        "path": "src/main/java/org/jsoup/nodes/Document.java",
+        "plausible": true,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "passed",
+        "verdict_digest": "c0b79e6f24b0387f735aa6dd76e50c1f08423f09398b1c6bca6af285b3cf5e98"
+      }
+    ]
+  },
+  "training_digest": "009c669de30f2c9b1520c0101f22380ad1e4ad7b6dd2b921a33580edb3a41775"
+}

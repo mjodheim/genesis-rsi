@@ -1,0 +1,1658 @@
+{
+  "arms": {
+    "child": {
+      "accepted_candidate_digest": null,
+      "api_cost_usd": 0,
+      "arm": "child",
+      "arm_digest": "627e6a4c1bd9d76314486a0eed82e918a7ff8f5305185f37c62fd49ea59dd6ee",
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "5e1979cac7046e510ee19aec611e93d99d538ac1ded43116bd8a3fe4d9b2865d",
+            "content_sha256": "4a80aab7c79a5b9e716b9242a70131640189b848223bf6264f28bb4b1c8a494c",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "5e1979cac7046e510ee19aec611e93d99d538ac1ded43116bd8a3fe4d9b2865d",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "6821f0268bc77f8b07c1124913caf0fd1b824ba7f8acd641903cbf3274dda917"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "936993a98c094b0da863df780667b1fa839f9d5ba56aa0edf0abbf0b4b1fae8f",
+            "content_sha256": "1e98c9c05f500a89da0315f9f377e01f80059ba9ae326eee1f5cac6e3595cb13",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "936993a98c094b0da863df780667b1fa839f9d5ba56aa0edf0abbf0b4b1fae8f",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.22961598075633935>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "7a8498375470e9f8cecee34cafed92b5d88ddd55d5e1b7490eb693f166bb6581"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "511b12e2e38e1861a035e0292ced0308a4cf60f8104c091b5360a53588b3d2f9",
+            "content_sha256": "601f950dfe8ef6b401c8e298e181c296e8752f513c776fc8304ea931a3257b2d",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "511b12e2e38e1861a035e0292ced0308a4cf60f8104c091b5360a53588b3d2f9",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "b9ce17e6c7c0d6795eda1a54e9b4563c3893e17d57add3ae45fa5011c7b2acff"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+            "content_sha256": "f16643d7325e1d41a12d7e4824fb4d89e86e5e48ffe428338331207b98bc0286",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "979594dd1bead50779d8a3ab08ff00e201c5e8e16e584faf26abe470ff4205cb"
+          }
+        }
+      ],
+      "case": "Math-66",
+      "external_model_calls": 0,
+      "search_digest": "dfec67e6a8182374a64c2fc1e5bf9f7cd5d68284d1d285a892a793d6dde6aefb",
+      "solved": false,
+      "validated": 4
+    },
+    "parent": {
+      "accepted_candidate_digest": null,
+      "api_cost_usd": 0,
+      "arm": "parent",
+      "arm_digest": "d9d6372e48fbf216da7046e3fe8888b47b537c42966075bdb1a10858962edca3",
+      "attempts": [
+        {
+          "candidate": {
+            "candidate_digest": "5e1979cac7046e510ee19aec611e93d99d538ac1ded43116bd8a3fe4d9b2865d",
+            "content_sha256": "4a80aab7c79a5b9e716b9242a70131640189b848223bf6264f28bb4b1c8a494c",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "5e1979cac7046e510ee19aec611e93d99d538ac1ded43116bd8a3fe4d9b2865d",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "6821f0268bc77f8b07c1124913caf0fd1b824ba7f8acd641903cbf3274dda917"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "936993a98c094b0da863df780667b1fa839f9d5ba56aa0edf0abbf0b4b1fae8f",
+            "content_sha256": "1e98c9c05f500a89da0315f9f377e01f80059ba9ae326eee1f5cac6e3595cb13",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "936993a98c094b0da863df780667b1fa839f9d5ba56aa0edf0abbf0b4b1fae8f",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.22961598075633935>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "7a8498375470e9f8cecee34cafed92b5d88ddd55d5e1b7490eb693f166bb6581"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "511b12e2e38e1861a035e0292ced0308a4cf60f8104c091b5360a53588b3d2f9",
+            "content_sha256": "601f950dfe8ef6b401c8e298e181c296e8752f513c776fc8304ea931a3257b2d",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "511b12e2e38e1861a035e0292ced0308a4cf60f8104c091b5360a53588b3d2f9",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "b9ce17e6c7c0d6795eda1a54e9b4563c3893e17d57add3ae45fa5011c7b2acff"
+          }
+        },
+        {
+          "candidate": {
+            "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+            "content_sha256": "f16643d7325e1d41a12d7e4824fb4d89e86e5e48ffe428338331207b98bc0286",
+            "description": "Local repair operator: repair_plan",
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java"
+          },
+          "verdict": {
+            "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+            "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+            "full_suite_failures": null,
+            "origin": "strategist",
+            "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+            "plausible": false,
+            "schema": "genesis-repair-bench-verdict-v1",
+            "stopped_at": "failing_tests",
+            "verdict_digest": "979594dd1bead50779d8a3ab08ff00e201c5e8e16e584faf26abe470ff4205cb"
+          }
+        }
+      ],
+      "case": "Math-66",
+      "external_model_calls": 0,
+      "search_digest": "6137bc313b766962da489180515437b0d740a19beab377d2bfe3d672e5d047c0",
+      "solved": false,
+      "validated": 4
+    }
+  },
+  "case": "Math-66",
+  "evidence": {
+    "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+    "failing_tests": [
+      "org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin",
+      "org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testSinMin",
+      "org.apache.commons.math.optimization.univariate.BrentOptimizerTest::testQuinticMinStatistics",
+      "org.apache.commons.math.optimization.univariate.BrentOptimizerTest::testSinMin"
+    ],
+    "fixed_revision_consulted": false,
+    "production_source": [
+      {
+        "first_line": 1,
+        "last_line": 201,
+        "numbered_source": "    1| /*\n    2|  * Licensed to the Apache Software Foundation (ASF) under one or more\n    3|  * contributor license agreements.  See the NOTICE file distributed with\n    4|  * this work for additional information regarding copyright ownership.\n    5|  * The ASF licenses this file to You under the Apache License, Version 2.0\n    6|  * (the \"License\"); you may not use this file except in compliance with\n    7|  * the License.  You may obtain a copy of the License at\n    8|  *\n    9|  *      http://www.apache.org/licenses/LICENSE-2.0\n   10|  *\n   11|  * Unless required by applicable law or agreed to in writing, software\n   12|  * distributed under the License is distributed on an \"AS IS\" BASIS,\n   13|  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   14|  * See the License for the specific language governing permissions and\n   15|  * limitations under the License.\n   16|  */\n   17| \n   18| package org.apache.commons.math.optimization;\n   19| \n   20| import org.apache.commons.math.ConvergenceException;\n   21| import org.apache.commons.math.FunctionEvaluationException;\n   22| import org.apache.commons.math.MathRuntimeException;\n   23| import org.apache.commons.math.analysis.UnivariateRealFunction;\n   24| import org.apache.commons.math.random.RandomGenerator;\n   25| import org.apache.commons.math.util.LocalizedFormats;\n   26| \n   27| /**\n   28|  * Special implementation of the {@link UnivariateRealOptimizer} interface adding\n   29|  * multi-start features to an existing optimizer.\n   30|  * <p>\n   31|  * This class wraps a classical optimizer to use it several times in\n   32|  * turn with different starting points in order to avoid being trapped\n   33|  * into a local extremum when looking for a global one.\n   34|  * </p>\n   35|  * @version $Revision$ $Date$\n   36|  * @since 2.0\n   37|  */\n   38| public class MultiStartUnivariateRealOptimizer implements UnivariateRealOptimizer {\n   39| \n   40|     /** Serializable version identifier. */\n   41|     private static final long serialVersionUID = 5983375963110961019L;\n   42| \n   43|     /** Underlying classical optimizer. */\n   44|     private final UnivariateRealOptimizer optimizer;\n   45| \n   46|     /** Maximal number of iterations allowed. */\n   47|     private int maxIterations;\n   48| \n   49|     /** Maximal number of evaluations allowed. */\n   50|     private int maxEvaluations;\n   51| \n   52|     /** Number of iterations already performed for all starts. */\n   53|     private int totalIterations;\n   54| \n   55|     /** Number of evaluations already performed for all starts. */\n   56|     private int totalEvaluations;\n   57| \n   58|     /** Number of starts to go. */\n   59|     private int starts;\n   60| \n   61|     /** Random generator for multi-start. */\n   62|     private RandomGenerator generator;\n   63| \n   64|     /** Found optima. */\n   65|     private double[] optima;\n   66| \n   67|     /** Found function values at optima. */\n   68|     private double[] optimaValues;\n   69| \n   70|     /**\n   71|      * Create a multi-start optimizer from a single-start optimizer\n   72|      * @param optimizer single-start optimizer to wrap\n   73|      * @param starts number of starts to perform (including the\n   74|      * first one), multi-start is disabled if value is less than or\n   75|      * equal to 1\n   76|      * @param generator random generator to use for restarts\n   77|      */\n   78|     public MultiStartUnivariateRealOptimizer(final UnivariateRealOptimizer optimizer,\n   79|                                              final int starts,\n   80|                                              final RandomGenerator generator) {\n   81|         this.optimizer        = optimizer;\n   82|         this.totalIterations  = 0;\n   83|         this.starts           = starts;\n   84|         this.generator        = generator;\n   85|         this.optima           = null;\n   86|         setMaximalIterationCount(Integer.MAX_VALUE);\n   87|         setMaxEvaluations(Integer.MAX_VALUE);\n   88|     }\n   89| \n   90|     /** {@inheritDoc} */\n   91|     public double getFunctionValue() {\n   92|         return optimaValues[0];\n   93|     }\n   94| \n   95|     /** {@inheritDoc} */\n   96|     public double getResult() {\n   97|         return optima[0];\n   98|     }\n   99| \n  100|     /** {@inheritDoc} */\n  101|     public double getAbsoluteAccuracy() {\n  102|         return optimizer.getAbsoluteAccuracy();\n  103|     }\n  104| \n  105|     /** {@inheritDoc} */\n  106|     public int getIterationCount() {\n  107|         return totalIterations;\n  108|     }\n  109| \n  110|     /** {@inheritDoc} */\n  111|     public int getMaximalIterationCount() {\n  112|         return maxIterations;\n  113|     }\n  114| \n  115|     /** {@inheritDoc} */\n  116|     public int getMaxEvaluations() {\n  117|         return maxEvaluations;\n  118|     }\n  119| \n  120|     /** {@inheritDoc} */\n  121|     public int getEvaluations() {\n  122|         return totalEvaluations;\n  123|     }\n  124| \n  125|     /** {@inheritDoc} */\n  126|     public double getRelativeAccuracy() {\n  127|         return optimizer.getRelativeAccuracy();\n  128|     }\n  129| \n  130|     /** {@inheritDoc} */\n  131|     public void resetAbsoluteAccuracy() {\n  132|         optimizer.resetAbsoluteAccuracy();\n  133|     }\n  134| \n  135|     /** {@inheritDoc} */\n  136|     public void resetMaximalIterationCount() {\n  137|         optimizer.resetMaximalIterationCount();\n  138|     }\n  139| \n  140|     /** {@inheritDoc} */\n  141|     public void resetRelativeAccuracy() {\n  142|         optimizer.resetRelativeAccuracy();\n  143|     }\n  144| \n  145|     /** {@inheritDoc} */\n  146|     public void setAbsoluteAccuracy(double accuracy) {\n  147|         optimizer.setAbsoluteAccuracy(accuracy);\n  148|     }\n  149| \n  150|     /** {@inheritDoc} */\n  151|     public void setMaximalIterationCount(int count) {\n  152|         this.maxIterations = count;\n  153|     }\n  154| \n  155|     /** {@inheritDoc} */\n  156|     public void setMaxEvaluations(int maxEvaluations) {\n  157|         this.maxEvaluations = maxEvaluations;\n  158|     }\n  159| \n  160|     /** {@inheritDoc} */\n  161|     public void setRelativeAccuracy(double accuracy) {\n  162|         optimizer.setRelativeAccuracy(accuracy);\n  163|     }\n  164| \n  165|     /** Get all the optima found during the last call to {@link\n  166|      * #optimize(UnivariateRealFunction, GoalType, double, double) optimize}.\n  167|      * <p>The optimizer stores all the optima found during a set of\n  168|      * restarts. The {@link #optimize(UnivariateRealFunction, GoalType,\n  169|      * double, double) optimize} method returns the best point only. This\n  170|      * method returns all the points found at the end of each starts,\n  171|      * including the best one already returned by the {@link\n  172|      * #optimize(UnivariateRealFunction, GoalType, double, double) optimize}\n  173|      * method.\n  174|      * </p>\n  175|      * <p>\n  176|      * The returned array as one element for each start as specified\n  177|      * in the constructor. It is ordered with the results from the\n  178|      * runs that did converge first, sorted from best to worst\n  179|      * objective value (i.e in ascending order if minimizing and in\n  180|      * descending order if maximizing), followed by Double.NaN elements\n  181|      * corresponding to the runs that did not converge. This means all\n  182|      * elements will be NaN if the {@link #optimize(UnivariateRealFunction,\n  183|      * GoalType, double, double) optimize} method did throw a {@link\n  184|      * ConvergenceException ConvergenceException}). This also means that\n  185|      * if the first element is not NaN, it is the best point found across\n  186|      * all starts.</p>\n  187|      * @return array containing the optima\n  188|      * @exception IllegalStateException if {@link #optimize(UnivariateRealFunction,\n  189|      * GoalType, double, double) optimize} has not been called\n  190|      * @see #getOptimaValues()\n  191|      */\n  192|     public double[] getOptima() throws IllegalStateException {\n  193|         if (optima == null) {\n  194|             throw MathRuntimeException.createIllegalStateException(LocalizedFormats.NO_OPTIMUM_COMPUTED_YET);\n  195|         }\n  196|         return optima.clone();\n  197|     }\n  198| \n  199|     /** Get all the function values at optima found during the last call to {@link\n  200|      * #optimize(UnivariateRealFunction, GoalType, double, double) optimize}.\n  201|      * <p>",
+        "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java"
+      },
+      {
+        "first_line": 1,
+        "last_line": 201,
+        "numbered_source": "    1| /*\n    2|  * Licensed to the Apache Software Foundation (ASF) under one or more\n    3|  * contributor license agreements.  See the NOTICE file distributed with\n    4|  * this work for additional information regarding copyright ownership.\n    5|  * The ASF licenses this file to You under the Apache License, Version 2.0\n    6|  * (the \"License\"); you may not use this file except in compliance with\n    7|  * the License.  You may obtain a copy of the License at\n    8|  *\n    9|  *      http://www.apache.org/licenses/LICENSE-2.0\n   10|  *\n   11|  * Unless required by applicable law or agreed to in writing, software\n   12|  * distributed under the License is distributed on an \"AS IS\" BASIS,\n   13|  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   14|  * See the License for the specific language governing permissions and\n   15|  * limitations under the License.\n   16|  */\n   17| package org.apache.commons.math.optimization.univariate;\n   18| \n   19| import org.apache.commons.math.FunctionEvaluationException;\n   20| import org.apache.commons.math.MaxIterationsExceededException;\n   21| import org.apache.commons.math.exception.NotStrictlyPositiveException;\n   22| import org.apache.commons.math.analysis.UnivariateRealFunction;\n   23| import org.apache.commons.math.optimization.GoalType;\n   24| \n   25| /**\n   26|  * Implements Richard Brent's algorithm (from his book \"Algorithms for\n   27|  * Minimization without Derivatives\", p. 79) for finding minima of real\n   28|  * univariate functions. This implementation is an adaptation partly\n   29|  * based on the Python code from SciPy (module \"optimize.py\" v0.5).\n   30|  *\n   31|  * @version $Revision$ $Date$\n   32|  * @since 2.0\n   33|  */\n   34| public class BrentOptimizer extends AbstractUnivariateRealOptimizer {\n   35|     /**\n   36|      * Golden section.\n   37|      */\n   38|     private static final double GOLDEN_SECTION = 0.5 * (3 - Math.sqrt(5));\n   39| \n   40|     /**\n   41|      * Construct a solver.\n   42|      */\n   43|     public BrentOptimizer() {\n   44|         setMaxEvaluations(Integer.MAX_VALUE);\n   45|         setMaximalIterationCount(100);\n   46|         setAbsoluteAccuracy(1E-10);\n   47|         setRelativeAccuracy(1.0e-14);\n   48|     }\n   49| \n   50|     /**\n   51|      * Perform the optimization.\n   52|      *\n   53|      * @return the optimum.\n   54|      */\n   55|     protected double doOptimize()\n   56|         throws MaxIterationsExceededException, FunctionEvaluationException {\n   57|         throw new UnsupportedOperationException();\n   58|     }\n   59|     public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max, final double startValue) throws MaxIterationsExceededException, FunctionEvaluationException {\n   60|         clearResult();\n   61|         return localMin(getGoalType() == GoalType.MINIMIZE,\n   62|                         f, goalType, min, startValue, max,\n   63|                         getRelativeAccuracy(), getAbsoluteAccuracy());\n   64|     }\n   65|     public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max) throws MaxIterationsExceededException, FunctionEvaluationException {\n   66|         return optimize(f, goalType, min, max, min + GOLDEN_SECTION * (max - min));\n   67|     }\n   68| \n   69|     /**\n   70|      * Find the minimum of the function within the interval {@code (lo, hi)}.\n   71|      *\n   72|      * If the function is defined on the interval {@code (lo, hi)}, then\n   73|      * this method finds an approximation {@code x} to the point at which\n   74|      * the function attains its minimum.<br/>\n   75|      * {@code t} and {@code eps} define a tolerance {@code tol = eps |x| + t}\n   76|      * and the function is never evaluated at two points closer together than\n   77|      * {@code tol}. {@code eps} should be no smaller than <em>2 macheps</em> and\n   78|      * preferable not much less than <em>sqrt(macheps)</em>, where\n   79|      * <em>macheps</em> is the relative machine precision. {@code t} should be\n   80|      * positive.\n   81|      * @param isMinim {@code true} when minimizing the function.\n   82|      * @param lo Lower bound of the interval.\n   83|      * @param mid Point inside the interval {@code [lo, hi]}.\n   84|      * @param hi Higher bound of the interval.\n   85|      * @param eps Relative accuracy.\n   86|      * @param t Absolute accuracy.\n   87|      * @return the optimum point.\n   88|      * @throws MaxIterationsExceededException if the maximum iteration count\n   89|      * is exceeded.\n   90|      * @throws FunctionEvaluationException if an error occurs evaluating\n   91|      * the function.\n   92|      */\n   93|     private double localMin(boolean isMinim,\n   94|                             UnivariateRealFunction f,\n   95|                             GoalType goalType,\n   96|                             double lo, double mid, double hi,\n   97|                             double eps, double t)\n   98|         throws MaxIterationsExceededException, FunctionEvaluationException {\n   99|         if (eps <= 0) {\n  100|             throw new NotStrictlyPositiveException(eps);\n  101|         }\n  102|         if (t <= 0) {\n  103|             throw new NotStrictlyPositiveException(t);\n  104|         }\n  105|         double a, b;\n  106|         if (lo < hi) {\n  107|             a = lo;\n  108|             b = hi;\n  109|         } else {\n  110|             a = hi;\n  111|             b = lo;\n  112|         }\n  113| \n  114|         double x = mid;\n  115|         double v = x;\n  116|         double w = x;\n  117|         double d = 0;\n  118|         double e = 0;\n  119|         double fx = computeObjectiveValue(f, x);\n  120|         if (goalType == GoalType.MAXIMIZE) {\n  121|             fx = -fx;\n  122|         }\n  123|         double fv = fx;\n  124|         double fw = fx;\n  125| \n  126|         int count = 0;\n  127|         while (count < maximalIterationCount) {\n  128|             double m = 0.5 * (a + b);\n  129|             final double tol1 = eps * Math.abs(x) + t;\n  130|             final double tol2 = 2 * tol1;\n  131| \n  132|             // Check stopping criterion.\n  133|             if (Math.abs(x - m) > tol2 - 0.5 * (b - a)) {\n  134|                 double p = 0;\n  135|                 double q = 0;\n  136|                 double r = 0;\n  137|                 double u = 0;\n  138| \n  139|                 if (Math.abs(e) > tol1) { // Fit parabola.\n  140|                     r = (x - w) * (fx - fv);\n  141|                     q = (x - v) * (fx - fw);\n  142|                     p = (x - v) * q - (x - w) * r;\n  143|                     q = 2 * (q - r);\n  144| \n  145|                     if (q > 0) {\n  146|                         p = -p;\n  147|                     } else {\n  148|                         q = -q;\n  149|                     }\n  150| \n  151|                     r = e;\n  152|                     e = d;\n  153| \n  154|                     if (p > q * (a - x)\n  155|                         && p < q * (b - x)\n  156|                         && Math.abs(p) < Math.abs(0.5 * q * r)) {\n  157|                         // Parabolic interpolation step.\n  158|                         d = p / q;\n  159|                         u = x + d;\n  160| \n  161|                         // f must not be evaluated too close to a or b.\n  162|                         if (u - a < tol2\n  163|                             || b - u < tol2) {\n  164|                             if (x <= m) {\n  165|                                 d = tol1;\n  166|                             } else {\n  167|                                 d = -tol1;\n  168|                             }\n  169|                         }\n  170|                     } else {\n  171|                         // Golden section step.\n  172|                         if (x < m) {\n  173|                             e = b - x;\n  174|                         } else {\n  175|                             e = a - x;\n  176|                         }\n  177|                         d = GOLDEN_SECTION * e;\n  178|                     }\n  179|                 } else {\n  180|                     // Golden section step.\n  181|                     if (x < m) {\n  182|                         e = b - x;\n  183|                     } else {\n  184|                         e = a - x;\n  185|                     }\n  186|                     d = GOLDEN_SECTION * e;\n  187|                 }\n  188| \n  189|                 // Update by at least \"tol1\".\n  190|                 if (Math.abs(d) < tol1) {\n  191|                     if (d >= 0) {\n  192|                         u = x + tol1;\n  193|                     } else {\n  194|                         u = x - tol1;\n  195|                     }\n  196|                 } else {\n  197|                     u = x + d;\n  198|                 }\n  199| \n  200|                 double fu = computeObjectiveValue(f, u);\n  201|                 if (goalType == GoalType.MAXIMIZE) {",
+        "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java"
+      }
+    ],
+    "schema": "genesis-repair-bench-evidence-v1",
+    "source_directory": "src/main/java",
+    "suspect_locations": [
+      [
+        "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+        1
+      ],
+      [
+        "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+        1
+      ]
+    ],
+    "suspects_from_stack_trace": false,
+    "test_directory": "src/test/java",
+    "test_source": [
+      {
+        "first_line": 27,
+        "last_line": 101,
+        "numbered_source": "   27| import org.apache.commons.math.analysis.UnivariateRealFunction;\n   28| import org.apache.commons.math.optimization.univariate.BrentOptimizer;\n   29| import org.apache.commons.math.random.JDKRandomGenerator;\n   30| import org.junit.Test;\n   31| \n   32| public class MultiStartUnivariateRealOptimizerTest {\n   33| \n   34|     @Test\n   35|     public void testSinMin() throws MathException {\n   36|         UnivariateRealFunction f = new SinFunction();\n   37|         UnivariateRealOptimizer underlying = new BrentOptimizer();\n   38|         JDKRandomGenerator g = new JDKRandomGenerator();\n   39|         g.setSeed(44428400075l);\n   40|         MultiStartUnivariateRealOptimizer minimizer =\n   41|             new MultiStartUnivariateRealOptimizer(underlying, 10, g);\n   42|         minimizer.optimize(f, GoalType.MINIMIZE, -100.0, 100.0);\n   43|         double[] optima = minimizer.getOptima();\n   44|         double[] optimaValues = minimizer.getOptimaValues();\n   45|         for (int i = 1; i < optima.length; ++i) {\n   46|             double d = (optima[i] - optima[i-1]) / (2 * Math.PI);\n   47|             assertTrue (Math.abs(d - Math.rint(d)) < 1.0e-8);\n   48|             assertEquals(-1.0, f.value(optima[i]), 1.0e-10);\n   49|             assertEquals(f.value(optima[i]), optimaValues[i], 1.0e-10);\n   50|         }\n   51|         assertTrue(minimizer.getEvaluations() > 150);\n   52|         assertTrue(minimizer.getEvaluations() < 250);\n   53|     }\n   54| \n   55|     @Test\n   56|     public void testQuinticMin() throws MathException {\n   57|         // The quintic function has zeros at 0, +-0.5 and +-1.\n   58|         // The function has extrema (first derivative is zero) at 0.27195613 and 0.82221643,\n   59|         UnivariateRealFunction f = new QuinticFunction();\n   60|         UnivariateRealOptimizer underlying = new BrentOptimizer();\n   61|         underlying.setRelativeAccuracy(1e-15);\n   62|         JDKRandomGenerator g = new JDKRandomGenerator();\n   63|         g.setSeed(4312000053L);\n   64|         MultiStartUnivariateRealOptimizer minimizer =\n   65|             new MultiStartUnivariateRealOptimizer(underlying, 5, g);\n   66|         minimizer.setAbsoluteAccuracy(10 * minimizer.getAbsoluteAccuracy());\n   67|         minimizer.setRelativeAccuracy(10 * minimizer.getRelativeAccuracy());\n   68| \n   69|         try {\n   70|             minimizer.getOptima();\n   71|             fail(\"an exception should have been thrown\");\n   72|         } catch (IllegalStateException ise) {\n   73|             // expected\n   74|         } catch (Exception e) {\n   75|             fail(\"wrong exception caught\");\n   76|         }\n   77|         try {\n   78|             minimizer.getOptimaValues();\n   79|             fail(\"an exception should have been thrown\");\n   80|         } catch (IllegalStateException ise) {\n   81|             // expected\n   82|         } catch (Exception e) {\n   83|             fail(\"wrong exception caught\");\n   84|         }\n   85| \n   86|         double result = minimizer.optimize(f, GoalType.MINIMIZE, -0.3, -0.2);\n   87|         assertEquals(-0.2719561270319131, result, 1.0e-13);\n   88|         assertEquals(-0.2719561270319131, minimizer.getResult(), 1.0e-13);\n   89|         assertEquals(-0.04433426954946637, minimizer.getFunctionValue(), 1.0e-13);\n   90| \n   91|         double[] optima = minimizer.getOptima();\n   92|         double[] optimaValues = minimizer.getOptimaValues();\n   93|         for (int i = 0; i < optima.length; ++i) {\n   94|             assertEquals(f.value(optima[i]), optimaValues[i], 1.0e-10);\n   95|         }\n   96|         assertTrue(minimizer.getEvaluations()    >= 120);\n   97|         assertTrue(minimizer.getEvaluations()    <= 170);\n   98|         assertTrue(minimizer.getIterationCount() >= 120);\n   99|         assertTrue(minimizer.getIterationCount() <= 170);\n  100|     }\n  101| }",
+        "path": "src/test/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizerTest.java"
+      }
+    ],
+    "traces": [
+      {
+        "test": "org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin",
+        "trace": "junit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)"
+      },
+      {
+        "test": "org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testSinMin",
+        "trace": "junit.framework.AssertionFailedError\n\tat org.junit.Assert.fail(Assert.java:86)\n\tat org.junit.Assert.assertTrue(Assert.java:41)\n\tat org.junit.Assert.assertTrue(Assert.java:52)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testSinMin(MultiStartUnivariateRealOptimizerTest.java:52)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1492)"
+      },
+      {
+        "test": "org.apache.commons.math.optimization.univariate.BrentOptimizerTest::testQuinticMinStatistics",
+        "trace": "junit.framework.AssertionFailedError: expected:<1880.5> but was:<18.0>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.univariate.BrentOptimizerTest.testQuinticMinStatistics(BrentOptimizerTest.java:114)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)"
+      },
+      {
+        "test": "org.apache.commons.math.optimization.univariate.BrentOptimizerTest::testSinMin",
+        "trace": "junit.framework.AssertionFailedError: expected:<4.71238898038469> but was:<4.71238897901431>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.univariate.BrentOptimizerTest.testSinMin(BrentOptimizerTest.java:54)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:363)\n\tat junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)\n\tat org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:520)"
+      }
+    ]
+  },
+  "new_memory_events": [
+    {
+      "data": {
+        "candidate_digest": "5e1979cac7046e510ee19aec611e93d99d538ac1ded43116bd8a3fe4d9b2865d",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "5e1979cac7046e510ee19aec611e93d99d538ac1ded43116bd8a3fe4d9b2865d",
+          "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "6821f0268bc77f8b07c1124913caf0fd1b824ba7f8acd641903cbf3274dda917"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "292483d448448c2197e6ee86db898aa3ecbc20bde27036bd3da0e1cdd9c12b7f",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "936993a98c094b0da863df780667b1fa839f9d5ba56aa0edf0abbf0b4b1fae8f",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "936993a98c094b0da863df780667b1fa839f9d5ba56aa0edf0abbf0b4b1fae8f",
+          "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.22961598075633935>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "7a8498375470e9f8cecee34cafed92b5d88ddd55d5e1b7490eb693f166bb6581"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "884651b2a592d1c9695d5884f5cda57eed511985d3a3d863898307e42c747b73",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "511b12e2e38e1861a035e0292ced0308a4cf60f8104c091b5360a53588b3d2f9",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "511b12e2e38e1861a035e0292ced0308a4cf60f8104c091b5360a53588b3d2f9",
+          "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "b9ce17e6c7c0d6795eda1a54e9b4563c3893e17d57add3ae45fa5011c7b2acff"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "cf42c452f649d1efeab15f4fe72317d88f260cd52b23df3f0e33eeaad3164a88",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "origin": "strategist",
+        "verdict": {
+          "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+          "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "strategist",
+          "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "979594dd1bead50779d8a3ab08ff00e201c5e8e16e584faf26abe470ff4205cb"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "827c6dd4c6eaf8f7a69709ef893af73ffc46555eb37419373f172c6b50872636",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001669,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+              "start": 200
+            },
+            "result_digest": "105d20ca5a307f9a4c39febfc05444636d5aec59505831085b17cbe30b089289",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "786d15286ef1148d60a152c3a1b9e0e66401030e040623d4fc07d6ec915f0a8c",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006730438,
+        "response_digest": "e84855699aad8eb5ae33ba868727de4f01494d856a183d42f1dc1cb06bc4ba40",
+        "response_id": "gen-1791498845-4TBnmRIa4DM8AF9XsL0B",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 182,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 80
+          },
+          "cost": 0.001669,
+          "cost_details": {
+            "upstream_inference_completions_cost": 9.1e-05,
+            "upstream_inference_cost": 0.001669,
+            "upstream_inference_prompt_cost": 0.001578
+          },
+          "is_byok": false,
+          "prompt_tokens": 15780,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 15962
+        }
+      },
+      "kind": "call",
+      "previous_digest": "4e60e37cc20eea0e6adda0ddfd9e5d0c3fcc5393f343240b566d662c446b21a4",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "benchmark_may_be_in_training_data": true,
+        "call_failed": true,
+        "cost_usd": 0.0034456,
+        "error": "KeyError",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "f033a30e617149b6b5ea150f99e356063e94bf19f088a4bc4d3a0b6bd1fba10b",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007076766999999999,
+        "response_digest": "aa0c61daeaab6cb190a33e51fa4f529f5a09685ca460a0d11a3a1f82c691f7d3",
+        "response_id": "gen-1791498847-3bAwkFnl0e4I4MdHr6QB",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 3597,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 3213
+          },
+          "cost": 0.0034456,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0017985,
+            "upstream_inference_cost": 0.0034456,
+            "upstream_inference_prompt_cost": 0.0016471
+          },
+          "is_byok": false,
+          "prompt_tokens": 16471,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 20068
+        }
+      },
+      "kind": "call",
+      "previous_digest": "73b0d09197998cc2330e4e2cef8a52b24b57fd0df43f403745e04ab6b4861f1f",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.0051146,
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "model": "anthropic/claude-haiku-5.5",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "78638ee2858682b74af00bbe392121af63f7aeada4b23c6f09139fefffa21d64",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001193675,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+              "start": 185
+            },
+            "result_digest": "61b72ba1ef8b5de74cd041140461628c0e95d7bb4b06640c005a0426da6c4c6b",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "786d15286ef1148d60a152c3a1b9e0e66401030e040623d4fc07d6ec915f0a8c",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006729529000000001,
+        "response_digest": "861f11237defa19d143200d0d96587a0b64dd8e0f4b320b9da173f3ff6cf357b",
+        "response_id": "gen-1791498862-nHreLNQ8UakfDVRRp555",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 38,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.001193675,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.9e-05,
+            "upstream_inference_cost": 0.001193675,
+            "upstream_inference_prompt_cost": 0.001174675
+          },
+          "is_byok": false,
+          "prompt_tokens": 9398,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 9395,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9436
+        }
+      },
+      "kind": "call",
+      "previous_digest": "54b8b9be5594e84344138ca644e2b62ec504219f4029a18d2a1c7e6232738e56",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000199125,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/AbstractUnivariateRealOptimizer.java",
+              "start": 1
+            },
+            "result_digest": "f9ea87ab3a1435ae3f8bc1da91769a5a4746cb5b890cc32850e7d2abc0b2bc5e",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "51ddccf84070178cfc0823bc3f974fcdd8fdda1b2052b8e93ec524c4a3ff1130",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006988493,
+        "response_digest": "76501326bde9534edebb7f8183651faaea3b6b68d459c4b062e615366ed3b4c0",
+        "response_id": "gen-1791498863-J5rCYXFEo9Mgx3szGFnW",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 81,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 39
+          },
+          "cost": 0.000199125,
+          "cost_details": {
+            "upstream_inference_completions_cost": 4.05e-05,
+            "upstream_inference_cost": 0.000199125,
+            "upstream_inference_prompt_cost": 0.000158625
+          },
+          "is_byok": false,
+          "prompt_tokens": 9913,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 515,
+            "cached_tokens": 9395,
+            "video_tokens": 0
+          },
+          "total_tokens": 9994
+        }
+      },
+      "kind": "call",
+      "previous_digest": "43082945c91a90b3fa62d776d0929ced36c24fd0453d4406b722235a15350749",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00035565,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/AbstractUnivariateRealOptimizer.java",
+              "start": 200
+            },
+            "result_digest": "1cfd0759638f99344f72bc637172ee6000b476ca7d5dc73790c2db8e795ccd7e",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "191322bfedaf361dbd0b5a00f63ade81f44992e74edfccf9cf41885cd8e129fb",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.008070102,
+        "response_digest": "61a94d9dc1cc6e7191b67dc27793d89583052a14aa65bb432840c4436458082f",
+        "response_id": "gen-1791498866-3NioxO7fhRm1eayJ33q1",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 40,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00035565,
+          "cost_details": {
+            "upstream_inference_completions_cost": 2e-05,
+            "upstream_inference_cost": 0.00035565,
+            "upstream_inference_prompt_cost": 0.00033565
+          },
+          "is_byok": false,
+          "prompt_tokens": 11803,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1890,
+            "cached_tokens": 9910,
+            "video_tokens": 0
+          },
+          "total_tokens": 11843
+        }
+      },
+      "kind": "call",
+      "previous_digest": "0479fb3311240ce6248ab3bcfa1f93765b3b8139ff5cbb1a1ffdbf5fd288f704",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00161925,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "3c5069a0fa816dd0aca89d403aa4d80395e09ef460cc6a012ab2034e9498338f",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.008345832000000001,
+        "response_digest": "4058df454783ca0d08bb403b5c214394155b2405f0fb4680e53283f41081ce84",
+        "response_id": "gen-1791498867-qtWwMFWx13PuQSm8ESrZ",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 141,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00161925,
+          "cost_details": {
+            "upstream_inference_completions_cost": 7.05e-05,
+            "upstream_inference_cost": 0.00161925,
+            "upstream_inference_prompt_cost": 0.00154875
+          },
+          "is_byok": false,
+          "prompt_tokens": 12403,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 12338,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 12544
+        }
+      },
+      "kind": "call",
+      "previous_digest": "1166064e954a3cc570dc59fe008f70876c45afe41d9b7099031c82bdf4364891",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "f7191390d2773339717a51634117585adc3f2c54bc00383f21e4531165ae561b",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "origin": "openrouter:openai/gpt-6-luna",
+        "verdict": {
+          "candidate_digest": "f7191390d2773339717a51634117585adc3f2c54bc00383f21e4531165ae561b",
+          "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2644968727540442>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "c138686198d5d1860468f6a099e14a0de5a6b456fe64913a706e6a2fd43e138e"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "cc2b7882c3cf32052bcb4bdfadc92e3ad31adbfd93148e687a4df7a8c6ab4af7",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00124205,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max)"
+            },
+            "result_digest": "3e825451cdc8687bb56bf932f370b592e4cbf4c3745de1422953021d8ff78cf7",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d27afcdc1fcce3f3b4b379d39baa97767fd256c1751c19c974bdfaee22d468c8",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006889917,
+        "response_digest": "78fcf6beb9ccae97e4052a5184a52d1d15571eab1df0bfab5f16c5fef222a488",
+        "response_id": "gen-1791498878-qz6q8HtOZdo75TzEpZhQ",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 41,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00124205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 2.05e-05,
+            "upstream_inference_cost": 0.00124205,
+            "upstream_inference_prompt_cost": 0.00122155
+          },
+          "is_byok": false,
+          "prompt_tokens": 9773,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 9770,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9814
+        }
+      },
+      "kind": "call",
+      "previous_digest": "44da0960d4221037b82c70b3e973fc8dd898945a639947c80c2214e43f55f725",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000130375,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+              "start": 189
+            },
+            "result_digest": "d11479382529728530dd7571eb630be41c1262f5f260db2c2e57a48c1500a7e7",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "67401d8f883eab3785b2f2c2ebd0b2b99238ad33bc8b230f71bb11bfd409bb75",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0069575869999999995,
+        "response_digest": "86125082256002a578fbcea89eaf2364bc2c49df17589bdefb68f3db1b135d53",
+        "response_id": "gen-1791498880-4fq1mBHL127hQ9Me2idj",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 38,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000130375,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.9e-05,
+            "upstream_inference_cost": 0.000130375,
+            "upstream_inference_prompt_cost": 0.000111375
+          },
+          "is_byok": false,
+          "prompt_tokens": 9880,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 107,
+            "cached_tokens": 9770,
+            "video_tokens": 0
+          },
+          "total_tokens": 9918
+        }
+      },
+      "kind": "call",
+      "previous_digest": "6008ef856212959db32a58b409469b242a39c57acec0cbc7b37ec6b34813d4ce",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000252195,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testQuinticMinStatistics"
+            },
+            "result_digest": "7fa59e73d8e093867475b889025ff2b41cad4d4032eacb95777459aef49c90a5",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5e74c5e128c7082653e59e067a906d70299692fab8f25c1da7d5423e5733db7e",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007205542,
+        "response_digest": "129485ad8421de3ff6683d3903ab770ed4a7c37b3eaa91c22f4797061f2bb214",
+        "response_id": "gen-1791498881-5qdXHiRzZDxAz68QXf12",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 183,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 158
+          },
+          "cost": 0.000252195,
+          "cost_details": {
+            "upstream_inference_completions_cost": 9.15e-05,
+            "upstream_inference_cost": 0.000252195,
+            "upstream_inference_prompt_cost": 0.000160695
+          },
+          "is_byok": false,
+          "prompt_tokens": 10373,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 493,
+            "cached_tokens": 9877,
+            "video_tokens": 0
+          },
+          "total_tokens": 10556
+        }
+      },
+      "kind": "call",
+      "previous_digest": "2030fb4e78c941faf3676670affd1b715a72a74796d2c526de28ea0283a8d103",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001384625,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "ec64aa74772dff9630fe5e68f2f9ea39693557009ec72a0062995fadf75634bd",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007546922,
+        "response_digest": "9efb52641eb8557ec21c3191da1769d07af03ab680f55d5c256f9e73bdff6eee",
+        "response_id": "gen-1791498887-3Ab0H3FBxTVrKdkrWxVq",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 123,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.001384625,
+          "cost_details": {
+            "upstream_inference_completions_cost": 6.15e-05,
+            "upstream_inference_cost": 0.001384625,
+            "upstream_inference_prompt_cost": 0.001323125
+          },
+          "is_byok": false,
+          "prompt_tokens": 10598,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 10533,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 10721
+        }
+      },
+      "kind": "call",
+      "previous_digest": "8f5a16b6f25134d81675624eb78040b3523dae063683be8eb16a132d4766f7c8",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "candidate_digest": "7abb489d15caa1eb23b5c2de372a1aed9fb4e7bed0ae7d8799fc9c89b8d1c3f1",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "origin": "openrouter:openai/gpt-6-luna",
+        "verdict": {
+          "candidate_digest": "7abb489d15caa1eb23b5c2de372a1aed9fb4e7bed0ae7d8799fc9c89b8d1c3f1",
+          "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+          "full_suite_failures": null,
+          "origin": "openrouter:openai/gpt-6-luna",
+          "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+          "plausible": false,
+          "schema": "genesis-repair-bench-verdict-v1",
+          "stopped_at": "failing_tests",
+          "verdict_digest": "2af2cbc6b18df16dfda7560f7c47a9376b7ffc3cc3bec760a45a66aba84507c8"
+        }
+      },
+      "kind": "validation",
+      "previous_digest": "5b87c995cc12d28ab9703368a30c9f69da84e2588739d37826c0f3100c8c056c",
+      "scope": "released_development"
+    },
+    {
+      "data": {
+        "cost_usd": 0.006376945,
+        "features": {
+          "complexity": "moderate",
+          "failing_tests": 4,
+          "family": "1e4f7495d0da75f4380ef4956c3c24f1ef37a43c5d6ae8f7da4de971324b4bf5",
+          "source_chars": 17565,
+          "source_files": 2
+        },
+        "model": "openai/gpt-6-luna",
+        "passed": false
+      },
+      "kind": "attempt",
+      "previous_digest": "83f7e6a751b2fee5e258cf2c3c5c2351b186de6d0ad6f3d554e23530e13752e9",
+      "scope": "released_development"
+    }
+  ],
+  "pool_digest": "516247820a1757bc68df83f22a448101f3088b95c438adf20c89b4d5e26fc707",
+  "replay": null,
+  "success_recorded": false,
+  "training": {
+    "accepted_origin": null,
+    "assisted": true,
+    "decisions": [
+      {
+        "basis": "contextual",
+        "complexity": "moderate",
+        "estimated_request_reserve_usd": 0.0060921180000000005,
+        "fallback_quality_threshold_relaxed": false,
+        "model": "anthropic/claude-haiku-5.5",
+        "observations": 1,
+        "score": 0.0079296885,
+        "suite_passes": 1
+      },
+      {
+        "basis": "released_comparison",
+        "complexity": "moderate",
+        "estimated_request_reserve_usd": 0.0060921180000000005,
+        "fallback_quality_threshold_relaxed": true,
+        "model": "openai/gpt-6-luna",
+        "observations": 3,
+        "score": 0.005739542500000001,
+        "suite_passes": 1
+      }
+    ],
+    "known_cost_usd": 0.011491545,
+    "model_calls": [
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001669,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+              "start": 200
+            },
+            "result_digest": "105d20ca5a307f9a4c39febfc05444636d5aec59505831085b17cbe30b089289",
+            "tool": "read_file"
+          }
+        ],
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "786d15286ef1148d60a152c3a1b9e0e66401030e040623d4fc07d6ec915f0a8c",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006730438,
+        "response_digest": "e84855699aad8eb5ae33ba868727de4f01494d856a183d42f1dc1cb06bc4ba40",
+        "response_id": "gen-1791498845-4TBnmRIa4DM8AF9XsL0B",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 182,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 80
+          },
+          "cost": 0.001669,
+          "cost_details": {
+            "upstream_inference_completions_cost": 9.1e-05,
+            "upstream_inference_cost": 0.001669,
+            "upstream_inference_prompt_cost": 0.001578
+          },
+          "is_byok": false,
+          "prompt_tokens": 15780,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 15962
+        }
+      },
+      {
+        "benchmark_may_be_in_training_data": true,
+        "call_failed": true,
+        "cost_usd": 0.0034456,
+        "error": "KeyError",
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "model": "anthropic/claude-haiku-5.5",
+        "prompt_digest": "f033a30e617149b6b5ea150f99e356063e94bf19f088a4bc4d3a0b6bd1fba10b",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007076766999999999,
+        "response_digest": "aa0c61daeaab6cb190a33e51fa4f529f5a09685ca460a0d11a3a1f82c691f7d3",
+        "response_id": "gen-1791498847-3bAwkFnl0e4I4MdHr6QB",
+        "returned_model": "anthropic/claude-haiku-5.5",
+        "routed_provider": "Google",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 3597,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 3213
+          },
+          "cost": 0.0034456,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0017985,
+            "upstream_inference_cost": 0.0034456,
+            "upstream_inference_prompt_cost": 0.0016471
+          },
+          "is_byok": false,
+          "prompt_tokens": 16471,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 20068
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001193675,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+              "start": 185
+            },
+            "result_digest": "61b72ba1ef8b5de74cd041140461628c0e95d7bb4b06640c005a0426da6c4c6b",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "786d15286ef1148d60a152c3a1b9e0e66401030e040623d4fc07d6ec915f0a8c",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006729529000000001,
+        "response_digest": "861f11237defa19d143200d0d96587a0b64dd8e0f4b320b9da173f3ff6cf357b",
+        "response_id": "gen-1791498862-nHreLNQ8UakfDVRRp555",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 38,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.001193675,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.9e-05,
+            "upstream_inference_cost": 0.001193675,
+            "upstream_inference_prompt_cost": 0.001174675
+          },
+          "is_byok": false,
+          "prompt_tokens": 9398,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 9395,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9436
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000199125,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/AbstractUnivariateRealOptimizer.java",
+              "start": 1
+            },
+            "result_digest": "f9ea87ab3a1435ae3f8bc1da91769a5a4746cb5b890cc32850e7d2abc0b2bc5e",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "51ddccf84070178cfc0823bc3f974fcdd8fdda1b2052b8e93ec524c4a3ff1130",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006988493,
+        "response_digest": "76501326bde9534edebb7f8183651faaea3b6b68d459c4b062e615366ed3b4c0",
+        "response_id": "gen-1791498863-J5rCYXFEo9Mgx3szGFnW",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 81,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 39
+          },
+          "cost": 0.000199125,
+          "cost_details": {
+            "upstream_inference_completions_cost": 4.05e-05,
+            "upstream_inference_cost": 0.000199125,
+            "upstream_inference_prompt_cost": 0.000158625
+          },
+          "is_byok": false,
+          "prompt_tokens": 9913,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 515,
+            "cached_tokens": 9395,
+            "video_tokens": 0
+          },
+          "total_tokens": 9994
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00035565,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/AbstractUnivariateRealOptimizer.java",
+              "start": 200
+            },
+            "result_digest": "1cfd0759638f99344f72bc637172ee6000b476ca7d5dc73790c2db8e795ccd7e",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "191322bfedaf361dbd0b5a00f63ade81f44992e74edfccf9cf41885cd8e129fb",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.008070102,
+        "response_digest": "61a94d9dc1cc6e7191b67dc27793d89583052a14aa65bb432840c4436458082f",
+        "response_id": "gen-1791498866-3NioxO7fhRm1eayJ33q1",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 40,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00035565,
+          "cost_details": {
+            "upstream_inference_completions_cost": 2e-05,
+            "upstream_inference_cost": 0.00035565,
+            "upstream_inference_prompt_cost": 0.00033565
+          },
+          "is_byok": false,
+          "prompt_tokens": 11803,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1890,
+            "cached_tokens": 9910,
+            "video_tokens": 0
+          },
+          "total_tokens": 11843
+        }
+      },
+      {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00161925,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "3c5069a0fa816dd0aca89d403aa4d80395e09ef460cc6a012ab2034e9498338f",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.008345832000000001,
+        "response_digest": "4058df454783ca0d08bb403b5c214394155b2405f0fb4680e53283f41081ce84",
+        "response_id": "gen-1791498867-qtWwMFWx13PuQSm8ESrZ",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 141,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00161925,
+          "cost_details": {
+            "upstream_inference_completions_cost": 7.05e-05,
+            "upstream_inference_cost": 0.00161925,
+            "upstream_inference_prompt_cost": 0.00154875
+          },
+          "is_byok": false,
+          "prompt_tokens": 12403,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 12338,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 12544
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.00124205,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max)"
+            },
+            "result_digest": "3e825451cdc8687bb56bf932f370b592e4cbf4c3745de1422953021d8ff78cf7",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "d27afcdc1fcce3f3b4b379d39baa97767fd256c1751c19c974bdfaee22d468c8",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.006889917,
+        "response_digest": "78fcf6beb9ccae97e4052a5184a52d1d15571eab1df0bfab5f16c5fef222a488",
+        "response_id": "gen-1791498878-qz6q8HtOZdo75TzEpZhQ",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 1,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 41,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.00124205,
+          "cost_details": {
+            "upstream_inference_completions_cost": 2.05e-05,
+            "upstream_inference_cost": 0.00124205,
+            "upstream_inference_prompt_cost": 0.00122155
+          },
+          "is_byok": false,
+          "prompt_tokens": 9773,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 9770,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 9814
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000130375,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+              "start": 189
+            },
+            "result_digest": "d11479382529728530dd7571eb630be41c1262f5f260db2c2e57a48c1500a7e7",
+            "tool": "read_file"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "67401d8f883eab3785b2f2c2ebd0b2b99238ad33bc8b230f71bb11bfd409bb75",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.0069575869999999995,
+        "response_digest": "86125082256002a578fbcea89eaf2364bc2c49df17589bdefb68f3db1b135d53",
+        "response_id": "gen-1791498880-4fq1mBHL127hQ9Me2idj",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 2,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 38,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.000130375,
+          "cost_details": {
+            "upstream_inference_completions_cost": 1.9e-05,
+            "upstream_inference_cost": 0.000130375,
+            "upstream_inference_prompt_cost": 0.000111375
+          },
+          "is_byok": false,
+          "prompt_tokens": 9880,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 107,
+            "cached_tokens": 9770,
+            "video_tokens": 0
+          },
+          "total_tokens": 9918
+        }
+      },
+      {
+        "applicable": 0,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.000252195,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [
+          {
+            "arguments": {
+              "text": "testQuinticMinStatistics"
+            },
+            "result_digest": "7fa59e73d8e093867475b889025ff2b41cad4d4032eacb95777459aef49c90a5",
+            "tool": "search_files"
+          }
+        ],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "5e74c5e128c7082653e59e067a906d70299692fab8f25c1da7d5423e5733db7e",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007205542,
+        "response_digest": "129485ad8421de3ff6683d3903ab770ed4a7c37b3eaa91c22f4797061f2bb214",
+        "response_id": "gen-1791498881-5qdXHiRzZDxAz68QXf12",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 3,
+        "submission_only": false,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 183,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 158
+          },
+          "cost": 0.000252195,
+          "cost_details": {
+            "upstream_inference_completions_cost": 9.15e-05,
+            "upstream_inference_cost": 0.000252195,
+            "upstream_inference_prompt_cost": 0.000160695
+          },
+          "is_byok": false,
+          "prompt_tokens": 10373,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 493,
+            "cached_tokens": 9877,
+            "video_tokens": 0
+          },
+          "total_tokens": 10556
+        }
+      },
+      {
+        "applicable": 1,
+        "benchmark_may_be_in_training_data": true,
+        "cost_usd": 0.001384625,
+        "evidence_digest": "53d06b26dca5b696cb1b821a595bd50b9379b259991f9ecfd4051035acbb1948",
+        "explore": true,
+        "finish_reason": "tool_calls",
+        "inspections": [],
+        "model": "openai/gpt-6-luna",
+        "prompt_digest": "ec64aa74772dff9630fe5e68f2f9ea39693557009ec72a0062995fadf75634bd",
+        "provider": "openrouter",
+        "request_sent": true,
+        "requested": 1,
+        "reserved_cost_usd": 0.007546922,
+        "response_digest": "9efb52641eb8557ec21c3191da1769d07af03ab680f55d5c256f9e73bdff6eee",
+        "response_id": "gen-1791498887-3Ab0H3FBxTVrKdkrWxVq",
+        "returned_model": "openai/gpt-6-luna",
+        "routed_provider": "OpenAI",
+        "schema": "genesis-openrouter-proposal-call-v1",
+        "step": 4,
+        "submission_only": true,
+        "tool_choice": "auto",
+        "usage": {
+          "completion_tokens": 123,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 0
+          },
+          "cost": 0.001384625,
+          "cost_details": {
+            "upstream_inference_completions_cost": 6.15e-05,
+            "upstream_inference_cost": 0.001384625,
+            "upstream_inference_prompt_cost": 0.001323125
+          },
+          "is_byok": false,
+          "prompt_tokens": 10598,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 10533,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 10721
+        }
+      }
+    ],
+    "reuse_without_llm": false,
+    "scope": "released_development",
+    "solved": false,
+    "solved_without_llm": false,
+    "total_cost_usd": 0.011491545,
+    "unknown_cost": false,
+    "verdicts": [
+      {
+        "candidate_digest": "5e1979cac7046e510ee19aec611e93d99d538ac1ded43116bd8a3fe4d9b2865d",
+        "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "6821f0268bc77f8b07c1124913caf0fd1b824ba7f8acd641903cbf3274dda917"
+      },
+      {
+        "candidate_digest": "936993a98c094b0da863df780667b1fa839f9d5ba56aa0edf0abbf0b4b1fae8f",
+        "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.22961598075633935>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "7a8498375470e9f8cecee34cafed92b5d88ddd55d5e1b7490eb693f166bb6581"
+      },
+      {
+        "candidate_digest": "511b12e2e38e1861a035e0292ced0308a4cf60f8104c091b5360a53588b3d2f9",
+        "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/math/optimization/MultiStartUnivariateRealOptimizer.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "b9ce17e6c7c0d6795eda1a54e9b4563c3893e17d57add3ae45fa5011c7b2acff"
+      },
+      {
+        "candidate_digest": "86dee5884650a8c8eecf254ffe171b53bc496470b331ffb4f9de84c9f7f53510",
+        "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "strategist",
+        "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "979594dd1bead50779d8a3ab08ff00e201c5e8e16e584faf26abe470ff4205cb"
+      },
+      {
+        "candidate_digest": "f7191390d2773339717a51634117585adc3f2c54bc00383f21e4531165ae561b",
+        "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2644968727540442>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "openrouter:openai/gpt-6-luna",
+        "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "c138686198d5d1860468f6a099e14a0de5a6b456fe64913a706e6a2fd43e138e"
+      },
+      {
+        "candidate_digest": "7abb489d15caa1eb23b5c2de372a1aed9fb4e7bed0ae7d8799fc9c89b8d1c3f1",
+        "feedback": "--- org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest::testQuinticMin\njunit.framework.AssertionFailedError: expected:<-0.2719561270319131> but was:<-0.2719561299044896>\n\tat org.junit.Assert.fail(Assert.java:88)\n\tat org.junit.Assert.failNotEquals(Assert.java:834)\n\tat org.junit.Assert.assertEquals(Assert.java:553)\n\tat org.junit.Assert.assertEquals(Assert.java:683)\n\tat org.apache.commons.math.optimization.MultiStartUnivariateRealOptimizerTest.testQuinticMin(MultiStartUnivariateRealOptimizerTest.java:87)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)",
+        "full_suite_failures": null,
+        "origin": "openrouter:openai/gpt-6-luna",
+        "path": "src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java",
+        "plausible": false,
+        "schema": "genesis-repair-bench-verdict-v1",
+        "stopped_at": "failing_tests",
+        "verdict_digest": "2af2cbc6b18df16dfda7560f7c47a9376b7ffc3cc3bec760a45a66aba84507c8"
+      }
+    ]
+  },
+  "training_digest": "35d1ee3acf8d086950521efd359b064476e0d2d0cb8ae82ea831d0a91e35ede1"
+}

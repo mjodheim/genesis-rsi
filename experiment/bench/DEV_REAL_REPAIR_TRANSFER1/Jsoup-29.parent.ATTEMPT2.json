@@ -1,0 +1,21 @@
+{
+  "attempt_digest": "a5f8bc51ed9ba3f606d5d5646e65832bdaef1b97ee4dfdaf531afaec745c1849",
+  "candidate": {
+    "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+    "content_sha256": "47f636491aeff3450aae4c5835d44cb41736430a40b0fb54bbc1558af94bc056",
+    "description": "Local repair operator: repair_plan",
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Document.java"
+  },
+  "verdict": {
+    "candidate_digest": "a5efff72c35ea5b77dfc2f8d257d5feaec6e45828abf90f3da6dc93aaa60b3ba",
+    "feedback": "    [javac] /work/Jsoup-29-b/maven-build.xml:74: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds\n    [javac] Compiling 1 source file to /work/Jsoup-29-b/target/classes\n    [javac] warning: [options] bootstrap class path not set in conjunction with -source 6\n    [javac] warning: [options] source value 6 is obsolete and will be removed in a future release\n    [javac] warning: [options] target value 1.6 is obsolete and will be removed in a future release\n    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of expression\n    [javac]             transient return charsetEncoder;\n    [javac]             ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: illegal start of type\n    [javac]             transient return charsetEncoder;\n    [javac]                       ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:274: error: <identifier> expected\n    [javac]             transient return charsetEncoder;\n    [javac]                                            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/Document.java:334: error: class, interface, or enum expected\n    [javac]     public OutputSettings outputSettings() {\n    [javac]            ^\n    [javac] /work/Jsoup-29-b/src/main/java/org/jsoup/nodes/D",
+    "full_suite_failures": null,
+    "origin": "strategist",
+    "path": "src/main/java/org/jsoup/nodes/Document.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "compile",
+    "verdict_digest": "a95af7e97616e5c576acf2640e4d1bf37e1d13ddfb4d18131966725409161e9c"
+  }
+}

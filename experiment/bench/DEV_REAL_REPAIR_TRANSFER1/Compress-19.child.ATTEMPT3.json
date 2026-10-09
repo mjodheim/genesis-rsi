@@ -1,0 +1,21 @@
+{
+  "attempt_digest": "4656aeebb0897bb4dd6220050427fb0a708abd161d68a7440ecc920a9fee535c",
+  "candidate": {
+    "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+    "content_sha256": "0099b037d90e12e686db050948c2b724be4abe3144b0cccace82caac2700a985",
+    "description": "Bounded retained subscript strategy; delta=-2",
+    "origin": "learned-strategy:retained",
+    "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java"
+  },
+  "verdict": {
+    "candidate_digest": "8fab1f85849669429c7df9d60396c5defb801c285523552355f545c39bb3fe67",
+    "feedback": "--- org.apache.commons.compress.archivers.zip.ZipFileTest::testExcessDataInZip64ExtraField\njava.lang.NullPointerException\n\tat org.apache.commons.compress.archivers.zip.ZipFileTest.testExcessDataInZip64ExtraField(ZipFileTest.java:238)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:566)\n\tat junit.framework.TestCase.runTest(TestCase.java:176)\n\tat junit.framework.TestCase.runBare(TestCase.java:141)\n\tat junit.framework.TestResult$1.protect(TestResult.java:122)\n\tat junit.framework.TestResult.runProtected(TestResult.java:142)\n\tat junit.framework.TestResult.run(TestResult.java:125)",
+    "full_suite_failures": null,
+    "origin": "learned-strategy:retained",
+    "path": "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+    "plausible": false,
+    "schema": "genesis-repair-bench-verdict-v1",
+    "stopped_at": "failing_tests",
+    "verdict_digest": "29be101424edd6aea66130dc16edce0fc69c47278f1de3bdc36492314deb53bb"
+  }
+}
