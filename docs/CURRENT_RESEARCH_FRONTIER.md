@@ -705,3 +705,17 @@ cases where evidence missed the fix were mostly harder cases. The localizer's ga
 real as localization and worth little as repair on this agent; what limits repair is open
 and must be found by intervention. See
 [COVERAGE_REPAIR_2026-10-10.md](COVERAGE_REPAIR_2026-10-10.md).
+
+## What limits repair: one component changed at a time — 10 October 2026
+
+A diagnosis that names a component from interventions only. Sealed records first: of 68
+failed attempts of the seed agent, 32 end with nothing tested and half the requests unused,
+which pointed at the stopping rule, the tools or the budget. DEV_REPAIR_INTERVENTIONS1,
+preregistered, reran the agent on the 32 development cases it failed at least every other
+time, unchanged and with one component changed. Unchanged 12 repaired; tolerant tools 12;
+no stop on an empty round 11; one long round 10; twice the envelope 10; the developers'
+edit sites as locations 14; none distinguishable from the unchanged rerun. Sonnet 5.5 in
+place of Haiku 5.5 on 16 cases: 11 against 6, 5 gained and none lost, sign test 0.031,
+uncorrected for six comparisons. The model is named; the early stops were a symptom. Ten
+cases are repaired under no arm. See
+[REPAIR_INTERVENTIONS_2026-10-10.md](REPAIR_INTERVENTIONS_2026-10-10.md).
