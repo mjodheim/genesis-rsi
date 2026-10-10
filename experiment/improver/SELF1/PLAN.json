@@ -1,0 +1,59 @@
+{
+  "after_a_rejection": "the parent stays and applies itself again on new tasks",
+  "claim_boundary": "promotions on development families select improvers and prove nothing by themselves; no outcome of a lineage establishes general recursive self-improvement",
+  "comparison": "parent and candidate are each run once on 5 tasks per development family, numbered 2000 + 100 * (10 * replicate + g) + i, and scored by the host on the five hidden instances of each task",
+  "development_families": [
+    "binpack",
+    "coloring",
+    "qap",
+    "regression",
+    "tardiness",
+    "tsp"
+  ],
+  "generations": 5,
+  "held_out_families": [
+    "cluster",
+    "jobshop",
+    "knapsack",
+    "maxcut",
+    "sequence",
+    "setcover"
+  ],
+  "held_out_rule": "held-out families are run only once the lineage is frozen, seed against final improver, under a separate preregistration",
+  "image": "python@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+  "machinery_commit": "a2b551b3dab845e4d383bed3d21c57540d76f3fa",
+  "machinery_digests": {
+    "genesis/improver_lineage.py": "05ad4b780fc763121a1f2e975e93155e172a94622be078b60f2c83319954f149",
+    "genesis/improver_runtime.py": "7c8690023a045cda60eb14c6d829c1d8f76622a30b9eda4fcd98739e303bb268",
+    "genesis/improver_seed.py": "34cad2977e5892dabb7913cc9faf939de009941723a37c22ac35f62511ad5e17",
+    "genesis/openrouter_repair.py": "901a40aa72c7d23c7d027ab80d741cfdb6dbaf7734f2e0f2e007230bf7546792",
+    "genesis/repair_lineage.py": "1a86d2a927c6320cd8657d339d8fe06a48004d7d165254550a2c0301973868f3",
+    "scripts/run_improver_lineage.py": "5f3fbb2e7ff0dda210d218b9fa140f485cac7931e243e92e9a70cc0e4f212fcc"
+  },
+  "meta_budget": {
+    "evaluations": 6,
+    "lm_calls": 150,
+    "seconds": 7200
+  },
+  "model": "anthropic/claude-haiku-5.5",
+  "name": "SELF1",
+  "object_budget": {
+    "evaluations": 10,
+    "lm_calls": 6,
+    "seconds": 900
+  },
+  "plan_digest": "ec4a1000a6e879ccaa772769c12fb0fd83a9bd5a30ead9c0103558089c58795b",
+  "promotion_rule": {
+    "level": 0.05,
+    "margin": 5,
+    "text": "tasks won minus tasks lost at least the margin, a higher mean score, and an exact one-sided sign test at the level; a candidate identical to its parent is not run",
+    "tie": 0.005
+  },
+  "replicate": 0,
+  "schema": "genesis-improver-lineage-plan-v1",
+  "seed_improver_sha256": "485c00c5f54dbd47727d716d25a9be3289d98b52abb1bd626502f5de9ce5336d",
+  "selection_tasks_per_family": 5,
+  "self_application": "generation g: the current improver is run on the task 'improver' with its own source as the initial program and 4 development tasks numbered 1000 + 100 * (10 * replicate + g) + i, one per family in rotation; what it returns is the candidate",
+  "spending_ceiling_usd": 5.5,
+  "tasks_per_improver_evaluation": 4
+}
