@@ -692,3 +692,16 @@ the spread between searches exceeds the difference between the two recombination
 system's diagnosis after the promotion: 153 of 245 misses are out of reach of any
 combination, mostly an edit inside a file some member names. Recombination is close to
 exhausted; no chain. See [LOCALIZER_PROGRAMS_2026-10-10.md](LOCALIZER_PROGRAMS_2026-10-10.md).
+
+## Does covering the fix make the agent repair? — 10 October 2026
+
+First causal test of the attribution that named the localizer as what limits repair.
+DEV_COVERAGE_REPAIR1, preregistered: the 24 validation-role cases where exactly one of two
+localizers covers every edit site, the same repair agent run with each. Repaired with the
+fix covered 22, without 18; 4 against 0 on the discordant pairs, sign test 0.0625, not
+established. Without coverage the agent still reaches the developers' lines through its
+own inspections (82 against 47). The observational gap of 44 points overstated the effect:
+cases where evidence missed the fix were mostly harder cases. The localizer's gains are
+real as localization and worth little as repair on this agent; what limits repair is open
+and must be found by intervention. See
+[COVERAGE_REPAIR_2026-10-10.md](COVERAGE_REPAIR_2026-10-10.md).
