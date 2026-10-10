@@ -654,3 +654,16 @@ kept with an apparatus fault and counts for nothing. STRICT_PILOT2, 63 developme
 came from a diluted timing and is withdrawn. Development cases only. See
 [PROGRAM_IMPROVEMENT_STRICT_JUDGE_2026-10-10.md](PROGRAM_IMPROVEMENT_STRICT_JUDGE_2026-10-10.md).
 
+## Localizers recombined without a model — 10 October 2026
+
+The 41 modules the two localizer lineages left, rejected ones included, were each run once
+on the development cases. Composites that merge the answers of two members are chosen on
+training cases by arithmetic and promoted on selection cases under the rule of the lineage;
+no model is called. RECOMBINE1, plan committed first: the first three locations of the
+LOCALIZER1 champion followed by the LOCALIZER2 champion's is promoted (selection 88 to 106
+of 278, sign test 0.003); a second generation is rejected. Validation, scored once: 88 to
+93 of 211, 13 gained and 8 lost, sign test 0.19, not established. One model-free step past
+a plateau where 12 model-written successors had failed; not a chain, a hand-written merge
+rule, and no repair trial. See
+[LOCALIZER_RECOMBINATION_2026-10-10.md](LOCALIZER_RECOMBINATION_2026-10-10.md).
+

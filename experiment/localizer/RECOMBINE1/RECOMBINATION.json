@@ -1,0 +1,93 @@
+{
+  "attempts": [
+    {
+      "archive_size": 41,
+      "generation": 1,
+      "member": {
+        "first": "LOCALIZER1:g3a3",
+        "lead": 3,
+        "name": "c-31542d6f64b6",
+        "schema": "genesis-localizer-composite-v1",
+        "second": "LOCALIZER2:g3a3"
+      },
+      "outcome": "promoted",
+      "parent": "LOCALIZER1:g3a3",
+      "selection": {
+        "child": 106,
+        "gained": 29,
+        "lost": 11,
+        "one_sided_sign_test": 0.003213288047845708,
+        "parent": 88
+      },
+      "training_localized": 69
+    },
+    {
+      "archive_size": 42,
+      "generation": 2,
+      "member": {
+        "first": "c-31542d6f64b6",
+        "lead": 2,
+        "name": "c-03e138378d8b",
+        "schema": "genesis-localizer-composite-v1",
+        "second": "LOCALIZER1:g0"
+      },
+      "outcome": "rejected on unseen cases",
+      "parent": "c-31542d6f64b6",
+      "selection": {
+        "child": 101,
+        "gained": 4,
+        "lost": 9,
+        "one_sided_sign_test": 0.953857421875,
+        "parent": 106
+      },
+      "training_localized": 71
+    }
+  ],
+  "chain": [
+    "LOCALIZER1:g3a3",
+    "c-31542d6f64b6"
+  ],
+  "champion_scores": {
+    "LOCALIZER1:g3a3": {
+      "selection": {
+        "all_files": 191,
+        "any_site": 142,
+        "case_count": 278,
+        "localized": 88
+      },
+      "training": {
+        "all_files": 121,
+        "any_site": 95,
+        "case_count": 198,
+        "localized": 64
+      }
+    },
+    "c-31542d6f64b6": {
+      "selection": {
+        "all_files": 170,
+        "any_site": 151,
+        "case_count": 278,
+        "localized": 106
+      },
+      "training": {
+        "all_files": 113,
+        "any_site": 96,
+        "case_count": 198,
+        "localized": 69
+      }
+    }
+  },
+  "members": {
+    "c-31542d6f64b6": {
+      "first": "LOCALIZER1:g3a3",
+      "lead": 3,
+      "name": "c-31542d6f64b6",
+      "schema": "genesis-localizer-composite-v1",
+      "second": "LOCALIZER2:g3a3"
+    }
+  },
+  "name": "RECOMBINE1",
+  "plan_digest": "f2ddd27d4ba55186c78b6b263b8128ea69c07948c981e576baeb17f7975363f1",
+  "recombination_digest": "d47c549edde0a06812b991626a1a9572eff9ece00dc9ad9966ca756e551d5900",
+  "schema": "genesis-localizer-recombination-v1"
+}
