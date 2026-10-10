@@ -667,3 +667,14 @@ a plateau where 12 model-written successors had failed; not a chain, a hand-writ
 rule, and no repair trial. See
 [LOCALIZER_RECOMBINATION_2026-10-10.md](LOCALIZER_RECOMBINATION_2026-10-10.md).
 
+
+## Localizers scored on projects they never saw — 10 October 2026
+
+A second source of cases is frozen: 744 bugs of 212 projects in the Defects4J format, none
+sharing a name, a repository or a revision with the development catalogue, split by
+repository into 298 first, 273 second and 173 reserve. EXTERNAL1, plan pushed first, 293
+cases of 77 projects, each comparison scored once: the model-written champion against its
+seed, 63 to 134, 75 gained and 4 lost; the composite built without a model against that
+champion, 134 to 155, 29 gained and 8 lost, sign test 0.0004. Both steps hold outside the
+projects they were developed on. Localization only, Java only, one hand-written merge rule,
+no repair trial. See [EXTERNAL_LOCALIZATION_2026-10-10.md](EXTERNAL_LOCALIZATION_2026-10-10.md).
