@@ -597,3 +597,17 @@ The hard-case child stops on a malformed final submission whose raw item was
 not retained; the reference stops after repeating a graded candidate. No policy
 promotion or canonical memory update. 116 focused tests pass. See
 [REPAIR_CAUSAL_EVIDENCE_NORMALIZED_2026-10-09.md](REPAIR_CAUSAL_EVIDENCE_NORMALIZED_2026-10-09.md).
+
+## Localizer lineage: code rewritten, judged without a model — 9 October 2026
+
+The fault localizer of the repair bench became generation zero of a lineage of Python
+modules rewritten by the external model, run in a network-less container and scored by
+whether their locations cover the developer fix, on 687 development cases split into
+training, selection and validation. LOCALIZER1: 43, 73 then 88 of 211 validation cases
+localized along two promotions, then three generations without one. LOCALIZER2, without
+the record of earlier attempts: 43 to 80 after one promotion, then the same stop; one run
+each does not separate the two. DEV_LOCALIZED_REPAIR1, preregistered: the same repair
+agent repairs 27 of 40 cases with the final localizer against 26 of 40 with the stack
+trace. A real component gain, a short chain, a plateau, and no system gain. No held-out
+case consumed (103 remain). See
+[LOCALIZER_LINEAGE_2026-10-09.md](LOCALIZER_LINEAGE_2026-10-09.md).

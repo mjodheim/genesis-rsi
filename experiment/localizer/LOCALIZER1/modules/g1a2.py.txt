@@ -1,0 +1,242 @@
+"""Generation one of the fault localizer: stack frames plus identifier evidence.
+
+Signals (standard library only):
+  * production frames of the failing traces, the first frame of each trace weighing most;
+  * identifiers of the failing test method body and of the report messages, matched against
+    production sources and weighted by rarity (inverse document frequency);
+  * one hop from the strongest files to the production classes they reference;
+  * evidence smoothed over a small window of lines, so a fix a few lines away is found.
+Picks are greedy, kept apart within a file, with a penalty for repeated files.
+"""
+import math
+import os
+import re
+from collections import Counter, defaultdict
+
+FRAME = re.compile(r"^\s+at ([\w.$]+)\.[\w$<>]+\(([\w$]+\.java):(\d+)\)", re.MULTILINE)
+FRAME_LINE = re.compile(r"^\s+at [\w.$]+\.[\w$<>]+\([\w$]+\.java:\d+\)")
+SOURCE_LINE = re.compile(r"^\s*\d+\|")
+IDENT = re.compile(r"[A-Za-z_]\w*")
+STOP = frozenset("""
+abstract assert boolean break byte case catch char class const continue default do double
+else enum extends final finally float for goto if implements import instanceof int interface
+long native new package private protected public return short static strictfp super switch
+synchronized this throw throws transient try void volatile while true false null var
+expected but was java org com junit assertion failed failure error exception
+""".split())
+
+FRAME_BONUS = 6.0
+FRAME_DECAY = 0.85
+HOP = 0.3
+FILE_WEIGHT = 0.5
+DECAY = 0.8
+WIN_BEFORE = 12
+WIN_AFTER = 4
+SEPARATION = 30
+REPEAT_PENALTY = 0.8
+POOL = 400
+MAX_FILES = 5000
+MAX_BYTES = 400_000
+
+
+def _java_files(root, base):
+    out = []
+    top = os.path.join(root, base)
+    if not os.path.isdir(top):
+        return out
+    for dirpath, dirnames, filenames in os.walk(top):
+        dirnames.sort()
+        for name in sorted(filenames):
+            if name.endswith(".java"):
+                out.append(os.path.relpath(os.path.join(dirpath, name), root).replace(os.sep, "/"))
+    return sorted(out)
+
+
+def _read(root, rel):
+    full = os.path.join(root, rel)
+    try:
+        if os.path.getsize(full) > MAX_BYTES:
+            return None
+        with open(full, encoding="utf-8", errors="replace") as fh:
+            return fh.read().split("\n")
+    except OSError:
+        return None
+
+
+def _is_code(text):
+    s = text.strip()
+    return bool(s) and not s.startswith(("//", "*", "/*", "import ", "package "))
+
+
+def _ids(text):
+    return [t for t in IDENT.findall(text) if len(t) >= 3 and t not in STOP]
+
+
+def _resolve(cls, by_name):
+    parts = cls.split("$")[0].split(".")
+    cands = by_name.get(parts[-1], [])
+    if not cands:
+        return None
+    suffix = "/".join(parts) + ".java"
+    for c in cands:
+        if c == suffix or c.endswith("/" + suffix):
+            return c
+    return cands[0] if len(cands) == 1 else None
+
+
+def _method_lines(lines, meth):
+    pat = re.compile(r"\b" + re.escape(meth) + r"\s*\(")
+    for i, ln in enumerate(lines):
+        if pat.search(ln) and "new " not in ln:
+            depth, opened, out = 0, False, []
+            for j in range(i, min(len(lines), i + 80)):
+                out.append(lines[j])
+                depth += lines[j].count("{") - lines[j].count("}")
+                if "{" in lines[j]:
+                    opened = True
+                if opened and depth <= 0:
+                    break
+            return out
+    return []
+
+
+def _rank(case):
+    root = case["root"]
+    report = case["report"]
+    blocks = re.split(r"^--- ", report, flags=re.MULTILINE)[1:]
+
+    texts = {}
+    for rel in _java_files(root, case["source_directory"])[:MAX_FILES]:
+        lines = _read(root, rel)
+        if lines is not None:
+            texts[rel] = lines
+    by_name = defaultdict(list)
+    for rel in sorted(texts):
+        by_name[rel.rsplit("/", 1)[-1][:-5]].append(rel)
+
+    hits = defaultdict(lambda: defaultdict(float))
+    fscore = defaultdict(float)
+
+    # 1. Stack frames inside production code.
+    for ti, block in enumerate(blocks):
+        for fi, (cls, _, line) in enumerate(FRAME.findall(block)):
+            path = _resolve(cls, by_name)
+            if path is None:
+                continue
+            w = FRAME_BONUS * FRAME_DECAY ** fi / (1 + ti)
+            hits[path][int(line)] += w
+            fscore[path] += w
+
+    # 2. Query identifiers: test method body plus report message lines.
+    query = set()
+    test_files = _java_files(root, case["test_directory"])
+    for name in case["failing_tests"]:
+        cls, _, meth = name.partition("::")
+        simple = cls.split(".")[-1]
+        for rel in test_files:
+            if rel.rsplit("/", 1)[-1] == simple + ".java":
+                lines = _read(root, rel)
+                if lines is not None:
+                    for ln in _method_lines(lines, meth):
+                        query.update(_ids(ln))
+                break
+    for block in blocks:
+        for ln in block.split("\n")[1:]:
+            if FRAME_LINE.match(ln) or SOURCE_LINE.match(ln) or ln.startswith("Test source"):
+                continue
+            query.update(_ids(ln))
+
+    # 3. Rare query identifiers found in production code.
+    occurrences = {}
+    df = Counter()
+    for rel, lines in texts.items():
+        occ = defaultdict(list)
+        for i, ln in enumerate(lines):
+            for t in set(_ids(ln)):
+                if t in query:
+                    occ[t].append(i + 1)
+        if occ:
+            occurrences[rel] = occ
+            df.update(occ.keys())
+    n = max(len(texts), 1)
+    for rel, occ in occurrences.items():
+        for t, ls in occ.items():
+            w = math.log((n + 1) / (df[t] + 1)) + 1.0
+            fscore[rel] += w
+            for l in ls:
+                hits[rel][l] += w
+
+    # 4. One hop: classes referenced by the strongest files get their declaration line.
+    top = sorted(fscore, key=lambda r: (-fscore[r], r))[:5]
+    for rel in top:
+        own = rel.rsplit("/", 1)[-1][:-5]
+        seen = set()
+        for ln in texts[rel]:
+            for t in _ids(ln):
+                if t == own or t in seen or t not in by_name:
+                    continue
+                seen.add(t)
+                for other in by_name[t]:
+                    if other == rel:
+                        continue
+                    decl = next((i + 1 for i, s in enumerate(texts[other])
+                                 if re.search(r"\b(class|interface|enum)\s+" + t + r"\b", s)), 1)
+                    add = HOP * fscore[rel]
+                    fscore[other] += add
+                    hits[other][decl] += add
+
+    # 5. Smooth hits over a window and collect candidate lines.
+    smooth = defaultdict(lambda: defaultdict(float))
+    for rel, hl in hits.items():
+        for h, s in hl.items():
+            for l in range(max(1, h - WIN_BEFORE), h + WIN_AFTER + 1):
+                smooth[rel][l] += s * DECAY ** abs(l - h)
+    cands = []
+    for rel, sl in smooth.items():
+        lines = texts[rel]
+        for l, v in sl.items():
+            if l <= len(lines) and _is_code(lines[l - 1]):
+                cands.append((v + FILE_WEIGHT * fscore[rel], rel, l))
+    pool = sorted(cands, key=lambda c: (-c[0], c[1], c[2]))[:POOL]
+
+    # 6. Greedy picks: apart within a file, with a penalty for files already used.
+    chosen, used = [], Counter()
+    while pool and len(chosen) < 6:
+        best = None
+        for base, rel, l in pool:
+            if any(r == rel and abs(l - cl) < SEPARATION for r, cl in chosen):
+                continue
+            eff = base * REPEAT_PENALTY ** used[rel]
+            if best is None or eff > best[0]:
+                best = (eff, rel, l)
+        if best is None:
+            break
+        chosen.append((best[1], best[2]))
+        used[best[1]] += 1
+        pool = [c for c in pool if not (c[1] == best[1] and c[2] == best[2])]
+    return [[rel, l] for rel, l in chosen]
+
+
+def _fallback(case):
+    out = []
+    root = case["root"]
+    source = case["source_directory"]
+    for name in case["failing_tests"]:
+        simple = re.sub(r"Tests?$", "", name.split("::")[0].split(".")[-1])
+        for rel in _java_files(root, source):
+            if rel.rsplit("/", 1)[-1] == simple + ".java" and [rel, 1] not in out:
+                out.append([rel, 1])
+    return out
+
+
+def localize(case):
+    try:
+        ranked = _rank(case)
+    except Exception:
+        ranked = []
+    if not ranked:
+        try:
+            ranked = _fallback(case)
+        except Exception:
+            ranked = []
+    return ranked[:6]

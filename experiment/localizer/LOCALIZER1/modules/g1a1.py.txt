@@ -1,0 +1,239 @@
+"""Generation one of the fault localizer.
+
+Signals, combined per candidate (path, line):
+  * production frames of the failing traces, weighted by depth in each trace and summed over tests;
+  * IDF-weighted word overlap between the failure message (and string literals near the failing
+    test line) and production lines, which finds the code that produces the expected text;
+  * production classes named by identifiers in the failing test and by the top production file,
+    anchored at their class declarations, which catches fixes spread over several files;
+  * the class the failing test is named after, as a weak fallback.
+Returns at most six diverse locations, most suspect first.
+"""
+import math
+import os
+import re
+from collections import Counter, defaultdict
+
+FRAME = re.compile(r"^\s+at\s+((?:[\w$]+\.)+)([\w$<>]+)\(([\w$]+\.java):(\d+)\)", re.M)
+IDENT = re.compile(r"\b[A-Z][A-Za-z0-9_]{3,}\b")
+LITERAL = re.compile(r'"((?:[^"\\]|\\.){4,})"')
+STOP = set("""expected actual but was class junit framework assertion failed failure error
+exception true false null the and with not for from this that java lang string object equals
+assert fail test tests should public private protected void return new static final int boolean
+import package extends implements throws throw else while case break default""".split())
+MAX_LINES = 400000
+
+
+def _norm(d):
+    d = (d or "").replace("\\", "/").strip("/")
+    return "" if d in (".", "") else d
+
+
+def _tree(root, rel):
+    base = os.path.join(root, rel) if rel else root
+    files = {}
+    if not os.path.isdir(base):
+        return files
+    for dp, dns, fns in os.walk(base):
+        dns.sort()
+        for fn in sorted(fns):
+            if fn.endswith(".java"):
+                full = os.path.join(dp, fn)
+                files[os.path.relpath(full, root).replace(os.sep, "/")] = full
+    return files
+
+
+def _index(files, prefix):
+    by_qual, by_stem = {}, defaultdict(list)
+    for rel in files:
+        body = rel[len(prefix):] if prefix and rel.startswith(prefix) else rel
+        q = body[:-5].replace("/", ".")
+        by_qual[q] = rel
+        by_stem[os.path.basename(rel)[:-5]].append((rel, q))
+    return by_qual, by_stem
+
+
+def _resolve(idx, classpath, fname):
+    by_qual, by_stem = idx
+    top = classpath.split("$")[0]
+    if top in by_qual:
+        return by_qual[top]
+    cands = by_stem.get(fname[:-5], [])
+    for rel, q in cands:
+        if top == q or top.endswith("." + q):
+            return rel
+    if len(cands) == 1:
+        return cands[0][0]
+    return None
+
+
+def _read(full):
+    try:
+        with open(full, encoding="utf-8", errors="replace") as fh:
+            return fh.read().splitlines()
+    except OSError:
+        return []
+
+
+def _words(text):
+    out = set()
+    for tok in re.findall(r"[A-Za-z][A-Za-z0-9]*", text):
+        if len(tok) >= 3:
+            out.add(tok.lower())
+        for part in re.findall(r"[A-Z][a-z]+|[a-z]+|[A-Z]+(?![a-z])", tok):
+            if len(part) >= 3:
+                out.add(part.lower())
+    return out - STOP
+
+
+def _localize(case):
+    root = case["root"]
+    src = _norm(case.get("source_directory", ""))
+    tst = _norm(case.get("test_directory", ""))
+    prod = _tree(root, src)
+    tests = _tree(root, tst)
+    pidx = _index(prod, src + "/" if src else "")
+    tidx = _index(tests, tst + "/" if tst else "")
+
+    # Parse the report into blocks: (test name, message text, production frames, test frames).
+    blocks = []
+    for chunk in re.split(r"^--- ", case.get("report", "") or "", flags=re.M)[1:]:
+        head, _, body = chunk.partition("\n")
+        msg = []
+        for ln in body.splitlines():
+            if re.match(r"\s+at\s", ln):
+                break
+            msg.append(ln)
+        prod_frames, test_frames, seen = [], [], set()
+        for m in FRAME.finditer(body):
+            cp, fname, line = m.group(1)[:-1], m.group(3), int(m.group(4))
+            rel = _resolve(pidx, cp, fname)
+            if rel is not None:
+                if (rel, line) not in seen:
+                    seen.add((rel, line))
+                    prod_frames.append((rel, line))
+                continue
+            trel = _resolve(tidx, cp, fname)
+            if trel is not None:
+                test_frames.append((trel, line))
+        blocks.append((head.strip(), " ".join(msg), prod_frames, test_frames))
+
+    # Query words: failure message plus literals and identifiers from the failing test lines.
+    qset = set()
+    test_idents = set()
+    for _, msg, _, test_frames in blocks:
+        qset |= _words(msg)
+        for trel, line in test_frames[:3]:
+            lines = _read(tests[trel])
+            window = "\n".join(lines[max(0, line - 26):min(len(lines), line + 2)])
+            qset |= _words(" ".join(LITERAL.findall(window)))
+            test_idents |= set(IDENT.findall(window))
+
+    # Production line index and document frequencies for IDF.
+    prod_lines, line_words, df, total = {}, {}, Counter(), 0
+    lexical_ok = True
+    for rel, full in prod.items():
+        lines = _read(full)
+        prod_lines[rel] = lines
+        total += len(lines)
+        if total > MAX_LINES:
+            lexical_ok = False
+            break
+        ws = [_words(l) for l in lines]
+        line_words[rel] = ws
+        fw = set().union(*ws) if ws else set()
+        for w in fw:
+            df[w] += 1
+    for rel in prod:
+        if rel not in prod_lines:
+            prod_lines[rel] = _read(prod[rel])
+
+    cand = defaultdict(float)
+    decl_cache = {}
+
+    def decl_line(rel):
+        if rel not in decl_cache:
+            st = os.path.basename(rel)[:-5]
+            pat = re.compile(r"\b(?:class|interface|enum)\s+" + re.escape(st) + r"\b")
+            found = 1
+            for i, l in enumerate(prod_lines.get(rel, [])):
+                if pat.search(l):
+                    found = i + 1
+                    break
+            decl_cache[rel] = found
+        return decl_cache[rel]
+
+    # 1. Production frames: depth-weighted, summed over failing tests.
+    for _, _, prod_frames, _ in blocks:
+        for k, (rel, line) in enumerate(prod_frames):
+            cand[(rel, line)] += 1.0 / (1.0 + 0.5 * k)
+
+    # 2. Lexical match of message and literals against production lines.
+    if lexical_ok and qset:
+        idf = {w: math.log((total + 1) / (df[w] + 1)) + 1.0 for w in qset if df[w] > 0}
+        qtotal = sum(idf.values())
+        if qtotal > 0:
+            for rel, ws in line_words.items():
+                fw = set().union(*ws) if ws else set()
+                fhit = sum(idf[w] for w in qset & fw if w in idf)
+                if fhit <= 0:
+                    continue
+                best, best_line = 0.0, 0
+                for i, s in enumerate(ws):
+                    sc = sum(idf[w] for w in (s & qset) if w in idf)
+                    if sc > best:
+                        best, best_line = sc, i + 1
+                if best_line:
+                    cand[(rel, best_line)] += 0.6 * (fhit / qtotal)
+
+    # 3. Production classes named by the failing test's identifiers.
+    for ident in test_idents:
+        matches = pidx[1].get(ident, [])
+        if len(matches) == 1:
+            rel = matches[0][0]
+            cand[(rel, decl_line(rel))] += 0.3
+
+    # 4. Production classes referenced by the top production frame's file.
+    top_rel = None
+    for _, _, prod_frames, _ in blocks:
+        if prod_frames:
+            top_rel = prod_frames[0][0]
+            break
+    if top_rel is not None:
+        refs = set()
+        for l in prod_lines.get(top_rel, []):
+            refs |= set(IDENT.findall(l))
+        added = 0
+        for ident in sorted(refs):
+            matches = pidx[1].get(ident, [])
+            if len(matches) == 1 and matches[0][0] != top_rel and added < 15:
+                rel = matches[0][0]
+                cand[(rel, decl_line(rel))] += 0.25
+                added += 1
+
+    # 5. Fallback: the class the failing test is named after.
+    for head, _, _, _ in blocks:
+        name = head.split("::")[0].split(".")[-1]
+        base = re.sub(r"^Test(?=.)", "", re.sub(r"Tests?$", "", name))
+        matches = pidx[1].get(base, [])
+        if len(matches) == 1:
+            rel = matches[0][0]
+            cand[(rel, decl_line(rel))] += 0.15
+
+    # Select six diverse candidates.
+    ranked = sorted(cand.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    chosen = []
+    for (rel, line), _ in ranked:
+        if any(r == rel and abs(l - line) < 25 for r, l in chosen):
+            continue
+        chosen.append((rel, line))
+        if len(chosen) == 6:
+            break
+    return [[rel, line] for rel, line in chosen]
+
+
+def localize(case):
+    try:
+        return _localize(case)
+    except Exception:
+        return []
