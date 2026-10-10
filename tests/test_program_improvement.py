@@ -349,3 +349,59 @@ def test_a_rewrite_that_drops_a_value_it_still_uses_is_refused_before_running():
         transport=lambda payload, timeout: {"choices": [{"finish_reason": "stop", "message": {"content": next(replies)}}], "usage": {}})
     assert "uses _BASE without defining it" in written["calls"][0]["refused"]
     assert written["candidate"].startswith("_BASE = 0\n")
+
+
+# -- the strict judge ---------------------------------------------------------------------------
+
+
+def test_variants_edit_one_argument_and_leave_the_call_itself_untouched():
+    root = [[[3, 3, 1], 2], {"key": None}]
+    found = dict(harness.edits(root))
+    assert found["0: empty"] == [((0, 0), [])]
+    assert found["1: 0"] == [((0, 1), 0)]
+    assert found["key: 0"] == [((1, "key"), 0)]
+    changed = harness.replaced(root, (0, 0, 1), "x")
+    assert changed[0][0] == [3, "x", 1] and root[0][0] == [3, 3, 1]
+
+
+def test_a_value_seen_twice_becomes_one_shared_nan_or_an_unhashable_box():
+    root = [[("a", "b"), ("a", "c")], {}]
+    found = dict(harness.edits(root))
+    changes = found["every 'a': one NaN"]
+    assert [path for path, _ in changes] == [(0, 0, 0), (0, 1, 0)]
+    assert changes[0][1] is changes[1][1] and changes[0][1] != changes[0][1]
+    assert found["every 'a': boxed"][0][1] == ["a"]
+
+
+def test_defaults_are_written_out_so_that_a_variant_can_edit_them():
+    def function(graph, depth=None, *, key="x"):
+        return graph
+    assert harness.bound(function, ("g",), {}) == [["g", None], {"key": "x"}]
+
+
+def test_variants_keep_what_the_original_does_twice_and_compare_exception_types_only():
+    first = [{"key": "a", "kind": "returned", "digest": "1", "error": ""},
+             {"key": "b", "kind": "raised", "digest": "2", "error": "ValueError"},
+             {"key": "c", "kind": "returned", "digest": "3", "error": ""},
+             {"key": "d", "kind": "timeout", "digest": "", "error": ""}]
+    second = [dict(first[0]), dict(first[1]), {**first[2], "digest": "other"}, dict(first[3])]
+    reference = improvement.stable_variants(first, second)
+    assert sorted(reference) == ["a", "b"]
+    same = [{"key": "a", "kind": "returned", "digest": "1", "error": ""},
+            {"key": "b", "kind": "raised", "digest": "another message", "error": "ValueError"}]
+    assert improvement.variant_differences(reference, same) == []
+    other = [{"key": "a", "kind": "returned", "digest": "9", "error": ""},
+             {"key": "b", "kind": "raised", "digest": "2", "error": "TypeError"}]
+    assert len(improvement.variant_differences(reference, other)) == 2
+    assert len(improvement.variant_differences(reference, [])) == 2
+
+
+def test_a_rewrite_may_not_reach_internals_the_original_left_alone():
+    source = "import os\n\ndef f(graph):\n    return graph._adj, graph.nodes\n"
+    improvement.checked_private("def f(graph):\n    return graph._adj\n", source, "f", "pkg")
+    for text in ("def f(graph):\n    return graph._succ\n",
+                 "def f(graph):\n    return object.__new__(type(graph))\n",
+                 "from html import _replace_charref\n\ndef f(graph):\n    return graph\n"):
+        with pytest.raises(improvement.ImprovementError):
+            improvement.checked_private(text, source, "f", "pkg")
+    improvement.checked_private("from pkg.core import _helper\n\ndef f(graph):\n    return graph\n", source, "f", "pkg")

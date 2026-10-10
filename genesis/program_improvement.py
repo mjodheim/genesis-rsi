@@ -53,6 +53,11 @@ MAX_REPLAY_SECONDS = 1.0
 CALL_SECONDS = 2
 REQUIRED_GAIN = 0.03
 FORBIDDEN_TEXT = ("ctypes", "genesis", "callgrind", "valgrind")
+FORBIDDEN_ATTRIBUTES = ("__new__", "__dict__", "__wrapped__", "__code__", "__globals__")
+MAX_NATIVE_RATIO = 1.05
+MAX_PEAK_RATIO = 1.2
+PEAK_ALLOWANCE = 65_536
+NATIVE_REPEATS = 5
 
 
 class ImprovementError(ValueError):
@@ -105,6 +110,29 @@ def _interface(node: ast.FunctionDef) -> str:
     return "|".join([
         ast.dump(node.args), ast.dump(node.returns) if node.returns else "",
         *(ast.dump(item) for item in node.decorator_list)])
+
+
+def private_uses(node: ast.AST) -> set[str]:
+    """Private attributes read or written in ``node``: ``x._name``, and the dunders that bypass an object."""
+    return {item.attr for item in ast.walk(node) if isinstance(item, ast.Attribute)
+            and ((item.attr.startswith("_") and not item.attr.startswith("__")) or item.attr in FORBIDDEN_ATTRIBUTES)}
+
+
+def checked_private(candidate: str, source: str, name: str, package: str) -> None:
+    """Refuse a rewrite that reaches into internals the original function did not touch."""
+    tree = ast.parse(candidate)
+    original_tree = ast.parse(source)
+    original = next(node for node in original_tree.body if isinstance(node, ast.FunctionDef) and node.name == name)
+    added = sorted(private_uses(tree) - private_uses(original))
+    if added:
+        raise ImprovementError(f"the rewrite reaches a private attribute the original does not use ({added[0]}); "
+                               "stay on the public interface of the objects involved")
+    known = _top_level_names(original_tree)
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom) and not node.level and (node.module or "").split(".")[0] != package.split(".")[0]:
+            for alias in node.names:
+                if alias.name.startswith("_") and (alias.asname or alias.name) not in known:
+                    raise ImprovementError(f"import of the private name {alias.name!r} from {node.module} is not allowed")
 
 
 def checked_candidate(candidate: str, source: str, name: str, package: str) -> str:
@@ -330,6 +358,66 @@ class Case:
     def select(self, indexes: Sequence[int]) -> list[str]:
         return [self.calls[index] for index in indexes]
 
+    def variants(self, scratch: Path, *, runner: Callable | None = None) -> dict:
+        """What the original does on generated variants of its recorded calls, kept when two runs agree."""
+        if getattr(self, "_variants", None) is None:
+            runs = [variant_rows(self, None, scratch, runner=runner) for _ in (1, 2)]
+            self._variants = stable_variants(*runs)
+        return self._variants
+
+
+def variant_rows(case: Case, file_text: str | None, scratch: Path, *, runner: Callable | None = None) -> list[dict]:
+    result = run_harness("variants", case.spec(), tree=case.tree, scratch=scratch, calls=case.calls,
+                         overlay_text=file_text, overlay_path=case.file, timeout=400, runner=runner)
+    rows = result.get("variants")
+    return [row for row in rows if isinstance(row, dict)] if isinstance(rows, list) else []
+
+
+def stable_variants(first: Sequence[Mapping], second: Sequence[Mapping]) -> dict:
+    """Variants on which the original returns or raises the same thing twice, by key."""
+    again = {row.get("key"): row for row in second}
+    return {row["key"]: dict(row) for row in first
+            if row.get("kind") in ("returned", "raised") and again.get(row.get("key"), {}).get("digest") == row.get("digest")}
+
+
+def variant_differences(reference: Mapping[str, Mapping], rows: Sequence[Mapping]) -> list[dict]:
+    """Variants a rewrite treats differently: another value, another state left behind, another exception type."""
+    got = {row.get("key"): row for row in rows}
+    different = []
+    for key, expected in reference.items():
+        row = got.get(key) or {}
+        same = (row.get("kind") == expected["kind"]
+                and (row.get("error") == expected["error"] if expected["kind"] == "raised"
+                     else row.get("digest") == expected["digest"]))
+        if not same:
+            different.append({"label": expected.get("label", ""), "call": expected.get("call", ""),
+                              "expected": f"{expected['kind']} {expected.get('preview', '')}",
+                              "got": f"{row.get('kind', 'nothing')} {row.get('preview', '')}"})
+    return different
+
+
+def native_cost(case: Case, file_text: str | None, scratch: Path, *, runner: Callable | None = None) -> dict:
+    result = run_harness("native", case.spec(total_seconds=120, repeats=NATIVE_REPEATS), tree=case.tree,
+                         scratch=scratch, calls=case.select(case.data["measured"]), overlay_text=file_text,
+                         overlay_path=case.file, timeout=300, runner=runner)
+    return result if isinstance(result.get("processor"), float) and isinstance(result.get("peak_bytes"), int) else {}
+
+
+def native_verdict(case: Case, file_text: str, champion_text: str | None, scratch: Path, *,
+                   runner: Callable | None = None) -> dict:
+    """Compare a rewrite with the version it would replace, uninstrumented, in alternating runs."""
+    old, new = [], []
+    for _ in (1, 2):
+        old.append(native_cost(case, champion_text, scratch, runner=runner))
+        new.append(native_cost(case, file_text, scratch, runner=runner))
+    if not all(old) or not all(new):
+        return {}
+    best = lambda rows, key: min(row[key] for row in rows)
+    return {"processor_ratio": round(best(new, "processor") / max(best(old, "processor"), 1e-9), 4),
+            "wall_ratio": round(best(new, "wall") / max(best(old, "wall"), 1e-9), 4),
+            "peak_bytes": best(new, "peak_bytes"), "champion_peak_bytes": best(old, "peak_bytes"),
+            "processor_seconds": round(best(new, "processor"), 9)}
+
 
 def measure(case: Case, file_text: str | None, scratch: Path, *, runs: int = 2, runner: Callable | None = None) -> list[int]:
     """Instruction counts of the measured calls, one per run; empty if a run did not finish."""
@@ -345,8 +433,13 @@ def measure(case: Case, file_text: str | None, scratch: Path, *, runs: int = 2, 
 
 
 def judge(case: Case, candidate: str, champion_instructions: int, scratch: Path, *,
-          runner: Callable | None = None) -> dict:
-    """Decide one rewrite. Every refusal names the first check that failed."""
+          runner: Callable | None = None, strict: bool = False, champion: str | None = None) -> dict:
+    """Decide one rewrite. Every refusal names the first check that failed.
+
+    ``strict`` adds what the recorded calls cannot show: generated variants of those calls on
+    which the rewrite must still agree with the original, and an uninstrumented comparison with
+    ``champion``, the version it would replace, on processor time and peak allocation.
+    """
     verdict: dict = {"accepted": False, "candidate_sha256": text_digest(candidate)}
     try:
         file_text = patched(case.source, case.name, candidate)
@@ -375,6 +468,16 @@ def judge(case: Case, candidate: str, champion_instructions: int, scratch: Path,
             detail += ", none of them among the shown calls"
         return {**verdict, "reason": "behaviour differs", "detail": detail, "different_calls": len(different),
                 "different_shown": len(shown)}
+    if strict:
+        reference = case.variants(scratch, runner=runner)
+        missed = variant_differences(reference, variant_rows(case, file_text, scratch, runner=runner))
+        verdict["variants"] = len(reference)
+        if missed:
+            first = missed[0]
+            return {**verdict, "reason": "behaviour differs on variants", "different_variants": len(missed),
+                    "detail": f"{len(missed)} of {len(reference)} generated variants of the recorded calls behave "
+                              f"differently; with {first['label']} the call ({first['call'][:200]}) should give "
+                              f"{first['expected'][:160]!r} but gives {first['got'][:160]!r}"}
     counts = measure(case, file_text, scratch, runner=runner)
     if not counts:
         return {**verdict, "reason": "did not finish", "detail": "the measured replay did not complete"}
@@ -386,6 +489,19 @@ def judge(case: Case, candidate: str, champion_instructions: int, scratch: Path,
                 "detail": f"{max(counts)} instructions against {champion_instructions}: "
                           f"{(max(counts) / champion_instructions - 1) * 100:+.1f}%, at least "
                           f"-{REQUIRED_GAIN * 100:.0f}% is required"}
+    if strict:
+        champion_text = None if champion is None else patched(case.source, case.name, champion)
+        native = native_verdict(case, file_text, champion_text, scratch, runner=runner)
+        if not native:
+            return {**verdict, "reason": "did not finish", "detail": "the uninstrumented replay did not complete"}
+        verdict["native"] = native
+        if native["processor_ratio"] > MAX_NATIVE_RATIO:
+            return {**verdict, "reason": "slower natively",
+                    "detail": f"fewer instructions but {(native['processor_ratio'] - 1) * 100:+.1f}% processor time "
+                              "without instrumentation"}
+        if native["peak_bytes"] > MAX_PEAK_RATIO * native["champion_peak_bytes"] + PEAK_ALLOWANCE:
+            return {**verdict, "reason": "uses more memory",
+                    "detail": f"peak allocation {native['peak_bytes']} bytes against {native['champion_peak_bytes']}"}
     if case.data["tests"]:
         tests = run_harness("pytest", {**case.spec(), "cwd": "/tree", "arguments": case.data["tests"]},
                             tree=case.tree, scratch=scratch, overlay_text=file_text, overlay_path=case.file,
@@ -424,6 +540,15 @@ CONTRACT = """## Contract
   before `def`: repeat the ones you still need, they are not kept otherwise.
 - Every measured call has different arguments, so caching results between calls gains nothing.
 - Python 3.12. Cost is instructions executed by the interpreter and by C code alike."""
+
+STRICT_CONTRACT = """
+- The rewrite is also replayed on generated variants of the recorded calls: boundary numbers,
+  empty or reversed sequences, unhashable elements, NaN, defaults replaced. On each it must
+  return what the original returns, or raise the same exception type. Keep every path of the
+  original, including those the shown calls never take.
+- No private attribute (`x._name`) the original function does not already use, and no private
+  import from outside the library.
+- It must not be slower in real processor time nor allocate noticeably more memory."""
 
 
 def annotate(text: str, first: int, counts: Mapping[str, int]) -> str:
@@ -481,13 +606,13 @@ def describe_attempts(attempts: Sequence[Mapping]) -> str:
 
 
 def prompt_for(case: Case, champion: str, champion_instructions: int, line_counts: Mapping[str, int],
-               attempts: Sequence[Mapping], memory: str | None) -> list[dict]:
+               attempts: Sequence[Mapping], memory: str | None, strict: bool = False) -> list[dict]:
     original = case.data["instructions"]
     first, _ = function_span(case.source, case.name)
     state = (f"`{case.name}` in `{case.file}` of {case.data['package']} {case.data['version']}. On the measured "
              f"calls the original function executes {original} instructions; the current one executes "
              f"{champion_instructions} ({(champion_instructions / original - 1) * 100:+.1f}%).")
-    sections = [CONTRACT, "## The function\n\n" + state]
+    sections = [CONTRACT + (STRICT_CONTRACT if strict else ""), "## The function\n\n" + state]
     if memory is not None:
         sections.append("## What was learned on other functions\n\n" + memory)
     sections += [
@@ -502,7 +627,7 @@ def prompt_for(case: Case, champion: str, champion_instructions: int, line_count
 
 
 def write_candidate(messages: list[dict], case: Case, champion: str, envelope: Envelope, ledger: Ledger, *,
-                    transport: Callable | None = None) -> dict:
+                    transport: Callable | None = None, strict: bool = False) -> dict:
     """Ask the model for a rewrite. One correction is allowed for an answer refused before execution."""
     messages = list(messages)
     calls: list[dict] = []
@@ -522,6 +647,8 @@ def write_candidate(messages: list[dict], case: Case, champion: str, envelope: E
                 raise ImprovementError("the answer was cut off before the function ended")
             text, note = extract_candidate(answer)
             text = checked_candidate(text, case.source, case.name, case.data["package_import"])
+            if strict:
+                checked_private(text, case.source, case.name, case.data["package_import"])
             if text_digest(text) == text_digest(champion):
                 raise ImprovementError("the rewrite is identical to the current function")
             dropped = sorted(prelude_names(champion) & loaded_names(text) - prelude_names(text))
@@ -555,7 +682,7 @@ def line_counts(case: Case, champion: str, scratch: Path, *, runner: Callable | 
 
 def improve(case: Case, envelope: Envelope, ledger: Ledger, scratch: Path, *, memory: str | None = None,
             max_steps: int = 6, attempts_per_step: int = 2, save: Callable[[str, str], None] | None = None,
-            transport: Callable | None = None, runner: Callable | None = None) -> dict:
+            transport: Callable | None = None, runner: Callable | None = None, strict: bool = False) -> dict:
     """Chain rewrites of one function until a step yields none that is accepted.
 
     Each step starts from the last accepted rewrite. The record keeps every attempt and why it
@@ -569,20 +696,22 @@ def improve(case: Case, envelope: Envelope, ledger: Ledger, scratch: Path, *, me
         counts = line_counts(case, champion, scratch, runner=runner)
         accepted = False
         for attempt in range(1, attempts_per_step + 1):
-            messages = prompt_for(case, champion, champion_instructions, counts, attempts, memory)
-            written = write_candidate(messages, case, champion, envelope, ledger, transport=transport)
+            messages = prompt_for(case, champion, champion_instructions, counts, attempts, memory, strict)
+            written = write_candidate(messages, case, champion, envelope, ledger, transport=transport, strict=strict)
             row = {"step": step, "attempt": attempt, "note": written["note"], "calls": written["calls"]}
             if written["candidate"] is None:
                 row.update(accepted=False, reason="unusable", detail=written.get("problem", "no usable answer"))
             else:
                 if save is not None:
                     save(f"step{step}_attempt{attempt}.py", written["candidate"])
-                row.update(judge(case, written["candidate"], champion_instructions, scratch, runner=runner))
+                row.update(judge(case, written["candidate"], champion_instructions, scratch, runner=runner,
+                                 strict=strict, champion=champion if chain else None))
             attempts.append(row)
             if row["accepted"]:
                 champion, champion_instructions, accepted = written["candidate"], row["instructions"], True
                 chain.append({"step": step, "attempt": attempt, "instructions": row["instructions"],
                               "seconds": row["seconds"], "candidate_sha256": row["candidate_sha256"],
+                              **({"native": row["native"]} if "native" in row else {}),
                               "ratio_to_original": round(row["instructions"] / original, 5), "note": written["note"]})
                 break
         if not accepted:

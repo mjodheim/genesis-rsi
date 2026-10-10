@@ -282,7 +282,8 @@ def plan(arguments) -> None:
             "attempts_per_step": arguments.attempts, "required_gain": improvement.REQUIRED_GAIN,
             "memory_batch": arguments.batch, "warm_up_cases": arguments.warm_up,
             "shown_calls": improvement.SHOWN_CALLS, "measured_calls": improvement.MEASURED_CALLS,
-            "ceiling_usd": arguments.ceiling,
+            "ceiling_usd": arguments.ceiling, "judge": arguments.judge,
+            **({"strict": STRICT_RULE} if arguments.judge == "strict" else {}),
             "acceptance": "identical outcome digest on every recorded call, no previously passing covering test "
                           "lost, and at most (1 - required_gain) of the current instruction count on the hidden "
                           "measured calls, taking the larger of two counts",
@@ -294,6 +295,14 @@ def plan(arguments) -> None:
     }
     record = seal(home / "PLAN.json", body, "plan_digest")
     print(json.dumps({"trial": arguments.name, "cases": len(cases), "arms": body["arms"], "plan_digest": record["plan_digest"]}))
+
+
+STRICT_RULE = ("in addition: no private attribute or private outside import the original function does not use; "
+               "on generated variants of the recorded calls on which the original gives the same outcome twice, the "
+               "same outcome digest when it returns and the same exception type when it raises; without "
+               f"instrumentation, at most {improvement.MAX_NATIVE_RATIO} of the processor time of the version it "
+               f"replaces (best of two alternating runs) and at most {improvement.MAX_PEAK_RATIO} of its peak "
+               f"allocation plus {improvement.PEAK_ALLOWANCE} bytes")
 
 
 def checked_plan(name: str, workspace: Path) -> dict:
@@ -342,7 +351,7 @@ def run(arguments) -> None:
         try:
             result = improvement.improve(
                 loaded, envelope, ledger, scratch, memory=memory, max_steps=protocol["max_steps"],
-                attempts_per_step=protocol["attempts_per_step"],
+                attempts_per_step=protocol["attempts_per_step"], strict=protocol.get("judge") == "strict",
                 save=lambda name, text: (path.parent / name).write_text(text, encoding="utf-8"))
         except (BudgetExhausted, ModelUnavailable) as error:
             print(json.dumps({"arm": arm, "case": case, "stopped": type(error).__name__}), flush=True)
@@ -395,22 +404,71 @@ def report(arguments) -> None:
     print(json.dumps(sealed_result["summary"], indent=1))
 
 
+def rejudge(arguments) -> None:
+    """Re-examine, without any model, the final accepted rewrite of each improved case of a sealed trial.
+
+    Only the checks that need no champion are applied: private access, then generated variants
+    against the original. Nothing in the sealed result changes; the outcome is a separate file.
+    """
+    workspace = Path(arguments.workspace).resolve()
+    result = sealed(HOME / arguments.name / "RESULT.json", "result_digest")
+    scratch = workspace / "scratch"
+    scratch.mkdir(exist_ok=True)
+
+    def one(item: dict) -> dict:
+        case = improvement.Case(case_directory(workspace, item["case"]), workspace / "packages")
+        last = item["chain"][-1]
+        text = (workspace / "runs" / arguments.name / arguments.arm / item["case"].replace(":", "--")
+                / f"step{last['step']}_attempt{last['attempt']}.py").read_text(encoding="utf-8")
+        row = {"case": item["case"], "candidate_sha256": last["candidate_sha256"], "final_ratio": item["final_ratio"]}
+        if improvement.text_digest(text) != last["candidate_sha256"]:
+            raise SystemExit(f"{item['case']}: the stored rewrite does not match the sealed record")
+        try:
+            improvement.checked_private(text, case.source, case.name, case.data["package_import"])
+        except improvement.ImprovementError as error:
+            row.update(verdict="private access", detail=str(error)[:200])
+        else:
+            reference = case.variants(scratch)
+            rows = improvement.variant_rows(case, improvement.patched(case.source, case.name, text), scratch)
+            missed = improvement.variant_differences(reference, rows)
+            row.update(variants=len(reference), different_variants=len(missed),
+                       verdict="differs on variants" if missed else "kept" if reference else "no usable variant")
+            if missed:
+                row["first"] = {key: str(value)[:240] for key, value in missed[0].items()}
+        print(json.dumps({key: row[key] for key in ("case", "verdict")}), flush=True)
+        return row
+
+    improved = [item for item in result["records"][arguments.arm] if item["chain_length"]]
+    with ThreadPoolExecutor(max_workers=arguments.workers) as pool:
+        rows = list(pool.map(one, improved))
+    counts: dict = {}
+    for row in rows:
+        counts[row["verdict"]] = counts.get(row["verdict"], 0) + 1
+    body = {"schema": "genesis-improvement-rejudge-v1", "trial": arguments.name, "arm": arguments.arm,
+            "result_digest": result["result_digest"], "machinery": machinery(), "improved": len(rows),
+            "verdicts": dict(sorted(counts.items())), "rows": rows}
+    seal(HOME / arguments.name / f"STRICT_REJUDGE_{arguments.arm.upper()}.json", body, "rejudge_digest")
+    print(json.dumps({"improved": len(rows), "verdicts": body["verdicts"]}))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     commands = parser.add_subparsers(dest="command", required=True)
     for name, function in (("fetch", fetch), ("record", record), ("prepare", prepare), ("plan", plan),
-                           ("run", run), ("report", report)):
+                           ("run", run), ("report", report), ("rejudge", rejudge)):
         command = commands.add_parser(name)
         command.set_defaults(function=function)
         command.add_argument("--workspace", required=True)
         if name in ("record", "prepare"):
             command.add_argument("--package", action="append")
-        if name in ("record", "prepare", "run"):
+        if name in ("record", "prepare", "run", "rejudge"):
             command.add_argument("--workers", type=int, default=4)
         if name == "prepare":
             command.add_argument("--per-package", type=int, default=20)
-        if name in ("plan", "run", "report"):
+        if name in ("plan", "run", "report", "rejudge"):
             command.add_argument("--name", required=True)
+        if name == "rejudge":
+            command.add_argument("--arm", default="isolated")
         if name == "plan":
             command.add_argument("--role", choices=("pilot", "trial"), required=True)
             command.add_argument("--cases", type=int, default=0)
@@ -422,6 +480,7 @@ def main() -> None:
             command.add_argument("--batch", type=int, default=8)
             command.add_argument("--warm-up", type=int, default=24)
             command.add_argument("--ceiling", type=float, default=3.0)
+            command.add_argument("--judge", choices=("recorded", "strict"), default="recorded")
     arguments = parser.parse_args()
     arguments.function(arguments)
 
