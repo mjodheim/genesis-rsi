@@ -1,0 +1,1158 @@
+{
+  "ablations": [
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "apart",
+            20,
+            [
+              "join",
+              [
+                "agree",
+                [
+                  "member",
+                  "LOCALIZER2:g3a3"
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g3a3"
+                ]
+              ],
+              [
+                "weave",
+                [
+                  "join",
+                  [
+                    "files",
+                    [
+                      "member",
+                      "LOCALIZER1:g3a3"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER1:g0"
+                    ]
+                  ],
+                  [
+                    "shift",
+                    15,
+                    [
+                      "member",
+                      "LOCALIZER1:g0"
+                    ]
+                  ]
+                ],
+                [
+                  "shift",
+                  15,
+                  [
+                    "member",
+                    "LOCALIZER2:g3a3"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 244,
+          "selection": {
+            "child": 119,
+            "gained": 40,
+            "lost": 9,
+            "one_sided_sign_test": 4.6317732049772076e-06,
+            "parent": 88
+          },
+          "size": 14
+        },
+        {
+          "generation": 2,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 244,
+          "program": [
+            "apart",
+            10,
+            [
+              "weave",
+              [
+                "agree",
+                [
+                  "apart",
+                  10,
+                  [
+                    "join",
+                    [
+                      "apart",
+                      40,
+                      [
+                        "tail",
+                        4,
+                        [
+                          "join",
+                          [
+                            "member",
+                            "LOCALIZER2:g2a1"
+                          ],
+                          [
+                            "member",
+                            "p-f6cfb7738e07"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "tail",
+                      5,
+                      [
+                        "member",
+                        "LOCALIZER2:g1a2"
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g5a4"
+                ]
+              ],
+              [
+                "member",
+                "p-f6cfb7738e07"
+              ]
+            ]
+          ],
+          "search_localized": 251,
+          "selection": {
+            "child": 119,
+            "gained": 2,
+            "lost": 2,
+            "one_sided_sign_test": 0.6875,
+            "parent": 119
+          },
+          "size": 14
+        }
+      ],
+      "chain_length": 1,
+      "removed": "head"
+    },
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "weave",
+            [
+              "apart",
+              40,
+              [
+                "join",
+                [
+                  "files",
+                  [
+                    "member",
+                    "LOCALIZER2:g3a3"
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER1:g4a3"
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g4a3"
+                ]
+              ]
+            ],
+            [
+              "weave",
+              [
+                "files",
+                [
+                  "member",
+                  "LOCALIZER1:g3a4"
+                ],
+                [
+                  "member",
+                  "LOCALIZER2:g2a2"
+                ]
+              ],
+              [
+                "member",
+                "LOCALIZER2:g3a3"
+              ]
+            ]
+          ],
+          "search_localized": 242,
+          "selection": {
+            "child": 108,
+            "gained": 34,
+            "lost": 14,
+            "one_sided_sign_test": 0.0027576007427505544,
+            "parent": 88
+          },
+          "size": 12
+        },
+        {
+          "generation": 2,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 242,
+          "program": [
+            "apart",
+            20,
+            [
+              "weave",
+              [
+                "agree",
+                [
+                  "member",
+                  "LOCALIZER1:g1a2"
+                ],
+                [
+                  "shift",
+                  -30,
+                  [
+                    "agree",
+                    [
+                      "member",
+                      "p-0d62d2700da6"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER1:g2a2"
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "join",
+                [
+                  "join",
+                  [
+                    "member",
+                    "p-0d62d2700da6"
+                  ],
+                  [
+                    "files",
+                    [
+                      "member",
+                      "LOCALIZER1:g6a4"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER2:g4a3"
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER2:g2a1"
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 253,
+          "selection": {
+            "child": 112,
+            "gained": 4,
+            "lost": 0,
+            "one_sided_sign_test": 0.0625,
+            "parent": 108
+          },
+          "size": 15
+        }
+      ],
+      "chain_length": 1,
+      "removed": "tail"
+    },
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "join",
+            [
+              "files",
+              [
+                "weave",
+                [
+                  "join",
+                  [
+                    "head",
+                    3,
+                    [
+                      "files",
+                      [
+                        "member",
+                        "LOCALIZER1:g3a3"
+                      ],
+                      [
+                        "member",
+                        "LOCALIZER1:g0"
+                      ]
+                    ]
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER2:g3a3"
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER2:g1a1"
+                ]
+              ],
+              [
+                "member",
+                "LOCALIZER1:g5a4"
+              ]
+            ],
+            [
+              "shift",
+              15,
+              [
+                "join",
+                [
+                  "member",
+                  "LOCALIZER1:g0"
+                ],
+                [
+                  "member",
+                  "LOCALIZER2:g3a3"
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 244,
+          "selection": {
+            "child": 116,
+            "gained": 35,
+            "lost": 7,
+            "one_sided_sign_test": 7.548600478912704e-06,
+            "parent": 88
+          },
+          "size": 15
+        },
+        {
+          "generation": 2,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 244,
+          "program": [
+            "join",
+            [
+              "join",
+              [
+                "files",
+                [
+                  "member",
+                  "LOCALIZER1:g1a3"
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g0"
+                ]
+              ],
+              [
+                "weave",
+                [
+                  "member",
+                  "p-865e8c9d283d"
+                ],
+                [
+                  "tail",
+                  4,
+                  [
+                    "shift",
+                    15,
+                    [
+                      "files",
+                      [
+                        "member",
+                        "p-865e8c9d283d"
+                      ],
+                      [
+                        "member",
+                        "LOCALIZER2:g1a4"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "member",
+              "LOCALIZER1:g6a3"
+            ]
+          ],
+          "search_localized": 256,
+          "selection": {
+            "child": 116,
+            "gained": 2,
+            "lost": 2,
+            "one_sided_sign_test": 0.6875,
+            "parent": 116
+          },
+          "size": 13
+        }
+      ],
+      "chain_length": 1,
+      "removed": "apart"
+    },
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "apart",
+            20,
+            [
+              "join",
+              [
+                "agree",
+                [
+                  "member",
+                  "LOCALIZER1:g4a2"
+                ],
+                [
+                  "tail",
+                  1,
+                  [
+                    "member",
+                    "LOCALIZER2:g3a3"
+                  ]
+                ]
+              ],
+              [
+                "weave",
+                [
+                  "weave",
+                  [
+                    "weave",
+                    [
+                      "member",
+                      "LOCALIZER2:g3a3"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER1:g3a3"
+                    ]
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER1:g0"
+                  ]
+                ],
+                [
+                  "files",
+                  [
+                    "member",
+                    "LOCALIZER2:g1a1"
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER1:g5a4"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 244,
+          "selection": {
+            "child": 100,
+            "gained": 24,
+            "lost": 12,
+            "one_sided_sign_test": 0.03262266761157662,
+            "parent": 88
+          },
+          "size": 15
+        },
+        {
+          "generation": 2,
+          "outcome": "promoted",
+          "parent_localized": 244,
+          "program": [
+            "apart",
+            10,
+            [
+              "weave",
+              [
+                "member",
+                "p-2e7dc51b8c29"
+              ],
+              [
+                "files",
+                [
+                  "head",
+                  5,
+                  [
+                    "weave",
+                    [
+                      "member",
+                      "p-2e7dc51b8c29"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER1:g1a3"
+                    ]
+                  ]
+                ],
+                [
+                  "tail",
+                  3,
+                  [
+                    "apart",
+                    40,
+                    [
+                      "join",
+                      [
+                        "files",
+                        [
+                          "member",
+                          "LOCALIZER2:g3a4"
+                        ],
+                        [
+                          "member",
+                          "LOCALIZER1:g2a2"
+                        ]
+                      ],
+                      [
+                        "member",
+                        "LOCALIZER1:g5a4"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 255,
+          "selection": {
+            "child": 105,
+            "gained": 5,
+            "lost": 0,
+            "one_sided_sign_test": 0.03125,
+            "parent": 100
+          },
+          "size": 15
+        },
+        {
+          "generation": 3,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 255,
+          "program": [
+            "apart",
+            20,
+            [
+              "apart",
+              10,
+              [
+                "weave",
+                [
+                  "agree",
+                  [
+                    "join",
+                    [
+                      "weave",
+                      [
+                        "tail",
+                        5,
+                        [
+                          "files",
+                          [
+                            "member",
+                            "LOCALIZER2:g2a1"
+                          ],
+                          [
+                            "member",
+                            "LOCALIZER1:g2a3"
+                          ]
+                        ]
+                      ],
+                      [
+                        "member",
+                        "p-4448a348f7ff"
+                      ]
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER2:g1a2"
+                    ]
+                  ],
+                  [
+                    "tail",
+                    3,
+                    [
+                      "member",
+                      "LOCALIZER2:g3a3"
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "p-4448a348f7ff"
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 262,
+          "selection": {
+            "child": 106,
+            "gained": 2,
+            "lost": 1,
+            "one_sided_sign_test": 0.5,
+            "parent": 105
+          },
+          "size": 15
+        }
+      ],
+      "chain_length": 2,
+      "removed": "shift"
+    },
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "apart",
+            20,
+            [
+              "weave",
+              [
+                "weave",
+                [
+                  "member",
+                  "LOCALIZER2:g3a3"
+                ],
+                [
+                  "files",
+                  [
+                    "weave",
+                    [
+                      "member",
+                      "LOCALIZER1:g5a1"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER1:g3a4"
+                    ]
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER2:g1a3"
+                  ]
+                ]
+              ],
+              [
+                "files",
+                [
+                  "weave",
+                  [
+                    "shift",
+                    -15,
+                    [
+                      "member",
+                      "LOCALIZER1:g3a4"
+                    ]
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER2:g1a1"
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER2:g1a3"
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 249,
+          "selection": {
+            "child": 114,
+            "gained": 36,
+            "lost": 10,
+            "one_sided_sign_test": 7.820860426477338e-05,
+            "parent": 88
+          },
+          "size": 15
+        },
+        {
+          "generation": 2,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 249,
+          "program": [
+            "apart",
+            20,
+            [
+              "weave",
+              [
+                "agree",
+                [
+                  "tail",
+                  3,
+                  [
+                    "agree",
+                    [
+                      "member",
+                      "LOCALIZER1:g6a1"
+                    ],
+                    [
+                      "head",
+                      5,
+                      [
+                        "member",
+                        "LOCALIZER1:g3a3"
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "weave",
+                  [
+                    "shift",
+                    30,
+                    [
+                      "member",
+                      "p-f88340725da7"
+                    ]
+                  ],
+                  [
+                    "tail",
+                    3,
+                    [
+                      "member",
+                      "LOCALIZER2:g3a1"
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "member",
+                "p-f88340725da7"
+              ]
+            ]
+          ],
+          "search_localized": 257,
+          "selection": {
+            "child": 114,
+            "gained": 0,
+            "lost": 0,
+            "one_sided_sign_test": 1.0,
+            "parent": 114
+          },
+          "size": 14
+        }
+      ],
+      "chain_length": 1,
+      "removed": "join"
+    },
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "apart",
+            20,
+            [
+              "join",
+              [
+                "files",
+                [
+                  "head",
+                  4,
+                  [
+                    "shift",
+                    -15,
+                    [
+                      "member",
+                      "LOCALIZER1:g6a2"
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g0"
+                ]
+              ],
+              [
+                "join",
+                [
+                  "files",
+                  [
+                    "head",
+                    4,
+                    [
+                      "member",
+                      "LOCALIZER1:g3a4"
+                    ]
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER2:g3a3"
+                  ]
+                ],
+                [
+                  "shift",
+                  15,
+                  [
+                    "member",
+                    "LOCALIZER2:g3a3"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 247,
+          "selection": {
+            "child": 115,
+            "gained": 40,
+            "lost": 13,
+            "one_sided_sign_test": 0.00013427005940958026,
+            "parent": 88
+          },
+          "size": 14
+        },
+        {
+          "generation": 2,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 247,
+          "program": [
+            "apart",
+            10,
+            [
+              "join",
+              [
+                "files",
+                [
+                  "files",
+                  [
+                    "shift",
+                    15,
+                    [
+                      "member",
+                      "LOCALIZER2:g1a1"
+                    ]
+                  ],
+                  [
+                    "agree",
+                    [
+                      "member",
+                      "LOCALIZER2:g4a3"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER1:g1a3"
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g1a2"
+                ]
+              ],
+              [
+                "member",
+                "p-3dd79bce30ef"
+              ]
+            ]
+          ],
+          "search_localized": 259,
+          "selection": {
+            "child": 114,
+            "gained": 1,
+            "lost": 2,
+            "one_sided_sign_test": 0.875,
+            "parent": 115
+          },
+          "size": 11
+        }
+      ],
+      "chain_length": 1,
+      "removed": "weave"
+    },
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "apart",
+            20,
+            [
+              "weave",
+              [
+                "member",
+                "LOCALIZER2:g3a3"
+              ],
+              [
+                "files",
+                [
+                  "weave",
+                  [
+                    "files",
+                    [
+                      "join",
+                      [
+                        "member",
+                        "LOCALIZER1:g1a3"
+                      ],
+                      [
+                        "member",
+                        "LOCALIZER1:g4a3"
+                      ]
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER1:g0"
+                    ]
+                  ],
+                  [
+                    "weave",
+                    [
+                      "member",
+                      "LOCALIZER2:g1a1"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER2:g3a3"
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g5a4"
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 247,
+          "selection": {
+            "child": 113,
+            "gained": 36,
+            "lost": 11,
+            "one_sided_sign_test": 0.0001730005701574555,
+            "parent": 88
+          },
+          "size": 14
+        },
+        {
+          "generation": 2,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 247,
+          "program": [
+            "join",
+            [
+              "apart",
+              40,
+              [
+                "weave",
+                [
+                  "files",
+                  [
+                    "shift",
+                    15,
+                    [
+                      "shift",
+                      -30,
+                      [
+                        "member",
+                        "LOCALIZER1:g0"
+                      ]
+                    ]
+                  ],
+                  [
+                    "weave",
+                    [
+                      "member",
+                      "LOCALIZER1:g1a3"
+                    ],
+                    [
+                      "member",
+                      "p-7240b3dee713"
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "p-7240b3dee713"
+                ]
+              ]
+            ],
+            [
+              "shift",
+              30,
+              [
+                "member",
+                "p-7240b3dee713"
+              ]
+            ]
+          ],
+          "search_localized": 260,
+          "selection": {
+            "child": 118,
+            "gained": 10,
+            "lost": 5,
+            "one_sided_sign_test": 0.15087890625,
+            "parent": 113
+          },
+          "size": 13
+        }
+      ],
+      "chain_length": 1,
+      "removed": "agree"
+    },
+    {
+      "attempts": [
+        {
+          "generation": 1,
+          "outcome": "promoted",
+          "parent_localized": 199,
+          "program": [
+            "apart",
+            20,
+            [
+              "weave",
+              [
+                "member",
+                "LOCALIZER2:g3a3"
+              ],
+              [
+                "weave",
+                [
+                  "agree",
+                  [
+                    "join",
+                    [
+                      "member",
+                      "LOCALIZER2:g1a2"
+                    ],
+                    [
+                      "member",
+                      "LOCALIZER2:g4a3"
+                    ]
+                  ],
+                  [
+                    "shift",
+                    -30,
+                    [
+                      "weave",
+                      [
+                        "member",
+                        "LOCALIZER1:g1a3"
+                      ],
+                      [
+                        "member",
+                        "LOCALIZER2:g3a3"
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g4a2"
+                ]
+              ]
+            ]
+          ],
+          "search_localized": 240,
+          "selection": {
+            "child": 109,
+            "gained": 33,
+            "lost": 12,
+            "one_sided_sign_test": 0.0012294501610483621,
+            "parent": 88
+          },
+          "size": 13
+        },
+        {
+          "generation": 2,
+          "outcome": "rejected on unseen cases",
+          "parent_localized": 240,
+          "program": [
+            "apart",
+            20,
+            [
+              "weave",
+              [
+                "agree",
+                [
+                  "join",
+                  [
+                    "member",
+                    "LOCALIZER1:g5a1"
+                  ],
+                  [
+                    "tail",
+                    4,
+                    [
+                      "join",
+                      [
+                        "member",
+                        "LOCALIZER2:g1a2"
+                      ],
+                      [
+                        "shift",
+                        15,
+                        [
+                          "member",
+                          "LOCALIZER2:g1a2"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "shift",
+                  30,
+                  [
+                    "tail",
+                    3,
+                    [
+                      "shift",
+                      15,
+                      [
+                        "member",
+                        "LOCALIZER2:g3a3"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "member",
+                "p-83a208487844"
+              ]
+            ]
+          ],
+          "search_localized": 253,
+          "selection": {
+            "child": 108,
+            "gained": 1,
+            "lost": 2,
+            "one_sided_sign_test": 0.875,
+            "parent": 109
+          },
+          "size": 15
+        }
+      ],
+      "chain_length": 1,
+      "removed": "files"
+    }
+  ],
+  "ablations_digest": "1b74652dfa74b9b6354a956240f5a6e36ee7668eb0d3ce916d1b2e7be3b074a6",
+  "name": "PROGRAMS1",
+  "plan_digest": "7f9ac356ec4d1062c657fcd6f64d7c8e38532f9c36d323a6dba13e0ce72883c1",
+  "schema": "genesis-localizer-programs-ablations-v1"
+}
