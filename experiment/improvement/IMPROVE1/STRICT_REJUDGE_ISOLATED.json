@@ -1,0 +1,836 @@
+{
+  "arm": "isolated",
+  "improved": 97,
+  "machinery": {
+    "deploy/program-improvement/Dockerfile": "288b605f44b7f1312923aa19377313abe74e7295e05785f1adc85866de55741a",
+    "deploy/program-improvement/marker.c": "634a0b9096af03cc2557f15b830833a8cdf7c19635765f78514d36fef8c0fd2b",
+    "genesis/improvement_harness.py": "e3179c1efc4fe54592858d7889ca2f846ea17dae5c95730da16893ca9fcd1b87",
+    "genesis/program_improvement.py": "c2e0578045799761b27c99bbbbdd44655bd1ba3a3608d2c8994cee8c9bc6510c",
+    "genesis/repair_lineage.py": "8d2f5292c59b6bc3eeeda6087b95ddf1a957341564be549fef43bd443df0df7b",
+    "scripts/run_program_improvement.py": "1767b65496f83b89d87c495f0da5a60d89c7ee8b493a7c8682fa84df8c60ebad"
+  },
+  "rejudge_digest": "bade0b48775c711916b4549714b27f20577f6ba6c3323b7886b402d4087b6405",
+  "result_digest": "8387a32ed7fd4bcb678eb48feabee6c2c865c1733d920801f426b2ad97ab5de6",
+  "rows": [
+    {
+      "candidate_sha256": "bcddc54e38756845c483ff2525795f88cf1f9eb7e60b88909e5036b7228d1cf4",
+      "case": "networkx:networkx.algorithms.connectivity.edge_augmentation._lightest_meta_edges",
+      "different_variants": 0,
+      "final_ratio": 0.65722,
+      "variants": 400,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "ee557549cd24e434b675ec6162cee80ce79a9282e9c6d727086c23aecb6b1f62",
+      "case": "networkx:networkx.algorithms.structuralholes.normalized_mutual_weight",
+      "detail": "the rewrite reaches a private attribute the original does not use (_adj); stay on the public interface of the objects involved",
+      "final_ratio": 0.39769,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "1affbc6ae453253c3dc91ae3b8487757357533e24a995b9a2466b62055b8d016",
+      "case": "more-itertools:more_itertools.more.distinct_combinations",
+      "different_variants": 4,
+      "final_ratio": 0.13672,
+      "first": {
+        "call": "(1, [2], [2], 3, 3, 3), 1",
+        "expected": "returned ('iterator', (('builtins.tuple', (('int', '1'),)), ('builtins.tuple', (('builtins.list', (('int', '2'),)),)), ('builtins.tuple', (('int', '3'),))), 'exhausted')",
+        "got": "returned ('iterator', (), ('raised', 'builtins.TypeError', \"unhashable type: 'list'\"))",
+        "label": "every 2: boxed"
+      },
+      "variants": 185,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "f4416b70683e19e004cd469963d0de99b2cfdde466e82ff0662495a57933df8f",
+      "case": "networkx:networkx.algorithms.matching.matching_dict_to_set",
+      "different_variants": 0,
+      "final_ratio": 0.89088,
+      "variants": 308,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "5fac6166cceb1573149fe5adfe8dcc44fc8c07aaa6366f54d5151fd5ce9ed3bc",
+      "case": "w3lib:w3lib.url.safe_url_string",
+      "different_variants": 0,
+      "final_ratio": 0.83616,
+      "variants": 284,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "6be083a7de681ebf1f1de819ab7f2e76b79fdd2ca10dccd7ae172c87ffefd43e",
+      "case": "networkx:networkx.algorithms.centrality.betweenness._single_source_shortest_path_basic",
+      "different_variants": 0,
+      "final_ratio": 0.91041,
+      "variants": 79,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "77aaff787905b804816f73ca21c8622e717f3bf44008f1ad59af792b1f38015a",
+      "case": "networkx:networkx.algorithms.traversal.breadth_first_search.bfs_edges",
+      "different_variants": 40,
+      "final_ratio": 0.7059,
+      "first": {
+        "call": "<networkx.classes.digraph.DiGraph object at 0x7b7fbc1a0bf0>, 5, False, '', None, backend=None",
+        "expected": "returned ('iterator', (), ('raised', 'builtins.TypeError', \"'<' not supported between instances of 'int' and 'str'\"))",
+        "got": "returned ('iterator', (), 'exhausted')",
+        "label": "3: empty text"
+      },
+      "variants": 287,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "0e1ff331c912b10e6be81bbfff8daf09a038da7a22fe56a680a965b5f04357ce",
+      "case": "tabulate:tabulate._build_line",
+      "different_variants": 0,
+      "final_ratio": 0.89403,
+      "variants": 386,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "9629703d90c53181a18249d702f93c2a8af3c6faf75e9af263f01c7993880c1d",
+      "case": "more-itertools:more_itertools.recipes._zip_equal_generator",
+      "different_variants": 0,
+      "final_ratio": 0.94746,
+      "variants": 75,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "c0b87ce46d949c0986a50c19d963b82ffad02c266bb8556b61d0f9053579cdea",
+      "case": "networkx:networkx.algorithms.components.weakly_connected.weakly_connected_components",
+      "detail": "the rewrite reaches a private attribute the original does not use (_pred); stay on the public interface of the objects involved",
+      "final_ratio": 0.77363,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "516ca3fb38b99cb5e51a9848924edfe43f2a103704d2d15fd69f3c43cc46d643",
+      "case": "mpmath:mpmath.libmp.libmpc.complex_int_pow",
+      "different_variants": 0,
+      "final_ratio": 0.49935,
+      "variants": 208,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "16db3fe6138b968586461f73e57350bf12b6a76469e02a23568f218b60b5b334",
+      "case": "networkx:networkx.algorithms.dag.ancestors",
+      "detail": "the rewrite reaches a private attribute the original does not use (_adj); stay on the public interface of the objects involved",
+      "final_ratio": 0.55111,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "928c429c5b28c470b521caabb8423fc8da21258a2a1653d5651d13081068170b",
+      "case": "tabulate:tabulate._column_type",
+      "different_variants": 0,
+      "final_ratio": 0.48333,
+      "variants": 241,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "7a05682a47aaa4e6e9186a5e4450a4fb53e38627a015897455d8e484ec7ca134",
+      "case": "networkx:networkx.readwrite.sparse6._generate_sparse6_bytes",
+      "different_variants": 0,
+      "final_ratio": 0.52648,
+      "variants": 80,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "d8df63165786a46f67980fc29025802290aecb1478dac0a37821ceb60ffdaf0b",
+      "case": "packaging:packaging._parser._parse_marker_op",
+      "different_variants": 0,
+      "final_ratio": 0.74321,
+      "variants": 0,
+      "verdict": "no usable variant"
+    },
+    {
+      "candidate_sha256": "4ae58555ecae22f1b34d69cc535fa5d560068d9cc58a3177e878d21401b26124",
+      "case": "networkx:networkx.relabel.convert_node_labels_to_integers",
+      "detail": "the rewrite reaches a private attribute the original does not use (_adj); stay on the public interface of the objects involved",
+      "final_ratio": 0.44475,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "cc3e7beb5f664aa46a7b8a8d8ce86660e5e23142593830dbcf032f64f3d1632f",
+      "case": "networkx:networkx.algorithms.shortest_paths.unweighted.all_pairs_shortest_path_length",
+      "detail": "the rewrite reaches a private attribute the original does not use (_adj); stay on the public interface of the objects involved",
+      "final_ratio": 0.94436,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "a5e8fde570d65434a498bff95e2b575331ab4ccb586d9811a967a3e27ebc11bf",
+      "case": "networkx:networkx.algorithms.operators.binary.union",
+      "different_variants": 0,
+      "final_ratio": 0.95289,
+      "variants": 141,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "4d9dbd6b153a6d750b7ae700dbc371052d37387e9101ff04210b20abcb8640c9",
+      "case": "w3lib:w3lib.url.parse_url",
+      "detail": "the rewrite reaches a private attribute the original does not use (__new__); stay on the public interface of the objects involved",
+      "final_ratio": 0.55884,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "7a611b2bf690ee42ee48ca6c78dac438ca052ace33ffce1bb0973e21ce84b8ba",
+      "case": "mpmath:mpmath.libmp.libelefun.mpf_log",
+      "different_variants": 0,
+      "final_ratio": 0.95352,
+      "variants": 375,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "28425ed582f22ee8b5c1d71cc9d4ba62a491fa17cc4b86304a49854b91c63dd7",
+      "case": "networkx:networkx.algorithms.distance_measures.diameter",
+      "different_variants": 0,
+      "final_ratio": 0.96238,
+      "variants": 211,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "accdb6c64f59aa95aa44572bc607f40ec587fb6b9998345a20e0b8647a0a9de5",
+      "case": "networkx:networkx.algorithms.operators.unary.complement",
+      "detail": "the rewrite reaches a private attribute the original does not use (_adj); stay on the public interface of the objects involved",
+      "final_ratio": 0.21468,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "339fb9f9bd634c30460831202265451f13e3249182ddde58136883b2859e74b2",
+      "case": "networkx:networkx.algorithms.simple_paths._all_simple_edge_paths",
+      "different_variants": 0,
+      "final_ratio": 0.7669,
+      "variants": 148,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "1848f66f687c0a616a86dae061ad5f508fc4c4c16e6e5af79754c88289c0998b",
+      "case": "mpmath:mpmath.libmp.libintmath.list_primes",
+      "different_variants": 16,
+      "final_ratio": 0.54249,
+      "first": {
+        "call": "-135",
+        "expected": "raised TypeError: int() argument must be a string, a bytes-like object or a real number, not 'complex'",
+        "got": "returned []",
+        "label": "0: negated"
+      },
+      "variants": 80,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "02dabe4f7b0eff2f2dad3edcb087f7903cc0c27a5a7c0a33c79ace11bbf24df7",
+      "case": "networkx:networkx.algorithms.euler.has_eulerian_path",
+      "different_variants": 0,
+      "final_ratio": 0.96428,
+      "variants": 131,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "7a881b1e7d59578d1f40434c145b51b2f1b32798a5904933796cfe1f02303132",
+      "case": "networkx:networkx.algorithms.sparsifiers._lightest_edge_dicts",
+      "detail": "the rewrite reaches a private attribute the original does not use (_adj); stay on the public interface of the objects involved",
+      "final_ratio": 0.38117,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "434a81096ce57c0cf8274989d9aed53aea25b0fb3616c52b96d1c6d959a9050d",
+      "case": "tabulate:tabulate._afterpoint",
+      "different_variants": 0,
+      "final_ratio": 0.56427,
+      "variants": 78,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "41b09bb7ee20eaa0fee63cd84e98a73e3bf803cc88d694b21f02a0b99162bd06",
+      "case": "networkx:networkx.algorithms.connectivity.edge_augmentation.collapse",
+      "detail": "the rewrite reaches a private attribute the original does not use (_adj); stay on the public interface of the objects involved",
+      "final_ratio": 0.77629,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "32c5be39d727bc975f0635aafe13053563f3755ffd97dc46dac3ac9f18ea9eb2",
+      "case": "humanize:humanize.number.metric",
+      "different_variants": 0,
+      "final_ratio": 0.90245,
+      "variants": 178,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "396d6511eb3c7ab804db3e8872e25c47730f6c4ae370821fc22c5623f1820611",
+      "case": "mpmath:mpmath.libmp.libmpc.mpc_nthroot_fixed",
+      "different_variants": 0,
+      "final_ratio": 0.73699,
+      "variants": 316,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "03412a67e9511e766b72a56958815e5865adc420d583a6bdb1315dadb61fd381",
+      "case": "tabulate:tabulate._pad_row",
+      "different_variants": 9,
+      "final_ratio": 0.78521,
+      "first": {
+        "call": "(['three'], 'four'), 0",
+        "expected": "raised TypeError: can only concatenate str (not \"list\") to str",
+        "got": "returned [['three'], 'four']",
+        "label": "0: first boxed"
+      },
+      "variants": 327,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "18bd51cf0f22f7dc0eafe2d05c9ec5e87b89a55a9d0c3c97f76a67d20afa94c1",
+      "case": "more-itertools:more_itertools.more.nth_combination_with_replacement",
+      "different_variants": 0,
+      "final_ratio": 0.88195,
+      "variants": 240,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "6e5c4b8d8f1ecbd69dbb907caf15b6f4fdc9af975ed1b4ad5321abca1ab46878",
+      "case": "more-itertools:more_itertools.recipes.grouper",
+      "different_variants": 0,
+      "final_ratio": 0.96014,
+      "variants": 228,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "bde3a2b31e6c76147c82533af6cfd64f266a7978ab60a1c075a1de99504d91ab",
+      "case": "w3lib:w3lib.url.parse_qsl_to_bytes",
+      "different_variants": 0,
+      "final_ratio": 0.63519,
+      "variants": 93,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "f93bd5dca8084565496415b27a1d14fb9da46834ec88d2f068a5b33273d2ad94",
+      "case": "more-itertools:more_itertools.recipes.unique_everseen",
+      "different_variants": 0,
+      "final_ratio": 0.95952,
+      "variants": 20,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "ff9464789a5c8c7ae32c56e405bccf1778f3239670ac6c8e824b92415286623d",
+      "case": "packaging:packaging.markers._normalize_extra_values",
+      "detail": "the rewrite reaches a private attribute the original does not use (__new__); stay on the public interface of the objects involved",
+      "final_ratio": 0.80369,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "2c555ea157d48959663a34e5ff42ba5515f849e3dbd77a2670210fa19573d9e9",
+      "case": "mpmath:mpmath.libmp.libelefun.mod_pi2",
+      "different_variants": 0,
+      "final_ratio": 0.64181,
+      "variants": 307,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "627c8514d11f2e8ff4426ae85b926c85a68bf691e7342d1b1cad11ad2ad9b548",
+      "case": "mpmath:mpmath.libmp.libelefun.bsp_acot",
+      "different_variants": 0,
+      "final_ratio": 0.54804,
+      "variants": 249,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "627b7f3dd719c9e874511170d734f1bcb3ea9322c0df0d7026a864ef33697209",
+      "case": "markdown:markdown.serializers._write_html",
+      "different_variants": 0,
+      "final_ratio": 0.8629,
+      "variants": 80,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "d324f34f8075b4431f7722eca55e7993098b511378a6ac712587b4a8063cfa9d",
+      "case": "more-itertools:more_itertools.more.product_index",
+      "different_variants": 0,
+      "final_ratio": 0.8429,
+      "variants": 389,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "b973aaf2eb1f0b082562d9453472a51435b8e257910627d969439fac49f21d25",
+      "case": "tabulate:tabulate._padleft",
+      "different_variants": 0,
+      "final_ratio": 0.38828,
+      "variants": 152,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "5cd5de1703744695c923aecef96da95740d114b357ec81b073b4969fbc5d6287",
+      "case": "more-itertools:more_itertools.more.set_partitions",
+      "different_variants": 0,
+      "final_ratio": 0.36065,
+      "variants": 204,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "7381bc35121ca23281704d9a405a45737b769f92800729a5e68c8b27f859922f",
+      "case": "mpmath:mpmath.rational.create_reduced",
+      "different_variants": 0,
+      "final_ratio": 0.94232,
+      "variants": 193,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "a6ee9fa59e11d543cf282ba22c1f9551d21b82d92b96abe1b607bd057a5dbe2e",
+      "case": "more-itertools:more_itertools.more._islice_helper",
+      "different_variants": 0,
+      "final_ratio": 0.79289,
+      "variants": 0,
+      "verdict": "no usable variant"
+    },
+    {
+      "candidate_sha256": "78527b0aebb1a76f44f0646ae32c53e54ee81a88ac26bcc7788ddddea8d01aae",
+      "case": "mpmath:mpmath.libmp.libmpf.str_to_man_exp",
+      "different_variants": 0,
+      "final_ratio": 0.49509,
+      "variants": 160,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "a055fbf33efd77440e37c2c9e16d12a92828987a6881fcd984d68f4f5e536d58",
+      "case": "mpmath:mpmath.libmp.libmpf.python_mpf_mul",
+      "different_variants": 89,
+      "final_ratio": 0.75793,
+      "first": {
+        "call": "(1, -7, 0, 3), (1, 1, 0, 1), 23, 'u'",
+        "expected": "returned (0, -7, 0, 2)",
+        "got": "returned (0, -7, 0, 3)",
+        "label": "0/1: negated"
+      },
+      "variants": 390,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "8b991615c83bc49fc48fe224f3ce140808494675c9e2bb1f019e02448a830fc8",
+      "case": "mpmath:mpmath.libmp.libmpf.mpf_rdiv_int",
+      "different_variants": 37,
+      "final_ratio": 0.75976,
+      "first": {
+        "call": "431305058712550634988073414073557200, (0, -1, 0, 124), 153, 'n'",
+        "expected": "returned (0, -26956566169534414686754588379597325, 4, -286)",
+        "got": "returned (0, -26956566169534414686754588379597325, 4, 115)",
+        "label": "1/1: -1"
+      },
+      "variants": 386,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "d0a2d57bb9567e84b757507ad36cc75515e1726c9a8cbec6a3ff1f3571a2eacc",
+      "case": "mistune:mistune.util.escape_url",
+      "different_variants": 0,
+      "final_ratio": 0.42657,
+      "variants": 80,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "e41cf60675c6ec90cd70d95427027abe3bb930c1138d371b5e09d54c4e89721d",
+      "case": "click:click.formatting.wrap_text",
+      "different_variants": 0,
+      "final_ratio": 0.35923,
+      "variants": 306,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "9aed367db0a31b557be07ff4b99b50c88551968a7f483956f8f3a38493906788",
+      "case": "packaging:packaging._parser._parse_marker_atom",
+      "different_variants": 0,
+      "final_ratio": 0.7752,
+      "variants": 0,
+      "verdict": "no usable variant"
+    },
+    {
+      "candidate_sha256": "dead776382aaf984c3a154066198d51afdc70bf7f91a463349a0f900e6f2db1f",
+      "case": "mpmath:mpmath.libmp.libelefun.bspe",
+      "different_variants": 0,
+      "final_ratio": 0.46452,
+      "variants": 156,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "1e55e2bf0c8d687ec00af7d550dd2a1b8547b0383377574ff7799a9c5713e993",
+      "case": "mpmath:mpmath.libmp.libmpc.mpc_pow_int",
+      "different_variants": 143,
+      "final_ratio": 0.78267,
+      "first": {
+        "call": "(([0], 102453013096669983977765945, -82, 87), (0, 91150859367272125938911845, -81, 87)), 2, 90, 'n'",
+        "expected": "raised TypeError: unsupported operand type(s) for ^: 'list' and 'list'",
+        "got": "returned ((1, 587745345704669882436532853, -79, 89), (1, 965596899847911884444153441, -79, 90))",
+        "label": "0/0: first boxed"
+      },
+      "variants": 380,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "81baaf9cce3815ef157b7eb5c447fb0a75e950f52080ab79baff9f3a8fa620e1",
+      "case": "tabulate:tabulate._to_str",
+      "different_variants": 0,
+      "final_ratio": 0.86668,
+      "variants": 235,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "6c84f571de5ee06b0922947f9cb89a120fd9c27166c6f85b071a42d243baaa4c",
+      "case": "tabulate:tabulate._align_header",
+      "different_variants": 24,
+      "final_ratio": 0.47414,
+      "first": {
+        "call": "'3', 'decimal', -1, 1, False, <built-in function len>",
+        "expected": "raised ValueError: Sign not allowed in string format specifier",
+        "got": "returned '3'",
+        "label": "2: -1"
+      },
+      "variants": 351,
+      "verdict": "differs on variants"
+    },
+    {
+      "candidate_sha256": "d61fc5cbd30a79b9c4da07d6c242cad94bf1f0fc1960c6166d2a06704709369e",
+      "case": "markdown:markdown.extensions.toc.strip_tags",
+      "different_variants": 0,
+      "final_ratio": 0.63017,
+      "variants": 80,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "c5830111383b1bf038ab020287f2c7d3f8db28cc9ef02f51d183d1f04a6c6476",
+      "case": "mistune:mistune.util.expand_leading_tab",
+      "different_variants": 0,
+      "final_ratio": 0.31073,
+      "variants": 160,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "5ab8d31abe3fc27deb10f63d8078d89d8e9f6fac99be8e2f1e4634309f3bd9f3",
+      "case": "humanize:humanize.number.scientific",
+      "different_variants": 0,
+      "final_ratio": 0.19127,
+      "variants": 143,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "16d0570071138f5795f5e9f7b6a34e80ee8650b0803c2635894e5f4c4e14f962",
+      "case": "w3lib:w3lib.html.replace_entities",
+      "different_variants": 0,
+      "final_ratio": 0.19841,
+      "variants": 190,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "5d7b479e94deba94cbaca5d4cb90e3f952d31eba5d549e7c8805f574eb68c461",
+      "case": "tabulate:tabulate._format_table",
+      "different_variants": 0,
+      "final_ratio": 0.90619,
+      "variants": 400,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "4606103b7640f506b3610f71475a8e74de0a6ae4d86188ba494f0663dfbc60d0",
+      "case": "w3lib:w3lib.html.remove_tags",
+      "different_variants": 0,
+      "final_ratio": 0.27092,
+      "variants": 268,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "2969706213597a6cdd93c174ecc706fe4a013906961fac8cd6993f6240e6dfe8",
+      "case": "more-itertools:more_itertools.recipes.nth_combination",
+      "different_variants": 0,
+      "final_ratio": 0.79401,
+      "variants": 237,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "2fb551222630cf048788d37e340f7fa9b8ad9f44ecb0b3085df591af6e95dac7",
+      "case": "tabulate:tabulate._remove_separating_lines",
+      "different_variants": 0,
+      "final_ratio": 0.95192,
+      "variants": 375,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "019fac4016f9d1bb295094ee0235b59e404fcda0cf50232ec6899a5ccb3f92d6",
+      "case": "more-itertools:more_itertools.more.chunked_even",
+      "different_variants": 0,
+      "final_ratio": 0.96606,
+      "variants": 77,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "a1951322a851704c101d11c37a436051ba7e2b9910df82398938f5c7d9d0ee6e",
+      "case": "inflection:inflection.ordinalize",
+      "different_variants": 0,
+      "final_ratio": 0.50051,
+      "variants": 76,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "6a1b4c1ef4da8e915bb8262367a33b6d1511d13963785df23412a20498575643",
+      "case": "boltons:boltons.iterutils.default_enter",
+      "different_variants": 0,
+      "final_ratio": 0.44264,
+      "variants": 361,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "7b3ebd73c77ab763b6597a0cd6449c671c7c5b556bd4aa64556ea3fa2295c332",
+      "case": "mistune:mistune.list_parser._compile_continue_width",
+      "different_variants": 0,
+      "final_ratio": 0.30946,
+      "variants": 150,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "16532c3c978160291aabb4242f27610e612ad785b15c0fb19938d11b466dae2c",
+      "case": "more-itertools:more_itertools.recipes.take",
+      "different_variants": 0,
+      "final_ratio": 0.96575,
+      "variants": 77,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "278232c4a43e34639f27431e2a4e64968ef64d8d7cb1b694290bf506790d7e47",
+      "case": "pygments:pygments.formatters.html._get_ttype_class",
+      "different_variants": 0,
+      "final_ratio": 0.72659,
+      "variants": 0,
+      "verdict": "no usable variant"
+    },
+    {
+      "candidate_sha256": "b6bd601be5b780d4a0a5c7f893317a6dbf7f7ad2acfccb2fb3f32e681cbd65a1",
+      "case": "pyparsing:pyparsing.core.srange",
+      "different_variants": 0,
+      "final_ratio": 0.59641,
+      "variants": 80,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "a6d69be74ff713181e85afc9cd0c73e339732f789c8522487bc5015342fae327",
+      "case": "more-itertools:more_itertools.more.combination_index",
+      "different_variants": 0,
+      "final_ratio": 0.64812,
+      "variants": 365,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "5cd1325ca74cc6fa4bec8c35c1362714b161c42067772a4424ae0d4e24f1e88f",
+      "case": "tabulate:tabulate._visible_width",
+      "different_variants": 0,
+      "final_ratio": 0.66338,
+      "variants": 78,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "215b1602eec64fe90cc6ea81ee712391d8d53f898211487f326c1e618173dd6a",
+      "case": "more-itertools:more_itertools.more.nth_product",
+      "different_variants": 0,
+      "final_ratio": 0.77895,
+      "variants": 318,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "0ebc44a115c57f96651412028ea9315ba02f782d37dd96be01d422f02f6cfdd8",
+      "case": "inflection:inflection.underscore",
+      "different_variants": 0,
+      "final_ratio": 0.10654,
+      "variants": 80,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "e748c3b1e19d5d317467707f128f9fb7c9a6275e229abcbde0e58a7bb2dc6b23",
+      "case": "boltons:boltons.urlutils.unquote",
+      "different_variants": 0,
+      "final_ratio": 0.76056,
+      "variants": 236,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "38a04e5aba0da1c12da67cd8915aa1448608cfd184ecef309cbb03ea8da877f0",
+      "case": "tabulate:tabulate._padright",
+      "different_variants": 0,
+      "final_ratio": 0.42967,
+      "variants": 153,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "922e4fe1c78e5bb2fd9ec481bafe86d24d9bf196f78a57baeb866cbf073f94f4",
+      "case": "markdown:markdown.extensions.toc.render_inner_html",
+      "different_variants": 0,
+      "final_ratio": 0.91545,
+      "variants": 0,
+      "verdict": "no usable variant"
+    },
+    {
+      "candidate_sha256": "215b6491b054e7f27d6953c8923febae0c92dd78b57e4dd378dd460c955e9a7e",
+      "case": "mistune:mistune.util.escape",
+      "different_variants": 0,
+      "final_ratio": 0.76877,
+      "variants": 91,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "d04dbbacc3b1d4fc1c01f57b103b1b5183d009df4f278ebcb8fc2e92f4a840f8",
+      "case": "w3lib:w3lib.html.get_meta_refresh",
+      "different_variants": 0,
+      "final_ratio": 0.88471,
+      "variants": 380,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "7310839d26283d4e866b0206862dcfc3a15352ef0fe06c5f81568f38263f6bed",
+      "case": "pyparsing:pyparsing.core._trim_arity",
+      "detail": "the rewrite reaches a private attribute the original does not use (_getframe); stay on the public interface of the objects involved",
+      "final_ratio": 0.54873,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "56daba618df9fba92ff3b617b5ffd261cf70996bdc66411e0d7388a3654c6a12",
+      "case": "packaging:packaging.utils.canonicalize_name",
+      "different_variants": 0,
+      "final_ratio": 0.72381,
+      "variants": 96,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "ee20485d223559ef045a0acef71a03fd9cde3aa359d5c348fd5cb85b13af9f9b",
+      "case": "w3lib:w3lib.url._safe_ParseResult",
+      "different_variants": 0,
+      "final_ratio": 0.90357,
+      "variants": 188,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "e0ea8df35d99dd9fb80f11c5d8def97b82fbfb3042cc324448631244b1ccecd8",
+      "case": "mistune:mistune.helpers.parse_link_text",
+      "different_variants": 0,
+      "final_ratio": 0.92004,
+      "variants": 152,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "54cddea631e5da39cc52a3b0a6795110a34878696af8ff67d5c8455025750613",
+      "case": "click:click.formatting.measure_table",
+      "different_variants": 0,
+      "final_ratio": 0.58389,
+      "variants": 388,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "2a6b857f8e77c73b7f50569683b05839dc02ac359c0f78ccf99a7dd7da15ba69",
+      "case": "idna:idna.core.check_bidi",
+      "different_variants": 0,
+      "final_ratio": 0.62617,
+      "variants": 91,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "0211f672284ee1780045a6be1d166a30c1bffc56ec61ff19ad4db0848750096d",
+      "case": "pygments:pygments.regexopt.regex_opt",
+      "different_variants": 0,
+      "final_ratio": 0.2934,
+      "variants": 400,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "3ffd7120927c1a10f2221c7794fd01883004681897e15ee43fb45086a6c82c57",
+      "case": "tabulate:tabulate._align_cell_veritically",
+      "different_variants": 0,
+      "final_ratio": 0.81323,
+      "variants": 363,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "e6d0775ff100e9b8ec885b713f228fc59e6223a01edd1fc4c389c61f8140a0c8",
+      "case": "more-itertools:more_itertools.more._complex_sumprod",
+      "different_variants": 0,
+      "final_ratio": 0.49965,
+      "variants": 158,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "c3c44976a3325f0b682aee0b61e50e61e3e338d35ba4b1a0563d4b600b2a76fe",
+      "case": "packaging:packaging.metadata._get_payload",
+      "detail": "the rewrite reaches a private attribute the original does not use (_payload); stay on the public interface of the objects involved",
+      "final_ratio": 0.33968,
+      "verdict": "private access"
+    },
+    {
+      "candidate_sha256": "165bb7d6f3138f81cb7afc015463d1eb135ab800d5eb8c7345e280ccffda97e8",
+      "case": "pygments:pygments.util.docstring_headline",
+      "different_variants": 0,
+      "final_ratio": 0.89607,
+      "variants": 0,
+      "verdict": "no usable variant"
+    },
+    {
+      "candidate_sha256": "d4667918398a8668888664a8c1bba6ee784998818981db8f963478c03baeeb2b",
+      "case": "packaging:packaging.markers._evaluate_markers",
+      "different_variants": 0,
+      "final_ratio": 0.91851,
+      "variants": 400,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "b23d4eba83f5129645aac115ffc9f2d6580026b0e2afccbbc45d0707c6481345",
+      "case": "pyparsing:pyparsing.util._escape_regex_range_chars",
+      "different_variants": 0,
+      "final_ratio": 0.48431,
+      "variants": 64,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "cfc668c2844d2f714bd1a656ed29f0fd4c9ea97596ab36a17c2089c76c0324d9",
+      "case": "pyparsing:pyparsing.util.line",
+      "different_variants": 0,
+      "final_ratio": 0.88873,
+      "variants": 142,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "1fe0336f6dbf9618d60ddeec228e43f4a76229e616ef7950d1027a1429f7af2d",
+      "case": "boltons:boltons.urlutils.quote_query_part",
+      "different_variants": 0,
+      "final_ratio": 0.78904,
+      "variants": 91,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "a92a58023fc114aa956ab5021f4847e06788d933f8d39d5591c34b0a072a4b2c",
+      "case": "more-itertools:more_itertools.more.combination_with_replacement_index",
+      "different_variants": 0,
+      "final_ratio": 0.52072,
+      "variants": 365,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "2ef2c7cd8ae184fbb9d7a6ee8ba5c626e6f221b3fe09af22681bfbe3722ee2b3",
+      "case": "more-itertools:more_itertools.more.permutation_index",
+      "different_variants": 0,
+      "final_ratio": 0.90061,
+      "variants": 366,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "cd82dd2c89ca328b564e85173e1c105ac49d9e2663789f011dbc681dcbc6776d",
+      "case": "more-itertools:more_itertools.more.nth_permutation",
+      "different_variants": 0,
+      "final_ratio": 0.81806,
+      "variants": 229,
+      "verdict": "kept"
+    },
+    {
+      "candidate_sha256": "f94e1460f5d2ffe7b60aeb5af64fa2ad4f1985b27aadbb1d3c4fd575a1707a63",
+      "case": "pygments:pygments.formatters.latex.escape_tex",
+      "different_variants": 0,
+      "final_ratio": 0.41728,
+      "variants": 158,
+      "verdict": "kept"
+    }
+  ],
+  "schema": "genesis-improvement-rejudge-v1",
+  "trial": "IMPROVE1",
+  "verdicts": {
+    "differs on variants": 8,
+    "kept": 71,
+    "no usable variant": 6,
+    "private access": 12
+  }
+}
