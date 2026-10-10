@@ -1,0 +1,175 @@
+{
+  "all_attempts": {
+    "attempts": 208,
+    "failed_with_nothing_tested": 32,
+    "failed_with_requests_left": 51,
+    "failed_with_validations_left": 68,
+    "how_failed_attempts_ended": {
+      "nothing tested: edits could not be applied": 5,
+      "nothing tested: empty submission": 23,
+      "nothing tested: never submitted": 2,
+      "nothing tested: no usable answer": 2,
+      "tested: other tests break": 9,
+      "tested: the failing tests still fail": 27
+    },
+    "of_which_with_a_refused_read": 11,
+    "refused_reads": {
+      "failed": 22,
+      "repaired": 0
+    },
+    "repaired": 140
+  },
+  "attempts_on_those_cases": {
+    "attempts": 68,
+    "failed_with_nothing_tested": 25,
+    "failed_with_requests_left": 38,
+    "failed_with_validations_left": 54,
+    "how_failed_attempts_ended": {
+      "nothing tested: edits could not be applied": 4,
+      "nothing tested: empty submission": 20,
+      "nothing tested: no usable answer": 1,
+      "tested: other tests break": 3,
+      "tested: the failing tests still fail": 26
+    },
+    "of_which_with_a_refused_read": 7,
+    "refused_reads": {
+      "failed": 18,
+      "repaired": 0
+    },
+    "repaired": 14
+  },
+  "by_source": {
+    "experiment/bench/LINEAGE1/GEN0_EVALUATION.json": {
+      "attempts": 20,
+      "failed_with_nothing_tested": 8,
+      "failed_with_requests_left": 14,
+      "failed_with_validations_left": 16,
+      "how_failed_attempts_ended": {
+        "nothing tested: edits could not be applied": 1,
+        "nothing tested: empty submission": 4,
+        "nothing tested: never submitted": 2,
+        "nothing tested: no usable answer": 1,
+        "tested: other tests break": 6,
+        "tested: the failing tests still fail": 2
+      },
+      "of_which_with_a_refused_read": 4,
+      "refused_reads": {
+        "failed": 4,
+        "repaired": 0
+      },
+      "repaired": 4
+    },
+    "experiment/bench/LINEAGE2/GEN0_EVALUATION.json": {
+      "attempts": 60,
+      "failed_with_nothing_tested": 7,
+      "failed_with_requests_left": 12,
+      "failed_with_validations_left": 17,
+      "how_failed_attempts_ended": {
+        "nothing tested: edits could not be applied": 1,
+        "nothing tested: empty submission": 5,
+        "nothing tested: no usable answer": 1,
+        "tested: the failing tests still fail": 10
+      },
+      "of_which_with_a_refused_read": 2,
+      "refused_reads": {
+        "failed": 5,
+        "repaired": 0
+      },
+      "repaired": 43
+    },
+    "experiment/localizer/LOCALIZER1/DEV_LOCALIZED_REPAIR1_RESULT.json": {
+      "attempts": 80,
+      "failed_with_nothing_tested": 14,
+      "failed_with_requests_left": 18,
+      "failed_with_validations_left": 27,
+      "how_failed_attempts_ended": {
+        "nothing tested: edits could not be applied": 3,
+        "nothing tested: empty submission": 11,
+        "tested: other tests break": 3,
+        "tested: the failing tests still fail": 10
+      },
+      "of_which_with_a_refused_read": 4,
+      "refused_reads": {
+        "failed": 11,
+        "repaired": 0
+      },
+      "repaired": 53
+    },
+    "experiment/localizer/PROGRAMS1/DEV_COVERAGE_REPAIR1_RESULT.json": {
+      "attempts": 48,
+      "failed_with_nothing_tested": 3,
+      "failed_with_requests_left": 7,
+      "failed_with_validations_left": 8,
+      "how_failed_attempts_ended": {
+        "nothing tested: empty submission": 3,
+        "tested: the failing tests still fail": 5
+      },
+      "of_which_with_a_refused_read": 1,
+      "refused_reads": {
+        "failed": 2,
+        "repaired": 0
+      },
+      "repaired": 40
+    }
+  },
+  "cases": 105,
+  "cases_failed_in_half_or_more_of_two_or_more_attempts": [
+    "Closure-6",
+    "Closure-102",
+    "Compress-16",
+    "Closure-78",
+    "Time-3",
+    "Time-10",
+    "Lang-26",
+    "Closure-141",
+    "Mockito-23",
+    "Closure-48",
+    "JacksonDatabind-91",
+    "Collections-28",
+    "Math-51",
+    "Closure-101",
+    "Compress-10",
+    "Math-77",
+    "Jsoup-49",
+    "JacksonDatabind-62",
+    "JacksonDatabind-59",
+    "Mockito-32",
+    "Gson-7",
+    "Mockito-20",
+    "Compress-8",
+    "Jsoup-64",
+    "Cli-21",
+    "Closure-89",
+    "JxPath-7",
+    "Time-24",
+    "Math-33",
+    "JacksonDatabind-111",
+    "Closure-171",
+    "Closure-139"
+  ],
+  "envelope": {
+    "max_output_tokens_per_request": 4096,
+    "max_price_per_million_tokens": {
+      "completion": 1.0,
+      "prompt": 0.2,
+      "request": 0.0
+    },
+    "max_prompt_characters": 60000,
+    "model": "anthropic/claude-haiku-5.5",
+    "model_requests_per_case": 8,
+    "validations_per_case": 6
+  },
+  "held_out": false,
+  "model_requests": 0,
+  "name": "REPAIR_STOPS1",
+  "reading": "counts of recorded endings; they say where attempts stop, not why, and not what a change would recover",
+  "schema": "genesis-repair-stops-v1",
+  "seed_genome_digest": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+  "sources": {
+    "experiment/bench/LINEAGE1/GEN0_EVALUATION.json": "dbbe8d70f734c331331edf142646a95617a8019060c1e1670fdea22908f6acb7",
+    "experiment/bench/LINEAGE2/GEN0_EVALUATION.json": "a9a586d350ecd0bdc45bf7c1adc6b6cf604c3c8bd9ca59644618e42868c0fd6f",
+    "experiment/localizer/LOCALIZER1/DEV_LOCALIZED_REPAIR1_RESULT.json": "f69211ec31d102f0b469e86d86fad15b7fc8bcd2744050633fd2db35fb587789",
+    "experiment/localizer/PROGRAMS1/DEV_COVERAGE_REPAIR1_RESULT.json": "a8cb24680e82169c344e555e06ddc427fd575f16ed314b4fcd32b745244f936e"
+  },
+  "stops_digest": "6e58b6190f2546b1c0c085ab32594cefed6042a3034ccf418dfe28fed41039b3"
+}

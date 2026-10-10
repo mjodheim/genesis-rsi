@@ -264,6 +264,7 @@ def lineage_proposer(
     multi_file: bool = False,
     branching: bool = False,
     causal_checks: bool = False,
+    inspector: Callable = inspect_tool,
 ) -> Proposer:
     """The proposer a genome defines, for one case. ``calls`` receives every request made."""
     genome = checked_genome(genome)
@@ -448,7 +449,7 @@ def lineage_proposer(
                     try:
                         if final:
                             raise ValueError("inspection disabled")
-                        result = read_branch(root, evidence, history, arguments) if branching and name == "read_file" else inspect_tool(root, evidence, name, arguments)
+                        result = read_branch(root, evidence, history, arguments) if branching and name == "read_file" else inspector(root, evidence, name, arguments)
                     except (ValueError, OSError, KeyError, TypeError) as error:
                         result = "Inspection refused: " + type(error).__name__
                     inspections.append({"tool": name, "arguments": {
