@@ -1,0 +1,191 @@
+{
+  "development_records_only": true,
+  "improvement": {
+    "cases": 170,
+    "conditions": [
+      {
+        "cases_where_earlier_conditions_hold": 170,
+        "component": "writer: form",
+        "condition": "a rewrite could be run",
+        "estimated_gain_if_always_met": 0.0,
+        "failures_when_unmet": 0,
+        "met": 170,
+        "succeeded_when_met": 97,
+        "succeeded_when_unmet": 0,
+        "unmet": 0
+      },
+      {
+        "cases_where_earlier_conditions_hold": 170,
+        "component": "writer: behaviour",
+        "condition": "a rewrite behaves like the original on the recorded calls",
+        "estimated_gain_if_always_met": 4.17,
+        "failures_when_unmet": 7,
+        "met": 163,
+        "succeeded_when_met": 97,
+        "succeeded_when_unmet": 0,
+        "unmet": 7
+      },
+      {
+        "cases_where_earlier_conditions_hold": 163,
+        "component": "writer: cost",
+        "condition": "a rewrite is cheaper",
+        "estimated_gain_if_always_met": 66.0,
+        "failures_when_unmet": 66,
+        "met": 97,
+        "succeeded_when_met": 97,
+        "succeeded_when_unmet": 0,
+        "unmet": 66
+      }
+    ],
+    "estimate_is_observational": true,
+    "estimated_gain_by_component": {
+      "writer: behaviour": 4.17,
+      "writer: cost": 66.0,
+      "writer: form": 0.0
+    },
+    "failures_by_first_unmet_condition": {
+      "a rewrite behaves like the original on the recorded calls": 7,
+      "a rewrite is cheaper": 66
+    },
+    "limiting_component": "writer: cost",
+    "schema": "genesis-failure-attribution-v1",
+    "succeeded": 97
+  },
+  "repair": {
+    "localizer": {
+      "cases": 40,
+      "conditions": [
+        {
+          "cases_where_earlier_conditions_hold": 40,
+          "component": "localizer",
+          "condition": "the evidence covers the place of the fix",
+          "estimated_gain_if_always_met": 10.33,
+          "failures_when_unmet": 12,
+          "met": 15,
+          "succeeded_when_met": 14,
+          "succeeded_when_unmet": 13,
+          "unmet": 25
+        },
+        {
+          "cases_where_earlier_conditions_hold": 15,
+          "component": "proposer",
+          "condition": "a candidate reached validation",
+          "estimated_gain_if_always_met": 0.0,
+          "failures_when_unmet": 0,
+          "met": 15,
+          "succeeded_when_met": 14,
+          "succeeded_when_unmet": 0,
+          "unmet": 0
+        },
+        {
+          "cases_where_earlier_conditions_hold": 15,
+          "component": "proposer",
+          "condition": "a candidate compiles",
+          "estimated_gain_if_always_met": 0.0,
+          "failures_when_unmet": 0,
+          "met": 15,
+          "succeeded_when_met": 14,
+          "succeeded_when_unmet": 0,
+          "unmet": 0
+        },
+        {
+          "cases_where_earlier_conditions_hold": 15,
+          "component": "proposer",
+          "condition": "a candidate passes the failing tests",
+          "estimated_gain_if_always_met": 1.0,
+          "failures_when_unmet": 1,
+          "met": 14,
+          "succeeded_when_met": 14,
+          "succeeded_when_unmet": 0,
+          "unmet": 1
+        }
+      ],
+      "estimate_is_observational": true,
+      "estimated_gain_by_component": {
+        "localizer": 10.33,
+        "proposer": 1.0
+      },
+      "failures_by_first_unmet_condition": {
+        "a candidate passes the failing tests": 1,
+        "the evidence covers the place of the fix": 12
+      },
+      "limiting_component": "localizer",
+      "schema": "genesis-failure-attribution-v1",
+      "succeeded": 27
+    },
+    "stack_trace": {
+      "cases": 40,
+      "conditions": [
+        {
+          "cases_where_earlier_conditions_hold": 40,
+          "component": "localizer",
+          "condition": "the evidence covers the place of the fix",
+          "estimated_gain_if_always_met": 14.0,
+          "failures_when_unmet": 14,
+          "met": 11,
+          "succeeded_when_met": 11,
+          "succeeded_when_unmet": 15,
+          "unmet": 29
+        },
+        {
+          "cases_where_earlier_conditions_hold": 11,
+          "component": "proposer",
+          "condition": "a candidate reached validation",
+          "estimated_gain_if_always_met": 0.0,
+          "failures_when_unmet": 0,
+          "met": 11,
+          "succeeded_when_met": 11,
+          "succeeded_when_unmet": 0,
+          "unmet": 0
+        },
+        {
+          "cases_where_earlier_conditions_hold": 11,
+          "component": "proposer",
+          "condition": "a candidate compiles",
+          "estimated_gain_if_always_met": 0.0,
+          "failures_when_unmet": 0,
+          "met": 11,
+          "succeeded_when_met": 11,
+          "succeeded_when_unmet": 0,
+          "unmet": 0
+        },
+        {
+          "cases_where_earlier_conditions_hold": 11,
+          "component": "proposer",
+          "condition": "a candidate passes the failing tests",
+          "estimated_gain_if_always_met": 0.0,
+          "failures_when_unmet": 0,
+          "met": 11,
+          "succeeded_when_met": 11,
+          "succeeded_when_unmet": 0,
+          "unmet": 0
+        }
+      ],
+      "estimate_is_observational": true,
+      "estimated_gain_by_component": {
+        "localizer": 14.0,
+        "proposer": 0.0
+      },
+      "failures_by_first_unmet_condition": {
+        "the evidence covers the place of the fix": 14
+      },
+      "limiting_component": "localizer",
+      "schema": "genesis-failure-attribution-v1",
+      "succeeded": 26
+    }
+  },
+  "repair_prediction_check": {
+    "condition": "the evidence covers the place of the fix",
+    "met_after": 15,
+    "met_before": 11,
+    "note": "the prediction uses only the arm without the rewritten localizer; the observation is the paired trial",
+    "observed_gain": 1,
+    "predicted_gain_from_the_stack_trace_arm": 1.93
+  },
+  "report_digest": "86185af206d031ffaba3eb6793bed07a58504eff6a50eb8c318e487e40d47e02",
+  "schema": "genesis-failure-attribution-report-v1",
+  "sources": {
+    "improvement": "8387a32ed7fd4bcb678eb48feabee6c2c865c1733d920801f426b2ad97ab5de6",
+    "repair": "48288db8a6b095f2599dc8fb10aae8a9577eba23f579316a0ff3ed6b72cf4df8"
+  }
+}
