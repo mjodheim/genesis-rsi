@@ -1,0 +1,229 @@
+{
+  "attempts": [
+    {
+      "archive_size": 41,
+      "generation": 1,
+      "name": "p-9bbff1853910",
+      "outcome": "promoted",
+      "parent": "LOCALIZER1:g3a3",
+      "parent_localized": 199,
+      "program": [
+        "apart",
+        20,
+        [
+          "weave",
+          [
+            "weave",
+            [
+              "shift",
+              -15,
+              [
+                "files",
+                [
+                  "member",
+                  "LOCALIZER1:g3a4"
+                ],
+                [
+                  "member",
+                  "LOCALIZER1:g0"
+                ]
+              ]
+            ],
+            [
+              "shift",
+              15,
+              [
+                "member",
+                "LOCALIZER2:g3a3"
+              ]
+            ]
+          ],
+          [
+            "weave",
+            [
+              "member",
+              "LOCALIZER1:g4a1"
+            ],
+            [
+              "files",
+              [
+                "member",
+                "LOCALIZER2:g1a2"
+              ],
+              [
+                "head",
+                1,
+                [
+                  "member",
+                  "LOCALIZER1:g3a1"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      "programs_scored": 11324,
+      "reach": {
+        "cases": 491,
+        "missed": 292,
+        "one_member": 119,
+        "out_of_reach": 155,
+        "pooled": 18
+      },
+      "search_localized": 246,
+      "selection": {
+        "child": 107,
+        "gained": 30,
+        "lost": 11,
+        "one_sided_sign_test": 0.002162002467230195,
+        "parent": 88
+      },
+      "size": 15
+    },
+    {
+      "archive_size": 42,
+      "generation": 2,
+      "name": "p-440731e85524",
+      "outcome": "rejected on unseen cases",
+      "parent": "p-9bbff1853910",
+      "parent_localized": 246,
+      "program": [
+        "join",
+        [
+          "apart",
+          40,
+          [
+            "weave",
+            [
+              "member",
+              "p-9bbff1853910"
+            ],
+            [
+              "files",
+              [
+                "member",
+                "LOCALIZER1:g1a3"
+              ],
+              [
+                "head",
+                5,
+                [
+                  "weave",
+                  [
+                    "member",
+                    "LOCALIZER2:g3a3"
+                  ],
+                  [
+                    "member",
+                    "LOCALIZER2:g4a3"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "shift",
+          15,
+          [
+            "shift",
+            30,
+            [
+              "weave",
+              [
+                "member",
+                "LOCALIZER2:g2a2"
+              ],
+              [
+                "member",
+                "LOCALIZER1:g0"
+              ]
+            ]
+          ]
+        ]
+      ],
+      "programs_scored": 11359,
+      "reach": {
+        "cases": 491,
+        "missed": 245,
+        "one_member": 76,
+        "out_of_reach": 153,
+        "pooled": 16
+      },
+      "search_localized": 258,
+      "selection": {
+        "child": 108,
+        "gained": 3,
+        "lost": 2,
+        "one_sided_sign_test": 0.5,
+        "parent": 107
+      },
+      "size": 15
+    }
+  ],
+  "chain": [
+    "LOCALIZER1:g3a3",
+    "p-9bbff1853910"
+  ],
+  "evolution_digest": "7c7debe231c22e89d7fc79a4abf0c9962ca64a55b72d57ab4550d8f005245066",
+  "name": "PROGRAMS1",
+  "plan_digest": "7f9ac356ec4d1062c657fcd6f64d7c8e38532f9c36d323a6dba13e0ce72883c1",
+  "programs": {
+    "p-9bbff1853910": [
+      "apart",
+      20,
+      [
+        "weave",
+        [
+          "weave",
+          [
+            "shift",
+            -15,
+            [
+              "files",
+              [
+                "member",
+                "LOCALIZER1:g3a4"
+              ],
+              [
+                "member",
+                "LOCALIZER1:g0"
+              ]
+            ]
+          ],
+          [
+            "shift",
+            15,
+            [
+              "member",
+              "LOCALIZER2:g3a3"
+            ]
+          ]
+        ],
+        [
+          "weave",
+          [
+            "member",
+            "LOCALIZER1:g4a1"
+          ],
+          [
+            "files",
+            [
+              "member",
+              "LOCALIZER2:g1a2"
+            ],
+            [
+              "head",
+              1,
+              [
+                "member",
+                "LOCALIZER1:g3a1"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  },
+  "schema": "genesis-localizer-programs-evolution-v1"
+}
