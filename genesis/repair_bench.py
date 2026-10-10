@@ -402,7 +402,7 @@ Proposer = Callable[[Path, Mapping, History, int], Sequence[Candidate]]
 
 def run_arm(
     sandbox: Defects4JSandbox, directory: str, evidence: Mapping, proposer: Proposer, budget: int,
-    *, max_rounds: int = 4,
+    *, max_rounds: int = 4, persist: bool = False,
 ) -> dict:
     """Give one proposer one case: at most ``budget`` distinct candidates, each validated.
 
@@ -410,6 +410,7 @@ def run_arm(
     and how many validations remain, and may use that or ignore it. The arm stops at the first
     candidate that passes the full suite, when the budget is spent, when a round brings nothing
     new, or after ``max_rounds``. All arms get the same budget; only the proposer differs.
+    With ``persist`` a round that brings nothing new does not end the case: the next round is asked.
     """
     root = sandbox.workspace / directory
     history: list[tuple[Candidate, dict]] = []
@@ -425,6 +426,8 @@ def run_arm(
                 seen.add(candidate.digest)
                 fresh.append(candidate)
         if not fresh:
+            if persist:
+                continue
             break
         solved = False
         for candidate in fresh[:budget - len(history)]:
