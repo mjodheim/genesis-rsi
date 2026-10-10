@@ -628,3 +628,17 @@ three of them confirmed by execution. Chaining holds; accumulated experience sho
 effect; the judge is too permissive. The writer, judge and acceptance rule stayed
 hand-fixed. See
 [PROGRAM_IMPROVEMENT_2026-10-10.md](PROGRAM_IMPROVEMENT_2026-10-10.md).
+
+## A stricter judge for chained improvements — 10 October 2026
+
+The judge of chained improvements now also replays generated variants of the recorded
+calls against the original, refuses private access the original function did not have, and
+compares uninstrumented processor time and peak allocation. Judged again without a model,
+the 97 rewrites IMPROVE1 accepted give 71 kept, 12 refused for private access, 8 on
+variants; 3 of the 4 known wrong ones are refused and one correct one is. STRICT_PILOT1 is
+kept with an apparatus fault and counts for nothing. STRICT_PILOT2, 63 development cases:
+37 improved, instruction ratio 0.584, processor-time ratio 0.596; no change of behaviour in
+12 accepted chains read. The earlier statement that instruction counts overstate real gains
+came from a diluted timing and is withdrawn. Development cases only. See
+[PROGRAM_IMPROVEMENT_STRICT_JUDGE_2026-10-10.md](PROGRAM_IMPROVEMENT_STRICT_JUDGE_2026-10-10.md).
+
