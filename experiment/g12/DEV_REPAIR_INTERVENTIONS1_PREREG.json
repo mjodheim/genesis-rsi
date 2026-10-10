@@ -1,0 +1,705 @@
+{
+  "arm_order": "rotated per case by intervention_diagnosis.order",
+  "arms": {
+    "budget": {
+      "component": "envelope",
+      "envelope": {
+        "max_output_tokens_per_request": 4096,
+        "max_price_per_million_tokens": {
+          "completion": 1.0,
+          "prompt": 0.2,
+          "request": 0.0
+        },
+        "max_prompt_characters": 60000,
+        "model": "anthropic/claude-haiku-5.5",
+        "model_requests_per_case": 16,
+        "validations_per_case": 12
+      },
+      "locations": "collected evidence",
+      "persist": false,
+      "search": {
+        "candidates_per_round": 3,
+        "inspection_requests": 3,
+        "rounds": 4
+      },
+      "tolerant_reading": false
+    },
+    "control": {
+      "component": null,
+      "envelope": {
+        "max_output_tokens_per_request": 4096,
+        "max_price_per_million_tokens": {
+          "completion": 1.0,
+          "prompt": 0.2,
+          "request": 0.0
+        },
+        "max_prompt_characters": 60000,
+        "model": "anthropic/claude-haiku-5.5",
+        "model_requests_per_case": 8,
+        "validations_per_case": 6
+      },
+      "locations": "collected evidence",
+      "persist": false,
+      "search": {
+        "candidates_per_round": 3,
+        "inspection_requests": 3,
+        "rounds": 2
+      },
+      "tolerant_reading": false
+    },
+    "depth": {
+      "component": "budget split",
+      "envelope": {
+        "max_output_tokens_per_request": 4096,
+        "max_price_per_million_tokens": {
+          "completion": 1.0,
+          "prompt": 0.2,
+          "request": 0.0
+        },
+        "max_prompt_characters": 60000,
+        "model": "anthropic/claude-haiku-5.5",
+        "model_requests_per_case": 8,
+        "validations_per_case": 6
+      },
+      "locations": "collected evidence",
+      "persist": false,
+      "search": {
+        "candidates_per_round": 4,
+        "inspection_requests": 7,
+        "rounds": 1
+      },
+      "tolerant_reading": false
+    },
+    "model": {
+      "component": "model",
+      "envelope": {
+        "max_output_tokens_per_request": 4096,
+        "max_price_per_million_tokens": {
+          "completion": 12.0,
+          "prompt": 2.5,
+          "request": 0.0
+        },
+        "max_prompt_characters": 60000,
+        "model": "anthropic/claude-sonnet-5.5",
+        "model_requests_per_case": 8,
+        "validations_per_case": 6
+      },
+      "locations": "collected evidence",
+      "persist": false,
+      "search": {
+        "candidates_per_round": 3,
+        "inspection_requests": 3,
+        "rounds": 2
+      },
+      "tolerant_reading": false
+    },
+    "oracle": {
+      "component": "localizer",
+      "envelope": {
+        "max_output_tokens_per_request": 4096,
+        "max_price_per_million_tokens": {
+          "completion": 1.0,
+          "prompt": 0.2,
+          "request": 0.0
+        },
+        "max_prompt_characters": 60000,
+        "model": "anthropic/claude-haiku-5.5",
+        "model_requests_per_case": 8,
+        "validations_per_case": 6
+      },
+      "locations": "developers' edit sites",
+      "persist": false,
+      "search": {
+        "candidates_per_round": 3,
+        "inspection_requests": 3,
+        "rounds": 2
+      },
+      "tolerant_reading": false
+    },
+    "persistence": {
+      "component": "stopping rule",
+      "envelope": {
+        "max_output_tokens_per_request": 4096,
+        "max_price_per_million_tokens": {
+          "completion": 1.0,
+          "prompt": 0.2,
+          "request": 0.0
+        },
+        "max_prompt_characters": 60000,
+        "model": "anthropic/claude-haiku-5.5",
+        "model_requests_per_case": 8,
+        "validations_per_case": 6
+      },
+      "locations": "collected evidence",
+      "persist": true,
+      "search": {
+        "candidates_per_round": 3,
+        "inspection_requests": 3,
+        "rounds": 2
+      },
+      "tolerant_reading": false
+    },
+    "reading": {
+      "component": "inspection tools",
+      "envelope": {
+        "max_output_tokens_per_request": 4096,
+        "max_price_per_million_tokens": {
+          "completion": 1.0,
+          "prompt": 0.2,
+          "request": 0.0
+        },
+        "max_prompt_characters": 60000,
+        "model": "anthropic/claude-haiku-5.5",
+        "model_requests_per_case": 8,
+        "validations_per_case": 6
+      },
+      "locations": "collected evidence",
+      "persist": false,
+      "search": {
+        "candidates_per_round": 3,
+        "inspection_requests": 3,
+        "rounds": 2
+      },
+      "tolerant_reading": true
+    }
+  },
+  "benchmark_may_be_in_model_training_data": true,
+  "case_rule": "development cases with at least two sealed attempts of the seed agent in the sources and at least half of them failed, ordered by sha256('genesis-repair-interventions-v1|' + case), first 32",
+  "cases": [
+    "Closure-6",
+    "Closure-102",
+    "Compress-16",
+    "Closure-78",
+    "Time-3",
+    "Time-10",
+    "Lang-26",
+    "Closure-141",
+    "Mockito-23",
+    "Closure-48",
+    "JacksonDatabind-91",
+    "Collections-28",
+    "Math-51",
+    "Closure-101",
+    "Compress-10",
+    "Math-77",
+    "Jsoup-49",
+    "JacksonDatabind-62",
+    "JacksonDatabind-59",
+    "Mockito-32",
+    "Gson-7",
+    "Mockito-20",
+    "Compress-8",
+    "Jsoup-64",
+    "Cli-21",
+    "Closure-89",
+    "JxPath-7",
+    "Time-24",
+    "Math-33",
+    "JacksonDatabind-111",
+    "Closure-171",
+    "Closure-139"
+  ],
+  "claim_boundary": "a development diagnosis on cases chosen because the agent failed them; it names what to change next and estimates no repair rate; a change it names still has to be judged on cases the agent has not met",
+  "failing_cases": 32,
+  "held_out": false,
+  "machinery_commit": "d45ba3ee583ee0f6f729f6c95824d95a8c2523a8",
+  "machinery_digests": {
+    "genesis/defects4j_sandbox.py": "ce03c418d6f758e7a48396ece9c7a08697e369231d45c44c3ee2ac03fb79ecd6",
+    "genesis/intervention_diagnosis.py": "1d40d8b0a151dbd77d4e5c37801d0c70e43de1541beaffaad207f95660305b88",
+    "genesis/located_evidence.py": "545398c797b67be69f5a772e089ee29af901aff99a103d98c3821e93afd59844",
+    "genesis/openrouter_repair.py": "901a40aa72c7d23c7d027ab80d741cfdb6dbaf7734f2e0f2e007230bf7546792",
+    "genesis/repair_bench.py": "b0660a2045ef601e74f7cca577aebb69e14e4b532d18db2ebafd86bf5a221324",
+    "genesis/repair_interventions.py": "0d509a3302b6a838a2fd978a0c6960de1b17fcf53446a0e53374904175b87d7b",
+    "genesis/repair_lineage.py": "1a86d2a927c6320cd8657d339d8fe06a48004d7d165254550a2c0301973868f3",
+    "scripts/run_repair_interventions.py": "a399df7c870eb9e2cdeb23bbe27b7f0fd2aa273da248c6477b5c6d66ef521e90"
+  },
+  "model_arm_cases": [
+    "Closure-6",
+    "Closure-102",
+    "Compress-16",
+    "Closure-78",
+    "Time-3",
+    "Time-10",
+    "Lang-26",
+    "Closure-141",
+    "Mockito-23",
+    "Closure-48",
+    "JacksonDatabind-91",
+    "Collections-28",
+    "Math-51",
+    "Closure-101",
+    "Compress-10",
+    "Math-77"
+  ],
+  "model_arm_rule": "the model arm is run on the first 16 cases only, to bound spending",
+  "name": "DEV_REPAIR_INTERVENTIONS1",
+  "naming_rule": {
+    "level": 0.05,
+    "margin": 3,
+    "text": "a component is named as limiting when its variant gains at least the margin net and the test passes the level; no correction for the six comparisons is applied, which the report must say"
+  },
+  "oracle_locations": {
+    "Cli-21": [
+      [
+        "src/java/org/apache/commons/cli2/WriteableCommandLine.java",
+        102
+      ],
+      [
+        "src/java/org/apache/commons/cli2/WriteableCommandLine.java",
+        110
+      ],
+      [
+        "src/java/org/apache/commons/cli2/commandline/WriteableCommandLineImpl.java",
+        51
+      ],
+      [
+        "src/java/org/apache/commons/cli2/commandline/WriteableCommandLineImpl.java",
+        63
+      ],
+      [
+        "src/java/org/apache/commons/cli2/commandline/WriteableCommandLineImpl.java",
+        234
+      ],
+      [
+        "src/java/org/apache/commons/cli2/commandline/WriteableCommandLineImpl.java",
+        242
+      ]
+    ],
+    "Closure-101": [
+      [
+        "src/com/google/javascript/jscomp/CommandLineRunner.java",
+        433
+      ]
+    ],
+    "Closure-102": [
+      [
+        "src/com/google/javascript/jscomp/Normalize.java",
+        89
+      ],
+      [
+        "src/com/google/javascript/jscomp/Normalize.java",
+        94
+      ]
+    ],
+    "Closure-139": [
+      [
+        "src/com/google/javascript/jscomp/Normalize.java",
+        281
+      ],
+      [
+        "src/com/google/javascript/jscomp/Normalize.java",
+        292
+      ],
+      [
+        "src/com/google/javascript/jscomp/Normalize.java",
+        309
+      ],
+      [
+        "src/com/google/javascript/jscomp/Normalize.java",
+        521
+      ]
+    ],
+    "Closure-141": [
+      [
+        "src/com/google/javascript/jscomp/NodeUtil.java",
+        602
+      ],
+      [
+        "src/com/google/javascript/jscomp/PureFunctionIdentifier.java",
+        177
+      ],
+      [
+        "src/com/google/javascript/jscomp/PureFunctionIdentifier.java",
+        198
+      ]
+    ],
+    "Closure-171": [
+      [
+        "src/com/google/javascript/jscomp/TypeInference.java",
+        731
+      ],
+      [
+        "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+        1669
+      ]
+    ],
+    "Closure-48": [
+      [
+        "src/com/google/javascript/jscomp/TypedScopeCreator.java",
+        1521
+      ]
+    ],
+    "Closure-6": [
+      [
+        "src/com/google/javascript/jscomp/TypeValidator.java",
+        366
+      ],
+      [
+        "src/com/google/javascript/jscomp/TypeValidator.java",
+        385
+      ],
+      [
+        "src/com/google/javascript/jscomp/TypeValidator.java",
+        405
+      ]
+    ],
+    "Closure-78": [
+      [
+        "src/com/google/javascript/jscomp/PeepholeFoldConstants.java",
+        711
+      ],
+      [
+        "src/com/google/javascript/jscomp/PeepholeFoldConstants.java",
+        718
+      ]
+    ],
+    "Closure-89": [
+      [
+        "src/com/google/javascript/jscomp/CollapseProperties.java",
+        484
+      ],
+      [
+        "src/com/google/javascript/jscomp/GlobalNamespace.java",
+        920
+      ]
+    ],
+    "Collections-28": [
+      [
+        "src/main/java/org/apache/commons/collections4/trie/AbstractPatriciaTrie.java",
+        2262
+      ]
+    ],
+    "Compress-10": [
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        808
+      ],
+      [
+        "src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java",
+        842
+      ]
+    ],
+    "Compress-16": [
+      [
+        "src/main/java/org/apache/commons/compress/archivers/ArchiveStreamFactory.java",
+        244
+      ]
+    ],
+    "Compress-8": [
+      [
+        "src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java",
+        53
+      ],
+      [
+        "src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java",
+        57
+      ]
+    ],
+    "Gson-7": [
+      [
+        "gson/src/main/java/com/google/gson/stream/JsonReader.java",
+        954
+      ],
+      [
+        "gson/src/main/java/com/google/gson/stream/JsonReader.java",
+        1182
+      ]
+    ],
+    "JacksonDatabind-111": [
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/CreatorProperty.java",
+        135
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/impl/FieldProperty.java",
+        93
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/impl/FieldProperty.java",
+        217
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/impl/MethodProperty.java",
+        84
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/impl/ObjectIdReferenceProperty.java",
+        54
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/impl/ObjectIdValueProperty.java",
+        55
+      ]
+    ],
+    "JacksonDatabind-59": [
+      [
+        "src/main/java/com/fasterxml/jackson/databind/JavaType.java",
+        140
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/type/CollectionLikeType.java",
+        136
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/type/MapLikeType.java",
+        148
+      ],
+      [
+        "src/main/java/com/fasterxml/jackson/databind/type/TypeFactory.java",
+        428
+      ]
+    ],
+    "JacksonDatabind-62": [
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/std/CollectionDeserializer.java",
+        184
+      ]
+    ],
+    "JacksonDatabind-91": [
+      [
+        "src/main/java/com/fasterxml/jackson/databind/deser/DeserializerCache.java",
+        541
+      ]
+    ],
+    "Jsoup-49": [
+      [
+        "src/main/java/org/jsoup/nodes/Node.java",
+        445
+      ]
+    ],
+    "Jsoup-64": [
+      [
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+        1489
+      ],
+      [
+        "src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java",
+        1493
+      ]
+    ],
+    "JxPath-7": [
+      [
+        "src/java/org/apache/commons/jxpath/ri/compiler/CoreOperationGreaterThan.java",
+        31
+      ],
+      [
+        "src/java/org/apache/commons/jxpath/ri/compiler/CoreOperationGreaterThanOrEqual.java",
+        32
+      ],
+      [
+        "src/java/org/apache/commons/jxpath/ri/compiler/CoreOperationLessThan.java",
+        31
+      ],
+      [
+        "src/java/org/apache/commons/jxpath/ri/compiler/CoreOperationLessThanOrEqual.java",
+        32
+      ],
+      [
+        "src/java/org/apache/commons/jxpath/ri/compiler/CoreOperationRelationalExpression.java",
+        19
+      ],
+      [
+        "src/java/org/apache/commons/jxpath/ri/compiler/CoreOperationRelationalExpression.java",
+        33
+      ]
+    ],
+    "Lang-26": [
+      [
+        "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+        820
+      ]
+    ],
+    "Math-33": [
+      [
+        "src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java",
+        338
+      ]
+    ],
+    "Math-51": [
+      [
+        "src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java",
+        185
+      ]
+    ],
+    "Math-77": [
+      [
+        "src/main/java/org/apache/commons/math/linear/ArrayRealVector.java",
+        721
+      ],
+      [
+        "src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java",
+        498
+      ]
+    ],
+    "Mockito-20": [
+      [
+        "src/org/mockito/internal/creation/bytebuddy/ByteBuddyMockMaker.java",
+        32
+      ],
+      [
+        "src/org/mockito/internal/creation/bytebuddy/ByteBuddyMockMaker.java",
+        45
+      ]
+    ],
+    "Mockito-23": [
+      [
+        "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+        44
+      ],
+      [
+        "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+        52
+      ],
+      [
+        "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+        59
+      ],
+      [
+        "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+        100
+      ],
+      [
+        "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+        114
+      ],
+      [
+        "src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java",
+        123
+      ]
+    ],
+    "Mockito-32": [
+      [
+        "src/org/mockito/internal/configuration/SpyAnnotationEngine.java",
+        19
+      ],
+      [
+        "src/org/mockito/internal/configuration/SpyAnnotationEngine.java",
+        49
+      ]
+    ],
+    "Time-10": [
+      [
+        "src/main/java/org/joda/time/base/BaseSingleFieldPeriod.java",
+        52
+      ],
+      [
+        "src/main/java/org/joda/time/base/BaseSingleFieldPeriod.java",
+        104
+      ]
+    ],
+    "Time-24": [
+      [
+        "src/main/java/org/joda/time/format/DateTimeParserBucket.java",
+        355
+      ]
+    ],
+    "Time-3": [
+      [
+        "src/main/java/org/joda/time/MutableDateTime.java",
+        639
+      ],
+      [
+        "src/main/java/org/joda/time/MutableDateTime.java",
+        660
+      ],
+      [
+        "src/main/java/org/joda/time/MutableDateTime.java",
+        681
+      ],
+      [
+        "src/main/java/org/joda/time/MutableDateTime.java",
+        702
+      ],
+      [
+        "src/main/java/org/joda/time/MutableDateTime.java",
+        723
+      ],
+      [
+        "src/main/java/org/joda/time/MutableDateTime.java",
+        764
+      ]
+    ]
+  },
+  "oracle_note": "taken from the developers' patch; an upper bound for any localizer, never part of the agent",
+  "plausible_is_not_correct": true,
+  "preregistration_digest": "7505a45d799dfc8e0958e8b1b3d315f35c92e61871f8ef578e72228fe65b4d63",
+  "primary_comparison": "each variant against the control on the cases that have both: cases only the variant repairs against cases only the control repairs, exact one-sided sign test",
+  "schema": "genesis-repair-interventions-preregistration-v1",
+  "sealed_attempts_per_case": {
+    "Cli-21": 2,
+    "Closure-101": 2,
+    "Closure-102": 2,
+    "Closure-139": 2,
+    "Closure-141": 2,
+    "Closure-171": 2,
+    "Closure-48": 2,
+    "Closure-6": 2,
+    "Closure-78": 2,
+    "Closure-89": 2,
+    "Collections-28": 2,
+    "Compress-10": 2,
+    "Compress-16": 2,
+    "Compress-8": 2,
+    "Gson-7": 2,
+    "JacksonDatabind-111": 2,
+    "JacksonDatabind-59": 2,
+    "JacksonDatabind-62": 2,
+    "JacksonDatabind-91": 2,
+    "Jsoup-49": 2,
+    "Jsoup-64": 4,
+    "JxPath-7": 2,
+    "Lang-26": 2,
+    "Math-33": 3,
+    "Math-51": 2,
+    "Math-77": 2,
+    "Mockito-20": 3,
+    "Mockito-23": 2,
+    "Mockito-32": 2,
+    "Time-10": 2,
+    "Time-24": 2,
+    "Time-3": 2
+  },
+  "sealed_failures_per_case": {
+    "Cli-21": 1,
+    "Closure-101": 1,
+    "Closure-102": 2,
+    "Closure-139": 2,
+    "Closure-141": 2,
+    "Closure-171": 2,
+    "Closure-48": 2,
+    "Closure-6": 2,
+    "Closure-78": 1,
+    "Closure-89": 2,
+    "Collections-28": 1,
+    "Compress-10": 2,
+    "Compress-16": 2,
+    "Compress-8": 2,
+    "Gson-7": 1,
+    "JacksonDatabind-111": 1,
+    "JacksonDatabind-59": 1,
+    "JacksonDatabind-62": 1,
+    "JacksonDatabind-91": 2,
+    "Jsoup-49": 1,
+    "Jsoup-64": 3,
+    "JxPath-7": 2,
+    "Lang-26": 1,
+    "Math-33": 3,
+    "Math-51": 1,
+    "Math-77": 2,
+    "Mockito-20": 3,
+    "Mockito-23": 2,
+    "Mockito-32": 2,
+    "Time-10": 1,
+    "Time-24": 2,
+    "Time-3": 1
+  },
+  "seed_genome_digest": "a48d4dce1a10a6d10f1cbbb15e8881f78011c9de0c778c46e2152269acaf2196",
+  "separate_environment": true,
+  "sources": {
+    "experiment/bench/LINEAGE1/GEN0_EVALUATION.json": "dbbe8d70f734c331331edf142646a95617a8019060c1e1670fdea22908f6acb7",
+    "experiment/bench/LINEAGE2/GEN0_EVALUATION.json": "a9a586d350ecd0bdc45bf7c1adc6b6cf604c3c8bd9ca59644618e42868c0fd6f",
+    "experiment/localizer/LOCALIZER1/DEV_LOCALIZED_REPAIR1_RESULT.json": "f69211ec31d102f0b469e86d86fad15b7fc8bcd2744050633fd2db35fb587789",
+    "experiment/localizer/PROGRAMS1/DEV_COVERAGE_REPAIR1_RESULT.json": "a8cb24680e82169c344e555e06ddc427fd575f16ed314b4fcd32b745244f936e"
+  },
+  "spending_ceiling_usd": 3.0
+}
