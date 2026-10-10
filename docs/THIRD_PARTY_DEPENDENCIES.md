@@ -67,6 +67,13 @@ invokes the Docker CLI to run that image in disposable, network-disabled contain
 
 **Audit note:** the `ubuntu:22.04` base is named by tag, not by digest.
 
+### External localization catalogue
+
+`scripts/run_external_localization.py` reads a local checkout of GrowingBugRepository (MIT licence)
+pinned at revision `f198b74b03c1a12b4acd842a7d6568fe5efdbf9a` and clones the public repositories of
+the projects it lists. Patches, failure reports and sources stay in the local workspace; this
+repository records case names, revisions and digests only.
+
 ### M081 / shell and HTTP service
 
 M081 uses two pinned container bases:
