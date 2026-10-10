@@ -346,6 +346,8 @@ def run(arguments) -> None:
         path = stored(arm, case)
         if path.is_file():
             return json.loads(path.read_text(encoding="utf-8"))
+        if record["machinery"] != machinery():
+            raise SystemExit("the machinery changed while the trial was running")
         path.parent.mkdir(parents=True, exist_ok=True)
         loaded = improvement.Case(case_directory(workspace, case), workspace / "packages")
         try:
@@ -356,6 +358,8 @@ def run(arguments) -> None:
         except (BudgetExhausted, ModelUnavailable) as error:
             print(json.dumps({"arm": arm, "case": case, "stopped": type(error).__name__}), flush=True)
             return None
+        if record["machinery"] != machinery():
+            raise SystemExit("the machinery changed while the trial was running")
         result["memory_digest"] = improvement.text_digest(memory) if memory is not None else None
         path.write_text(json.dumps(result, indent=1, sort_keys=True), encoding="utf-8")
         print(json.dumps({"arm": arm, "case": case, "chain": result["chain_length"], "ratio": result["final_ratio"],
