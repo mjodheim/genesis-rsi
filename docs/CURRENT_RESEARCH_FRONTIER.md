@@ -678,3 +678,17 @@ seed, 63 to 134, 75 gained and 4 lost; the composite built without a model again
 champion, 134 to 155, 29 gained and 8 lost, sign test 0.0004. Both steps hold outside the
 projects they were developed on. Localization only, Java only, one hand-written merge rule,
 no repair trial. See [EXTERNAL_LOCALIZATION_2026-10-10.md](EXTERNAL_LOCALIZATION_2026-10-10.md).
+
+## Searched programs over archived localizers — 10 October 2026
+
+The merge rule of RECOMBINE1 was fixed by hand; here it is searched. Programs of at most
+fifteen nodes over nine list operations, leaves in the archive, mutation and crossover on
+491 search cases, promotion on the selection cases, no model. PROGRAMS1, plan pushed first:
+one program promoted (selection 88 to 107, sign test 0.002), the next rejected. On 254
+cases of 70 unseen projects, scored once: champion 125, hand-written composite 129,
+searched program 136; against the champion 23 gained and 12 lost (0.045), against the
+composite 16 and 9 (0.11, not established). Eight ablations: no operation is necessary and
+the spread between searches exceeds the difference between the two recombinations. The
+system's diagnosis after the promotion: 153 of 245 misses are out of reach of any
+combination, mostly an edit inside a file some member names. Recombination is close to
+exhausted; no chain. See [LOCALIZER_PROGRAMS_2026-10-10.md](LOCALIZER_PROGRAMS_2026-10-10.md).
