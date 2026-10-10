@@ -611,3 +611,20 @@ agent repairs 27 of 40 cases with the final localizer against 26 of 40 with the 
 trace. A real component gain, a short chain, a plateau, and no system gain. No held-out
 case consumed (103 remain). See
 [LOCALIZER_LINEAGE_2026-10-09.md](LOCALIZER_LINEAGE_2026-10-09.md).
+
+## Chained improvements of functions in working libraries — 10 October 2026
+
+A case is one function of a pinned pure-Python library; the behaviour to keep is its
+outcome on every call recorded from the library's own tests, and the cost is an instruction
+count. A rewrite by the external model replaces the current version only if it is identical
+on all recorded calls, loses no test and runs at most 97 % of the instructions on calls the
+writer never saw; the next rewrite starts from it. IMPROVE1, preregistered, 170 cases never
+used in development: 97 functions improved, 53 a second time, chains up to five steps,
+instruction ratio 0.72 after one step and 0.61 at the end of the chain. A second arm that
+also receives what earlier functions taught: 96 improved, paired comparison null (12
+against 11, sign test 0.66). A reading of 24 accepted chains, not preregistered: 15
+equivalent, 5 dependent on internals, 4 that change behaviour outside the recorded calls,
+three of them confirmed by execution. Chaining holds; accumulated experience shows no
+effect; the judge is too permissive. The writer, judge and acceptance rule stayed
+hand-fixed. See
+[PROGRAM_IMPROVEMENT_2026-10-10.md](PROGRAM_IMPROVEMENT_2026-10-10.md).
