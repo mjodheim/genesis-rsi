@@ -629,6 +629,18 @@ effect; the judge is too permissive. The writer, judge and acceptance rule staye
 hand-fixed. See
 [PROGRAM_IMPROVEMENT_2026-10-10.md](PROGRAM_IMPROVEMENT_2026-10-10.md).
 
+## Which component limits the system — 10 October 2026
+
+An instrument reads sealed trial records without a model: for each condition of a pipeline,
+among the cases where the earlier ones hold, success with and without it, and from the
+difference the estimated gain of always meeting it. On DEV_LOCALIZED_REPAIR1 it names the
+localizer in both arms: the proposer repairs 25 of 26 cases whose fix the evidence covers,
+and 28 of 54 otherwise. From the stack-trace arm alone it expects 1.9 more repairs from the
+four cases the rewritten localizer newly covers; the paired trial observed 1. On IMPROVE1,
+66 of 73 failures are first unmet at "a rewrite is cheaper". The estimate is observational,
+the conditions are hand-written, and the records are development records. See
+[FAILURE_ATTRIBUTION_2026-10-10.md](FAILURE_ATTRIBUTION_2026-10-10.md).
+
 ## A stricter judge for chained improvements — 10 October 2026
 
 The judge of chained improvements now also replays generated variants of the recorded
