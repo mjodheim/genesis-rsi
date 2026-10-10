@@ -83,6 +83,19 @@ model 0.48 mean quality; the seed improver 0.59. USD 0.30 including a first pass
 before a scoring fault was fixed (programs containing an ordinary `__main__` guard were
 refused).
 
+## A second channel and a second model
+
+Lineages after SELF1 may reach a model through the Codex client under a subscription
+(`genesis/improver_codex.py`, `scripts/run_codex_improver_lineage.py`): `gpt-6.1-sol`, low
+reasoning effort, one read-only run in an empty directory per request. The channel is
+looser than the metered one: answer size, temperature and system prompt are the client's,
+and requests are bounded per day (300), not priced, so a generation spans days and resumes
+from what is stored. Such a lineage has its own plan and its own model throughout; it
+serves as reproduction (point 4) and as the other model (point 5), never as a continuation
+of a lineage begun on another model. Apparatus check, tasks numbered 9002: the seed scored
+0.84 on travelling salesman and 0.16 on quadratic assignment, about 55 seconds and 18,000
+tokens per request.
+
 ## Reproduction
 
 ```
