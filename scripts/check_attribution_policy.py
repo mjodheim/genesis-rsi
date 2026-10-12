@@ -157,7 +157,8 @@ def audit_ai_paths(paths: Iterable[str]) -> list[str]:
 
 
 def changed_paths(base: str, head: str) -> list[str]:
-    result = subprocess.run(["git", "diff", "--name-only", "-z", "--diff-filter=ACMR",
+    """Include deleted paths and both sides of a rename; never let scope checks miss them."""
+    result = subprocess.run(["git", "diff", "--name-only", "-z", "--no-renames",
                              f"{base}...{head}"], check=True, capture_output=True)
     return [part.decode("utf-8") for part in result.stdout.split(bytes([0])) if part]
 
