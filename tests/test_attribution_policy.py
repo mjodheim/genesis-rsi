@@ -154,13 +154,33 @@ def test_mira_pull_request_requires_a_disclosed_provenance():
 
 def test_ai_contribution_cannot_change_repository_governance_or_trust_roots():
     assert audit_ai_paths(["genesis/learning/capability_gaps.py",
-                           "tests/test_capability_gaps.py"]) == []
-    assert audit_ai_paths([".github/workflows/ci.yml",
-                           "scripts/check_attribution_policy.py",
-                           "genesis/trust_root.py",
-                           "docs/IP_PUBLICATION_POLICY.md"]) == [
-        "AI contribution cannot modify protected path: .github/workflows/ci.yml",
-        "AI contribution cannot modify protected path: scripts/check_attribution_policy.py",
-        "AI contribution cannot modify protected path: genesis/trust_root.py",
-        "AI contribution cannot modify protected path: docs/IP_PUBLICATION_POLICY.md",
+                           "tests/test_capability_gaps.py",
+                           "genesis/learning/failure_model.py"]) == []
+    dangerous = [
+        ".github/workflows/ci.yml",
+        "scripts/check_attribution_policy.py",
+        "genesis/trust_root.py",
+        "genesis/cognitive_measurement.py",
+        "genesis/learning/new_scoring_module.py",
+        "metamorphosis/evaluation_cost.py",
+        "tests/test_attribution_policy.py",
+        "tests/test_g12_training_bank.py",
+        "experiment/rsi_v31/bank.py",
+        "experiment/rsi_v31/PROTOCOL.md",
+        "docs/IP_PUBLICATION_POLICY.md",
+        "archives/workflows/m013e-sealed-evaluation.yml",
+        "genesis/learning/distillation.py.backup",
+        "genesis/learning/../../scripts/check_attribution_policy.py",
     ]
+    assert audit_ai_paths(dangerous) == [
+        f"AI contribution cannot modify protected path: {path}" for path in dangerous
+    ]
+
+
+def test_ai_allowlist_requires_exact_reviewed_paths_not_matching_directory_prefixes():
+    assert audit_ai_paths(["tests/test_failure_model.py"]) == []
+    assert len(audit_ai_paths([
+        "tests/test_failure_model.py/sealed.py",
+        "tests/test_other.py",
+        "genesis/core/self_model.py",
+    ])) == 3
