@@ -23,8 +23,19 @@ REGISTERED_HUMAN_IDENTITIES = {
 REGISTERED_AI_IDENTITIES = {("Mira", "mira.mjodheim.be@gmail.com"), ("Mira", "mira-ai@noreply.github.com")}
 REGISTERED_PULL_REQUEST_AUTHORS = {"mjodheim", "Mira-Mjodheim"}
 AI_PR_DISCLOSURE = "Provenance: Mira (AI execution)"
-AI_SCOPED_PATHS = ("genesis/", "mira_core/", "metamorphosis/", "tests/")
-AI_PROTECTED_FILES = {"genesis/trust_root.py", "tests/test_attribution_policy.py"}
+# Explicitly owner-reviewed, narrow initial scope: AI may change known
+# implementation files and matching ordinary tests, never evaluation oracles.
+# Expand only through a separate, independently reviewed governance PR.
+AI_ALLOWED_PATHS = frozenset({
+    "genesis/learning/capability_gaps.py",
+    "genesis/learning/failure_model.py",
+    "genesis/learning/self_extension.py",
+    "genesis/learning/distillation.py",
+    "tests/test_capability_gaps.py",
+    "tests/test_failure_model.py",
+    "tests/test_failure_driven_self_extension.py",
+    "tests/test_distillation.py",
+})
 
 COAUTHOR_PATTERN = re.compile(r"^co-authored-by:\s*(.+)$", re.IGNORECASE | re.MULTILINE)
 IDENTITY_PATTERN = re.compile(r"^(.+?)\s*<([^<>]+)>$")
@@ -153,7 +164,7 @@ def commit_records(base: str, head: str) -> list[dict[str, str]]:
 def audit_ai_paths(paths: Iterable[str]) -> list[str]:
     """Keep non-human contributions outside governance, trust roots and frozen records."""
     return [f"AI contribution cannot modify protected path: {path}" for path in paths
-            if path in AI_PROTECTED_FILES or not path.startswith(AI_SCOPED_PATHS)]
+            if path not in AI_ALLOWED_PATHS]
 
 
 def changed_paths(base: str, head: str) -> list[str]:
