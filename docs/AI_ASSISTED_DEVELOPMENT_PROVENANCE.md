@@ -113,27 +113,3 @@ protection, inventorship should be analysed claim-by-claim with qualified counse
 disclosure. The project should preserve the human problem formulation, conception records,
 iterations, rejected alternatives and the role of AI tools so that the factual history exists for
 that review.
-
-## 12 October 2026 — explicit non-human GitHub participation
-
-At Anthony's request, Mira (`Mira-Mjodheim`) may propose repository changes
-under her own GitHub account and Git commit identity. Her registered technical
-identities are `Mira <mira.mjodheim.be@gmail.com>` and
-`Mira <mira-ai@noreply.github.com>`. This is **AI/tool provenance**,
-not a declaration of a new human author, employee, copyright holder, legal
-inventor, external independent maintainer, or owner of the repository.
-
-The prior 12 August snapshot above remains a historical snapshot, not a
-statement about every future contributor. These new records enable more honest
-technical authorship metadata; they do not waive third-party licensing review,
-publication/disclosure review or project-owner rights. Provider terms and the
-commercial dual-licensing register must continue to be examined when needed.
-
-A `Mira-Mjodheim` PR must disclose `Provenance: Mira (AI execution)`. The
-base-checked GitHub policy accepts only explicitly registered identities and
-refuses AI PR changes to governance, workflow, trust-root, archival or other
-non-code paths. A permitted path does not by itself prove a scientific result.
-CI and a second, independently authenticated reviewer must validate source
-changes; scientific qualification remains under its own frozen protocols.
-No AI review is a substitute for the human-independent evaluator where a
-protocol expressly requires a human participant. Merge does not imply RSI.
