@@ -6,6 +6,7 @@ from check_attribution_policy import (
     audit_ai_paths,
     audit_commit_records,
     audit_pull_request_payload,
+    verify_github_update_merge,
 )
 
 
@@ -184,3 +185,103 @@ def test_ai_allowlist_requires_exact_reviewed_paths_not_matching_directory_prefi
         "tests/test_other.py",
         "genesis/core/self_model.py",
     ])) == 3
+
+
+def _github_update_case():
+    prior = "1" * 40
+    base = "2" * 40
+    head = "3" * 40
+    rec = _record(
+        commit=head,
+        committer_name="GitHub",
+        committer_email="noreply@github.com",
+    )
+    event = {"pull_request": {"head": {
+        "sha": head, "ref": "research/learning-to-improve",
+    }, "base": {"sha": base, "ref": "main"}}}
+    response = {
+        "sha": head,
+        "commit": {
+            "author": {"name": rec["author_name"], "email": rec["author_email"]},
+            "committer": {"name": "GitHub", "email": "noreply@github.com"},
+            "message": "Merge branch 'main' into research/learning-to-improve",
+            "verification": {
+                "verified": True, "reason": "valid",
+                "signature": "-----BEGIN PGP SIGNATURE-----\nverified by GitHub",
+            },
+        },
+        "parents": [{"sha": prior}, {"sha": base}],
+    }
+    return rec, event, response, base, head
+
+
+def test_verified_platform_branch_update_is_accepted_only_when_explicitly_verified():
+    rec, event, response, base, head = _github_update_case()
+    assert audit_commit_records([rec]) == [
+        f"{head}: committer is not a registered human identity"
+    ]
+    assert verify_github_update_merge(
+        rec, base_sha=base, head_sha=head, event=event, github_commit=response
+    )
+    assert audit_commit_records(
+        [rec], verified_platform_commits=frozenset({head})
+    ) == []
+
+
+def test_forged_or_unverified_platform_merge_remains_rejected():
+    import copy
+    rec, event, response, base, head = _github_update_case()
+    scenarios = []
+    for path, bad in [
+        (("commit", "verification", "verified"), False),
+        (("commit", "verification", "reason"), "unsigned"),
+        (("commit", "verification", "signature"), None),
+        (("commit", "message"), "Apply malicious changes"),
+        (("commit", "committer", "email"), "fake@github.com"),
+        (("commit", "author", "email"), "someone@elsewhere.invalid"),
+        (("sha",), "b" * 40),
+        (("parents",), [{"sha": "b" * 40}]),
+        (("parents",), [{"sha": "b" * 40}, {"sha": "a" * 40}]),
+        (("parents",), [{"sha": base}, {"sha": base}]),
+    ]:
+        copy_response = copy.deepcopy(response)
+        target = copy_response
+        for key in path[:-1]:
+            target = target[key]
+        target[path[-1]] = bad
+        scenarios.append(copy_response)
+    for trial in scenarios:
+        assert not verify_github_update_merge(
+            rec, base_sha=base, head_sha=head, event=event, github_commit=trial
+        )
+    fake = dict(rec, committer_email="forged@github.com")
+    assert not verify_github_update_merge(
+        fake, base_sha=base, head_sha=head, event=event, github_commit=response
+    )
+    mismatched = copy.deepcopy(event)
+    mismatched["pull_request"]["head"]["sha"] = "c" * 40
+    assert not verify_github_update_merge(
+        rec, base_sha=base, head_sha=head, event=mismatched, github_commit=response
+    )
+    # A verified platform merge never makes ordinary bot commits acceptable.
+    bot = _record(commit="evil", author_name="release[bot]")
+    assert audit_commit_records(
+        [bot], verified_platform_commits=frozenset({head})
+    )
+
+
+def test_leona_technical_identity_is_ai_not_human_and_other_names_remain_denied():
+    assert audit_commit_records([_record(
+        author_name="Leona (AI)", author_email="leona-ai@noreply.github.com",
+        committer_name="Leona (AI)", committer_email="leona-ai@noreply.github.com"
+    )]) == []
+    assert audit_commit_records([_record(
+        author_name="Anthony Mets", author_email="leona-ai@noreply.github.com"
+    )]) == ["abc123: author is not a registered human identity"]
+
+
+def test_workflow_supplies_token_from_trusted_context_without_changing_check_name():
+    text = (Path(__file__).parents[1] / ".github/workflows/attribution-policy.yml").read_text()
+    assert "GITHUB_TOKEN: ${{ github.token }}" in text
+    assert "GITHUB_REPOSITORY: ${{ github.repository }}" in text
+    assert "name: Human-only attribution" in text

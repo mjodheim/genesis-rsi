@@ -1,12 +1,14 @@
-"""Reject non-human Git attribution and tool-credit pull-request metadata."""
+"""Enforce explicit Git attribution and protected-source contribution boundaries."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
+from urllib.request import Request, urlopen
 from typing import Iterable, Mapping
 
 
@@ -20,7 +22,11 @@ REGISTERED_HUMAN_IDENTITIES = {
     ("Anthony Mets", "contact@mjodheim.be"),
 }
 # Registered non-human technical actors, distinct from legal human authorship.
-REGISTERED_AI_IDENTITIES = {("Mira", "mira.mjodheim.be@gmail.com"), ("Mira", "mira-ai@noreply.github.com")}
+REGISTERED_AI_IDENTITIES = {
+    ("Mira", "mira.mjodheim.be@gmail.com"),
+    ("Mira", "mira-ai@noreply.github.com"),
+    ("Leona (AI)", "leona-ai@noreply.github.com"),
+}
 REGISTERED_PULL_REQUEST_AUTHORS = {"mjodheim", "Mira-Mjodheim"}
 AI_PR_DISCLOSURE = "Provenance: Mira (AI execution)"
 # Explicitly owner-reviewed, narrow initial scope: AI may change known
@@ -57,7 +63,11 @@ def _blocked(value: str) -> str | None:
     )
 
 
-def audit_commit_records(records: Iterable[Mapping[str, str]]) -> list[str]:
+def audit_commit_records(
+    records: Iterable[Mapping[str, str]],
+    *,
+    verified_platform_commits: frozenset[str] = frozenset(),
+) -> list[str]:
     problems: list[str] = []
     for record in records:
         commit = record["commit"]
@@ -68,6 +78,9 @@ def audit_commit_records(records: Iterable[Mapping[str, str]]) -> list[str]:
                 problems.append(f"{commit}: {field} contains blocked attribution {marker!r}")
         for role in ("author", "committer"):
             identity = (record[f"{role}_name"], record[f"{role}_email"])
+            if (role == "committer" and identity == ("GitHub", "noreply@github.com")
+                    and commit in verified_platform_commits):
+                continue
             if identity not in REGISTERED_HUMAN_IDENTITIES and identity not in REGISTERED_AI_IDENTITIES:
                 problems.append(f"{commit}: {role} is not a registered human identity")
         for trailer in COAUTHOR_PATTERN.findall(record.get("body", "")):
@@ -174,6 +187,82 @@ def changed_paths(base: str, head: str) -> list[str]:
     return [part.decode("utf-8") for part in result.stdout.split(bytes([0])) if part]
 
 
+def verify_github_update_merge(
+    record: Mapping[str, str],
+    *,
+    base_sha: str,
+    head_sha: str,
+    event: Mapping[str, object],
+    github_commit: Mapping[str, object],
+) -> bool:
+    """Accept only GitHub-signed automatic branch updates, never arbitrary bot commits."""
+    pr = event.get("pull_request")
+    if not isinstance(pr, Mapping):
+        return False
+    head = pr.get("head")
+    base = pr.get("base")
+    if not isinstance(head, Mapping) or not isinstance(base, Mapping):
+        return False
+    head_ref, base_ref = head.get("ref"), base.get("ref")
+    if not all(isinstance(ref, str) and ref for ref in (head_ref, base_ref)):
+        return False
+    if (head.get("sha") != head_sha or base.get("sha") != base_sha
+            or record["commit"] != head_sha):
+        return False
+    if (record["committer_name"], record["committer_email"]) != ("GitHub", "noreply@github.com"):
+        return False
+    if (record["author_name"], record["author_email"]) not in (
+            REGISTERED_HUMAN_IDENTITIES | REGISTERED_AI_IDENTITIES):
+        return False
+    message = "Merge branch '" + base_ref + "' into " + head_ref
+    git_meta = github_commit.get("commit")
+    if not isinstance(git_meta, Mapping):
+        return False
+    signature = git_meta.get("verification")
+    author = git_meta.get("author")
+    committer = git_meta.get("committer")
+    if not isinstance(signature, Mapping) or not isinstance(author, Mapping) or not isinstance(committer, Mapping):
+        return False
+    if not (signature.get("verified") is True and signature.get("reason") == "valid"
+            and isinstance(signature.get("signature"), str) and signature["signature"].startswith("-----BEGIN PGP SIGNATURE-----")):
+        return False
+    if github_commit.get("sha") != record["commit"]:
+        return False
+    if (author.get("name"), author.get("email")) != (record["author_name"], record["author_email"]):
+        return False
+    if (committer.get("name"), committer.get("email")) != ("GitHub", "noreply@github.com"):
+        return False
+    if git_meta.get("message") != message:
+        return False
+    parents = github_commit.get("parents")
+    if not isinstance(parents, list) or len(parents) != 2:
+        return False
+    if not (isinstance(parents[0], Mapping) and isinstance(parents[1], Mapping)):
+        return False
+    # GitHub update-branch merges the existing PR head and the exact current base.
+    return parents[1].get("sha") == base_sha and parents[0].get("sha") not in (None, base_sha)
+
+
+def github_commit_metadata(sha: str) -> Mapping[str, object] | None:
+    """Inspect signed GitHub metadata via its authenticated API; fail closed."""
+    repo = os.getenv("GITHUB_REPOSITORY", "")
+    token = os.getenv("GITHUB_TOKEN", "")
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo) or not token:
+        return None
+    url = f"https://api.github.com/repos/{repo}/commits/{sha}"
+    request = Request(url, headers={
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    })
+    try:
+        with urlopen(request, timeout=10) as response:
+            result = json.load(response)
+        return result if isinstance(result, Mapping) else None
+    except (OSError, ValueError):
+        return None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", required=True)
@@ -182,7 +271,17 @@ def main() -> int:
     arguments = parser.parse_args()
 
     payload = json.loads(arguments.event.read_text(encoding="utf-8"))
-    problems = audit_commit_records(commit_records(arguments.base, arguments.head))
+    records = commit_records(arguments.base, arguments.head)
+    verified = set()
+    for record in records:
+        if (record["committer_name"], record["committer_email"]) != ("GitHub", "noreply@github.com"):
+            continue
+        metadata = github_commit_metadata(record["commit"])
+        if metadata and verify_github_update_merge(
+                record, base_sha=arguments.base, head_sha=arguments.head,
+                event=payload, github_commit=metadata):
+            verified.add(record["commit"])
+    problems = audit_commit_records(records, verified_platform_commits=frozenset(verified))
     problems.extend(audit_pull_request_payload(payload))
     pr = payload.get("pull_request") or {}
     author = (pr.get("user") or {}).get("login") if isinstance(pr, dict) else None
