@@ -23,7 +23,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from itertools import combinations, combinations_with_replacement, permutations, product
 import random
-from typing import Iterable, Sequence
+from typing import Callable, Iterable, Sequence
 
 MAX_ARITY = 3
 
@@ -96,8 +96,14 @@ class Solution:
     tree: tuple | None = None       # (component name, child trees) with ("in", index) at the leaves
 
 
-def solve(engine: Engine, task: Task, budget: int) -> Solution:
-    """Search for a circuit computing ``task.target`` within ``budget`` component applications."""
+def solve(engine: Engine, task: Task, budget: int, *,
+          trace: Callable[[int, int, int], None] | None = None) -> Solution:
+    """Search for a circuit computing ``task.target`` within ``budget`` applications.
+
+    Optional trace receives (new signal truth table, circuit cost, evaluation count)
+    only for novel signals. It is observational and does not affect the search order.
+    CIRCUIT3 collectors must invoke it exclusively on learning-family tasks.
+    """
     mask = (1 << (1 << task.inputs)) - 1
     inputs = variables(task.inputs)
     origin: dict[int, tuple] = {table: ("in", index) for index, table in enumerate(inputs)}
@@ -131,6 +137,8 @@ def solve(engine: Engine, task: Task, budget: int) -> Solution:
                         continue
                     origin[table] = (component.name, arguments)
                     fresh.append(table)
+                    if trace is not None:
+                        trace(table, cost, used)
                     if table == task.target:
                         return Solution(True, used, cost, tree(table))
         levels.append(fresh)

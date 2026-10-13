@@ -84,3 +84,25 @@ def test_deeper_patterns_contain_the_shallow_ones_and_a_ranker_orders_the_trials
     step = engine.improved(first, learn, 3000, solutions, generation=1, procedure=procedure, ranker=prefers_small)[2]
     assert [trial["nands"] for trial in step["trials"]] == sorted(trial["nands"] for trial in step["trials"])
     assert step["trials"][0]["nands"] == min(len(component.steps) for component, _ in engine.proposals(first, solutions))
+
+
+def test_circuit3_trace_is_observational_and_deterministic():
+    task = Task("xor", "parity", 2, 0b0110)
+    first, second = [], []
+    ordinary = engine.solve(Engine(), task, 5000)
+    traced = engine.solve(Engine(), task, 5000, trace=lambda table, cost, count: first.append((table, cost, count)))
+    repeated = engine.solve(Engine(), task, 5000, trace=lambda table, cost, count: second.append((table, cost, count)))
+    assert first == second and first
+    assert len({row[0] for row in first}) == len(first)
+    assert all(1 <= count <= ordinary.evaluations for _, _, count in first)
+    assert (ordinary.solved, ordinary.evaluations, ordinary.cost, ordinary.tree) == (traced.solved, traced.evaluations, traced.cost, traced.tree)
+    assert (traced.solved, traced.evaluations, traced.cost, traced.tree) == (repeated.solved, repeated.evaluations, repeated.cost, repeated.tree)
+
+
+def test_circuit3_trace_respects_failure_budget():
+    task = Task("xor", "parity", 2, 0b0110)
+    observed = []
+    ordinary = engine.solve(Engine(), task, 10)
+    traced = engine.solve(Engine(), task, 10, trace=lambda table, cost, count: observed.append(count))
+    assert not traced.solved and traced.evaluations == ordinary.evaluations == 10
+    assert observed == sorted(observed) and all(count <= 10 for count in observed)
