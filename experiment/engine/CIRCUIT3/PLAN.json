@@ -1,0 +1,62 @@
+{
+  "arms": [
+    "frozen_30000",
+    "frozen_300000",
+    "guided_round1_30000",
+    "guided_round2_30000",
+    "shuffled_target_guidance_30000",
+    "compute_matched_unguided"
+  ],
+  "baseline": {
+    "component_application_budget": 300000,
+    "engine": "frozen NAND-only engine",
+    "held_out_solved_reference": 18,
+    "reference": "docs/GENESIS_ZERO_BUDGET_2026-10-11.md"
+  },
+  "controls": {
+    "compute_match": "compare guidance training plus inference CPU budget against additional unguided search",
+    "no_held_out_training": true,
+    "repeatability": "record seeds, versions, training examples, model weights, run times and per-task outcomes",
+    "shuffle": "same model architecture and optimization with shuffled training target labels"
+  },
+  "date": "2026-10-13",
+  "held_out_families": [
+    "less",
+    "subtract",
+    "popcount",
+    "exactly",
+    "multiply"
+  ],
+  "implementation_gate": "Before running, implement trace extraction and model-guided ordering without inspecting held-out solutions, and verify equivalence to frozen solver with guidance disabled.",
+  "learning_families": [
+    "and",
+    "or",
+    "parity",
+    "equal",
+    "mux",
+    "adder",
+    "majority"
+  ],
+  "machinery_commit": "1c2bfdfa8fcb0f99f7ed71c8c9a37d747fcd5bb9",
+  "machinery_sha256": {
+    "genesis/circuit_engine.py": "486ee9c91fb2af6f7c817fe133fa1a62d9f7d3277d8a05b4ab90d3187e310a06",
+    "genesis/circuit_tasks.py": "6c2fae7a8661a548052c6c1cebdf84a881d6b8d62ed6482fd9a1ac2a8776a728",
+    "scripts/run_circuit_lineage.py": "e77ccf4eda2096aa5e292925dfe2ee7c71f2a5bf0caee981f962ce70c0772c20"
+  },
+  "name": "CIRCUIT3",
+  "objective": "Test whether learned search guidance transfers to held-out Boolean circuit synthesis tasks and compounds after retraining.",
+  "plan_sha256": "6f28b351ba904ac839474405eef659f78c5159a215f9e3ecac2422760ed9fd48",
+  "precommitment": {
+    "no_claim_of_general_RSI": true,
+    "no_gpu_install": true,
+    "no_paid_compute": true,
+    "no_posthoc_threshold_change": true,
+    "no_provider_api_calls": true
+  },
+  "primary_budget": 30000,
+  "primary_hypotheses": {
+    "H1": "guided_round1_30000 solves strictly more than 18 of the 41 held-out tasks; otherwise refuted",
+    "H2": "guided_round2_30000 solves strictly more held-out tasks than guided_round1_30000; otherwise refuted"
+  },
+  "status": "preregistered_not_run"
+}
