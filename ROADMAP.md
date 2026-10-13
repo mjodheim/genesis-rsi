@@ -227,6 +227,25 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 - [ ] Consolidate experiment navigation without rewriting frozen evidence.
 - [ ] Update repository identity and metadata.
 
+### 13 October 2026: research priorities
+
+The post-G10 campaigns do not yet establish external repair transfer:
+independent G11 repairs remained 0/9. CIRCUIT2 (PR #411, not merged)
+rejected both an enlarged component space and a learned ranker.
+CIRCUIT3 (PR #415, closed without merge) produced training-only traces,
+not demonstrated learned guidance.
+
+- [ ] Maintain the public main branch, provenance protections and frozen evidence.
+- [ ] Resolve the GitHub update-branch attribution conflict without weakening
+      identity checks or impersonating a human.
+- [ ] Only integrate CIRCUIT3 after repository-integrity checks and tests
+      pass and its authorship is accepted by published contribution policy.
+- [ ] Test guidance against random/static and cost-matched baselines
+      on genuinely unseen task families.
+- [ ] Show an independent second generation whose improved ability
+      to create improvements survives ablation and resource accounting.
+- [ ] Obtain external independent replication before broader RSI claims.
+
 ### Post-G10 scientific frontier
 - [x] Close the bounded project-defined G10 recursive-successor gate.
 - [ ] Reproduce the G10 chain independently from a clean environment and independently governed task material.

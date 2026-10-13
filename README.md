@@ -22,6 +22,37 @@ See [PRINCIPLES.md](PRINCIPLES.md).
 
 ## Current scientific position
 
+### Research update — 13 October 2026
+
+**The latest published main includes CIRCUIT1 and security/provenance maintenance merged on 12 October.**
+The validated, project-defined G10 chain remains a **bounded** proof under its
+host-authored software-composition assay, not a demonstration of general RSI.
+On independently evaluated real-world Java repair tasks, G11 remains **0/9**,
+separately from successful *posthoc development* repairs.
+
+Research tests whether Genesis can improve the **procedure that
+produces improvements**, rather than merely accumulate search components.
+Distinguish branches from main and preserve negative evidence:
+
+- **CIRCUIT1:** a model-free program-improvement lineage is merged via
+  [PR #410](https://github.com/mjodheim/genesis-rsi/pull/410).
+  Its result does not demonstrate general or open-ended self-improvement.
+- **CIRCUIT2:** on an [unmerged research branch](https://github.com/mjodheim/genesis-rsi/pull/411),
+  two preregistered hypotheses failed. An expanded component space scored
+  **11** held-out tasks against **12.8** for CIRCUIT1; a learned selector scored
+  **3.63** development task gains versus **3.67** for random selection.
+  These are negative evidence, not new certified capabilities.
+- **CIRCUIT3:** a [closed, unmerged proposal](https://github.com/mjodheim/genesis-rsi/pull/415)
+  instrumented training-only search traces: 5 tasks and 1,681 novel signals
+  in a local sample. Its CI failed (an unregistered CLI entry point and missing
+  commit-citation registration). **No learned guidance, held-out gain or
+  second-generation gain has been demonstrated.**
+
+The next advance requires a controlled learner-vs-baselines study on
+unseen task families, followed by a second generation that demonstrably
+benefits from the first. Acquisition compute and all external-model costs
+must be counted.
+
 The repository contains several generations of bounded experiments. Important current anchors include:
 
 - the project-defined finite operational **L9 gate passed** in OE1-v3: 16/16 frozen predicates, 576/576 coded transfer tasks and an independent replay of 33,215 retained candidate receipts with no mismatch;
