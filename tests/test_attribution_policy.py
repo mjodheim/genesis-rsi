@@ -7,6 +7,9 @@ from check_attribution_policy import (
     audit_commit_records,
     audit_pull_request_payload,
     verify_github_update_merge,
+    AI_ALLOWED_PATHS,
+    AI_OWNER_DOCUMENTATION_PATHS,
+    audit_ai_contribution_scope,
 )
 
 
@@ -285,3 +288,77 @@ def test_workflow_supplies_token_from_trusted_context_without_changing_check_nam
     assert "GITHUB_TOKEN: ${{ github.token }}" in text
     assert "GITHUB_REPOSITORY: ${{ github.repository }}" in text
     assert "name: Human-only attribution" in text
+
+
+def test_older_verified_update_merge_remains_valid_after_later_commits():
+    rec, event, response, old_base, old_head = _github_update_case()
+    current_head = "9" * 40
+    current_base = "8" * 40
+    event["pull_request"]["head"]["sha"] = current_head
+    event["pull_request"]["base"]["sha"] = current_base
+    assert verify_github_update_merge(
+        rec, base_sha=current_base, head_sha=current_head,
+        event=event, github_commit=response,
+        valid_base_commits=frozenset({old_base, current_base}),
+    )
+    assert not verify_github_update_merge(
+        rec, base_sha=current_base, head_sha=current_head,
+        event=event, github_commit=response,
+        valid_base_commits=frozenset({current_base}),
+    )
+
+
+def test_owner_published_ai_changes_have_a_narrow_documentation_allowlist():
+    assert "README.md" in AI_OWNER_DOCUMENTATION_PATHS
+    assert "PROJECT_STATE.md" in AI_OWNER_DOCUMENTATION_PATHS
+    assert audit_ai_paths(
+        ["README.md", "ROADMAP.md", "PROJECT_STATE.md"],
+        allowed_paths=AI_ALLOWED_PATHS | AI_OWNER_DOCUMENTATION_PATHS,
+    ) == []
+    assert audit_ai_paths(
+        [".github/workflows/ci.yml", "scripts/check_attribution_policy.py",
+         "docs/COMMIT_CITATIONS.json", "experiment/g11/RESULT.json"],
+        allowed_paths=AI_ALLOWED_PATHS | AI_OWNER_DOCUMENTATION_PATHS,
+    ) == [
+        "AI contribution cannot modify protected path: .github/workflows/ci.yml",
+        "AI contribution cannot modify protected path: scripts/check_attribution_policy.py",
+        "AI contribution cannot modify protected path: docs/COMMIT_CITATIONS.json",
+        "AI contribution cannot modify protected path: experiment/g11/RESULT.json",
+    ]
+
+
+def test_ai_commit_published_via_owner_account_still_blocks_trust_roots():
+    ai_record = _record(
+        author_name="Leona (AI)", author_email="leona-ai@noreply.github.com",
+        committer_name="Leona (AI)", committer_email="leona-ai@noreply.github.com",
+    )
+    assert audit_ai_contribution_scope(
+        [ai_record], login="mjodheim",
+        pr_body="Provenance: Leona (AI execution)",
+        paths=["README.md", "ROADMAP.md", "PROJECT_STATE.md"],
+    ) == []
+    assert audit_ai_contribution_scope(
+        [ai_record], login="mjodheim",
+        pr_body="Provenance: Leona (AI execution)",
+        paths=["README.md", ".github/workflows/attribution-policy.yml"],
+    ) == [
+        "AI contribution cannot modify protected path: .github/workflows/attribution-policy.yml",
+    ]
+    assert audit_ai_contribution_scope(
+        [ai_record], login="mjodheim",
+        pr_body="No explicit disclosure", paths=["README.md"],
+    ) == ["AI commit under owner account lacks provenance disclosure for Leona (AI)"]
+    assert audit_ai_contribution_scope(
+        [ai_record], login="Mira-Mjodheim",
+        pr_body="Provenance: Mira (AI execution)", paths=["README.md"],
+    ) == ["AI contribution cannot modify protected path: README.md"]
+
+
+def test_ai_committer_under_human_author_is_not_an_exemption():
+    row = _record(committer_name="Mira", committer_email="mira-ai@noreply.github.com")
+    assert audit_ai_contribution_scope(
+        [row], login="mjodheim", pr_body="", paths=["scripts/check_attribution_policy.py"]
+    ) == [
+        "AI contribution cannot modify protected path: scripts/check_attribution_policy.py",
+        "AI commit under owner account lacks provenance disclosure for Mira",
+    ]

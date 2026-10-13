@@ -29,6 +29,10 @@ REGISTERED_AI_IDENTITIES = {
 }
 REGISTERED_PULL_REQUEST_AUTHORS = {"mjodheim", "Mira-Mjodheim"}
 AI_PR_DISCLOSURE = "Provenance: Mira (AI execution)"
+LEONA_PR_DISCLOSURE = "Provenance: Leona (AI execution)"
+# Owner-submitted AI documentation is limited to reader-facing navigation.
+# Frozen experiment artifacts, governance and scientific evaluators remain prohibited.
+AI_OWNER_DOCUMENTATION_PATHS = frozenset({"README.md", "ROADMAP.md", "PROJECT_STATE.md"})
 # Explicitly owner-reviewed, narrow initial scope: AI may change known
 # implementation files and matching ordinary tests, never evaluation oracles.
 # Expand only through a separate, independently reviewed governance PR.
@@ -174,10 +178,14 @@ def commit_records(base: str, head: str) -> list[dict[str, str]]:
     return records
 
 
-def audit_ai_paths(paths: Iterable[str]) -> list[str]:
+def audit_ai_paths(
+    paths: Iterable[str],
+    *,
+    allowed_paths: frozenset[str] = AI_ALLOWED_PATHS,
+) -> list[str]:
     """Keep non-human contributions outside governance, trust roots and frozen records."""
     return [f"AI contribution cannot modify protected path: {path}" for path in paths
-            if path not in AI_ALLOWED_PATHS]
+            if path not in allowed_paths]
 
 
 def changed_paths(base: str, head: str) -> list[str]:
@@ -194,8 +202,9 @@ def verify_github_update_merge(
     head_sha: str,
     event: Mapping[str, object],
     github_commit: Mapping[str, object],
+    valid_base_commits: frozenset[str] | None = None,
 ) -> bool:
-    """Accept only GitHub-signed automatic branch updates, never arbitrary bot commits."""
+    """Accept only GitHub-signed branch updates based on an ancestor of the current base."""
     pr = event.get("pull_request")
     if not isinstance(pr, Mapping):
         return False
@@ -206,8 +215,7 @@ def verify_github_update_merge(
     head_ref, base_ref = head.get("ref"), base.get("ref")
     if not all(isinstance(ref, str) and ref for ref in (head_ref, base_ref)):
         return False
-    if (head.get("sha") != head_sha or base.get("sha") != base_sha
-            or record["commit"] != head_sha):
+    if head.get("sha") != head_sha or base.get("sha") != base_sha:
         return False
     if (record["committer_name"], record["committer_email"]) != ("GitHub", "noreply@github.com"):
         return False
@@ -239,8 +247,13 @@ def verify_github_update_merge(
         return False
     if not (isinstance(parents[0], Mapping) and isinstance(parents[1], Mapping)):
         return False
-    # GitHub update-branch merges the existing PR head and the exact current base.
-    return parents[1].get("sha") == base_sha and parents[0].get("sha") not in (None, base_sha)
+    # Earlier signed GitHub update merges must remain accepted after a new commit
+    # or a later base update. The second parent must belong to the current base's
+    # trusted ancestry; the first must be distinct and non-null.
+    accepted = valid_base_commits if valid_base_commits is not None else frozenset({base_sha})
+    second = parents[1].get("sha")
+    first = parents[0].get("sha")
+    return isinstance(second, str) and second in accepted and isinstance(first, str) and first != second
 
 
 def github_commit_metadata(sha: str) -> Mapping[str, object] | None:
@@ -263,6 +276,41 @@ def github_commit_metadata(sha: str) -> Mapping[str, object] | None:
         return None
 
 
+def audit_ai_contribution_scope(
+    records: Iterable[Mapping[str, str]],
+    *,
+    login: str,
+    pr_body: str,
+    paths: Iterable[str],
+) -> list[str]:
+    """Restrict AI changes by commit identity even through an owner GitHub account."""
+    nonhuman_identities = {
+        identity
+        for record in records
+        for identity in (
+            (record["author_name"], record["author_email"]),
+            (record["committer_name"], record["committer_email"]),
+        )
+        if identity in REGISTERED_AI_IDENTITIES
+    }
+    if login == "Mira-Mjodheim":
+        # Mira's fork never changes governance or research oracles.
+        return audit_ai_paths(paths)
+    if login != "mjodheim" or not nonhuman_identities:
+        return []
+    errors = audit_ai_paths(
+        paths, allowed_paths=AI_ALLOWED_PATHS | AI_OWNER_DOCUMENTATION_PATHS
+    )
+    expected_disclosure = {
+        "Leona (AI)": LEONA_PR_DISCLOSURE,
+        "Mira": AI_PR_DISCLOSURE,
+    }
+    for name, _ in sorted(nonhuman_identities):
+        if expected_disclosure[name] not in pr_body:
+            errors.append(f"AI commit under owner account lacks provenance disclosure for {name}")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", required=True)
@@ -272,6 +320,9 @@ def main() -> int:
 
     payload = json.loads(arguments.event.read_text(encoding="utf-8"))
     records = commit_records(arguments.base, arguments.head)
+    trusted_base_commits = frozenset(
+        subprocess.check_output(["git", "rev-list", arguments.base], text=True).splitlines()
+    )
     verified = set()
     for record in records:
         if (record["committer_name"], record["committer_email"]) != ("GitHub", "noreply@github.com"):
@@ -279,14 +330,19 @@ def main() -> int:
         metadata = github_commit_metadata(record["commit"])
         if metadata and verify_github_update_merge(
                 record, base_sha=arguments.base, head_sha=arguments.head,
-                event=payload, github_commit=metadata):
+                event=payload, github_commit=metadata,
+                valid_base_commits=trusted_base_commits):
             verified.add(record["commit"])
     problems = audit_commit_records(records, verified_platform_commits=frozenset(verified))
     problems.extend(audit_pull_request_payload(payload))
     pr = payload.get("pull_request") or {}
     author = (pr.get("user") or {}).get("login") if isinstance(pr, dict) else None
-    if author == "Mira-Mjodheim":
-        problems.extend(audit_ai_paths(changed_paths(arguments.base, arguments.head)))
+    if author in REGISTERED_PULL_REQUEST_AUTHORS:
+        pr_body = pr.get("body", "") if isinstance(pr, dict) else ""
+        problems.extend(audit_ai_contribution_scope(
+            records, login=author, pr_body=pr_body or "",
+            paths=changed_paths(arguments.base, arguments.head),
+        ))
     if problems:
         print("FAIL — Attribution policy")
         for problem in problems:
