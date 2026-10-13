@@ -49,7 +49,7 @@ HEX_TOKEN = re.compile(r"(?<![0-9a-zA-Z])([0-9a-f]{7,40})(?![0-9a-zA-Z])")
 ENTRY_POINT_PREFIXES = (
     "run_", "audit_", "author_", "build_", "train_", "check_",
     # Research studies are standalone runnable scripts, not imported APIs.
-    "g11_", "g12_", "select_", "preregister_",
+    "g11_", "g12_", "select_", "preregister_", "collect_",
 )
 
 # Tools invoked from the command line and never imported by source code. Declaring them
