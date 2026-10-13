@@ -1,0 +1,87 @@
+{
+  "budget_h1": 30000,
+  "budget_h2": 5000,
+  "claim_boundary": "one domain, one engine; nothing here establishes general recursive self-improvement",
+  "family_groups": [
+    [
+      "and",
+      "or",
+      "parity"
+    ],
+    [
+      "equal",
+      "mux"
+    ],
+    [
+      "adder",
+      "majority"
+    ]
+  ],
+  "generations_at_most": 12,
+  "held_out_families": [
+    "less",
+    "subtract",
+    "popcount",
+    "exactly",
+    "multiply"
+  ],
+  "hypotheses": {
+    "H1": "held-out tasks solved by `open` exceed those of the CIRCUIT1 lineage, same seeds, tasks and budget (paired; the mean must be higher), and the number of components proposed per step does not fall with generations. Refuted otherwise",
+    "H2a": "learning tasks gained by `learned2` exceed those gained by `explore` (random ranking), paired over family group and seed, exact one-sided sign test at 0.05. Refuted otherwise",
+    "H2b": "`learned2` gains at least as much as `learned1` on average, and `learned2` at least as much as `support`",
+    "diagnostic": "area under the curve of each ranker for 'the trial gains a task' on the explore trials of its target group"
+  },
+  "learning_families": [
+    "and",
+    "or",
+    "parity",
+    "equal",
+    "mux",
+    "adder",
+    "majority"
+  ],
+  "machinery_commit": "9df66f229654539af98f001a15cc287e93884670",
+  "machinery_digests": {
+    "genesis/circuit_engine.py": "b8c41fb891ee7a8f5d30fc65923202e5c7ad905ce3ee831f446f07f29c65cac9",
+    "genesis/circuit_tasks.py": "ae5beab0f78758d05d17736c7ff2a6254eedf0e94361f9bd81ddd99c09392530",
+    "scripts/run_circuit_lineage.py": "aae9e5c6a09776d55aaf2ec0237b816abbadcbe8dcc3c1a10bda79ff9994f059",
+    "scripts/run_circuit_meta.py": "dde2a2d7c6f8cb395661b9fb0e18b376ace8c9b9268e26aa7b7fbbc2e5e9d637"
+  },
+  "name": "CIRCUIT2",
+  "open_procedure": {
+    "arity": 4,
+    "drop_unused": true,
+    "heaviest": 4,
+    "layers": 3,
+    "min_support": 1,
+    "ranking": "support",
+    "tried": 6
+  },
+  "plan_digest": "dd6347b771bef20bbe42f7aed1fcd1af04a7db9a56cff81a0c0bf6aa1f833601",
+  "ranker": "ridge regression (penalty 1) of the clipped gain in learning tasks on thirteen features of a proposed component; fitted only on explore trials of other family groups, all seeds",
+  "reading": "H2 is the test of the second-order criterion in its simplest form: experience of improving, gathered elsewhere, makes improving more productive, and more experience makes it more productive still. The ranker's form and features are written by hand; only its weights are learnt",
+  "reference_circuit1": {
+    "held_out_by_seed": [
+      11,
+      17,
+      14,
+      11,
+      11
+    ],
+    "result_digest": "a6bb4762122612ff955f623d23bfe0c883033ea11c9b061c76b716d88c2f4d2a"
+  },
+  "schema": "genesis-circuit-meta-plan-v1",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "stopping_rule": "a lineage ends at the first step that keeps no component, or at the generation limit"
+}

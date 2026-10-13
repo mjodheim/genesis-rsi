@@ -69,3 +69,18 @@ def test_random_ranking_is_reproducible():
     one = engine.improved(first, learn, 1000, solutions, generation=1, procedure=procedure, rng=random.Random(3))[2]
     two = engine.improved(first, learn, 1000, solutions, generation=1, procedure=procedure, rng=random.Random(3))[2]
     assert one == two
+
+
+def test_deeper_patterns_contain_the_shallow_ones_and_a_ranker_orders_the_trials():
+    learn = [task for task in tasks.suite(("and", "or", "parity")) if task.inputs <= 3]
+    first = Engine()
+    solutions = engine.attempt(first, learn, 3000)
+    shallow = {component.key for component, _ in engine.proposals(first, solutions)}
+    deep = {component.key for component, _ in engine.proposals(first, solutions, layers=3, arity=4)}
+    assert shallow <= deep and len(deep) > len(shallow)
+    assert len(engine.features(2, 0b0110, 4, 2, 1, 1)) == 13 and engine.features(2, 0b0110, 4, 2, 1, 1)[8] == 1.0
+    procedure = {**engine.SEED_PROCEDURE, "ranking": "learned", "min_support": 1, "tried": 2}
+    prefers_small = [0.0] * 5 + [-1.0] + [0.0] * 7
+    step = engine.improved(first, learn, 3000, solutions, generation=1, procedure=procedure, ranker=prefers_small)[2]
+    assert [trial["nands"] for trial in step["trials"]] == sorted(trial["nands"] for trial in step["trials"])
+    assert step["trials"][0]["nands"] == min(len(component.steps) for component, _ in engine.proposals(first, solutions))

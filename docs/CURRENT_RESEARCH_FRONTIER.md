@@ -735,3 +735,13 @@ within seven steps, and an improvement procedure selected on some families is no
 on others (rank correlation 0.10). Cumulative improvement of its own machinery: yes, small.
 Better at improving itself: not shown. See
 [GENESIS_REORIENTATION_2026-10-11.md](GENESIS_REORIENTATION_2026-10-11.md).
+
+No additional budget from 11 October: paid requests stopped, GPU pilot refused. CIRCUIT1's
+stored trials explain its plateau: 24 distinct components over 3,057 trials, a supply that
+falls at every step, 37% of trials that harm the engine against 24% that help. CIRCUIT2,
+preregistered, refutes both remedies: with an open space of components lineages solve 11
+held-out tasks against 12.8, and a ranker fitted on the trials of lineages on other
+families does no better than random choice (3.63 learning tasks gained against 3.67; 7
+pairs won, 13 lost), its predictions being sometimes the opposite of what helps. The worth
+of a modification belongs to the pair (modification, tasks). See
+[GENESIS_ZERO_BUDGET_2026-10-11.md](GENESIS_ZERO_BUDGET_2026-10-11.md).

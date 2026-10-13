@@ -170,26 +170,42 @@ def _expanded(tree: tuple, library: dict[str, Component], leaves: list, steps: l
     return local[-1]
 
 
-def _patterns(tree: tuple) -> Iterable[tuple[tuple, list]]:
-    """Sub-circuits of one or two layers of components around each node, with the signals they read."""
+def _cuts(tree: tuple, layers: int, arity: int, limit: int = 200) -> list[tuple]:
+    """Leaf sets of the sub-circuits rooted at ``tree`` that are at most ``layers`` components deep and
+    read at most ``arity`` distinct signals."""
+    choices = []
+    for child in tree[1]:
+        options = [(child,)]
+        if child[0] != "in" and layers > 1:
+            options += _cuts(child, layers - 1, arity, limit)
+        choices.append(options)
+    found = []
+    for chosen in product(*choices):
+        leaves: list = []
+        for group in chosen:
+            for leaf in group:
+                if leaf not in leaves:
+                    leaves.append(leaf)
+        if len(leaves) <= arity and tuple(leaves) not in found:
+            found.append(tuple(leaves))
+            if len(found) >= limit:
+                break
+    return found
+
+
+def _patterns(tree: tuple, layers: int = 2, arity: int = MAX_ARITY) -> Iterable[tuple[tuple, list]]:
+    """Sub-circuits around each node, with the signals they read. One component reading distinct signals
+    is not a pattern: it is the component."""
     if tree[0] == "in":
         return
-    children = tree[1]
-    inner = [index for index, child in enumerate(children) if child[0] != "in"]
-    for size in range(len(inner) + 1):
-        for opened in combinations(inner, size):
-            leaves: list = []
-            for index, child in enumerate(children):
-                for leaf in (child[1] if index in opened else (child,)):
-                    if leaf not in leaves:
-                        leaves.append(leaf)
-            if len(leaves) <= MAX_ARITY and (opened or len(leaves) < len(children)):
-                yield tree, leaves
-    for child in children:
-        yield from _patterns(child)
+    for leaves in _cuts(tree, layers, arity):
+        if not (len(leaves) == len(tree[1]) and all(leaf in tree[1] for leaf in leaves)):
+            yield tree, list(leaves)
+    for child in tree[1]:
+        yield from _patterns(child, layers, arity)
 
 
-def proposals(engine: Engine, solutions: Sequence[Solution]) -> list[tuple[Component, int]]:
+def proposals(engine: Engine, solutions: Sequence[Solution], layers: int = 2, arity: int = MAX_ARITY) -> list[tuple[Component, int]]:
     """New components found in the solutions, with the number of tasks each occurs in, most shared first."""
     library = {item.name: item for item in engine.components}
     known = {item.key for item in engine.components}
@@ -197,7 +213,7 @@ def proposals(engine: Engine, solutions: Sequence[Solution]) -> list[tuple[Compo
     smallest: dict[tuple, Component] = {}
     for solution in solutions:
         seen = set()
-        for tree, leaves in _patterns(solution.tree) if solution.solved and solution.tree else ():
+        for tree, leaves in _patterns(solution.tree, layers, arity) if solution.solved and solution.tree else ():
             steps: list = []
             _expanded(_cut(tree, leaves), library, leaves, steps)
             component = Component("", len(leaves), tuple(steps))
@@ -272,16 +288,24 @@ def refitted(engine: Engine, solutions: Sequence[Solution], procedure: dict) -> 
 
 
 def improved(engine: Engine, tasks: Sequence[Task], budget: int, solutions: Sequence[Solution], *, generation: int,
-             procedure: dict = SEED_PROCEDURE, rng: random.Random | None = None) -> tuple[Engine, list[Solution], dict]:
+             procedure: dict = SEED_PROCEDURE, rng: random.Random | None = None,
+             ranker: Sequence[float] | None = None) -> tuple[Engine, list[Solution], dict]:
     """One improvement step under ``procedure``. The ``tried`` best-ranked new components are each added
     alone, the engine is refitted to what it then finds, and the best is kept if the engine solves more
     of ``tasks``, or as many with fewer evaluations. Returns the engine to hand on (the same object when
     nothing passes), its solutions and what was tried. Ranking is by the number of tasks a component
     occurs in ("support"), by that number times the NANDs it stands for ("saving"), or drawn with
-    ``rng`` ("random")."""
-    found = [(component, support) for component, support in proposals(engine, solutions)
+    ``rng`` ("random"), or by ``ranker``, the weights of a linear score over ``features`` fitted on the
+    trials of earlier lineages ("learned")."""
+    found = [(component, support) for component, support in
+             proposals(engine, solutions, procedure.get("layers", 2), max(MAX_ARITY, procedure["arity"]))
              if support >= procedure["min_support"] and component.arity <= procedure["arity"]]
-    if procedure["ranking"] == "saving":
+    if procedure["ranking"] == "learned":
+        scores = {id(pair[0]): sum(w * x for w, x in zip(ranker, features(pair[0].arity, pair[0].table, len(pair[0].steps), pair[1],
+                                                                              generation, len(engine.components))))
+                  for pair in found}
+        found.sort(key=lambda pair: -scores[id(pair[0])])
+    elif procedure["ranking"] == "saving":
         found.sort(key=lambda pair: -pair[1] * len(pair[0].steps))
     elif procedure["ranking"] == "random":
         (rng or random.Random(generation)).shuffle(found)
@@ -293,11 +317,27 @@ def improved(engine: Engine, tasks: Sequence[Task], budget: int, solutions: Sequ
         after_solutions = attempt(candidate, tasks, budget)
         after = measure(after_solutions)
         trials.append({"name": added.name, "arity": added.arity, "nands": len(added.steps), "table": added.table,
-                       "support": support, "solved": after[0], "evaluations": after[1]})
+                       "support": support, "solved": after[0], "evaluations": after[1], "library": len(engine.components)})
         if (after[0], -after[1]) > (before[0], -before[1]) and (best is None or (after[0], -after[1]) > best[0]):
             best = ((after[0], -after[1]), candidate, after_solutions, added.name)
     info = {"candidates": len(found), "trials": trials, "added": best[3] if best else None}
     return (best[1], best[2], info) if best else (engine, list(solutions), info)
+
+
+def features(arity: int, table: int, nands: int, support: int, generation: int, library: int) -> list[float]:
+    """What a ranker may know of a proposed component before it is tried."""
+    rows = 1 << arity
+    bits = [(table >> row) & 1 for row in range(rows)]
+    ones = sum(bits) / rows
+    parity = [bin(row).count("1") & 1 for row in range(rows)]
+    xor_like = bits == parity or bits == [1 - bit for bit in parity]
+    rising = all(bits[row] <= bits[row | (1 << index)] for row in range(rows) for index in range(arity))
+    falling = all(bits[row] >= bits[row | (1 << index)] for row in range(rows) for index in range(arity))
+    symmetric = all(bits[row] == bits[other] for row in range(rows) for other in range(rows)
+                    if bin(row).count("1") == bin(other).count("1"))
+    return [1.0, float(arity == 1), float(arity == 2), float(arity == 3), float(arity >= 4), float(nands),
+            float(min(support, 10)), abs(ones - 0.5), float(xor_like), float(rising or falling), float(symmetric),
+            float(generation), float(library)]
 
 
 def together(engine: Engine, tasks: Sequence[Task], budget: int, solutions: Sequence[Solution], count: int,

@@ -90,11 +90,12 @@ def one(job: dict) -> dict:
         record(1, {"added_at_once": job["count"]})
         judge(1, engine)
     elif job["arm"] != "frozen":
-        rng = random.Random(f"random|{seed}") if job["arm"] == "random" else None
+        drawn = job["arm"] == "random" or job["procedure"]["ranking"] == "random"
+        rng = random.Random(f"random|{seed}") if drawn else None
         procedure = {**job["procedure"], "ranking": "random"} if rng else job["procedure"]
         for generation in range(1, job["generations"] + 1):
             successor, solutions, step = improved(engine, tasks, budget, solutions, generation=generation,
-                                                  procedure=procedure, rng=rng)
+                                                  procedure=procedure, rng=rng, ranker=job.get("ranker"))
             if successor is engine:
                 record(generation, step)
                 break
