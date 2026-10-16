@@ -2,6 +2,7 @@
 engine may learn from and those kept to judge it; nothing here is drawn from solutions."""
 from __future__ import annotations
 
+from functools import lru_cache
 import random
 
 from genesis.circuit_engine import Task
@@ -63,3 +64,70 @@ def tasks(family: str, seed: int = 0) -> list[Task]:
 
 def suite(families, seed: int = 0) -> list[Task]:
     return [task for family in families for task in tasks(family, seed)]
+
+
+CIRCUIT2_ATTEMPTS = 64
+CIRCUIT2_MAX_INPUTS = 6
+
+
+def _transform(inputs: int, target: int, order, negate: bool, negate_inputs: int = 0) -> int:
+    table = 0
+    for row in range(1 << inputs):
+        source = sum((((row >> order[index]) & 1) ^ ((negate_inputs >> index) & 1)) << index for index in range(inputs))
+        table |= (((target >> source) & 1) ^ int(negate)) << row
+    return table
+
+
+CIRCUIT2_ORDER = (*LEARN, *HELD_OUT, *CONTROL)
+
+
+@lru_cache(maxsize=None)
+def _circuit2_assignment(seed: int) -> dict[str, tuple[Task, ...]]:
+    known = {(t.inputs, t.target) for family in CIRCUIT2_ORDER for t in tasks(family, seed)
+             if t.inputs <= CIRCUIT2_MAX_INPUTS}
+    chosen: set[tuple[int, int]] = set()
+    assigned: dict[str, tuple[Task, ...]] = {}
+    for family in CIRCUIT2_ORDER:
+        made: list[Task] = []
+        for task in tasks(family, seed):
+            if task.inputs > CIRCUIT2_MAX_INPUTS:
+                continue
+            rng = random.Random(f"circuit2|{family}|{task.name}")
+            for _ in range(CIRCUIT2_ATTEMPTS):
+                order = list(range(task.inputs))
+                # RNG draws per attempt, in this fixed order: (a) rng.shuffle(order);
+                # (b) rng.random() < 0.5 for the output negation;
+                # (c) rng.getrandbits(task.inputs) for the input-negation mask.
+                rng.shuffle(order)
+                negate = rng.random() < 0.5
+                mask = rng.getrandbits(task.inputs)
+                table = _transform(task.inputs, task.target, order, negate, mask)
+                key = (task.inputs, table)
+                if key in known or key in chosen:
+                    continue
+                chosen.add(key)
+                made.append(Task(f"c2_{task.name}", family, task.inputs, table))
+                break
+        assigned[family] = tuple(made)
+    return assigned
+
+
+def circuit2_tasks(family: str, seed: int = 0) -> list[Task]:
+    """CIRCUIT2 instances derived from CIRCUIT1 tasks by three transformations: a permutation of
+    the inputs, a negation of a random subset of the inputs, and a negation of the output.
+
+    Limit: these transformations stay in the same NPN class as the source CIRCUIT1 task. Only the
+    disjointness of (arity, table) is guaranteed, not an NPN separation between learning and
+    evaluation. c2_parity2 and c2_sub1bit0 remain excluded, XOR and XNOR both being in CIRCUIT1.
+
+    Attribution is global: a table is kept only if its canonical (arity, table) is absent from
+    every CIRCUIT1 task (LEARN, HELD_OUT, CONTROL) and from every table already chosen. Families are
+    visited in the fixed order LEARN, HELD_OUT, CONTROL, tasks in tasks() order, so priority goes to
+    LEARN and HELD_OUT loses on collision. A task with no new table within 64 attempts is dropped."""
+    if family not in CIRCUIT2_ORDER:
+        raise ValueError(family)
+    return list(_circuit2_assignment(seed)[family])
+
+
+def circuit2_suite(families, seed: int = 0) -> list[Task]:
+    return [task for family in families for task in circuit2_tasks(family, seed)]

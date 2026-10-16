@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import copy
+import hashlib
+import json
 from pathlib import Path
 
 import pytest
@@ -126,4 +128,57 @@ def test_the_plan_path_is_under_experiment_engine_next_to_circuit1():
     circuit1 = freeze.ROOT / "experiment" / "engine" / "CIRCUIT1"
     assert freeze.PLAN_PATH.parent != circuit1
     assert freeze.PLAN_PATH.parent.parent == circuit1.parent
+    assert not freeze.PLAN_PATH.exists()
+
+
+# Digest of the default suite(LEARN + HELD_OUT), pinned from the CIRCUIT1 base suite;
+# it must never be recomputed from the modified code.
+CIRCUIT1_SUITE_DIGEST = "fd8167e8b55a514dc6439c674e0c503d5a757052500d76f23b27f3889598c4fe"
+FAMILIES = (*tasks.LEARN, *tasks.HELD_OUT)
+
+
+def _digest(items):
+    rows = [[t.name, t.family, t.inputs, t.target] for t in items]
+    return hashlib.sha256(json.dumps(rows).encode("utf-8")).hexdigest()
+
+
+def _keys(items):
+    return {(t.inputs, t.target) for t in items}
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_circuit2_shares_no_table_with_circuit1(family):
+    old, new = tasks.tasks(family), tasks.circuit2_tasks(family)
+    assert new and not _keys(old) & _keys(new)
+    assert all(t.family == family and t.inputs <= tasks.CIRCUIT2_MAX_INPUTS for t in new)
+    assert len({t.name for t in new}) == len(new) and len(_keys(new)) == len(new)
+
+
+def test_circuit2_generation_is_reproducible():
+    for family in FAMILIES:
+        assert tasks.circuit2_tasks(family) == tasks.circuit2_tasks(family)
+    assert tasks.circuit2_suite(FAMILIES) == tasks.circuit2_suite(FAMILIES)
+
+
+def test_circuit1_default_suite_is_unchanged():
+    assert _digest(tasks.suite(FAMILIES)) == CIRCUIT1_SUITE_DIGEST
+
+
+def test_the_plan_is_built_on_circuit2_instances_and_not_written(plan, monkeypatch):
+    expected = [t for t in tasks.circuit2_suite(tuple(tasks.LEARN)) if t.inputs <= freeze.MAX_INPUTS]
+    assert expected and freeze.learn_tasks() == expected
+    assert all(t.name.startswith("c2_") for t in expected)
+    assert plan["budget_justification"]["learn_task_count"] == len(expected)
+    assert plan["metric"]["held_out_families"] == sorted(tasks.HELD_OUT)
+    assert plan["selection"]["families"] == sorted(tasks.LEARN)
+    seen = []
+    real = freeze.engine._metered_attempt
+
+    def spy(machine, learn, *args):
+        seen.append(list(learn))
+        return real(machine, learn, *args)
+
+    monkeypatch.setattr(freeze.engine, "_metered_attempt", spy)
+    freeze.measure_base_costs(seeds=(0,))
+    assert seen == [expected]
     assert not freeze.PLAN_PATH.exists()

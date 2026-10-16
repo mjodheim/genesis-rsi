@@ -57,7 +57,7 @@ def seal(body: dict) -> dict:
 
 
 def learn_tasks() -> list:
-    return [t for t in tasks.suite(tuple(tasks.LEARN)) if t.inputs <= MAX_INPUTS]
+    return [t for t in tasks.circuit2_suite(tuple(tasks.LEARN)) if t.inputs <= MAX_INPUTS]
 
 
 def file_digests(root: Path = ROOT) -> dict:
