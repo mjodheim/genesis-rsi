@@ -134,6 +134,7 @@ def test_the_plan_path_is_under_experiment_engine_next_to_circuit1():
 # Digest of the default suite(LEARN + HELD_OUT), pinned from the CIRCUIT1 base suite;
 # it must never be recomputed from the modified code.
 CIRCUIT1_SUITE_DIGEST = "fd8167e8b55a514dc6439c674e0c503d5a757052500d76f23b27f3889598c4fe"
+LEGACY_CIRCUIT2_SEED0_DIGEST = "790bc82194e7dbc5f04f2f3553eae88bf69f96014122ecadcd93b13c1a8bf15c"
 FAMILIES = (*tasks.LEARN, *tasks.HELD_OUT)
 
 
@@ -171,6 +172,30 @@ def test_circuit2_heldout_seed_variation_is_real():
     assert all(heldout), "each heldout suite must be nonempty"
     assert len({tuple(one) for one in heldout}) >= 4, (
         "different seeds must not silently reuse an identical heldout suite"
+    )
+
+
+def test_legacy_circuit2_seed_zero_is_unchanged():
+    # Pinned from PR #428 original HEAD, NOT regenerated from modified code.
+    sequence = tasks.circuit2_suite((*tasks.LEARN, *tasks.HELD_OUT, *tasks.CONTROL), seed=0)
+    assert _digest(sequence) == LEGACY_CIRCUIT2_SEED0_DIGEST
+
+
+def test_measure_base_costs_actually_evaluates_seed_specific_tasks(monkeypatch):
+    recorded = []
+    real_attempt = freeze.engine._metered_attempt
+
+    def track_attempt(engine, given_tasks, *args):
+        recorded.append(_digest(given_tasks))
+        return real_attempt(engine, given_tasks, *args)
+
+    monkeypatch.setattr(freeze.engine, "_metered_attempt", track_attempt)
+    seeds = (0, 1, 2, 3, 7, 11)
+    measured = freeze.measure_base_costs(seeds=seeds)
+    assert set(measured) == {str(s) for s in seeds}
+    assert len(recorded) == len(seeds)
+    assert len(set(recorded)) >= 4, (
+        "cost measurement silently reused the same seed-zero task set"
     )
 
 

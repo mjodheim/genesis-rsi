@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import pytest
+from itertools import permutations
 
 from genesis import circuit_tasks as tasks
 
@@ -65,3 +66,27 @@ def test_suites_are_non_empty_and_learn_families_keep_a_task(seed):
     assert tasks.circuit2_suite(ALL, seed) and tasks.circuit2_suite(tasks.LEARN, seed)
     for family in tasks.LEARN:
         assert tasks.circuit2_tasks(family, seed), family
+
+
+@pytest.mark.parametrize("seed", (0, 1, 2, 7))
+def test_generated_small_arity_tasks_remain_npn_equivalent_to_their_sources(seed):
+    # The generator makes different TRUTH TABLES, not previously unseen
+    # NPN equivalence classes. This is a negative generality boundary.
+    for family in ALL:
+        sources = {t.name: t for t in tasks.tasks(family, seed) if t.inputs <= 4}
+        generated = [t for t in tasks.circuit2_tasks(family, seed) if t.inputs <= 4]
+        for item in generated:
+            assert item.name.startswith("c2_")
+            source = sources[item.name[3:]]
+            assert source.inputs == item.inputs
+            orbit = {
+                tasks._transform(
+                    source.inputs, source.target, perm, negate, flip
+                )
+                for perm in permutations(range(source.inputs))
+                for negate in (False, True)
+                for flip in range(1 << source.inputs)
+            }
+            assert item.target in orbit, (
+                f"{item.name} is not an NPN transform of its original source"
+            )

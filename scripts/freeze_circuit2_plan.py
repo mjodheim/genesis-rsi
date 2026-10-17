@@ -56,8 +56,10 @@ def seal(body: dict) -> dict:
     return {**body, "digest": digest_of(body)}
 
 
-def learn_tasks() -> list:
-    return [t for t in tasks.circuit2_suite(tuple(tasks.LEARN)) if t.inputs <= MAX_INPUTS]
+def learn_tasks(seed: int = 0) -> list:
+    """Derive training instances for this specific seed, not always seed zero."""
+    return [t for t in tasks.circuit2_suite(tuple(tasks.LEARN), seed)
+            if t.inputs <= MAX_INPUTS]
 
 
 def file_digests(root: Path = ROOT) -> dict:
@@ -73,10 +75,16 @@ def git_head(root: Path = ROOT) -> str:
 
 
 def measure_base_costs(seeds=SEEDS, task_budget=TASK_BUDGET) -> dict:
-    """Cost of one full base evaluation on the LEARN tasks only, offline, for each seed."""
-    learn = learn_tasks()
+    """Cost on *seed-specific* LEARN tasks only; never sample HELD_OUT.
+
+    This script builds an as-yet-unfrozen prospective plan. If any earlier
+    plan/result was sealed with a seed-agnostic corpus, it must remain
+    historical; create a NEW versioned plan instead of retroactively
+    recomputing or rewriting that artifact.
+    """
     costs = {}
     for seed in seeds:
+        learn = learn_tasks(seed)
         meter = engine.Meter(MEASURE_CEILING)
         machine = engine.Engine()
         spent = {"procedure": 0, "synthesis": 0, "evaluations": 0}
