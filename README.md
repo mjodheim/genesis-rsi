@@ -24,7 +24,7 @@ See [PRINCIPLES.md](PRINCIPLES.md).
 
 ### Repository and research status — 17 October 2026
 
-On the verified `main` commit `be355c76` (PR #427, 15 October), the
+On the verified `main` commit [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) (PR #427, 15 October), the
 standard CI and sealed-evidence workflows passed. A separate 17 October
 worktree audit also passed the repository-integrity and sealed-bank leakage
 checks and 35 focused engineering tests. These checks do not imply

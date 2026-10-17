@@ -229,7 +229,7 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 
 ### 17 October 2026: integration and research hygiene
 
-- [x] Independently check published `main` at `be355c76` in an isolated
+- [x] Independently check published `main` at [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) in an isolated
       worktree: repository integrity, no sealed-bank leakage, 35 focused tests.
 - [ ] Resolve actual merge conflicts in PRs #411 and #417 without weakening
       independent evaluation, authorship, citation or commit-integrity rules.

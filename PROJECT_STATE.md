@@ -2,7 +2,7 @@
 
 ## 17 October 2026 operational status (non-frozen navigation)
 
-The latest reviewed public `main` is `be355c76` (PR #427, merged
+The latest reviewed public `main` is [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) (PR #427, merged
 15 October 2026). Its CI and sealed-evidence workflows passed.
 An isolated checkout of this exact commit passed the repository-integrity
 guard (module imports, orphan scan, dependency declarations, historical
