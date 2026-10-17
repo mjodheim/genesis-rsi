@@ -22,6 +22,30 @@ See [PRINCIPLES.md](PRINCIPLES.md).
 
 ## Current scientific position
 
+### Repository and research status — 17 October 2026
+
+On the verified `main` commit `be355c76` (PR #427, 15 October), the
+standard CI and sealed-evidence workflows passed. A separate 17 October
+worktree audit also passed the repository-integrity and sealed-bank leakage
+checks and 35 focused engineering tests. These checks do not imply
+general RSI or newly validated repair capabilities.
+
+The open PR queue is [#411](https://github.com/mjodheim/genesis-rsi/pull/411)
+(negative CIRCUIT2 findings; conflicts),
+[#417](https://github.com/mjodheim/genesis-rsi/pull/417)
+(attribution governance; conflicts),
+[#418](https://github.com/mjodheim/genesis-rsi/pull/418)
+(documentation; awaiting refresh/integration), and
+[#428](https://github.com/mjodheim/genesis-rsi/pull/428)
+(CIRCUIT2 transformed task fixtures; CI green, not yet merged).
+The NPN-derived tasks in #428 are truth-table distinct from CIRCUIT1
+but are not independent NPN classes; avoid claims of unseen semantic transfer.
+
+The evidence frontier remains a **bounded G10 result**, **0/9 blind G11 repairs**,
+and **negative CIRCUIT2 cross-family improver findings** in #411.
+New representations, general RSI and robust improvement of the improver
+itself remain research questions, not established capabilities.
+
 ### Research update — 13 October 2026
 
 **The latest published main includes CIRCUIT1 and security/provenance maintenance merged on 12 October.**

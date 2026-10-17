@@ -1,5 +1,30 @@
 # Genesis — current authoritative project state
 
+## 17 October 2026 operational status (non-frozen navigation)
+
+The latest reviewed public `main` is `be355c76` (PR #427, merged
+15 October 2026). Its CI and sealed-evidence workflows passed.
+An isolated checkout of this exact commit passed the repository-integrity
+guard (module imports, orphan scan, dependency declarations, historical
+commit reachability), the sealed-bank leakage guard, and 35 focused tests
+on 17 October. These are engineering checks, not independent validation
+of general recursive self-improvement.
+
+Open integration queue: [#411](https://github.com/mjodheim/genesis-rsi/pull/411)
+(CIRCUIT2 negative research, merge conflicts), [#417](https://github.com/mjodheim/genesis-rsi/pull/417)
+(verified platform-merge governance, merge conflicts), [#418](https://github.com/mjodheim/genesis-rsi/pull/418)
+(research documentation, behind main), and [#428](https://github.com/mjodheim/genesis-rsi/pull/428)
+(CIRCUIT2 task derivation, clean and CI-green on its last tested commit).
+The CIRCUIT2 tasks in #428 are NPN transformations of CIRCUIT1 tasks:
+distinct truth tables are not evidence of distinct NPN classes or
+independent semantic transfer. No CIRCUIT2/CIRCUIT3 success is inferred
+from the branch's successful CI.
+
+Scientific boundary unchanged: G10 remains qualified only under its frozen,
+host-authored assay, independent G11 repair is 0/9, and the two preregistered
+CIRCUIT2 improvement hypotheses reported in #411 were refuted. Do not
+rewrite negative results or silently promote pending research.
+
 ## 13 October 2026 operational addendum
 
 The last verified published main commit is the 12 October safety merge
