@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from check_attribution_policy import (
+    audit_mira_paths,
     audit_commit_records,
     audit_pull_request_payload,
 )
@@ -35,14 +36,14 @@ def test_historical_owner_email_does_not_register_another_person():
     problems = audit_commit_records([_record(
         author_name="Another Person", author_email="contact@mjodheim.be"
     )])
-    assert problems == ["abc123: author is not a registered human identity"]
+    assert problems == ["abc123: author is not Anthony or Mira"]
 
 
 def test_service_author_is_rejected():
     problems = audit_commit_records([_record(author_name="release[bot]")])
     assert problems == [
         "abc123: author_name contains blocked attribution '[bot]'",
-        "abc123: author is not a registered human identity",
+        "abc123: author is not Anthony or Mira",
     ]
 
 
@@ -50,7 +51,7 @@ def test_unregistered_plain_identity_is_rejected():
     problems = audit_commit_records(
         [_record(author_name="Build Service", author_email="build@example.invalid")]
     )
-    assert problems == ["abc123: author is not a registered human identity"]
+    assert problems == ["abc123: author is not Anthony or Mira"]
 
 
 def test_generated_coauthor_trailer_is_rejected():
@@ -59,7 +60,7 @@ def test_generated_coauthor_trailer_is_rejected():
     )
     assert problems == [
         "abc123: co-author trailer contains blocked attribution '[bot]'",
-        "abc123: co-author is not a registered human identity",
+        "abc123: co-author is not Anthony or Mira",
     ]
 
 
@@ -99,7 +100,7 @@ def test_unregistered_pull_request_author_is_rejected():
         }
     }
     assert audit_pull_request_payload(payload) == [
-        "pull request author is not a registered human identity"
+        "pull request author is not Anthony or Mira"
     ]
 
 
@@ -131,3 +132,44 @@ def test_workflow_runs_the_policy_from_the_trusted_base_revision():
     assert "ref: ${{ github.event.pull_request.base.sha }}" in workflow
     assert "Fetch the proposed commit without checking it out" in workflow
     assert "Check commit and pull-request attribution from trusted code" in workflow
+
+
+def test_mira_is_explicitly_nonhuman_and_has_a_registered_technical_identity():
+    assert audit_commit_records([_record(
+        author_name="Mira", author_email="mira.mjodheim.be@gmail.com",
+        committer_name="Mira", committer_email="mira-ai@noreply.github.com",
+    )]) == []
+
+
+def test_mira_pull_request_needs_no_signature():
+    pr = {"title": "Fix capability-gap path validation",
+          "body": "A patch with passing tests",
+          "head": {"ref": "mira/genesis-99660ab004f9"},
+          "user": {"login": "Mira-Mjodheim"}}
+    assert audit_pull_request_payload({"pull_request": pr}) == []
+    pr["user"] = {"login": "someone-else"}
+    assert audit_pull_request_payload({"pull_request": pr}) == [
+        "pull request author is not Anthony or Mira"]
+
+
+def test_mira_may_change_the_code_but_not_the_checks_that_gate_her_merges():
+    assert audit_mira_paths([
+        "genesis/learning/capability_gaps.py",
+        "genesis/core/self_model.py",
+        "metamorphosis/evaluation_cost.py",
+        "tests/test_g12_training_bank.py",
+        "docs/ROADMAP.md",
+    ]) == []
+    gates = [
+        ".github/workflows/ci.yml",
+        ".github/workflows/attribution-policy.yml",
+        "scripts/check_attribution_policy.py",
+        "tests/test_attribution_policy.py",
+        "genesis/learning/../../scripts/check_attribution_policy.py",
+    ]
+    assert audit_mira_paths(gates) == [f"Mira cannot modify merge gate: {path}" for path in gates]
+
+
+def test_unknown_commit_identity_is_rejected():
+    problems = audit_commit_records([_record(author_name="Someone", author_email="someone@example.com")])
+    assert problems == ["abc123: author is not Anthony or Mira"]

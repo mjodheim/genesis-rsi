@@ -93,3 +93,32 @@ def test_profile_and_discovery_tampering_fail_closed():
     evidence["solved"]+=1
     with pytest.raises(recursive_chain.RecursiveChainError):
         recursive_chain.validate_discovery(evidence,parent_profile_digest=seed["profile_digest"])
+
+
+def test_seed_digest_matches_frozen_g0():
+    # G0 gelé dans docs/G10_QUALIFICATION_2026-10-07.md
+    seed=recursive_chain.build_seed_profile(G9)
+    assert seed["profile_digest"]=="613138e45bb05f4cae884bbb9e951e82bee1a19f858f7d6e9875af8fbce8f4b3"
+
+
+def _case_view(case):
+    winner=case.get("winner")
+    return (
+        case["generation_digest"],
+        case["passed"],
+        winner["candidate_digest"] if winner else None,
+    )
+
+
+def test_development_measurement_is_reproducible_modulo_timing():
+    # Limite connue pour une réplication indépendante : measurement_digest n'est
+    # volontairement pas comparé, car il inclut wall_time_seconds et
+    # controller_cpu_process_time_ns, qui ne sont pas stables d'une exécution à l'autre.
+    g0=recursive_chain.build_seed_profile(G9)
+    bank=g10_task_bank.build_bank(SPECIALIST,stage=1,purpose="discovery",seed=11001)
+    first=g10_evaluator.evaluate_profile(ROOT,g0,bank,max_candidates_per_case=6)
+    second=g10_evaluator.evaluate_profile(ROOT,g0,bank,max_candidates_per_case=6)
+    for key in ("solved","candidate_executions","group_solved"):
+        assert first[key]==second[key]
+    assert first["cases"]
+    assert [_case_view(c) for c in first["cases"]]==[_case_view(c) for c in second["cases"]]

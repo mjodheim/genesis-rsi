@@ -21,19 +21,38 @@ from genesis.trust_root import digest_of
 GAP_SCHEMA = "genesis-capability-gap-diagnosis-v1"
 
 
-def _target_suffixes(root: Path, prefixes: Sequence[str]) -> list[str]:
-    suffixes: set[str] = set()
+def _target_prefixes(root: Path, prefixes: Sequence[str]) -> list[Path]:
+    resolved_root = root.resolve()
+    paths: list[Path] = []
     for raw in prefixes:
-        normalized = str(raw).strip("/")
-        if not normalized:
+        text = str(raw).strip()
+        if not text:
             continue
-        path = root / normalized
+        candidate = Path(text)
+        if candidate.is_absolute():
+            path = candidate
+        else:
+            path = root / candidate
+        resolved = path.resolve()
+        if resolved != resolved_root and resolved_root not in resolved.parents:
+            raise ValueError(f"target prefix escapes root: {text}")
+        paths.append(path)
+    return paths
+
+
+def _target_suffixes(root: Path, prefixes: Sequence[str]) -> list[str]:
+    resolved_root = root.resolve()
+    suffixes: set[str] = set()
+    for path in _target_prefixes(root, prefixes):
         if path.is_file():
             suffixes.add(path.suffix.lower())
             continue
         if path.is_dir():
             for item in path.rglob("*"):
                 if item.is_file():
+                    resolved = item.resolve()
+                    if resolved != resolved_root and resolved_root not in resolved.parents:
+                        raise ValueError("target prefix escapes root")
                     suffixes.add(item.suffix.lower())
     return sorted(suffixes)
 

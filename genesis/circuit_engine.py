@@ -25,6 +25,8 @@ from itertools import combinations, combinations_with_replacement, permutations,
 import random
 from typing import Iterable, Sequence
 
+from genesis import circuit_procedure as cproc
+
 MAX_ARITY = 3
 
 
@@ -338,6 +340,123 @@ def features(arity: int, table: int, nands: int, support: int, generation: int, 
     return [1.0, float(arity == 1), float(arity == 2), float(arity == 3), float(arity >= 4), float(nands),
             float(min(support, 10)), abs(ones - 0.5), float(xor_like), float(rising or falling), float(symmetric),
             float(generation), float(library)]
+
+# --------------------------------------------------------------------------- the improvement step under one meter
+
+class Meter:
+    """One counter for everything a metered improvement step spends. It never goes past ``limit``:
+    a charge larger than ``remaining`` is refused and consumes nothing."""
+
+    def __init__(self, limit: int):
+        if isinstance(limit, bool) or not isinstance(limit, int) or limit < 0:
+            raise ValueError("limit must be a non-negative integer")
+        self.limit = limit
+        self.spent = 0
+
+    @property
+    def remaining(self) -> int:
+        return self.limit - self.spent
+
+    def charge(self, n: int) -> bool:
+        if isinstance(n, bool) or not isinstance(n, int) or n < 0:
+            raise ValueError("a charge must be a non-negative integer")
+        if n > self.remaining:
+            return False
+        self.spent += n
+        return True
+
+
+def _learned(tree: tuple) -> bool:
+    """Whether ``tree`` uses a component other than NAND."""
+    return tree[0] != "in" and (tree[0] != NAND.name or any(_learned(child) for child in tree[1]))
+
+
+def composed_flags(engine: Engine, solutions: Sequence[Solution]) -> dict[tuple, bool]:
+    """For each candidate key read in the solutions, whether some sub-circuit it is cut from uses a learnt
+    component (so the candidate is made of earlier ones). It walks the same trees as ``proposals`` and
+    depends on nothing else."""
+    library = {item.name: item for item in engine.components}
+    flags: dict[tuple, bool] = {}
+    for solution in solutions:
+        if not (solution.solved and solution.tree):
+            continue
+        for tree, leaves in _patterns(solution.tree):
+            cut = _cut(tree, leaves)
+            steps: list = []
+            _expanded(cut, library, leaves, steps)
+            key = Component("", len(leaves), tuple(steps)).key
+            flags[key] = flags.get(key, False) or _learned(cut)
+    return flags
+
+
+def _metered_attempt(engine: Engine, tasks: Sequence[Task], task_budget: int, meter: Meter, spent: dict) -> list[Solution] | None:
+    """Every task solved once, each with min(task_budget, meter.remaining) evaluations, each solve charged for
+    what it really spent. None when the meter ran out before the attempt could be complete."""
+    found = []
+    for task in tasks:
+        budget = min(task_budget, meter.remaining)
+        if budget == 0 < task_budget:
+            return None
+        solution = solve(engine, task, budget)
+        meter.charge(solution.evaluations)
+        spent["evaluations"] += solution.evaluations
+        found.append(solution)
+        if budget < task_budget:
+            return None
+    return found
+
+
+def improved_by(engine: Engine, tasks: Sequence[Task], task_budget: int, solutions: Sequence[Solution],
+                procedure: cproc.Procedure, meter: Meter, *, generation: int) -> tuple[Engine, list[Solution], dict]:
+    """One improvement step guided by an inherited ``procedure`` and paid from ``meter``.
+
+    Every component of ``proposals`` is scored by running the procedure on its traits (support, arity, NANDs,
+    ``composed``: the candidate is cut from a circuit that uses a learnt component); the procedure's NANDs are
+    charged. Admitted candidates are tried by decreasing priority then stable key, the first six
+    (``SEED_PROCEDURE['tried']``). Charges: procedure = NANDs run by the procedure; synthesis = 1 unit per NAND
+    of a component tried (a scale chosen here, to be frozen later); evaluations = what ``solve`` really spent,
+    each solve with a budget of min(task_budget, meter.remaining). When the meter cannot pay, the step stops:
+    the best validated engine so far, or ``engine`` itself, comes back with ``info['exhausted']`` true.
+    A component is kept under the rule of ``improved``: (solved, -evaluations) strictly better."""
+    spent = {"procedure": 0, "synthesis": 0, "evaluations": 0}
+    exhausted = False
+    found = proposals(engine, solutions)
+    flags = composed_flags(engine, solutions)
+    ranked = []
+    for component, support in found:
+        composed = flags.get(component.key, False)
+        priority, admitted, gates = cproc.run(
+            procedure, cproc.traits_of(support, component.arity, len(component.steps), composed))
+        if not meter.charge(gates):
+            exhausted = True
+            break
+        spent["procedure"] += gates
+        if admitted:
+            ranked.append((-priority, component.key, component, support, composed))
+    ranked.sort(key=lambda item: item[:2])
+    before, trials, best = measure(solutions), [], None
+    for index, (negative, _, component, support, composed) in enumerate(ranked[:SEED_PROCEDURE["tried"]]):
+        if exhausted or not meter.charge(len(component.steps)):
+            exhausted = True
+            break
+        spent["synthesis"] += len(component.steps)
+        added = Component(f"g{generation}c{index}", component.arity, component.steps)
+        wider = Engine(engine.components + [added])
+        first = _metered_attempt(wider, tasks, task_budget, meter, spent)
+        candidate = refitted(wider, first, SEED_PROCEDURE) if first is not None else None
+        after_solutions = _metered_attempt(candidate, tasks, task_budget, meter, spent) if candidate is not None else None
+        if after_solutions is None:
+            exhausted = True
+            break
+        after = measure(after_solutions)
+        trials.append({"name": added.name, "arity": added.arity, "nands": len(added.steps), "table": added.table,
+                       "support": support, "composed": composed, "priority": -negative,
+                       "solved": after[0], "evaluations": after[1]})
+        if (after[0], -after[1]) > (before[0], -before[1]) and (best is None or (after[0], -after[1]) > best[0]):
+            best = ((after[0], -after[1]), candidate, after_solutions, added.name)
+    info = {"candidates": len(found), "admitted": len(ranked), "trials": trials,
+            "added": best[3] if best else None, "exhausted": exhausted, "spent": spent}
+    return (best[1], best[2], info) if best else (engine, list(solutions), info)
 
 
 def together(engine: Engine, tasks: Sequence[Task], budget: int, solutions: Sequence[Solution], count: int,
