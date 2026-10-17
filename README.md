@@ -41,6 +41,11 @@ The open PR queue is [#411](https://github.com/mjodheim/genesis-rsi/pull/411)
 The NPN-derived tasks in #428 are truth-table distinct from CIRCUIT1
 but are not independent NPN classes; avoid claims of unseen semantic transfer.
 
+CIRCUIT1 averaged **12.8 held-out tasks versus 11.0** for its frozen
+non-improving engine across five seeds; some seeds did not improve, and
+the gains plateaued. This is bounded mixed evidence, not a general
+improvement process.
+
 The evidence frontier remains a **bounded G10 result**, **0/9 blind G11 repairs**,
 and **negative CIRCUIT2 cross-family improver findings** in #411.
 New representations, general RSI and robust improvement of the improver
@@ -49,7 +54,7 @@ itself remain research questions, not established capabilities.
 ### Research update — 13 October 2026
 
 **The latest published main includes CIRCUIT1 and security/provenance maintenance merged on 12 October.**
-The validated, project-defined G10 chain remains a **bounded** proof under its
+The validated, project-defined G10 chain remains a **bounded positive result** under its
 host-authored software-composition assay, not a demonstration of general RSI.
 On independently evaluated real-world Java repair tasks, G11 remains **0/9**,
 separately from successful *posthoc development* repairs.
