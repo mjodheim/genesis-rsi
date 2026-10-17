@@ -36,14 +36,14 @@ def test_historical_owner_email_does_not_register_another_person():
     problems = audit_commit_records([_record(
         author_name="Another Person", author_email="contact@mjodheim.be"
     )])
-    assert problems == ["abc123: author is not Anthony or Mira"]
+    assert problems == ["abc123: author is not Anthony, Mira or Leona"]
 
 
 def test_service_author_is_rejected():
     problems = audit_commit_records([_record(author_name="release[bot]")])
     assert problems == [
         "abc123: author_name contains blocked attribution '[bot]'",
-        "abc123: author is not Anthony or Mira",
+        "abc123: author is not Anthony, Mira or Leona",
     ]
 
 
@@ -51,7 +51,7 @@ def test_unregistered_plain_identity_is_rejected():
     problems = audit_commit_records(
         [_record(author_name="Build Service", author_email="build@example.invalid")]
     )
-    assert problems == ["abc123: author is not Anthony or Mira"]
+    assert problems == ["abc123: author is not Anthony, Mira or Leona"]
 
 
 def test_generated_coauthor_trailer_is_rejected():
@@ -60,7 +60,7 @@ def test_generated_coauthor_trailer_is_rejected():
     )
     assert problems == [
         "abc123: co-author trailer contains blocked attribution '[bot]'",
-        "abc123: co-author is not Anthony or Mira",
+        "abc123: co-author is not Anthony, Mira or Leona",
     ]
 
 
@@ -100,7 +100,7 @@ def test_unregistered_pull_request_author_is_rejected():
         }
     }
     assert audit_pull_request_payload(payload) == [
-        "pull request author is not Anthony or Mira"
+        "pull request publisher account is not approved (mjodheim or Mira-Mjodheim)"
     ]
 
 
@@ -149,7 +149,7 @@ def test_mira_pull_request_needs_no_signature():
     assert audit_pull_request_payload({"pull_request": pr}) == []
     pr["user"] = {"login": "someone-else"}
     assert audit_pull_request_payload({"pull_request": pr}) == [
-        "pull request author is not Anthony or Mira"]
+        "pull request publisher account is not approved (mjodheim or Mira-Mjodheim)"]
 
 
 def test_mira_may_change_the_code_but_not_the_checks_that_gate_her_merges():
@@ -172,4 +172,74 @@ def test_mira_may_change_the_code_but_not_the_checks_that_gate_her_merges():
 
 def test_unknown_commit_identity_is_rejected():
     problems = audit_commit_records([_record(author_name="Someone", author_email="someone@example.com")])
-    assert problems == ["abc123: author is not Anthony or Mira"]
+    assert problems == ["abc123: author is not Anthony, Mira or Leona"]
+
+
+
+def test_owner_has_explicitly_registered_leona_identity_not_a_generic_bot():
+    from check_attribution_policy import REGISTERED_LEONA_IDENTITIES, REGISTERED_IDENTITIES
+    assert REGISTERED_LEONA_IDENTITIES == {
+        ("Leona (AI)", "leona-ai@noreply.github.com")
+    }
+    assert REGISTERED_LEONA_IDENTITIES <= REGISTERED_IDENTITIES
+
+
+def test_leona_authored_committed_and_coauthored_changes_are_accepted():
+    author = {
+        "author_name": "Leona (AI)",
+        "author_email": "leona-ai@noreply.github.com",
+        "committer_name": "Leona (AI)",
+        "committer_email": "leona-ai@noreply.github.com",
+    }
+    assert audit_commit_records([_record(**author)]) == []
+    assert audit_commit_records([_record(
+        body="Review CIRCUIT2 provenance\n\n"
+             "Co-authored-by: Leona (AI) <leona-ai@noreply.github.com>"
+    )]) == []
+
+
+def test_mixed_real_identity_approval_preserves_distinct_authorship():
+    author = _record(
+        author_name="Leona (AI)", author_email="leona-ai@noreply.github.com",
+        body="Bounded code review\n\nProvenance: Leona (AI execution)",
+    )
+    assert audit_commit_records([author]) == []
+    assert audit_pull_request_payload({"pull_request": {
+        "title": "Review bounded experiment",
+        "body": "Provenance: Leona (AI execution)",
+        "head": {"ref": "review/leona-experiment"},
+        "user": {"login": "mjodheim"},
+    }}) == []
+
+
+def test_forged_leona_name_cannot_borrow_anthony_email():
+    problems = audit_commit_records([_record(
+        author_name="Leona (AI)",
+        author_email="110968830+mjodheim@users.noreply.github.com",
+    )])
+    assert problems == ["abc123: author is not Anthony, Mira or Leona"]
+
+
+def test_forged_leona_email_does_not_allow_other_names():
+    problems = audit_commit_records([_record(
+        author_name="Third Party", author_email="leona-ai@noreply.github.com",
+    )])
+    assert problems == ["abc123: author is not Anthony, Mira or Leona"]
+
+
+def test_other_bot_identity_still_rejected_as_before():
+    problems = audit_commit_records([_record(
+        author_name="Leona[bot]", author_email="leona-ai@noreply.github.com"
+    )])
+    assert problems == [
+        "abc123: author_name contains blocked attribution '[bot]'",
+        "abc123: author is not Anthony, Mira or Leona",
+    ]
+
+
+def test_mira_cannot_modify_merge_gate_with_a_leona_coauthor():
+    assert audit_mira_paths(["scripts/check_attribution_policy.py",
+                             ".github/workflows/attribution-policy.yml"]) == [
+        "Mira cannot modify merge gate: scripts/check_attribution_policy.py",
+        "Mira cannot modify merge gate: .github/workflows/attribution-policy.yml",
+    ]
