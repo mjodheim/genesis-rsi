@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import json
 from pathlib import Path
 
 import pytest
@@ -126,4 +127,23 @@ def test_the_plan_path_is_under_experiment_engine_next_to_circuit1():
     circuit1 = freeze.ROOT / "experiment" / "engine" / "CIRCUIT1"
     assert freeze.PLAN_PATH.parent != circuit1
     assert freeze.PLAN_PATH.parent.parent == circuit1.parent
-    assert not freeze.PLAN_PATH.exists()
+    if freeze.PLAN_PATH.exists():
+        # The earlier script-only PR deliberately had no plan. After merging
+        # the genuine historical CIRCUIT2 record, the plan MUST survive:
+        # reject any replacement rather than asserting it is absent.
+        snapshot = freeze.PLAN_PATH.read_bytes()
+        historical = json.loads(snapshot)
+        from genesis.trust_root import digest_of
+        assert historical["schema"] == "genesis-circuit-meta-plan-v1"
+        assert historical["plan_digest"] == (
+            "dd6347b771bef20bbe42f7aed1fcd1af04a7db9a56cff81a0c0bf6aa1f833601"
+        )
+        assert historical["plan_digest"] == digest_of(
+            {key: value for key, value in historical.items() if key != "plan_digest"}
+        )
+        with pytest.raises(freeze.PlanError, match="already exists"):
+            freeze.freeze(
+                freeze.PLAN_PATH, machinery_commit=COMMIT,
+                measure=lambda: {str(seed): 1 for seed in freeze.SEEDS},
+            )
+        assert freeze.PLAN_PATH.read_bytes() == snapshot
