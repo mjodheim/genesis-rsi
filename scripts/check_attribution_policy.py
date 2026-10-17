@@ -239,7 +239,10 @@ def verify_github_update_merge(
     if (record["author_name"], record["author_email"]) not in (
             REGISTERED_HUMAN_IDENTITIES | REGISTERED_AI_IDENTITIES):
         return False
-    message = "Merge branch '" + base_ref + "' into " + head_ref
+    # GitHub preserves the original base-ref spelling in the signed message,
+    # even after a repository branch rename. Trust the signed historical
+    # message and the actual second-parent base ancestry, rather than forcing
+    # the current branch name onto an immutable earlier merge.
     git_meta = github_commit.get("commit")
     if not isinstance(git_meta, Mapping):
         return False
@@ -257,8 +260,21 @@ def verify_github_update_merge(
         return False
     if (committer.get("name"), committer.get("email")) != ("GitHub", "noreply@github.com"):
         return False
-    if git_meta.get("message") != message:
+    message = git_meta.get("message")
+    if not isinstance(message, str):
         return False
+    prefix = "Merge branch '"
+    suffix = "' into " + head_ref
+    if not (message.startswith(prefix) and message.endswith(suffix)):
+        return False
+    original_base_ref = message[len(prefix):-len(suffix)]
+    if (len(original_base_ref) > 255 or
+            not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._/-]*", original_base_ref) or
+            ".." in original_base_ref or "//" in original_base_ref or
+            original_base_ref.endswith(("/", ".", ".lock"))):
+        return False
+    # The source ref is only a historical signed label. Authorization is
+    # decided by whether the second-parent SHA belongs to the trusted base.
     parents = github_commit.get("parents")
     if not isinstance(parents, list) or len(parents) != 2:
         return False

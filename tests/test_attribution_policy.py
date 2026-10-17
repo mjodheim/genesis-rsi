@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import pytest
 
 from check_attribution_policy import (
     audit_ai_paths,
@@ -414,3 +415,36 @@ def test_unverified_ai_technical_merge_does_not_skip_path_guard():
         paths=path, paths_by_commit={"a" * 40: path},
         verified_platform_commits=frozenset({"a" * 40}),
     ) == []
+
+
+def test_signed_historical_update_survives_base_branch_rename():
+    rec, event, response, base, head = _github_update_case()
+    event["pull_request"]["base"]["ref"] = "trunk"
+    assert verify_github_update_merge(
+        rec, base_sha=base, head_sha=head,
+        event=event, github_commit=response
+    )
+    # Signed label alone is not enough: a genuine second parent must be
+    # reachable from current trusted base ancestry.
+    assert not verify_github_update_merge(
+        rec, base_sha=base, head_sha=head,
+        event=event, github_commit=response,
+        valid_base_commits=frozenset({"1" * 40})
+    )
+
+
+@pytest.mark.parametrize("message", [
+    "Merge another branch into research/learning-to-improve",
+    "Merge branch '../other' into research/learning-to-improve",
+    "Merge branch 'hotfix//branch' into research/learning-to-improve",
+    "Merge branch 'main' into another/source-branch",
+    "Merge branch 'main' into research/learning-to-improve\nextra",
+    "Merge branch 'main.lock' into research/learning-to-improve",
+])
+def test_signed_update_merge_ref_message_must_be_well_formed(message):
+    rec, event, response, base, head = _github_update_case()
+    response["commit"]["message"] = message
+    assert not verify_github_update_merge(
+        rec, base_sha=base, head_sha=head,
+        event=event, github_commit=response
+    )
