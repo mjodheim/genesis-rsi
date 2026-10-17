@@ -227,6 +227,40 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 - [ ] Consolidate experiment navigation without rewriting frozen evidence.
 - [ ] Update repository identity and metadata.
 
+### 17 October 2026: integration and research hygiene
+
+- [x] Independently check published `main` at [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) in an isolated
+      worktree: repository integrity, no sealed-bank leakage, 35 focused tests.
+- [ ] Resolve actual merge conflicts in PRs #411 and #417 without weakening
+      independent evaluation, authorship, citation or commit-integrity rules.
+- [ ] Refresh and integrate reader-facing PR #418 only after required policy
+      gates and CI pass; do not rewrite frozen research results.
+- [ ] Review PR #428's semantic split: truth-table uniqueness under NPN
+      transformations is not unseen-family/NPN-class generalization.
+- [ ] Keep historical research, signed provenance and referenced Git
+      objects; do not delete them as routine repository cleanup.
+- [ ] Design a prospective experiment for discovered representations
+      versus fixed-representation, fixed-search and matched-budget baselines.
+
+### 13 October 2026: research priorities
+
+The post-G10 campaigns do not yet establish external repair transfer:
+independent G11 repairs remained 0/9. CIRCUIT2 (PR #411, not merged)
+rejected both an enlarged component space and a learned ranker.
+CIRCUIT3 (PR #415, closed without merge) produced training-only traces,
+not demonstrated learned guidance.
+
+- [ ] Maintain the public main branch, provenance protections and frozen evidence.
+- [ ] Resolve the GitHub update-branch attribution conflict without weakening
+      identity checks or impersonating a human.
+- [ ] Only integrate CIRCUIT3 after repository-integrity checks and tests
+      pass and its authorship is accepted by published contribution policy.
+- [ ] Test guidance against random/static and cost-matched baselines
+      on genuinely unseen task families.
+- [ ] Show an independent second generation whose improved ability
+      to create improvements survives ablation and resource accounting.
+- [ ] Obtain external independent replication before broader RSI claims.
+
 ### Post-G10 scientific frontier
 - [x] Close the bounded project-defined G10 recursive-successor gate.
 - [ ] Reproduce the G10 chain independently from a clean environment and independently governed task material.

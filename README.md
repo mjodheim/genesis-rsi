@@ -22,6 +22,66 @@ See [PRINCIPLES.md](PRINCIPLES.md).
 
 ## Current scientific position
 
+### Repository and research status — 17 October 2026
+
+On the verified `main` commit [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) (PR #427, 15 October), the
+standard CI and sealed-evidence workflows passed. A separate 17 October
+worktree audit also passed the repository-integrity and sealed-bank leakage
+checks and 35 focused engineering tests. These checks do not imply
+general RSI or newly validated repair capabilities.
+
+The open PR queue is [#411](https://github.com/mjodheim/genesis-rsi/pull/411)
+(negative CIRCUIT2 findings; conflicts),
+[#417](https://github.com/mjodheim/genesis-rsi/pull/417)
+(attribution governance; conflicts),
+[#418](https://github.com/mjodheim/genesis-rsi/pull/418)
+(documentation; awaiting refresh/integration), and
+[#428](https://github.com/mjodheim/genesis-rsi/pull/428)
+(CIRCUIT2 transformed task fixtures; CI green, not yet merged).
+The NPN-derived tasks in #428 are truth-table distinct from CIRCUIT1
+but are not independent NPN classes; avoid claims of unseen semantic transfer.
+
+CIRCUIT1 averaged **12.8 held-out tasks versus 11.0** for its frozen
+non-improving engine across five seeds; some seeds did not improve, and
+the gains plateaued. This is bounded mixed evidence, not a general
+improvement process.
+
+The evidence frontier remains a **bounded G10 result**, **0/9 blind G11 repairs**,
+and **negative CIRCUIT2 cross-family improver findings** in #411.
+New representations, general RSI and robust improvement of the improver
+itself remain research questions, not established capabilities.
+
+### Research update — 13 October 2026
+
+**The latest published main includes CIRCUIT1 and security/provenance maintenance merged on 12 October.**
+The validated, project-defined G10 chain remains a **bounded positive result** under its
+host-authored software-composition assay, not a demonstration of general RSI.
+On independently evaluated real-world Java repair tasks, G11 remains **0/9**,
+separately from successful *posthoc development* repairs.
+
+Research tests whether Genesis can improve the **procedure that
+produces improvements**, rather than merely accumulate search components.
+Distinguish branches from main and preserve negative evidence:
+
+- **CIRCUIT1:** a model-free program-improvement lineage is merged via
+  [PR #410](https://github.com/mjodheim/genesis-rsi/pull/410).
+  Its result does not demonstrate general or open-ended self-improvement.
+- **CIRCUIT2:** on an [unmerged research branch](https://github.com/mjodheim/genesis-rsi/pull/411),
+  two preregistered hypotheses failed. An expanded component space scored
+  **11** held-out tasks against **12.8** for CIRCUIT1; a learned selector scored
+  **3.63** development task gains versus **3.67** for random selection.
+  These are negative evidence, not new certified capabilities.
+- **CIRCUIT3:** a [closed, unmerged proposal](https://github.com/mjodheim/genesis-rsi/pull/415)
+  instrumented training-only search traces: 5 tasks and 1,681 novel signals
+  in a local sample. Its CI failed (an unregistered CLI entry point and missing
+  commit-citation registration). **No learned guidance, held-out gain or
+  second-generation gain has been demonstrated.**
+
+The next advance requires a controlled learner-vs-baselines study on
+unseen task families, followed by a second generation that demonstrably
+benefits from the first. Acquisition compute and all external-model costs
+must be counted.
+
 The repository contains several generations of bounded experiments. Important current anchors include:
 
 - the project-defined finite operational **L9 gate passed** in OE1-v3: 16/16 frozen predicates, 576/576 coded transfer tasks and an independent replay of 33,215 retained candidate receipts with no mismatch;

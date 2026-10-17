@@ -1,5 +1,48 @@
 # Genesis — current authoritative project state
 
+## 17 October 2026 operational status (non-frozen navigation)
+
+The latest reviewed public `main` is [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) (PR #427, merged
+15 October 2026). Its CI and sealed-evidence workflows passed.
+An isolated checkout of this exact commit passed the repository-integrity
+guard (module imports, orphan scan, dependency declarations, historical
+commit reachability), the sealed-bank leakage guard, and 35 focused tests
+on 17 October. These are engineering checks, not independent validation
+of general recursive self-improvement.
+
+Open integration queue: [#411](https://github.com/mjodheim/genesis-rsi/pull/411)
+(CIRCUIT2 negative research, merge conflicts), [#417](https://github.com/mjodheim/genesis-rsi/pull/417)
+(verified platform-merge governance, merge conflicts), [#418](https://github.com/mjodheim/genesis-rsi/pull/418)
+(research documentation, behind main), and [#428](https://github.com/mjodheim/genesis-rsi/pull/428)
+(CIRCUIT2 task derivation, clean and CI-green on its last tested commit).
+The CIRCUIT2 tasks in #428 are NPN transformations of CIRCUIT1 tasks:
+distinct truth tables are not evidence of distinct NPN classes or
+independent semantic transfer. No CIRCUIT2/CIRCUIT3 success is inferred
+from the branch's successful CI.
+
+Scientific boundary unchanged: G10 remains qualified only under its frozen,
+host-authored assay, independent G11 repair is 0/9, and the two preregistered
+CIRCUIT2 improvement hypotheses reported in #411 were refuted. Do not
+rewrite negative results or silently promote pending research.
+
+## 13 October 2026 operational addendum
+
+The last verified published main commit is the 12 October safety merge
+(PR #412). The main CI and sealed-evidence workflows passed on that commit.
+The project-defined G10 result below remains valid **within its frozen assay only**.
+Blind, independently preregistered G11 repairs remain **0/9**.
+
+After the negative CIRCUIT1 improver-lineage experiments (merged via PR #410),
+the model-free CIRCUIT2 branch (PR #411, **not yet merged**) rejected both
+an enlarged component search and a trained cross-family ranker. The
+training-only CIRCUIT3 instrumentation proposal (PR #415) was **closed
+without merge after failed CI**. It gathered traces but did **not**
+demonstrate a learning improvement or a recursively useful successor.
+
+This addendum is navigation, not a scientific verdict. See dated
+experiment artifacts and the [README](README.md). The 7 October snapshot below
+remains preserved for chronology.
+
 **Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; Genesis v2 G5 through G9 remain passed, and the strengthened project-defined G10 recursive-successor gate has now passed with a prospectively frozen G0→G1→G2→G3 chain plus causal next-successor production advantages at generations 1 and 2. Independent replication, broader software-domain transfer and general RSI remain open.**
 
 Genesis is the renamed continuation of **Mira Genesis**. Historical records keep their original project name; the rename changes neither authorship nor frozen evidence.
