@@ -155,9 +155,23 @@ def test_circuit2_shares_no_table_with_circuit1(family):
 
 
 def test_circuit2_generation_is_reproducible():
-    for family in FAMILIES:
-        assert tasks.circuit2_tasks(family) == tasks.circuit2_tasks(family)
-    assert tasks.circuit2_suite(FAMILIES) == tasks.circuit2_suite(FAMILIES)
+    baseline = {family: tasks.circuit2_tasks(family) for family in FAMILIES}
+    tasks._circuit2_assignment.cache_clear()
+    assert baseline == {family: tasks.circuit2_tasks(family) for family in FAMILIES}
+    assert tasks.circuit2_suite(FAMILIES) == [
+        t for family in FAMILIES for t in baseline[family]
+    ]
+
+
+def test_circuit2_heldout_seed_variation_is_real():
+    heldout = [
+        [(t.name, t.inputs, t.target) for t in tasks.circuit2_suite(tasks.HELD_OUT, seed)]
+        for seed in (0, 1, 2, 3, 7, 11)
+    ]
+    assert all(heldout), "each heldout suite must be nonempty"
+    assert len({tuple(one) for one in heldout}) >= 4, (
+        "different seeds must not silently reuse an identical heldout suite"
+    )
 
 
 def test_circuit1_default_suite_is_unchanged():

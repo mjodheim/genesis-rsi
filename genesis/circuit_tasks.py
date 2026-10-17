@@ -92,7 +92,7 @@ def _circuit2_assignment(seed: int) -> dict[str, tuple[Task, ...]]:
         for task in tasks(family, seed):
             if task.inputs > CIRCUIT2_MAX_INPUTS:
                 continue
-            rng = random.Random(f"circuit2|{family}|{task.name}")
+            rng = random.Random(f"circuit2|{seed}|{family}|{task.name}")
             for _ in range(CIRCUIT2_ATTEMPTS):
                 order = list(range(task.inputs))
                 # RNG draws per attempt, in this fixed order: (a) rng.shuffle(order);
