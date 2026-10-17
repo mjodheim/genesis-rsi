@@ -40,3 +40,52 @@ All checks in this worktree: 35 focused tests passed, structural repository hygi
 This outcome is not invention of a wholly new transform, not a blind generalization result, not a latency speedup, and not improved ability to evolve the next generation. The full-Mobius comparator matching the selected program underscores that this finite grammar mainly recovers a known transform. An honest next study should expand or endogenize the primitive grammar *before* a genuinely unseen task bank is frozen.
 
 Human publication/IP review is pending. The commit is intentionally **local-only**, not pushed to GitHub or promoted to main.
+
+## Next development iteration: unrestricted sequences of provided reversible primitives
+
+Two additional prototype modules and their tests study whether a broader
+search grammar escapes the plateau in the first finite-mask experiment:
+
+- adaptive_basis.py: a multi-generation greedy/beam search over axis passes
+  and arbitrary invertible truth-table coordinate XOR shears. It is vulnerable
+  to a documented valley: all one-axis transformations worsen the training
+  encoding score for six-input tasks, while the complete six-axis transform
+  improves it. The bounded greedy/beam search retained identity and learned
+  no change for these development tasks. This negative observation is
+  preserved in ADAPTIVE_BASIS_DEV_2026-10-17.json.
+- macro_search.py: explicit bounded enumeration of all 2^n axis
+  combinations, then train-guided or random shear proposals. The larger
+  search finds the full transform at arity six. In three reproducible seeds,
+  the guided and random searches select identical output programs. Guided
+  prescreening expends extra training-only probes without improving the
+  result. See MACRO_SEARCH_DEV_2026-10-17.json.
+
+At arity six on the historically exposed CIRCUIT1 evaluation set:
+
+| Representation | Data bits | Data + representation descriptor bits |
+| --- | ---: | ---: |
+| Original identity | 889 | 889 |
+| Full GF(2) Mobius (known baseline) | 652 | 690 |
+| Guided macro-search | 652 | 690 |
+| Random macro-search | 652 | 690 |
+
+This improves a toy serialization metric compared to identity but not
+relative to the known full-Mobius baseline. On the previously available
+four-input development evaluation set the known Mobius transform uses
+fewer data-only bits (208 versus 224), yet costs 236 including its
+description; the train-selected identity stays at 224. The independent
+negative-control random truth tables likewise do not gain here.
+
+Claim boundary: The search does not invent its own primitive operation
+family. It does not beat the best known baseline, and it has no demonstrated
+recursive improvement of the improvement procedure. Its evaluation families
+were available in the source before the experiment. The equal number of
+scored proposals is not an equal-CPU comparison because the guided arm
+performs extra prescreening. No sealed experiment, external reproduction,
+performance/energy saving, or RSI claim is made.
+
+Next useful design change: optimize future discovery rate and transfer
+across unseen task structures, not this handcrafted encoding proxy. A serious
+prospective experiment must be separately frozen and judged externally
+before viewing any new qualification results. This branch remains
+local-only until an owner IP-publication disposition is recorded.
