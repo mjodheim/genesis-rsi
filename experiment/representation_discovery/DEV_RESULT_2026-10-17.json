@@ -1,0 +1,121 @@
+{
+  "status": "DEVELOPMENT_ONLY_NOT_BLIND",
+  "schema": "genesis-representation-prototype-v1",
+  "training_families": [
+    "and",
+    "or",
+    "parity",
+    "equal",
+    "mux",
+    "adder",
+    "majority"
+  ],
+  "evaluation_families": [
+    "less",
+    "subtract",
+    "popcount",
+    "exactly",
+    "multiply"
+  ],
+  "train_digest": "d8763588add4159c5b6cbe1fad3296a15eb9021822007abadb2c80deb41db963",
+  "evaluation_digest": "44b53796441b097e2e075d70d0322bd1b109f7d429deb63e62e70381c6f59c1e",
+  "metric": "toy encoding bits and counted transform work; not CPU runtime or energy",
+  "rows": [
+    {
+      "inputs": 2,
+      "train_count": 7,
+      "evaluation_count": 4,
+      "candidate_evaluations": 4,
+      "winner_mask": 0,
+      "winner_lineage_masks": [
+        0
+      ],
+      "training_identity_bits": 35,
+      "training_evolved_bits_including_descriptor": 35,
+      "training_random_bits_including_descriptor": 35,
+      "evaluation_identity_bits": 20,
+      "evaluation_evolved_bits": 20,
+      "evaluation_full_mobius_bits": 20,
+      "evaluation_random_bits": 20,
+      "work_units": 56
+    },
+    {
+      "inputs": 3,
+      "train_count": 8,
+      "evaluation_count": 3,
+      "candidate_evaluations": 7,
+      "winner_mask": 0,
+      "winner_lineage_masks": [
+        0
+      ],
+      "training_identity_bits": 70,
+      "training_evolved_bits_including_descriptor": 70,
+      "training_random_bits_including_descriptor": 70,
+      "evaluation_identity_bits": 27,
+      "evaluation_evolved_bits": 27,
+      "evaluation_full_mobius_bits": 27,
+      "evaluation_random_bits": 27,
+      "work_units": 288
+    },
+    {
+      "inputs": 4,
+      "train_count": 10,
+      "evaluation_count": 14,
+      "candidate_evaluations": 11,
+      "winner_mask": 0,
+      "winner_lineage_masks": [
+        0
+      ],
+      "training_identity_bits": 156,
+      "training_evolved_bits_including_descriptor": 156,
+      "training_random_bits_including_descriptor": 164,
+      "evaluation_identity_bits": 224,
+      "evaluation_evolved_bits": 224,
+      "evaluation_full_mobius_bits": 208,
+      "evaluation_random_bits": 224,
+      "work_units": 1280
+    },
+    {
+      "inputs": 5,
+      "train_count": 11,
+      "evaluation_count": 6,
+      "candidate_evaluations": 15,
+      "winner_mask": 0,
+      "winner_lineage_masks": [
+        0
+      ],
+      "training_identity_bits": 321,
+      "training_evolved_bits_including_descriptor": 321,
+      "training_random_bits_including_descriptor": 330,
+      "evaluation_identity_bits": 196,
+      "evaluation_evolved_bits": 196,
+      "evaluation_full_mobius_bits": 197,
+      "evaluation_random_bits": 197,
+      "work_units": 4048
+    },
+    {
+      "inputs": 6,
+      "train_count": 10,
+      "evaluation_count": 14,
+      "candidate_evaluations": 42,
+      "winner_mask": 63,
+      "winner_lineage_masks": [
+        0,
+        4,
+        36,
+        52,
+        60,
+        62,
+        63
+      ],
+      "training_identity_bits": 539,
+      "training_evolved_bits_including_descriptor": 455,
+      "training_random_bits_including_descriptor": 515,
+      "evaluation_identity_bits": 889,
+      "evaluation_evolved_bits": 652,
+      "evaluation_full_mobius_bits": 652,
+      "evaluation_random_bits": 721,
+      "work_units": 39040
+    }
+  ]
+}
