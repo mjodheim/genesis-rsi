@@ -1,4 +1,4 @@
-"""Accept only Anthony and Mira as authors; reject other attribution and tool-credit metadata."""
+"""Accept Anthony, Mira and Leona by their exact Git identities; reject unknown authors."""
 
 from __future__ import annotations
 
@@ -21,7 +21,14 @@ REGISTERED_HUMAN_IDENTITIES = {
 }
 # Mira works on the repository on her own and merges when CI is green (owner decision, 14 October 2026).
 REGISTERED_MIRA_IDENTITIES = {("Mira", "mira.mjodheim.be@gmail.com"), ("Mira", "mira-ai@noreply.github.com")}
-REGISTERED_IDENTITIES = REGISTERED_HUMAN_IDENTITIES | REGISTERED_MIRA_IDENTITIES
+# Owner approval, 17 October 2026: Leona is a non-human contributor with her
+# own exact Git name/email; do not reattribute AI commits to Anthony or Mira.
+REGISTERED_LEONA_IDENTITIES = {("Leona (AI)", "leona-ai@noreply.github.com")}
+REGISTERED_IDENTITIES = (
+    REGISTERED_HUMAN_IDENTITIES | REGISTERED_MIRA_IDENTITIES | REGISTERED_LEONA_IDENTITIES
+)
+# Leona currently submits through Anthony's authorized GitHub connection, but
+# her commits keep her real Git identity. No unverified third account is added.
 REGISTERED_PULL_REQUEST_AUTHORS = {"mjodheim", "Mira-Mjodheim"}
 # The only paths Mira may not change: the checks that decide whether her own pull requests may merge.
 # Frozen protocols and sealed records stay guarded by the CI freeze checks.
@@ -60,7 +67,7 @@ def audit_commit_records(records: Iterable[Mapping[str, str]]) -> list[str]:
         for role in ("author", "committer"):
             identity = (record[f"{role}_name"], record[f"{role}_email"])
             if identity not in REGISTERED_IDENTITIES:
-                problems.append(f"{commit}: {role} is not Anthony or Mira")
+                problems.append(f"{commit}: {role} is not Anthony, Mira or Leona")
         for trailer in COAUTHOR_PATTERN.findall(record.get("body", "")):
             marker = _blocked(trailer)
             if marker:
@@ -71,7 +78,7 @@ def audit_commit_records(records: Iterable[Mapping[str, str]]) -> list[str]:
             identity = match.groups() if match else None
             if identity not in REGISTERED_IDENTITIES:
                 problems.append(
-                    f"{commit}: co-author is not Anthony or Mira"
+                    f"{commit}: co-author is not Anthony, Mira or Leona"
                 )
         body = record.get("body", "")
         if TOOL_CREDIT_PATTERN.search(body):
@@ -99,7 +106,7 @@ def audit_pull_request_payload(payload: Mapping[str, object]) -> list[str]:
     }
     problems = []
     if fields["author"] not in REGISTERED_PULL_REQUEST_AUTHORS:
-        problems.append("pull request author is not Anthony or Mira")
+        problems.append("pull request publisher account is not approved (mjodheim or Mira-Mjodheim)")
     for field, value in fields.items():
         marker = _blocked(value)
         if marker:
@@ -183,7 +190,7 @@ def main() -> int:
         for problem in problems:
             print(f"  - {problem}")
         return 1
-    print("OK   — Authors are Anthony or Mira; merge gates untouched")
+    print("OK   — Authors are Anthony, Mira or Leona (AI); merge gates untouched")
     return 0
 
 
