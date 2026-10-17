@@ -308,23 +308,13 @@ def test_older_verified_update_merge_remains_valid_after_later_commits():
     )
 
 
-def test_owner_published_ai_changes_have_a_narrow_documentation_allowlist():
-    assert "README.md" in AI_OWNER_DOCUMENTATION_PATHS
-    assert "PROJECT_STATE.md" in AI_OWNER_DOCUMENTATION_PATHS
+def test_scientific_status_files_are_not_whole_file_ai_exemptions():
+    assert AI_OWNER_DOCUMENTATION_PATHS == frozenset()
+    paths = ["README.md", "ROADMAP.md", "PROJECT_STATE.md"]
     assert audit_ai_paths(
-        ["README.md", "ROADMAP.md", "PROJECT_STATE.md"],
-        allowed_paths=AI_ALLOWED_PATHS | AI_OWNER_DOCUMENTATION_PATHS,
-    ) == []
-    assert audit_ai_paths(
-        [".github/workflows/ci.yml", "scripts/check_attribution_policy.py",
-         "docs/COMMIT_CITATIONS.json", "experiment/g11/RESULT.json"],
-        allowed_paths=AI_ALLOWED_PATHS | AI_OWNER_DOCUMENTATION_PATHS,
-    ) == [
-        "AI contribution cannot modify protected path: .github/workflows/ci.yml",
-        "AI contribution cannot modify protected path: scripts/check_attribution_policy.py",
-        "AI contribution cannot modify protected path: docs/COMMIT_CITATIONS.json",
-        "AI contribution cannot modify protected path: experiment/g11/RESULT.json",
-    ]
+        paths, allowed_paths=AI_ALLOWED_PATHS | AI_OWNER_DOCUMENTATION_PATHS,
+    ) == [f"AI contribution cannot modify protected path: {p}" for p in paths]
+
 
 
 def test_ai_commit_published_via_owner_account_still_blocks_trust_roots():
@@ -332,26 +322,31 @@ def test_ai_commit_published_via_owner_account_still_blocks_trust_roots():
         author_name="Leona (AI)", author_email="leona-ai@noreply.github.com",
         committer_name="Leona (AI)", committer_email="leona-ai@noreply.github.com",
     )
+    blocked = "abc123: AI contribution cannot modify protected path: README.md"
     assert audit_ai_contribution_scope(
         [ai_record], login="mjodheim",
         pr_body="Provenance: Leona (AI execution)",
-        paths=["README.md", "ROADMAP.md", "PROJECT_STATE.md"],
+        paths=["README.md"],
+    ) == [blocked]
+    assert audit_ai_contribution_scope(
+        [ai_record], login="mjodheim",
+        pr_body="Provenance: Leona (AI execution)",
+        paths=["genesis/learning/distillation.py"],
     ) == []
     assert audit_ai_contribution_scope(
         [ai_record], login="mjodheim",
-        pr_body="Provenance: Leona (AI execution)",
-        paths=["README.md", ".github/workflows/attribution-policy.yml"],
-    ) == [
-        "AI contribution cannot modify protected path: .github/workflows/attribution-policy.yml",
-    ]
-    assert audit_ai_contribution_scope(
-        [ai_record], login="mjodheim",
         pr_body="No explicit disclosure", paths=["README.md"],
-    ) == ["AI commit under owner account lacks provenance disclosure for Leona (AI)"]
+    ) == [
+        "AI contribution lacks provenance disclosure for Leona (AI)",
+        blocked,
+    ]
     assert audit_ai_contribution_scope(
         [ai_record], login="Mira-Mjodheim",
         pr_body="Provenance: Mira (AI execution)", paths=["README.md"],
-    ) == ["AI contribution cannot modify protected path: README.md"]
+    ) == [
+        "AI contribution lacks provenance disclosure for Leona (AI)",
+        "AI contribution cannot modify protected path: README.md",
+    ]
 
 
 def test_ai_committer_under_human_author_is_not_an_exemption():
@@ -359,6 +354,63 @@ def test_ai_committer_under_human_author_is_not_an_exemption():
     assert audit_ai_contribution_scope(
         [row], login="mjodheim", pr_body="", paths=["scripts/check_attribution_policy.py"]
     ) == [
-        "AI contribution cannot modify protected path: scripts/check_attribution_policy.py",
-        "AI commit under owner account lacks provenance disclosure for Mira",
+        "AI contribution lacks provenance disclosure for Mira",
+        "abc123: AI contribution cannot modify protected path: scripts/check_attribution_policy.py",
     ]
+
+
+
+def test_mixed_commit_paths_use_actual_ai_commit_scope_only():
+    ai = _record(
+        commit="a" * 40,
+        author_name="Leona (AI)", author_email="leona-ai@noreply.github.com",
+        committer_name="Leona (AI)", committer_email="leona-ai@noreply.github.com",
+    )
+    human = _record(commit="b" * 40)
+    paths_by_commit = {
+        "a" * 40: ["genesis/learning/distillation.py"],
+        "b" * 40: ["scripts/check_attribution_policy.py"],
+    }
+    assert audit_ai_contribution_scope(
+        [human, ai], login="mjodheim",
+        pr_body="Provenance: Leona (AI execution)",
+        paths=["genesis/learning/distillation.py", "scripts/check_attribution_policy.py"],
+        paths_by_commit=paths_by_commit,
+    ) == []
+    paths_by_commit["a" * 40] = ["README.md"]
+    assert audit_ai_contribution_scope(
+        [human, ai], login="mjodheim",
+        pr_body="Provenance: Leona (AI execution)",
+        paths=["genesis/learning/distillation.py", "README.md"],
+        paths_by_commit=paths_by_commit,
+    ) == ["%s: AI contribution cannot modify protected path: README.md" % ("a" * 40)]
+
+
+def test_mira_pr_must_disclose_leona_even_when_mira_is_disclosed():
+    row = _record(
+        author_name="Leona (AI)", author_email="leona-ai@noreply.github.com",
+        committer_name="Leona (AI)", committer_email="leona-ai@noreply.github.com",
+    )
+    assert audit_ai_contribution_scope(
+        [row], login="Mira-Mjodheim",
+        pr_body="Provenance: Mira (AI execution)",
+        paths=["genesis/learning/distillation.py"],
+    ) == ["AI contribution lacks provenance disclosure for Leona (AI)"]
+
+
+def test_unverified_ai_technical_merge_does_not_skip_path_guard():
+    row = _record(
+        commit="a" * 40,
+        author_name="Mira", author_email="mira-ai@noreply.github.com",
+    )
+    path = ["scripts/check_attribution_policy.py"]
+    bad = audit_ai_contribution_scope(
+        [row], login="mjodheim", pr_body="Provenance: Mira (AI execution)",
+        paths=path, paths_by_commit={"a" * 40: path},
+    )
+    assert bad == ["%s: AI contribution cannot modify protected path: scripts/check_attribution_policy.py" % ("a" * 40)]
+    assert audit_ai_contribution_scope(
+        [row], login="mjodheim", pr_body="Provenance: Mira (AI execution)",
+        paths=path, paths_by_commit={"a" * 40: path},
+        verified_platform_commits=frozenset({"a" * 40}),
+    ) == []

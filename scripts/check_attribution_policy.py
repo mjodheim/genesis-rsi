@@ -32,7 +32,9 @@ AI_PR_DISCLOSURE = "Provenance: Mira (AI execution)"
 LEONA_PR_DISCLOSURE = "Provenance: Leona (AI execution)"
 # Owner-submitted AI documentation is limited to reader-facing navigation.
 # Frozen experiment artifacts, governance and scientific evaluators remain prohibited.
-AI_OWNER_DOCUMENTATION_PATHS = frozenset({"README.md", "ROADMAP.md", "PROJECT_STATE.md"})
+# Scientific status and reader-facing source of record require human-reviewed
+# changes; do not grant an unrestricted AI whole-file exception.
+AI_OWNER_DOCUMENTATION_PATHS = frozenset()
 # Explicitly owner-reviewed, narrow initial scope: AI may change known
 # implementation files and matching ordinary tests, never evaluation oracles.
 # Expand only through a separate, independently reviewed governance PR.
@@ -195,6 +197,21 @@ def changed_paths(base: str, head: str) -> list[str]:
     return [part.decode("utf-8") for part in result.stdout.split(bytes([0])) if part]
 
 
+def commit_changed_paths(commit: str) -> list[str]:
+    """Discover each commit's own changes, including deletions and rename sides.
+
+    First-parent differences avoid attributing imported base changes to the
+    technical update merge; a verified platform merge is also separately checked.
+    """
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        raise ValueError("invalid commit SHA")
+    result = subprocess.run([
+        "git", "diff-tree", "--root", "-r", "-m", "--first-parent",
+        "--no-commit-id", "--name-only", "-z", "--no-renames", commit,
+    ], check=True, capture_output=True)
+    return [part.decode("utf-8") for part in result.stdout.split(bytes([0])) if part]
+
+
 def verify_github_update_merge(
     record: Mapping[str, str],
     *,
@@ -282,33 +299,53 @@ def audit_ai_contribution_scope(
     login: str,
     pr_body: str,
     paths: Iterable[str],
+    paths_by_commit: Mapping[str, Iterable[str]] | None = None,
+    verified_platform_commits: frozenset[str] = frozenset(),
 ) -> list[str]:
-    """Restrict AI changes by commit identity even through an owner GitHub account."""
-    nonhuman_identities = {
-        identity
-        for record in records
-        for identity in (
-            (record["author_name"], record["author_email"]),
-            (record["committer_name"], record["committer_email"]),
-        )
-        if identity in REGISTERED_AI_IDENTITIES
-    }
-    if login == "Mira-Mjodheim":
-        # Mira's fork never changes governance or research oracles.
-        return audit_ai_paths(paths)
-    if login != "mjodheim" or not nonhuman_identities:
-        return []
-    errors = audit_ai_paths(
-        paths, allowed_paths=AI_ALLOWED_PATHS | AI_OWNER_DOCUMENTATION_PATHS
-    )
+    """Enforce AI provenance and a per-commit protected-source boundary.
+
+    For an owner PR, an unrelated human-authored change cannot hide a
+    nonhuman protected-source edit, and a nonhuman edit cannot retroactively
+    turn the human edit into an AI contribution.
+    """
+    rows = list(records)
+    ai_by_commit: list[tuple[str, set[tuple[str, str]]]] = []
+    all_nonhumans: set[tuple[str, str]] = set()
+    for record in rows:
+        identities = {
+            identity
+            for identity in (
+                (record["author_name"], record["author_email"]),
+                (record["committer_name"], record["committer_email"]),
+            )
+            if identity in REGISTERED_AI_IDENTITIES
+        }
+        all_nonhumans.update(identities)
+        if identities and record["commit"] not in verified_platform_commits:
+            ai_by_commit.append((record["commit"], identities))
+
+    problems = []
     expected_disclosure = {
         "Leona (AI)": LEONA_PR_DISCLOSURE,
         "Mira": AI_PR_DISCLOSURE,
     }
-    for name, _ in sorted(nonhuman_identities):
+    for name, _ in sorted(all_nonhumans):
         if expected_disclosure[name] not in pr_body:
-            errors.append(f"AI commit under owner account lacks provenance disclosure for {name}")
-    return errors
+            problems.append(f"AI contribution lacks provenance disclosure for {name}")
+
+    if login == "Mira-Mjodheim":
+        # Entire fork PR remains restricted: human-signed commits cannot
+        # smuggle a protected path through Mira's publication account.
+        problems.extend(audit_ai_paths(paths))
+    elif login == "mjodheim":
+        for commit, _ in ai_by_commit:
+            # The fallback remains fail-closed for unit test / legacy callers.
+            own_paths = paths if paths_by_commit is None else paths_by_commit[commit]
+            problems.extend(
+                f"{commit}: {error}" for error in
+                audit_ai_paths(own_paths, allowed_paths=AI_ALLOWED_PATHS)
+            )
+    return problems
 
 
 def main() -> int:
@@ -342,6 +379,16 @@ def main() -> int:
         problems.extend(audit_ai_contribution_scope(
             records, login=author, pr_body=pr_body or "",
             paths=changed_paths(arguments.base, arguments.head),
+            paths_by_commit={
+                record["commit"]: commit_changed_paths(record["commit"])
+                for record in records
+                if record["commit"] not in verified
+                and any(identity in REGISTERED_AI_IDENTITIES for identity in (
+                    (record["author_name"], record["author_email"]),
+                    (record["committer_name"], record["committer_email"]),
+                ))
+            },
+            verified_platform_commits=frozenset(verified),
         ))
     if problems:
         print("FAIL — Attribution policy")
