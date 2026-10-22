@@ -227,15 +227,23 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 - [ ] Consolidate experiment navigation without rewriting frozen evidence.
 - [ ] Update repository identity and metadata.
 
+### 22 October 2026: audited continuation
+
+- [x] Integrate verified update-branch governance (#429), Leona/Anthony/Mira provenance (#430), and isolated pytest maintenance (#431).
+- [x] Record #417 and #428 as closed **without** merge; retain their historical records.
+- [ ] Resolve #411's still-open publication and statistical review findings before any integration.
+- [ ] Integrate updated non-frozen navigation only after current attribution, integrity, citation and CI gates pass.
+- [ ] Preregister a genuinely unseen-family, matched-budget comparison with independent judging; no fresh general RSI/M2 claim is currently justified.
+
 ### 17 October 2026: integration and research hygiene
 
 - [x] Independently check published `main` at [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) in an isolated
       worktree: repository integrity, no sealed-bank leakage, 35 focused tests.
-- [ ] Resolve actual merge conflicts in PRs #411 and #417 without weakening
+- [ ] Resolve remaining merge conflicts in PR #411 without weakening
       independent evaluation, authorship, citation or commit-integrity rules.
-- [ ] Refresh and integrate reader-facing PR #418 only after required policy
+- [ ] Refresh and integrate reader-facing documentation only after required policy
       gates and CI pass; do not rewrite frozen research results.
-- [ ] Review PR #428's semantic split: truth-table uniqueness under NPN
+- [ ] Preserve closed #428's semantic split: truth-table uniqueness under NPN
       transformations is not unseen-family/NPN-class generalization.
 - [ ] Keep historical research, signed provenance and referenced Git
       objects; do not delete them as routine repository cleanup.

@@ -1,5 +1,13 @@
 # Genesis — current authoritative project state
 
+## 22 October 2026 status (non-frozen navigation)
+
+The published `main` now includes governance PRs [#429](https://github.com/mjodheim/genesis-rsi/pull/429) and [#430](https://github.com/mjodheim/genesis-rsi/pull/430), and isolated-test maintenance [#431](https://github.com/mjodheim/genesis-rsi/pull/431). The superseded governance proposal #417 and transformed CIRCUIT2-task proposal #428 were closed **without merge**. CIRCUIT2 research [#411](https://github.com/mjodheim/genesis-rsi/pull/411) remains unmerged and has unresolved review findings, including statistical dependence and publication-provenance issues. Do not integrate it as validated research.
+
+Scientific limits are unchanged: CIRCUIT1 showed a **bounded, mixed** gain (12.8 mean held-out tasks versus 11.0 for its fixed comparator); its improving-the-improver claim was not established. The independent G11 repair result remains **0/9**. CIRCUIT2's particular preregistered ranker and representation hypotheses were refuted; this does not rule out all possible learning methods. The project-defined G10 result is bounded evidence, not a general RSI proof or independent replication.
+
+The 17 and 13 October sections below are preserved as **dated historical snapshots**, not descriptions of the current open-PR queue.
+
 ## 17 October 2026 operational status (non-frozen navigation)
 
 The latest reviewed public `main` is [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) (PR #427, merged
@@ -10,11 +18,7 @@ commit reachability), the sealed-bank leakage guard, and 35 focused tests
 on 17 October. These are engineering checks, not independent validation
 of general recursive self-improvement.
 
-Open integration queue: [#411](https://github.com/mjodheim/genesis-rsi/pull/411)
-(CIRCUIT2 negative research, merge conflicts), [#417](https://github.com/mjodheim/genesis-rsi/pull/417)
-(verified platform-merge governance, merge conflicts), [#418](https://github.com/mjodheim/genesis-rsi/pull/418)
-(research documentation, behind main), and [#428](https://github.com/mjodheim/genesis-rsi/pull/428)
-(CIRCUIT2 task derivation, clean and CI-green on its last tested commit).
+At that date, pending integration items included [#411](https://github.com/mjodheim/genesis-rsi/pull/411), [#417](https://github.com/mjodheim/genesis-rsi/pull/417) and [#428](https://github.com/mjodheim/genesis-rsi/pull/428). Later dispositions are documented in the 22 October status above.
 The CIRCUIT2 tasks in #428 are NPN transformations of CIRCUIT1 tasks:
 distinct truth tables are not evidence of distinct NPN classes or
 independent semantic transfer. No CIRCUIT2/CIRCUIT3 success is inferred
@@ -32,7 +36,7 @@ The last verified published main commit is the 12 October safety merge
 The project-defined G10 result below remains valid **within its frozen assay only**.
 Blind, independently preregistered G11 repairs remain **0/9**.
 
-After the negative CIRCUIT1 improver-lineage experiments (merged via PR #410),
+After the mixed/bounded CIRCUIT1 lineage result and negative stronger improver-of-improver finding (merged via PR #410),
 the model-free CIRCUIT2 branch (PR #411, **not yet merged**) rejected both
 an enlarged component search and a trained cross-family ranker. The
 training-only CIRCUIT3 instrumentation proposal (PR #415) was **closed

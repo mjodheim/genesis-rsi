@@ -22,6 +22,12 @@ See [PRINCIPLES.md](PRINCIPLES.md).
 
 ## Current scientific position
 
+### Updated repository position — 22 October 2026
+
+Governance [#429](https://github.com/mjodheim/genesis-rsi/pull/429) and AI-contributor provenance [#430](https://github.com/mjodheim/genesis-rsi/pull/430), plus isolated-test maintenance [#431](https://github.com/mjodheim/genesis-rsi/pull/431), have merged. Older #417 and #428 closed without merge; [#411](https://github.com/mjodheim/genesis-rsi/pull/411) remains an unmerged research PR with unresolved findings. Historical snapshots below document the state **at their dates**, not the current merge queue.
+
+The actual evidence remains bounded: CIRCUIT1 had a mixed positive result against its fixed comparator (12.8 versus 11.0 held-out tasks), without proving general recursive improvement; independently evaluated G11 repairs remain 0/9. CIRCUIT2 refuted the specific preregistered alternatives tested, not every possible representation or ranker. The G10 gate is a domain-bounded result, not an independently replicated general RSI demonstration.
+
 ### Repository and research status — 17 October 2026
 
 On the verified `main` commit [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) (PR #427, 15 October), the
@@ -30,14 +36,7 @@ worktree audit also passed the repository-integrity and sealed-bank leakage
 checks and 35 focused engineering tests. These checks do not imply
 general RSI or newly validated repair capabilities.
 
-The open PR queue is [#411](https://github.com/mjodheim/genesis-rsi/pull/411)
-(negative CIRCUIT2 findings; conflicts),
-[#417](https://github.com/mjodheim/genesis-rsi/pull/417)
-(attribution governance; conflicts),
-[#418](https://github.com/mjodheim/genesis-rsi/pull/418)
-(documentation; awaiting refresh/integration), and
-[#428](https://github.com/mjodheim/genesis-rsi/pull/428)
-(CIRCUIT2 transformed task fixtures; CI green, not yet merged).
+As of 17 October, historical pending items included [#411](https://github.com/mjodheim/genesis-rsi/pull/411), [#417](https://github.com/mjodheim/genesis-rsi/pull/417) and [#428](https://github.com/mjodheim/genesis-rsi/pull/428). Their subsequent outcomes are recorded above.
 The NPN-derived tasks in #428 are truth-table distinct from CIRCUIT1
 but are not independent NPN classes; avoid claims of unseen semantic transfer.
 
