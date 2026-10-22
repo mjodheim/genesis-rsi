@@ -227,6 +227,49 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 - [ ] Consolidate experiment navigation without rewriting frozen evidence.
 - [ ] Update repository identity and metadata.
 
+### 22 October 2026: audited continuation
+
+- [x] Integrate verified update-branch governance (#429), Leona/Anthony/Mira provenance (#430), and isolated pytest maintenance (#431).
+- [x] Record #417 and #428 as closed **without** merge; retain their historical records.
+- [x] Include the merged [REPAIR2/REPAIR3 second-order result (#433)](https://github.com/mjodheim/genesis-rsi/pull/433) in current navigation: positive on a bounded four-exercise repair learner, with **failed** third-level selector and cross-exercise transfer gates; keep the [results-only publication boundary](docs/research/REPAIR_SECOND_ORDER_RESULTS_2026-10-20.md).
+- [ ] Resolve #411's still-open publication and statistical review findings before any integration; keep its reported negative outcomes provisional.
+- [ ] Integrate updated non-frozen navigation only after current attribution, integrity, citation and CI gates pass.
+- [ ] Preregister a genuinely unseen-family, matched-budget comparison with independent judging; no general RSI claim or independent Mira M2 qualification is currently justified.
+
+### 17 October 2026: integration and research hygiene
+
+- [x] Independently check published `main` at [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) in an isolated
+      worktree: repository integrity, no sealed-bank leakage, 35 focused tests.
+- [ ] Resolve remaining merge conflicts in PR #411 without weakening
+      independent evaluation, authorship, citation or commit-integrity rules.
+- [ ] Refresh and integrate reader-facing documentation only after required policy
+      gates and CI pass; do not rewrite frozen research results.
+- [ ] Preserve closed #428's semantic split: truth-table uniqueness under NPN
+      transformations is not unseen-family/NPN-class generalization.
+- [ ] Keep historical research, signed provenance and referenced Git
+      objects; do not delete them as routine repository cleanup.
+- [ ] Design a prospective experiment for discovered representations
+      versus fixed-representation, fixed-search and matched-budget baselines.
+
+### 13 October 2026: research priorities
+
+The post-G10 campaigns do not yet establish external repair transfer:
+independent G11 repairs remained 0/9. CIRCUIT2 (PR #411, not merged)
+rejected both an enlarged component space and a learned ranker.
+CIRCUIT3 (PR #415, closed without merge) produced training-only traces,
+not demonstrated learned guidance.
+
+- [ ] Maintain the public main branch, provenance protections and frozen evidence.
+- [ ] Resolve the GitHub update-branch attribution conflict without weakening
+      identity checks or impersonating a human.
+- [ ] Only integrate CIRCUIT3 after repository-integrity checks and tests
+      pass and its authorship is accepted by published contribution policy.
+- [ ] Test guidance against random/static and cost-matched baselines
+      on genuinely unseen task families.
+- [ ] Show an independent second generation whose improved ability
+      to create improvements survives ablation and resource accounting.
+- [ ] Obtain external independent replication before broader RSI claims.
+
 ### Post-G10 scientific frontier
 - [x] Close the bounded project-defined G10 recursive-successor gate.
 - [ ] Reproduce the G10 chain independently from a clean environment and independently governed task material.

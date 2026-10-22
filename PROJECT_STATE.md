@@ -1,5 +1,54 @@
 # Genesis — current authoritative project state
 
+## 22 October 2026 status (non-frozen navigation)
+
+The published `main` now includes governance PRs [#429](https://github.com/mjodheim/genesis-rsi/pull/429) and [#430](https://github.com/mjodheim/genesis-rsi/pull/430), and isolated-test maintenance [#431](https://github.com/mjodheim/genesis-rsi/pull/431). The superseded governance proposal #417 and transformed CIRCUIT2-task proposal #428 were closed **without merge**. CIRCUIT2 research [#411](https://github.com/mjodheim/genesis-rsi/pull/411) remains unmerged and has unresolved review findings, including statistical dependence and publication-provenance issues. Do not integrate it as validated research.
+
+Scientific conclusions must distinguish the experiments and their evidence status. CIRCUIT1 showed a **bounded, mixed** gain (12.8 mean held-out tasks versus 11.0 for its fixed comparator), without establishing a general improving-the-improver mechanism. The independent G11 repair result remains **0/9**. Unmerged [CIRCUIT2 #411](https://github.com/mjodheim/genesis-rsi/pull/411) **reports** negative results for its tested representation and ranker, but unresolved statistical and provenance review makes that branch **provisional**, not established merged evidence. The project-defined G10 result is bounded, not a general RSI proof or independent replication.
+
+Merged [REPAIR2/REPAIR3 #433](https://github.com/mjodheim/genesis-rsi/pull/433) documents **positive second-order evidence within four repair exercises**: selected versus fixed learning procedures solved 33.4 versus 25.4 held-out programs on average (19/20 seeds better) and replicated on 257 fresh programs (51.0 versus 42.2; 19 wins, 0 losses, 1 tie). Third-level improvement of the selector and transfer across exercises **did not pass** preregistered criteria. These results concern a private Mira learner and a hand-written procedure space; publication covers results only, not its code or private raw data. Refer to [the bounded evidence and caveats](docs/research/REPAIR_SECOND_ORDER_RESULTS_2026-10-20.md); general RSI remains unestablished.
+
+The 17 and 13 October sections below are preserved as **dated historical snapshots**, not descriptions of the current open-PR queue.
+
+## 17 October 2026 operational status (non-frozen navigation)
+
+The latest reviewed public `main` is [PR #427](https://github.com/mjodheim/genesis-rsi/pull/427) (PR #427, merged
+15 October 2026). Its CI and sealed-evidence workflows passed.
+An isolated checkout of this exact commit passed the repository-integrity
+guard (module imports, orphan scan, dependency declarations, historical
+commit reachability), the sealed-bank leakage guard, and 35 focused tests
+on 17 October. These are engineering checks, not independent validation
+of general recursive self-improvement.
+
+At that date, pending integration items included [#411](https://github.com/mjodheim/genesis-rsi/pull/411), [#417](https://github.com/mjodheim/genesis-rsi/pull/417) and [#428](https://github.com/mjodheim/genesis-rsi/pull/428). Later dispositions are documented in the 22 October status above.
+The CIRCUIT2 tasks in #428 are NPN transformations of CIRCUIT1 tasks:
+distinct truth tables are not evidence of distinct NPN classes or
+independent semantic transfer. No CIRCUIT2/CIRCUIT3 success is inferred
+from the branch's successful CI.
+
+Scientific boundary unchanged: G10 remains qualified only under its frozen,
+host-authored assay, independent G11 repair is 0/9, and the two preregistered
+CIRCUIT2 improvement hypotheses reported in #411 were refuted. Do not
+rewrite negative results or silently promote pending research.
+
+## 13 October 2026 operational addendum
+
+The last verified published main commit is the 12 October safety merge
+(PR #412). The main CI and sealed-evidence workflows passed on that commit.
+The project-defined G10 result below remains valid **within its frozen assay only**.
+Blind, independently preregistered G11 repairs remain **0/9**.
+
+After the mixed/bounded CIRCUIT1 lineage result and negative stronger improver-of-improver finding (merged via PR #410),
+the model-free CIRCUIT2 branch (PR #411, **not yet merged**) rejected both
+an enlarged component search and a trained cross-family ranker. The
+training-only CIRCUIT3 instrumentation proposal (PR #415) was **closed
+without merge after failed CI**. It gathered traces but did **not**
+demonstrate a learning improvement or a recursively useful successor.
+
+This addendum is navigation, not a scientific verdict. See dated
+experiment artifacts and the [README](README.md). The 7 October snapshot below
+remains preserved for chronology.
+
 **Updated: 7 October 2026 — OE1-v3 retains the project-defined finite operational L9 pass; Genesis v2 G5 through G9 remain passed, and the strengthened project-defined G10 recursive-successor gate has now passed with a prospectively frozen G0→G1→G2→G3 chain plus causal next-successor production advantages at generations 1 and 2. Independent replication, broader software-domain transfer and general RSI remain open.**
 
 Genesis is the renamed continuation of **Mira Genesis**. Historical records keep their original project name; the rename changes neither authorship nor frozen evidence.
