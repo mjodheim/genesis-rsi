@@ -231,9 +231,10 @@ Compute should be purchased because an empirically valuable loop is compute-boun
 
 - [x] Integrate verified update-branch governance (#429), Leona/Anthony/Mira provenance (#430), and isolated pytest maintenance (#431).
 - [x] Record #417 and #428 as closed **without** merge; retain their historical records.
-- [ ] Resolve #411's still-open publication and statistical review findings before any integration.
+- [x] Include the merged [REPAIR2/REPAIR3 second-order result (#433)](https://github.com/mjodheim/genesis-rsi/pull/433) in current navigation: positive on a bounded four-exercise repair learner, with **failed** third-level selector and cross-exercise transfer gates; keep the [results-only publication boundary](docs/research/REPAIR_SECOND_ORDER_RESULTS_2026-10-20.md).
+- [ ] Resolve #411's still-open publication and statistical review findings before any integration; keep its reported negative outcomes provisional.
 - [ ] Integrate updated non-frozen navigation only after current attribution, integrity, citation and CI gates pass.
-- [ ] Preregister a genuinely unseen-family, matched-budget comparison with independent judging; no fresh general RSI/M2 claim is currently justified.
+- [ ] Preregister a genuinely unseen-family, matched-budget comparison with independent judging; no general RSI claim or independent Mira M2 qualification is currently justified.
 
 ### 17 October 2026: integration and research hygiene
 
