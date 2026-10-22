@@ -61,7 +61,10 @@ jobs:
   integrity:
     name: Repository integrity
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # The exhaustive import guard passes at about the previous 10-minute job cap
+    # (CI attempts 39765948953 and 39772013352), cancelling the job before the
+    # orphan/dependency/citation checks run. Keep all guards decisive.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
         with:
