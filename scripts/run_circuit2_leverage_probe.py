@@ -25,15 +25,23 @@ def lineage(learn, held, budget, procedure, tried, gens):
         eng, sol, nf, na = improved_tried(eng, learn, budget, sol, procedure, tried, g); props.append(nf)
     return e.measure(sol)[0], e.measure(e.attempt(eng, held, budget))[0], len(eng.components), props
 
-for max_in, budget, tried in ((4, 16384, 2), (4, 16384, 3), (4, 65536, 2)):
-    for seed in (100, 101, 102):
-        learn = [x for x in t.circuit2_suite(t.LEARN, seed) if x.inputs <= max_in]; held = t.circuit2_suite(t.HELD_OUT, seed)
-        t0 = time.time()
-        res = [lineage(learn, held, budget, cp.seed_procedure(), tried, 6)]
-        rng = random.Random(f"dev|{seed}")
-        for _ in range(10):
-            p = cp.seed_procedure()
-            for _ in range(3): p = cp.mutate(p, rng)
-            res.append(lineage(learn, held, budget, p, tried, 6))
-        held_scores = [r[1] for r in res]
-        print(f"max_in={max_in} budget={budget} tried={tried} seed={seed} learn={len(learn)} held={len(held)} | seed_proc held={res[0][1]} lib={res[0][2]} props={res[0][3]} | mutants held={held_scores[1:]} | {round(time.time()-t0)}s", flush=True)
+
+def main() -> int:
+    for max_in, budget, tried in ((4, 16384, 2), (4, 16384, 3), (4, 65536, 2)):
+        for seed in (100, 101, 102):
+            learn = [x for x in t.circuit2_suite(t.LEARN, seed) if x.inputs <= max_in]; held = t.circuit2_suite(t.HELD_OUT, seed)
+            t0 = time.time()
+            res = [lineage(learn, held, budget, cp.seed_procedure(), tried, 6)]
+            rng = random.Random(f"dev|{seed}")
+            for _ in range(10):
+                p = cp.seed_procedure()
+                for _ in range(3): p = cp.mutate(p, rng)
+                res.append(lineage(learn, held, budget, p, tried, 6))
+            held_scores = [r[1] for r in res]
+            print(f"max_in={max_in} budget={budget} tried={tried} seed={seed} learn={len(learn)} held={len(held)} | seed_proc held={res[0][1]} lib={res[0][2]} props={res[0][3]} | mutants held={held_scores[1:]} | {round(time.time()-t0)}s", flush=True)
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
