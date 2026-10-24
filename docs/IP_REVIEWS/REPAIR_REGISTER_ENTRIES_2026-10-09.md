@@ -101,3 +101,14 @@ Codex assists. This is a strategy intervention, not self-learned improvement.
 receipts follow PUBLIC_AGPL_COMMERCIAL_OPTION. Pre-review precedes implementation
 in docs/IP_REVIEWS/REPAIR_CAUSAL_EVIDENCE_REVIEW_2026-10-09.md. Anthony directs work;
 Codex assists authored development. No semantic proof or general RSI is claimed.
+
+24 October 2026 — the joint Genesis-to-Mira bounded development-policy artifact,
+finite descendant generator and evidence-gated selector follow
+PUBLIC_AGPL_COMMERCIAL_OPTION under Anthony's instruction to continue the joint
+Mira/Genesis objective. Review preceded enabling implementation in
+docs/IP_REVIEWS/JOINT_DEVELOPMENT_POLICY_REVIEW_2026-10-24.md. OpenAI Codex assists
+with design, implementation, tests and documentation. The public side contains no
+Mira source, private result matrix, credential, external model, dataset, network
+call or executable command. The selector cannot execute, grade or promote itself;
+general RSI, senior-level autonomy, transfer and improvement beyond the bounded
+policy family remain unestablished.

@@ -1,6 +1,17 @@
 # Mira Genesis — Current Research Frontier
 
-**Reader-facing status snapshot — 8 October 2026. The active Genesis v2 frontier is blind repair transfer after the bounded G10 chain. General RSI remains unestablished. The historical finite operational L9 gate is passed; L10 independent replication remains open.**
+**Reader-facing status snapshot — 24 October 2026. The active Genesis v2 frontier is blind repair transfer plus a bounded Genesis-to-Mira development-policy interface. General RSI remains unestablished. The historical finite operational L9 gate is passed; L10 independent replication remains open.**
+
+## Update — 24 October 2026: evidence-gated policy exchange with Mira
+
+The 24 October joint policy work adds an inert, content-addressed DEVELOPMENT policy shared across the
+public Python implementation and a separate C# consumer. Genesis can generate
+finite descendants and select one only from complete external matched-budget
+verdicts; the consumer independently validates the same canonical digest and
+retains only regression-verified edits. Focused cross-runtime, tamper, refusal,
+selection and rollback tests pass. This is a working joint improvement
+interface, not evidence of new repair primitives, senior autonomy or general
+RSI. See the [joint policy result](research/JOINT_DEVELOPMENT_POLICY_RESULT_2026-10-24.md).
 
 ## Update — 20 October 2026: second-order improvement of a repair learner
 
