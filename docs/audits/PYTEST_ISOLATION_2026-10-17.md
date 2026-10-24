@@ -42,6 +42,17 @@ for the official GitHub checks.
 - This helper does not change frozen protocols, result files, or commit
   citations.
 
-**Still to investigate:** isolate the specific test fixtures named by the manifest
-that write to tracked runtime_state; the wrapper contains and exposes, rather than
-silently repairs, that underlying test side effect.
+## Follow-up — 24 October 2026
+
+The remaining writer was the module-scoped Genesis demonstration fixture, including
+its reproducibility replay. `demonstrate()` now accepts an explicit state directory
+and every test call supplies a pytest temporary path. The documented CLI retains the
+repository state path for deliberate development runs.
+
+The focused demonstration suite now passes 27 tests with zero change to the source
+worktree. The full isolated runner remains the decisive regression check: its final
+manifest must report zero tracked and untracked side-effect paths.
+
+Operational CI also installs from `requirements-ci.lock`, a complete transitive lock
+with package hashes. This is deliberately separate from experiment-specific frozen
+environments and from the byte-bound historical `ci.yml` workflow.

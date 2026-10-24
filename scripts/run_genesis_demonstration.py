@@ -151,9 +151,16 @@ _MIGRATED_DIGESTS = frozenset(
 )
 
 
-def demonstrate() -> dict:
-    if STATE_PATH.exists():
-        shutil.rmtree(STATE_PATH)
+def demonstrate(state_path: Path | None = None) -> dict:
+    """Run the development demonstration in an explicit disposable state root.
+
+    The CLI keeps the documented repository path. Tests must supply their own
+    temporary directory so parallel workers cannot rewrite tracked evidence.
+    """
+
+    state_path = STATE_PATH if state_path is None else state_path
+    if state_path.exists():
+        shutil.rmtree(state_path)
 
     genesis = Genesis(
         state=_seed_state(),
@@ -167,10 +174,10 @@ def demonstrate() -> dict:
         _world(),
         mechanism,
         max_steps=len(PROGRAMME) + 1,
-        checkpoint_directory=STATE_PATH,
+        checkpoint_directory=state_path,
     )
 
-    restored = Genesis.restore(STATE_PATH, body_factory=genesis.body_factory, grade=bodies.grade)
+    restored = Genesis.restore(state_path, body_factory=genesis.body_factory, grade=bodies.grade)
     survival = {
         "state_digest_matches": restored.state["state_digest"] == genesis.state["state_digest"],
         "journal_head_matches": restored.journal.head == genesis.journal.head,

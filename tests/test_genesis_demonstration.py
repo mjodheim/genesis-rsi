@@ -23,8 +23,8 @@ from scripts.run_genesis_demonstration import TASKS, demonstrate
 
 
 @pytest.fixture(scope="module")
-def record():
-    return demonstrate()
+def record(tmp_path_factory):
+    return demonstrate(tmp_path_factory.mktemp("genesis-demonstration-state"))
 
 
 def _steps(record, intent):
@@ -309,5 +309,5 @@ def test_the_journal_is_one_continuous_descent_through_the_migration(record):
     assert "candidate_accepted" in kinds[kinds.index("migration") :]
 
 
-def test_the_demonstration_is_reproducible(record):
-    assert demonstrate()["record_digest"] == record["record_digest"]
+def test_the_demonstration_is_reproducible(record, tmp_path):
+    assert demonstrate(tmp_path / "replay")["record_digest"] == record["record_digest"]

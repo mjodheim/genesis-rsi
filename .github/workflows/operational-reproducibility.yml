@@ -36,7 +36,8 @@ jobs:
       - name: Install the bounded operational environment
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -c requirements-ci.txt -e ".[dev]"
+          python -m pip install --require-hashes -r requirements-ci.lock
+          python -m pip install --no-deps -e .
 
       - name: Run the complete isolated-compatible suite
         run: pytest -q -n 10 --dist loadscope
