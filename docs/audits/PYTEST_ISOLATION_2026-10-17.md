@@ -19,6 +19,10 @@ Git worktree of the source HEAD, executes pytest there with the isolated source
 first on PYTHONPATH, reports the number of dirty paths caused by the tests,
 and removes the disposable worktree using an exit trap.
 
+The runner also emits a tracked-path count and a path-only manifest. This makes
+fixture mutation distinguishable from disposable caches without exposing file
+contents or changing any historical test result.
+
 Example usage:
 
     GENESIS_TEST_PYTHON=/path/to/project/python bash scripts/run_pytest_isolated.sh --timeout 300 tests/test_circuit_engine.py
@@ -38,6 +42,6 @@ for the official GitHub checks.
 - This helper does not change frozen protocols, result files, or commit
   citations.
 
-**Still to investigate:** find and isolate the specific test fixtures that
-write to tracked runtime_state; the wrapper contains, rather than fixes,
-that underlying test side effect.
+**Still to investigate:** isolate the specific test fixtures named by the manifest
+that write to tracked runtime_state; the wrapper contains and exposes, rather than
+silently repairs, that underlying test side effect.

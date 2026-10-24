@@ -1,0 +1,42 @@
+name: Operational reproducibility
+
+# Kept separate from ci.yml because historical scientific freezes commit to
+# that file's exact bytes. This workflow is operational evidence only.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: operational-reproducibility-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pinned-suite:
+    name: Pinned suite (Python 3.12)
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      - name: Install the bounded operational environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -c requirements-ci.txt -e ".[dev]"
+
+      - name: Run the complete isolated-compatible suite
+        run: pytest -q -n 10 --dist loadscope

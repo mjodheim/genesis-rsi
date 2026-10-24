@@ -26,7 +26,11 @@ tmpbase="$(printenv TMPDIR || true)"
 if [[ -z "$tmpbase" ]]; then tmpbase=/tmp; fi
 temp="$(mktemp -d "$tmpbase/genesis-isolated-pytest.XXXXXXXX")"
 rmdir "$temp"
-cleanup() { git -C "$source_root" worktree remove --force "$temp"; }
+status_file="$(mktemp "$tmpbase/genesis-side-effects.XXXXXXXX")"
+cleanup() {
+  git -C "$source_root" worktree remove --force "$temp"
+  rm -f -- "$status_file"
+}
 trap cleanup EXIT
 git -C "$source_root" worktree add --detach "$temp" HEAD >/dev/null
 echo "ISOLATED_TEST_WORKTREE=$temp"
@@ -37,7 +41,15 @@ set +e
 )
 rc=$?
 set -e
-count="$(git -C "$temp" status --porcelain | wc -l)"
+git -C "$temp" status --porcelain=v1 --untracked-files=all > "$status_file"
+count="$(wc -l < "$status_file")"
+tracked_count="$(git -C "$temp" diff --name-only HEAD -- | wc -l)"
 echo "ISOLATED_TEST_SIDE_EFFECT_PATHS=$count"
+echo "ISOLATED_TEST_TRACKED_SIDE_EFFECT_PATHS=$tracked_count"
+if [[ -s "$status_file" ]]; then
+  echo "ISOLATED_TEST_SIDE_EFFECT_MANIFEST_BEGIN"
+  sed 's/^/ISOLATED_TEST_SIDE_EFFECT /' "$status_file"
+  echo "ISOLATED_TEST_SIDE_EFFECT_MANIFEST_END"
+fi
 echo "ISOLATED_TEST_EXIT=$rc"
 exit "$rc"
