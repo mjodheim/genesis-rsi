@@ -50,6 +50,11 @@ When publication status is genuinely ambiguous and no owner decision has been re
 enabling disclosure and request/record the publication disposition. Do not guess that all M086+ work
 is private, and do not guess that all new work is safe to publish.
 
+Since 28 October 2026, the owner's standing delegation
+([`docs/IP_REVIEWS/OWNER_STANDING_DELEGATION_2026-10-28.md`](docs/IP_REVIEWS/OWNER_STANDING_DELEGATION_2026-10-28.md))
+records that decision for prospective work: record the short review yourself and proceed. Ask only for
+what that record keeps with the owner.
+
 ## 4. M085 remains scientifically special
 
 M085's independent external-maintainer requirement must remain genuine. Do not replace it with
