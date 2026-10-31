@@ -8,6 +8,8 @@ est la sortie du pas k. Hors réseau, sans modèle, sans horloge.
 from __future__ import annotations
 
 import dataclasses
+import itertools
+import random
 from typing import Any, Iterable, Sequence
 
 from genesis.trust_root import digest_of
@@ -51,15 +53,45 @@ def traits_of(support: int, arity: int, nands: int, composed: bool) -> tuple[int
 
 @dataclasses.dataclass(frozen=True)
 class Procedure:
-    n_inputs: int
-    steps: tuple
-    priority_outputs: tuple
-    admit_output: int
+    n_inputs: int | None = None
+    steps: tuple | None = None
+    priority_outputs: tuple | None = None
+    admit_output: int | None = None
+    seed: int | None = None
+
+    def __post_init__(self) -> None:
+        if self.seed is not None and not _is_int(self.seed):
+            raise ProcedureError("seed doit être un entier ou None")
+        fields = ("n_inputs", "steps", "priority_outputs", "admit_output")
+        if all(getattr(self, name) is None for name in fields):
+            template = (
+                seed_procedure()
+                if self.seed is None
+                else random_procedure(random.Random(self.seed), 16)
+            )
+            for name in fields:
+                object.__setattr__(self, name, getattr(template, name))
+
+    def to_record(self) -> dict:
+        return to_record(self)
+
+    @classmethod
+    def from_record(cls, rec: Any) -> Procedure:
+        return from_record(rec)
+
+    def replay_digest(self, cases: Iterable[Sequence[int]] | None = None) -> str:
+        """Empreinte exhaustive par défaut, dans l'ordre lexicographique des traits."""
+        validate(self)
+        if cases is None:
+            cases = itertools.product((0, 1), repeat=self.n_inputs)
+        return replay_digest(self, cases)
 
 
 def validate(procedure: Procedure) -> None:
     if not isinstance(procedure, Procedure):
         raise ProcedureError("ce n'est pas une Procedure")
+    if procedure.seed is not None and not _is_int(procedure.seed):
+        raise ProcedureError("seed doit être un entier ou None")
     n = procedure.n_inputs
     if not _is_int(n) or n != len(TRAITS):
         raise ProcedureError("n_inputs doit valoir len(TRAITS)")
@@ -108,7 +140,7 @@ def rank(procedure: Procedure, candidates: Iterable[Sequence]) -> list:
 
 
 def _body(p: Procedure) -> dict:
-    return {
+    body = {
         "schema": SCHEMA,
         "traits": list(TRAIT_NAMES),
         "n_inputs": p.n_inputs,
@@ -116,6 +148,9 @@ def _body(p: Procedure) -> dict:
         "priority_outputs": list(p.priority_outputs),
         "admit_output": p.admit_output,
     }
+    if p.seed is not None:
+        body["seed"] = p.seed
+    return body
 
 
 def to_record(p: Procedure) -> dict:
@@ -126,12 +161,17 @@ def to_record(p: Procedure) -> dict:
 
 def from_record(rec: Any) -> Procedure:
     keys = {"schema", "traits", "n_inputs", "steps", "priority_outputs", "admit_output", "procedure_digest"}
-    if not isinstance(rec, dict) or set(rec) != keys:
+    if not isinstance(rec, dict) or set(rec) not in (keys, keys | {"seed"}):
         raise ProcedureError("enregistrement mal formé")
+    if "seed" in rec and not _is_int(rec["seed"]):
+        raise ProcedureError("seed doit être un entier")
     steps, outs = rec["steps"], rec["priority_outputs"]
     if not isinstance(steps, list) or not isinstance(outs, list) or not all(isinstance(s, list) for s in steps):
         raise ProcedureError("steps ou sorties mal formés")
-    p = Procedure(rec["n_inputs"], tuple(tuple(s) for s in steps), tuple(outs), rec["admit_output"])
+    p = Procedure(
+        rec["n_inputs"], tuple(tuple(s) for s in steps), tuple(outs),
+        rec["admit_output"], seed=rec.get("seed"),
+    )
     validate(p)
     if to_record(p) != rec:
         raise ProcedureError("schéma, traits ou empreinte altérés")
@@ -213,7 +253,7 @@ def mutate(procedure: Procedure, rng: Any) -> Procedure:
         outs[rng.randrange(len(outs))] = rng.randrange(n + len(steps))
     else:
         admit = rng.randrange(n + len(steps))
-    result = Procedure(n, tuple(steps), tuple(outs), admit)
+    result = Procedure(n, tuple(steps), tuple(outs), admit, seed=procedure.seed)
     validate(result)
     return result
 

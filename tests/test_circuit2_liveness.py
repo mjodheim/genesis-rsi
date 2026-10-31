@@ -274,3 +274,42 @@ def test_aleatoire_refusee_est_exclue_et_les_autres_continuent(monkeypatch):
     assert b["runs_done"] == b["procedures"] * b["cases_per_procedure"]
     assert len(b["digests"]) == b["procedures"]
     assert b["roundtrips_ok"] == b["procedures"]
+
+
+SCRIPT = Path(lv.__file__).resolve()
+
+
+def _lancer_script(cwd):
+    import subprocess
+
+    return subprocess.run(
+        [sys.executable, "-I", str(SCRIPT)],
+        cwd=cwd,
+        capture_output=True,
+        text=True,
+        timeout=600,
+        check=False,
+    )
+
+
+def test_script_sous_processus_chemin_positif(tmp_path):
+    import json
+
+    r = _lancer_script(tmp_path)
+    assert r.returncode == 0, r.stderr
+    b = json.loads(r.stdout)
+    assert b["violations"] == []
+    assert b["procedures"] > 0
+    learn = {str(x) for x in lv.tasks.LEARN}
+    assert b["learn_families"]
+    assert set(b["learn_families"]) <= learn
+
+
+def test_script_sous_processus_silencieux_et_stable(tmp_path):
+    import json
+
+    a = _lancer_script(tmp_path)
+    c = _lancer_script(tmp_path)
+    assert a.returncode == 0 and c.returncode == 0
+    assert list(tmp_path.iterdir()) == []
+    assert json.loads(a.stdout) == json.loads(c.stdout)

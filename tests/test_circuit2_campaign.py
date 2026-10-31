@@ -8,6 +8,7 @@ import pytest
 
 import freeze_circuit2_plan as freeze
 import run_circuit2_campaign as campaign
+import seal_circuit2_launcher as sealing
 from genesis import circuit_tasks as tasks
 
 COMMIT = "a" * 40
@@ -32,6 +33,15 @@ def canonical(tmp_path, sealed, monkeypatch):
     path = tmp_path / "CANONICAL.json"
     path.write_text(json.dumps(sealed), encoding="utf-8")
     monkeypatch.setattr(campaign, "CANONICAL_PLAN_PATH", path)
+    return path
+
+
+@pytest.fixture(autouse=True)
+def launcher_seal(tmp_path, sealed, monkeypatch):
+    """Fixture synthétique : sceau écrit dans tmp_path pour le vrai lanceur et le plan factice (coûts 100)."""
+    path = tmp_path / "LAUNCHER_SEAL.json"
+    path.write_text(json.dumps(sealing.build_seal(sealed["digest"])), encoding="utf-8")
+    monkeypatch.setattr(campaign, "SEAL_PATH", path)
     return path
 
 
@@ -75,6 +85,99 @@ def _patch(monkeypatch, calls, script=None):
     monkeypatch.setattr(campaign.arms, "run_all", _no_run_all)
     monkeypatch.setattr(campaign.arms, "run_arm", _no_run_arm)
     monkeypatch.setattr(campaign, "new_run", _fake_new_run(calls, script))
+
+
+def _seal_body(sealed):
+    """Fixture synthétique : corps de sceau valide (sans digest) pour le vrai lanceur et le plan factice."""
+    return {k: v for k, v in sealing.build_seal(sealed["digest"]).items() if k != "digest"}
+
+
+def _write_seal(path, body, digest=None):
+    """Fixture synthétique : écrit un sceau ; le digest est recalculé sauf s'il est imposé."""
+    seal = dict(body)
+    seal["digest"] = sealing.digest_of(body) if digest is None else digest
+    path.write_text(json.dumps(seal), encoding="utf-8")
+
+
+def _alter_launcher(tmp_path, monkeypatch):
+    """Fixture synthétique : copie du lanceur avec un octet de plus, substituée à campaign.LAUNCHER_FILE."""
+    altered = tmp_path / "run_circuit2_campaign_altered.py"
+    altered.write_bytes(campaign.LAUNCHER_FILE.read_bytes() + b"\n")
+    monkeypatch.setattr(campaign, "LAUNCHER_FILE", altered)
+    return altered
+
+
+def test_a_valid_launcher_seal_lets_the_campaign_run(sealed, launcher_seal, monkeypatch):
+    calls = []
+    _patch(monkeypatch, calls)
+    sealing.verify_launcher(sealed["digest"], launcher_seal, campaign.LAUNCHER_FILE)
+    result = campaign.run_campaign(sealed, seeds=[0], generations=1)
+    assert result["plan_digest"] == sealed["digest"]
+    assert calls
+
+
+def test_a_missing_launcher_seal_is_refused_before_any_generation(sealed, launcher_seal, monkeypatch):
+    calls = []
+    _patch(monkeypatch, calls)
+    launcher_seal.unlink()
+    with pytest.raises(campaign.PlanError):
+        campaign.run_campaign(sealed, seeds=[0], generations=1)
+    with pytest.raises(campaign.PlanError):
+        campaign.run_campaign(sealed, seeds=[999])
+    assert calls == []
+
+
+def test_an_altered_launcher_is_refused_before_any_generation(sealed, tmp_path, monkeypatch):
+    calls = []
+    _patch(monkeypatch, calls)
+    _alter_launcher(tmp_path, monkeypatch)
+    with pytest.raises(campaign.PlanError):
+        campaign.run_campaign(sealed, seeds=[0], generations=1)
+    assert calls == []
+
+
+@pytest.mark.parametrize(
+    "variant",
+    ["other_plan_digest", "tampered_content", "other_launcher_sha", "other_verifier_sha", "wrong_schema", "unreadable"],
+)
+def test_invalid_launcher_seals_are_refused_before_any_generation(sealed, launcher_seal, monkeypatch, variant):
+    calls = []
+    _patch(monkeypatch, calls)
+    body = _seal_body(sealed)
+    if variant == "other_plan_digest":
+        _write_seal(launcher_seal, {**body, "plan_digest": "f" * 64})
+    elif variant == "tampered_content":
+        _write_seal(launcher_seal, {**body, "launcher_sha256": "0" * 64}, digest=sealing.digest_of(body))
+    elif variant == "other_launcher_sha":
+        _write_seal(launcher_seal, {**body, "launcher_sha256": "0" * 64})
+    elif variant == "other_verifier_sha":
+        _write_seal(launcher_seal, {**body, "verifier_sha256": "0" * 64})
+    elif variant == "wrong_schema":
+        _write_seal(launcher_seal, {**body, "schema": "circuit2-launcher-seal-v0"})
+    else:
+        launcher_seal.write_text("{", encoding="utf-8")
+    with pytest.raises(sealing.SealError):
+        sealing.verify_launcher(sealed["digest"], launcher_seal, campaign.LAUNCHER_FILE)
+    with pytest.raises(campaign.PlanError):
+        campaign.run_campaign(sealed, seeds=[0], generations=1)
+    assert calls == []
+
+
+def test_main_returns_2_with_an_altered_launcher_and_writes_no_output(plan_path, tmp_path, monkeypatch):
+    calls = []
+    _patch(monkeypatch, calls)
+    _alter_launcher(tmp_path, monkeypatch)
+    out = tmp_path / "OUT.json"
+    assert campaign.main(["--plan", str(plan_path), "--seeds", "0", "--generations", "1", "--out", str(out)]) == 2
+    assert not out.exists()
+    assert calls == []
+
+
+def test_the_seal_script_refuses_to_overwrite_an_existing_seal(tmp_path):
+    out = tmp_path / "EXISTING_SEAL.json"
+    out.write_text("{}", encoding="utf-8")
+    assert sealing.main(["--out", str(out)]) == 1
+    assert out.read_text(encoding="utf-8") == "{}"
 
 
 def _check_executed(calls, result, count, plan):

@@ -23,12 +23,16 @@ Champs ajoutés à chaque exécution : stopped_early (la règle a joué), stop_r
 de générations réellement exécutées (nombre de appels à step()).
 Champs de score d'une génération : score = bibliothèque transmise (parent_score) et selection_score =
 score de la procédure candidate (state["score"]) pour inherited_lineage ; None pour les trois autres bras.
+Identité du lanceur : le lanceur refuse de s'exécuter sans sceau d'identité valide.
+Provenance : le résultat porte launcher_provenance (hachages du lanceur, du vérificateur et du sceau, digests, git_head, calculés après vérification du sceau) et main y ajoute la commande exacte reçue.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
+import subprocess
 import sys
 from pathlib import Path
 
@@ -39,11 +43,15 @@ for _path in (HERE, HERE.parent):
 
 import freeze_circuit2_plan as freeze  # noqa: E402
 import run_circuit2_arms as arms  # noqa: E402
+import seal_circuit2_launcher as sealing  # noqa: E402
 
 PlanError = freeze.PlanError
 CANONICAL_PLAN_PATH = freeze.PLAN_PATH
 STOP_REASON = "exhausted_without_adoption"
 LIMIT_REASON = "generation_limit"
+LAUNCHER_FILE = Path(__file__).resolve()
+LAUNCHER_REL = "scripts/run_circuit2_campaign.py"
+SEAL_PATH = sealing.SEAL_PATH
 
 
 def _read_plan(path):
@@ -182,9 +190,42 @@ def run_until_stop(arm, seed, learn, count, limit, budget):
     }
 
 
+def _git_head():
+    """Commit courant (git rev-parse HEAD) ; 'unavailable' si la commande échoue."""
+    try:
+        done = subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(HERE.parent), capture_output=True, text=True, timeout=30, check=True)
+    except (OSError, subprocess.SubprocessError):
+        return "unavailable"
+    head = done.stdout.strip()
+    return head if head else "unavailable"
+
+
+def _launcher_provenance(plan):
+    """Provenance du lanceur, calculée seulement après sealing.verify_launcher réussi."""
+    try:
+        seal = json.loads(Path(SEAL_PATH).read_text(encoding="utf-8"))
+        seal_sha256 = hashlib.sha256(Path(SEAL_PATH).read_bytes()).hexdigest()
+    except (OSError, ValueError) as exc:
+        raise PlanError(f"sceau illisible ({SEAL_PATH}) : {exc}") from exc
+    return {
+        "launcher_path": LAUNCHER_REL,
+        "launcher_sha256": sealing.file_sha256(LAUNCHER_FILE),
+        "verifier_sha256": sealing.file_sha256(Path(sealing.__file__)),
+        "seal_sha256": seal_sha256,
+        "seal_digest": seal.get("digest") if isinstance(seal, dict) else None,
+        "plan_digest": plan["digest"],
+        "git_head": _git_head(),
+    }
+
+
 def run_campaign(plan, seeds=None, generations=None):
     """Exécute les bras sur LEARN seul ; ne calcule aucun gain ni succès."""
     check_plan(plan)
+    try:
+        sealing.verify_launcher(plan["digest"], SEAL_PATH, LAUNCHER_FILE)
+    except sealing.SealError as exc:
+        raise PlanError(f"identité du lanceur non scellée : {exc}") from exc
+    provenance = _launcher_provenance(plan)
     budgets = plan["budgets"]
     plan_seeds = list(plan["seeds"])
     chosen = plan_seeds if seeds is None else list(seeds)
@@ -205,6 +246,7 @@ def run_campaign(plan, seeds=None, generations=None):
         "generations": count,
         "scale": "full" if full else "reduced",
         "arms": bounded,
+        "launcher_provenance": provenance,
     }
 
 
@@ -227,6 +269,7 @@ def main(argv=None):
             raise FileExistsError(f"sortie déjà existante : {args.out}")
         plan = load_plan(args.plan)
         result = run_campaign(plan, args.seeds, args.generations)
+        result["command"] = list(sys.argv[1:] if argv is None else argv)
         text = json.dumps(result, indent=2) + "\n"
         if args.out is None:
             sys.stdout.write(text)
