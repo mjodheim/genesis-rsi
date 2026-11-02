@@ -1,0 +1,150 @@
+"""Diagnostic relationnel de improved_by selon task_budget (16 et 64).
+
+Départage trois hypothèses non établies pour un rendement nul à budget 16 :
+« proposition » (aucune tâche résolue, donc zéro candidat), « admission »
+(candidats proposés mais aucun admis/essayé) et « acceptation_refusee »
+(essais sans ajout) ; « adopte » si un composant est ajouté. Aucun nombre
+n'est codé : seules des relations sont affirmées. Le test d'affichage
+écrit la classification observée de chaque budget.
+
+Statut du cas : ce fichier n'a pas été exécuté lors de sa rédaction ; on ne
+sait donc pas s'il reproduit un rendement nul. Si la classification affichée
+n'est pas 'proposition' ou 'admission' à budget 16, le cas ne reproduit pas
+un rendement nul ; il ne doit pas être retouché (ni task_budget) pour autant.
+Hypothèses d'interface (déduites de la description de circuit_engine.py) :
+_metered_attempt renvoie une mesure (solved, evaluations) lisible comme dict,
+attribut ou paire ; improved_by renvoie un moteur et le dict info.
+"""
+
+from __future__ import annotations
+
+import pytest
+
+import genesis.circuit_engine as ce
+import genesis.circuit_procedure as cp
+from genesis.trust_root import digest_of
+
+BUDGETS = (16, 64)
+LIMITS = (0, 5, 50, 500)
+LABELS = ("proposition", "admission", "acceptation_refusee", "adopte")
+A, B = 0b1010, 0b1100
+TARGETS = (
+    ("AND", 8),
+    ("OR", 14),
+    ("XOR", 6),
+    ("XNOR", 9),
+    ("NAND", 7),
+    ("NOR", 1),
+)
+
+
+def _meter_class():
+    cls = getattr(ce, "Meter", None)
+    if cls is None:
+        try:
+            from genesis.meter import Meter as cls
+        except ImportError:
+            pytest.skip("classe Meter introuvable")
+    return cls
+
+
+def _tasks():
+    return [ce.Task(name=n, family="synthetic", inputs=2, target=t) for n, t in TARGETS]
+
+
+def _measure(base):
+    s, e = ce.measure(base)
+    return s, -e
+
+
+def _split(out):
+    parts = out if isinstance(out, tuple) else (out,)
+    info = next(p for p in parts if isinstance(p, dict) and "candidates" in p)
+    engine = next((p for p in parts if hasattr(p, "record")), None)
+    return engine, info
+
+
+def _run(tb, limit=10**6):
+    meter_cls = _meter_class()
+    tasks = _tasks()
+    base = ce._metered_attempt(ce.Engine(), tasks, tb, meter_cls(10**6), {"procedure": 0, "synthesis": 0, "evaluations": 0})
+    assert base is not None
+    eng0 = ce.Engine()
+    before = digest_of(eng0.record())
+    meter = meter_cls(limit)
+    out = ce.improved_by(eng0, tasks, tb, base, cp.seed_procedure(), meter, generation=0)
+    engine, info = _split(out)
+    assert engine is not None, "improved_by ne renvoie aucun objet moteur identifiable"
+    solved, neg_eval = _measure(base)
+    summary = {
+        "resolues_avant": solved,
+        "evaluations_avant": -neg_eval,
+        "candidates": info["candidates"],
+        "admitted": info["admitted"],
+        "trials": len(info["trials"]),
+        "added": info["added"],
+        "exhausted": info["exhausted"],
+        "spent": dict(info["spent"]),
+        "empreinte_avant": before,
+        "empreinte_apres": digest_of(engine.record()),
+    }
+    raw = {"tasks": tasks, "base": base, "eng0": eng0, "engine": engine, "meter": meter, "meter_cls": meter_cls}
+    return summary, raw
+
+
+def classify(s):
+    if s["candidates"] == 0:
+        return "proposition"
+    if s["trials"] == 0:
+        return "admission"
+    if s["added"] is None:
+        return "acceptation_refusee"
+    return "adopte"
+
+
+def test_api_circuit_procedure():
+    seed = cp.seed_procedure()
+    traits = cp.traits_of(3, 3, 2, True)
+    priority, admit, gates = cp.run(seed, traits)
+    assert isinstance(priority, int) and isinstance(admit, bool) and isinstance(gates, int) and gates >= 0, (
+        "API run : (priorité entière, admission booléenne, nombre de portes) attendu"
+    )
+    assert cp.run(seed, traits) == (priority, admit, gates), "run doit être déterministe"
+
+
+@pytest.mark.parametrize("tb", BUDGETS)
+def test_relations(tb):
+    s, raw = _run(tb)
+    assert s["admitted"] <= s["candidates"], "hypothèse 'admission' : les admis ne peuvent excéder les candidats proposés"
+    assert s["trials"] <= min(s["admitted"], 6), "hypothèse 'admission' : essais bornés par les admis et par tried=6"
+    assert sum(s["spent"].values()) == raw["meter"].spent, "comptabilité : la somme des postes de info['spent'] doit égaler meter.spent"
+    assert classify(s) in LABELS, "classification hors des quatre étiquettes"
+    if s["resolues_avant"] == 0:
+        assert s["candidates"] == 0, "hypothèse 'proposition' : sans tâche résolue, aucun candidat ne doit être proposé"
+    if s["added"] is not None:
+        assert s["empreinte_avant"] != s["empreinte_apres"], "hypothèse 'accepté mais bibliothèque inchangée' : l'empreinte doit changer"
+        after = ce._metered_attempt(raw["engine"], raw["tasks"], tb, raw["meter_cls"](10**6), {"procedure": 0, "synthesis": 0, "evaluations": 0})
+        assert _measure(after) > _measure(raw["base"]), "hypothèse 'acceptation' : (résolues, -évaluations) doit être strictement meilleur"
+    else:
+        assert raw["engine"] is raw["eng0"], "hypothèse 'acceptation refusée' : sans ajout, le moteur renvoyé doit être le même objet"
+
+
+@pytest.mark.parametrize("limit", LIMITS)
+@pytest.mark.parametrize("tb", BUDGETS)
+def test_plafonds(tb, limit):
+    s, raw = _run(tb, limit)
+    assert raw["meter"].spent <= limit, "hypothèse 'facturation' : meter.spent ne doit pas dépasser le plafond"
+    assert isinstance(s["exhausted"], bool), "info['exhausted'] doit être un booléen"
+    assert sum(s["spent"].values()) == raw["meter"].spent, "comptabilité : postes de info['spent'] et meter.spent doivent coïncider"
+
+
+@pytest.mark.parametrize("tb", BUDGETS)
+def test_determinisme(tb):
+    assert _run(tb)[0] == _run(tb)[0], "hypothèse 'non-déterminisme' : deux exécutions doivent donner le même dict"
+
+
+def test_affiche_classification(capsys):
+    with capsys.disabled():
+        for tb in BUDGETS:
+            s, _ = _run(tb)
+            print(f"\n[improved_by] task_budget={tb} classification={classify(s)} candidates={s['candidates']} admitted={s['admitted']} trials={s['trials']} resolues_avant={s['resolues_avant']}")
