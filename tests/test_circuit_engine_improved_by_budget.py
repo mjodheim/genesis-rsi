@@ -1,26 +1,35 @@
-"""Diagnostic relationnel de improved_by selon task_budget (16 et 64).
+"""Invariants relationnels de improved_by selon task_budget (16 et 64).
 
-Départage les hypothèses possibles pour un rendement nul de improved_by :
-« aucun_candidat » (candidates == 0, quel que soit le nombre de tâches
-résolues), « admission » (candidats proposés mais aucun admis/essayé) et
-« acceptation_refusee » (essais sans ajout) ; « adopte » si un composant
-est ajouté. Aucun nombre n'est codé : seules des relations sont affirmées.
+Ce fichier vérifie des invariants relationnels de improved_by et de la
+procédure de départ, à task_budget 16 et 64, sur six tâches synthétiques,
+hors réseau et sans modèle. Aucun nombre n'est codé : seules des relations
+sont affirmées :
 
-Provenance : ce test n'est pas lu à partir des JSON gelés. Il exécute
-improved_by et ce.measure sur six tâches synthétiques, à task_budget 16
-et 64. Le diagnostic a été motivé par les adjudications réduites de la
-graine 0, dont les champs machinery_commit lus dans les JSON sont :
-results/circuit2_adjudication_s0_g1.json (1 génération) porte
-machinery_commit 0247f6cd4409aa2d86d6b0d1db532179aebc908f ;
-results/circuit2_adjudication_s0_g2.json (2 générations) porte
-machinery_commit afb02ecaf37ddee6f02f2065cd2822330bc7fe85. Ces deux
-commits de machinerie diffèrent : les deux JSON ne forment donc pas une
-série strictement comparable. Le résultat observé dans les deux JSON est
-négatif : held_out_yield 0 et même library_fingerprint (03922f7a…) pour
-les quatre bras.
+- admis <= candidats ;
+- essais <= min(admis, SEED_PROCEDURE['tried']) ;
+- somme des postes de info['spent'] = meter.spent ;
+- un ajout suppose au moins un essai ;
+- des essais supposent des candidats ;
+- sans candidat, pas d'ajout et empreinte inchangée ;
+- avec ajout, l'empreinte change et le couple (résolues, -évaluations)
+  s'améliore strictement ;
+- sans ajout, le moteur renvoyé est le même objet ;
+- plafond exact de budget (limites 0, 5, 50, 500), y compris dépense nulle
+  et aucun ajout à la limite 0 ;
+- déterminisme de deux exécutions.
 
-Si à budget 16 le cas ne reproduit pas un rendement nul, il ne doit pas
-être retouché (ni task_budget) pour autant.
+Ce test ne reproduit pas un rendement nul et ne départage pas les causes
+possibles d'un rendement nul ; il n'affirme que des relations d'invariants.
+
+Provenance : ce test ne lit pas les JSON gelés. Les champs machinery_commit
+lus dans results/circuit2_adjudication_s0_g1.json
+(0247f6cd4409aa2d86d6b0d1db532179aebc908f) et dans
+results/circuit2_adjudication_s0_g2.json
+(afb02ecaf37ddee6f02f2065cd2822330bc7fe85) diffèrent : ces deux résultats
+de la graine 0 à échelle réduite ne sont donc pas strictement comparables.
+Le résultat observé reste négatif : held_out_yield 0 et même empreinte de
+bibliothèque pour les quatre bras. Ce n'est pas une adjudication du
+protocole gelé.
 """
 
 from __future__ import annotations
