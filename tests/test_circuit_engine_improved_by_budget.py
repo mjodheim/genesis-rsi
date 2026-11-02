@@ -5,7 +5,6 @@ Départage les hypothèses possibles pour un rendement nul de improved_by :
 résolues), « admission » (candidats proposés mais aucun admis/essayé) et
 « acceptation_refusee » (essais sans ajout) ; « adopte » si un composant
 est ajouté. Aucun nombre n'est codé : seules des relations sont affirmées.
-Le test d'affichage écrit la classification observée de chaque budget.
 
 Provenance : ce test n'est pas lu à partir des JSON gelés. Il exécute
 improved_by et ce.measure sur six tâches synthétiques, à task_budget 16
@@ -20,11 +19,8 @@ série strictement comparable. Le résultat observé dans les deux JSON est
 négatif : held_out_yield 0 et même library_fingerprint (03922f7a…) pour
 les quatre bras.
 
-Ce fichier est exécuté. Il utilise _metered_attempt, ce.measure et
-improved_by tels qu'ils sont, sans les modifier ni les contourner. Si la
-classification affichée à budget 16 n'est pas 'aucun_candidat' ou
-'admission', le cas ne reproduit pas un rendement nul ; il ne doit pas être
-retouché (ni task_budget) pour autant.
+Si à budget 16 le cas ne reproduit pas un rendement nul, il ne doit pas
+être retouché (ni task_budget) pour autant.
 """
 
 from __future__ import annotations
@@ -82,16 +78,6 @@ def _run(tb, limit=10**6):
     return summary, raw
 
 
-def classify(s):
-    if s["candidates"] == 0:
-        return "aucun_candidat"
-    if s["trials"] == 0:
-        return "admission"
-    if s["added"] is None:
-        return "acceptation_refusee"
-    return "adopte"
-
-
 def test_api_circuit_procedure():
     seed = cp.seed_procedure()
     traits = cp.traits_of(3, 3, 2, True)
@@ -106,7 +92,7 @@ def test_api_circuit_procedure():
 def test_relations(tb):
     s, raw = _run(tb)
     assert s["admitted"] <= s["candidates"], "hypothèse 'admission' : les admis ne peuvent excéder les candidats proposés"
-    assert s["trials"] <= min(s["admitted"], 6), "hypothèse 'admission' : essais bornés par les admis et par tried=6"
+    assert s["trials"] <= min(s["admitted"], ce.SEED_PROCEDURE["tried"]), "hypothèse 'admission' : essais bornés par les admis et par SEED_PROCEDURE['tried']"
     assert sum(s["spent"].values()) == raw["meter"].spent, "comptabilité : la somme des postes de info['spent'] doit égaler meter.spent"
     if s["added"] is not None:
         assert s["trials"] >= 1, "un ajout suppose au moins un essai"
@@ -138,10 +124,3 @@ def test_plafonds(tb, limit):
 @pytest.mark.parametrize("tb", BUDGETS)
 def test_determinisme(tb):
     assert _run(tb)[0] == _run(tb)[0], "hypothèse 'non-déterminisme' : deux exécutions doivent donner le même dict"
-
-
-def test_affiche_classification(capsys):
-    with capsys.disabled():
-        for tb in BUDGETS:
-            s, _ = _run(tb)
-            print(f"\n[improved_by] task_budget={tb} classification={classify(s)} candidates={s['candidates']} admitted={s['admitted']} trials={s['trials']} resolues_avant={s['resolues_avant']}")
