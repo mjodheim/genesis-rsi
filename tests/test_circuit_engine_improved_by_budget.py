@@ -47,16 +47,6 @@ TARGETS = (
 )
 
 
-def _meter_class():
-    cls = getattr(ce, "Meter", None)
-    if cls is None:
-        try:
-            from genesis.meter import Meter as cls
-        except ImportError:
-            pytest.fail("classe Meter introuvable : interface modifiée")
-    return cls
-
-
 def _tasks():
     return [ce.Task(name=n, family="synthetic", inputs=2, target=t) for n, t in TARGETS]
 
@@ -66,23 +56,14 @@ def _measure(base):
     return s, -e
 
 
-def _split(out):
-    parts = out if isinstance(out, tuple) else (out,)
-    info = next(p for p in parts if isinstance(p, dict) and "candidates" in p)
-    engine = next((p for p in parts if hasattr(p, "record")), None)
-    return engine, info
-
-
 def _run(tb, limit=10**6):
-    meter_cls = _meter_class()
     tasks = _tasks()
-    base = ce._metered_attempt(ce.Engine(), tasks, tb, meter_cls(10**6), {"procedure": 0, "synthesis": 0, "evaluations": 0})
+    base = ce._metered_attempt(ce.Engine(), tasks, tb, ce.Meter(10**6), {"procedure": 0, "synthesis": 0, "evaluations": 0})
     assert base is not None
     eng0 = ce.Engine()
     before = digest_of(eng0.record())
-    meter = meter_cls(limit)
-    out = ce.improved_by(eng0, tasks, tb, base, cp.seed_procedure(), meter, generation=0)
-    engine, info = _split(out)
+    meter = ce.Meter(limit)
+    engine, _solutions, info = ce.improved_by(eng0, tasks, tb, base, cp.seed_procedure(), meter, generation=0)
     assert engine is not None, "improved_by ne renvoie aucun objet moteur identifiable"
     solved, neg_eval = _measure(base)
     summary = {
@@ -97,7 +78,7 @@ def _run(tb, limit=10**6):
         "empreinte_avant": before,
         "empreinte_apres": digest_of(engine.record()),
     }
-    raw = {"tasks": tasks, "base": base, "eng0": eng0, "engine": engine, "meter": meter, "meter_cls": meter_cls}
+    raw = {"tasks": tasks, "base": base, "eng0": eng0, "engine": engine, "meter": meter}
     return summary, raw
 
 
@@ -136,7 +117,7 @@ def test_relations(tb):
         assert s["empreinte_avant"] == s["empreinte_apres"], "sans candidat, l'empreinte doit rester inchangée"
     if s["added"] is not None:
         assert s["empreinte_avant"] != s["empreinte_apres"], "hypothèse 'accepté mais bibliothèque inchangée' : l'empreinte doit changer"
-        after = ce._metered_attempt(raw["engine"], raw["tasks"], tb, raw["meter_cls"](10**6), {"procedure": 0, "synthesis": 0, "evaluations": 0})
+        after = ce._metered_attempt(raw["engine"], raw["tasks"], tb, ce.Meter(10**6), {"procedure": 0, "synthesis": 0, "evaluations": 0})
         assert _measure(after) > _measure(raw["base"]), "hypothèse 'acceptation' : (résolues, -évaluations) doit être strictement meilleur"
     else:
         assert raw["engine"] is raw["eng0"], "hypothèse 'acceptation refusée' : sans ajout, le moteur renvoyé doit être le même objet"
