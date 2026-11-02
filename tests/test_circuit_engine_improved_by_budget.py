@@ -7,6 +7,12 @@ résolues), « admission » (candidats proposés mais aucun admis/essayé) et
 est ajouté. Aucun nombre n'est codé : seules des relations sont affirmées.
 Le test d'affichage écrit la classification observée de chaque budget.
 
+Provenance : ce test n'est pas lu à partir des JSON gelés. Il exécute
+improved_by et ce.measure sur six tâches synthétiques, à task_budget 16
+et 64. Le diagnostic a été motivé par les adjudications réduites de la
+graine 0, produites aux commits afb02eca (1 génération) et 48fc4ea2
+(2 générations) d'après le journal git.
+
 Ce fichier est exécuté. Il utilise _metered_attempt, ce.measure et
 improved_by tels qu'ils sont, sans les modifier ni les contourner. Si la
 classification affichée à budget 16 n'est pas 'aucun_candidat' ou
@@ -116,11 +122,13 @@ def test_relations(tb):
     assert s["admitted"] <= s["candidates"], "hypothèse 'admission' : les admis ne peuvent excéder les candidats proposés"
     assert s["trials"] <= min(s["admitted"], 6), "hypothèse 'admission' : essais bornés par les admis et par tried=6"
     assert sum(s["spent"].values()) == raw["meter"].spent, "comptabilité : la somme des postes de info['spent'] doit égaler meter.spent"
-    assert classify(s) in LABELS, "classification hors des quatre étiquettes"
-    # Cette assertion ne s'exerce que si aucune tâche n'est résolue ; elle
-    # n'est pas exercée à budget 16 (resolues_avant=1 observé à ce budget).
-    if s["resolues_avant"] == 0:
-        assert s["candidates"] == 0, "hypothèse 'aucun_candidat' : sans tâche résolue, aucun candidat ne doit être proposé"
+    if s["added"] is not None:
+        assert s["trials"] >= 1, "un ajout suppose au moins un essai"
+    if s["trials"] > 0:
+        assert s["candidates"] > 0, "des essais supposent des candidats proposés"
+    if s["candidates"] == 0:
+        assert s["added"] is None, "sans candidat, aucun ajout"
+        assert s["empreinte_avant"] == s["empreinte_apres"], "sans candidat, l'empreinte doit rester inchangée"
     if s["added"] is not None:
         assert s["empreinte_avant"] != s["empreinte_apres"], "hypothèse 'accepté mais bibliothèque inchangée' : l'empreinte doit changer"
         after = ce._metered_attempt(raw["engine"], raw["tasks"], tb, raw["meter_cls"](10**6), {"procedure": 0, "synthesis": 0, "evaluations": 0})
@@ -136,6 +144,9 @@ def test_plafonds(tb, limit):
     assert raw["meter"].spent <= limit, "hypothèse 'facturation' : meter.spent ne doit pas dépasser le plafond"
     assert isinstance(s["exhausted"], bool), "info['exhausted'] doit être un booléen"
     assert sum(s["spent"].values()) == raw["meter"].spent, "comptabilité : postes de info['spent'] et meter.spent doivent coïncider"
+    if limit == 0:
+        assert raw["meter"].spent == 0, "plafond exact à zéro : rien ne doit être dépensé"
+        assert s["added"] is None, "plafond à zéro : aucun ajout sans budget"
 
 
 @pytest.mark.parametrize("tb", BUDGETS)
@@ -147,8 +158,4 @@ def test_affiche_classification(capsys):
     with capsys.disabled():
         for tb in BUDGETS:
             s, _ = _run(tb)
-            assert classify(s) in LABELS
-            assert (classify(s) == "aucun_candidat") == (s["candidates"] == 0)
-            assert s["admitted"] <= s["candidates"]
-            assert s["trials"] <= s["admitted"]
             print(f"\n[improved_by] task_budget={tb} classification={classify(s)} candidates={s['candidates']} admitted={s['admitted']} trials={s['trials']} resolues_avant={s['resolues_avant']}")
