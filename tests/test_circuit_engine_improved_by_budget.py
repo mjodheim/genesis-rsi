@@ -10,8 +10,15 @@ Le test d'affichage écrit la classification observée de chaque budget.
 Provenance : ce test n'est pas lu à partir des JSON gelés. Il exécute
 improved_by et ce.measure sur six tâches synthétiques, à task_budget 16
 et 64. Le diagnostic a été motivé par les adjudications réduites de la
-graine 0, produites aux commits afb02eca (1 génération) et 48fc4ea2
-(2 générations) d'après le journal git.
+graine 0, dont les champs machinery_commit lus dans les JSON sont :
+results/circuit2_adjudication_s0_g1.json (1 génération) porte
+machinery_commit 0247f6cd4409aa2d86d6b0d1db532179aebc908f ;
+results/circuit2_adjudication_s0_g2.json (2 générations) porte
+machinery_commit afb02ecaf37ddee6f02f2065cd2822330bc7fe85. Ces deux
+commits de machinerie diffèrent : les deux JSON ne forment donc pas une
+série strictement comparable. Le résultat observé dans les deux JSON est
+négatif : held_out_yield 0 et même library_fingerprint (03922f7a…) pour
+les quatre bras.
 
 Ce fichier est exécuté. Il utilise _metered_attempt, ce.measure et
 improved_by tels qu'ils sont, sans les modifier ni les contourner. Si la
@@ -30,8 +37,6 @@ from genesis.trust_root import digest_of
 
 BUDGETS = (16, 64)
 LIMITS = (0, 5, 50, 500)
-LABELS = ("aucun_candidat", "admission", "acceptation_refusee", "adopte")
-A, B = 0b1010, 0b1100
 TARGETS = (
     ("AND", 8),
     ("OR", 14),
