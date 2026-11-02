@@ -190,3 +190,18 @@ def test_a_deliberately_dead_citation_is_excused_only_with_a_recorded_reason() -
     assert lost == ["b8a8bb064ff456c491369bd1ca25c72ca187b545"], (
         "the M049 qualification commit is a genuine loss and must stay recorded as one"
     )
+
+
+def test_verify_circuit2_executables_is_an_exact_name_entry_point() -> None:
+    """L'exception est par nom exact de module, sans préfixe générique `verify_`."""
+    assert integrity.ENTRY_POINT_NAMES == frozenset({"verify_circuit2_executables"})
+    assert "verify_" not in integrity.ENTRY_POINT_PREFIXES
+    assert integrity.check_orphans() == []
+
+
+def test_without_the_exact_name_exception_the_verifier_is_reported_as_orphan(monkeypatch) -> None:
+    """Preuve que l'exception est nécessaire et précise : seul ce module est signalé."""
+    monkeypatch.setattr(integrity, "ENTRY_POINT_NAMES", frozenset())
+    assert integrity.check_orphans() == [
+        "scripts/verify_circuit2_executables.py is not imported by any entry point"
+    ]

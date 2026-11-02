@@ -52,6 +52,10 @@ ENTRY_POINT_PREFIXES = (
     "g11_", "g12_", "select_", "preregister_",
 )
 
+# Points d'entrée reconnus par nom exact de module, et non par préfixe.
+# verify_circuit2_executables : vérificateur CLI indépendant d'identité des exécutables CIRCUIT2, lancé en ligne de commande et jamais importé.
+ENTRY_POINT_NAMES = frozenset({"verify_circuit2_executables"})
+
 # Tools invoked from the command line and never imported by source code. Declaring them
 # without importing them is legitimate.
 # Declared in pyproject but never imported by the project, because they are invoked as
@@ -161,7 +165,9 @@ def check_orphans() -> list[str]:
     roots = [
         name
         for name, path in files.items()
-        if path.parts[-2] == "tests" or name.startswith(ENTRY_POINT_PREFIXES)
+        if path.parts[-2] == "tests"
+        or name in ENTRY_POINT_NAMES
+        or name.startswith(ENTRY_POINT_PREFIXES)
     ]
 
     reachable: set[str] = set()
