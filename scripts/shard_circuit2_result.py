@@ -9,7 +9,7 @@ results/, en mode exclusif ('x') : aucun fichier existant n'est écrasé.
 
 Sous-commandes :
   split  SOURCE OUT_DIR [--seeds-per-shard N] [--max-fragment-chars N]
-  verify MANIFEST
+  verify MANIFEST [--source CHEMIN]
 """
 
 from __future__ import annotations
@@ -222,11 +222,31 @@ def _parse_range(value, label: str):
     return value[0], value[1]
 
 
-def reassemble(manifest_path) -> bytes:
-    """Vérifie toutes les empreintes puis reconstruit les octets exacts de la source."""
+def _refuse_unlisted(path: Path, entries: list) -> None:
+    """Refuse tout fichier ou sous-dossier du dossier du manifeste non listé."""
+    allowed = {MANIFEST_NAME, path.name} | {entry["file"] for entry in entries}
+    try:
+        present = sorted(item.name for item in path.parent.iterdir())
+    except OSError as exc:
+        raise ShardError(f"dossier du manifeste illisible : {exc}") from exc
+    unlisted = [name for name in present if name not in allowed]
+    if unlisted:
+        raise ShardError(
+            "élément non listé dans le manifeste (fichier ou sous-dossier en trop) : "
+            + ", ".join(repr(name) for name in unlisted)
+        )
+
+
+def reassemble(manifest_path, source=None) -> bytes:
+    """Vérifie le dossier et les empreintes puis reconstruit les octets exacts de la source.
+
+    Si `source` est fourni, les octets reconstruits sont comparés à ceux de ce
+    fichier (lecture seule) ; toute différence est refusée.
+    """
     path = Path(manifest_path)
     manifest = _read_manifest(path)
     entries = manifest["fragments"]
+    _refuse_unlisted(path, entries)
     payloads = [_read_fragment_bytes(path.parent, entry) for entry in entries]
     expected_keys = set(HEADER_KEYS) | set(FRAGMENT_EXTRA_KEYS)
     header = None
@@ -272,6 +292,16 @@ def reassemble(manifest_path) -> bytes:
             "reconstruction refusée : le sha256 obtenu ne correspond pas à celui "
             "du fichier source"
         )
+    if source is not None:
+        try:
+            reference = Path(source).read_bytes()
+        except OSError as exc:
+            raise ShardError(f"source illisible : {exc}") from exc
+        if data != reference:
+            raise ShardError(
+                "reconstruction refusée : les octets reconstruits diffèrent "
+                f"du fichier source fourni ({source})"
+            )
     return data
 
 
@@ -288,6 +318,7 @@ def _build_parser() -> argparse.ArgumentParser:
     p_split.add_argument("--max-fragment-chars", type=int, default=DEFAULT_MAX_FRAGMENT_CHARS)
     p_verify = sub.add_parser("verify", help="vérifie les empreintes et la reconstruction")
     p_verify.add_argument("manifest")
+    p_verify.add_argument("--source", default=None, help="fichier source à comparer aux octets reconstruits (lecture seule)")
     return parser
 
 
@@ -303,8 +334,11 @@ def main(argv=None) -> int:
             )
             print(f"Manifeste écrit : {manifest}")
         else:
-            data = reassemble(args.manifest)
-            print(f"OK : reconstruction identique à la source ({len(data)} octets, sha256={_sha256(data)})")
+            data = reassemble(args.manifest, source=args.source)
+            if args.source is None:
+                print(f"OK : reconstruction conforme au manifeste ({len(data)} octets, sha256={_sha256(data)}) ; source non comparée")
+            else:
+                print(f"OK : reconstruction identique au fichier source {args.source} ({len(data)} octets, sha256={_sha256(data)})")
     except (ShardError, OSError) as exc:
         print(f"REFUS : {exc}", file=sys.stderr)
         return 2

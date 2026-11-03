@@ -291,3 +291,61 @@ def test_cli_split_puis_verify(env, monkeypatch, capsys):
     assert shard.main(["split", str(source), "elsewhere"]) == 2
     assert not (tmp_path / "elsewhere").exists()
     assert source.read_bytes() == raw
+
+
+def test_fragment_en_trop_refuse(env):
+    manifest_path = do_split(env)
+    assert shard.reassemble(manifest_path) == env[3]
+    intrus = manifest_path.parent / "9999_intrus.json"
+    intrus.write_bytes(b"{}\n")
+    with pytest.raises(shard.ShardError, match="non listé"):
+        shard.reassemble(manifest_path)
+    intrus.unlink()
+    assert shard.reassemble(manifest_path) == env[3]
+    (manifest_path.parent / "sous_dossier").mkdir()
+    with pytest.raises(shard.ShardError, match="non listé"):
+        shard.reassemble(manifest_path)
+
+
+def test_source_differente_refusee(env):
+    _, root, _, raw = env
+    manifest_path = do_split(env)
+    autre = root / "autre_source.json"
+    write_source(autre, synthetic_object(runs_per_arm=7))
+    avant = autre.read_bytes()
+    with pytest.raises(shard.ShardError, match="source fourni"):
+        shard.reassemble(manifest_path, source=autre)
+    assert autre.read_bytes() == avant
+    meme_taille = root / "meme_taille.json"
+    meme_taille.write_bytes(raw.replace(b"SYNTHETIC-scale", b"SYNTHETIC-scalf"))
+    assert len(meme_taille.read_bytes()) == len(raw)
+    with pytest.raises(shard.ShardError, match="source fourni"):
+        shard.reassemble(manifest_path, source=meme_taille)
+    with pytest.raises(shard.ShardError, match="source illisible"):
+        shard.reassemble(manifest_path, source=root / "absente.json")
+    assert shard.reassemble(manifest_path) == raw
+
+
+def test_source_identique_acceptee(env):
+    _, _, source, raw = env
+    manifest_path = do_split(env)
+    mtime = source.stat().st_mtime_ns
+    assert shard.reassemble(manifest_path, source=source) == raw
+    assert source.read_bytes() == raw
+    assert source.stat().st_mtime_ns == mtime
+
+
+def test_cli_verify_source_zero_puis_deux(env, monkeypatch, capsys):
+    tmp_path, root, source, raw = env
+    monkeypatch.chdir(tmp_path)
+    assert shard.main(["split", str(source), "results/cli_src"]) == 0
+    manifest = "results/cli_src/MANIFEST.json"
+    capsys.readouterr()
+    assert shard.main(["verify", manifest, "--source", str(source)]) == 0
+    assert "OK" in capsys.readouterr().out
+    autre = root / "autre.json"
+    autre.write_bytes(raw.replace(b"SYNTHETIC-scale", b"SYNTHETIC-scalf"))
+    assert shard.main(["verify", manifest, "--source", str(autre)]) == 2
+    assert "REFUS" in capsys.readouterr().err
+    assert shard.main(["verify", manifest]) == 0
+    assert source.read_bytes() == raw
