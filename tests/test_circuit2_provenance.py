@@ -90,10 +90,23 @@ def test_cle_absente(depot):
     assert r["valeurs"] == []
 
 
-def test_prefixe_court_resolu(depot):
+def test_prefixe_court_indetermine(depot, monkeypatch):
+    appels = []
+    monkeypatch.setattr(
+        verif, "_git", lambda *a, **k: appels.append(a) or (0, "", "")
+    )
     r = verdict(depot, {"machinery_commit": depot.c1[:12]})
-    assert r["verdict"] == "ancetre_de_head"
-    assert r["valeurs"][0]["commit_resolu"] == depot.c1
+    assert r["verdict"] == "indetermine"
+    assert r["raison"] == "oid_complet_requis"
+    assert r["valeurs"][0]["raison"] == "oid_complet_requis"
+    assert r["valeurs"][0]["code_retour"] is None
+    assert appels == []
+
+
+def test_majuscules_indeterminees(depot):
+    r = verdict(depot, {"machinery_commit": depot.c1.upper()})
+    assert r["verdict"] == "indetermine"
+    assert r["valeurs"][0]["raison"] == "oid_complet_requis"
 
 
 def test_cle_trouvee_en_profondeur(depot):
@@ -161,3 +174,73 @@ def test_sortie_sans_cle_de_performance(depot):
 
     for k in cles(contenu):
         assert not any(m in k.lower() for m in ("gain", "success", "yield"))
+
+
+def test_erreur_git_indeterminee(depot, monkeypatch):
+    monkeypatch.setattr(verif, "_git", lambda *a, **k: (128, "", "fatal"))
+    r = verdict(depot, {"machinery_commit": depot.c1})
+    assert r["verdict"] == "indetermine"
+    assert r["code_retour"] == 128
+    assert r["valeurs"][0]["code_retour"] == 128
+
+
+def test_git_inexecutable_indetermine(depot, monkeypatch):
+    monkeypatch.setattr(verif, "_git", lambda *a, **k: (None, "", "OSError"))
+    r = verdict(depot, {"machinery_commit": depot.c1})
+    assert r["verdict"] == "indetermine"
+    assert r["raison"] == "git_inexecutable"
+    assert r["valeurs"][0]["raison"] == "git_inexecutable"
+    assert r["code_retour"] is None
+
+
+def test_resolution_differente_indeterminee(depot, monkeypatch):
+    monkeypatch.setattr(
+        verif, "_git", lambda *a, **k: (0, depot.c2 + "\n", "")
+    )
+    r = verdict(depot, {"machinery_commit": depot.c1})
+    assert r["verdict"] == "indetermine"
+    assert r["raison"] == "resolution_differente"
+    assert r["valeurs"][0]["commit_resolu"] == depot.c2
+
+
+def test_fichier_vide_indetermine(depot):
+    f = depot.chemin / "results" / "vide.json"
+    f.write_text("", encoding="utf-8")
+    assert f.stat().st_size == 0
+    r = verif.verifier_fichier(f, depot.chemin)
+    assert r["verdict"] == "indetermine"
+    assert r["raison"] == "fichier_vide"
+    assert r["code_retour"] is None
+    assert r["valeurs"] == []
+
+
+def test_script_commite_non_vide():
+    assert CHEMIN_SCRIPT.stat().st_size > 0
+    assert "def main" in CHEMIN_SCRIPT.read_text(encoding="utf-8")
+
+
+def test_clone_superficiel_ancetre_absent(tmp_path):
+    source = tmp_path / "source"
+    source.mkdir()
+    git(source, "init", "-q")
+    git(source, "config", "user.email", "test@example.invalid")
+    git(source, "config", "user.name", "Test")
+    git(source, "config", "commit.gpgsign", "false")
+    oids = []
+    for nom in ("a", "b", "c"):
+        (source / f"{nom}.txt").write_text(nom, encoding="utf-8")
+        git(source, "add", f"{nom}.txt")
+        git(source, "commit", "-q", "-m", f"commit {nom}")
+        oids.append(git(source, "rev-parse", "HEAD"))
+    clone = tmp_path / "clone"
+    git(tmp_path, "clone", "-q", "--depth", "1", source.as_uri(), str(clone))
+    assert git(clone, "rev-parse", "--is-shallow-repository") == "true"
+    assert git(clone, "rev-parse", "HEAD") == oids[2]
+    (clone / "results").mkdir()
+    f = clone / "results" / "fixture.json"
+    f.write_text(json.dumps({"machinery_commit": oids[0]}), encoding="utf-8")
+    r = verif.verifier_fichier(f, clone)
+    assert r["verdict"] != "ancetre_de_head"
+    assert r["verdict"] in ("commit_inconnu", "indetermine")
+    f.write_text(json.dumps({"machinery_commit": oids[2]}), encoding="utf-8")
+    assert verif.verifier_fichier(f, clone)["verdict"] == "ancetre_de_head"

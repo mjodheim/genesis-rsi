@@ -28,7 +28,6 @@ CLE = "machinery_commit"
 SORTIE_PAR_DEFAUT = "results/circuit2_provenance.json"
 DELAI_GIT_S = 30
 
-RE_VALEUR = re.compile(r"[0-9a-fA-F]{4,64}")
 RE_OID = re.compile(r"[0-9a-f]{40}|[0-9a-f]{64}")
 
 
@@ -116,8 +115,8 @@ def _indetermine(valeur, raison, code, resolu=None):
 
 
 def verdict_commit(valeur, depot):
-    if not isinstance(valeur, str) or not RE_VALEUR.fullmatch(valeur):
-        return _indetermine(valeur, "valeur_non_hexadecimale", None)
+    if not isinstance(valeur, str) or not RE_OID.fullmatch(valeur):
+        return _indetermine(valeur, "oid_complet_requis", None)
     code, sortie, _ = _git(
         ["rev-parse", "--verify", "--quiet", valeur + "^{commit}"], depot
     )
@@ -133,6 +132,8 @@ def verdict_commit(valeur, depot):
     resolu = sortie.strip()
     if code != 0 or not RE_OID.fullmatch(resolu):
         return _indetermine(valeur, "rev_parse_inattendu", code)
+    if resolu != valeur:
+        return _indetermine(valeur, "resolution_differente", code, resolu)
     code, _, _ = _git(["merge-base", "--is-ancestor", resolu, "HEAD"], depot)
     if code == 0:
         verdict = "ancetre_de_head"
@@ -152,6 +153,14 @@ def verifier_fichier(chemin, depot):
     depot = Path(depot).absolute()
     candidat = valider_chemin(chemin, depot)
     nom = candidat.relative_to(depot).as_posix()
+    if candidat.stat().st_size == 0:
+        return {
+            "fichier": nom,
+            "verdict": "indetermine",
+            "code_retour": None,
+            "raison": "fichier_vide",
+            "valeurs": [],
+        }
     try:
         with open(candidat, encoding="utf-8") as f:
             donnees = json.load(f)
