@@ -53,17 +53,24 @@ def _check_families(tasks):
 
 
 def _generation(state):
+    # Repli documenté : "own" si la génération a son propre score ; sinon "parent"
+    # (repli sur parent_score, score hérité du parent) ; None si les deux sont absents.
+    # Le repli est tracé pour ne pas confondre les deux sources.
     score, parent = state["score"], state["parent_score"]
     if score is not None:
         solved = score[0]
+        solved_source = "own"
     elif parent is not None:
         solved = parent[0]
+        solved_source = "parent"
     else:
         solved = None
+        solved_source = None
     spent = dict(state["spent"])
     return {
         "index": state["index"],
         "solved": solved,
+        "solved_source": solved_source,
         "spend": spent,
         "spend_total": sum(spent.values()),
         "n_evaluated": len(state["evaluated"]),
@@ -107,7 +114,10 @@ def run(budgets=BUDGETS, seeds=SEEDS, generations=GENERATIONS, tasks=None):
         },
         "learn_task_count": len(tasks),
         "families": sorted({task.family for task in tasks}),
-        "held_out_reads": 0,
+        # Garantie par construction : _check_families refuse toute famille hors LEARN
+        # avant tout appel à run_lineage, donc cette valeur vaut 0 ; ce n'est pas un
+        # comptage de lectures effectives.
+        "held_out_families_in_input": sum(1 for task in tasks if task.family in circuit_tasks.HELD_OUT),
         "runs": runs,
     }
 
@@ -143,7 +153,13 @@ def main(argv=None):
     args = parser.parse_args(argv)
     out = Path(args.out) if args.out else Path(RESULTS_DIR) / DEFAULT_NAME
     try:
-        _resolve_output(out)
+        target = _resolve_output(out)
+        if args.generations < 1:
+            raise LivenessError("--generations doit être >= 1")
+        if not args.seeds:
+            raise LivenessError("--seeds ne doit pas être vide")
+        if target.exists():
+            raise LivenessError(f"fichier de sortie déjà présent : {target}")
         result = run(seeds=args.seeds, generations=args.generations)
         write_result(result, out)
     except Exception as error:
