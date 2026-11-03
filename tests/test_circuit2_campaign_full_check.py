@@ -1,7 +1,7 @@
 """Contrôle en lecture seule de results/circuit2_campaign_full.json.
 
 Hors réseau, sans modèle, aucune écriture, aucun accès à HELD_OUT.
-Le test est ignoré (skip) si le fichier est absent.
+L'absence du fichier fait échouer les tests.
 """
 from __future__ import annotations
 
@@ -18,13 +18,11 @@ EXPECTED_SEEDS = list(range(20))
 EXPECTED_GENERATIONS = 6
 EXPECTED_PLAN_DIGEST = "d6ddfbe570364b0c8df9c46ae979547a61bda327a77ba3a1363a8e3493ac1ad4"
 EXPECTED_MACHINERY_COMMITS = {"245661e0c8d0f2668f74a3f637f22141cae46fd1"}
-FORBIDDEN = ("gain", "success", "yield", "succes", "succès")
-
-pytestmark = pytest.mark.skipif(not FULL.exists(), reason="campagne complète absente")
 
 
 @pytest.fixture(scope="module")
 def data():
+    assert FULL.exists(), "results/circuit2_campaign_full.json absent : le test doit échouer"
     with FULL.open(encoding="utf-8") as handle:
         return json.load(handle)
 
@@ -93,30 +91,15 @@ def test_budget_accounting(data):
             assert generation["spent"] <= generation["limit"], label
 
 
-def _is_count(value):
-    return isinstance(value, int) and not isinstance(value, bool) and 0 <= value <= 20
+def test_total_generations(data):
+    total = sum(len(entry["generations"]) for _, entry in _entries(data))
+    assert total == 480, total  # 4 bras x 20 graines x 6 générations
 
 
-def test_descriptive_counts(data):
-    # Calcul descriptif, sans jugement. Les valeurs exactes seront figées
-    # après observation ; seuls les types entiers et les bornes 0 à 20
-    # sont vérifiés. Des scores ou digests constants resteraient un
-    # résultat négatif visible, pas un résultat favorable.
-    summary = {}
-    for arm, entries in data["arms"].items():
-        score_differs = 0
-        distinct = []
-        for entry in entries:
-            generations = entry["generations"]
-            if generations[0]["score"] != generations[-1]["score"]:
-                score_differs += 1
-            distinct.append(len({g["digest"] for g in generations}))
-        summary[arm] = {
-            "seeds_score_differs": score_differs,
-            "distinct_digests_per_seed": distinct,
-        }
-    for arm, values in summary.items():
-        for key in values:
-            assert not any(word in key.lower() for word in FORBIDDEN), key
-        assert _is_count(values["seeds_score_differs"]), arm
-        assert all(_is_count(n) for n in values["distinct_digests_per_seed"]), arm
+def test_score_shape(data):
+    for arm, entry in _entries(data):
+        for generation in entry["generations"]:
+            label = (arm, entry["seed"], generation["index"])
+            score = generation["score"]
+            assert isinstance(score, list) and len(score) == 2, label
+            assert all(isinstance(v, int) and not isinstance(v, bool) for v in score), label
