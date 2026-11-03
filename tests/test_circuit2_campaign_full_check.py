@@ -103,3 +103,63 @@ def test_score_shape(data):
             score = generation["score"]
             assert isinstance(score, list) and len(score) == 2, label
             assert all(isinstance(v, int) and not isinstance(v, bool) for v in score), label
+
+
+import copy
+
+
+def _check_structure(d):
+    """Contrôle pur de structure ; lève AssertionError en cas d'écart."""
+    assert set(d["arms"]) == EXPECTED_ARMS, "bras inattendus"
+    for arm, entries in d["arms"].items():
+        seeds = sorted(entry["seed"] for entry in entries)
+        assert seeds == EXPECTED_SEEDS, ("graines", arm)
+        for entry in entries:
+            label = (arm, entry["seed"])
+            assert entry["generations_run"] == EXPECTED_GENERATIONS, label
+            generations = entry["generations"]
+            assert len(generations) == EXPECTED_GENERATIONS, label
+            for generation in generations:
+                assert "score" in generation, label
+                assert "transmission" in generation, label
+
+
+def test_check_structure_accepts_committed_data(data):
+    _check_structure(data)
+
+
+def test_check_structure_rejects_missing_arm(data):
+    broken = copy.deepcopy(data)
+    del broken["arms"]["frozen_engine"]
+    with pytest.raises(AssertionError):
+        _check_structure(broken)
+
+
+def test_check_structure_rejects_missing_seed(data):
+    broken = copy.deepcopy(data)
+    broken["arms"]["inherited_lineage"].pop()
+    with pytest.raises(AssertionError):
+        _check_structure(broken)
+
+
+def test_check_structure_rejects_truncated_generations(data):
+    broken = copy.deepcopy(data)
+    entry = broken["arms"]["fixed_procedure"][0]
+    entry["generations"] = entry["generations"][:-1]
+    with pytest.raises(AssertionError):
+        _check_structure(broken)
+
+
+def test_check_structure_rejects_missing_transmission(data):
+    broken = copy.deepcopy(data)
+    del broken["arms"]["random_procedure"][0]["generations"][0]["transmission"]
+    with pytest.raises(AssertionError):
+        _check_structure(broken)
+
+
+def test_generation_keys(data):
+    for arm, entry in _entries(data):
+        for generation in entry["generations"]:
+            label = (arm, entry["seed"], generation["index"])
+            assert "score" in generation, label
+            assert "transmission" in generation, label
