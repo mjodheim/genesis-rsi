@@ -126,6 +126,7 @@ def resolve_output(output, results_dir=RESULTS_DIR):
     candidate = Path(os.path.abspath(candidate))
     if candidate == base or base not in candidate.parents:
         raise ValueError("sortie hors de results/")
+    real_base = Path(os.path.realpath(base))
     current = base
     if current.is_symlink():
         raise ValueError("lien symbolique refusé")
@@ -133,6 +134,12 @@ def resolve_output(output, results_dir=RESULTS_DIR):
         current = current / part
         if current.is_symlink():
             raise ValueError("lien symbolique refusé")
+        real_current = Path(os.path.realpath(current))
+        if real_current == real_base or real_base not in real_current.parents:
+            raise ValueError("sortie hors de results/")
+    real_candidate = Path(os.path.realpath(candidate))
+    if real_candidate == real_base or real_base not in real_candidate.parents:
+        raise ValueError("sortie hors de results/")
     return candidate
 
 

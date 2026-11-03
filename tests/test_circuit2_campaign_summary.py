@@ -139,3 +139,51 @@ def test_full_campaign_coverage():
         assert arms["inherited_lineage"]["seeds"][str(seed)]["library_changed"] is False
     for key in _keys(arms):
         assert not any(word in key.lower() for word in FORBIDDEN), key
+
+
+def test_output_refused_when_final_file_is_symlink(tmp_path, synthetic_fixture):
+    results = tmp_path / "results"
+    results.mkdir()
+    outside = tmp_path / "dehors.json"
+    try:
+        os.symlink(outside, results / "s.json")
+    except (OSError, NotImplementedError):
+        pytest.skip("liens symboliques indisponibles")
+    with pytest.raises(ValueError):
+        module.write_summary(module.summarize(synthetic_fixture), results / "s.json", results)
+    assert not outside.exists()
+
+
+def test_output_refused_when_results_dir_is_symlink(tmp_path, synthetic_fixture):
+    real = tmp_path / "reel"
+    real.mkdir()
+    link = tmp_path / "results"
+    try:
+        os.symlink(real, link)
+    except (OSError, NotImplementedError):
+        pytest.skip("liens symboliques indisponibles")
+    with pytest.raises(ValueError):
+        module.write_summary(module.summarize(synthetic_fixture), link / "s.json", link)
+    assert not (real / "s.json").exists()
+
+
+def test_equivalent_formats_give_same_summary():
+    records = [
+        _rec("L0", "P0", "d0", "d0"),
+        _rec("L1", "P0", "d1", "t1", tlib="L2", tproc="P0"),
+    ]
+    reference = module.summarize({"arms": {"A": {"seeds": {"0": _run(records)}}}})
+    as_list = module.summarize([dict(_run(records), arm="A", seed=0)])
+    without_seeds = module.summarize({"arms": {"A": {"0": _run(records)}}})
+    assert as_list == reference
+    assert without_seeds == reference
+    seed = reference["arms"]["A"]["seeds"]["0"]
+    assert seed["library_digests"] == ["L0", "L1", "L2"]
+    assert seed["adoption"] == [1]
+    assert module._arms_of([dict(_run(records), arm="A")]).keys() == {"A"}
+
+
+def test_unrecognized_structure_refused():
+    for bad in (42, "texte", None, [{"seed": 0}], {"arms": 5}):
+        with pytest.raises(ValueError):
+            module.summarize(bad)
