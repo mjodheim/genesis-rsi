@@ -8,7 +8,6 @@ import random
 
 from genesis import circuit_engine as engine
 from genesis import circuit_meta_lineage as lineage
-from genesis import circuit_procedure as cp  # noqa: F401
 from genesis import circuit_tasks as tasks
 from genesis.circuit_engine import Meter
 
@@ -17,15 +16,6 @@ LEARN = [t for t in tasks.suite(("and", "or", "parity")) if t.inputs <= 3]
 
 def _n_proposals(tb):
     return len(engine.proposals(engine.Engine(), engine.attempt(engine.Engine(), LEARN, tb)))
-
-
-def test_nombre_de_propositions_16_et_500():
-    n16 = _n_proposals(16)
-    n500 = _n_proposals(500)
-    msg = f"propositions observées : tb=16 -> {n16} ; tb=500 -> {n500}"
-    print(msg)
-    assert n16 >= 0, msg
-    assert n500 >= 0, msg
 
 
 def test_step_lineage_comptabilite_et_zero_candidat():

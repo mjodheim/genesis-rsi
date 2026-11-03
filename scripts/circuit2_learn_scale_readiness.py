@@ -5,54 +5,70 @@ vérifié avant un passage à l'échelle : graines 0 à 4, 6 générations.
 État de la copie locale au 2026-11-03.
 
 Ce module ne contient que des données : il n'exécute rien à l'import,
-n'écrit aucun fichier et n'appelle pas le réseau. Il ne conclut pas
-« prêt à l'échelle ».
+n'écrit aucun fichier et n'appelle pas le réseau. Sa synthèse conclut
+à un état non prêt pour ce passage.
 """
 
 VERDICT = [
     {
         "point": 1,
         "constat": (
-            "Sceau du lanceur : experiment/engine/CIRCUIT2/LAUNCHER_SEAL.json "
-            "est absent de la liste des fichiers suivis."
+            "Sceau du lanceur : LAUNCHER_SEAL.json est absent de la liste des "
+            "fichiers suivis sous experiment/engine/CIRCUIT2."
         ),
-        "source": "liste des fichiers suivis de la copie locale",
-        "extrait": "experiment/engine/CIRCUIT2/LAUNCHER_SEAL.json : absent",
+        "source": (
+            "liste lue des fichiers suivis sous experiment/engine/CIRCUIT2 "
+            "(5 fichiers : DEV_DIAGNOSTIC_2026-10-20.md, EXECUTABLES.json, "
+            "PLAN.json, PROCEDURE_PREREG_PLAN.json, RESULT.json)"
+        ),
+        "extrait": "LAUNCHER_SEAL.json : absent de la liste des 5 fichiers lus",
         "statut": "lu",
     },
     {
         "point": 1,
         "constat": (
-            "Message d'échec du lanceur et comportement du refus : non vérifiés, "
-            "l'extrait de scripts/run_circuit2_campaign.py reçu au journal 2712 "
-            "est tronqué avant ce passage."
+            "Le texte lu de scripts/run_circuit2_campaign.py (entier) ne "
+            "contient aucune vérification de sceau ni de sa propre identité : "
+            "il vérifie seulement le plan. Aucune affirmation n'est faite "
+            "que les résultats proviennent d'un lanceur scellé."
         ),
-        "source": "scripts/run_circuit2_campaign.py (extrait tronqué, journal 2712)",
-        "extrait": "",
-        "statut": "non vérifié",
+        "source": "scripts/run_circuit2_campaign.py (lu en entier)",
+        "extrait": (
+            "seul un plan dont le digest est identique à celui du fichier "
+            "publié (CANONICAL_PLAN_PATH, relu et vérifié) est exécuté ; "
+            "aucun repli."
+        ),
+        "statut": "lu",
     },
     {
         "point": 1,
         "constat": (
             "Fixture de tests/test_circuit2_campaign.py créant un sceau "
-            "temporaire : non vérifiée, ce fichier n'a pas été lu ; seule une "
-            "relecture de Codex le suggère."
+            "temporaire : non vérifiée, seuls les 13333 premiers caractères "
+            "du fichier ont été lus, sans fixture de sceau."
         ),
-        "source": "tests/test_circuit2_campaign.py (non lu)",
+        "source": "tests/test_circuit2_campaign.py (lecture partielle, caractères 0 à 13333)",
         "extrait": "",
         "statut": "non vérifié",
     },
     {
         "point": 2,
         "constat": (
-            "inherited_lineage, results/circuit2_campaign_s01_g4.json : valeurs "
-            "rapportées dans la demande, library_digest identique sur 4 générations "
-            "et score [2,-137] constant. Résultat négatif : aucune amélioration du "
-            "premier niveau observée. Lecture non retrouvée au journal fourni."
+            "inherited_lineage, results/circuit2_campaign_s01_g4.json "
+            "(lecture partielle, caractères 0 à 13333) : graines 0 et 1, "
+            "4 générations chacune ; library_digest identique à chaque "
+            "génération ; score et selection_score constants ; "
+            "stopped_early false. Résultat négatif : aucune amélioration "
+            "du premier niveau observée sur ces 2 graines à échelle réduite."
         ),
-        "source": "results/circuit2_campaign_s01_g4.json (lecture absente du contexte fourni)",
-        "extrait": "",
-        "statut": "non vérifié",
+        "source": "results/circuit2_campaign_s01_g4.json (lecture partielle, caractères 0 à 13333)",
+        "extrait": (
+            "graines 0 et 1 ; 4 générations chacune ; library_digest "
+            "03922f7aeef97a5adbbd1c17f1f009cf1342dcb76ffcc04472f71cae0bef05b7 "
+            "identique à chaque génération ; score [2,-137] ; "
+            "selection_score [2,-137] ; stopped_early false"
+        ),
+        "statut": "lu",
     },
     {
         "point": 3,
@@ -67,11 +83,25 @@ VERDICT = [
     {
         "point": 4,
         "constat": (
-            "Docstring du lanceur lue : digest du plan canonique exigé, aucun "
-            "repli ; arrêt après une génération épuisée sans adoption."
+            "Docstring du lanceur lue : seul un plan au digest identique à "
+            "celui du fichier publié est exécuté, sans repli."
         ),
         "source": "docstring de scripts/run_circuit2_campaign.py",
-        "extrait": "digest du plan canonique exigé, aucun repli ; arrêt après une génération épuisée sans adoption",
+        "extrait": (
+            "seul un plan dont le digest est identique à celui du fichier "
+            "publié (CANONICAL_PLAN_PATH, relu et vérifié) est exécuté ; "
+            "aucun repli."
+        ),
+        "statut": "lu",
+    },
+    {
+        "point": 4,
+        "constat": (
+            "Règle d'arrêt lue dans le lanceur : arrêt après une "
+            "génération épuisée sans adoption."
+        ),
+        "source": "docstring de scripts/run_circuit2_campaign.py",
+        "extrait": "le plan impose l'arrêt après une génération épuisée sans adoption",
         "statut": "lu",
     },
     {
@@ -79,10 +109,25 @@ VERDICT = [
         "constat": (
             "Condition bloquante : l'absence du sceau du lanceur est à signaler "
             "à Anthony, hors du périmètre de cette PR. Ce verdict ne conclut "
-            "pas à un « prêt à l'échelle »."
+            "pas à un passage à l'échelle."
         ),
-        "source": "liste des fichiers suivis de la copie locale",
-        "extrait": "experiment/engine/CIRCUIT2/LAUNCHER_SEAL.json : absent",
+        "source": "liste lue des fichiers suivis sous experiment/engine/CIRCUIT2",
+        "extrait": "LAUNCHER_SEAL.json : absent de la liste des 5 fichiers lus",
+        "statut": "lu",
+    },
+    {
+        "point": 6,
+        "constat": (
+            "Non prêt : sceau du lanceur absent de la liste lue, aucune "
+            "amélioration du premier niveau observée sur les graines 0 et 1 "
+            "à échelle réduite, comportement à 6 générations et sur les "
+            "graines 2 à 4 non vérifié."
+        ),
+        "source": "entrées précédentes de ce verdict (points 1 à 5)",
+        "extrait": (
+            "sceau absent ; aucune amélioration du premier niveau observée ; "
+            "6 générations et graines 2 à 4 non vérifiés"
+        ),
         "statut": "lu",
     },
 ]
