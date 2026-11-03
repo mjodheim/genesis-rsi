@@ -44,13 +44,6 @@ class DiagnosticError(Exception):
     """Refus d'écriture ou symbole introuvable."""
 
 
-def _resolve(name):
-    for module in (cp, lineage, engine, liveness):
-        if hasattr(module, name):
-            return getattr(module, name)
-    raise DiagnosticError(f"symbole introuvable : {name}")
-
-
 def _key(vector):
     if isinstance(vector, int):
         return int(vector)
@@ -59,25 +52,28 @@ def _key(vector):
 
 def _universe(sample):
     width = len(cp.TRAITS)
+    if isinstance(sample, bool) or not isinstance(sample, (int, list, tuple)):
+        raise DiagnosticError(f"type de vecteur inattendu : {type(sample).__name__}")
     if isinstance(sample, int):
         return list(range(1 << width))
+    if len(sample) != width or any(not isinstance(bit, int) or bit not in (0, 1) for bit in sample):
+        raise DiagnosticError("vecteur inattendu : longueur différente de len(cp.TRAITS) ou valeur hors {0, 1}")
     make = list if isinstance(sample, list) else tuple
     return [make(bits) for bits in itertools.product((0, 1), repeat=width)]
 
 
 def admission():
-    traits_of = _resolve("traits_of")
-    cap = _resolve("SUPPORT_CAP")
-    max_steps = _resolve("MAX_STEPS")
+    if SUPPORT_RANGE > lineage.SUPPORT_CAP:
+        raise DiagnosticError(
+            f"SUPPORT_RANGE={SUPPORT_RANGE} dépasse lineage.SUPPORT_CAP={lineage.SUPPORT_CAP}"
+        )
     seed = cp.seed_procedure()
     reachable = {}
     calls = 0
     for composed in (False, True):
-        for size in range(max_steps + 1):
-            arity = 2 + min(2, 4 * size // 65)
-            nands = 1 + min(7, 8 * size // 65)
+        for size in range(cp.MAX_STEPS + 1):
             for support in range(SUPPORT_RANGE + 1):
-                vector = traits_of(min(support, cap), arity, nands, composed)
+                vector = lineage._traits(size, support, composed)
                 reachable.setdefault(_key(vector), vector)
                 calls += 1
     universe = _universe(next(iter(reachable.values())))
@@ -91,15 +87,11 @@ def admission():
             "appels": calls,
             "composed": [False, True],
             "support": [0, SUPPORT_RANGE],
-            "support_cap": cap,
-            "taille": [0, max_steps],
+            "support_cap": lineage.SUPPORT_CAP,
+            "taille": [0, cp.MAX_STEPS],
         },
         "vecteurs_total": len(universe),
     }
-
-
-def _plain(score):
-    return list(score) if isinstance(score, (list, tuple)) else score
 
 
 def _beats(score, reference):
@@ -109,20 +101,51 @@ def _beats(score, reference):
         return False
 
 
+def analyse(calls, adopted):
+    """Analyse pure des appels capturés (parent d'abord, puis candidats de la shortlist).
+
+    Règle reprise de circuit_meta_lineage.step : un candidat est adopté si _score(got) > chosen_score
+    (tuple strictement supérieur), et un candidat dont trial['exhausted'] est vrai n'est jamais
+    comparé. Un TypeError de comparaison (scores incomparables) vaut « pas meilleur ».
+    """
+    parent, candidates = calls[0], calls[1:]
+    better = [c["digest"] for c in candidates if not c["exhausted"] and _beats(c["score"], parent["score"])]
+    return {
+        "adoption_stricte_explique_absence": adopted is False and not better,
+        "candidats": candidates,
+        "candidats_strictement_meilleurs": better,
+        "parent": parent,
+        "scores_tous_egaux": bool(candidates) and all(c["score"] == parent["score"] for c in candidates),
+    }
+
+
 def replay():
-    """Rejoue la génération 1 en capturant les scores via une enveloppe en mémoire."""
+    """Rejoue la génération 1 en capturant les scores via une enveloppe en mémoire.
+
+    Lecture de circuit_meta_lineage.step : le premier appel à engine.improved_by est l'étape (a),
+    dont le résultat « after » donne parent_score = _score(after) = engine.measure(after) ; les appels
+    suivants sont les candidats de la shortlist. Le score est donc recalculé par
+    engine.measure(result[1]) : result[1] contient les solutions, pas le score.
+    """
     calls = []
     original = engine.improved_by
 
     def wrapper(*args, **kwargs):
         result = original(*args, **kwargs)
-        procedure = args[4] if len(args) > 4 else kwargs["procedure"]
+        if len(args) > 4:
+            procedure = args[4]
+        elif "procedure" in kwargs:
+            procedure = kwargs["procedure"]
+        else:
+            raise DiagnosticError("procédure absente de l'appel à improved_by")
         info = result[2] if len(result) > 2 else None
+        if not (isinstance(info, dict) and "exhausted" in info):
+            raise DiagnosticError("info sans clé 'exhausted' dans le résultat de improved_by")
         calls.append(
             {
                 "digest": cp.to_record(procedure)["procedure_digest"],
-                "exhausted": info.get("exhausted") if isinstance(info, dict) else None,
-                "score": _plain(result[1]),
+                "exhausted": bool(info["exhausted"]),
+                "score": list(engine.measure(result[1])),
             }
         )
         return result
@@ -150,6 +173,11 @@ def replay():
     digest = observed["library_digest"]
     if not (isinstance(digest, str) and digest.startswith(LIBRARY_PREFIX)):
         gaps.append("library_digest")
+    seed_digest = cp.to_record(cp.seed_procedure())["procedure_digest"]
+    if not calls or calls[0]["digest"] != seed_digest:
+        gaps.append("digest_parent")
+    if len(calls) - 1 != observed["n_evaluated"]:
+        gaps.append("appels_candidats")
     report = {
         "attendu": {**EXPECTED, "library_digest_prefixe": LIBRARY_PREFIX},
         "ecarts": sorted(gaps),
@@ -159,18 +187,10 @@ def replay():
     }
     if gaps:
         return report
-    if not calls:
-        raise DiagnosticError("aucun appel à improved_by capturé")
-    parent, candidates = calls[0], calls[1:]
-    better = [c["digest"] for c in candidates if not c["exhausted"] and _beats(c["score"], parent["score"])]
     report.update(
         {
             "adopted": record.get("adopted"),
-            "adoption_stricte_explique_absence": record.get("adopted") is False and not better,
-            "candidats": candidates,
-            "candidats_strictement_meilleurs": better,
-            "parent": parent,
-            "scores_tous_egaux": all(c["score"] == parent["score"] for c in candidates),
+            **analyse(calls, record.get("adopted")),
         }
     )
     return report

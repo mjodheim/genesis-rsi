@@ -100,3 +100,118 @@ def test_stdout_is_sorted_json_and_out_is_written_once(tmp_path, monkeypatch, ca
     assert target.read_text(encoding="utf-8") == printed
     assert diag.main(["--out", str(target)]) == 1
     assert target.read_text(encoding="utf-8") == printed
+
+
+def _call(digest, score, exhausted=False):
+    return {"digest": digest, "exhausted": exhausted, "score": score}
+
+
+def test_the_real_replay_matches_every_frozen_expectation(replayed):
+    # Si ce test échoue, c'est un résultat négatif à signaler : EXPECTED n'est pas assoupli.
+    frozen = {"n_evaluated": 5, "solved": 5, "evaluations": 21529, "procedure": 813, "synthesis": 12}
+    assert diag.EXPECTED == frozen
+    assert diag.LIBRARY_PREFIX == "2fd1cbc5"
+    result = replayed["result"]
+    assert result["fidelity_ok"] is True
+    assert result["ecarts"] == []
+    for name, value in frozen.items():
+        assert result["observe"][name] == value, name
+    assert result["observe"]["library_digest"].startswith("2fd1cbc5")
+
+
+def test_analyse_with_all_scores_equal():
+    out = diag.analyse([_call("p", [4, -9]), _call("a", [4, -9]), _call("b", [4, -9])], False)
+    assert out["scores_tous_egaux"] is True
+    assert out["candidats_strictement_meilleurs"] == []
+    assert out["adoption_stricte_explique_absence"] is True
+    assert out["parent"]["digest"] == "p"
+    assert [c["digest"] for c in out["candidats"]] == ["a", "b"]
+
+
+def test_analyse_with_one_strictly_better_candidate():
+    calls = [_call("p", [4, -9]), _call("a", [4, -9]), _call("b", [5, -20])]
+    out = diag.analyse(calls, False)
+    assert out["scores_tous_egaux"] is False
+    assert out["candidats_strictement_meilleurs"] == ["b"]
+    assert out["adoption_stricte_explique_absence"] is False
+    assert diag.analyse(calls, True)["adoption_stricte_explique_absence"] is False
+
+
+def test_analyse_ignores_a_better_but_exhausted_candidate():
+    out = diag.analyse([_call("p", [4, -9]), _call("a", [5, -3], exhausted=True)], False)
+    assert out["candidats_strictement_meilleurs"] == []
+    assert out["scores_tous_egaux"] is False
+    assert out["adoption_stricte_explique_absence"] is True
+
+
+def test_analyse_treats_incomparable_scores_as_not_better():
+    out = diag.analyse([_call("p", [4, -9]), _call("a", [4, "x"])], False)
+    assert out["candidats_strictement_meilleurs"] == []
+    assert out["scores_tous_egaux"] is False
+    assert out["adoption_stricte_explique_absence"] is True
+
+
+def test_analyse_without_any_candidate():
+    out = diag.analyse([_call("p", [4, -9])], False)
+    assert out["candidats"] == []
+    assert out["candidats_strictement_meilleurs"] == []
+    assert out["scores_tous_egaux"] is False
+    assert out["adoption_stricte_explique_absence"] is True
+
+
+def _bad_samples():
+    width = len(diag.cp.TRAITS)
+    return ["abc", 1.5, None, True, {0, 1}, [0, 1], (0,) * (width + 1), [0] * (width - 1) + [2], [0] * (width - 1) + ["1"]]
+
+
+@pytest.mark.parametrize("sample", _bad_samples())
+def test_universe_refuses_unexpected_types_and_values(sample):
+    with pytest.raises(diag.DiagnosticError):
+        diag._universe(sample)
+
+
+def test_universe_accepts_int_list_and_tuple():
+    width = len(diag.cp.TRAITS)
+    assert len(diag._universe(0)) == 1 << width
+    as_lists = diag._universe([0] * width)
+    as_tuples = diag._universe((0,) * width)
+    assert len(as_lists) == len(as_tuples) == 1 << width
+    assert all(isinstance(vector, list) for vector in as_lists)
+    assert all(isinstance(vector, tuple) for vector in as_tuples)
+
+
+def test_replay_refuses_a_result_without_exhausted_or_a_call_without_procedure(monkeypatch):
+    monkeypatch.setattr(engine, "improved_by", lambda *args, **kwargs: ("courant", "solutions", {}))
+    monkeypatch.setattr(diag.liveness, "run", lambda **kwargs: engine.improved_by(1, 2, 3, 4, "p", None))
+    with pytest.raises(diag.DiagnosticError):
+        diag.replay()
+    monkeypatch.setattr(diag.liveness, "run", lambda **kwargs: engine.improved_by(1, 2, 3, 4))
+    with pytest.raises(diag.DiagnosticError):
+        diag.replay()
+
+
+def test_admission_recounts_with_cp_max_steps(monkeypatch):
+    monkeypatch.setattr(diag.cp, "MAX_STEPS", 3)
+    monkeypatch.setattr(diag.cp, "run", lambda procedure, vector: (0, False, None))
+    seen = []
+    real = diag.lineage._traits
+
+    def spy(size, support, composed):
+        seen.append((size, support, composed))
+        return real(size, support, composed)
+
+    monkeypatch.setattr(diag.lineage, "_traits", spy)
+    out = diag.admission()
+    bound = out["borne_enumeration"]
+    assert len(seen) == 2 * 4 * (diag.SUPPORT_RANGE + 1)
+    assert bound["appels"] == len(seen)
+    assert bound["taille"] == [0, 3]
+    assert {size for size, _, _ in seen} == {0, 1, 2, 3}
+    assert {composed for _, _, composed in seen} == {False, True}
+    assert {support for _, support, _ in seen} == set(range(diag.SUPPORT_RANGE + 1))
+
+
+def test_admission_refuses_a_support_range_above_the_cap(monkeypatch):
+    monkeypatch.setattr(diag, "SUPPORT_RANGE", diag.lineage.SUPPORT_CAP + 1)
+    with pytest.raises(diag.DiagnosticError):
+        diag.admission()
