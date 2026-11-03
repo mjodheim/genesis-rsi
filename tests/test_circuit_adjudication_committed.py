@@ -122,6 +122,22 @@ def test_structure(adj, data, plan):
     assert data["generations"] == budgets["generations"]
 
 
+def test_null_result_recorded_as_is(data):
+    rows = data["rows"]
+    yields = [row["held_out_yield"] for row in rows]
+    fingerprints = {row["library_fingerprint"] for row in rows}
+    pairs = {(row["arm"], row["seed"]) for row in rows}
+    expected = {(arm, seed) for arm in data["arms"] for seed in data["seeds"]}
+    observed = (
+        f"lignes={len(rows)} paires={sorted(pairs)!r} held_out_yield={yields!r} "
+        f"library_fingerprint_distinctes={sorted(fingerprints)!r}"
+    )
+    assert pairs == expected, observed
+    assert len(rows) == len(expected), observed
+    assert all(value == 0 for value in yields), observed
+    assert len(fingerprints) == 1, observed
+
+
 def test_replay_random_procedure_seed0(adj, fcp, data):
     row = next(
         r for r in data["rows"] if r["arm"] == "random_procedure" and r["seed"] == 0
