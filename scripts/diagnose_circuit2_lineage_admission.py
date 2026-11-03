@@ -70,6 +70,10 @@ def admission():
     seed = cp.seed_procedure()
     reachable = {}
     calls = 0
+    # Le support est énuméré à partir de 0 : step() utilise _evidence_support (nombre d'appels
+    # justes de la candidate sur les composants observés), qui peut valoir 0, puis _traits le
+    # plafonne à SUPPORT_CAP. La taille minimale réelle de cp (len(candidate.steps)) n'a pas été
+    # lue : la taille démarre à 0 par prudence, d'où la sur-approximation signalée plus bas.
     for composed in (False, True):
         for size in range(cp.MAX_STEPS + 1):
             for support in range(SUPPORT_RANGE + 1):
@@ -88,6 +92,10 @@ def admission():
             "composed": [False, True],
             "support": [0, SUPPORT_RANGE],
             "support_cap": lineage.SUPPORT_CAP,
+            "sur_approximation": (
+                "taille minimale atteignable non vérifiée : les clés atteignables_* sont donc des bornes "
+                "supérieures et seule une valeur 0 est une conclusion sûre"
+            ),
             "taille": [0, cp.MAX_STEPS],
         },
         "vecteurs_total": len(universe),
@@ -107,6 +115,10 @@ def analyse(calls, adopted):
     Règle reprise de circuit_meta_lineage.step : un candidat est adopté si _score(got) > chosen_score
     (tuple strictement supérieur), et un candidat dont trial['exhausted'] est vrai n'est jamais
     comparé. Un TypeError de comparaison (scores incomparables) vaut « pas meilleur ».
+
+    regle_coherente vaut bool(adopted) == bool(better). Si regle_coherente est False, c'est un
+    défaut de l'outil (règle mal reprise ou capture erronée) et non un constat sur la lignée ;
+    adoption_stricte_explique_absence n'a alors pas de valeur d'interprétation sur la lignée.
     """
     parent, candidates = calls[0], calls[1:]
     better = [c["digest"] for c in candidates if not c["exhausted"] and _beats(c["score"], parent["score"])]
@@ -115,6 +127,7 @@ def analyse(calls, adopted):
         "candidats": candidates,
         "candidats_strictement_meilleurs": better,
         "parent": parent,
+        "regle_coherente": bool(adopted) == bool(better),
         "scores_tous_egaux": bool(candidates) and all(c["score"] == parent["score"] for c in candidates),
     }
 
@@ -123,10 +136,17 @@ def replay():
     """Rejoue la génération 1 en capturant les scores via une enveloppe en mémoire.
 
     Lecture de circuit_meta_lineage.step : le premier appel à engine.improved_by est l'étape (a),
-    dont le résultat « after » donne parent_score = _score(after) = engine.measure(after) ; les appels
-    suivants sont les candidats de la shortlist. Le score est donc recalculé par
-    engine.measure(result[1]) : result[1] contient les solutions, pas le score.
+    dont le résultat « after » donne parent_score = _score(after) ; les appels suivants sont les
+    candidats de la shortlist. Le score est donc recalculé par lineage._score(result[1]), la même
+    fonction que step() : engine.measure renvoie (solved, evaluations), alors que _score compare
+    (solved, -evaluations), et result[1] contient les solutions, pas le score.
     """
+    # Lignes de step() lues : `library, after, info = engine.improved_by(...)` puis
+    # `parent_score = _score(after)` ; pour les candidats, `_, got, trial = engine.improved_by(...)`
+    # puis `_score(got) > chosen_score`. Cela justifie lineage._score(result[1]), result[1] jouant
+    # le rôle de `after` ou de `got` ; engine.measure n'est pas utilisé car son second terme diffère.
+    # chosen_score évolue au fil des candidats, mais le premier candidat meilleur que le parent
+    # entraîne forcément l'adoption, d'où adopted == bool(better) si aucune évaluation n'est épuisée.
     calls = []
     original = engine.improved_by
 
@@ -145,7 +165,7 @@ def replay():
             {
                 "digest": cp.to_record(procedure)["procedure_digest"],
                 "exhausted": bool(info["exhausted"]),
-                "score": list(engine.measure(result[1])),
+                "score": list(lineage._score(result[1])),
             }
         )
         return result

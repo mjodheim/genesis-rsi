@@ -21,6 +21,7 @@ SCORE_KEYS = (
     "candidats",
     "candidats_strictement_meilleurs",
     "parent",
+    "regle_coherente",
     "scores_tous_egaux",
 )
 
@@ -106,17 +107,59 @@ def _call(digest, score, exhausted=False):
     return {"digest": digest, "exhausted": exhausted, "score": score}
 
 
+def _frozen_generation():
+    with open(LIVENESS_JSON, encoding="utf-8") as handle:
+        data = json.load(handle)
+    runs = [
+        run
+        for run in data["runs"]
+        if run["task_budget"] == 256 and run["seed"] == 100 and run["per_generation_limit"] == 80000
+    ]
+    assert len(runs) == 1
+    record = runs[0]["generations"][0]
+    assert record["index"] == 1
+    return record
+
+
 def test_the_real_replay_matches_every_frozen_expectation(replayed):
     # Si ce test échoue, c'est un résultat négatif à signaler : EXPECTED n'est pas assoupli.
-    frozen = {"n_evaluated": 5, "solved": 5, "evaluations": 21529, "procedure": 813, "synthesis": 12}
+    record = _frozen_generation()
+    spend = record["spend"]
+    frozen = {
+        "n_evaluated": record["n_evaluated"],
+        "solved": record["solved"],
+        "evaluations": spend["evaluations"],
+        "procedure": spend["procedure"],
+        "synthesis": spend["synthesis"],
+    }
     assert diag.EXPECTED == frozen
-    assert diag.LIBRARY_PREFIX == "2fd1cbc5"
+    assert record["library_digest"].startswith(diag.LIBRARY_PREFIX)
     result = replayed["result"]
     assert result["fidelity_ok"] is True
     assert result["ecarts"] == []
-    for name, value in frozen.items():
-        assert result["observe"][name] == value, name
-    assert result["observe"]["library_digest"].startswith("2fd1cbc5")
+    assert result["regle_coherente"] is True, result
+    assert result["observe"] == {**frozen, "library_digest": record["library_digest"]}
+
+
+def test_analyse_rule_is_coherent_when_not_adopted_without_better():
+    out = diag.analyse([_call("p", [4, -9]), _call("a", [4, -9])], False)
+    assert out["regle_coherente"] is True
+
+
+def test_analyse_rule_is_coherent_when_adopted_with_a_better_candidate():
+    out = diag.analyse([_call("p", [4, -9]), _call("a", [5, -3])], True)
+    assert out["candidats_strictement_meilleurs"] == ["a"]
+    assert out["regle_coherente"] is True
+
+
+def test_analyse_rule_is_incoherent_when_adopted_without_better():
+    out = diag.analyse([_call("p", [4, -9]), _call("a", [4, -9])], True)
+    assert out["regle_coherente"] is False
+
+
+def test_analyse_rule_is_incoherent_when_not_adopted_with_a_better_candidate():
+    out = diag.analyse([_call("p", [4, -9]), _call("a", [5, -3])], False)
+    assert out["regle_coherente"] is False
 
 
 def test_analyse_with_all_scores_equal():
@@ -206,6 +249,9 @@ def test_admission_recounts_with_cp_max_steps(monkeypatch):
     assert len(seen) == 2 * 4 * (diag.SUPPORT_RANGE + 1)
     assert bound["appels"] == len(seen)
     assert bound["taille"] == [0, 3]
+    assert "taille minimale atteignable non vérifiée" in bound["sur_approximation"]
+    assert "bornes supérieures" in bound["sur_approximation"]
+    assert "seule une valeur 0 est une conclusion sûre" in bound["sur_approximation"]
     assert {size for size, _, _ in seen} == {0, 1, 2, 3}
     assert {composed for _, _, composed in seen} == {False, True}
     assert {support for _, support, _ in seen} == set(range(diag.SUPPORT_RANGE + 1))
@@ -215,3 +261,24 @@ def test_admission_refuses_a_support_range_above_the_cap(monkeypatch):
     monkeypatch.setattr(diag, "SUPPORT_RANGE", diag.lineage.SUPPORT_CAP + 1)
     with pytest.raises(diag.DiagnosticError):
         diag.admission()
+
+
+def test_captured_scores_use_the_step_score_shape(monkeypatch):
+    recorded = []
+    real = engine.improved_by
+
+    def recorder(*args, **kwargs):
+        result = real(*args, **kwargs)
+        recorded.append(result)
+        return result
+
+    monkeypatch.setattr(engine, "improved_by", recorder)
+    result = diag.replay()
+    assert result["fidelity_ok"] is True, result
+    captured = [result["parent"], *result["candidats"]]
+    assert len(captured) == len(recorded)
+    for call, raw in zip(captured, recorded):
+        expected = list(diag.lineage._score(raw[1]))
+        assert len(call["score"]) == 2
+        assert call["score"][1] <= 0
+        assert call["score"] == expected
