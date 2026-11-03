@@ -187,3 +187,49 @@ def test_unrecognized_structure_refused():
     for bad in (42, "texte", None, [{"seed": 0}], {"arms": 5}):
         with pytest.raises(ValueError):
             module.summarize(bad)
+
+
+def test_existing_output_not_overwritten(tmp_path, synthetic_fixture):
+    results = tmp_path / "results"
+    results.mkdir()
+    first = module.summarize(synthetic_fixture)
+    target = module.write_summary(first, results / "s.json", results)
+    original = target.read_bytes()
+    different = {"arms": {"B": {"seeds": {"0": _run([_rec("L9", "P9", "d9", "d9")])}}}}
+    other = module.summarize(different)
+    assert other != first
+    with pytest.raises(FileExistsError):
+        module.write_summary(other, results / "s.json", results)
+    assert target.read_bytes() == original
+
+
+@pytest.mark.parametrize(
+    ("digest", "tdigest"),
+    [(None, "d0"), ("d0", None), (None, None)],
+    ids=["digest_absent", "transmission_digest_absent", "les_deux_absents"],
+)
+def test_missing_digest_gives_non_deductible(digest, tdigest):
+    records = [
+        _rec("L0", "P0", digest, tdigest),
+        _rec("L0", "P0", "d1", "d1"),
+    ]
+    run = _run(records)
+    assert module.summarize_run(run)["adoption"] == "non_deductible"
+    data = {"arms": {"A": {"seeds": {"0": run}}}}
+    summary = module.summarize(data)["arms"]["A"]["summary"]
+    assert summary["seeds_adoption_non_deductible"] == 1
+    assert summary["seeds_adoption"] == 0
+
+
+@pytest.mark.parametrize("missing_first", [True, False], ids=["manquant_avant", "manquant_apres"])
+def test_mixed_missing_digest_and_apparent_adoption(missing_first):
+    neutral = _rec("L0", "P0", "d0", "d0")
+    missing = _rec("L0", "P0", None, "d0")
+    apparent = _rec("L0", "P0", "d1", "t1")
+    records = [neutral, missing, apparent] if missing_first else [neutral, apparent, missing]
+    run = _run(records)
+    assert module.summarize_run(run)["adoption"] == "non_deductible"
+    data = {"arms": {"A": {"seeds": {"0": run}}}}
+    summary = module.summarize(data)["arms"]["A"]["summary"]
+    assert summary["seeds_adoption_non_deductible"] == 1
+    assert summary["seeds_adoption"] == 0
