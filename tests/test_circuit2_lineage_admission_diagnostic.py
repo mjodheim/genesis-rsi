@@ -15,6 +15,7 @@ except ImportError:
 from genesis import circuit_engine as engine
 
 LIVENESS_JSON = Path(__file__).resolve().parent.parent / "results" / "circuit2_lineage_liveness.json"
+DIAGNOSTIC_JSON = Path(__file__).resolve().parent.parent / "results" / "circuit2_lineage_admission_diagnostic.json"
 SCORE_KEYS = (
     "adopted",
     "adoption_stricte_explique_absence",
@@ -282,3 +283,13 @@ def test_captured_scores_use_the_step_score_shape(monkeypatch):
         assert len(call["score"]) == 2
         assert call["score"][1] <= 0
         assert call["score"] == expected
+
+
+def test_the_published_diagnostic_json_matches_the_current_state(replayed):
+    with open(DIAGNOSTIC_JSON, encoding="utf-8") as handle:
+        data = json.load(handle)
+    assert data["schema"] == diag.SCHEMA
+    assert diag.admission() == data["admission"]
+    assert replayed["result"] == data["rejeu"]
+    assert data["rejeu"]["fidelity_ok"] is True
+    assert data["rejeu"]["regle_coherente"] is True
