@@ -2,6 +2,9 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
+from pathlib import Path
 
 import pytest
 
@@ -130,3 +133,24 @@ def test_baseline_with_real_measure():
     assert isinstance(result, int) and not isinstance(result, bool)
     assert result == solved
     assert result != "indisponible"
+
+
+def test_real_script_emits_sorted_json_on_stdout():
+    root = Path(__file__).resolve().parent.parent
+    script = root / "scripts" / "circuit2_budget16_diagnostic.py"
+    proc = subprocess.run(
+        [sys.executable, str(script)],
+        cwd=str(root),
+        capture_output=True,
+        text=True,
+        timeout=600,
+        check=False,
+    )
+    detail = f"returncode={proc.returncode!r}\nstdout={proc.stdout!r}\nstderr={proc.stderr!r}"
+    assert proc.returncode == 0, detail
+    assert proc.stdout.strip() != "", detail
+    data = json.loads(proc.stdout)
+    assert proc.stdout == json.dumps(data, indent=2, sort_keys=True) + "\n", detail
+    assert data["parametres"] == {"budget": 16, "generations": 1, "graine": 0, "limite": 80000}, detail
+    baseline = data["baseline_resolues"]
+    assert isinstance(baseline, int) and not isinstance(baseline, bool), detail
