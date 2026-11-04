@@ -72,7 +72,9 @@ def _exhausted(call):
 def _baseline(calls):
     try:
         measured = engine.measure(calls[0]["args"][3])
-        if isinstance(measured, dict):
+        if isinstance(measured, (tuple, list)):
+            measured = measured[0] if measured else UNAVAILABLE
+        elif isinstance(measured, dict):
             measured = measured["solved"]
         else:
             measured = getattr(measured, "solved", measured)

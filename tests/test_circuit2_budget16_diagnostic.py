@@ -17,14 +17,18 @@ def _install(monkeypatch, outputs):
     queue = list(outputs)
     count = len(queue)
     monkeypatch.setattr(engine, "improved_by", lambda *args, **kwargs: ("courant", *queue.pop(0)))
-    monkeypatch.setattr(engine, "measure", lambda tasks: {"solved": 7})
+    monkeypatch.setattr(engine, "measure", lambda tasks: (7, 123))
     monkeypatch.setattr(c16.lineage, "_score", lambda solutions: solutions)
 
+    captured = {}
+
     def fake_run(**kwargs):
+        captured.update(kwargs)
         for _ in range(count):
             engine.improved_by(1, 2, 3, "taches")
 
     monkeypatch.setattr(c16.liveness, "run", fake_run)
+    return captured
 
 
 def _full():
@@ -109,3 +113,20 @@ def test_stdout_is_sorted_json_only(monkeypatch, capsys):
     captured = capsys.readouterr()
     assert captured.err == ""
     assert captured.out == json.dumps(json.loads(captured.out), indent=2, sort_keys=True) + "\n"
+
+
+def test_replay_passes_exact_kwargs(monkeypatch):
+    captured = _install(monkeypatch, [([4, -9], _full())])
+    c16.run_replay()
+    assert captured == {"budgets": ((16, 80000),), "seeds": (0,), "generations": 1}
+
+
+def test_baseline_with_real_measure():
+    # Vrai engine.measure, sans monkeypatch : jeu de tâches vide, le plus simple sans dépendre d'autres noms.
+    tasks = []
+    solved = engine.measure(tasks)[0]
+    calls = [{"args": (1, 2, 3, tasks), "result": None}]
+    result = c16._baseline(calls)
+    assert isinstance(result, int) and not isinstance(result, bool)
+    assert result == solved
+    assert result != "indisponible"
