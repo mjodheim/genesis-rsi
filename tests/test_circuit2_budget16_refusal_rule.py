@@ -57,7 +57,7 @@ def test_support_traits_are_all_zero():
         assert [traits[i] for i in indices] == [0, 0, 0]
 
 
-def test_support_at_least_2_is_the_cause_of_the_refusal():
+def test_forcing_support_at_least_2_lifts_the_refusal_on_these_candidates():
     seed = cproc.seed_procedure()
     i_support = _index("support>=2")
     i_arity = _index("arity>=4")
@@ -71,4 +71,17 @@ def test_support_at_least_2_is_the_cause_of_the_refusal():
         traits[i_support] = 1
         priority, admitted, _ = cproc.run(seed, tuple(traits))
         assert admitted is True
+        assert priority == PRIORITE_APRES_MUTATION
+
+
+def test_arity_at_least_4_blocks_admission_even_with_support_at_least_2():
+    seed = cproc.seed_procedure()
+    i_support = _index("support>=2")
+    i_arity = _index("arity>=4")
+    for candidate in _candidates():
+        traits = list(_traits(candidate))
+        traits[i_support] = 1
+        traits[i_arity] = 1
+        priority, admitted, _ = cproc.run(seed, tuple(traits))
+        assert admitted is False
         assert priority == PRIORITE_APRES_MUTATION
