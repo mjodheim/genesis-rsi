@@ -7,6 +7,7 @@ main : tout comptage et toute valeur proviennent de ces fichiers.
 
 from __future__ import annotations
 
+import ast
 import argparse
 import json
 from pathlib import Path
@@ -20,6 +21,30 @@ NO_ARM = "(bras non renseigné)"
 ROW_KEYS = ("rows", "results", "records", "runs")
 META_KEYS = ("scale", "task_budget", "plan_digest", "machinery_commit")
 FP_TOKENS = ("fingerprint", "digest", "hash", "sha")
+
+# Raison d'arrêt anticipé : valeur lue dans STOP_REASON de
+# scripts/run_circuit2_campaign.py, extraite par analyse syntaxique à
+# l'exécution (le module n'est pas importé, rien n'est recopié à la main).
+STOP_REASON_SOURCE = Path(__file__).resolve().parent / "run_circuit2_campaign.py"
+
+
+def _frozen_stop_reason():
+    try:
+        tree = ast.parse(STOP_REASON_SOURCE.read_text(encoding="utf-8"))
+    except (OSError, SyntaxError) as exc:
+        raise ValueError(f"STOP_REASON illisible dans {STOP_REASON_SOURCE.name} : {exc}") from exc
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            targets, value = node.targets, node.value
+        elif isinstance(node, ast.AnnAssign) and node.value is not None:
+            targets, value = [node.target], node.value
+        else:
+            continue
+        if any(isinstance(t, ast.Name) and t.id == "STOP_REASON" for t in targets):
+            if isinstance(value, ast.Constant) and isinstance(value.value, str):
+                return value.value
+            break
+    raise ValueError(f"STOP_REASON : constante chaîne introuvable dans {STOP_REASON_SOURCE.name}")
 
 
 def _check_rows(rows):
@@ -171,22 +196,41 @@ def validate_against_plan(data, plan):
         errors.append("plan : budgets absent")
     else:
         for key in ("task_budget", "generations", "per_generation_limit"):
-            found, value = _find(data, key)
+            if key == "generations":
+                found = isinstance(data, dict) and key in data
+                value = data[key] if found else None
+            else:
+                found, value = _find(data, key)
             if key not in budgets:
                 errors.append(f"plan : budgets.{key} absent")
             elif type(budgets[key]) is not int:
                 errors.append(f"plan : budgets.{key} doit être un entier")
+            elif key == "generations" and not found:
+                continue
             elif not found or type(value) is not int or value != budgets[key]:
                 errors.append(f"{key} de l'adjudication différent de budgets du plan")
         if type(budgets.get("generations")) is int:
+            planned = budgets["generations"]
             for name, rows in arms.items():
                 for index, row in enumerate(rows):
                     value = row.get("generations")
-                    if type(value) is not int or value != budgets["generations"]:
+                    where = f"bras {name}, ligne {index} : "
+                    if type(value) is not int or not 1 <= value <= planned:
                         errors.append(
-                            f"bras {name}, ligne {index} : generations absent, "
-                            "non entier ou différent de budgets.generations du plan"
+                            where + "generations absent, non entier ou hors de "
+                            "1..budgets.generations du plan"
                         )
+                    elif value < planned:
+                        try:
+                            expected_reason = _frozen_stop_reason()
+                        except ValueError as exc:
+                            errors.append(where + str(exc))
+                            continue
+                        if row.get("stop_reason") != expected_reason:
+                            errors.append(
+                                where + "arrêt anticipé (generations < budgets.generations) "
+                                f"exige stop_reason == {expected_reason!r}"
+                            )
     criterion = plan.get("criterion")
     if not isinstance(criterion, dict) or "thresholds" not in criterion or "text" not in criterion:
         errors.append("plan : criterion.thresholds et criterion.text requis")

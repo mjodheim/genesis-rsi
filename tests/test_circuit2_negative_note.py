@@ -245,6 +245,43 @@ def test_local_generations_without_global_metadata_accepted():
     assert "generations" not in data
     note.validate_against_plan(data, _plan())
 
+def _early_stop_data(reason):
+    data = _data()
+    data["rows"][0]["generations"] = 1
+    data["rows"][0]["stop_reason"] = reason
+    return data
+
+
+def test_early_stop_with_frozen_reason_accepted():
+    note.validate_against_plan(_early_stop_data(note._frozen_stop_reason()), _plan())
+
+
+def test_early_stop_with_matching_global_generations_accepted():
+    data = _early_stop_data(note._frozen_stop_reason())
+    data["generations"] = _plan()["budgets"]["generations"]
+    note.validate_against_plan(data, _plan())
+
+
+def test_early_stop_with_other_reason_refused_without_output(tmp_path):
+    data = _early_stop_data(note._frozen_stop_reason() + "_autre")
+    src, plan_file, prov_file = _write_input(tmp_path, data)
+    dst = tmp_path / "sous_dossier" / "sortie.md"
+    with pytest.raises(ValueError, match="stop_reason"):
+        note.run(src, dst, plan_file, prov_file)
+    assert not dst.exists()
+    assert not dst.parent.exists()
+
+
+def test_zero_generations_refused_without_output(tmp_path):
+    data = _data()
+    data["rows"][0]["generations"] = 0
+    src, plan_file, prov_file = _write_input(tmp_path, data)
+    dst = tmp_path / "sous_dossier" / "sortie.md"
+    with pytest.raises(ValueError):
+        note.run(src, dst, plan_file, prov_file)
+    assert not dst.exists()
+    assert not dst.parent.exists()
+
 def test_displayed_threshold_comes_from_plan():
     base = note.render(_data(), _plan(), _prov())
     assert '{"min_points": 11, "min_seeds": 3}' in base
