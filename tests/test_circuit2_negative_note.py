@@ -534,3 +534,13 @@ def test_real_files_render_with_provenance_full():
     text = note.render(data, plan, provenance, prov_full)
     assert entry["valeurs"][0]["commit_resolu"] in text
     assert 'verdict "ancetre_de_head"' in text
+
+
+NOTE_FULL = ROOT / "docs" / "CIRCUIT2_RESULTAT_NUL_2026-11-04_PROVENANCE_COMPLETE.md"
+
+
+def test_committed_full_provenance_note_matches_run(tmp_path):
+    dst = tmp_path / "sortie.md"
+    note.run(SOURCE, dst, PLAN, PROVENANCE, provenance_full_path=PROVENANCE_FULL)
+    assert NOTE_FULL.is_file()
+    assert dst.read_bytes() == NOTE_FULL.read_bytes()
