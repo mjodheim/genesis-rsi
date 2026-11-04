@@ -8,7 +8,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "circuit2_negative_note.py"
-NOTE = ROOT / "docs" / "CIRCUIT2_RESULTAT_NUL_2026-11-04.md"
+NOTE = ROOT / "docs" / "CIRCUIT2_RESULTAT_NUL_2026-11-04_CORRIGE.md"
+OLD_NOTE = ROOT / "docs" / "CIRCUIT2_RESULTAT_NUL_2026-11-04.md"
 SOURCE = ROOT / "results" / "circuit2_adjudication_full.json"
 PLAN = ROOT / "experiment" / "engine" / "CIRCUIT2" / "PROCEDURE_PREREG_PLAN.json"
 PROVENANCE = ROOT / "results" / "circuit2_provenance.json"
@@ -20,6 +21,12 @@ SEEDS = [0, 1, 2]
 _spec = importlib.util.spec_from_file_location("circuit2_negative_note", SCRIPT)
 note = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(note)
+
+
+def test_old_note_kept_as_trace_of_provenance_defect():
+    assert OLD_NOTE.is_file()
+    text = OLD_NOTE.read_text(encoding="utf-8")
+    assert "commit résolu non vérifié" in text
 
 
 def _data(yields_by_arm=None, **meta):
@@ -62,18 +69,37 @@ def _plan():
     }
 
 
-def _prov():
+CAMPAIGN_COMMIT = "aaaaaaaa" + "0" * 32
+PILOT_COMMIT = "bbbbbbbb" + "0" * 32
+
+
+def _prov_value(commit, verdict="ok"):
+    return {"code_retour": 0, "commit_resolu": commit, "valeur": "v", "verdict": verdict}
+
+
+def _prov(campaign_values=None, pilot_values=None):
+    if campaign_values is None:
+        campaign_values = [_prov_value(CAMPAIGN_COMMIT)]
+    if pilot_values is None:
+        pilot_values = [_prov_value(PILOT_COMMIT)]
     return {
-        "files": {
-            "results/circuit2_campaign_full.json": {
-                "resolved_commit": "aaaaaaaa" + "0" * 32,
+        "fichiers_lus": [
+            "results/circuit2_campaign_full.json",
+            "results/circuit2_adjudication_s0-1_g6.json",
+        ],
+        "head": "h" * 40,
+        "verdicts": [
+            {
+                "fichier": "results/circuit2_campaign_full.json",
                 "verdict": "verdict-campagne",
+                "valeurs": campaign_values,
             },
-            "results/circuit2_adjudication_s0-1_g6.json": {
-                "resolved_commit": "bbbbbbbb" + "0" * 32,
+            {
+                "fichier": "results/circuit2_adjudication_s0-1_g6.json",
                 "verdict": "verdict-pilote",
+                "valeurs": pilot_values,
             },
-        }
+        ],
     }
 
 
@@ -300,8 +326,8 @@ def test_displayed_threshold_comes_from_plan():
 
 def test_provenance_section_from_provenance_file():
     text = note.render(_data(), _plan(), _prov())
-    campaign = 'commit résolu "aaaaaaaa' + "0" * 32 + '", verdict "verdict-campagne"'
-    pilot = 'commit résolu "bbbbbbbb' + "0" * 32 + '", verdict "verdict-pilote"'
+    campaign = f'commit résolu "{CAMPAIGN_COMMIT}", verdict "verdict-campagne"'
+    pilot = f'commit résolu "{PILOT_COMMIT}", verdict "verdict-pilote"'
     assert campaign in text
     assert pilot in text
     assert "contenu non relu ici" in text
@@ -309,6 +335,68 @@ def test_provenance_section_from_provenance_file():
     assert 'machinery_commit du plan (lu dans le plan) : "' + "m" * 40 + '"' in text
     assert "recalcul du digest : non vérifié" in text
     _check_policy(text)
+
+
+def test_single_commit_displayed():
+    text = note.render(_data(), _plan(), _prov())
+    assert f'commit résolu "{CAMPAIGN_COMMIT}", verdict' in text
+    assert "valeurs multiples" not in text
+
+
+def test_repeated_identical_commit_is_single():
+    values = [_prov_value(CAMPAIGN_COMMIT), _prov_value(CAMPAIGN_COMMIT)]
+    text = note.render(_data(), _plan(), _prov(campaign_values=values))
+    assert f'commit résolu "{CAMPAIGN_COMMIT}", verdict' in text
+    assert "valeurs multiples" not in text
+
+
+def test_multiple_commits_all_displayed_and_flagged():
+    first, second = "f" * 40, "1" * 40
+    values = [_prov_value(first), _prov_value(second), _prov_value(first)]
+    text = note.render(_data(), _plan(), _prov(campaign_values=values))
+    expected = (
+        "commit résolu valeurs multiples : "
+        + json.dumps([second, first])
+        + ', verdict "verdict-campagne"'
+    )
+    assert expected in text
+    assert first in text and second in text
+
+
+@pytest.mark.parametrize(
+    "values",
+    [
+        [],
+        [{"commit_resolu": ""}],
+        [{"commit_resolu": None}],
+        [{"commit_resolu": 12345}],
+        [{"commit_resolu": ["x"]}],
+        [{"code_retour": 0}],
+        ["pas un dict"],
+        "pas une liste",
+    ],
+)
+def test_empty_or_non_string_commits_are_not_verified(values):
+    text = note.render(_data(), _plan(), _prov(campaign_values=values))
+    assert 'commit résolu non vérifié, verdict "verdict-campagne"' in text
+
+
+def test_commits_helper_without_valeurs_key():
+    assert note._commits({"verdict": "v"}) == note.NOT_VERIFIED
+
+
+def test_absent_entry_keeps_absent_wording():
+    text = note.render(_data(), _plan(), {"fichiers_lus": [], "head": "h", "verdicts": []})
+    assert "absent de la provenance, non vérifié" in text
+
+
+def test_real_provenance_commits_rendered():
+    data = json.loads(SOURCE.read_text(encoding="utf-8"))
+    plan = json.loads(PLAN.read_text(encoding="utf-8"))
+    provenance = json.loads(PROVENANCE.read_text(encoding="utf-8"))
+    text = note.render(data, plan, provenance)
+    assert "245661e0c8d0f2668f74a3f637f22141cae46fd1" in text
+    assert "e60a37e1913dc95841777570fbdc00a438477e9f" in text
 
 
 def test_committed_adjudication_valid_against_frozen_plan():

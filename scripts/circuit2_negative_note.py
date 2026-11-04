@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 
 DEFAULT_INPUT = Path("results/circuit2_adjudication_full.json")
-DEFAULT_OUTPUT = Path("docs/CIRCUIT2_RESULTAT_NUL_2026-11-04.md")
+DEFAULT_OUTPUT = Path("docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_CORRIGE.md")
 DEFAULT_PLAN = Path("experiment/engine/CIRCUIT2/PROCEDURE_PREREG_PLAN.json")
 DEFAULT_PROVENANCE = Path("results/circuit2_provenance.json")
 ABSENT = "absent du fichier"
@@ -326,6 +326,26 @@ def _pick(entry, token):
     return NOT_VERIFIED
 
 
+def _commits(entry):
+    values = entry.get("valeurs")
+    if not isinstance(values, list):
+        return NOT_VERIFIED
+    commits = sorted(
+        {
+            v["commit_resolu"]
+            for v in values
+            if isinstance(v, dict)
+            and isinstance(v.get("commit_resolu"), str)
+            and v["commit_resolu"]
+        }
+    )
+    if not commits:
+        return NOT_VERIFIED
+    if len(commits) == 1:
+        return _fmt(commits[0])
+    return "valeurs multiples : " + _fmt(commits)
+
+
 def _provenance_lines(data, plan, provenance):
     lines = [
         "## Provenance",
@@ -339,13 +359,13 @@ def _provenance_lines(data, plan, provenance):
         if entry is None:
             status = f"absent de la provenance, {NOT_VERIFIED}"
         else:
-            status = f"commit résolu {_pick(entry, 'commit')}, verdict {_pick(entry, 'verdict')}"
+            status = f"commit résolu {_commits(entry)}, verdict {_pick(entry, 'verdict')}"
         lines.append(f"- `results/{filename}` : {status}{SUFFIXES[filename]}")
     found, adjudicated = _find(data, "machinery_commit")
     entry = _prov_entry(provenance, ADJUDICATION_FULL)
     status = NOT_VERIFIED
     if entry is not None:
-        status = f"commit résolu {_pick(entry, 'commit')}, verdict {_pick(entry, 'verdict')}"
+        status = f"commit résolu {_commits(entry)}, verdict {_pick(entry, 'verdict')}"
     lines.append(
         f"- `results/{ADJUDICATION_FULL}` : machinery_commit lu dans le fichier "
         f"{_fmt(adjudicated) if found else ABSENT} ; statut dans la provenance : {status}"
