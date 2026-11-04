@@ -9,28 +9,20 @@ JSON_PATH = (
     / "circuit2_budget16_traits_s0_g1.json"
 )
 
+# Règle de seed_procedure : priorité = (support>=3, low), avec
+# low = (support>=2 ET NON support>=3) OU support>=4.
+# Quand seul support>=2 vaut 1, les bits sont (0, 1), donc priorité 1,
+# et l'admission vaut support>=2 ET NON arity>=4.
+PRIORITE_APRES_MUTATION = 1
+
 
 def _candidates():
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
-    if isinstance(data, dict):
-        lists = [
-            v
-            for v in data.values()
-            if isinstance(v, list)
-            and v
-            and all(isinstance(x, dict) and "priorite" in x for x in v)
-        ]
-        assert len(lists) == 1
-        data = lists[0]
-    assert isinstance(data, list)
-    return data
+    return json.loads(JSON_PATH.read_text(encoding="utf-8"))["candidats"]
 
 
 def _traits(candidate):
-    src = candidate["traits"] if isinstance(candidate.get("traits"), dict) else candidate
-    return cproc.traits_of(
-        src["support"], src["arity"], src["nands"], src["composed"]
-    )
+    t = candidate["traits"]
+    return cproc.traits_of(t["support"], t["arity"], t["nands"], t["composed"])
 
 
 def _index(name):
@@ -38,7 +30,16 @@ def _index(name):
 
 
 def test_json_contains_two_candidates():
-    assert len(_candidates()) == 2
+    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert data["nombre_candidats"] == 2
+    assert len(data["candidats"]) == 2
+
+
+def test_raw_diagnostic_is_frozen():
+    candidates = _candidates()
+    assert [c["traits"]["support"] for c in candidates] == [1, 1]
+    assert [c["traits"]["arity"] for c in candidates] == [1, 2]
+    assert [c["traits"]["composed"] for c in candidates] == [False, False]
 
 
 def test_seed_refuses_both_candidates_like_the_json():
@@ -63,7 +64,11 @@ def test_support_at_least_2_is_the_cause_of_the_refusal():
     for candidate in _candidates():
         traits = list(_traits(candidate))
         assert traits[i_support] == 0
+        assert traits[i_arity] == 0
+        priority, admitted, _ = cproc.run(seed, tuple(traits))
+        assert priority == 0
+        assert admitted is False
         traits[i_support] = 1
-        traits[i_arity] = 0
-        _, admitted, _ = cproc.run(seed, tuple(traits))
+        priority, admitted, _ = cproc.run(seed, tuple(traits))
         assert admitted is True
+        assert priority == PRIORITE_APRES_MUTATION
