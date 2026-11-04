@@ -1,6 +1,7 @@
 """Regression checks for the repository-integrity checker itself."""
 from __future__ import annotations
 
+import ast
 import json
 from pathlib import Path
 
@@ -192,16 +193,82 @@ def test_a_deliberately_dead_citation_is_excused_only_with_a_recorded_reason() -
     )
 
 
-def test_verify_circuit2_executables_is_an_exact_name_entry_point() -> None:
-    """L'exception est par nom exact de module, sans préfixe générique `verify_`."""
-    assert integrity.ENTRY_POINT_NAMES == frozenset({"verify_circuit2_executables"})
-    assert "verify_" not in integrity.ENTRY_POINT_PREFIXES
+CIRCUIT2_CLI_TOOLS = (
+    "circuit2_full_descriptive_counts",
+    "circuit2_negative_note",
+    "shard_circuit2_result",
+    "summarize_circuit2_campaign",
+    "verify_circuit2_executables",
+    "verify_circuit2_provenance",
+)
+
+
+def _defines_top_level_main(tree: ast.Module) -> bool:
+    return any(
+        isinstance(node, ast.FunctionDef) and node.name == "main" for node in tree.body
+    )
+
+
+def _has_main_guard_calling_main(tree: ast.Module) -> bool:
+    for node in tree.body:
+        if not isinstance(node, ast.If):
+            continue
+        test = node.test
+        if not (
+            isinstance(test, ast.Compare)
+            and len(test.ops) == 1
+            and isinstance(test.ops[0], ast.Eq)
+            and len(test.comparators) == 1
+        ):
+            continue
+        operands = [test.left, test.comparators[0]]
+        is_name = any(isinstance(o, ast.Name) and o.id == "__name__" for o in operands)
+        is_main = any(isinstance(o, ast.Constant) and o.value == "__main__" for o in operands)
+        if not (is_name and is_main):
+            continue
+        for statement in node.body:
+            for child in ast.walk(statement):
+                if (
+                    isinstance(child, ast.Call)
+                    and isinstance(child.func, ast.Name)
+                    and child.func.id == "main"
+                ):
+                    return True
+    return False
+
+
+def test_circuit2_cli_tools_are_exact_name_entry_points() -> None:
+    """Les exceptions sont par noms exacts de modules, sans préfixe générique."""
+    assert integrity.ENTRY_POINT_NAMES == frozenset(CIRCUIT2_CLI_TOOLS)
+    assert len(CIRCUIT2_CLI_TOOLS) == 6
+    for name in CIRCUIT2_CLI_TOOLS:
+        assert (integrity.ROOT / "scripts" / f"{name}.py").is_file(), name
+    for prefix in ("verify_", "circuit2_", "shard_", "summarize_"):
+        assert prefix not in integrity.ENTRY_POINT_PREFIXES
     assert integrity.check_orphans() == []
 
 
-def test_without_the_exact_name_exception_the_verifier_is_reported_as_orphan(monkeypatch) -> None:
-    """Preuve que l'exception est nécessaire et précise : seul ce module est signalé."""
+def test_without_the_exact_name_exceptions_the_six_cli_tools_are_reported_as_orphans(monkeypatch) -> None:
+    """Preuve que les exceptions sont nécessaires et précises : seuls ces six modules sont signalés."""
     monkeypatch.setattr(integrity, "ENTRY_POINT_NAMES", frozenset())
     assert integrity.check_orphans() == [
-        "scripts/verify_circuit2_executables.py is not imported by any entry point"
+        f"scripts/{name}.py is not imported by any entry point"
+        for name in sorted(CIRCUIT2_CLI_TOOLS)
     ]
+
+
+def test_circuit2_cli_tools_have_a_main_function_and_a_main_guard() -> None:
+    """Analyse AST uniquement : les scripts ne sont jamais exécutés."""
+    for name in CIRCUIT2_CLI_TOOLS:
+        path = integrity.ROOT / "scripts" / f"{name}.py"
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        assert _defines_top_level_main(tree), f"{name}: no top-level main()"
+        assert _has_main_guard_calling_main(tree), f"{name}: no __main__ guard calling main()"
+
+
+def test_circuit2_neighbour_names_are_not_exempted() -> None:
+    """Des noms voisins ne bénéficient d'aucune exception, ni exacte ni par préfixe."""
+    for name in CIRCUIT2_CLI_TOOLS:
+        for variant in (name + "_x", name[:-1], "verify_circuit2_other"):
+            assert variant not in integrity.ENTRY_POINT_NAMES, variant
+            assert not variant.startswith(tuple(integrity.ENTRY_POINT_PREFIXES)), variant

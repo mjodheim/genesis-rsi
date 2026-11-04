@@ -644,7 +644,36 @@
       "subject": "Merge pull request #443 from Mira-Mjodheim/mira/genesis-99660ab004f9",
       "preserved_by": "main",
       "cited_in": [
-        "experiment/engine/CIRCUIT2/PROCEDURE_PREREG_PLAN.json"
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04.md",
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_CORRIGE.md",
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_PROVENANCE_COMPLETE.md",
+        "docs/COMMIT_CITATIONS.json",
+        "experiment/engine/CIRCUIT2/PROCEDURE_PREREG_PLAN.json",
+        "results/circuit2_campaign_full.json",
+        "results/circuit2_campaign_full_shards/0000_inherited_lineage_0-5.json",
+        "results/circuit2_campaign_full_shards/0001_inherited_lineage_5-10.json",
+        "results/circuit2_campaign_full_shards/0002_inherited_lineage_10-15.json",
+        "results/circuit2_campaign_full_shards/0003_inherited_lineage_15-20.json",
+        "results/circuit2_campaign_full_shards/0004_frozen_engine_0-5.json",
+        "results/circuit2_campaign_full_shards/0005_frozen_engine_5-10.json",
+        "results/circuit2_campaign_full_shards/0006_frozen_engine_10-15.json",
+        "results/circuit2_campaign_full_shards/0007_frozen_engine_15-20.json",
+        "results/circuit2_campaign_full_shards/0008_fixed_procedure_0-5.json",
+        "results/circuit2_campaign_full_shards/0009_fixed_procedure_5-10.json",
+        "results/circuit2_campaign_full_shards/0010_fixed_procedure_10-15.json",
+        "results/circuit2_campaign_full_shards/0011_fixed_procedure_15-20.json",
+        "results/circuit2_campaign_full_shards/0012_random_procedure_0-5.json",
+        "results/circuit2_campaign_full_shards/0013_random_procedure_5-10.json",
+        "results/circuit2_campaign_full_shards/0014_random_procedure_10-15.json",
+        "results/circuit2_campaign_full_shards/0015_random_procedure_15-20.json",
+        "results/circuit2_campaign_pilot_s0_g6.json",
+        "results/circuit2_campaign_pilot_s1_g6.json",
+        "results/circuit2_negative_note_regen_check.md",
+        "results/circuit2_provenance.json",
+        "results/circuit2_smoke_seeds01_gen2.json",
+        "tests/test_circuit2_campaign_full_check.py",
+        "tests/test_circuit2_negative_note.py",
+        "tests/test_circuit_adjudication_committed.py"
       ]
     },
     "248163fa91261b517623bed218e21a562e1cc097": {
@@ -1218,6 +1247,14 @@
         "tests/test_m070_agent_design_freeze.py"
       ]
     },
+    "4271c6e4eaeb6cfa3be5e56288f67fa460100f9e": {
+      "subject": "Lanceur adjudication : refus explicite d'un plan altéré",
+      "preserved_by": "provenance/circuit2-provenance-full-20261104",
+      "cited_in": [
+        "docs/COMMIT_CITATIONS.json",
+        "results/circuit2_provenance.json"
+      ]
+    },
     "42c7f6a6f52a9650e75cc7a8d7e5f4ece8711aff": {
       "subject": "Merge pull request #193 from mjodheim/codex/m103-acquisition-machinery",
       "preserved_by": "main",
@@ -1713,6 +1750,13 @@
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "experiments/M101/RESULT.md"
+      ]
+    },
+    "5d986fc06c152446965ae5e248ebba24f41168b6": {
+      "subject": "Rejoue toutes les lignes de l'adjudication complète committée",
+      "preserved_by": "provenance/circuit2-provenance-full-20261104",
+      "cited_in": [
+        "results/circuit2_provenance_adjudication_full.json"
       ]
     },
     "5da8851660d30c84bdd85a92b317a0828ad180a3": {
@@ -2841,7 +2885,7 @@
     },
     "9df66f229654539af98f001a15cc287e93884670": {
       "subject": "Open the space of components and let the improvement step rank by its past trials",
-      "preserved_by": "provenance/circuit-meta-plan-20261011",
+      "preserved_by": "main",
       "cited_in": [
         "docs/COMMIT_CITATIONS.json",
         "experiment/engine/CIRCUIT2/PLAN.json"
@@ -3570,6 +3614,19 @@
         "experiment/autonomy_a5/SELECTION_RUST.json"
       ]
     },
+    "c993a2f4db97e20b109da0a230eb9658a37a0eb5": {
+      "subject": "Consigne l'ascendance git des machinery_commit des résultats CIRCUIT2",
+      "preserved_by": "provenance/circuit2-provenance-full-20261104",
+      "cited_in": [
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04.md",
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_CORRIGE.md",
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_PROVENANCE_COMPLETE.md",
+        "docs/COMMIT_CITATIONS.json",
+        "results/circuit2_adjudication_full.json",
+        "results/circuit2_negative_note_regen_check.md",
+        "results/circuit2_provenance_adjudication_full.json"
+      ]
+    },
     "c9bfc40dab1e6cfc473e88239698c0ea04538c41": {
       "subject": "research(v28): seal unchanged L6 gates and new population before canonical execution",
       "preserved_by": "main",
@@ -4072,6 +4129,19 @@
         "docs/COMMIT_CITATIONS.json",
         "docs/RSI_L6_L8_RESULTS_2026-10-01.md",
         "experiment/rsi_v30/V30_SCIENTIFIC_FREEZE.json"
+      ]
+    },
+    "e60a37e1913dc95841777570fbdc00a438477e9f": {
+      "subject": "Vérifie les fragments CIRCUIT2 contre la source et refuse les fichiers e",
+      "preserved_by": "provenance/circuit2-provenance-full-20261104",
+      "cited_in": [
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_CORRIGE.md",
+        "docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_PROVENANCE_COMPLETE.md",
+        "docs/COMMIT_CITATIONS.json",
+        "results/circuit2_adjudication_s0-1_g6.json",
+        "results/circuit2_provenance.json",
+        "tests/test_circuit2_negative_note.py",
+        "tests/test_circuit_adjudication_committed.py"
       ]
     },
     "e6447bf0551af72616a18df38cd53ce1b2f94982": {
