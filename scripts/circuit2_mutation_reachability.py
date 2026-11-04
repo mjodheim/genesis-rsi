@@ -58,6 +58,10 @@ CONCLUSION_ADMISSION_SEULE = (
     "de la référence est réfutée ; pas de condition d'accessibilité établie"
 )
 CONCLUSION_AUCUN_EXHAUSTIF = "aucun témoin : énumération exhaustive des profondeurs 1 et 2"
+CONCLUSION_PREPARATION_INTERROMPUE = (
+    "préparation interrompue par le plafond de temps : référence non établie, "
+    "rien conclu"
+)
 _ERROR = object()
 
 
@@ -396,18 +400,55 @@ def _evaluate(proc, targets, reference, ctl):
     return admit, True, False
 
 
+def _niveaux_preparation_interrompue():
+    """Niveaux vides d'un rapport dont la préparation a été interrompue."""
+    return [
+        {
+            "profondeur": depth,
+            "mode": "échantillon",
+            "note": NOTE_SAMPLE,
+            "appels_utilises": 0,
+            "procedures_distinctes": 0,
+            "bornes_atteintes": {"appels": False, "temps": True},
+            "invalides": 0,
+            "doublons": 0,
+            "erreurs_mutation": 0,
+            "temoins": 0,
+            "admission_seule_refutee": 0,
+            "conservation_non_evaluee": 0,
+            "procedures_non_evaluees": 0,
+            "lecture": CONCLUSION_PREPARATION_INTERROMPUE,
+        }
+        for depth in (1, 2)
+    ]
+
+
 def analyse():
     """Retourne (rapport, état interne) ; l'état sert aux tests."""
     start = time.monotonic()
     seed = get_seed()
     targets = load_targets()
+    preparation_deadline = start + MAX_SECONDS
+    interrompue = False
     for target in targets:
+        if time.monotonic() >= preparation_deadline:
+            interrompue = True
+            break
         if admits(seed, target["vec"]):
             raise ReachabilityError(
                 f"{target['nom']} est déjà admis par seed_procedure : question sans objet"
             )
     domain, skipped = build_domain([t["vec"] for t in targets])
-    reference = [vec for vec in domain.values() if admits(seed, vec)]
+    reference = []
+    if not interrompue:
+        for vec in domain.values():
+            if time.monotonic() >= preparation_deadline:
+                interrompue = True
+                break
+            if admits(seed, vec):
+                reference.append(vec)
+    if interrompue:
+        reference = []
 
     ctl = Budget(MAX_CALLS, start + MAX_SECONDS * EXPLORATION_TIME_SHARE)
     seed_digest, seed_record = _digest_and_record(seed)
@@ -419,8 +460,13 @@ def analyse():
         "depth": 0,
     }
     seen = {seed_digest: seed_entry}
-    level1, entries1, complete1 = _explore_level(1, [seed_entry], seen, ctl, True, True)
-    level2, entries2, complete2 = _explore_level(2, entries1, seen, ctl, complete1, False)
+    if interrompue:
+        level1, level2 = _niveaux_preparation_interrompue()
+        entries1, entries2 = [], []
+        complete1 = complete2 = False
+    else:
+        level1, entries1, complete1 = _explore_level(1, [seed_entry], seen, ctl, True, True)
+        level2, entries2, complete2 = _explore_level(2, entries1, seen, ctl, complete1, False)
     entries = entries1 + entries2
     ctl.deadline = start + MAX_SECONDS
 
@@ -454,7 +500,7 @@ def analyse():
         )
 
     levels = [level1, level2]
-    for level in levels:
+    for level in ([] if interrompue else levels):
         counts = per_depth[level["profondeur"]]
         level["temoins"] = counts["conservee"]
         level["admission_seule_refutee"] = counts["refutee"]
@@ -484,6 +530,8 @@ def analyse():
         n_conservateurs, n_refutes, n_non_evalues,
         complete1 and complete2 and procedures_non_evaluees == 0,
     )
+    if interrompue:
+        conclusion = CONCLUSION_PREPARATION_INTERROMPUE
 
     report = {
         "schema": SCHEMA,
@@ -544,7 +592,8 @@ def analyse():
         "admission_seule_refutee": n_refutes,
         "conservation_non_evaluee": n_non_evalues,
         "procedures_non_evaluees": procedures_non_evaluees,
-        "evaluation_interrompue": procedures_non_evaluees > 0,
+        "evaluation_interrompue": procedures_non_evaluees > 0 or interrompue,
+        "preparation_interrompue": interrompue,
         "conclusion": conclusion,
     }
     state = {

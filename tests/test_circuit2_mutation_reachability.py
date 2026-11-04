@@ -93,15 +93,31 @@ def test_plafond_appels(monkeypatch, cap):
 
 def test_plafond_temps_nul(monkeypatch):
     monkeypatch.setattr(mod, "MAX_SECONDS", 0.0)
+    appels = {"run": 0, "mutate": 0}
+    original_run = cp.run
+    original_mutate = cp.mutate
+
+    def counting_run(proc, vec):
+        appels["run"] += 1
+        return original_run(proc, vec)
+
+    def counting_mutate(proc, rng):
+        appels["mutate"] += 1
+        return original_mutate(proc, rng)
+
+    monkeypatch.setattr(cp, "run", counting_run)
+    monkeypatch.setattr(cp, "mutate", counting_mutate)
     report, state = mod.analyse()
+    assert appels == {"run": 0, "mutate": 0}
     assert state["calls"] == 0
     assert state["entries"] == []
+    assert state["reference"] == []
+    assert report["preparation_interrompue"] is True
+    assert report["evaluation_interrompue"] is True
     assert all(lv["mode"] == "échantillon" for lv in report["niveaux"])
     assert report["niveaux"][0]["bornes_atteintes"]["temps"] is True
-    text = dump(report)
-    assert mod.NOTE_SAMPLE in text
-    assert mod.NOTE_NO_WITNESS_SAMPLE in text
-    assert report["conclusion"] == mod.NOTE_NO_WITNESS_SAMPLE
+    assert mod.NOTE_SAMPLE in dump(report)
+    assert report["conclusion"] == mod.CONCLUSION_PREPARATION_INTERROMPUE
 
 
 def test_plafond_temoins_par_categorie():
@@ -216,7 +232,9 @@ def test_determinisme_plafonds_reduits(monkeypatch):
 
 def test_determinisme_temps_nul(monkeypatch):
     monkeypatch.setattr(mod, "MAX_SECONDS", 0.0)
-    assert dump(mod.build_report()) == dump(mod.build_report())
+    first = mod.build_report()
+    assert first["preparation_interrompue"] is True
+    assert dump(first) == dump(mod.build_report())
 
 
 def _fake_admits(seed_obj, target_keys, mode, on_reference=None):
@@ -482,3 +500,76 @@ def test_exhaustif_puis_expiration_pendant_admissions(monkeypatch):
     assert all(c["total"] == 2 for c in report["temoins_conservateurs"].values())
     assert report["evaluation_interrompue"] is True
     assert report["conclusion"] != mod.CONCLUSION_AUCUN_EXHAUSTIF
+
+
+def _analyse_horloge_preparation(monkeypatch, echeance):
+    """Horloge contrôlée : une unité de temps par cp.run commencé."""
+    etat = {"runs": 0, "late": 0, "mutate": 0}
+    clock = types.SimpleNamespace(monotonic=lambda: float(etat["runs"]))
+    original_run = cp.run
+    original_mutate = cp.mutate
+
+    def counting_run(proc, vec):
+        if etat["runs"] >= echeance:
+            etat["late"] += 1
+        etat["runs"] += 1
+        return original_run(proc, vec)
+
+    def counting_mutate(proc, rng):
+        etat["mutate"] += 1
+        return original_mutate(proc, rng)
+
+    monkeypatch.setattr(mod, "time", clock)
+    monkeypatch.setattr(mod, "MAX_SECONDS", float(echeance))
+    monkeypatch.setattr(mod, "MAX_CALLS", SMALL_CALLS)
+    monkeypatch.setattr(cp, "run", counting_run)
+    monkeypatch.setattr(cp, "mutate", counting_mutate)
+    report, state = mod.analyse()
+    return report, state, etat
+
+
+def _verifie_preparation_interrompue(report, state, etat, echeance):
+    assert etat["late"] == 0
+    assert etat["runs"] <= echeance
+    assert etat["mutate"] == 0
+    assert report["preparation_interrompue"] is True
+    assert report["evaluation_interrompue"] is True
+    assert state["entries"] == []
+    assert state["reference"] == []
+    assert state["calls"] == 0
+    assert report["appels_total"] == 0
+    assert report["conclusion"] == mod.CONCLUSION_PREPARATION_INTERROMPUE
+    assert report["conclusion"] != mod.CONCLUSION_POSITIVE
+    assert report["conclusion"] != mod.CONCLUSION_AUCUN_EXHAUSTIF
+    for lv in report["niveaux"]:
+        assert lv["procedures_distinctes"] == 0
+        assert lv["temoins"] == 0
+        assert lv["lecture"] == mod.CONCLUSION_PREPARATION_INTERROMPUE
+    assert all(c["total"] == 0 for c in report["temoins"].values())
+    assert all(c["total"] == 0 for c in report["temoins_conservateurs"].values())
+
+
+def test_preparation_interrompue_pendant_evaluation_des_cibles(monkeypatch):
+    n_cibles = len(mod.load_targets())
+    assert n_cibles >= 1
+    echeance = n_cibles // 2
+    report, state, etat = _analyse_horloge_preparation(monkeypatch, echeance)
+    assert etat["runs"] == echeance
+    _verifie_preparation_interrompue(report, state, etat, echeance)
+
+
+def test_preparation_interrompue_pendant_la_reference(monkeypatch):
+    targets = mod.load_targets()
+    domain, _ = mod.build_domain([t["vec"] for t in targets])
+    apres_cibles = 3
+    assert len(domain) > apres_cibles
+    echeance = len(targets) + apres_cibles
+    report, state, etat = _analyse_horloge_preparation(monkeypatch, echeance)
+    assert etat["runs"] == echeance
+    _verifie_preparation_interrompue(report, state, etat, echeance)
+
+
+def test_preparation_non_interrompue_cas_normal(analysis):
+    report, state = analysis
+    assert report["preparation_interrompue"] is False
+    assert state["reference"]
