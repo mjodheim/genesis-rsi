@@ -83,6 +83,96 @@ def test_no_file_is_created(monkeypatch, tmp_path, capsys):
     assert list(tmp_path.iterdir()) == []
 
 
+def _json_attendu():
+    attendu = {
+        "candidats": [
+            {
+                "admis": False,
+                "priorite": 1,
+                "traits": {"support": 1, "arity": 2, "nands": 3, "composed": False},
+            },
+            {
+                "admis": True,
+                "priorite": 2,
+                "traits": {"support": 2, "arity": 3, "nands": 4, "composed": True},
+            },
+        ],
+        "nombre_candidats": 2,
+        "parametres": {"budget": 16, "generations": 1, "graine": 0},
+    }
+    return (json.dumps(attendu, indent=2, sort_keys=True) + "\n").encode("utf-8")
+
+
+def test_out_writes_bytes_identical_to_stdout(monkeypatch, tmp_path, capsys):
+    _simuler(monkeypatch)
+    monkeypatch.chdir(tmp_path)
+    assert traits_mod.main(["--out", "results/traits.json"]) == 0
+    sortie = capsys.readouterr().out
+    contenu = (tmp_path / "results" / "traits.json").read_bytes()
+    assert contenu == sortie.encode("utf-8")
+    assert contenu == _json_attendu()
+    assert contenu.endswith(b"\n") and not contenu.endswith(b"\n\n")
+    assert b"\r" not in contenu
+    assert str(tmp_path).encode("utf-8") not in contenu
+
+
+def test_out_is_identical_across_directories(monkeypatch, tmp_path, capsys):
+    _simuler(monkeypatch)
+    resultats = []
+    for nom in ("un", "deux"):
+        repertoire = tmp_path / nom
+        repertoire.mkdir()
+        monkeypatch.chdir(repertoire)
+        assert traits_mod.main(["--out", "results/traits.json"]) == 0
+        capsys.readouterr()
+        resultats.append((repertoire / "results" / "traits.json").read_bytes())
+    assert resultats[0] == resultats[1]
+    assert resultats[0] == _json_attendu()
+
+
+def test_out_refuses_overwrite(monkeypatch, tmp_path, capsys):
+    _simuler(monkeypatch)
+    monkeypatch.chdir(tmp_path)
+    assert traits_mod.main(["--out", "results/traits.json"]) == 0
+    capsys.readouterr()
+    cible = tmp_path / "results" / "traits.json"
+    avant = cible.read_bytes()
+    with pytest.raises(SystemExit):
+        traits_mod.main(["--out", "results/traits.json"])
+    assert cible.read_bytes() == avant
+    assert capsys.readouterr().out == ""
+
+
+@pytest.mark.parametrize(
+    "chemin",
+    [
+        "results/../x.json",
+        "../results/x.json",
+        "results/a/../../x.json",
+        "autre/x.json",
+        "x.json",
+        "results",
+    ],
+)
+def test_out_refuses_dotdot_and_outside_results(monkeypatch, tmp_path, capsys, chemin):
+    _simuler(monkeypatch)
+    monkeypatch.chdir(tmp_path)
+    with pytest.raises(SystemExit):
+        traits_mod.main(["--out", chemin])
+    capsys.readouterr()
+    assert list(tmp_path.rglob("*")) == []
+
+
+def test_out_refuses_absolute_path(monkeypatch, tmp_path, capsys):
+    _simuler(monkeypatch)
+    monkeypatch.chdir(tmp_path)
+    absolu = tmp_path / "results" / "x.json"
+    with pytest.raises(SystemExit):
+        traits_mod.main(["--out", str(absolu)])
+    capsys.readouterr()
+    assert list(tmp_path.rglob("*")) == []
+
+
 def test_missing_flag_key_raises(monkeypatch):
     _simuler(monkeypatch)
     monkeypatch.setattr(traits_mod.engine, "composed_flags", lambda a, b: {"a": False})

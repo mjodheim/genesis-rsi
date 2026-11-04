@@ -4,7 +4,7 @@ Pour chaque candidat du premier appel de engine.improved_by, le script affiche
 les traits (support, arity, nands, composed) recalculés, puis (priorité, admis)
 donnés par circuit_procedure.run avec la procédure de départ. Il décrit ce qui
 est observé dans ce rejeu, sans en tirer de conclusion. Sortie : JSON trié sur
-stdout uniquement, aucun fichier écrit.
+stdout ; avec --out, le même JSON est écrit dans un fichier neuf sous results/.
 """
 from __future__ import annotations
 
@@ -62,9 +62,49 @@ def collect():
     }
 
 
+def _valider_sortie(chemin):
+    """Valide un chemin relatif sous results/ ; lève ValueError sinon."""
+    brut = str(chemin)
+    norme = brut.replace("\\", "/")
+    if not norme or norme.startswith("/") or Path(brut).is_absolute() or norme[1:2] == ":":
+        raise ValueError("chemin absolu refusé : un chemin relatif sous results/ est requis")
+    parties = norme.split("/")
+    if ".." in parties:
+        raise ValueError("chemin refusé : '..' interdit")
+    parties = [p for p in parties if p not in ("", ".")]
+    if len(parties) < 2 or parties[0] != "results":
+        raise ValueError("chemin refusé : il doit désigner un fichier sous results/")
+    relatif = Path(*parties)
+    racine = (Path.cwd() / "results").resolve()
+    if racine not in (Path.cwd() / relatif).resolve().parents:
+        raise ValueError("chemin refusé : hors de results/")
+    return relatif
+
+
 def main(argv=None):
-    argparse.ArgumentParser(description=__doc__).parse_args(argv)
-    sys.stdout.write(json.dumps(collect(), indent=2, sort_keys=True) + "\n")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--out",
+        metavar="CHEMIN",
+        default=None,
+        help="chemin relatif sous results/ où écrire le JSON (fichier neuf, jamais écrasé)",
+    )
+    args = parser.parse_args(argv)
+    cible = None
+    if args.out is not None:
+        try:
+            cible = _valider_sortie(args.out)
+        except ValueError as exc:
+            parser.error(str(exc))
+    texte = json.dumps(collect(), indent=2, sort_keys=True) + "\n"
+    if cible is not None:
+        cible.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            with open(cible, "x", encoding="utf-8", newline="\n") as fichier:
+                fichier.write(texte)
+        except FileExistsError:
+            parser.error(f"fichier existant, écrasement refusé : {cible}")
+    sys.stdout.write(texte)
     return 0
 
 
