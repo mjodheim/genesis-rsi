@@ -4,6 +4,7 @@ import importlib.util
 import json
 import sys
 import time
+import types
 from pathlib import Path
 
 import pytest
@@ -216,3 +217,127 @@ def test_determinisme_plafonds_reduits(monkeypatch):
 def test_determinisme_temps_nul(monkeypatch):
     monkeypatch.setattr(mod, "MAX_SECONDS", 0.0)
     assert dump(mod.build_report()) == dump(mod.build_report())
+
+
+def _fake_admits(seed_obj, target_keys, mode, on_reference=None):
+    def fake(proc, vec):
+        if proc is seed_obj:
+            return mod.vec_key(vec) not in target_keys
+        if mod.vec_key(vec) in target_keys:
+            return True
+        if on_reference is not None:
+            on_reference()
+        return mode != "refutee"
+
+    return fake
+
+
+def _analyse_avec_faux_admits(monkeypatch, mode, on_reference=None):
+    seed_obj = mod.get_seed()
+    target_keys = {mod.vec_key(t["vec"]) for t in mod.load_targets()}
+    monkeypatch.setattr(mod, "MAX_CALLS", 60)
+    monkeypatch.setattr(mod, "get_seed", lambda: seed_obj)
+    monkeypatch.setattr(
+        mod, "admits", _fake_admits(seed_obj, target_keys, mode, on_reference)
+    )
+    return mod.analyse()
+
+
+def test_admission_seule_conservation_refutee(monkeypatch):
+    report, state = _analyse_avec_faux_admits(monkeypatch, "refutee")
+    n = len(state["entries"])
+    assert n > 0
+    assert report["admission_seule_refutee"] == n
+    assert report["conservation_non_evaluee"] == 0
+    assert report["procedures_non_evaluees"] == 0
+    assert report["evaluation_interrompue"] is False
+    assert sum(lv["temoins"] for lv in report["niveaux"]) == 0
+    assert sum(lv["admission_seule_refutee"] for lv in report["niveaux"]) == n
+    assert all(c["total"] == n for c in report["temoins"].values())
+    assert all(c["total"] == 0 for c in report["temoins_conservateurs"].values())
+    assert report["conclusion"] == mod.CONCLUSION_ADMISSION_SEULE
+    assert report["conclusion"] != mod.CONCLUSION_POSITIVE
+
+
+def test_conservation_non_evaluee(monkeypatch):
+    clock = types.SimpleNamespace(now=0.0)
+    clock.monotonic = lambda: clock.now
+    monkeypatch.setattr(mod, "time", clock)
+    monkeypatch.setattr(mod, "MAX_SECONDS", 100.0)
+
+    def expire():
+        clock.now = 1000.0
+
+    report, state = _analyse_avec_faux_admits(monkeypatch, "conservee", expire)
+    n = len(state["entries"])
+    assert n > 0
+    assert len(state["reference"]) > 1
+    assert report["conservation_non_evaluee"] == 1
+    assert report["procedures_non_evaluees"] == n
+    assert report["evaluation_interrompue"] is True
+    assert report["admission_seule_refutee"] == 0
+    assert sum(lv["temoins"] for lv in report["niveaux"]) == 0
+    assert sum(lv["conservation_non_evaluee"] for lv in report["niveaux"]) == 1
+    for cat in report["temoins"].values():
+        for w in cat["liste"]:
+            assert w["statut_conservation"] == "non_evaluee"
+            assert w["conserve_reference"] is None
+    assert all(c["total"] == 0 for c in report["temoins_conservateurs"].values())
+    assert report["conclusion"] == mod.CONCLUSION_NON_EVALUEE
+
+
+def test_conservation_verifiee_conclusion_positive(monkeypatch):
+    report, state = _analyse_avec_faux_admits(monkeypatch, "conservee")
+    n = len(state["entries"])
+    assert n > 0
+    assert sum(lv["temoins"] for lv in report["niveaux"]) == n
+    assert report["admission_seule_refutee"] == 0
+    assert report["conservation_non_evaluee"] == 0
+    assert report["procedures_non_evaluees"] == 0
+    assert report["evaluation_interrompue"] is False
+    assert all(c["total"] == n for c in report["temoins_conservateurs"].values())
+    assert report["conclusion"] == mod.CONCLUSION_POSITIVE
+
+
+def test_conclusion_pure():
+    assert mod._conclusion(1, 5, 5, False) == mod.CONCLUSION_POSITIVE
+    assert mod._conclusion(0, 2, 1, True) == mod.CONCLUSION_NON_EVALUEE
+    assert mod._conclusion(0, 2, 0, True) == mod.CONCLUSION_ADMISSION_SEULE
+    assert mod._conclusion(0, 0, 0, True) == mod.CONCLUSION_AUCUN_EXHAUSTIF
+    assert mod._conclusion(0, 0, 0, False) == mod.NOTE_NO_WITNESS_SAMPLE
+
+
+def test_horloge_expire_pendant_evaluation(monkeypatch):
+    echeance = 10
+    etat = {"armed": False, "runs": 0, "late": 0}
+    clock = types.SimpleNamespace(
+        monotonic=lambda: float(etat["runs"]) if etat["armed"] else 0.0
+    )
+    original_run = cp.run
+    original_explore = mod._explore_level
+
+    def counting_run(proc, vec):
+        if etat["armed"]:
+            if etat["runs"] >= echeance:
+                etat["late"] += 1
+            etat["runs"] += 1
+        return original_run(proc, vec)
+
+    def explore(*args):
+        out = original_explore(*args)
+        if args[0] == 2:
+            etat["armed"] = True
+        return out
+
+    monkeypatch.setattr(mod, "time", clock)
+    monkeypatch.setattr(mod, "MAX_SECONDS", float(echeance))
+    monkeypatch.setattr(mod, "MAX_CALLS", SMALL_CALLS)
+    monkeypatch.setattr(mod, "_explore_level", explore)
+    monkeypatch.setattr(cp, "run", counting_run)
+    report, state = mod.analyse()
+    assert len(state["entries"]) * len(state["targets"]) > echeance
+    assert etat["late"] == 0
+    assert etat["runs"] == echeance
+    assert report["procedures_non_evaluees"] > 0
+    assert report["evaluation_interrompue"] is True
+    assert report["conclusion"] != mod.CONCLUSION_AUCUN_EXHAUSTIF

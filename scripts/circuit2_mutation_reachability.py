@@ -41,9 +41,23 @@ SAMPLE_SEEDS = (0, 1, 2)
 MAX_WITNESSES_PER_CATEGORY = 20
 EXHAUSTIVE_RESERVE_DIVISOR = 4
 EXHAUSTIVE_TIME_SHARE = 0.75
+EXPLORATION_TIME_SHARE = 0.8
 
 NOTE_SAMPLE = "échantillon, non exhaustif"
 NOTE_NO_WITNESS_SAMPLE = "aucun témoin dans l'échantillon, rien conclu"
+CONCLUSION_POSITIVE = (
+    "des témoins conservateurs vérifiés existent : condition d'accessibilité "
+    "seulement, pas une preuve de progrès RSI"
+)
+CONCLUSION_NON_EVALUEE = (
+    "admission sans conservation évaluée pour au moins un témoin : "
+    "rien conclu sur l'accessibilité"
+)
+CONCLUSION_ADMISSION_SEULE = (
+    "admission seule : des procédures admettent une cible mais la conservation "
+    "de la référence est réfutée ; pas de condition d'accessibilité établie"
+)
+CONCLUSION_AUCUN_EXHAUSTIF = "aucun témoin : énumération exhaustive des profondeurs 1 et 2"
 _ERROR = object()
 
 
@@ -312,15 +326,62 @@ def _category(witnesses):
     }
 
 
-def _lecture(mode, n_witnesses):
-    if n_witnesses:
+def _lecture(mode, n_conservateurs, n_refutes, n_non_evalues):
+    if n_conservateurs:
         return (
-            f"{n_witnesses} témoin(s) : condition d'accessibilité seulement, "
-            "pas une preuve de progrès RSI"
+            f"{n_conservateurs} témoin(s) conservateur(s) vérifié(s) : condition "
+            "d'accessibilité seulement, pas une preuve de progrès RSI"
+        )
+    if n_refutes or n_non_evalues:
+        return (
+            f"admission sans conservation vérifiée ({n_refutes} réfutée(s), "
+            f"{n_non_evalues} non évaluée(s)) : aucune accessibilité positive établie"
         )
     if mode == "exhaustif":
         return "aucun témoin à ce niveau (énumération exhaustive des choix de cp.mutate)"
     return NOTE_NO_WITNESS_SAMPLE
+
+
+def _conclusion(n_conservateurs, n_refutes, n_non_evalues, exhaustive):
+    """Conclusion pure : positive seulement avec un témoin conservateur vérifié."""
+    if n_conservateurs > 0:
+        return CONCLUSION_POSITIVE
+    if n_non_evalues > 0:
+        return CONCLUSION_NON_EVALUEE
+    if n_refutes > 0:
+        return CONCLUSION_ADMISSION_SEULE
+    if exhaustive:
+        return CONCLUSION_AUCUN_EXHAUSTIF
+    return NOTE_NO_WITNESS_SAMPLE
+
+
+def _statut(conserves):
+    if conserves is True:
+        return "conservee"
+    if conserves is False:
+        return "refutee"
+    return "non_evaluee"
+
+
+def _expired(ctl):
+    return time.monotonic() >= ctl.deadline
+
+
+def _evaluate(proc, targets, reference, ctl):
+    """Évalue une procédure ; l'échéance est contrôlée avant chaque cp.run."""
+    admit = {t["nom"]: None for t in targets}
+    for target in targets:
+        if _expired(ctl):
+            return admit, None, True
+        admit[target["nom"]] = admits(proc, target["vec"])
+    if not any(v is True for v in admit.values()):
+        return admit, None, False
+    for vec in reference:
+        if _expired(ctl):
+            return admit, None, True
+        if not admits(proc, vec):
+            return admit, False, False
+    return admit, True, False
 
 
 def analyse():
@@ -336,7 +397,7 @@ def analyse():
     domain, skipped = build_domain([t["vec"] for t in targets])
     reference = [vec for vec in domain.values() if admits(seed, vec)]
 
-    ctl = Budget(MAX_CALLS, start + MAX_SECONDS)
+    ctl = Budget(MAX_CALLS, start + MAX_SECONDS * EXPLORATION_TIME_SHARE)
     seed_digest, seed_record = _digest_and_record(seed)
     seed_entry = {
         "proc": seed,
@@ -349,20 +410,21 @@ def analyse():
     level1, entries1, complete1 = _explore_level(1, [seed_entry], seen, ctl, True, True)
     level2, entries2, complete2 = _explore_level(2, entries1, seen, ctl, complete1, False)
     entries = entries1 + entries2
+    ctl.deadline = start + MAX_SECONDS
 
     witnesses = []
-    per_depth = {1: 0, 2: 0}
-    unevaluated = 0
+    per_depth = {d: {"conservee": 0, "refutee": 0, "non_evaluee": 0} for d in (1, 2)}
+    procedures_non_evaluees = 0
     for entry in entries:
-        admit = {t["nom"]: admits(entry["proc"], t["vec"]) for t in targets}
-        if not any(admit.values()):
+        admit, conserves, interrupted = _evaluate(
+            entry["proc"], targets, reference, ctl
+        )
+        if interrupted:
+            procedures_non_evaluees += 1
+        if not any(v is True for v in admit.values()):
             continue
-        if time.monotonic() >= ctl.deadline:
-            conserves = None
-            unevaluated += 1
-        else:
-            conserves = all(admits(entry["proc"], vec) for vec in reference)
-        per_depth[entry["depth"]] += 1
+        statut = _statut(conserves)
+        per_depth[entry["depth"]][statut] += 1
         witnesses.append(
             {
                 "profondeur": entry["depth"],
@@ -370,33 +432,37 @@ def analyse():
                 "digest": entry["digest"],
                 "record": entry["record"],
                 "admet": admit,
+                "statut_conservation": statut,
                 "conserve_reference": conserves,
             }
         )
 
     levels = [level1, level2]
     for level in levels:
-        level["temoins"] = per_depth[level["profondeur"]]
-        level["lecture"] = _lecture(level["mode"], level["temoins"])
+        counts = per_depth[level["profondeur"]]
+        level["temoins"] = counts["conservee"]
+        level["admission_seule_refutee"] = counts["refutee"]
+        level["conservation_non_evaluee"] = counts["non_evaluee"]
+        level["lecture"] = _lecture(
+            level["mode"], counts["conservee"], counts["refutee"], counts["non_evaluee"]
+        )
 
     temoins = {}
     conservateurs = {}
     for target in targets:
-        ws = [w for w in witnesses if w["admet"][target["nom"]]]
+        ws = [w for w in witnesses if w["admet"][target["nom"]] is True]
         temoins[target["nom"]] = _category(ws)
         conservateurs[target["nom"]] = _category(
             [w for w in ws if w["conserve_reference"] is True]
         )
 
-    if witnesses:
-        conclusion = (
-            "des témoins existent : condition d'accessibilité seulement, "
-            "pas une preuve de progrès RSI"
-        )
-    elif complete1 and complete2:
-        conclusion = "aucun témoin : énumération exhaustive des profondeurs 1 et 2"
-    else:
-        conclusion = NOTE_NO_WITNESS_SAMPLE
+    n_conservateurs = sum(c["conservee"] for c in per_depth.values())
+    n_refutes = sum(c["refutee"] for c in per_depth.values())
+    n_non_evalues = sum(c["non_evaluee"] for c in per_depth.values())
+    conclusion = _conclusion(
+        n_conservateurs, n_refutes, n_non_evalues,
+        complete1 and complete2 and procedures_non_evaluees == 0,
+    )
 
     report = {
         "schema": SCHEMA,
@@ -426,6 +492,7 @@ def analyse():
         "bornes": {
             "max_appels": MAX_CALLS,
             "max_secondes": MAX_SECONDS,
+            "part_temps_exploration": EXPLORATION_TIME_SHARE,
             "graines_echantillon": list(SAMPLE_SEEDS),
             "temoins_max_par_categorie": MAX_WITNESSES_PER_CATEGORY,
             "lecture_bornes_atteintes": (
@@ -453,7 +520,10 @@ def analyse():
         "niveaux": levels,
         "temoins": temoins,
         "temoins_conservateurs": conservateurs,
-        "conservation_non_evaluee": unevaluated,
+        "admission_seule_refutee": n_refutes,
+        "conservation_non_evaluee": n_non_evalues,
+        "procedures_non_evaluees": procedures_non_evaluees,
+        "evaluation_interrompue": procedures_non_evaluees > 0,
         "conclusion": conclusion,
     }
     state = {
