@@ -170,12 +170,23 @@ def validate_against_plan(data, plan):
     if not isinstance(budgets, dict):
         errors.append("plan : budgets absent")
     else:
-        for key in ("generations", "per_generation_limit"):
+        for key in ("task_budget", "generations", "per_generation_limit"):
             found, value = _find(data, key)
             if key not in budgets:
                 errors.append(f"plan : budgets.{key} absent")
-            elif not found or value != budgets[key]:
+            elif type(budgets[key]) is not int:
+                errors.append(f"plan : budgets.{key} doit être un entier")
+            elif not found or type(value) is not int or value != budgets[key]:
                 errors.append(f"{key} de l'adjudication différent de budgets du plan")
+        if type(budgets.get("generations")) is int:
+            for name, rows in arms.items():
+                for index, row in enumerate(rows):
+                    value = row.get("generations")
+                    if type(value) is not int or value != budgets["generations"]:
+                        errors.append(
+                            f"bras {name}, ligne {index} : generations absent, "
+                            "non entier ou différent de budgets.generations du plan"
+                        )
     criterion = plan.get("criterion")
     if not isinstance(criterion, dict) or "thresholds" not in criterion or "text" not in criterion:
         errors.append("plan : criterion.thresholds et criterion.text requis")

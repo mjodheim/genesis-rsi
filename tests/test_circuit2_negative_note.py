@@ -33,6 +33,7 @@ def _data(yields_by_arm=None, **meta):
                 {
                     "arm": arm,
                     "seed": SEEDS[index],
+                    "generations": 2,
                     "held_out_yield": value,
                     "stop_reason": "budget" if index % 2 == 0 else "converged",
                     "library_fingerprint": fingerprint,
@@ -41,7 +42,7 @@ def _data(yields_by_arm=None, **meta):
     base = {
         "plan_digest": "d" * 64,
         "seeds": list(SEEDS),
-        "generations": 2,
+        "task_budget": 7,
         "per_generation_limit": 5,
     }
     return {"rows": rows, **{**base, **meta}}
@@ -52,7 +53,7 @@ def _plan():
         "digest": "d" * 64,
         "seeds": list(SEEDS),
         "arms": [{"name": arm} for arm in ARMS],
-        "budgets": {"generations": 2, "per_generation_limit": 5},
+        "budgets": {"task_budget": 7, "generations": 2, "per_generation_limit": 5},
         "machinery_commit": "m" * 40,
         "criterion": {
             "thresholds": {"min_points": 11, "min_seeds": 3},
@@ -181,6 +182,68 @@ def test_inconsistency_refused_without_output(tmp_path, data, plan):
     assert not dst.exists()
     assert not dst.parent.exists()
 
+
+@pytest.mark.parametrize(
+    "target",
+    [
+        "task_budget",
+        "per_generation_limit",
+        "global_generations",
+        "local_generations",
+        "plan_task_budget",
+        "plan_generations",
+        "plan_per_generation_limit",
+    ],
+)
+@pytest.mark.parametrize(
+    "case",
+    ["different", "missing", "true", "false", "float", "string", "null"],
+)
+def test_required_integer_budgets_refused_without_output(tmp_path, target, case):
+    data = _data()
+    plan = _plan()
+    if target.startswith("plan_"):
+        container = plan["budgets"]
+        key = target.removeprefix("plan_")
+    elif target == "local_generations":
+        # Une seule ligne invalide doit être refusée malgré les métadonnées.
+        data["generations"] = plan["budgets"]["generations"]
+        container = data["rows"][-1]
+        key = "generations"
+    elif target == "global_generations":
+        data["generations"] = plan["budgets"]["generations"]
+        container = data
+        key = "generations"
+    else:
+        container = data
+        key = target
+    expected = plan["budgets"][key]
+    if case == "missing":
+        if target == "global_generations":
+            # Sans métadonnée globale, chaque ligne reste obligatoire.
+            for row in data["rows"]:
+                del row["generations"]
+        del container[key]
+    else:
+        container[key] = {
+            "different": expected + 1,
+            "true": True,
+            "false": False,
+            "float": float(expected),
+            "string": str(expected),
+            "null": None,
+        }[case]
+    src, plan_file, prov_file = _write_input(tmp_path, data, plan)
+    dst = tmp_path / "sous_dossier" / "sortie.md"
+    with pytest.raises(ValueError):
+        note.run(src, dst, plan_file, prov_file)
+    assert not dst.exists()
+    assert not dst.parent.exists()
+
+def test_local_generations_without_global_metadata_accepted():
+    data = _data()
+    assert "generations" not in data
+    note.validate_against_plan(data, _plan())
 
 def test_displayed_threshold_comes_from_plan():
     base = note.render(_data(), _plan(), _prov())
