@@ -341,3 +341,144 @@ def test_horloge_expire_pendant_evaluation(monkeypatch):
     assert report["procedures_non_evaluees"] > 0
     assert report["evaluation_interrompue"] is True
     assert report["conclusion"] != mod.CONCLUSION_AUCUN_EXHAUSTIF
+
+
+_EXPIRE = 1.0e9
+LIBELLE_NEGATIF = "aucun témoin à ce niveau"
+
+
+class _FauxProc:
+    """Procédure factice : suite de choix finis, sans structure réelle."""
+
+    def __init__(self, tag):
+        self.tag = tuple(tag)
+
+
+def _installer_monde_fini(monkeypatch, limite_runs=None):
+    """Monde fini et horloge contrôlée (6 enfants par parent : 6 + 36 procédures).
+
+    cp.mutate devient une fonction à choix finis (2 x 3) ; cp.run n'est factice
+    que pour les procédures factices. Profondeur 2 : toutes les cibles admises ;
+    profondeur 1 : aucune. L'horloge expire après limite_runs appels factices.
+    """
+    clock = types.SimpleNamespace(now=0.0)
+    clock.monotonic = lambda: clock.now
+    etat = {"runs": 0, "late": 0}
+    original_run = cp.run
+    original_valid = mod.is_valid
+    original_digest = mod._digest_and_record
+
+    def faux_mutate(proc, rng):
+        base = proc.tag if isinstance(proc, _FauxProc) else ()
+        a = rng.randrange(2)
+        b = rng.choice(["x", "y", "z"])
+        return _FauxProc(base + ((a, b),))
+
+    def valid(proc):
+        return True if isinstance(proc, _FauxProc) else original_valid(proc)
+
+    def digest(proc):
+        if not isinstance(proc, _FauxProc):
+            return original_digest(proc)
+        record = {"tag": [list(step) for step in proc.tag]}
+        return json.dumps(record, sort_keys=True), record
+
+    def faux_run(proc, vec):
+        if clock.now >= _EXPIRE:
+            etat["late"] += 1
+        if not isinstance(proc, _FauxProc):
+            return original_run(proc, vec)
+        etat["runs"] += 1
+        if limite_runs is not None and etat["runs"] >= limite_runs:
+            clock.now = _EXPIRE
+        return (None, len(proc.tag) == 2)
+
+    monkeypatch.setattr(mod, "time", clock)
+    monkeypatch.setattr(cp, "mutate", faux_mutate)
+    monkeypatch.setattr(cp, "run", faux_run)
+    monkeypatch.setattr(mod, "is_valid", valid)
+    monkeypatch.setattr(mod, "_digest_and_record", digest)
+    return clock, etat
+
+
+def test_lecture_negative_exhaustive_seulement_si_niveau_evalue():
+    assert LIBELLE_NEGATIF in mod._lecture("exhaustif", 0, 0, 0, 0)
+    partielle = mod._lecture("exhaustif", 0, 0, 0, 3)
+    assert LIBELLE_NEGATIF not in partielle
+    assert "rien n'est conclu" in partielle
+    assert "3 procédure(s)" in partielle
+    echantillon = mod._lecture("échantillon", 0, 0, 0, 0)
+    assert LIBELLE_NEGATIF not in echantillon
+    assert echantillon == mod.NOTE_NO_WITNESS_SAMPLE
+    avec_temoins = mod._lecture("exhaustif", 2, 0, 0, 4)
+    assert avec_temoins.startswith("2 témoin(s) conservateur(s) vérifié(s)")
+    assert "4 procédure(s)" in avec_temoins
+    assert LIBELLE_NEGATIF not in avec_temoins
+
+
+def test_exhaustif_puis_expiration_avant_admission(monkeypatch):
+    clock, etat = _installer_monde_fini(monkeypatch)
+    original_explore = mod._explore_level
+
+    def explore(*args):
+        out = original_explore(*args)
+        if args[0] == 2:
+            clock.now = _EXPIRE
+        return out
+
+    monkeypatch.setattr(mod, "_explore_level", explore)
+    report, state = mod.analyse()
+    attendu = {1: 6, 2: 36}
+    assert len(state["entries"]) == 42
+    for lv in report["niveaux"]:
+        assert lv["mode"] == "exhaustif"
+        assert lv["procedures_distinctes"] == attendu[lv["profondeur"]]
+        assert lv["temoins"] == 0
+        assert lv["admission_seule_refutee"] == 0
+        assert lv["conservation_non_evaluee"] == 0
+        assert lv["procedures_non_evaluees"] == lv["procedures_distinctes"] > 0
+        assert LIBELLE_NEGATIF not in lv["lecture"]
+        assert "rien n'est conclu" in lv["lecture"]
+    assert report["procedures_non_evaluees"] == len(state["entries"])
+    assert report["evaluation_interrompue"] is True
+    assert report["conclusion"] != mod.CONCLUSION_AUCUN_EXHAUSTIF
+    assert etat["runs"] == 0
+    assert etat["late"] == 0
+
+
+def test_exhaustif_puis_expiration_pendant_admissions(monkeypatch):
+    seed = mod.get_seed()
+    targets = mod.load_targets()
+    domain, _ = mod.build_domain([t["vec"] for t in targets])
+    reference = [vec for vec in domain.values() if mod.admits(seed, vec)]
+    n_cibles, n_ref = len(targets), len(reference)
+    assert n_ref > 1
+    # niveau 1 : n_cibles runs par procédure (aucune admission) ;
+    # niveau 2 : n_cibles + n_ref runs par procédure admise et conservée.
+    limite = 6 * n_cibles + 2 * (n_cibles + n_ref) + 1
+    _, etat = _installer_monde_fini(monkeypatch, limite_runs=limite)
+    report, state = mod.analyse()
+    lv1, lv2 = report["niveaux"]
+    assert len(state["entries"]) == 42
+    assert lv1["mode"] == lv2["mode"] == "exhaustif"
+    assert (lv1["procedures_distinctes"], lv2["procedures_distinctes"]) == (6, 36)
+    assert etat["runs"] == limite
+    assert etat["late"] == 0
+    assert lv1["procedures_non_evaluees"] == 0
+    assert (lv1["temoins"], lv1["admission_seule_refutee"]) == (0, 0)
+    assert lv1["conservation_non_evaluee"] == 0
+    assert LIBELLE_NEGATIF in lv1["lecture"]
+    assert lv2["temoins"] == 2
+    assert lv2["conservation_non_evaluee"] == 1
+    assert lv2["admission_seule_refutee"] == 0
+    assert lv2["procedures_non_evaluees"] == 34
+    assert LIBELLE_NEGATIF not in lv2["lecture"]
+    assert "34 procédure(s)" in lv2["lecture"]
+    assert report["procedures_non_evaluees"] == 34
+    assert sum(lv["procedures_non_evaluees"] for lv in (lv1, lv2)) == report["procedures_non_evaluees"]
+    assert report["conservation_non_evaluee"] == 1
+    assert report["admission_seule_refutee"] == 0
+    assert sum(lv["temoins"] for lv in (lv1, lv2)) == 2
+    assert all(c["total"] == 2 for c in report["temoins_conservateurs"].values())
+    assert report["evaluation_interrompue"] is True
+    assert report["conclusion"] != mod.CONCLUSION_AUCUN_EXHAUSTIF

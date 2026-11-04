@@ -326,16 +326,28 @@ def _category(witnesses):
     }
 
 
-def _lecture(mode, n_conservateurs, n_refutes, n_non_evalues):
+def _lecture(mode, n_conservateurs, n_refutes, n_non_evalues, n_procedures_non_evaluees):
+    """Lecture d'un niveau ; le négatif exhaustif exige un niveau entièrement évalué."""
+    reste = ""
+    if n_procedures_non_evaluees:
+        reste = (
+            f" ; {n_procedures_non_evaluees} procédure(s) du niveau non évaluée(s) : "
+            "le niveau n'est pas entièrement évalué"
+        )
     if n_conservateurs:
         return (
             f"{n_conservateurs} témoin(s) conservateur(s) vérifié(s) : condition "
             "d'accessibilité seulement, pas une preuve de progrès RSI"
-        )
+        ) + reste
     if n_refutes or n_non_evalues:
         return (
             f"admission sans conservation vérifiée ({n_refutes} réfutée(s), "
             f"{n_non_evalues} non évaluée(s)) : aucune accessibilité positive établie"
+        ) + reste
+    if n_procedures_non_evaluees:
+        return (
+            f"rien n'est conclu pour ce niveau : {n_procedures_non_evaluees} "
+            "procédure(s) non évaluée(s), évaluation interrompue"
         )
     if mode == "exhaustif":
         return "aucun témoin à ce niveau (énumération exhaustive des choix de cp.mutate)"
@@ -413,7 +425,10 @@ def analyse():
     ctl.deadline = start + MAX_SECONDS
 
     witnesses = []
-    per_depth = {d: {"conservee": 0, "refutee": 0, "non_evaluee": 0} for d in (1, 2)}
+    per_depth = {
+        d: {"conservee": 0, "refutee": 0, "non_evaluee": 0, "procedures_non_evaluees": 0}
+        for d in (1, 2)
+    }
     procedures_non_evaluees = 0
     for entry in entries:
         admit, conserves, interrupted = _evaluate(
@@ -421,6 +436,7 @@ def analyse():
         )
         if interrupted:
             procedures_non_evaluees += 1
+            per_depth[entry["depth"]]["procedures_non_evaluees"] += 1
         if not any(v is True for v in admit.values()):
             continue
         statut = _statut(conserves)
@@ -443,8 +459,13 @@ def analyse():
         level["temoins"] = counts["conservee"]
         level["admission_seule_refutee"] = counts["refutee"]
         level["conservation_non_evaluee"] = counts["non_evaluee"]
+        level["procedures_non_evaluees"] = counts["procedures_non_evaluees"]
         level["lecture"] = _lecture(
-            level["mode"], counts["conservee"], counts["refutee"], counts["non_evaluee"]
+            level["mode"],
+            counts["conservee"],
+            counts["refutee"],
+            counts["non_evaluee"],
+            counts["procedures_non_evaluees"],
         )
 
     temoins = {}
