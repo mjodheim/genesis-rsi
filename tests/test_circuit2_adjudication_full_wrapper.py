@@ -96,3 +96,16 @@ def test_other_options_rejected(spy):
     with pytest.raises(SystemExit):
         wrapper.main(["--seeds", "1"])
     assert spy == []
+
+
+def test_verify_plan_error_refused_before_main(spy, monkeypatch, capsys):
+    def failing(plan):
+        raise wrapper.fcp.PlanError("plan altéré")
+
+    monkeypatch.setattr(wrapper.fcp, "verify_plan", failing)
+    assert wrapper.main([]) == 2
+    assert spy == []
+    err = capsys.readouterr().err
+    assert err.startswith("erreur : ")
+    assert "plan gelé non conforme" in err
+    assert "plan altéré" in err

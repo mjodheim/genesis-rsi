@@ -47,9 +47,11 @@ def resolve_out(value=None):
 
 def load_verified_plan():
     """Charge le plan gelé et le vérifie ; lève une exception s'il est altéré."""
-    plan = adj.load_plan(adj.DEFAULT_PLAN)
-    if fcp.verify_plan(plan) is False:
-        raise WrapperError("plan gelé non conforme")
+    try:
+        plan = adj.load_plan(adj.DEFAULT_PLAN)
+        fcp.verify_plan(plan)
+    except fcp.PlanError as exc:
+        raise WrapperError(f"plan gelé non conforme : {exc}") from exc
     return plan
 
 
