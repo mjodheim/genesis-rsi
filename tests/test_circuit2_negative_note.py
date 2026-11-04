@@ -405,10 +405,6 @@ def test_committed_adjudication_valid_against_frozen_plan():
     note.validate_against_plan(data, plan)
 
 
-@pytest.mark.skipif(
-    not NOTE.exists(),
-    reason="note non générée : elle sera produite ensuite par l'action run, puis comparée ici à render(JSON committé)",
-)
 def test_committed_note_matches_render():
     data = json.loads(SOURCE.read_text(encoding="utf-8"))
     plan = json.loads(PLAN.read_text(encoding="utf-8"))
