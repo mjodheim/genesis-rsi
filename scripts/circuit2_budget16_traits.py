@@ -25,6 +25,7 @@ except ImportError:
 from genesis import circuit_engine as engine
 from genesis import circuit_procedure
 
+
 def _appels(resultat):
     if isinstance(resultat, tuple):
         for partie in resultat:
@@ -43,7 +44,7 @@ def collect():
     for component, support in paires:
         nands = len(component.steps)
         arity = component.arity
-        composed = drapeaux.get(component.key, False)
+        composed = drapeaux[component.key]
         traits_proc = circuit_procedure.traits_of(support, arity, nands, composed)
         priorite, admis, _portes = circuit_procedure.run(procedure, traits_proc)
         admis = bool(admis)
@@ -63,7 +64,7 @@ def collect():
 
 def main(argv=None):
     argparse.ArgumentParser(description=__doc__).parse_args(argv)
-    sys.stdout.write(json.dumps(collect(), indent=2, sort_keys=True, default=str) + "\n")
+    sys.stdout.write(json.dumps(collect(), indent=2, sort_keys=True) + "\n")
     return 0
 
 
