@@ -21,6 +21,7 @@ import importlib
 import json
 import signal
 import sys
+import tempfile
 from pathlib import Path
 
 import pytest
@@ -188,6 +189,110 @@ def test_replay_random_procedure_seed0(adj, fcp, data):
         f"stop_reason : attendu={row['stop_reason']!r} obtenu={obtenu_stop_reason!r}"
     )
 
+
+def test_replay_full_adjudication(adj, fcp, plan, tmp_path, monkeypatch):
+    full = json.loads(
+        (ROOT / "results" / "circuit2_adjudication_full.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert full["scale"] == "full"
+    assert len(full["arms"]) == 4
+    assert len(set(full["arms"])) == 4
+    assert len(full["seeds"]) == 20
+    assert len(set(full["seeds"])) == 20
+    assert len(full["rows"]) == 80
+    pairs = {(row["arm"], row["seed"]) for row in full["rows"]}
+    assert pairs == {
+        (arm, seed) for arm in full["arms"] for seed in full["seeds"]
+    }
+    assert full["plan_digest"] == _plan_digest(adj, plan)
+    for field in ("task_budget", "per_generation_limit", "generations"):
+        assert full[field] == plan["budgets"][field], (
+            f"{field} : attendu={plan['budgets'][field]!r} "
+            f"obtenu={full[field]!r}"
+        )
+
+    selected = {}
+    for row in full["rows"]:
+        key = (row["arm"], row["library_fingerprint"])
+        if key not in selected or row["seed"] < selected[key]["seed"]:
+            selected[key] = row
+
+    monkeypatch.chdir(tmp_path)
+    for name in ("TMPDIR", "TMP", "TEMP"):
+        monkeypatch.setenv(name, str(tmp_path))
+    monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
+    monkeypatch.setattr(sys, "dont_write_bytecode", True)
+
+    if not hasattr(signal, "SIGALRM"):
+        pytest.fail(
+            "rejeu complet impossible : SIGALRM indisponible pour contrôler "
+            "le délai ; aucune ligne rejouée"
+        )
+    plan_errors = tuple(
+        e for e in (getattr(adj, "PlanError", None),) if isinstance(e, type)
+    )
+    divergences = []
+    for row in sorted(
+        selected.values(), key=lambda row: (row["arm"], row["seed"])
+    ):
+        context = f"bras={row['arm']!r} graine={row['seed']!r}"
+        previous = signal.signal(signal.SIGALRM, _on_alarm)
+        signal.alarm(REPLAY_TIMEOUT_S)
+        try:
+            tasks = fcp.learn_tasks()
+            records, engine, _final_procedure, _initial = adj.final_library(
+                row["arm"],
+                row["seed"],
+                tasks,
+                full["per_generation_limit"],
+                full["task_budget"],
+                full["generations"],
+            )
+            measured = adj.measure_held_out(engine)
+            obtained = {
+                "held_out_yield": _yield_value(measured),
+                "library_fingerprint": adj.fingerprint(engine.record()),
+                "generations": len(records),
+                "stop_reason": adj.stop_reason(records),
+            }
+        except _ReplayTimeout:
+            pytest.fail(
+                f"{context} : rejeu complet au-delà de {REPLAY_TIMEOUT_S} s ; "
+                "couverture incomplète, délai non réduit"
+                + (
+                    "\nDivergences déjà observées :\n" + "\n".join(divergences)
+                    if divergences else ""
+                )
+            )
+        except plan_errors as exc:
+            pytest.fail(
+                f"{context} : rejeu complet impossible (PlanError), "
+                f"EXECUTABLES.json absent ou manifeste invalide : {exc}"
+                + (
+                    "\nDivergences déjà observées :\n" + "\n".join(divergences)
+                    if divergences else ""
+                )
+            )
+        except Exception as exc:
+            pytest.fail(
+                f"{context} : échec du rejeu complet, notamment si le manifeste "
+                f"est invalide : {type(exc).__name__}: {exc}"
+                + (
+                    "\nDivergences déjà observées :\n" + "\n".join(divergences)
+                    if divergences else ""
+                )
+            )
+        finally:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, previous)
+        for field, value in obtained.items():
+            if value != row[field]:
+                divergences.append(
+                    f"{context} {field} : attendu={row[field]!r} obtenu={value!r}"
+                )
+    assert not divergences, "\n".join(divergences)
 
 def test_no_success_threshold_comparison_in_script():
     tree = ast.parse(SCRIPT.read_text(encoding="utf-8"), filename=str(SCRIPT))
