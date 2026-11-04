@@ -107,6 +107,147 @@ def _bad_keys(obj):
     )
 
 
+ROW_FIELDS = ("held_out_yield", "library_fingerprint", "generations", "stop_reason")
+
+
+def _row_divergences(committed_rows, obtained_by_pair):
+    """Compare champ par champ les lignes committées aux valeurs obtenues."""
+    divergences = []
+    committed_pairs = set()
+    for row in sorted(committed_rows, key=lambda r: (r["arm"], r["seed"])):
+        pair = (row["arm"], row["seed"])
+        committed_pairs.add(pair)
+        context = f"bras={row['arm']!r} graine={row['seed']!r}"
+        if pair not in obtained_by_pair:
+            divergences.append(f"{context} : aucune valeur obtenue")
+            continue
+        obtained = obtained_by_pair[pair]
+        for field in ROW_FIELDS:
+            if field not in obtained:
+                divergences.append(f"{context} {field} : valeur obtenue absente")
+            elif obtained[field] != row[field]:
+                divergences.append(
+                    f"{context} {field} : attendu={row[field]!r} "
+                    f"obtenu={obtained[field]!r}"
+                )
+    for pair in sorted(set(obtained_by_pair) - committed_pairs, key=repr):
+        divergences.append(
+            f"bras={pair[0]!r} graine={pair[1]!r} : valeur obtenue sans ligne committée"
+        )
+    return divergences
+
+
+def _check_identities(full, expected_arms, expected_seeds):
+    """Renvoie les écarts d'identité (bras, graines, paires) ; liste vide si conforme."""
+    errors = []
+    expected_arms = list(expected_arms)
+    expected_seeds = list(expected_seeds)
+    arms = list(full["arms"])
+    if set(arms) != set(expected_arms):
+        errors.append(
+            f"ensemble des bras : attendu={sorted(expected_arms)!r} "
+            f"obtenu={sorted(set(arms))!r}"
+        )
+    if arms != expected_arms:
+        errors.append(
+            f"liste ordonnée des bras : attendu={expected_arms!r} "
+            f"obtenu={arms!r}"
+        )
+    if list(full["seeds"]) != expected_seeds:
+        errors.append(
+            f"graines : attendu={expected_seeds!r} obtenu={list(full['seeds'])!r}"
+        )
+    pairs = [(row["arm"], row["seed"]) for row in full["rows"]]
+    duplicates = sorted({p for p in pairs if pairs.count(p) > 1}, key=repr)
+    if duplicates:
+        errors.append(f"paires dupliquées : {duplicates!r}")
+    expected_pairs = {(arm, seed) for arm in expected_arms for seed in expected_seeds}
+    missing = sorted(expected_pairs - set(pairs), key=repr)
+    if missing:
+        errors.append(f"paires manquantes : {missing!r}")
+    unexpected = sorted(set(pairs) - expected_pairs, key=repr)
+    if unexpected:
+        errors.append(f"paires hors produit cartésien : {unexpected!r}")
+    if len(pairs) != len(expected_pairs):
+        errors.append(
+            f"nombre de lignes : attendu={len(expected_pairs)} obtenu={len(pairs)}"
+        )
+    return errors
+
+
+def _synthetic_full(arms, seeds, pairs):
+    """Données SYNTHÉTIQUES, construites pour le test, jamais lues sur disque."""
+    return {
+        "arms": list(arms),
+        "seeds": list(seeds),
+        "rows": [{"arm": arm, "seed": seed} for arm, seed in pairs],
+    }
+
+
+def test_check_identities_synthetic_data():
+    # Données SYNTHÉTIQUES : aucun fichier committé n'est lu.
+    arms = ("synthetic_a", "synthetic_b")
+    seeds = [0, 1]
+    product = [(arm, seed) for arm in arms for seed in seeds]
+    assert _check_identities(_synthetic_full(arms, seeds, product), arms, seeds) == []
+    missing_arm = _synthetic_full(["synthetic_a"], seeds, product[:2])
+    assert _check_identities(missing_arm, arms, seeds)
+    foreign_seeds = [0, 2]
+    foreign_seed = _synthetic_full(
+        arms, foreign_seeds, [(arm, seed) for arm in arms for seed in foreign_seeds]
+    )
+    assert _check_identities(foreign_seed, arms, seeds)
+    duplicate = _synthetic_full(arms, seeds, product[:-1] + [product[0]])
+    assert _check_identities(duplicate, arms, seeds)
+    extra_row = _synthetic_full(arms, seeds, product + [product[0]])
+    assert _check_identities(extra_row, arms, seeds)
+
+
+def _synthetic_row(arm, seed, **overrides):
+    """Ligne SYNTHÉTIQUE, construite pour le test, sans lien avec un résultat committé."""
+    row = {
+        "arm": arm,
+        "seed": seed,
+        "held_out_yield": 0,
+        "library_fingerprint": f"synthetic-fp-{arm}",
+        "generations": 6,
+        "stop_reason": "synthetic-stop",
+    }
+    row.update(overrides)
+    return row
+
+
+def _obtained_from(rows):
+    return {
+        (row["arm"], row["seed"]): {field: row[field] for field in ROW_FIELDS}
+        for row in rows
+    }
+
+
+def test_row_divergences_synthetic_rows():
+    # Lignes SYNTHÉTIQUES : aucun rejeu, aucun fichier committé.
+    rows = [
+        _synthetic_row(arm, seed)
+        for arm in ("synthetic_a", "synthetic_b")
+        for seed in (0, 1)
+    ]
+    assert _row_divergences(rows, _obtained_from(rows)) == []
+    # Graine 1 : même bras et même empreinte que la graine 0, non sélectionnée avant.
+    wrong_yield = _obtained_from(rows)
+    wrong_yield[("synthetic_a", 1)]["held_out_yield"] = 1
+    found = _row_divergences(rows, wrong_yield)
+    assert len(found) == 1
+    assert "held_out_yield" in found[0] and "graine=1" in found[0]
+    wrong_stop = _obtained_from(rows)
+    wrong_stop[("synthetic_b", 1)]["stop_reason"] = "synthetic-other"
+    found = _row_divergences(rows, wrong_stop)
+    assert len(found) == 1
+    assert "stop_reason" in found[0] and "graine=1" in found[0]
+    missing = _obtained_from(rows)
+    del missing[("synthetic_b", 1)]
+    assert _row_divergences(rows, missing)
+
+
 def test_structure(adj, data, plan):
     assert data["scale"] == "reduced"
     assert data["seeds"] == [0, 1]
@@ -197,27 +338,15 @@ def test_replay_full_adjudication(adj, fcp, plan, tmp_path, monkeypatch):
         )
     )
     assert full["scale"] == "full"
-    assert len(full["arms"]) == 4
-    assert len(set(full["arms"])) == 4
-    assert len(full["seeds"]) == 20
-    assert len(set(full["seeds"])) == 20
+    identity_errors = _check_identities(full, adj.rca.ARMS, plan["seeds"])
+    assert not identity_errors, "\n".join(identity_errors)
     assert len(full["rows"]) == 80
-    pairs = {(row["arm"], row["seed"]) for row in full["rows"]}
-    assert pairs == {
-        (arm, seed) for arm in full["arms"] for seed in full["seeds"]
-    }
     assert full["plan_digest"] == _plan_digest(adj, plan)
     for field in ("task_budget", "per_generation_limit", "generations"):
         assert full[field] == plan["budgets"][field], (
             f"{field} : attendu={plan['budgets'][field]!r} "
             f"obtenu={full[field]!r}"
         )
-
-    selected = {}
-    for row in full["rows"]:
-        key = (row["arm"], row["library_fingerprint"])
-        if key not in selected or row["seed"] < selected[key]["seed"]:
-            selected[key] = row
 
     monkeypatch.chdir(tmp_path)
     for name in ("TMPDIR", "TMP", "TEMP"):
@@ -233,10 +362,18 @@ def test_replay_full_adjudication(adj, fcp, plan, tmp_path, monkeypatch):
     plan_errors = tuple(
         e for e in (getattr(adj, "PlanError", None),) if isinstance(e, type)
     )
-    divergences = []
-    for row in sorted(
-        selected.values(), key=lambda row: (row["arm"], row["seed"])
-    ):
+    obtained_by_pair = {}
+    measured_cache = {}
+    replayed = []
+
+    def _seen_divergences():
+        seen = _row_divergences(replayed, obtained_by_pair)
+        if not seen:
+            return ""
+        return "\nDivergences déjà observées :\n" + "\n".join(seen)
+
+    for row in sorted(full["rows"], key=lambda row: (row["arm"], row["seed"])):
+        pair = (row["arm"], row["seed"])
         context = f"bras={row['arm']!r} graine={row['seed']!r}"
         previous = signal.signal(signal.SIGALRM, _on_alarm)
         signal.alarm(REPLAY_TIMEOUT_S)
@@ -250,10 +387,15 @@ def test_replay_full_adjudication(adj, fcp, plan, tmp_path, monkeypatch):
                 full["task_budget"],
                 full["generations"],
             )
-            measured = adj.measure_held_out(engine)
-            obtained = {
-                "held_out_yield": _yield_value(measured),
-                "library_fingerprint": adj.fingerprint(engine.record()),
+            fingerprint = adj.fingerprint(engine.record())
+            cache_key = (row["arm"], fingerprint)
+            if cache_key not in measured_cache:
+                measured_cache[cache_key] = _yield_value(
+                    adj.measure_held_out(engine)
+                )
+            obtained_by_pair[pair] = {
+                "held_out_yield": measured_cache[cache_key],
+                "library_fingerprint": fingerprint,
                 "generations": len(records),
                 "stop_reason": adj.stop_reason(records),
             }
@@ -261,38 +403,27 @@ def test_replay_full_adjudication(adj, fcp, plan, tmp_path, monkeypatch):
             pytest.fail(
                 f"{context} : rejeu complet au-delà de {REPLAY_TIMEOUT_S} s ; "
                 "couverture incomplète, délai non réduit"
-                + (
-                    "\nDivergences déjà observées :\n" + "\n".join(divergences)
-                    if divergences else ""
-                )
+                + _seen_divergences()
             )
         except plan_errors as exc:
             pytest.fail(
                 f"{context} : rejeu complet impossible (PlanError), "
                 f"EXECUTABLES.json absent ou manifeste invalide : {exc}"
-                + (
-                    "\nDivergences déjà observées :\n" + "\n".join(divergences)
-                    if divergences else ""
-                )
+                + _seen_divergences()
             )
         except Exception as exc:
             pytest.fail(
                 f"{context} : échec du rejeu complet, notamment si le manifeste "
                 f"est invalide : {type(exc).__name__}: {exc}"
-                + (
-                    "\nDivergences déjà observées :\n" + "\n".join(divergences)
-                    if divergences else ""
-                )
+                + _seen_divergences()
             )
         finally:
             signal.alarm(0)
             signal.signal(signal.SIGALRM, previous)
-        for field, value in obtained.items():
-            if value != row[field]:
-                divergences.append(
-                    f"{context} {field} : attendu={row[field]!r} obtenu={value!r}"
-                )
+        replayed.append(row)
+    divergences = _row_divergences(full["rows"], obtained_by_pair)
     assert not divergences, "\n".join(divergences)
+
 
 def test_no_success_threshold_comparison_in_script():
     tree = ast.parse(SCRIPT.read_text(encoding="utf-8"), filename=str(SCRIPT))
