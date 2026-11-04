@@ -440,3 +440,106 @@ def test_no_success_threshold_comparison_in_script():
 def test_no_gain_or_success_key_in_committed_result(data):
     assert _bad_keys(data) == []
     assert _bad_keys(data["rows"]) == []
+
+
+FULL_ADJUDICATION = ROOT / "results" / "circuit2_adjudication_full.json"
+FULL_PROVENANCE = ROOT / "results" / "circuit2_provenance_adjudication_full.json"
+FULL_NAME = "results/circuit2_adjudication_full.json"
+ANCESTOR = "ancetre_de_head"
+
+
+def _find_commit(node):
+    if isinstance(node, dict):
+        if "machinery_commit" in node:
+            return True, node["machinery_commit"]
+        children = list(node.values())
+    elif isinstance(node, list):
+        children = node
+    else:
+        return False, None
+    for child in children:
+        found, value = _find_commit(child)
+        if found:
+            return True, value
+    return False, None
+
+
+def _full_provenance_errors(full, prov):
+    """Renvoie les écarts de provenance de l'adjudication complète ; vide si conforme."""
+    verdicts = prov.get("verdicts") if isinstance(prov, dict) else None
+    if not isinstance(verdicts, list):
+        return ["verdicts absent ou non liste"]
+    entries = [e for e in verdicts if isinstance(e, dict) and e.get("fichier") == FULL_NAME]
+    if len(entries) != 1:
+        return [f"entrées pour {FULL_NAME} : attendu=1 obtenu={len(entries)}"]
+    entry = entries[0]
+    errors = []
+    found, commit = _find_commit(full)
+    if not found or not isinstance(commit, str):
+        errors.append("machinery_commit de l'adjudication absent ou non chaîne")
+    if entry.get("verdict") != ANCESTOR:
+        errors.append(f"verdict de l'entrée : attendu={ANCESTOR!r} obtenu={entry.get('verdict')!r}")
+    values = entry.get("valeurs")
+    if not isinstance(values, list) or not values:
+        errors.append("valeurs absent, non liste ou vide")
+        return errors
+    for index, item in enumerate(values):
+        if not isinstance(item, dict):
+            errors.append(f"valeur {index} : objet attendu")
+            continue
+        for field in ("valeur", "commit_resolu"):
+            if item.get(field) != commit:
+                errors.append(f"valeur {index} {field} : attendu={commit!r} obtenu={item.get(field)!r}")
+        if item.get("verdict") != ANCESTOR:
+            errors.append(f"valeur {index} verdict : attendu={ANCESTOR!r} obtenu={item.get('verdict')!r}")
+        if type(item.get("code_retour")) is not int or item["code_retour"] != 0:
+            errors.append(f"valeur {index} code_retour : attendu=0 obtenu={item.get('code_retour')!r}")
+    return errors
+
+
+def _synthetic_full_provenance(**changes):
+    """Relevé SYNTHÉTIQUE, construit pour le test, jamais lu sur disque."""
+    commit = "a" * 40
+    value = {"code_retour": 0, "commit_resolu": commit, "valeur": commit, "verdict": ANCESTOR}
+    entry = {"fichier": FULL_NAME, "verdict": ANCESTOR, "valeurs": [value]}
+    value.update(changes.get("value", {}))
+    entry.update(changes.get("entry", {}))
+    return {"verdicts": [entry]}
+
+
+def test_full_provenance_errors_synthetic_divergences():
+    # Données SYNTHÉTIQUES : aucun fichier committé n'est lu.
+    commit = "a" * 40
+    other = "b" * 40
+    full = {"machinery_commit": commit}
+    assert _full_provenance_errors(full, _synthetic_full_provenance()) == []
+    divergent = {
+        "valeur": _synthetic_full_provenance(value={"valeur": other}),
+        "commit_resolu": _synthetic_full_provenance(value={"commit_resolu": other}),
+        "verdict": _synthetic_full_provenance(
+            value={"verdict": "non_ancetre"}, entry={"verdict": "non_ancetre"}
+        ),
+        "fichier": _synthetic_full_provenance(
+            entry={"fichier": "results/circuit2_adjudication_s0-1_g6.json"}
+        ),
+    }
+    for name, prov in divergent.items():
+        assert _full_provenance_errors(full, prov), name
+    assert _full_provenance_errors({"machinery_commit": other}, _synthetic_full_provenance())
+    assert _full_provenance_errors({}, _synthetic_full_provenance())
+
+
+def test_full_provenance_matches_committed_adjudication():
+    full = json.loads(FULL_ADJUDICATION.read_text(encoding="utf-8"))
+    prov = json.loads(FULL_PROVENANCE.read_text(encoding="utf-8"))
+    entries = [e for e in prov["verdicts"] if e["fichier"] == FULL_NAME]
+    assert len(entries) == 1
+    entry = entries[0]
+    found, commit = _find_commit(full)
+    assert found and isinstance(commit, str)
+    assert entry["valeurs"]
+    for item in entry["valeurs"]:
+        assert item["valeur"] == commit
+        assert item["commit_resolu"] == commit
+    assert entry["verdict"] == ANCESTOR
+    assert _full_provenance_errors(full, prov) == []

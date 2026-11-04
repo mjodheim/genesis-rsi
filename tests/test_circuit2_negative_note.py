@@ -411,3 +411,126 @@ def test_committed_note_matches_render():
     provenance = json.loads(PROVENANCE.read_text(encoding="utf-8"))
     expected = note.render(data, plan, provenance).encode("utf-8")
     assert NOTE.read_bytes() == expected
+
+
+FULL_COMMIT = "c" * 40
+FULL_FILE = "results/circuit2_adjudication_full.json"
+PROVENANCE_FULL = ROOT / "results" / "circuit2_provenance_adjudication_full.json"
+
+
+def _prov_full(
+    commit,
+    valeur=None,
+    resolu=None,
+    verdict="ancetre_de_head",
+    fichier=FULL_FILE,
+    code_retour=0,
+    valeurs=None,
+    duplicate=False,
+):
+    if valeurs is None:
+        valeurs = [
+            {
+                "code_retour": code_retour,
+                "commit_resolu": commit if resolu is None else resolu,
+                "valeur": commit if valeur is None else valeur,
+                "verdict": verdict,
+            }
+        ]
+    entry = {"fichier": fichier, "verdict": verdict, "valeurs": valeurs}
+    verdicts = [entry, dict(entry)] if duplicate else [entry]
+    return {"fichiers_lus": [fichier], "head": "h" * 40, "verdicts": verdicts}
+
+
+def _full_data():
+    return _data(machinery_commit=FULL_COMMIT)
+
+
+def test_render_with_provenance_full_shows_commit_and_verdict():
+    text = note.render(_full_data(), _plan(), _prov(), _prov_full(FULL_COMMIT))
+    assert f'commit résolu "{FULL_COMMIT}", verdict "ancetre_de_head"' in text
+    assert "concordance valeur / commit_resolu / machinery_commit contrôlée" in text
+    assert "results/circuit2_provenance_adjudication_full.json" in text
+    assert "Source unique" not in text
+    assert "recalcul du digest : non vérifié" in text
+    _check_policy(text)
+
+
+def test_render_without_provenance_full_unchanged():
+    data = _full_data()
+    text = note.render(data, _plan(), _prov())
+    assert text == note.render(data, _plan(), _prov(), None)
+    assert "Source unique : `results/circuit2_provenance.json`." in text
+    assert "contrôlée" not in text
+    assert "statut dans la provenance : non vérifié" in text
+
+
+FULL_REFUSALS = {
+    "valeur": ({"valeur": "d" * 40}, True),
+    "commit_resolu": ({"resolu": "d" * 40}, True),
+    "valeur_et_commit_resolu_egaux_mais_autres": ({"valeur": "d" * 40, "resolu": "d" * 40}, True),
+    "verdict": ({"verdict": "non_ancetre"}, True),
+    "fichier": ({"fichier": "results/circuit2_adjudication_s0-1_g6.json"}, True),
+    "fichier_avec_prefixe": ({"fichier": "x/" + FULL_FILE}, True),
+    "machinery_commit_absent": ({}, False),
+    "code_retour": ({"code_retour": 1}, True),
+    "valeurs_vide": ({"valeurs": []}, True),
+    "entree_en_double": ({"duplicate": True}, True),
+}
+
+
+@pytest.mark.parametrize("changes, with_commit", list(FULL_REFUSALS.values()), ids=list(FULL_REFUSALS))
+def test_provenance_full_divergence_refused_without_output(tmp_path, changes, with_commit):
+    data = _full_data() if with_commit else _data()
+    src, plan_file, prov_file = _write_input(tmp_path, data)
+    prov_full = _prov_full(FULL_COMMIT, **changes)
+    full_file = tmp_path / "provenance_full.json"
+    full_file.write_text(json.dumps(prov_full), encoding="utf-8")
+    dst = tmp_path / "sous_dossier" / "sortie.md"
+    with pytest.raises(ValueError):
+        note.check_full_provenance(data, prov_full)
+    with pytest.raises(ValueError):
+        note.run(src, dst, plan_file, prov_file, full_file)
+    assert not dst.exists()
+    assert not dst.parent.exists()
+
+
+def test_provenance_full_missing_raises_and_writes_nothing(tmp_path):
+    src, plan_file, prov_file = _write_input(tmp_path, _full_data())
+    dst = tmp_path / "sous_dossier" / "sortie.md"
+    with pytest.raises(FileNotFoundError):
+        note.run(src, dst, plan_file, prov_file, tmp_path / "absent.json")
+    assert not dst.exists()
+    assert not dst.parent.exists()
+
+
+def test_run_with_provenance_full_writes_render(tmp_path):
+    src, plan_file, prov_file = _write_input(tmp_path, _full_data())
+    full_file = tmp_path / "provenance_full.json"
+    full_file.write_text(json.dumps(_prov_full(FULL_COMMIT)), encoding="utf-8")
+    dst = tmp_path / "sortie.md"
+    note.run(src, dst, plan_file, prov_file, full_file)
+    expected = note.render(_full_data(), _plan(), _prov(), _prov_full(FULL_COMMIT))
+    assert dst.read_bytes() == expected.encode("utf-8")
+
+
+def test_run_with_provenance_full_refuses_overwrite(tmp_path):
+    src, plan_file, prov_file = _write_input(tmp_path, _full_data())
+    full_file = tmp_path / "provenance_full.json"
+    full_file.write_text(json.dumps(_prov_full(FULL_COMMIT)), encoding="utf-8")
+    dst = tmp_path / "sortie.md"
+    dst.write_text("existant", encoding="utf-8")
+    with pytest.raises(FileExistsError):
+        note.run(src, dst, plan_file, prov_file, full_file)
+    assert dst.read_text(encoding="utf-8") == "existant"
+
+
+def test_real_files_render_with_provenance_full():
+    data = json.loads(SOURCE.read_text(encoding="utf-8"))
+    plan = json.loads(PLAN.read_text(encoding="utf-8"))
+    provenance = json.loads(PROVENANCE.read_text(encoding="utf-8"))
+    prov_full = json.loads(PROVENANCE_FULL.read_text(encoding="utf-8"))
+    entry = note.check_full_provenance(data, prov_full)
+    text = note.render(data, plan, provenance, prov_full)
+    assert entry["valeurs"][0]["commit_resolu"] in text
+    assert 'verdict "ancetre_de_head"' in text

@@ -16,6 +16,8 @@ DEFAULT_INPUT = Path("results/circuit2_adjudication_full.json")
 DEFAULT_OUTPUT = Path("docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_CORRIGE.md")
 DEFAULT_PLAN = Path("experiment/engine/CIRCUIT2/PROCEDURE_PREREG_PLAN.json")
 DEFAULT_PROVENANCE = Path("results/circuit2_provenance.json")
+DEFAULT_PROVENANCE_FULL = Path("results/circuit2_provenance_adjudication_full.json")
+DEFAULT_OUTPUT_FULL = Path("docs/CIRCUIT2_RESULTAT_NUL_2026-11-04_PROVENANCE_COMPLETE.md")
 ABSENT = "absent du fichier"
 NO_ARM = "(bras non renseigné)"
 ROW_KEYS = ("rows", "results", "records", "runs")
@@ -346,12 +348,66 @@ def _commits(entry):
     return "valeurs multiples : " + _fmt(commits)
 
 
-def _provenance_lines(data, plan, provenance):
+FULL_FILE = f"results/{ADJUDICATION_FULL}"
+ANCESTOR = "ancetre_de_head"
+
+
+def check_full_provenance(data, prov_full):
+    verdicts = prov_full.get("verdicts") if isinstance(prov_full, dict) else None
+    if not isinstance(verdicts, list):
+        raise ValueError("relevé complémentaire : objet avec liste verdicts attendu")
+    entries = [item for item in verdicts if isinstance(item, dict) and item.get("fichier") == FULL_FILE]
+    if len(entries) != 1:
+        raise ValueError(f"relevé complémentaire : une seule entrée pour {FULL_FILE} attendue, {len(entries)} trouvée(s)")
+    entry = entries[0]
+    errors = []
+    if entry.get("verdict") != ANCESTOR:
+        errors.append(f"verdict de l'entrée différent de {ANCESTOR!r}")
+    found, expected = _find(data, "machinery_commit")
+    if not found or not isinstance(expected, str):
+        errors.append("machinery_commit de l'adjudication absent ou non chaîne")
+        expected = None
+    values = entry.get("valeurs")
+    if not isinstance(values, list) or not values:
+        errors.append("valeurs absent, non liste ou vide")
+    else:
+        for index, item in enumerate(values):
+            where = f"valeur {index} : "
+            if not isinstance(item, dict):
+                errors.append(where + "objet JSON attendu")
+                continue
+            if item.get("verdict") != ANCESTOR:
+                errors.append(where + f"verdict différent de {ANCESTOR!r}")
+            code = item.get("code_retour")
+            if type(code) is not int or code != 0:
+                errors.append(where + "code_retour non nul ou non entier")
+            raw = item.get("valeur")
+            resolved = item.get("commit_resolu")
+            if not isinstance(raw, str) or not isinstance(resolved, str) or raw != resolved:
+                errors.append(where + "valeur et commit_resolu doivent être des chaînes égales")
+            elif expected is not None and raw != expected:
+                errors.append(where + "valeur différente du machinery_commit de l'adjudication")
+    if errors:
+        raise ValueError("provenance de l'adjudication complète incohérente : " + " ; ".join(errors))
+    return entry
+
+
+def _provenance_lines(data, plan, provenance, full_entry=None):
+    if full_entry is None:
+        source = (
+            "Source unique : `results/circuit2_provenance.json`. Tout ce que ce fichier "
+            "n'établit pas est marqué « non vérifié »."
+        )
+    else:
+        source = (
+            "Sources : `results/circuit2_provenance.json` (campagne complète et pilote) "
+            "et `results/circuit2_provenance_adjudication_full.json` (adjudication "
+            "complète). Tout ce que ces relevés n'établissent pas est marqué « non vérifié »."
+        )
     lines = [
         "## Provenance",
         "",
-        "Source unique : `results/circuit2_provenance.json`. Tout ce que ce fichier "
-        "n'établit pas est marqué « non vérifié ».",
+        source,
         "",
     ]
     for filename in PROVENANCE_FILES:
@@ -362,14 +418,23 @@ def _provenance_lines(data, plan, provenance):
             status = f"commit résolu {_commits(entry)}, verdict {_pick(entry, 'verdict')}"
         lines.append(f"- `results/{filename}` : {status}{SUFFIXES[filename]}")
     found, adjudicated = _find(data, "machinery_commit")
-    entry = _prov_entry(provenance, ADJUDICATION_FULL)
-    status = NOT_VERIFIED
-    if entry is not None:
-        status = f"commit résolu {_commits(entry)}, verdict {_pick(entry, 'verdict')}"
-    lines.append(
-        f"- `results/{ADJUDICATION_FULL}` : machinery_commit lu dans le fichier "
-        f"{_fmt(adjudicated) if found else ABSENT} ; statut dans la provenance : {status}"
-    )
+    if full_entry is not None:
+        lines.append(
+            f"- `results/{ADJUDICATION_FULL}` : machinery_commit lu dans le fichier "
+            f"{_fmt(adjudicated)} ; commit résolu {_commits(full_entry)}, "
+            f"verdict {_pick(full_entry, 'verdict')} (relevé complémentaire "
+            "`results/circuit2_provenance_adjudication_full.json`) ; concordance "
+            "valeur / commit_resolu / machinery_commit contrôlée"
+        )
+    else:
+        entry = _prov_entry(provenance, ADJUDICATION_FULL)
+        status = NOT_VERIFIED
+        if entry is not None:
+            status = f"commit résolu {_commits(entry)}, verdict {_pick(entry, 'verdict')}"
+        lines.append(
+            f"- `results/{ADJUDICATION_FULL}` : machinery_commit lu dans le fichier "
+            f"{_fmt(adjudicated) if found else ABSENT} ; statut dans la provenance : {status}"
+        )
     found, planned = _find(plan, "machinery_commit")
     lines.append(f"- machinery_commit du plan (lu dans le plan) : {_fmt(planned) if found else ABSENT}")
     lines.append(
@@ -380,8 +445,11 @@ def _provenance_lines(data, plan, provenance):
     return lines
 
 
-def render(data, plan, provenance):
+def render(data, plan, provenance, provenance_full=None):
     validate_against_plan(data, plan)
+    full_entry = None
+    if provenance_full is not None:
+        full_entry = check_full_provenance(data, provenance_full)
     arms = _rows_by_arm(data)
     names = sorted(arms)
     lines = [
@@ -401,7 +469,7 @@ def render(data, plan, provenance):
         lines += _arm_lines(name, arms[name])
     yields_by_arm = {n: [r.get("held_out_yield") for r in arms[n]] for n in names}
     lines += _verdict(names, yields_by_arm, plan)
-    lines += _provenance_lines(data, plan, provenance)
+    lines += _provenance_lines(data, plan, provenance, full_entry)
     lines += LIMITS
     return "\n".join(lines) + "\n"
 
@@ -411,15 +479,17 @@ def run(
     output_path=DEFAULT_OUTPUT,
     plan_path=DEFAULT_PLAN,
     provenance_path=DEFAULT_PROVENANCE,
+    provenance_full_path=None,
 ):
     src = Path(input_path)
     dst = Path(output_path)
     plan_src = Path(plan_path)
     prov_src = Path(provenance_path)
+    full_src = None if provenance_full_path is None else Path(provenance_full_path)
     if not src.is_file():
         raise FileNotFoundError(f"fichier d'entrée absent : {src}")
-    for extra in (plan_src, prov_src):
-        if not extra.is_file():
+    for extra in (plan_src, prov_src, full_src):
+        if extra is not None and not extra.is_file():
             raise FileNotFoundError(f"fichier d'entrée absent : {extra}")
     if dst.exists():
         raise FileExistsError(f"refus d'écraser le fichier existant : {dst}")
@@ -427,6 +497,7 @@ def run(
         json.loads(src.read_text(encoding="utf-8")),
         json.loads(plan_src.read_text(encoding="utf-8")),
         json.loads(prov_src.read_text(encoding="utf-8")),
+        None if full_src is None else json.loads(full_src.read_text(encoding="utf-8")),
     )
     dst.parent.mkdir(parents=True, exist_ok=True)
     with dst.open("x", encoding="utf-8", newline="\n") as handle:
@@ -437,11 +508,15 @@ def run(
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Génère la note CIRCUIT2 depuis le JSON d'adjudication.")
     parser.add_argument("--input", default=str(DEFAULT_INPUT))
-    parser.add_argument("--output", default=str(DEFAULT_OUTPUT))
+    parser.add_argument("--output", default=None)
     parser.add_argument("--plan", default=str(DEFAULT_PLAN))
     parser.add_argument("--provenance", default=str(DEFAULT_PROVENANCE))
+    parser.add_argument("--provenance-full", default=None)
     args = parser.parse_args(argv)
-    print(run(args.input, args.output, args.plan, args.provenance))
+    output = args.output
+    if output is None:
+        output = DEFAULT_OUTPUT if args.provenance_full is None else DEFAULT_OUTPUT_FULL
+    print(run(args.input, output, args.plan, args.provenance, args.provenance_full))
     return 0
 
 
