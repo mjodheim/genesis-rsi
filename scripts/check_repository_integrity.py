@@ -56,6 +56,7 @@ ENTRY_POINT_PREFIXES = (
 # Outils CLI indépendants lancés en ligne de commande et jamais importés ;
 # sans ces noms exacts, check_orphans les signalerait comme orphelins.
 ENTRY_POINT_NAMES = frozenset({
+    "capture_circuit2_budget16",
     "circuit2_full_descriptive_counts",
     "circuit2_negative_note",
     "shard_circuit2_result",
