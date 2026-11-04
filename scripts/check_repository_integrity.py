@@ -53,8 +53,16 @@ ENTRY_POINT_PREFIXES = (
 )
 
 # Points d'entrée reconnus par nom exact de module, et non par préfixe.
-# verify_circuit2_executables : vérificateur CLI indépendant d'identité des exécutables CIRCUIT2, lancé en ligne de commande et jamais importé.
-ENTRY_POINT_NAMES = frozenset({"verify_circuit2_executables"})
+# Outils CLI indépendants lancés en ligne de commande et jamais importés ;
+# sans ces noms exacts, check_orphans les signalerait comme orphelins.
+ENTRY_POINT_NAMES = frozenset({
+    "circuit2_full_descriptive_counts",
+    "circuit2_negative_note",
+    "shard_circuit2_result",
+    "summarize_circuit2_campaign",
+    "verify_circuit2_executables",
+    "verify_circuit2_provenance",
+})
 
 # Tools invoked from the command line and never imported by source code. Declaring them
 # without importing them is legitimate.
