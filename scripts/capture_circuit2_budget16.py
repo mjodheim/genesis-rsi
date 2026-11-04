@@ -41,16 +41,16 @@ def _target(results, name):
     return target
 
 
-def _text(value):
+def _data(value):
     if value is None:
-        return ""
-    if isinstance(value, bytes):
-        return value.decode("utf-8", errors="replace")
+        return b""
+    if isinstance(value, str):
+        return value.encode("utf-8")
     return value
 
 
 def _write_new(target, content):
-    with open(target, "x", encoding="utf-8", newline="") as handle:
+    with open(target, "xb") as handle:
         handle.write(content)
 
 
@@ -74,15 +74,14 @@ def main(argv=None, root=None, runner=None):
             [sys.executable, str(script)],
             cwd=str(root),
             capture_output=True,
-            text=True,
             timeout=TIMEOUT,
             check=False,
         )
         code = proc.returncode
-        stdout, stderr = _text(proc.stdout), _text(proc.stderr)
+        stdout, stderr = _data(proc.stdout), _data(proc.stderr)
     except subprocess.TimeoutExpired as exc:
         code = TIMEOUT_CODE
-        stdout, stderr = _text(exc.stdout), _text(exc.stderr)
+        stdout, stderr = _data(exc.stdout), _data(exc.stderr)
     try:
         results.mkdir(exist_ok=True)
         _write_new(out, stdout)

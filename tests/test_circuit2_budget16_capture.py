@@ -66,7 +66,7 @@ def test_stdout_et_stderr_dans_deux_fichiers_et_code_propage(tmp_path):
 
 def test_appel_identique_a_celui_du_test_d_integration(tmp_path):
     appels = []
-    faux = _runner(SimpleNamespace(returncode=0, stdout="{}\n", stderr=""), appels)
+    faux = _runner(SimpleNamespace(returncode=0, stdout=b"{}\n", stderr=b""), appels)
     assert cap.main([], root=tmp_path, runner=faux) == 0
     assert len(appels) == 1
     args, kwargs = appels[0]
@@ -74,14 +74,13 @@ def test_appel_identique_a_celui_du_test_d_integration(tmp_path):
     assert kwargs == {
         "cwd": str(tmp_path),
         "capture_output": True,
-        "text": True,
         "timeout": 600,
         "check": False,
     }
 
 
 def test_stdout_vide_est_ecrit_tel_quel(tmp_path):
-    faux = _runner(SimpleNamespace(returncode=0, stdout="", stderr=""))
+    faux = _runner(SimpleNamespace(returncode=0, stdout=b"", stderr=b""))
     assert cap.main([], root=tmp_path, runner=faux) == 0
     assert (tmp_path / "results" / NOM_STDOUT).read_bytes() == b""
     assert (tmp_path / "results" / NOM_STDERR).read_bytes() == b""
@@ -102,7 +101,7 @@ def test_refus_d_ecraser_un_fichier_existant(tmp_path, existant, capsys):
     ancien = tmp_path / "results" / existant
     ancien.write_text("ancien", encoding="utf-8")
     appels = []
-    faux = _runner(SimpleNamespace(returncode=0, stdout="neuf", stderr="neuf"), appels)
+    faux = _runner(SimpleNamespace(returncode=0, stdout=b"neuf", stderr=b"neuf"), appels)
     assert cap.main([], root=tmp_path, runner=faux) == 2
     assert appels == []
     assert ancien.read_text(encoding="utf-8") == "ancien"
@@ -111,7 +110,7 @@ def test_refus_d_ecraser_un_fichier_existant(tmp_path, existant, capsys):
 
 
 def test_aucune_ecriture_hors_results(tmp_path):
-    faux = _runner(SimpleNamespace(returncode=0, stdout="x", stderr="y"))
+    faux = _runner(SimpleNamespace(returncode=0, stdout=b"x", stderr=b"y"))
     assert cap.main([], root=tmp_path, runner=faux) == 0
     assert [p.name for p in tmp_path.iterdir()] == ["results"]
     results = (tmp_path / "results").resolve()
@@ -127,7 +126,7 @@ def test_results_symlink_vers_l_exterieur_est_refuse(tmp_path):
     racine.mkdir()
     (racine / "results").symlink_to(dehors, target_is_directory=True)
     appels = []
-    faux = _runner(SimpleNamespace(returncode=0, stdout="x", stderr="y"), appels)
+    faux = _runner(SimpleNamespace(returncode=0, stdout=b"x", stderr=b"y"), appels)
     assert cap.main([], root=racine, runner=faux) == 2
     assert appels == []
     assert list(dehors.iterdir()) == []
@@ -140,6 +139,42 @@ def test_options_refusees():
 
 def test_script_de_diagnostic_inchange(tmp_path):
     avant = _sha(DIAGNOSTIC)
-    faux = _runner(SimpleNamespace(returncode=0, stdout="{}\n", stderr=""))
+    faux = _runner(SimpleNamespace(returncode=0, stdout=b"{}\n", stderr=b""))
     assert cap.main([], root=tmp_path, runner=faux) == 0
     assert _sha(DIAGNOSTIC) == avant
+
+
+def test_crlf_conserve_exactement_en_stdout_et_stderr(tmp_path):
+    faux = _runner(SimpleNamespace(returncode=0, stdout=b"a\r\nb\r\n", stderr=b"a\r\nb\r\n"))
+    assert cap.main([], root=tmp_path, runner=faux) == 0
+    assert (tmp_path / "results" / NOM_STDOUT).read_bytes() == b"a\r\nb\r\n"
+    assert (tmp_path / "results" / NOM_STDERR).read_bytes() == b"a\r\nb\r\n"
+
+
+def test_octets_non_utf8_conserves_sans_exception(tmp_path):
+    brut = b"\xff\xfe\x80"
+    faux = _runner(SimpleNamespace(returncode=0, stdout=brut, stderr=brut))
+    assert cap.main([], root=tmp_path, runner=faux) == 0
+    assert (tmp_path / "results" / NOM_STDOUT).read_bytes() == brut
+    assert (tmp_path / "results" / NOM_STDERR).read_bytes() == brut
+
+
+def test_timeout_conserve_les_octets_partiels_a_l_identique(tmp_path):
+    def faux(*args, **kwargs):
+        raise subprocess.TimeoutExpired(args[0], 600, output=b"\xe2\x82", stderr=b"\xff")
+
+    assert cap.main([], root=tmp_path, runner=faux) == cap.TIMEOUT_CODE
+    assert (tmp_path / "results" / NOM_STDOUT).read_bytes() == b"\xe2\x82"
+    assert (tmp_path / "results" / NOM_STDERR).read_bytes() == b"\xff"
+
+
+def test_sous_processus_reel_octets_bruts_retrouves_a_l_identique(tmp_path):
+    _faux_script(
+        tmp_path,
+        "import sys\n"
+        "sys.stdout.buffer.write(b'a\\r\\nb\\r\\n\\xff')\n"
+        "sys.stderr.buffer.write(b'e\\r\\n\\x80')\n",
+    )
+    assert cap.main([], root=tmp_path) == 0
+    assert (tmp_path / "results" / NOM_STDOUT).read_bytes() == b"a\r\nb\r\n\xff"
+    assert (tmp_path / "results" / NOM_STDERR).read_bytes() == b"e\r\n\x80"
