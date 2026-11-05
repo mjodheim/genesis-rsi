@@ -1,0 +1,6326 @@
+{
+  "admission_seule_refutee": 429,
+  "appels_total": 10000,
+  "bornes": {
+    "graines_echantillon": [
+      0,
+      1,
+      2
+    ],
+    "lecture_bornes_atteintes": "vrai si un plafond (global ou part de phase) a arrêté une phase du niveau",
+    "max_appels": 10000,
+    "max_secondes": 60.0,
+    "part_temps_exploration": 0.8,
+    "temoins_max_par_categorie": 20
+  },
+  "cibles": [
+    {
+      "nom": "cible_0",
+      "parametres": {
+        "arity": 1,
+        "composed": false,
+        "nands": 1,
+        "support": 1
+      },
+      "traits": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "nom": "cible_1",
+      "parametres": {
+        "arity": 2,
+        "composed": false,
+        "nands": 2,
+        "support": 1
+      },
+      "traits": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "conclusion": "des témoins conservateurs vérifiés existent : condition d'accessibilité seulement, pas une preuve de progrès RSI",
+  "conservation_non_evaluee": 0,
+  "domaine": {
+    "combinaisons_ignorees": 0,
+    "description": "vecteurs distincts de lineage._traits(size, support, composed) pour composed dans (False, True), size de 0 à cp.MAX_STEPS, support de 0 à lineage.SUPPORT_CAP (façon dont step() construit les traits ; borne supérieure, la taille minimale réelle n'est pas établie), union avec les vecteurs cibles ; référence = vecteurs du domaine admis par seed_procedure",
+    "taille": 60,
+    "taille_reference": 32
+  },
+  "evaluation_interrompue": false,
+  "methode": {
+    "chemin": "par étape, suite des indices de choix de la bande (rejouable)",
+    "deduplication": "sha256 du JSON canonique de cp.to_record ; chemin de mutation le plus court conservé (profondeur 1 avant 2, seed exclue)",
+    "echantillonnage": "si un niveau n'est pas énuméré exhaustivement : résultats partiels conservés puis tirages random.Random(0), (1), (2) en alternance, sous le même plafond global ; mode « échantillon »",
+    "enumeration": "faux rng à bande (choice, randrange) rejouant un préfixe de choix et explorant en profondeur d'abord toutes les branches ; chaque feuille = un appel réel à cp.mutate sur une copie de la procédure",
+    "evaluation": "cp.run exclusivement ; admission = deuxième élément du triplet",
+    "partage_budget": "énumération exhaustive limitée à 3/4 du budget restant et du temps restant ; le reste sert à l'échantillonnage ; l'échantillonnage du niveau 1 laisse la moitié du restant au niveau 2"
+  },
+  "niveaux": [
+    {
+      "admission_seule_refutee": 17,
+      "appels_utilises": 688,
+      "bornes_atteintes": {
+        "appels": false,
+        "temps": false
+      },
+      "conservation_non_evaluee": 0,
+      "doublons": 21,
+      "erreurs_mutation": 0,
+      "invalides": 0,
+      "lecture": "27 témoin(s) conservateur(s) vérifié(s) : condition d'accessibilité seulement, pas une preuve de progrès RSI",
+      "mode": "exhaustif",
+      "note": "énumération exhaustive de tous les choix de cp.mutate",
+      "procedures_distinctes": 667,
+      "procedures_non_evaluees": 0,
+      "profondeur": 1,
+      "temoins": 27
+    },
+    {
+      "admission_seule_refutee": 412,
+      "appels_utilises": 9312,
+      "bornes_atteintes": {
+        "appels": true,
+        "temps": false
+      },
+      "conservation_non_evaluee": 0,
+      "doublons": 1083,
+      "erreurs_mutation": 0,
+      "invalides": 0,
+      "lecture": "912 témoin(s) conservateur(s) vérifié(s) : condition d'accessibilité seulement, pas une preuve de progrès RSI",
+      "mode": "échantillon",
+      "note": "échantillon, non exhaustif",
+      "procedures_distinctes": 8229,
+      "procedures_non_evaluees": 0,
+      "profondeur": 2,
+      "temoins": 912
+    }
+  ],
+  "preparation_interrompue": false,
+  "procedures_non_evaluees": 0,
+  "schema": "circuit2-mutation-reachability-v1",
+  "temoins": {
+    "cible_0": {
+      "affiches": 20,
+      "liste": [
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              4
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "024fccdd1419b431d460c2213c623f940fb05d959ab6fbbb7306f9b9df1d6ad5",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5cbf33a1b842de733497839e9bc3d33ec9b189187bb77fb973ccd169211a5305",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                4
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              1,
+              14
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "03c111d8e3cb16df933636530b296c95bf70fee07ef2cd74462464c9b789cf0a",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 14,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "4c7dd640423dbbadfcb8b26183891642306b1565722d1b66caedec8d9eb2d5d3",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              8
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "1fb97f0a586b03d29b9ed17817d47ba17740cd5fc11be0cbc77f476c701ab48b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "210578b0fb53ff7f1113611339d5fac852d7eace4668345730fad3fb8b2254dd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                8,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              1,
+              17
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "2539ff2cf7a97658643df84b955744f4701c3f0e7e0621eb583d5f036732c2ef",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 17,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "1a4b874d5ec3d64221fa384ce8a3185f14ac617d7ade322d1aa073d354d4b1f9",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "297b7c8d2ef8d15881f878f18f72064ba6db24bb464d545b115dab6bcf27e945",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "fced52814a5ce1952b8bd60931048edf89a9c44da9477f13345d1606b5be972a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                3,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": false
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              6
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "2b9ebf9480f9317ad4c60882d2f0030eacfcd73fb045bffa208ee5f8239e2159",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "82439bfe2ceb7b0f19f8dc55d7ad130beb69b1f07655dbca9b13fb67fbe6581e",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                6,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              15
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "2bfe00442c3a85a72dc6fe30ebcebae3eee06a6c0a521dc384d430e3e2458ff6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "cf4e48688f7a386e319bc9f60a6738bbebee1f9879c819e56f23d94e54492cbf",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                15
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              7
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "30b60680b322e5300b3551001fcd62873dc1b6e842a078a565eb44445104795d",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "41f88e45eddaedf6e6892fd6a4ef2eff3ab34740675a0c2c71ff66f882b65748",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              12
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "327e375cc8aa7532e581acc93aae710144596bd78aa64cb54050ebc3b56c1467",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5a1da19d4b38aa6903f13dec8f958f6f7bafa0af54c8e486ea0fa7863a7389b7",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                12
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "3965770e65f4c32ed7e5c97456e95b51ccb17fbdb0ea020080796283999b347b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "a65820796c6264ef1490c9c9100c885e343d956a8071ae267d96dcfd8b01dee1",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                3
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              0
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "42bbaf752680571a555c9203d437a2dc98203e23f397e168754f4006e777e42f",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "0375267635a0b128854def679912de25d7bbc7cbc883d44e436f6c285fc05e33",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                0,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              5
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "4390f8f38c4d21a37218873730a2930cb56a3e2449ebe5d25be90138ad2621e7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "9fb959f52455d7b32b0d2e215a7bd0e951985b2b8e9122e5649cb5f11b6c12bd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                5
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              16
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "43e539320010b9c3fc69ab138e03157048529d6a7c4303beb777524b1b077ebd",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 16,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "56706d64456cb947375e3ad8d862868f37f30731d5894d2a4c25ec376a650032",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "45113551384a922c4a55b6dc4da892c4654e73c87bdb6eaf0e0a060d7a6a89d6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "58ba8698b100934fe3f16ef3582371c325d8f62fd8d0da77b1ced40100db2cbb",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                1,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "5a5d64d2fa9986aa3bf8aa446613743b1063d07392309abd2edf0fee9cfa76b7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "39d1ef823c960ee409cc43e1995b3869423b97463920af287c413ef5833f2c85",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                1
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              7,
+              0,
+              13
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "6684f15f8caaef7571b224ff9708e0232fea862d2733ab360704a96106cc2c0e",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "7cd118561100d0f581e8c0385b047a54e8c96ad856fcb83852a85e26d6676af0",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                13,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              10
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "6f22451e3a228209bfc615b306ad3fc75af5863e6077d6711e71e1e3c3a62679",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 10,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "77ef7773dde661c5de5dc69f53f10697e517daa36bcd35edb8c9083b5ef2a11c",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              1,
+              10
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "76c5ae5f92af762a5c9cc4083cd03c9f7284ec3493da5575a5e0a982a2221b20",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 10,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "abff68231a47a04a8cc7ce7c87e501868e2669fe3281dd9f20a36d8159c536a1",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              17
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "7f1c6cb7fda73b2cdab4ffe8916d129ebc568f03a734e389d44cdf9f59bf6c46",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 17,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "e323dbdb81cfa099ced666a181e21f0363194604eccc93f05788582fd762b827",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              9
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "8452c11a5c79a680d20631afc9be5a35afbd8ee60339b5a5631426a3a6f3a445",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "8482239d4b7b5550a6d4a1b083c81b2c77c3a1794d2503562dd3cd8759712b19",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                9,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        }
+      ],
+      "total": 1302
+    },
+    "cible_1": {
+      "affiches": 20,
+      "liste": [
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              4
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "024fccdd1419b431d460c2213c623f940fb05d959ab6fbbb7306f9b9df1d6ad5",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5cbf33a1b842de733497839e9bc3d33ec9b189187bb77fb973ccd169211a5305",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                4
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              1,
+              14
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "03c111d8e3cb16df933636530b296c95bf70fee07ef2cd74462464c9b789cf0a",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 14,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "4c7dd640423dbbadfcb8b26183891642306b1565722d1b66caedec8d9eb2d5d3",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": false,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              1,
+              6
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "120187c62ef180d8124b7ec316ae199374ba1bbccfb5f840bc51111746e975a0",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 6,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "01121da7e4108789cc4aa70ab5b6b2fbb25d3dd0f58d037c7e00f16197987b62",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              8
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "1fb97f0a586b03d29b9ed17817d47ba17740cd5fc11be0cbc77f476c701ab48b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "210578b0fb53ff7f1113611339d5fac852d7eace4668345730fad3fb8b2254dd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                8,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              1,
+              17
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "2539ff2cf7a97658643df84b955744f4701c3f0e7e0621eb583d5f036732c2ef",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 17,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "1a4b874d5ec3d64221fa384ce8a3185f14ac617d7ade322d1aa073d354d4b1f9",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "297b7c8d2ef8d15881f878f18f72064ba6db24bb464d545b115dab6bcf27e945",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "fced52814a5ce1952b8bd60931048edf89a9c44da9477f13345d1606b5be972a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                3,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              15
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "2bfe00442c3a85a72dc6fe30ebcebae3eee06a6c0a521dc384d430e3e2458ff6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "cf4e48688f7a386e319bc9f60a6738bbebee1f9879c819e56f23d94e54492cbf",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                15
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              7
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "30b60680b322e5300b3551001fcd62873dc1b6e842a078a565eb44445104795d",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "41f88e45eddaedf6e6892fd6a4ef2eff3ab34740675a0c2c71ff66f882b65748",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              12
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "327e375cc8aa7532e581acc93aae710144596bd78aa64cb54050ebc3b56c1467",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5a1da19d4b38aa6903f13dec8f958f6f7bafa0af54c8e486ea0fa7863a7389b7",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                12
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "3965770e65f4c32ed7e5c97456e95b51ccb17fbdb0ea020080796283999b347b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "a65820796c6264ef1490c9c9100c885e343d956a8071ae267d96dcfd8b01dee1",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                3
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              0
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "42bbaf752680571a555c9203d437a2dc98203e23f397e168754f4006e777e42f",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "0375267635a0b128854def679912de25d7bbc7cbc883d44e436f6c285fc05e33",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                0,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              5
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "4390f8f38c4d21a37218873730a2930cb56a3e2449ebe5d25be90138ad2621e7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "9fb959f52455d7b32b0d2e215a7bd0e951985b2b8e9122e5649cb5f11b6c12bd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                5
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              16
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "43e539320010b9c3fc69ab138e03157048529d6a7c4303beb777524b1b077ebd",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 16,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "56706d64456cb947375e3ad8d862868f37f30731d5894d2a4c25ec376a650032",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "45113551384a922c4a55b6dc4da892c4654e73c87bdb6eaf0e0a060d7a6a89d6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "58ba8698b100934fe3f16ef3582371c325d8f62fd8d0da77b1ced40100db2cbb",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                1,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "5a5d64d2fa9986aa3bf8aa446613743b1063d07392309abd2edf0fee9cfa76b7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "39d1ef823c960ee409cc43e1995b3869423b97463920af287c413ef5833f2c85",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                1
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": false,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              6
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "616aa41b3ea4993e406a8a4c79de07a9c4fea63440ec91018409d3a4919a293f",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 6,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "faa6288c6e079782890343e50fe7de86392c5c2d18672b7860993f4757c8ca3b",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              7,
+              0,
+              13
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "6684f15f8caaef7571b224ff9708e0232fea862d2733ab360704a96106cc2c0e",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "7cd118561100d0f581e8c0385b047a54e8c96ad856fcb83852a85e26d6676af0",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                13,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": false,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              7,
+              0,
+              6
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "6b1282610436bf491af1a24abdfd1f8f59af6f5b59747fdf1dba955c84a7b0f1",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "b11d334b51c98cb37e8522a7c0134ec536c2d18a99ed80ec3e320573307a349e",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                6,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              10
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "6f22451e3a228209bfc615b306ad3fc75af5863e6077d6711e71e1e3c3a62679",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 10,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "77ef7773dde661c5de5dc69f53f10697e517daa36bcd35edb8c9083b5ef2a11c",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              1,
+              10
+            ]
+          ],
+          "conserve_reference": false,
+          "digest": "76c5ae5f92af762a5c9cc4083cd03c9f7284ec3493da5575a5e0a982a2221b20",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 10,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "abff68231a47a04a8cc7ce7c87e501868e2669fe3281dd9f20a36d8159c536a1",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "refutee"
+        }
+      ],
+      "total": 1339
+    }
+  },
+  "temoins_conservateurs": {
+    "cible_0": {
+      "affiches": 20,
+      "liste": [
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              4
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "024fccdd1419b431d460c2213c623f940fb05d959ab6fbbb7306f9b9df1d6ad5",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5cbf33a1b842de733497839e9bc3d33ec9b189187bb77fb973ccd169211a5305",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                4
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              8
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "1fb97f0a586b03d29b9ed17817d47ba17740cd5fc11be0cbc77f476c701ab48b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "210578b0fb53ff7f1113611339d5fac852d7eace4668345730fad3fb8b2254dd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                8,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "297b7c8d2ef8d15881f878f18f72064ba6db24bb464d545b115dab6bcf27e945",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "fced52814a5ce1952b8bd60931048edf89a9c44da9477f13345d1606b5be972a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                3,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": false
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              6
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "2b9ebf9480f9317ad4c60882d2f0030eacfcd73fb045bffa208ee5f8239e2159",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "82439bfe2ceb7b0f19f8dc55d7ad130beb69b1f07655dbca9b13fb67fbe6581e",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                6,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              15
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "2bfe00442c3a85a72dc6fe30ebcebae3eee06a6c0a521dc384d430e3e2458ff6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "cf4e48688f7a386e319bc9f60a6738bbebee1f9879c819e56f23d94e54492cbf",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                15
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              7
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "30b60680b322e5300b3551001fcd62873dc1b6e842a078a565eb44445104795d",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "41f88e45eddaedf6e6892fd6a4ef2eff3ab34740675a0c2c71ff66f882b65748",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              12
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "327e375cc8aa7532e581acc93aae710144596bd78aa64cb54050ebc3b56c1467",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5a1da19d4b38aa6903f13dec8f958f6f7bafa0af54c8e486ea0fa7863a7389b7",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                12
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "3965770e65f4c32ed7e5c97456e95b51ccb17fbdb0ea020080796283999b347b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "a65820796c6264ef1490c9c9100c885e343d956a8071ae267d96dcfd8b01dee1",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                3
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              0
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "42bbaf752680571a555c9203d437a2dc98203e23f397e168754f4006e777e42f",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "0375267635a0b128854def679912de25d7bbc7cbc883d44e436f6c285fc05e33",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                0,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              5
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "4390f8f38c4d21a37218873730a2930cb56a3e2449ebe5d25be90138ad2621e7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "9fb959f52455d7b32b0d2e215a7bd0e951985b2b8e9122e5649cb5f11b6c12bd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                5
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              16
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "43e539320010b9c3fc69ab138e03157048529d6a7c4303beb777524b1b077ebd",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 16,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "56706d64456cb947375e3ad8d862868f37f30731d5894d2a4c25ec376a650032",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "45113551384a922c4a55b6dc4da892c4654e73c87bdb6eaf0e0a060d7a6a89d6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "58ba8698b100934fe3f16ef3582371c325d8f62fd8d0da77b1ced40100db2cbb",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                1,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "5a5d64d2fa9986aa3bf8aa446613743b1063d07392309abd2edf0fee9cfa76b7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "39d1ef823c960ee409cc43e1995b3869423b97463920af287c413ef5833f2c85",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                1
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              9
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "8452c11a5c79a680d20631afc9be5a35afbd8ee60339b5a5631426a3a6f3a445",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "8482239d4b7b5550a6d4a1b083c81b2c77c3a1794d2503562dd3cd8759712b19",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                9,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              0
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "86b662e0cfbea58daa3c5dff176eef1ce7d8f1a8ba297ddb7b478cb52183bf79",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "409db71c24b34e1e7acb5551c3fa05f2712d2b5a1fe01f35b478cfab8130a20e",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                0
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              7,
+              0,
+              16
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "87407739c1c20d88bbdb0ac44c8b4f4afacc7b13554eed39c9ab7d8cacd8c85f",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "3c857e5b3c9bcfc9133c4383eb622cb79923ef1738180d21e379a1bd7f466e49",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                16,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              15
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "8bc7ab94befd5ed3aa08997f7023081b1a641a27be7d52c1441ab68913919638",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "7a208ef65bfe67354fd668408a8a38560fab0e5a65f8688827f4bdab4cfdbf8a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                15,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              2
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "8c7aaaf3feb05fa1dd64ca27c74e3449e3f2c82f0cb0d41fa499e67d2f65f9b3",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "8ee677778f91e7a6ed96bf0fb0d374973a43d9d77e22f1c59b59ead5b43626cb",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                2
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              2
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "99b515f950c4bd65fa023ec3299266dc700728abe8c26386c3f2f8e8fa39db2a",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "2f29f560726eda7cceb5e23efd597857ba15522a1a6e3e3520fc2b90edcd8e5a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                2,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              8
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "9c235005ef6cf7486d96f482b26d96063d1a6d30289440d324702a52f85fb279",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "147e602a1890a0cc0d857ab8ce7d4db05f653e3f963dbe44f8ee970d45f79592",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                8
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        }
+      ],
+      "total": 939
+    },
+    "cible_1": {
+      "affiches": 20,
+      "liste": [
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              4
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "024fccdd1419b431d460c2213c623f940fb05d959ab6fbbb7306f9b9df1d6ad5",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5cbf33a1b842de733497839e9bc3d33ec9b189187bb77fb973ccd169211a5305",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                4
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              8
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "1fb97f0a586b03d29b9ed17817d47ba17740cd5fc11be0cbc77f476c701ab48b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "210578b0fb53ff7f1113611339d5fac852d7eace4668345730fad3fb8b2254dd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                8,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "297b7c8d2ef8d15881f878f18f72064ba6db24bb464d545b115dab6bcf27e945",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "fced52814a5ce1952b8bd60931048edf89a9c44da9477f13345d1606b5be972a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                3,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              15
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "2bfe00442c3a85a72dc6fe30ebcebae3eee06a6c0a521dc384d430e3e2458ff6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "cf4e48688f7a386e319bc9f60a6738bbebee1f9879c819e56f23d94e54492cbf",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                15
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              7
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "30b60680b322e5300b3551001fcd62873dc1b6e842a078a565eb44445104795d",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "41f88e45eddaedf6e6892fd6a4ef2eff3ab34740675a0c2c71ff66f882b65748",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              12
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "327e375cc8aa7532e581acc93aae710144596bd78aa64cb54050ebc3b56c1467",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "5a1da19d4b38aa6903f13dec8f958f6f7bafa0af54c8e486ea0fa7863a7389b7",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                12
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              3
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "3965770e65f4c32ed7e5c97456e95b51ccb17fbdb0ea020080796283999b347b",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "a65820796c6264ef1490c9c9100c885e343d956a8071ae267d96dcfd8b01dee1",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                3
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              0
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "42bbaf752680571a555c9203d437a2dc98203e23f397e168754f4006e777e42f",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "0375267635a0b128854def679912de25d7bbc7cbc883d44e436f6c285fc05e33",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                0,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              5
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "4390f8f38c4d21a37218873730a2930cb56a3e2449ebe5d25be90138ad2621e7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "9fb959f52455d7b32b0d2e215a7bd0e951985b2b8e9122e5649cb5f11b6c12bd",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                5
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              3,
+              16
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "43e539320010b9c3fc69ab138e03157048529d6a7c4303beb777524b1b077ebd",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 16,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "56706d64456cb947375e3ad8d862868f37f30731d5894d2a4c25ec376a650032",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "45113551384a922c4a55b6dc4da892c4654e73c87bdb6eaf0e0a060d7a6a89d6",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "58ba8698b100934fe3f16ef3582371c325d8f62fd8d0da77b1ced40100db2cbb",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                1,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              1
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "5a5d64d2fa9986aa3bf8aa446613743b1063d07392309abd2edf0fee9cfa76b7",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "39d1ef823c960ee409cc43e1995b3869423b97463920af287c413ef5833f2c85",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                1
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              9
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "8452c11a5c79a680d20631afc9be5a35afbd8ee60339b5a5631426a3a6f3a445",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "8482239d4b7b5550a6d4a1b083c81b2c77c3a1794d2503562dd3cd8759712b19",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                9,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              0
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "86b662e0cfbea58daa3c5dff176eef1ce7d8f1a8ba297ddb7b478cb52183bf79",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "409db71c24b34e1e7acb5551c3fa05f2712d2b5a1fe01f35b478cfab8130a20e",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                0
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              7,
+              0,
+              16
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "87407739c1c20d88bbdb0ac44c8b4f4afacc7b13554eed39c9ab7d8cacd8c85f",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "3c857e5b3c9bcfc9133c4383eb622cb79923ef1738180d21e379a1bd7f466e49",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                16,
+                16
+              ],
+              [
+                17,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              15
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "8bc7ab94befd5ed3aa08997f7023081b1a641a27be7d52c1441ab68913919638",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "7a208ef65bfe67354fd668408a8a38560fab0e5a65f8688827f4bdab4cfdbf8a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                15,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              2
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "8c7aaaf3feb05fa1dd64ca27c74e3449e3f2c82f0cb0d41fa499e67d2f65f9b3",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "8ee677778f91e7a6ed96bf0fb0d374973a43d9d77e22f1c59b59ead5b43626cb",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                2
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              2
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "99b515f950c4bd65fa023ec3299266dc700728abe8c26386c3f2f8e8fa39db2a",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "2f29f560726eda7cceb5e23efd597857ba15522a1a6e3e3520fc2b90edcd8e5a",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                2,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              1,
+              8
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "9c235005ef6cf7486d96f482b26d96063d1a6d30289440d324702a52f85fb279",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "147e602a1890a0cc0d857ab8ce7d4db05f653e3f963dbe44f8ee970d45f79592",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                17,
+                8
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        },
+        {
+          "admet": {
+            "cible_0": true,
+            "cible_1": true
+          },
+          "chemin": [
+            [
+              2,
+              8,
+              0,
+              5
+            ]
+          ],
+          "conserve_reference": true,
+          "digest": "ace48fcd5c86803664d2fd0e21f4d1f06b624631edc558aa8d5464fd36f85537",
+          "profondeur": 1,
+          "record": {
+            "admit_output": 18,
+            "n_inputs": 10,
+            "priority_outputs": [
+              1,
+              15
+            ],
+            "procedure_digest": "a7eaf2575aa5de046117637ae54f7ed3131829800569df23a829c581779a1da9",
+            "schema": "genesis-circuit-procedure-v1",
+            "steps": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                10
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                5,
+                17
+              ]
+            ],
+            "traits": [
+              "support>=2",
+              "support>=3",
+              "support>=4",
+              "support>=6",
+              "arity==3",
+              "arity>=4",
+              "nands>=2",
+              "nands>=4",
+              "nands>=6",
+              "composed"
+            ]
+          },
+          "statut_conservation": "conservee"
+        }
+      ],
+      "total": 913
+    }
+  }
+}
