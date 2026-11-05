@@ -3,6 +3,8 @@
 import hashlib
 import importlib.util
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -185,3 +187,32 @@ def test_cli(root):
     assert dcj.main(argv) == 0
     assert (root / "c.json").read_bytes() == b'{"a":1}\n'
     assert dcj.main(argv) == 1
+
+
+def test_aide_sous_processus(tmp_path):
+    resultat = subprocess.run(
+        [sys.executable, "-I", str(_SCRIPT), "--help"],
+        capture_output=True,
+        text=True,
+        timeout=30,
+        cwd=tmp_path,
+    )
+    assert resultat.returncode == 0
+    assert resultat.stdout.strip()
+    assert "usage" in resultat.stdout.lower()
+    assert "source" in resultat.stdout.lower()
+    assert resultat.stderr == ""
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_sans_argument_sous_processus(tmp_path):
+    resultat = subprocess.run(
+        [sys.executable, "-I", str(_SCRIPT)],
+        capture_output=True,
+        text=True,
+        timeout=30,
+        cwd=tmp_path,
+    )
+    assert resultat.returncode == 2
+    assert resultat.stderr.strip()
+    assert list(tmp_path.iterdir()) == []
