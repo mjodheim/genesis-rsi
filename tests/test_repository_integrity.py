@@ -196,6 +196,7 @@ def test_a_deliberately_dead_citation_is_excused_only_with_a_recorded_reason() -
 CIRCUIT2_CLI_TOOLS = (
     "capture_circuit2_budget16",
     "circuit2_full_descriptive_counts",
+    "circuit2_mutation_reachability",
     "circuit2_negative_note",
     "shard_circuit2_result",
     "summarize_circuit2_campaign",
@@ -241,7 +242,7 @@ def _has_main_guard_calling_main(tree: ast.Module) -> bool:
 def test_circuit2_cli_tools_are_exact_name_entry_points() -> None:
     """Les exceptions sont par noms exacts de modules, sans préfixe générique."""
     assert integrity.ENTRY_POINT_NAMES == frozenset(CIRCUIT2_CLI_TOOLS)
-    assert len(CIRCUIT2_CLI_TOOLS) == 7
+    assert len(CIRCUIT2_CLI_TOOLS) == 8
     for name in CIRCUIT2_CLI_TOOLS:
         assert (integrity.ROOT / "scripts" / f"{name}.py").is_file(), name
     for prefix in ("verify_", "circuit2_", "shard_", "summarize_"):
@@ -249,8 +250,8 @@ def test_circuit2_cli_tools_are_exact_name_entry_points() -> None:
     assert integrity.check_orphans() == []
 
 
-def test_without_the_exact_name_exceptions_the_seven_cli_tools_are_reported_as_orphans(monkeypatch) -> None:
-    """Preuve que les exceptions sont nécessaires et précises : seuls ces sept modules sont signalés."""
+def test_without_the_exact_name_exceptions_the_eight_cli_tools_are_reported_as_orphans(monkeypatch) -> None:
+    """Preuve que les exceptions sont nécessaires et précises : seuls ces huit modules sont signalés."""
     monkeypatch.setattr(integrity, "ENTRY_POINT_NAMES", frozenset())
     assert integrity.check_orphans() == [
         f"scripts/{name}.py is not imported by any entry point"
