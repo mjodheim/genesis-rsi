@@ -58,6 +58,7 @@ ENTRY_POINT_PREFIXES = (
 ENTRY_POINT_NAMES = frozenset({
     "capture_circuit2_budget16",
     "circuit2_full_descriptive_counts",
+    "circuit2_mutation_reachability",
     "circuit2_negative_note",
     "shard_circuit2_result",
     "summarize_circuit2_campaign",
