@@ -29,7 +29,7 @@ pas `held_out_yield`. Le rendement nul doit être contrôlé dans l'adjudication
 
 Ces valeurs constituent les assertions du test
 `tests/test_circuit2_full_descriptive_counts_committed.py`.
-Elles ne sont pas présentées ici comme des résultats de tests exécutés.
+Leur validation locale est consignée ci-dessous.
 Le contrôle doit échouer si les données manquent, sont ambiguës ou divergent.
 
 ## Portée et réorientation
@@ -45,22 +45,22 @@ sans succès expérimental revendiqué ici. Aucun rejeu expérimental, aucune
 reprise de #472, aucune modification des résultats, protocoles scientifiques
 gelés ou critères associés.
 
-Le journal atteste une tentative de patch conservée sans commit et un
-lancement interrompu à la création du conteneur, avec un code de sortie 125.
-Les assertions Python n'ont pas été validées par ce lancement.
-Aucun refus de chemin n'a été obtenu par exécution.
+## Validation locale et publication
 
-Le nombre et les chemins des correspondances de l'ancien échec restent
-inconnus dans les preuves fournies. Aucun test réussi ni PR produite n'est
-actuellement attesté. La vérification restant à effectuer, hors réseau via
-le lanceur habituel, se limite à une seule relance des deux fichiers :
-`pytest tests/test_circuit2_full_descriptive_counts.py tests/test_circuit2_full_descriptive_counts_committed.py`.
-La réussite exige un conteneur démarré, la collecte attestée des deux fichiers,
-tous les tests réussis et une sortie 0. Aucun succès actuellement établi.
+État consigné le 13 novembre 2026 : une tentative historique de lancement
+a été interrompue à la création du conteneur, avec un code de sortie 125.
+La date exacte de cette tentative n'est pas fournie dans l'extrait du journal.
+Elle n'a pas validé les assertions Python.
 
-Aucune relance n'est effectuée dans cette proposition de diff, conformément
-à la consigne de ne recourir à aucun outil ni exécution. Cette vérification
-reste donc en attente, sans expérience ni modification de Docker.
-Si l'erreur Docker revient lors de cette unique relance, conserver les preuves
-sans commit ni PR, puis signaler le blocage d'infrastructure à Anthony.
-Aucun signalement à Anthony n'est attesté ici.
+Une vérification ultérieure hors réseau de la copie courante est attestée par
+la preuve `8812dac5ac86486a9229ec93d588e84a` : sortie 0, classement
+`success`, six tests réussis en 0,33 seconde, pour les deux fichiers
+`tests/test_circuit2_full_descriptive_counts.py` et
+`tests/test_circuit2_full_descriptive_counts_committed.py`.
+Cette vérification n'a effectué aucun commit ni publication et précède
+la présente correction ; elle ne valide pas cette correction par anticipation.
+
+La PR https://github.com/mjodheim/genesis-rsi/pull/473 est attestée par
+la relecture fournie au commit `b2c859be55fbfeb0b22fa70ae195cccb97d5e0ba`.
+Cette relecture demande des corrections. Aucun état vert de la CI ni fusion
+n'est attesté dans les éléments disponibles.

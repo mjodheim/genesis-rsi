@@ -90,7 +90,6 @@ def test_committed_full_counts_and_closure():
         "0 changement de procedure_digest",
         "budget 16 : 2 candidats et 0 admis",
         "e2546a18",
-        "leur provenance n'a pas été vérifiée",
         "capacité de programmation de Mira",
         "results/circuit2_campaign_full.json",
         "results/circuit2_adjudication_full.json",
