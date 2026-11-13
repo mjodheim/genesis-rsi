@@ -52,9 +52,15 @@ a été interrompue à la création du conteneur, avec un code de sortie 125.
 La date exacte de cette tentative n'est pas fournie dans l'extrait du journal.
 Elle n'a pas validé les assertions Python.
 
-Une vérification ultérieure hors réseau de la copie courante est attestée par
-la preuve `8812dac5ac86486a9229ec93d588e84a` : sortie 0, classement
-`success`, six tests réussis en 0,33 seconde, pour les deux fichiers
+Une vérification ultérieure hors réseau porte sur le commit
+`b2c859be55fbfeb0b22fa70ae195cccb97d5e0ba`, avec état Git propre
+(`GitStatus` vide dans le manifeste), sans diff local déclaré.
+Le manifeste et la sortie sont consultables par l'action `evidence`, avec
+`files = ["8812dac5ac86486a9229ec93d588e84a"]` dans ce chantier
+(`99660ab004f9`) ; leur lecture est consignée à l'étape 4125 du journal,
+le 13 novembre 2026 à 20:02:07 UTC.
+Cette preuve atteste une sortie 0, un classement `success` et six tests
+réussis en 0,33 seconde, pour les deux fichiers
 `tests/test_circuit2_full_descriptive_counts.py` et
 `tests/test_circuit2_full_descriptive_counts_committed.py`.
 Cette vérification n'a effectué aucun commit ni publication et précède
