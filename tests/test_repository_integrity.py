@@ -174,9 +174,11 @@ def test_a_commit_typed_citation_that_does_not_resolve_is_reported(tmp_path, mon
 def test_a_deliberately_dead_citation_is_excused_only_with_a_recorded_reason() -> None:
     """M013c cites a commit precisely to record that the announcement was defective.
 
-    Five citations do not resolve and four of them should not: a test fixture placeholder, a
-    revoked announcement kept as evidence of its own revocation, and two objects that live in
-    an external repository. The fifth is a real loss and is recorded as one rather than excused.
+    Every currently unresolved citation must have a documented exception. Historical
+    exceptions may now resolve locally, so they need not equal the unresolved set.
+    Their reasons and categories remain required, including the M049 qualification
+    commit's historically recorded loss, regardless of its current local resolution.
+    This distinction establishes no new scientific result.
     """
 
     manifest = json.loads(integrity.CITATIONS.read_text(encoding="utf-8"))
@@ -185,7 +187,7 @@ def test_a_deliberately_dead_citation_is_excused_only_with_a_recorded_reason() -
         sha for sha in integrity.commit_typed_citations()
         if integrity._git("cat-file", "-e", sha + "^{commit}") is None
     }
-    assert set(excused) == unresolvable
+    assert unresolvable <= set(excused)
     assert all(entry["reason"] and entry["kind"] for entry in excused.values())
     lost = [sha for sha, entry in excused.items() if entry["kind"] == "lost"]
     assert lost == ["b8a8bb064ff456c491369bd1ca25c72ca187b545"], (
