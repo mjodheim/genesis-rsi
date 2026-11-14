@@ -1,15 +1,15 @@
-"""Tests ciblés hors réseau.
-
-Résultat attesté dans cette proposition : aucun test exécuté, conformément à
-la consigne sans outils ni exécution. Leur réussite reste à vérifier.
-Aucune validation du jalon 2 n'est revendiquée.
-"""
+"""Tests hors réseau de la sérialisation canonique et des reçus déclaratifs."""
 
 import hashlib
 import json
+import sys
 import unittest
 
-from genesis.mira_policy_contract import ExternalReceipt, JsonObjectEnvelope
+from genesis.mira_policy_contract import (
+    ExternalReceipt,
+    JsonObjectEnvelope,
+    canonical_json_utf8,
+)
 
 class PolicyContractTests(unittest.TestCase):
     def receipt(self, budget=None):
@@ -84,6 +84,114 @@ class PolicyContractTests(unittest.TestCase):
             with self.subTest(payload=payload):
                 with self.assertRaises(ValueError):
                     JsonObjectEnvelope.create(payload)
+
+    def test_cyclic_dictionary(self):
+        payload = {}
+        payload["self"] = payload
+        with self.assertRaises(ValueError):
+            canonical_json_utf8(payload)
+
+    def test_excessively_deep_structure(self):
+        payload = {}
+        current = payload
+        for _ in range(sys.getrecursionlimit() + 100):
+            nested = {}
+            current["nested"] = nested
+            current = nested
+        with self.assertRaises(ValueError):
+            canonical_json_utf8(payload)
+
+    def assert_invalid_receipt_payload(self, payload, message):
+        data = {
+            "version": 1,
+            "envelope": JsonObjectEnvelope.create(payload).to_dict(),
+        }
+        with self.assertRaisesRegex(ValueError, message):
+            ExternalReceipt.from_dict(data)
+
+    def test_receipt_envelope_missing_and_extra_fields(self):
+        original = self.receipt().to_dict()
+        for field in original:
+            with self.subTest(missing=field):
+                data = dict(original)
+                del data[field]
+                with self.assertRaisesRegex(
+                    ValueError, "Invalid receipt envelope fields",
+                ):
+                    ExternalReceipt.from_dict(data)
+        data = dict(original, extra=None)
+        with self.assertRaisesRegex(ValueError, "Invalid receipt envelope fields"):
+            ExternalReceipt.from_dict(data)
+
+    def test_receipt_missing_and_extra_fields(self):
+        original = self.receipt().payload
+        for field in original:
+            with self.subTest(missing=field):
+                payload = dict(original)
+                del payload[field]
+                self.assert_invalid_receipt_payload(payload, "Invalid receipt fields")
+        self.assert_invalid_receipt_payload(
+            dict(original, extra=None), "Invalid receipt fields",
+        )
+
+    def test_budget_missing_and_extra_fields(self):
+        original = self.receipt().payload["consumed_budget"]
+        for field in original:
+            with self.subTest(missing=field):
+                payload = self.receipt().payload
+                del payload["consumed_budget"][field]
+                self.assert_invalid_receipt_payload(payload, "Invalid budget fields")
+        payload = self.receipt().payload
+        payload["consumed_budget"]["extra"] = None
+        self.assert_invalid_receipt_payload(payload, "Invalid budget fields")
+
+    def test_invalid_policy_digest(self):
+        for value in (None, True, 123, "", "invalid", "a" * 63,
+                      "a" * 65, "A" * 64, "g" * 64):
+            with self.subTest(value=value):
+                payload = self.receipt().payload
+                payload["policy_sha256"] = value
+                self.assert_invalid_receipt_payload(payload, "Invalid SHA-256 digest")
+
+    def test_invalid_receipt_identifiers(self):
+        for field in ("task_id", "judge_id"):
+            for value in ("", None, True, 123, [], {}):
+                with self.subTest(field=field, value=value):
+                    payload = self.receipt().payload
+                    payload[field] = value
+                    self.assert_invalid_receipt_payload(
+                        payload, "Expected a nonempty identifier",
+                    )
+
+    def test_negative_and_boolean_budgets(self):
+        for field in ("tokens", "proposals", "time_seconds"):
+            for value in (-1, -0.5, True, False):
+                with self.subTest(field=field, value=value):
+                    payload = self.receipt().payload
+                    payload["consumed_budget"][field] = value
+                    message = (
+                        "Expected nonnegative elapsed seconds"
+                        if field == "time_seconds"
+                        else "Expected a nonnegative integer budget"
+                    )
+                    self.assert_invalid_receipt_payload(payload, message)
+
+    def test_invalid_budget_type(self):
+        for value in (None, True, 0, "", []):
+            with self.subTest(value=value):
+                payload = self.receipt().payload
+                payload["consumed_budget"] = value
+                self.assert_invalid_receipt_payload(payload, "Invalid budget fields")
+
+    def test_invalid_models_type_and_elements(self):
+        for value in (None, True, 0, "model-a", {}, [None], [True],
+                      [1], [[]], [{}], ["model-a", 1]):
+            with self.subTest(value=value):
+                payload = self.receipt().payload
+                payload["consumed_budget"]["models"] = value
+                self.assert_invalid_receipt_payload(
+                    payload, "Expected model identifiers",
+                )
 
     def test_digest_and_representation_tampering(self):
         original = JsonObjectEnvelope.create({"value": 1})

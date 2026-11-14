@@ -39,8 +39,8 @@ def canonical_json_utf8(payload):
     """Encode a strict JSON object with sorted keys and fixed separators."""
     if type(payload) is not dict:
         raise ValueError("Expected a JSON object")
-    _validate_json(payload)
     try:
+        _validate_json(payload)
         return json.dumps(
             payload, sort_keys=True, separators=(",", ":"),
             ensure_ascii=False, allow_nan=False,
