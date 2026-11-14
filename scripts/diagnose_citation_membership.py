@@ -59,24 +59,28 @@ def main() -> int:
                 for occurrence in re.finditer(re.escape(sha), line):
                     counts[sha] += 1
                     field = _field_before(line, occurrence.start())
-                    search = (
-                        integrity.COMMIT_FIELD.search(field)
-                        if field is not None else None
-                    )
-                    exact = (
-                        integrity.COMMIT_FIELD.fullmatch(field)
-                        if field is not None else None
+                    recognized = next(
+                        (
+                            match
+                            for match in integrity.COMMIT_FIELD.finditer(line)
+                            if match.span(2) == occurrence.span()
+                        ),
+                        None,
                     )
                     print(f"\noccurrence {sha} {relative!r}:{number}")
                     print(f"colonne = {occurrence.start() + 1}")
                     print(f"ligne = {line!r}")
                     print(f"champ_lexical = {field!r}")
                     print(
-                        "COMMIT_FIELD.search(champ) = "
-                        f"{search.group(0) if search is not None else None!r}"
+                        "COMMIT_FIELD.finditer(ligne), correspondance "
+                        "aux bornes exactes du groupe SHA = "
+                        f"{recognized.group(0) if recognized is not None else None!r}"
                     )
-                    print(f"COMMIT_FIELD.fullmatch(champ) = {exact is not None!r}")
-                    if search is None:
+                    print(
+                        "occurrence_reconnue_par_COMMIT_FIELD = "
+                        f"{recognized is not None!r}"
+                    )
+                    if recognized is None:
                         print("OCCURRENCE SANS CHAMP RECONNU")
     for sha, count in counts.items():
         print(f"\noccurrences_fichiers_suivis[{sha}] = {count}")
