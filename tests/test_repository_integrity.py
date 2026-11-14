@@ -5,6 +5,8 @@ import ast
 import json
 from pathlib import Path
 
+import pytest
+
 import check_repository_integrity as integrity
 from check_repository_integrity import check_citations, check_dependencies
 
@@ -171,27 +173,124 @@ def test_a_commit_typed_citation_that_does_not_resolve_is_reported(tmp_path, mon
     assert "M999" in problems[0]
 
 
+HISTORICAL_CITATION_EXCEPTIONS = frozenset({
+    "40ac0f64a1fb9465e1c4cadf6c32c0cfde3b84dd",
+    "b8a8bb064ff456c491369bd1ca25c72ca187b545",
+})
+
+def _assert_citation_exceptions(collected, unresolvable, exceptions) -> None:
+    collected = set(collected)
+    unresolvable = set(unresolvable)
+    assert unresolvable <= collected, "unresolved citations must be collected"
+    assert set(exceptions) <= collected, "exceptions must identify collected citations"
+    for entry in exceptions.values():
+        for field in ("reason", "kind"):
+            value = entry.get(field)
+            assert isinstance(value, str) and value.strip(), (
+                f"exception {field} must be a nonempty string after strip()"
+            )
+    expected = unresolvable | (HISTORICAL_CITATION_EXCEPTIONS & collected)
+    assert set(exceptions) == expected, (
+        "exceptions must exactly match unresolved citations and cited historical exceptions"
+    )
+
 def test_a_deliberately_dead_citation_is_excused_only_with_a_recorded_reason() -> None:
     """M013c cites a commit precisely to record that the announcement was defective.
 
-    Five citations do not resolve and four of them should not: a test fixture placeholder, a
-    revoked announcement kept as evidence of its own revocation, and two objects that live in
-    an external repository. The fifth is a real loss and is recorded as one rather than excused.
+    Exceptions must exactly cover unresolved citations and the two explicitly bounded
+    historical SHA exceptions above, while those SHA remain cited. Only these two
+    historical exceptions may remain after local recovery. Every exception must cite
+    a collected commit and retain a documented reason and category, including the
+    M049 qualification commit's historically recorded loss after local recovery.
+    This distinction establishes no new scientific result.
     """
 
     manifest = json.loads(integrity.CITATIONS.read_text(encoding="utf-8"))
     excused = manifest["known_unresolvable"]
+    collected = integrity.commit_typed_citations()
     unresolvable = {
-        sha for sha in integrity.commit_typed_citations()
+        sha for sha in collected
         if integrity._git("cat-file", "-e", sha + "^{commit}") is None
     }
-    assert set(excused) == unresolvable
-    assert all(entry["reason"] and entry["kind"] for entry in excused.values())
+    _assert_citation_exceptions(collected, unresolvable, excused)
     lost = [sha for sha, entry in excused.items() if entry["kind"] == "lost"]
     assert lost == ["b8a8bb064ff456c491369bd1ca25c72ca187b545"], (
         "the M049 qualification commit is a genuine loss and must stay recorded as one"
     )
 
+
+def test_a_resolved_nonhistorical_exception_is_rejected() -> None:
+    sha = "a" * 40
+    with pytest.raises(AssertionError, match="exactly match"):
+        _assert_citation_exceptions(
+            {sha}, set(), {sha: {"reason": "documented", "kind": "defective"}}
+        )
+
+@pytest.mark.parametrize(
+    "sha", ["a" * 40, *sorted(HISTORICAL_CITATION_EXCEPTIONS)]
+)
+def test_an_exception_without_a_collected_citation_is_rejected(sha) -> None:
+    with pytest.raises(AssertionError, match="identify collected citations"):
+        _assert_citation_exceptions(
+            set(), set(), {sha: {"reason": "documented", "kind": "lost"}}
+        )
+
+@pytest.mark.parametrize("field", ["reason", "kind"])
+def test_missing_exception_metadata_is_rejected(field) -> None:
+    sha = "a" * 40
+    entry = {"reason": "documented", "kind": "defective"}
+    del entry[field]
+    with pytest.raises(AssertionError, match=f"exception {field}"):
+        _assert_citation_exceptions({sha}, {sha}, {sha: entry})
+
+@pytest.mark.parametrize("field", ["reason", "kind"])
+@pytest.mark.parametrize("value", [None, "", " \t\n", 0, False, [], {}])
+def test_invalid_exception_metadata_is_rejected(field, value) -> None:
+    sha = "a" * 40
+    entry = {"reason": "documented", "kind": "defective"}
+    entry[field] = value
+    with pytest.raises(AssertionError, match=f"exception {field}"):
+        _assert_citation_exceptions({sha}, {sha}, {sha: entry})
+
+def test_an_unresolved_citation_without_an_exception_is_rejected() -> None:
+    sha = "a" * 40
+    with pytest.raises(AssertionError, match="exactly match"):
+        _assert_citation_exceptions({sha}, {sha}, {})
+
+def test_an_unresolved_citation_outside_the_collection_is_rejected() -> None:
+    with pytest.raises(AssertionError, match="unresolved citations must be collected"):
+        _assert_citation_exceptions(set(), {"a" * 40}, {})
+
+@pytest.mark.parametrize("sha", sorted(HISTORICAL_CITATION_EXCEPTIONS))
+def test_a_cited_historical_exception_remains_required_after_recovery(sha) -> None:
+    with pytest.raises(AssertionError, match="exactly match"):
+        _assert_citation_exceptions({sha}, set(), {})
+
+@pytest.mark.parametrize(
+    "unresolvable",
+    [
+        set(),
+        {"40ac0f64a1fb9465e1c4cadf6c32c0cfde3b84dd"},
+        {"b8a8bb064ff456c491369bd1ca25c72ca187b545"},
+        set(HISTORICAL_CITATION_EXCEPTIONS),
+    ],
+)
+def test_documented_historical_recovery_preserves_reasons_and_categories(
+    unresolvable,
+) -> None:
+    exceptions = {
+        "40ac0f64a1fb9465e1c4cadf6c32c0cfde3b84dd": {
+            "reason": "Synthetic record of a defective announcement.",
+            "kind": "defective",
+        },
+        "b8a8bb064ff456c491369bd1ca25c72ca187b545": {
+            "reason": "Synthetic record of the historical M049 loss.",
+            "kind": "lost",
+        },
+    }
+    before = json.dumps(exceptions, sort_keys=True)
+    _assert_citation_exceptions(set(exceptions), unresolvable, exceptions)
+    assert json.dumps(exceptions, sort_keys=True) == before
 
 CIRCUIT2_CLI_TOOLS = (
     "capture_circuit2_budget16",
