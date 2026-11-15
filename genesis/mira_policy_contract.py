@@ -202,6 +202,8 @@ class ExternalReceipt:
         _version(self.version)
         if type(self.envelope) is not JsonObjectEnvelope:
             raise ValueError("Expected a JSON object envelope")
+        # Revalidate the original envelope even if its frozen guard was bypassed.
+        JsonObjectEnvelope.__post_init__(self.envelope)
         payload = self.envelope.payload
         if set(payload) != {
             "policy_sha256", "task_id", "judge_id",

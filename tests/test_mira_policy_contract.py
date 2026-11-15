@@ -363,6 +363,34 @@ class PolicyContractTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             ExternalReceipt.from_dict(data)
 
+    def test_historical_receipt_revalidates_original_envelope(self):
+        for field, value, message in (
+            ("sha256", "0" * 64, "Inconsistent SHA-256 digest"),
+            ("sha256", "invalid", "Invalid SHA-256 digest"),
+            ("version", 2, "Unknown contract version"),
+            ("version", True, "Unknown contract version"),
+        ):
+            with self.subTest(field=field, value=value):
+                receipt = self.receipt()
+                object.__setattr__(receipt.envelope, field, value)
+                with self.assertRaisesRegex(ValueError, message):
+                    ExternalReceipt(receipt.version, receipt.envelope)
+
+    def test_historical_receipt_rejects_noncanonical_json_with_valid_digest(self):
+        receipt = self.receipt()
+        encoded = json.dumps(receipt.payload, sort_keys=True).encode("utf-8")
+        self.assertNotEqual(encoded, receipt.envelope.canonical_utf8)
+        self.assertEqual(json.loads(encoded.decode("utf-8")), receipt.payload)
+        object.__setattr__(receipt.envelope, "canonical_utf8", encoded)
+        object.__setattr__(
+            receipt.envelope, "sha256", hashlib.sha256(encoded).hexdigest(),
+        )
+        self.assertEqual(
+            receipt.envelope.sha256, hashlib.sha256(encoded).hexdigest(),
+        )
+        with self.assertRaisesRegex(ValueError, "Non-canonical JSON encoding"):
+            ExternalReceipt(receipt.version, receipt.envelope)
+
     def test_failure_and_exact_budget_round_trip(self):
         for budget in (
             {"models": [], "tokens": 0, "proposals": 0, "time_seconds": 0.0},
