@@ -7,11 +7,158 @@ import unittest
 
 from genesis.mira_policy_contract import (
     BankExternalReceipt,
+    CodingPolicy,
     ExternalReceipt,
     JsonObjectEnvelope,
     canonical_json_utf8,
     validate_receipt_consistency,
 )
+
+class CodingPolicyTests(unittest.TestCase):
+    """Synthetic offline cases; no test execution is attested by this patch."""
+
+    def fields(self):
+        return {
+            "localization": "Lire les fichiers et localiser le défaut",
+            "tool_order": ["search", "read", "test"],
+            "trial_and_repair_strategy": "Essai ciblé puis réparation",
+            "task_budget": {
+                "models": ["model-a", "model-a"], "tokens": 12,
+                "proposals": 3, "time_seconds": 1.25,
+            },
+        }
+
+    def restore_payload(self, payload):
+        return CodingPolicy.from_dict({
+            "version": 1,
+            "envelope": JsonObjectEnvelope.create(payload).to_dict(),
+        })
+
+    def test_round_trip_and_fingerprint(self):
+        fields = self.fields()
+        policy = CodingPolicy.create(**fields)
+        restored = CodingPolicy.from_dict(
+            json.loads(json.dumps(policy.to_dict(), allow_nan=False)),
+        )
+        self.assertEqual(restored, policy)
+        self.assertEqual(restored.payload, fields)
+        self.assertEqual(policy.sha256, policy.envelope.sha256)
+        self.assertEqual(
+            policy.sha256,
+            hashlib.sha256(policy.envelope.canonical_utf8).hexdigest(),
+        )
+        reordered = dict(reversed(list(fields.items())))
+        reordered["task_budget"] = dict(
+            reversed(list(fields["task_budget"].items())),
+        )
+        self.assertEqual(self.restore_payload(reordered), policy)
+        for field, value in (
+            ("localization", "Autre localisation"),
+            ("tool_order", ["read", "search", "test"]),
+            ("trial_and_repair_strategy", "Autre stratégie"),
+            ("task_budget", dict(fields["task_budget"], tokens=13)),
+        ):
+            with self.subTest(field=field):
+                changed = dict(fields, **{field: value})
+                self.assertNotEqual(
+                    CodingPolicy.create(**changed).sha256, policy.sha256,
+                )
+
+    def test_mutation_isolation(self):
+        fields = self.fields()
+        policy = CodingPolicy.create(**fields)
+        expected = self.fields()
+        fields["tool_order"].clear()
+        fields["task_budget"]["models"].clear()
+        exposed = policy.payload
+        exposed["task_budget"]["tokens"] = 999
+        exposed["tool_order"].append("extra")
+        data = policy.to_dict()
+        restored = CodingPolicy.from_dict(data)
+        data["envelope"]["payload"]["task_budget"]["models"].clear()
+        self.assertEqual(policy.payload, expected)
+        self.assertEqual(restored.payload, expected)
+        self.assertEqual(restored, policy)
+
+    def test_missing_and_extra_fields(self):
+        original = self.fields()
+        for field in original:
+            payload = dict(original)
+            del payload[field]
+            with self.subTest(missing=field), self.assertRaises(ValueError):
+                self.restore_payload(payload)
+        with self.assertRaises(ValueError):
+            self.restore_payload(dict(original, extra=None))
+        original = CodingPolicy.create(**original).to_dict()
+        for field in original:
+            data = dict(original)
+            del data[field]
+            with self.subTest(missing=field), self.assertRaises(ValueError):
+                CodingPolicy.from_dict(data)
+        with self.assertRaises(ValueError):
+            CodingPolicy.from_dict(dict(original, extra=None))
+
+    def test_invalid_policy_types(self):
+        invalid = {
+            "localization": ("", None, True, 1, [], {}),
+            "trial_and_repair_strategy": ("", None, True, 1, [], {}),
+            "tool_order": (None, True, 1, "read", {}, [None], [1], [""]),
+            "task_budget": (None, True, 1, "", []),
+        }
+        for field, values in invalid.items():
+            for value in values:
+                with self.subTest(field=field, value=value):
+                    fields = dict(self.fields(), **{field: value})
+                    with self.assertRaises(ValueError):
+                        CodingPolicy.create(**fields)
+        for value in (None, True, 1, "", []):
+            with self.subTest(container=value), self.assertRaises(ValueError):
+                CodingPolicy.from_dict(value)
+            with self.assertRaises(ValueError):
+                CodingPolicy(1, value)
+
+    def test_invalid_budgets(self):
+        invalid = {
+            "models": (None, True, 0, "model-a", {}, [None], [True], [1]),
+            "tokens": (None, True, False, -1, -0.5, 1.0, "", [], {}),
+            "proposals": (None, True, False, -1, -0.5, 1.0, "", [], {}),
+            "time_seconds": (None, True, False, -1, -0.5, "", [], {}),
+        }
+        for field, values in invalid.items():
+            for value in values + (float("nan"), float("inf"), -float("inf")):
+                fields = self.fields()
+                fields["task_budget"][field] = value
+                with self.subTest(field=field, value=value):
+                    with self.assertRaises(ValueError):
+                        CodingPolicy.create(**fields)
+            fields = self.fields()
+            del fields["task_budget"][field]
+            with self.assertRaises(ValueError):
+                CodingPolicy.create(**fields)
+        fields = self.fields()
+        fields["task_budget"]["extra"] = 0
+        with self.assertRaises(ValueError):
+            CodingPolicy.create(**fields)
+
+    def test_tampered_envelope_and_versions(self):
+        for field, value in (
+            ("sha256", "0" * 64), ("version", 2),
+            ("payload", {}), ("canonical_utf8", "{}"),
+        ):
+            data = CodingPolicy.create(**self.fields()).to_dict()
+            data["envelope"][field] = value
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                CodingPolicy.from_dict(data)
+            policy = CodingPolicy.create(**self.fields())
+            if field != "payload":
+                object.__setattr__(policy.envelope, field, value)
+                with self.assertRaises(ValueError):
+                    CodingPolicy(policy.version, policy.envelope)
+        for version in (0, 2, True, "1", None):
+            data = CodingPolicy.create(**self.fields()).to_dict()
+            data["version"] = version
+            with self.subTest(version=version), self.assertRaises(ValueError):
+                CodingPolicy.from_dict(data)
 
 class PolicyContractTests(unittest.TestCase):
     def receipt(self, budget=None):

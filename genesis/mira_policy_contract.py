@@ -112,6 +112,82 @@ class JsonObjectEnvelope:
         return envelope
 
 @dataclass(frozen=True)
+class CodingPolicy:
+    """Serializable candidate declaration; never executed by this contract.
+
+    Payload fields are localization (text), tool_order (ordered tool names),
+    trial_and_repair_strategy (text), and task_budget (four components).
+    This establishes neither receipt authenticity, judge independence, nor
+    programming gains. No target-chain consumption is asserted.
+    """
+
+    version: int
+    envelope: JsonObjectEnvelope
+
+    def __post_init__(self):
+        _version(self.version)
+        if type(self.envelope) is not JsonObjectEnvelope:
+            raise ValueError("Expected a JSON object envelope")
+        JsonObjectEnvelope.__post_init__(self.envelope)
+        payload = self.envelope.payload
+        if set(payload) != {
+            "localization", "tool_order", "trial_and_repair_strategy",
+            "task_budget",
+        }:
+            raise ValueError("Invalid policy fields")
+        for field in ("localization", "trial_and_repair_strategy"):
+            if type(payload[field]) is not str or not payload[field]:
+                raise ValueError("Expected nonempty policy text")
+        tools = payload["tool_order"]
+        if type(tools) is not list or any(
+            type(tool) is not str or not tool for tool in tools
+        ):
+            raise ValueError("Expected ordered tool identifiers")
+        budget = payload["task_budget"]
+        if type(budget) is not dict or set(budget) != {
+            "models", "tokens", "proposals", "time_seconds",
+        }:
+            raise ValueError("Invalid budget fields")
+        if type(budget["models"]) is not list or any(
+            type(model) is not str for model in budget["models"]
+        ):
+            raise ValueError("Expected model identifiers")
+        for field in ("tokens", "proposals"):
+            if type(budget[field]) is not int or budget[field] < 0:
+                raise ValueError("Expected a nonnegative integer budget")
+        elapsed = budget["time_seconds"]
+        if type(elapsed) not in (int, float) or elapsed < 0:
+            raise ValueError("Expected nonnegative elapsed seconds")
+
+    @classmethod
+    def create(cls, *, localization, tool_order, trial_and_repair_strategy,
+               task_budget):
+        return cls(VERSION, JsonObjectEnvelope.create({
+            "localization": localization,
+            "tool_order": tool_order,
+            "trial_and_repair_strategy": trial_and_repair_strategy,
+            "task_budget": task_budget,
+        }))
+
+    @property
+    def payload(self):
+        return self.envelope.payload
+
+    @property
+    def sha256(self):
+        return self.envelope.sha256
+
+    def to_dict(self):
+        return {"version": self.version, "envelope": self.envelope.to_dict()}
+
+    @classmethod
+    def from_dict(cls, data):
+        if type(data) is not dict or set(data) != {"version", "envelope"}:
+            raise ValueError("Invalid policy envelope fields")
+        _version(data["version"])
+        return cls(data["version"], JsonObjectEnvelope.from_dict(data["envelope"]))
+
+@dataclass(frozen=True)
 class ExternalReceipt:
     """A declaration; neither judge authentication nor independence evidence.
 
