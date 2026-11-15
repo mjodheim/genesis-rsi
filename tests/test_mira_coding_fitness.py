@@ -1,9 +1,10 @@
-"""Synthetic aggregation tests; no execution results are attested here.
+"""Boundary and factory-based tests for coding receipt aggregation.
 
-The validator below is a synthetic boundary double, not evidence about the
-existing CodingPolicy or validate_task_receipt_consistency implementation.
-Real factory-based integration coverage and a recorded offline test launch
-remain outstanding; these tests do not establish contract compatibility.
+Real receipts use the policy contract factories and contractual validator.
+Language attribution comes from external task contexts.
+
+Negative evidence reference: e7b532ca80d94a168cf7b09eb34669aa.
+No corrected execution result or capability gain is attested.
 """
 
 from copy import deepcopy
@@ -18,6 +19,187 @@ from genesis.mira_coding_fitness import (
     aggregate_receipts,
     aggregate_synthetic_receipts,
 )
+from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
+
+@pytest.fixture(params=["objects", "envelopes"])
+def real_receipts(request):
+    policy = CodingPolicy.create(
+        localization="task-context",
+        tool_order=["inspect", "edit", "test"],
+        trial_and_repair_strategy="At most 10 trials with repair",
+        task_budget={
+            "models": ["offline-test-model"],
+            "tokens": 1000,
+            "proposals": 10,
+            "time_seconds": 60,
+        },
+    )
+    budget = {
+        "models": ["offline-test-model"],
+        "tokens": 100,
+        "proposals": 1,
+        "time_seconds": 2,
+    }
+    contexts = [
+        TaskContext(
+            task_id,
+            language,
+            judge,
+            "a" * 64,
+            deepcopy(budget),
+            policy,
+        )
+        for task_id, language, judge in [
+            ("a", "python", "judge-a"),
+            ("b", "rust", "judge-b"),
+            ("c", "python", "judge-a"),
+        ]
+    ]
+
+    def make_receipt(context, result, **changes):
+        fields = {
+            "policy_sha256": context.policy.sha256,
+            "bank_sha256": context.bank_fingerprint,
+            "task_id": context.task_id,
+            "judge_id": context.judge,
+            "consumed_budget": deepcopy(context.consumed_budget),
+            "declared_result": result,
+        }
+        fields.update(changes)
+        receipt = BankExternalReceipt.create(**fields)
+        return receipt.to_dict() if request.param == "envelopes" else receipt
+
+    receipts = [
+        make_receipt(context, result)
+        for context, result in zip(contexts, (True, True, False))
+    ]
+    return receipts, contexts, make_receipt
+
+def assert_real_refusal_without_mutation(receipts, contexts):
+    before = deepcopy((receipts, contexts))
+    with pytest.raises(ValueError):
+        aggregate_receipts(receipts, contexts)
+    assert (receipts, contexts) == before
+
+def test_real_exact_counts_and_all_permutations(real_receipts):
+    receipts, contexts, _ = real_receipts
+    before = deepcopy((receipts, contexts))
+    expected = aggregate_receipts(receipts, contexts)
+    assert expected.overall == Counts(2, 3)
+    assert expected.by_language == {
+        "python": Counts(1, 2),
+        "rust": Counts(1, 1),
+    }
+    for receipt_order in permutations(receipts):
+        for context_order in permutations(contexts):
+            assert aggregate_receipts(receipt_order, context_order) == expected
+    assert (receipts, contexts) == before
+
+@pytest.mark.parametrize("side", ["receipts", "contexts"])
+def test_real_duplicates_rejected(real_receipts, side):
+    receipts, contexts, _ = real_receipts
+    if side == "receipts":
+        receipts.append(deepcopy(receipts[0]))
+    else:
+        contexts.append(deepcopy(contexts[0]))
+    assert_real_refusal_without_mutation(receipts, contexts)
+
+@pytest.mark.parametrize("change", ["missing", "additional"])
+def test_real_task_set_mismatch(real_receipts, change):
+    receipts, contexts, make_receipt = real_receipts
+    if change == "missing":
+        receipts.pop()
+    else:
+        receipts.append(make_receipt(contexts[0], True, task_id="extra"))
+    assert_real_refusal_without_mutation(receipts, contexts)
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("bank_sha256", "b" * 64),
+        ("judge_id", "different-judge"),
+    ],
+)
+def test_real_context_divergences(real_receipts, field, value):
+    receipts, contexts, make_receipt = real_receipts
+    receipts[0] = make_receipt(contexts[0], True, **{field: value})
+    assert_real_refusal_without_mutation(receipts, contexts)
+
+def test_real_language_attribution_comes_from_external_contexts(real_receipts):
+    receipts, contexts, _ = real_receipts
+    before = deepcopy((receipts, contexts))
+    original = aggregate_receipts(receipts, contexts)
+    assert original.overall == Counts(2, 3)
+    assert original.by_language == {
+        "python": Counts(1, 2),
+        "rust": Counts(1, 1),
+    }
+    changed_contexts = [
+        replace(context, language="rust" if context.task_id == "a" else context.language)
+        for context in contexts
+    ]
+    changed_before = deepcopy(changed_contexts)
+    changed = aggregate_receipts(receipts, changed_contexts)
+    assert changed.overall == Counts(2, 3)
+    assert changed.by_language == {
+        "python": Counts(0, 1),
+        "rust": Counts(2, 2),
+    }
+    assert (receipts, contexts) == before
+    assert changed_contexts == changed_before
+
+def test_real_policy_divergence(real_receipts):
+    receipts, contexts, make_receipt = real_receipts
+    receipts[0] = make_receipt(
+        contexts[0],
+        True,
+        policy_sha256="b" * 64 if contexts[0].policy.sha256 != "b" * 64 else "c" * 64,
+    )
+    assert_real_refusal_without_mutation(receipts, contexts)
+
+@pytest.mark.parametrize(
+    "component", ["models", "tokens", "proposals", "time_seconds"]
+)
+def test_real_budget_component_divergences(real_receipts, component):
+    receipts, contexts, make_receipt = real_receipts
+    budget = deepcopy(contexts[0].consumed_budget)
+    if component == "models":
+        budget[component] = ["different-offline-model"]
+    else:
+        budget[component] += 1
+    receipts[0] = make_receipt(contexts[0], True, consumed_budget=budget)
+    assert_real_refusal_without_mutation(receipts, contexts)
+
+@pytest.mark.parametrize("value", [0, 1, None, "true", [], {}])
+def test_real_non_boolean_results_rejected(real_receipts, value):
+    receipts, contexts, _ = real_receipts
+    envelope = (
+        deepcopy(receipts[0])
+        if isinstance(receipts[0], dict)
+        else receipts[0].to_dict()
+    )
+    envelope["envelope"]["payload"]["declared_result"] = value
+    receipts[0] = envelope
+    assert_real_refusal_without_mutation(receipts, contexts)
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("declared_result", False),
+        ("bank_sha256", "b" * 64),
+        ("judge_id", "tampered-judge"),
+    ],
+)
+def test_real_tampered_envelopes_rejected(real_receipts, field, value):
+    receipts, contexts, _ = real_receipts
+    envelope = (
+        deepcopy(receipts[0])
+        if isinstance(receipts[0], dict)
+        else receipts[0].to_dict()
+    )
+    envelope["envelope"]["payload"][field] = value
+    receipts[0] = envelope
+    assert_real_refusal_without_mutation(receipts, contexts)
 
 @pytest.fixture
 def synthetic():
