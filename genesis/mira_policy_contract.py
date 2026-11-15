@@ -331,3 +331,18 @@ def validate_receipt_consistency(receipt, *, context=None):
     for field in ("models", "tokens", "proposals", "time_seconds"):
         if payload["consumed_budget"][field] != budget[field]:
             raise ValueError("Budget differs from external context: " + field)
+
+def validate_policy_receipt_consistency(policy, receipt, *, context=None):
+    """Check declarative policy linkage and external context concordance.
+
+    This authenticates neither the judge nor any of its declarations, and
+    establishes neither truth nor independence. The policy's allocated budget
+    is never compared with declared consumption; only the external context
+    supplies expected consumption.
+    """
+    if type(policy) is not CodingPolicy:
+        raise ValueError("Expected a coding policy")
+    CodingPolicy.__post_init__(policy)
+    validate_receipt_consistency(receipt, context=context)
+    if receipt.payload["policy_sha256"] != policy.sha256:
+        raise ValueError("Receipt differs from coding policy")
