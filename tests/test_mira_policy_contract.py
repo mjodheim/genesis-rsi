@@ -748,3 +748,92 @@ class PolicyReceiptConsistencyTests(unittest.TestCase):
             policy, self.receipt(policy), None,
             "Expected complete external context",
         )
+
+class TaskReceiptConsistencyTests(PolicyReceiptConsistencyTests):
+    """Synthetic offline cases; execution and runner proof remain unattested.
+
+    Inherited cases exercise serialization, policy and receipt refusals,
+    altered envelopes, bank and budget divergences, and input preservation
+    through the task validator.
+    """
+
+    def context(self):
+        return dict(
+            super().context(),
+            task_id="synthetic-task",
+            judge_id="unauthenticated-judge",
+        )
+
+    def assert_validation(self, policy, receipt, context, error=None):
+        from genesis.mira_policy_contract import validate_task_receipt_consistency
+
+        def state():
+            return copy.deepcopy((
+                vars(policy) if isinstance(policy, CodingPolicy) else policy,
+                vars(receipt) if isinstance(receipt, ExternalReceipt) else receipt,
+                context,
+            ))
+
+        before = state()
+        try:
+            if error is None:
+                self.assertIsNone(validate_task_receipt_consistency(
+                    policy, receipt, context=context,
+                ))
+            else:
+                with self.assertRaisesRegex(ValueError, error):
+                    validate_task_receipt_consistency(
+                        policy, receipt, context=context,
+                    )
+        finally:
+            self.assertEqual(state(), before)
+
+    def test_wrong_task_and_judge(self):
+        policy = self.policy()
+        receipt = self.receipt(policy)
+        for field in ("task_id", "judge_id"):
+            with self.subTest(field=field):
+                context = self.context()
+                context[field] = "other-identifier"
+                self.assert_validation(
+                    policy, receipt, context,
+                    "Receipt differs from external context: " + field,
+                )
+
+    def test_absent_and_malformed_task_context(self):
+        from genesis.mira_policy_contract import validate_task_receipt_consistency
+
+        policy = self.policy()
+        receipt = self.receipt(policy)
+        before = copy.deepcopy((vars(policy), vars(receipt)))
+        with self.assertRaisesRegex(ValueError, "Expected complete external context"):
+            validate_task_receipt_consistency(policy, receipt)
+        self.assertEqual((vars(policy), vars(receipt)), before)
+        for context in (None, True, 0, "", [], {}, {"extra": None}):
+            with self.subTest(context=context):
+                self.assert_validation(
+                    policy, receipt, context, "Expected complete external context",
+                )
+        for field in self.context():
+            context = self.context()
+            del context[field]
+            with self.subTest(missing=field):
+                self.assert_validation(
+                    policy, receipt, context, "Expected complete external context",
+                )
+        context = dict(self.context(), extra=None)
+        self.assert_validation(
+            policy, receipt, context, "Expected complete external context",
+        )
+
+    def test_invalid_expected_identifiers(self):
+        policy = self.policy()
+        receipt = self.receipt(policy)
+        for field in ("task_id", "judge_id"):
+            for value in ("", None, True, False, 123, 1.5, [], {}):
+                with self.subTest(field=field, value=value):
+                    context = self.context()
+                    context[field] = value
+                    self.assert_validation(
+                        policy, receipt, context, "Expected a nonempty identifier",
+                    )

@@ -348,3 +348,27 @@ def validate_policy_receipt_consistency(policy, receipt, *, context=None):
     validate_receipt_consistency(receipt, context=context)
     if receipt.payload["policy_sha256"] != policy.sha256:
         raise ValueError("Receipt differs from coding policy")
+
+def validate_task_receipt_consistency(policy, receipt, *, context=None):
+    """Check policy, bank, budget, task and judge against external expectations.
+
+    The caller supplies all expectations independently of the receipt.
+    Concordance proves neither authenticity nor judge independence.
+    Inputs are never modified. Historical validation interfaces are unchanged.
+    """
+    if type(context) is not dict or set(context) != {
+        "bank_sha256", "consumed_budget", "task_id", "judge_id",
+    }:
+        raise ValueError("Expected complete external context")
+    for field in ("task_id", "judge_id"):
+        if type(context[field]) is not str or not context[field]:
+            raise ValueError("Expected a nonempty identifier")
+    context = json.loads(canonical_json_utf8(context).decode("utf-8"))
+    validate_policy_receipt_consistency(policy, receipt, context={
+        "bank_sha256": context["bank_sha256"],
+        "consumed_budget": context["consumed_budget"],
+    })
+    payload = receipt.payload
+    for field in ("task_id", "judge_id"):
+        if payload[field] != context[field]:
+            raise ValueError("Receipt differs from external context: " + field)
