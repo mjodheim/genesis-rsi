@@ -2,6 +2,8 @@
 
 The validator below is a synthetic boundary double, not evidence about the
 existing CodingPolicy or validate_task_receipt_consistency implementation.
+Real factory-based integration coverage and a recorded offline test launch
+remain outstanding; these tests do not establish contract compatibility.
 """
 
 from copy import deepcopy
@@ -14,6 +16,7 @@ from genesis.mira_coding_fitness import (
     Counts,
     TaskContext,
     aggregate_receipts,
+    aggregate_synthetic_receipts,
 )
 
 @pytest.fixture
@@ -42,7 +45,7 @@ def synthetic_validator(receipt, context):
         raise ValueError("synthetic policy mismatch")
 
 def aggregate(receipts, contexts, validator=synthetic_validator):
-    return aggregate_receipts(
+    return aggregate_synthetic_receipts(
         receipts, contexts, validate_task_receipt_consistency=validator
     )
 
@@ -129,3 +132,26 @@ def test_synthetic_policy_required(synthetic):
     contexts[0] = replace(contexts[0], policy=None)
     with pytest.raises(ValueError):
         aggregate(receipts, contexts)
+
+def test_real_entry_rejects_synthetic_policy(synthetic):
+    receipts, contexts = synthetic
+    before = deepcopy(synthetic)
+    with pytest.raises(TypeError):
+        aggregate_receipts(receipts, contexts)
+    assert synthetic == before
+
+def test_real_entry_rejects_caller_validator(synthetic):
+    receipts, contexts = synthetic
+    with pytest.raises(TypeError):
+        aggregate_receipts(
+            receipts,
+            contexts,
+            validate_task_receipt_consistency=synthetic_validator,
+        )
+
+def test_synthetic_validator_refusal_propagates(synthetic):
+    def refusing_validator(receipt, context):
+        raise RuntimeError("synthetic refusal")
+
+    with pytest.raises(RuntimeError, match="synthetic refusal"):
+        aggregate(*synthetic, validator=refusing_validator)
