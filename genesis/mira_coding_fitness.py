@@ -9,6 +9,13 @@ Initial negative evidence 425f5272292041f0a9aba16188c5fc8f: exit code 1,
 TypeError: aggregate_receipts() got an unexpected keyword argument
 'validate_task_receipt_consistency'.
 No new execution results or capability gains are claimed.
+
+Integration remains blocked: the supplied files do not include the contract's
+import path, CodingPolicy.create and BankExternalReceipt.create signatures,
+receipt envelope schema, or validate_task_receipt_consistency signature.
+No tools or execution were authorized, so this diff has not been applied and
+pytest has not been run; no output or return code is available.
+Consistency alone proves neither truth, authenticity, nor judge independence.
 """
 
 from collections.abc import Callable, Iterable, Mapping
