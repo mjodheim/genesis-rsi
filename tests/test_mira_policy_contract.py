@@ -289,6 +289,34 @@ class ReceiptConsistencyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Invalid receipt fields"):
             ExternalReceipt.from_dict(receipt.to_dict())
 
+    def test_tampered_envelope_digest(self):
+        receipt = self.receipt()
+        object.__setattr__(receipt.envelope, "sha256", "0" * 64)
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt, context=self.context())
+        with self.assertRaises(ValueError):
+            BankExternalReceipt(receipt.version, receipt.envelope)
+
+    def test_tampered_envelope_version(self):
+        receipt = self.receipt()
+        object.__setattr__(receipt.envelope, "version", 2)
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt, context=self.context())
+        with self.assertRaises(ValueError):
+            BankExternalReceipt(receipt.version, receipt.envelope)
+
+    def test_tampered_envelope_noncanonical_json(self):
+        receipt = self.receipt()
+        encoded = json.dumps(receipt.payload, sort_keys=True).encode("utf-8")
+        object.__setattr__(receipt.envelope, "canonical_utf8", encoded)
+        object.__setattr__(
+            receipt.envelope, "sha256", hashlib.sha256(encoded).hexdigest(),
+        )
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt, context=self.context())
+        with self.assertRaises(ValueError):
+            BankExternalReceipt(receipt.version, receipt.envelope)
+
     def test_absent_and_malformed_context(self):
         receipt = self.receipt()
         with self.assertRaises(ValueError):

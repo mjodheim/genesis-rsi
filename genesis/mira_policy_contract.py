@@ -189,6 +189,7 @@ class BankExternalReceipt(ExternalReceipt):
         _version(self.version)
         if type(self.envelope) is not JsonObjectEnvelope:
             raise ValueError("Expected a JSON object envelope")
+        JsonObjectEnvelope.__post_init__(self.envelope)
         payload = self.envelope.payload
         if set(payload) != {
             "policy_sha256", "bank_sha256", "task_id", "judge_id",
