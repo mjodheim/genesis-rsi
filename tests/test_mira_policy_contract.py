@@ -6,9 +6,11 @@ import sys
 import unittest
 
 from genesis.mira_policy_contract import (
+    BankExternalReceipt,
     ExternalReceipt,
     JsonObjectEnvelope,
     canonical_json_utf8,
+    validate_receipt_consistency,
 )
 
 class PolicyContractTests(unittest.TestCase):
@@ -240,3 +242,186 @@ class PolicyContractTests(unittest.TestCase):
                 self.assertEqual(
                     restored.payload["policy_sha256"], receipt.payload["policy_sha256"],
                 )
+
+class ReceiptConsistencyTests(unittest.TestCase):
+    """Synthetic offline cases; execution results are not attested here."""
+
+    def context(self):
+        return {
+            "bank_sha256": hashlib.sha256(b"synthetic bank").hexdigest(),
+            "consumed_budget": {
+                "models": ["model-a", "model-a"],
+                "tokens": 12,
+                "proposals": 3,
+                "time_seconds": 1.25,
+            },
+        }
+
+    def receipt(self, **changes):
+        fields = {
+            "policy_sha256": hashlib.sha256(b"synthetic policy").hexdigest(),
+            "bank_sha256": hashlib.sha256(b"synthetic bank").hexdigest(),
+            "task_id": "synthetic-task",
+            "judge_id": "unauthenticated-judge",
+            "declared_result": {
+                "success": False,
+                "provenance": "self-declared, unauthenticated",
+            },
+            "consumed_budget": {
+                "models": ["model-a", "model-a"],
+                "tokens": 12,
+                "proposals": 3,
+                "time_seconds": 1.25,
+            },
+        }
+        fields.update(changes)
+        return BankExternalReceipt.create(**fields)
+
+    def test_concordance_and_round_trip(self):
+        receipt = self.receipt()
+        restored = BankExternalReceipt.from_dict(
+            json.loads(json.dumps(receipt.to_dict(), allow_nan=False)),
+        )
+        self.assertEqual(restored, receipt)
+        self.assertIsNone(
+            validate_receipt_consistency(restored, context=self.context()),
+        )
+        with self.assertRaisesRegex(ValueError, "Invalid receipt fields"):
+            ExternalReceipt.from_dict(receipt.to_dict())
+
+    def test_tampered_envelope_digest(self):
+        receipt = self.receipt()
+        object.__setattr__(receipt.envelope, "sha256", "0" * 64)
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt, context=self.context())
+        with self.assertRaises(ValueError):
+            BankExternalReceipt(receipt.version, receipt.envelope)
+
+    def test_tampered_envelope_version(self):
+        receipt = self.receipt()
+        object.__setattr__(receipt.envelope, "version", 2)
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt, context=self.context())
+        with self.assertRaises(ValueError):
+            BankExternalReceipt(receipt.version, receipt.envelope)
+
+    def test_tampered_envelope_noncanonical_json(self):
+        receipt = self.receipt()
+        encoded = json.dumps(receipt.payload, sort_keys=True).encode("utf-8")
+        object.__setattr__(receipt.envelope, "canonical_utf8", encoded)
+        object.__setattr__(
+            receipt.envelope, "sha256", hashlib.sha256(encoded).hexdigest(),
+        )
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt, context=self.context())
+        with self.assertRaises(ValueError):
+            BankExternalReceipt(receipt.version, receipt.envelope)
+
+    def test_absent_and_malformed_context(self):
+        receipt = self.receipt()
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt)
+        for context in (None, True, 0, "", [], {}, {"extra": None}):
+            with self.subTest(context=context):
+                with self.assertRaises(ValueError):
+                    validate_receipt_consistency(receipt, context=context)
+        for field in self.context():
+            context = self.context()
+            del context[field]
+            with self.subTest(missing=field), self.assertRaises(ValueError):
+                validate_receipt_consistency(receipt, context=context)
+        context = self.context()
+        context["extra"] = None
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(receipt, context=context)
+
+    def test_invalid_bank_in_context_and_receipt(self):
+        for value in (None, True, 123, "", "invalid", "a" * 63,
+                      "a" * 65, "A" * 64, "g" * 64, [], {}):
+            with self.subTest(value=value):
+                context = self.context()
+                context["bank_sha256"] = value
+                with self.assertRaises(ValueError):
+                    validate_receipt_consistency(self.receipt(), context=context)
+                with self.assertRaises(ValueError):
+                    self.receipt(bank_sha256=value)
+
+    def test_missing_and_extra_budget_components(self):
+        for field in self.context()["consumed_budget"]:
+            context = self.context()
+            del context["consumed_budget"][field]
+            with self.subTest(missing=field), self.assertRaises(ValueError):
+                validate_receipt_consistency(self.receipt(), context=context)
+        context = self.context()
+        context["consumed_budget"]["extra"] = 0
+        with self.assertRaises(ValueError):
+            validate_receipt_consistency(self.receipt(), context=context)
+
+    def test_invalid_budget_container(self):
+        for value in (None, True, 0, "", []):
+            context = self.context()
+            context["consumed_budget"] = value
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                validate_receipt_consistency(self.receipt(), context=context)
+
+    def test_invalid_budget_components(self):
+        invalid = {
+            "models": (
+                None, True, 0, "model-a", {}, [None], [True], [1],
+                [[]], [{}], ["model-a", 1],
+            ),
+            "tokens": (None, True, False, -1, -0.5, 1.0, "", [], {}),
+            "proposals": (None, True, False, -1, -0.5, 1.0, "", [], {}),
+            "time_seconds": (None, True, False, -1, -0.5, "", [], {}),
+        }
+        for field, values in invalid.items():
+            for value in values + (float("nan"), float("inf"), -float("inf")):
+                with self.subTest(field=field, value=value):
+                    context = self.context()
+                    context["consumed_budget"][field] = value
+                    with self.assertRaises(ValueError):
+                        validate_receipt_consistency(
+                            self.receipt(), context=context,
+                        )
+                    with self.assertRaises(ValueError):
+                        self.receipt(consumed_budget=context["consumed_budget"])
+
+    def test_each_divergence(self):
+        context = self.context()
+        context["bank_sha256"] = hashlib.sha256(b"other bank").hexdigest()
+        with self.assertRaisesRegex(ValueError, "Bank differs"):
+            validate_receipt_consistency(self.receipt(), context=context)
+        for field, value in (
+            ("models", ["model-a"]),
+            ("models", ["model-b", "model-a"]),
+            ("tokens", 13),
+            ("proposals", 4),
+            ("time_seconds", 1.5),
+        ):
+            context = self.context()
+            context["consumed_budget"][field] = value
+            with self.subTest(field=field, value=value):
+                with self.assertRaisesRegex(ValueError, "Budget differs"):
+                    validate_receipt_consistency(self.receipt(), context=context)
+
+    def test_historical_receipt_readable_but_refused(self):
+        payload = self.receipt().payload
+        del payload["bank_sha256"]
+        historical = ExternalReceipt.create(**payload)
+        restored = ExternalReceipt.from_dict(historical.to_dict())
+        self.assertEqual(restored, historical)
+        with self.assertRaisesRegex(ValueError, "bank-bearing receipt"):
+            validate_receipt_consistency(restored, context=self.context())
+        with self.assertRaisesRegex(ValueError, "Invalid bank receipt fields"):
+            BankExternalReceipt.from_dict(historical.to_dict())
+
+    def test_concordant_provenance_remains_unauthenticated(self):
+        receipt = self.receipt()
+        self.assertIsNone(
+            validate_receipt_consistency(receipt, context=self.context()),
+        )
+        self.assertEqual(receipt.payload["declared_result"], {
+            "success": False,
+            "provenance": "self-declared, unauthenticated",
+        })
+        self.assertEqual(receipt.payload["judge_id"], "unauthenticated-judge")

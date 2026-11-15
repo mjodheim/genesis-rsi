@@ -176,3 +176,82 @@ class ExternalReceipt:
             raise ValueError("Invalid receipt envelope fields")
         _version(data["version"])
         return cls(data["version"], JsonObjectEnvelope.from_dict(data["envelope"]))
+
+@dataclass(frozen=True)
+class BankExternalReceipt(ExternalReceipt):
+    """Distinct bank-bearing declaration, with the historical version unchanged.
+
+    Neither its digest nor context concordance authenticates provenance,
+    establishes truth, or demonstrates judge independence.
+    """
+
+    def __post_init__(self):
+        _version(self.version)
+        if type(self.envelope) is not JsonObjectEnvelope:
+            raise ValueError("Expected a JSON object envelope")
+        JsonObjectEnvelope.__post_init__(self.envelope)
+        payload = self.envelope.payload
+        if set(payload) != {
+            "policy_sha256", "bank_sha256", "task_id", "judge_id",
+            "declared_result", "consumed_budget",
+        }:
+            raise ValueError("Invalid bank receipt fields")
+        _digest(payload.pop("bank_sha256"))
+        ExternalReceipt(self.version, JsonObjectEnvelope.create(payload))
+
+    @classmethod
+    def create(cls, *, policy_sha256, bank_sha256, task_id, judge_id,
+               declared_result, consumed_budget):
+        return cls(VERSION, JsonObjectEnvelope.create({
+            "policy_sha256": policy_sha256,
+            "bank_sha256": bank_sha256,
+            "task_id": task_id,
+            "judge_id": judge_id,
+            "declared_result": declared_result,
+            "consumed_budget": consumed_budget,
+        }))
+
+def validate_receipt_consistency(receipt, *, context=None):
+    """Check a declaration against a caller-supplied external reference.
+
+    Context must contain bank_sha256 and consumed_budget, including all four
+    budget components. The caller must supply these expectations independently;
+    no expected value is inferred from the receipt. Model order and repetitions
+    are significant; elapsed seconds are compared numerically.
+
+    Concordance proves neither authenticity, truth, nor independence. In
+    particular, a concordant provenance declaration remains unauthenticated.
+    Historical receipts remain readable but cannot pass this check.
+    """
+    if type(context) is not dict or set(context) != {
+        "bank_sha256", "consumed_budget",
+    }:
+        raise ValueError("Expected complete external context")
+    # Validate and detach the external reference before inspecting the receipt.
+    context = json.loads(canonical_json_utf8(context).decode("utf-8"))
+    _digest(context["bank_sha256"])
+    budget = context["consumed_budget"]
+    if type(budget) is not dict or set(budget) != {
+        "models", "tokens", "proposals", "time_seconds",
+    }:
+        raise ValueError("Invalid budget fields")
+    if type(budget["models"]) is not list or any(
+        type(model) is not str for model in budget["models"]
+    ):
+        raise ValueError("Expected model identifiers")
+    for field in ("tokens", "proposals"):
+        if type(budget[field]) is not int or budget[field] < 0:
+            raise ValueError("Expected a nonnegative integer budget")
+    elapsed = budget["time_seconds"]
+    if type(elapsed) not in (int, float) or elapsed < 0:
+        raise ValueError("Expected nonnegative elapsed seconds")
+    if type(receipt) is not BankExternalReceipt:
+        raise ValueError("Expected a bank-bearing receipt")
+    # Revalidate even objects whose frozen dataclass guard was bypassed.
+    receipt.__post_init__()
+    payload = receipt.payload
+    if payload["bank_sha256"] != context["bank_sha256"]:
+        raise ValueError("Bank differs from external context")
+    for field in ("models", "tokens", "proposals", "time_seconds"):
+        if payload["consumed_budget"][field] != budget[field]:
+            raise ValueError("Budget differs from external context: " + field)
