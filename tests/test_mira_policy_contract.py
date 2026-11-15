@@ -1,5 +1,6 @@
 """Tests hors réseau de la sérialisation canonique et des reçus déclaratifs."""
 
+import copy
 import hashlib
 import json
 import sys
@@ -11,6 +12,7 @@ from genesis.mira_policy_contract import (
     ExternalReceipt,
     JsonObjectEnvelope,
     canonical_json_utf8,
+    validate_policy_receipt_consistency,
     validate_receipt_consistency,
 )
 
@@ -572,3 +574,149 @@ class ReceiptConsistencyTests(unittest.TestCase):
             "provenance": "self-declared, unauthenticated",
         })
         self.assertEqual(receipt.payload["judge_id"], "unauthenticated-judge")
+
+class PolicyReceiptConsistencyTests(unittest.TestCase):
+    """Synthetic offline cases; no execution or runner proof is attested."""
+
+    def policy(self):
+        return CodingPolicy.create(**CodingPolicyTests.fields(self))
+
+    def context(self):
+        return ReceiptConsistencyTests.context(self)
+
+    def receipt(self, policy):
+        return ReceiptConsistencyTests.receipt(
+            self, policy_sha256=policy.sha256,
+        )
+
+    def assert_validation(self, policy, receipt, context, error=None):
+        def state():
+            return copy.deepcopy((
+                vars(policy) if isinstance(policy, CodingPolicy) else policy,
+                vars(receipt) if isinstance(receipt, ExternalReceipt) else receipt,
+                context,
+            ))
+
+        before = state()
+        try:
+            if error is None:
+                self.assertIsNone(validate_policy_receipt_consistency(
+                    policy, receipt, context=context,
+                ))
+            else:
+                with self.assertRaisesRegex(ValueError, error):
+                    validate_policy_receipt_consistency(
+                        policy, receipt, context=context,
+                    )
+        finally:
+            self.assertEqual(state(), before)
+
+    def test_serialized_acceptance_with_different_allocated_budget(self):
+        fields = CodingPolicyTests.fields(self)
+        fields["task_budget"] = {
+            "models": ["allocated-model"],
+            "tokens": 1,
+            "proposals": 1,
+            "time_seconds": 0,
+        }
+        policy = CodingPolicy.create(**fields)
+        receipt = self.receipt(policy)
+        policy_data, receipt_data, context = json.loads(json.dumps(
+            [policy.to_dict(), receipt.to_dict(), self.context()],
+            allow_nan=False,
+        ))
+        restored_policy = CodingPolicy.from_dict(policy_data)
+        restored_receipt = BankExternalReceipt.from_dict(receipt_data)
+        self.assertEqual(restored_policy, policy)
+        self.assertEqual(restored_receipt, receipt)
+        self.assertNotEqual(
+            restored_policy.payload["task_budget"],
+            restored_receipt.payload["consumed_budget"],
+        )
+        self.assert_validation(restored_policy, restored_receipt, context)
+
+    def test_other_valid_policy_is_refused(self):
+        policy = self.policy()
+        fields = CodingPolicyTests.fields(self)
+        fields["localization"] = "Autre localisation valide"
+        other = CodingPolicy.create(**fields)
+        self.assertNotEqual(other.sha256, policy.sha256)
+        self.assert_validation(
+            other, self.receipt(policy), self.context(),
+            "Receipt differs from coding policy",
+        )
+
+    def test_invalid_policy_types_including_subclass(self):
+        class PolicySubclass(CodingPolicy):
+            pass
+
+        policy = self.policy()
+        subclass = PolicySubclass(policy.version, policy.envelope)
+        for invalid in (None, True, 1, "", [], {}, policy.to_dict(), subclass):
+            with self.subTest(policy_type=type(invalid)):
+                self.assert_validation(
+                    invalid, self.receipt(policy), self.context(),
+                    "Expected a coding policy",
+                )
+
+    def test_invalid_receipt_types_including_subclass(self):
+        class ReceiptSubclass(BankExternalReceipt):
+            pass
+
+        policy = self.policy()
+        receipt = self.receipt(policy)
+        historical_payload = receipt.payload
+        del historical_payload["bank_sha256"]
+        historical = ExternalReceipt.create(**historical_payload)
+        subclass = ReceiptSubclass(receipt.version, receipt.envelope)
+        for invalid in (None, True, 1, "", [], {}, historical, subclass):
+            with self.subTest(receipt_type=type(invalid)):
+                self.assert_validation(
+                    policy, invalid, self.context(), "bank-bearing receipt",
+                )
+
+    def test_tampered_versions_and_envelopes(self):
+        for target in ("policy", "receipt"):
+            for field, value in (
+                ("version", 2),
+                ("envelope", None),
+                ("envelope.version", 2),
+                ("envelope.sha256", "0" * 64),
+                ("envelope.canonical_utf8", b"{}"),
+            ):
+                with self.subTest(target=target, field=field):
+                    policy = self.policy()
+                    receipt = self.receipt(policy)
+                    obj = policy if target == "policy" else receipt
+                    if field.startswith("envelope."):
+                        obj = obj.envelope
+                        attribute = field.split(".")[1]
+                    else:
+                        attribute = field
+                    object.__setattr__(obj, attribute, value)
+                    self.assert_validation(policy, receipt, self.context(), ".")
+
+    def test_bank_and_each_consumed_budget_divergence(self):
+        policy = self.policy()
+        receipt = self.receipt(policy)
+        context = self.context()
+        context["bank_sha256"] = hashlib.sha256(b"other bank").hexdigest()
+        self.assert_validation(policy, receipt, context, "Bank differs")
+        for field, value in (
+            ("models", ["model-b", "model-a"]),
+            ("models", ["model-a"]),
+            ("tokens", 13),
+            ("proposals", 4),
+            ("time_seconds", 1.5),
+        ):
+            with self.subTest(field=field, value=value):
+                context = self.context()
+                context["consumed_budget"][field] = value
+                self.assert_validation(policy, receipt, context, "Budget differs")
+
+    def test_missing_context_is_refused_without_mutation(self):
+        policy = self.policy()
+        self.assert_validation(
+            policy, self.receipt(policy), None,
+            "Expected complete external context",
+        )
