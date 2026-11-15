@@ -83,7 +83,7 @@ def aggregate_receipts(
             )
         if not isinstance(receipt, mira_policy_contract.BankExternalReceipt):
             raise TypeError("expected BankExternalReceipt or serialized envelope")
-        task_id = receipt.task_id
+        task_id = receipt.payload["task_id"]
         if type(task_id) is not str or not task_id:
             raise ValueError("invalid task identifier")
         if task_id in received:
@@ -95,7 +95,7 @@ def aggregate_receipts(
     results = {}
     for task_id, context in expected.items():
         receipt = received[task_id]
-        declared_result = receipt.declared_result
+        declared_result = receipt.payload["declared_result"]
         if type(declared_result) is not bool:
             raise ValueError("declared_result must have exact bool type")
         result = mira_policy_contract.validate_task_receipt_consistency(
