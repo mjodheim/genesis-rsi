@@ -64,6 +64,12 @@ def count_mcnemar_pairs(
     for arm, contexts in (("left", left), ("right", right)):
         if len({context.policy.sha256 for context in contexts.values()}) != 1:
             raise ValueError(f"{arm} arm must have exactly one policy fingerprint")
+
+    left_budget = next(iter(left.values())).policy.payload["task_budget"]
+    right_budget = next(iter(right.values())).policy.payload["task_budget"]
+    for component in ("models", "tokens", "proposals", "time_seconds"):
+        if left_budget[component] != right_budget[component]:
+            raise ValueError(f"paired allocated task_budget {component} mismatch")
     return _count_mcnemar_pairs(left, left_results, right, right_results)
 
 def count_synthetic_mcnemar_pairs(

@@ -174,15 +174,12 @@ def test_real_budget_component_divergences(real_receipts, component):
 
 @pytest.mark.parametrize("value", [0, 1, None, "true", [], {}])
 def test_real_non_boolean_results_rejected(real_receipts, value):
-    receipts, contexts, _ = real_receipts
-    envelope = (
-        deepcopy(receipts[0])
-        if isinstance(receipts[0], dict)
-        else receipts[0].to_dict()
-    )
-    envelope["envelope"]["payload"]["declared_result"] = value
-    receipts[0] = envelope
-    assert_real_refusal_without_mutation(receipts, contexts)
+    receipts, contexts, make_receipt = real_receipts
+    receipts[0] = make_receipt(contexts[0], value)
+    before = deepcopy((receipts, contexts))
+    with pytest.raises(ValueError, match="^declared_result must have exact bool type$"):
+        aggregate_receipts(receipts, contexts)
+    assert (receipts, contexts) == before
 
 @pytest.mark.parametrize(
     "field,value",
@@ -375,6 +372,7 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
     other_policy = CodingPolicy.create(
         **dict(contexts[0].policy.payload, localization="paired-task-context")
     )
+    assert other_policy.sha256 != contexts[0].policy.sha256
     left_contexts = [
         contexts[0],
         contexts[1],
@@ -401,6 +399,32 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
         "rust": (0, 1, 0, 1),
     }
     assert (left, left_contexts, right, right_contexts) == before
+
+@pytest.mark.parametrize(
+    "component,value",
+    [
+        ("models", ["offline-test-model", "another-offline-test-model"]),
+        ("tokens", 1001),
+        ("proposals", 11),
+        ("time_seconds", 61),
+    ],
+)
+def test_real_mcnemar_rejects_allocated_budget_divergences(
+    real_receipts, component, value
+):
+    receipts, contexts, make_receipt = real_receipts
+    payload = contexts[0].policy.payload
+    budget = dict(payload["task_budget"], **{component: value})
+    other_policy = CodingPolicy.create(**dict(payload, task_budget=budget))
+    right_contexts = [replace(context, policy=other_policy) for context in contexts]
+    right_receipts = [
+        make_receipt(context, result)
+        for context, result in zip(right_contexts, (True, True, False))
+    ]
+
+    assert aggregate_receipts(right_receipts, right_contexts).overall == Counts(2, 3)
+    with pytest.raises(ValueError, match=f"^paired allocated task_budget {component} mismatch$"):
+        count_mcnemar_pairs(receipts, contexts, right_receipts, right_contexts)
 
 @pytest.mark.parametrize(
     "field,value",
