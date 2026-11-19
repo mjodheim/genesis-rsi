@@ -1,8 +1,10 @@
-"""Inert receipt aggregation.
+"""Inert receipt aggregation and ablation policy resolution.
 
 Fingerprints and consistency checks do not establish authenticity.
 This module produces the four paired counts for McNemar's test.
-Non-inferiority and lineage verification are outside this module.
+Non-inferiority remains outside this module. External judge integration,
+registry authentication, and freezing before evaluation remain unverified.
+Evidence 66dcca637bf1470bb8a4337d1be558ab covers the baseline only.
 
 Initial negative evidence 425f5272292041f0a9aba16188c5fc8f: exit code 1,
 TypeError: aggregate_receipts() got an unexpected keyword argument
@@ -22,6 +24,36 @@ from math import comb
 from typing import Any
 
 from genesis import mira_policy_contract
+
+
+def resolve_ablation_parent(
+    child: mira_policy_contract.CodingPolicy,
+    lineage_by_child_sha256: Mapping[str, str],
+    validated_policies_by_sha256: Mapping[str, mira_policy_contract.CodingPolicy],
+) -> mira_policy_contract.CodingPolicy:
+    """Resolve the parent for the external caller before it invokes the judge.
+
+    The caller supplies judge-side registries authenticated and frozen before
+    evaluation, outside the candidate's control.
+    """
+    if not isinstance(child, mira_policy_contract.CodingPolicy):
+        raise TypeError("expected child CodingPolicy")
+    validated_child = mira_policy_contract.CodingPolicy.create(**deepcopy(child.payload))
+    if validated_child.sha256 != child.sha256:
+        raise ValueError("child policy fingerprint mismatch")
+
+    parent_sha256 = lineage_by_child_sha256.get(validated_child.sha256)
+    if parent_sha256 is None:
+        raise ValueError("missing ablation lineage")
+    parent = validated_policies_by_sha256.get(parent_sha256)
+    if parent is None:
+        raise ValueError("ablation parent policy not found")
+    if not isinstance(parent, mira_policy_contract.CodingPolicy):
+        raise TypeError("expected parent CodingPolicy")
+    validated_parent = mira_policy_contract.CodingPolicy.create(**deepcopy(parent.payload))
+    if validated_parent.sha256 != parent_sha256 or parent.sha256 != parent_sha256:
+        raise ValueError("ablation parent fingerprint mismatch")
+    return validated_parent
 
 @dataclass(frozen=True)
 class TaskContext:

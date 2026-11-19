@@ -21,9 +21,52 @@ from genesis.mira_coding_fitness import (
     count_mcnemar_pairs,
     count_synthetic_mcnemar_pairs,
     mcnemar_exact_pvalue,
+    resolve_ablation_parent,
 )
 from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
 
+
+@pytest.fixture
+def ablation_policies():
+    parent = CodingPolicy.create(
+        localization="task-context",
+        tool_order=["inspect", "edit", "test"],
+        trial_and_repair_strategy="At most 10 trials with repair",
+        task_budget={
+            "models": ["offline-test-model"],
+            "tokens": 1000,
+            "proposals": 10,
+            "time_seconds": 60,
+        },
+    )
+    child = CodingPolicy.create(
+        **dict(parent.payload, localization="child-task-context")
+    )
+    return child, parent
+
+def test_resolve_ablation_parent_returns_expected_policy(ablation_policies):
+    child, parent = ablation_policies
+    resolved = resolve_ablation_parent(
+        child, {child.sha256: parent.sha256}, {parent.sha256: parent}
+    )
+    assert resolved.to_dict() == parent.to_dict()
+
+def test_resolve_ablation_parent_rejects_missing_lineage(ablation_policies):
+    child, parent = ablation_policies
+    with pytest.raises(ValueError, match="^missing ablation lineage$"):
+        resolve_ablation_parent(child, {}, {parent.sha256: parent})
+
+def test_resolve_ablation_parent_rejects_unknown_parent(ablation_policies):
+    child, parent = ablation_policies
+    with pytest.raises(ValueError, match="^ablation parent policy not found$"):
+        resolve_ablation_parent(child, {child.sha256: parent.sha256}, {})
+
+def test_resolve_ablation_parent_rejects_fingerprint_mismatch(ablation_policies):
+    child, parent = ablation_policies
+    with pytest.raises(ValueError, match="^ablation parent fingerprint mismatch$"):
+        resolve_ablation_parent(
+            child, {child.sha256: parent.sha256}, {parent.sha256: child}
+        )
 
 @pytest.mark.parametrize(
     "left_only,right_only,expected",
