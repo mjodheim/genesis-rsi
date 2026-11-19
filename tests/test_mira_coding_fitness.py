@@ -5,8 +5,6 @@ Language attribution comes from external task contexts.
 
 Negative evidence reference: e7b532ca80d94a168cf7b09eb34669aa.
 No corrected execution result or capability gain is attested.
-The targeted offline suite was not run for the paired rate difference.
-No observed result or evidence identifier is available for this patch.
 """
 
 from copy import deepcopy
