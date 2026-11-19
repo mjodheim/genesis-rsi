@@ -50,7 +50,7 @@ def real_receipts(request):
         tool_order=["inspect", "edit", "test"],
         trial_and_repair_strategy="At most 10 trials with repair",
         task_budget={
-            "models": ["offline-test-model"],
+            "models": ["offline-test-model", "another-offline-test-model"],
             "tokens": 1000,
             "proposals": 10,
             "time_seconds": 60,
@@ -443,7 +443,7 @@ def test_real_mcnemar_success_rate_difference_with_equal_discordant_counts(real_
 @pytest.mark.parametrize(
     "component,value",
     [
-        ("models", ["offline-test-model", "another-offline-test-model"]),
+        ("models", ["offline-test-model", "another-offline-test-model", "third-offline-test-model"]),
         ("tokens", 1001),
         ("proposals", 11),
         ("time_seconds", 61),
@@ -472,15 +472,20 @@ def test_real_mcnemar_rejects_allocated_budget_divergences(
         ("bank_fingerprint", "b" * 64),
         ("judge", "different-judge"),
         ("language", "rust"),
-        ("consumed_budget", 101),
+        ("consumed_budget", {"models": ["another-offline-test-model"]}),
+        ("consumed_budget", {"tokens": 101}),
+        ("consumed_budget", {"proposals": 2}),
+        ("consumed_budget", {"time_seconds": 3}),
     ],
 )
 def test_real_mcnemar_rejects_external_context_divergences(real_receipts, field, value):
     receipts, contexts, make_receipt = real_receipts
     if field == "consumed_budget":
-        value = dict(contexts[0].consumed_budget, tokens=value)
+        value = dict(contexts[0].consumed_budget, **value)
     changed = [replace(contexts[0], **{field: value}), *contexts[1:]]
     right = [make_receipt(changed[0], True), *receipts[1:]]
+
+    assert aggregate_receipts(right, changed).overall == Counts(2, 3)
     with pytest.raises(ValueError, match=f"paired {field} mismatch"):
         count_mcnemar_pairs(receipts, contexts, right, changed)
 
