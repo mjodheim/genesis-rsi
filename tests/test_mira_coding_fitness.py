@@ -4,6 +4,7 @@ Real receipts use the policy contract factories and contractual validator.
 Language attribution comes from external task contexts.
 
 Negative evidence reference: e7b532ca80d94a168cf7b09eb34669aa.
+Previous failed run reference: 8ae05181d4e64d39b80f2a900bcfb70c.
 No corrected execution result or capability gain is attested.
 """
 
@@ -67,6 +68,64 @@ def test_resolve_ablation_parent_rejects_fingerprint_mismatch(ablation_policies)
         resolve_ablation_parent(
             child, {child.sha256: parent.sha256}, {parent.sha256: child}
         )
+
+def test_resolve_ablation_parent_rejects_self_parent(ablation_policies):
+    child, _ = ablation_policies
+    with pytest.raises(ValueError, match="^ablation parent must differ from child$"):
+        resolve_ablation_parent(
+            child, {child.sha256: child.sha256}, {child.sha256: child}
+        )
+
+@pytest.mark.parametrize("side", ["child", "parent"])
+@pytest.mark.parametrize("version_layer", ["policy", "envelope"])
+def test_resolve_ablation_parent_rejects_invalid_versions(
+    ablation_policies, monkeypatch, side, version_layer
+):
+    child, parent = ablation_policies
+    policy = child if side == "child" else parent
+    original_to_dict = CodingPolicy.to_dict
+    serialized = deepcopy(original_to_dict(policy))
+    envelope = serialized["envelope"]
+    if version_layer == "envelope":
+        version_fields = [(envelope, key) for key in envelope if "version" in key]
+    else:
+        version_fields = [
+            (layer, key)
+            for layer in (serialized, envelope["payload"])
+            for key in layer
+            if "version" in key
+        ]
+    assert len(version_fields) == 1
+    layer, key = version_fields[0]
+    layer[key] = "unsupported-test-version"
+
+    def to_dict(candidate):
+        if candidate is policy:
+            return deepcopy(serialized)
+        return original_to_dict(candidate)
+
+    monkeypatch.setattr(CodingPolicy, "to_dict", to_dict)
+    with pytest.raises(ValueError):
+        resolve_ablation_parent(
+            child, {child.sha256: parent.sha256}, {parent.sha256: parent}
+        )
+
+def test_resolve_ablation_parent_rejects_child_fingerprint_mismatch(
+    ablation_policies, monkeypatch
+):
+    child, parent = ablation_policies
+    original_to_dict = CodingPolicy.to_dict
+    serialized = deepcopy(original_to_dict(parent))
+    serialized["envelope"]["sha256"] = child.sha256
+
+    def to_dict(candidate):
+        if candidate is child:
+            return deepcopy(serialized)
+        return original_to_dict(candidate)
+
+    monkeypatch.setattr(CodingPolicy, "to_dict", to_dict)
+    with pytest.raises(ValueError, match=r"\AInconsistent SHA-256 digest\Z"):
+        resolve_ablation_parent(child, {child.sha256: parent.sha256}, {parent.sha256: parent})
 
 @pytest.mark.parametrize(
     "left_only,right_only,expected",
