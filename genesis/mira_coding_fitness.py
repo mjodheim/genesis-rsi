@@ -36,9 +36,7 @@ def resolve_ablation_parent(
     The caller supplies judge-side registries authenticated and frozen before
     evaluation, outside the candidate's control.
     """
-    if type(child) is not mira_policy_contract.CodingPolicy:
-        raise TypeError("expected child CodingPolicy")
-    validated_child = mira_policy_contract.CodingPolicy.from_dict(deepcopy(child.to_dict()))
+    validated_child = _validate_ablation_policy(child, "child")
 
     parent_sha256 = lineage_by_child_sha256.get(validated_child.sha256)
     if parent_sha256 is None:
@@ -48,12 +46,28 @@ def resolve_ablation_parent(
     parent = validated_policies_by_sha256.get(parent_sha256)
     if parent is None:
         raise ValueError("ablation parent policy not found")
-    if type(parent) is not mira_policy_contract.CodingPolicy:
-        raise TypeError("expected parent CodingPolicy")
-    validated_parent = mira_policy_contract.CodingPolicy.from_dict(deepcopy(parent.to_dict()))
+    validated_parent = _validate_ablation_policy(parent, "parent")
     if validated_parent.sha256 != parent_sha256:
         raise ValueError("ablation parent fingerprint mismatch")
     return validated_parent
+
+
+def _validate_ablation_policy(
+    policy: mira_policy_contract.CodingPolicy, side: str,
+) -> mira_policy_contract.CodingPolicy:
+    if type(policy) is not mira_policy_contract.CodingPolicy:
+        raise TypeError(f"expected {side} CodingPolicy")
+    envelope = policy.envelope
+    if type(envelope) is not mira_policy_contract.JsonObjectEnvelope:
+        raise TypeError(f"expected {side} JsonObjectEnvelope")
+    validated_envelope = mira_policy_contract.JsonObjectEnvelope(
+        version=envelope.version,
+        canonical_utf8=envelope.canonical_utf8,
+        sha256=envelope.sha256,
+    )
+    return mira_policy_contract.CodingPolicy(
+        version=policy.version, envelope=validated_envelope
+    )
 
 @dataclass(frozen=True)
 class TaskContext:

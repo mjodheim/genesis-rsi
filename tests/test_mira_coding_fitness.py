@@ -24,7 +24,7 @@ from genesis.mira_coding_fitness import (
     mcnemar_exact_pvalue,
     resolve_ablation_parent,
 )
-from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
+from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy, JsonObjectEnvelope
 
 
 @pytest.fixture
@@ -122,53 +122,67 @@ def test_resolve_ablation_parent_rejects_self_parent(ablation_policies):
 @pytest.mark.parametrize("side", ["child", "parent"])
 @pytest.mark.parametrize("version_layer", ["policy", "envelope"])
 def test_resolve_ablation_parent_rejects_invalid_versions(
-    ablation_policies, monkeypatch, side, version_layer
+    ablation_policies, side, version_layer
 ):
     child, parent = ablation_policies
+    lineage = {child.sha256: parent.sha256}
+    policies = {parent.sha256: parent}
     policy = child if side == "child" else parent
-    original_to_dict = CodingPolicy.to_dict
-    serialized = deepcopy(original_to_dict(policy))
-    envelope = serialized["envelope"]
-    if version_layer == "envelope":
-        version_fields = [(envelope, key) for key in envelope if "version" in key]
-    else:
-        version_fields = [
-            (layer, key)
-            for layer in (serialized, envelope["payload"])
-            for key in layer
-            if "version" in key
-        ]
-    assert len(version_fields) == 1
-    layer, key = version_fields[0]
-    layer[key] = "unsupported-test-version"
-
-    def to_dict(candidate):
-        if candidate is policy:
-            return deepcopy(serialized)
-        return original_to_dict(candidate)
-
-    monkeypatch.setattr(CodingPolicy, "to_dict", to_dict)
+    layer = policy.envelope if version_layer == "envelope" else policy
+    object.__setattr__(layer, "version", "unsupported-test-version")
     with pytest.raises(ValueError):
-        resolve_ablation_parent(
-            child, {child.sha256: parent.sha256}, {parent.sha256: parent}
-        )
+        resolve_ablation_parent(child, lineage, policies)
 
 def test_resolve_ablation_parent_rejects_child_fingerprint_mismatch(
-    ablation_policies, monkeypatch
+    ablation_policies,
 ):
     child, parent = ablation_policies
-    original_to_dict = CodingPolicy.to_dict
-    serialized = deepcopy(original_to_dict(parent))
-    serialized["envelope"]["sha256"] = child.sha256
-
-    def to_dict(candidate):
-        if candidate is child:
-            return deepcopy(serialized)
-        return original_to_dict(candidate)
-
-    monkeypatch.setattr(CodingPolicy, "to_dict", to_dict)
+    lineage = {child.sha256: parent.sha256}
+    object.__setattr__(child.envelope, "sha256", parent.sha256)
     with pytest.raises(ValueError, match=r"\AInconsistent SHA-256 digest\Z"):
-        resolve_ablation_parent(child, {child.sha256: parent.sha256}, {parent.sha256: parent})
+        resolve_ablation_parent(child, lineage, {parent.sha256: parent})
+
+@pytest.mark.parametrize("side", ["child", "parent"])
+def test_resolve_ablation_parent_rejects_redirecting_envelope(ablation_policies, side):
+    child, parent = ablation_policies
+    original = child if side == "child" else parent
+    other = CodingPolicy.create(
+        **dict(original.payload, localization="other-task-context")
+    )
+    lineage = {child.sha256: parent.sha256}
+    policies = {policy.sha256: policy for policy in (child, parent, other)}
+    if side == "child":
+        lineage[other.sha256] = parent.sha256
+    else:
+        lineage[child.sha256] = other.sha256
+
+    assert resolve_ablation_parent(child, lineage, policies) == policies[
+        lineage[child.sha256]
+    ]
+
+    class RedirectingEnvelope(JsonObjectEnvelope):
+        def to_dict(self):
+            return other.envelope.to_dict()
+
+    envelope = original.envelope
+    replacement = RedirectingEnvelope(
+        version=envelope.version,
+        canonical_utf8=envelope.canonical_utf8,
+        sha256=envelope.sha256,
+    )
+    object.__setattr__(original, "envelope", replacement)
+    assert original.to_dict() == other.to_dict()
+
+    class UnreadableLineage(dict):
+        def get(self, key, default=None):
+            pytest.fail("looked up lineage before rejecting the child envelope")
+
+    if side == "child":
+        lineage = UnreadableLineage(lineage)
+    else:
+        policies[other.sha256] = original
+    with pytest.raises(TypeError, match=rf"\Aexpected {side} JsonObjectEnvelope\Z"):
+        resolve_ablation_parent(child, lineage, policies)
 
 @pytest.mark.parametrize(
     "left_only,right_only,expected",
