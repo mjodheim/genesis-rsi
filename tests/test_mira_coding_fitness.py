@@ -52,6 +52,49 @@ def test_resolve_ablation_parent_returns_expected_policy(ablation_policies):
     )
     assert resolved.to_dict() == parent.to_dict()
 
+def test_resolve_ablation_parent_rejects_child_subclass_with_registered_serialization(
+    ablation_policies,
+):
+    child, parent = ablation_policies
+    other_parent = CodingPolicy.create(
+        **dict(parent.payload, localization="other-parent-task-context")
+    )
+    other_child = CodingPolicy.create(
+        **dict(child.payload, localization="other-child-task-context")
+    )
+
+    class RedirectingChild(CodingPolicy):
+        @property
+        def sha256(self):
+            return child.sha256
+
+        def to_dict(self):
+            return other_child.to_dict()
+
+    derived_child = object.__new__(RedirectingChild)
+    lineage = {
+        child.sha256: parent.sha256,
+        other_child.sha256: other_parent.sha256,
+    }
+    policies = {
+        policy.sha256: policy for policy in (child, parent, other_child, other_parent)
+    }
+    with pytest.raises(TypeError, match="^expected child CodingPolicy$"):
+        resolve_ablation_parent(derived_child, lineage, policies)
+
+def test_resolve_ablation_parent_rejects_parent_subclass(ablation_policies):
+    child, parent = ablation_policies
+
+    class DerivedParent(CodingPolicy):
+        def to_dict(self):
+            return parent.to_dict()
+
+    derived_parent = object.__new__(DerivedParent)
+    with pytest.raises(TypeError, match="^expected parent CodingPolicy$"):
+        resolve_ablation_parent(
+            child, {child.sha256: parent.sha256}, {parent.sha256: derived_parent}
+        )
+
 def test_resolve_ablation_parent_rejects_missing_lineage(ablation_policies):
     child, parent = ablation_policies
     with pytest.raises(ValueError, match="^missing ablation lineage$"):

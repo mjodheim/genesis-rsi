@@ -36,7 +36,7 @@ def resolve_ablation_parent(
     The caller supplies judge-side registries authenticated and frozen before
     evaluation, outside the candidate's control.
     """
-    if not isinstance(child, mira_policy_contract.CodingPolicy):
+    if type(child) is not mira_policy_contract.CodingPolicy:
         raise TypeError("expected child CodingPolicy")
     validated_child = mira_policy_contract.CodingPolicy.from_dict(deepcopy(child.to_dict()))
 
@@ -48,7 +48,7 @@ def resolve_ablation_parent(
     parent = validated_policies_by_sha256.get(parent_sha256)
     if parent is None:
         raise ValueError("ablation parent policy not found")
-    if not isinstance(parent, mira_policy_contract.CodingPolicy):
+    if type(parent) is not mira_policy_contract.CodingPolicy:
         raise TypeError("expected parent CodingPolicy")
     validated_parent = mira_policy_contract.CodingPolicy.from_dict(deepcopy(parent.to_dict()))
     if validated_parent.sha256 != parent_sha256:
