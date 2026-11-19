@@ -1,9 +1,9 @@
 """Inert receipt aggregation and ablation policy resolution.
 
 Fingerprints and consistency checks do not establish authenticity.
-This module produces the four paired counts for McNemar's test.
-Non-inferiority remains outside this module. External judge integration,
-registry authentication, and freezing before evaluation remain unverified.
+This module produces paired counts and assesses non-inferiority using
+parameters set by the external protocol. External judge integration, registry
+authentication, and freezing before evaluation remain unverified.
 Evidence 66dcca637bf1470bb8a4337d1be558ab covers the baseline only.
 
 Initial negative evidence 425f5272292041f0a9aba16188c5fc8f: exit code 1,
@@ -20,7 +20,7 @@ Consistency alone proves neither truth, authenticity, nor judge independence.
 from collections.abc import Callable, Iterable, Mapping
 from copy import deepcopy
 from dataclasses import dataclass
-from math import comb
+from math import comb, exp, fsum, log, log1p
 from typing import Any
 
 from genesis import mira_policy_contract
@@ -109,6 +109,64 @@ class McNemarPairs:
             )
         return differences
 
+
+@dataclass(frozen=True)
+class LanguageNonInferiority:
+    difference: float
+    lower_bound: float
+
+    def passes(self, delta: float) -> bool:
+        return self.lower_bound > -delta
+
+def assess_paired_non_inferiority(
+    pairs: McNemarPairs,
+    required_languages: Iterable[str],
+    *,
+    delta: float,
+    alpha: float,
+) -> tuple[bool, dict[str, LanguageNonInferiority | None]]:
+    """Return the global decision and each required language's assessment.
+
+    Within a language, assume complete, correctly matched binary outcomes and
+    independent pairs with common outcome probabilities. Outcomes within a
+    pair may be dependent. All pairs contribute to the denominator.
+    Bonferroni combines two one-sided Clopper–Pearson bounds per language.
+    The intersection-union test controls the global false positive rate at
+    alpha without assuming independence across languages or providing
+    simultaneous coverage for their bounds. None denotes an unevaluable
+    language. The external protocol specifies languages, delta, and alpha.
+    """
+    if type(delta) not in (int, float) or not 0 < delta <= 1:
+        raise ValueError("delta must be in (0, 1]")
+    if type(alpha) not in (int, float) or not 0 < alpha < 1:
+        raise ValueError("alpha must be in (0, 1)")
+    if isinstance(required_languages, (str, bytes)):
+        raise ValueError("required_languages must be a collection of languages")
+    languages = tuple(required_languages)
+    if not languages or any(
+        type(language) is not str or not language.strip() for language in languages
+    ):
+        raise ValueError("required languages must be nonempty strings")
+    if len(set(languages)) != len(languages):
+        raise ValueError("required languages must be unique")
+    _validate_pair_counts(pairs.overall)
+    for counts in pairs.by_language.values():
+        _validate_pair_counts(counts)
+
+    tail = alpha / 2
+    results: dict[str, LanguageNonInferiority | None] = {}
+    for language in languages:
+        counts = pairs.by_language.get(language)
+        if counts is None or not sum(counts):
+            results[language] = None
+            continue
+        _, left_only, right_only, _ = counts
+        size = sum(counts)
+        lower = _binomial_lower_bound(left_only, size, tail)
+        upper = 1 - _binomial_lower_bound(size - right_only, size, tail)
+        results[language] = LanguageNonInferiority((left_only - right_only) / size, lower - upper)
+    return all(result is not None and result.passes(delta) for result in results.values()), results
+
 def mcnemar_exact_pvalue(left_only: int, right_only: int) -> float:
     """Return the descriptive two-sided exact p-value for discordant counts."""
     if left_only < 0 or right_only < 0:
@@ -117,6 +175,35 @@ def mcnemar_exact_pvalue(left_only: int, right_only: int) -> float:
     lower = min(left_only, right_only)
     tail_count = sum(comb(discordant, k) for k in range(lower + 1))
     return min(1.0, (2 * tail_count) / (1 << discordant))
+
+
+def _validate_pair_counts(counts: tuple[int, ...]) -> None:
+    if not isinstance(counts, tuple) or len(counts) != 4 or any(
+        type(count) is not int or count < 0 for count in counts
+    ):
+        raise ValueError("expected four nonnegative integer pair counts")
+
+def _binomial_lower_bound(count: int, size: int, tail: float) -> float:
+    if count == 0 or tail == 0:
+        return 0.0
+    if count == size:
+        return tail ** (1 / size)
+    log_tail = log(tail)
+    weights = [log(comb(size, k)) for k in range(count, size + 1)]
+    low, high = 0.0, 1.0
+    while True:
+        midpoint = (low + high) / 2
+        if midpoint == low or midpoint == high:
+            return low
+        log_p, log_q = log(midpoint), log1p(-midpoint)
+        scaled_tail = fsum(
+            exp(weight + k * log_p + (size - k) * log_q - log_tail)
+            for k, weight in enumerate(weights, start=count)
+        )
+        if scaled_tail >= 1:
+            high = midpoint
+        else:
+            low = midpoint
 
 def count_mcnemar_pairs(
     left_receipts: Iterable[Any],
