@@ -19,6 +19,7 @@ from genesis.mira_coding_fitness import (
     aggregate_receipts,
     aggregate_synthetic_receipts,
     count_mcnemar_pairs,
+    count_synthetic_mcnemar_pairs,
 )
 from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
 
@@ -293,7 +294,7 @@ def test_synthetic_context_divergences(synthetic, field, value):
     with pytest.raises(ValueError):
         aggregate(receipts, contexts)
     with pytest.raises(ValueError):
-        count_mcnemar_pairs(
+        count_synthetic_mcnemar_pairs(
             baseline, contexts, receipts, contexts,
             validate_task_receipt_consistency=synthetic_validator,
         )
@@ -337,6 +338,37 @@ def test_real_entry_rejects_caller_validator(synthetic):
             contexts,
             validate_task_receipt_consistency=synthetic_validator,
         )
+
+def test_real_mcnemar_rejects_caller_validator(real_receipts):
+    receipts, contexts, _ = real_receipts
+    with pytest.raises(TypeError, match="validate_task_receipt_consistency"):
+        count_mcnemar_pairs(
+            receipts, contexts, receipts, contexts,
+            validate_task_receipt_consistency=synthetic_validator,
+        )
+
+@pytest.mark.parametrize("arm", ["left", "right"])
+def test_real_mcnemar_rejects_mixed_policies(real_receipts, arm):
+    receipts, contexts, make_receipt = real_receipts
+    other_policy = CodingPolicy.create(
+        **dict(contexts[0].policy.payload, localization="mixed-task-context")
+    )
+    assert other_policy.sha256 != contexts[0].policy.sha256
+    mixed_contexts = [replace(contexts[0], policy=other_policy), *contexts[1:]]
+    mixed_receipts = [make_receipt(mixed_contexts[0], True), *receipts[1:]]
+
+    assert aggregate_receipts(mixed_receipts, mixed_contexts) == aggregate_receipts(
+        receipts, contexts
+    )
+    paired = (
+        (mixed_receipts, mixed_contexts, receipts, contexts)
+        if arm == "left"
+        else (receipts, contexts, mixed_receipts, mixed_contexts)
+    )
+    before = deepcopy(paired)
+    with pytest.raises(ValueError, match=f"{arm} arm.*policy fingerprint"):
+        count_mcnemar_pairs(*paired)
+    assert paired == before
 
 def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
     receipts, contexts, make_receipt = real_receipts

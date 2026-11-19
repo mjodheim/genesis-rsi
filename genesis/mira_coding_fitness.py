@@ -57,25 +57,41 @@ def count_mcnemar_pairs(
     left_contexts: Iterable[TaskContext],
     right_receipts: Iterable[Any],
     right_contexts: Iterable[TaskContext],
+) -> McNemarPairs:
+    """Count contractual pairs in the order both, left only, right only, neither."""
+    left, left_results = _index_receipts(left_receipts, left_contexts)
+    right, right_results = _index_receipts(right_receipts, right_contexts)
+    for arm, contexts in (("left", left), ("right", right)):
+        if len({context.policy.sha256 for context in contexts.values()}) != 1:
+            raise ValueError(f"{arm} arm must have exactly one policy fingerprint")
+    return _count_mcnemar_pairs(left, left_results, right, right_results)
+
+def count_synthetic_mcnemar_pairs(
+    left_receipts: Iterable[Mapping[str, Any]],
+    left_contexts: Iterable[TaskContext],
+    right_receipts: Iterable[Mapping[str, Any]],
+    right_contexts: Iterable[TaskContext],
     *,
     validate_task_receipt_consistency: Callable[
         [Mapping[str, Any], TaskContext], None
-    ] | None = None,
+    ],
 ) -> McNemarPairs:
-    """Count pairs in the order both, left only, right only, neither.
+    """Count synthetic pairs in the order both, left only, right only, neither."""
+    left, left_results = _index_synthetic_receipts(
+        left_receipts, left_contexts, validate_task_receipt_consistency
+    )
+    right, right_results = _index_synthetic_receipts(
+        right_receipts, right_contexts, validate_task_receipt_consistency
+    )
+    return _count_mcnemar_pairs(left, left_results, right, right_results)
 
-    Supplying a validator selects the synthetic receipt contract.
-    """
-    if validate_task_receipt_consistency is None:
-        left, left_results = _index_receipts(left_receipts, left_contexts)
-        right, right_results = _index_receipts(right_receipts, right_contexts)
-    else:
-        left, left_results = _index_synthetic_receipts(
-            left_receipts, left_contexts, validate_task_receipt_consistency
-        )
-        right, right_results = _index_synthetic_receipts(
-            right_receipts, right_contexts, validate_task_receipt_consistency
-        )
+
+def _count_mcnemar_pairs(
+    left: Mapping[str, TaskContext],
+    left_results: Mapping[str, bool],
+    right: Mapping[str, TaskContext],
+    right_results: Mapping[str, bool],
+) -> McNemarPairs:
     if left.keys() != right.keys():
         raise ValueError("paired task sets differ")
     for task_id, left_context in left.items():
