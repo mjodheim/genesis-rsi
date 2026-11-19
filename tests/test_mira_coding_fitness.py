@@ -20,8 +20,22 @@ from genesis.mira_coding_fitness import (
     aggregate_synthetic_receipts,
     count_mcnemar_pairs,
     count_synthetic_mcnemar_pairs,
+    mcnemar_exact_pvalue,
 )
 from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
+
+
+@pytest.mark.parametrize(
+    "left_only,right_only,expected",
+    [
+        (0, 0, 1.0),
+        (3, 3, 1.0),
+        (0, 5, 0.0625),
+        (5, 0, 0.0625),
+    ],
+)
+def test_mcnemar_exact_pvalue(left_only, right_only, expected):
+    assert mcnemar_exact_pvalue(left_only, right_only) == expected
 
 @pytest.fixture(params=["objects", "envelopes"])
 def real_receipts(request):
