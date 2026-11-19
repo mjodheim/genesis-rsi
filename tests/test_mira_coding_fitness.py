@@ -4,6 +4,7 @@ Real receipts use the policy contract factories and contractual validator.
 Language attribution comes from external task contexts.
 
 Negative evidence reference: e7b532ca80d94a168cf7b09eb34669aa.
+Previous failed run reference: 8ae05181d4e64d39b80f2a900bcfb70c.
 No corrected execution result or capability gain is attested.
 """
 
@@ -21,9 +22,167 @@ from genesis.mira_coding_fitness import (
     count_mcnemar_pairs,
     count_synthetic_mcnemar_pairs,
     mcnemar_exact_pvalue,
+    resolve_ablation_parent,
 )
-from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
+from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy, JsonObjectEnvelope
 
+
+@pytest.fixture
+def ablation_policies():
+    parent = CodingPolicy.create(
+        localization="task-context",
+        tool_order=["inspect", "edit", "test"],
+        trial_and_repair_strategy="At most 10 trials with repair",
+        task_budget={
+            "models": ["offline-test-model"],
+            "tokens": 1000,
+            "proposals": 10,
+            "time_seconds": 60,
+        },
+    )
+    child = CodingPolicy.create(
+        **dict(parent.payload, localization="child-task-context")
+    )
+    return child, parent
+
+def test_resolve_ablation_parent_returns_expected_policy(ablation_policies):
+    child, parent = ablation_policies
+    resolved = resolve_ablation_parent(
+        child, {child.sha256: parent.sha256}, {parent.sha256: parent}
+    )
+    assert resolved.to_dict() == parent.to_dict()
+
+def test_resolve_ablation_parent_rejects_child_subclass_with_registered_serialization(
+    ablation_policies,
+):
+    child, parent = ablation_policies
+    other_parent = CodingPolicy.create(
+        **dict(parent.payload, localization="other-parent-task-context")
+    )
+    other_child = CodingPolicy.create(
+        **dict(child.payload, localization="other-child-task-context")
+    )
+
+    class RedirectingChild(CodingPolicy):
+        @property
+        def sha256(self):
+            return child.sha256
+
+        def to_dict(self):
+            return other_child.to_dict()
+
+    derived_child = object.__new__(RedirectingChild)
+    lineage = {
+        child.sha256: parent.sha256,
+        other_child.sha256: other_parent.sha256,
+    }
+    policies = {
+        policy.sha256: policy for policy in (child, parent, other_child, other_parent)
+    }
+    with pytest.raises(TypeError, match="^expected child CodingPolicy$"):
+        resolve_ablation_parent(derived_child, lineage, policies)
+
+def test_resolve_ablation_parent_rejects_parent_subclass(ablation_policies):
+    child, parent = ablation_policies
+
+    class DerivedParent(CodingPolicy):
+        def to_dict(self):
+            return parent.to_dict()
+
+    derived_parent = object.__new__(DerivedParent)
+    with pytest.raises(TypeError, match="^expected parent CodingPolicy$"):
+        resolve_ablation_parent(
+            child, {child.sha256: parent.sha256}, {parent.sha256: derived_parent}
+        )
+
+def test_resolve_ablation_parent_rejects_missing_lineage(ablation_policies):
+    child, parent = ablation_policies
+    with pytest.raises(ValueError, match="^missing ablation lineage$"):
+        resolve_ablation_parent(child, {}, {parent.sha256: parent})
+
+def test_resolve_ablation_parent_rejects_unknown_parent(ablation_policies):
+    child, parent = ablation_policies
+    with pytest.raises(ValueError, match="^ablation parent policy not found$"):
+        resolve_ablation_parent(child, {child.sha256: parent.sha256}, {})
+
+def test_resolve_ablation_parent_rejects_fingerprint_mismatch(ablation_policies):
+    child, parent = ablation_policies
+    with pytest.raises(ValueError, match="^ablation parent fingerprint mismatch$"):
+        resolve_ablation_parent(
+            child, {child.sha256: parent.sha256}, {parent.sha256: child}
+        )
+
+def test_resolve_ablation_parent_rejects_self_parent(ablation_policies):
+    child, _ = ablation_policies
+    with pytest.raises(ValueError, match="^ablation parent must differ from child$"):
+        resolve_ablation_parent(
+            child, {child.sha256: child.sha256}, {child.sha256: child}
+        )
+
+@pytest.mark.parametrize("side", ["child", "parent"])
+@pytest.mark.parametrize("version_layer", ["policy", "envelope"])
+def test_resolve_ablation_parent_rejects_invalid_versions(
+    ablation_policies, side, version_layer
+):
+    child, parent = ablation_policies
+    lineage = {child.sha256: parent.sha256}
+    policies = {parent.sha256: parent}
+    policy = child if side == "child" else parent
+    layer = policy.envelope if version_layer == "envelope" else policy
+    object.__setattr__(layer, "version", "unsupported-test-version")
+    with pytest.raises(ValueError):
+        resolve_ablation_parent(child, lineage, policies)
+
+def test_resolve_ablation_parent_rejects_child_fingerprint_mismatch(
+    ablation_policies,
+):
+    child, parent = ablation_policies
+    lineage = {child.sha256: parent.sha256}
+    object.__setattr__(child.envelope, "sha256", parent.sha256)
+    with pytest.raises(ValueError, match=r"\AInconsistent SHA-256 digest\Z"):
+        resolve_ablation_parent(child, lineage, {parent.sha256: parent})
+
+@pytest.mark.parametrize("side", ["child", "parent"])
+def test_resolve_ablation_parent_rejects_redirecting_envelope(ablation_policies, side):
+    child, parent = ablation_policies
+    original = child if side == "child" else parent
+    other = CodingPolicy.create(
+        **dict(original.payload, localization="other-task-context")
+    )
+    lineage = {child.sha256: parent.sha256}
+    policies = {policy.sha256: policy for policy in (child, parent, other)}
+    if side == "child":
+        lineage[other.sha256] = parent.sha256
+    else:
+        lineage[child.sha256] = other.sha256
+
+    assert resolve_ablation_parent(child, lineage, policies) == policies[
+        lineage[child.sha256]
+    ]
+
+    class RedirectingEnvelope(JsonObjectEnvelope):
+        def to_dict(self):
+            return other.envelope.to_dict()
+
+    envelope = original.envelope
+    replacement = RedirectingEnvelope(
+        version=envelope.version,
+        canonical_utf8=envelope.canonical_utf8,
+        sha256=envelope.sha256,
+    )
+    object.__setattr__(original, "envelope", replacement)
+    assert original.to_dict() == other.to_dict()
+
+    class UnreadableLineage(dict):
+        def get(self, key, default=None):
+            pytest.fail("looked up lineage before rejecting the child envelope")
+
+    if side == "child":
+        lineage = UnreadableLineage(lineage)
+    else:
+        policies[other.sha256] = original
+    with pytest.raises(TypeError, match=rf"\Aexpected {side} JsonObjectEnvelope\Z"):
+        resolve_ablation_parent(child, lineage, policies)
 
 @pytest.mark.parametrize(
     "left_only,right_only,expected",
