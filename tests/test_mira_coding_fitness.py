@@ -18,6 +18,7 @@ from genesis.mira_coding_fitness import (
     TaskContext,
     aggregate_receipts,
     aggregate_synthetic_receipts,
+    count_mcnemar_pairs,
 )
 from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
 
@@ -287,9 +288,15 @@ def test_synthetic_malformed_results(synthetic, value):
 )
 def test_synthetic_context_divergences(synthetic, field, value):
     receipts, contexts = synthetic
+    baseline = deepcopy(receipts)
     receipts[0][field] = value
     with pytest.raises(ValueError):
         aggregate(receipts, contexts)
+    with pytest.raises(ValueError):
+        count_mcnemar_pairs(
+            baseline, contexts, receipts, contexts,
+            validate_task_receipt_consistency=synthetic_validator,
+        )
 
 def test_synthetic_missing_result(synthetic):
     receipts, contexts = synthetic
@@ -330,6 +337,56 @@ def test_real_entry_rejects_caller_validator(synthetic):
             contexts,
             validate_task_receipt_consistency=synthetic_validator,
         )
+
+def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
+    receipts, contexts, make_receipt = real_receipts
+    other_policy = CodingPolicy.create(
+        **dict(contexts[0].policy.payload, localization="paired-task-context")
+    )
+    left_contexts = [
+        contexts[0],
+        contexts[1],
+        contexts[2],
+        replace(contexts[2], task_id="d"),
+        replace(contexts[1], task_id="e"),
+    ]
+    right_contexts = [replace(context, policy=other_policy) for context in left_contexts]
+    left = receipts + [
+        make_receipt(left_contexts[3], False),
+        make_receipt(left_contexts[4], False),
+    ]
+    right = [
+        make_receipt(context, result)
+        for context, result in zip(right_contexts, (True, False, True, True, False))
+    ]
+    before = deepcopy((left, left_contexts, right, right_contexts))
+    counts = count_mcnemar_pairs(
+        left, reversed(left_contexts), reversed(right), right_contexts,
+    )
+    assert counts.overall == (1, 1, 2, 1)
+    assert counts.by_language == {
+        "python": (1, 0, 2, 0),
+        "rust": (0, 1, 0, 1),
+    }
+    assert (left, left_contexts, right, right_contexts) == before
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("bank_fingerprint", "b" * 64),
+        ("judge", "different-judge"),
+        ("language", "rust"),
+        ("consumed_budget", 101),
+    ],
+)
+def test_real_mcnemar_rejects_external_context_divergences(real_receipts, field, value):
+    receipts, contexts, make_receipt = real_receipts
+    if field == "consumed_budget":
+        value = dict(contexts[0].consumed_budget, tokens=value)
+    changed = [replace(contexts[0], **{field: value}), *contexts[1:]]
+    right = [make_receipt(changed[0], True), *receipts[1:]]
+    with pytest.raises(ValueError, match=f"paired {field} mismatch"):
+        count_mcnemar_pairs(receipts, contexts, right, changed)
 
 def test_synthetic_validator_refusal_propagates(synthetic):
     def refusing_validator(receipt, context):

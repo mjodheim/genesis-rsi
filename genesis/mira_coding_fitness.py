@@ -1,7 +1,8 @@
 """Inert receipt aggregation.
 
 Fingerprints and consistency checks do not establish authenticity.
-McNemar, non-inferiority and lineage verification are outside this module.
+This module produces the four paired counts for McNemar's test.
+Non-inferiority and lineage verification are outside this module.
 
 Initial negative evidence 425f5272292041f0a9aba16188c5fc8f: exit code 1,
 TypeError: aggregate_receipts() got an unexpected keyword argument
@@ -46,6 +47,55 @@ class Fitness:
     by_language: Mapping[str, Counts]
 
 
+@dataclass(frozen=True)
+class McNemarPairs:
+    overall: tuple[int, ...]
+    by_language: Mapping[str, tuple[int, ...]]
+
+def count_mcnemar_pairs(
+    left_receipts: Iterable[Any],
+    left_contexts: Iterable[TaskContext],
+    right_receipts: Iterable[Any],
+    right_contexts: Iterable[TaskContext],
+    *,
+    validate_task_receipt_consistency: Callable[
+        [Mapping[str, Any], TaskContext], None
+    ] | None = None,
+) -> McNemarPairs:
+    """Count pairs in the order both, left only, right only, neither.
+
+    Supplying a validator selects the synthetic receipt contract.
+    """
+    if validate_task_receipt_consistency is None:
+        left, left_results = _index_receipts(left_receipts, left_contexts)
+        right, right_results = _index_receipts(right_receipts, right_contexts)
+    else:
+        left, left_results = _index_synthetic_receipts(
+            left_receipts, left_contexts, validate_task_receipt_consistency
+        )
+        right, right_results = _index_synthetic_receipts(
+            right_receipts, right_contexts, validate_task_receipt_consistency
+        )
+    if left.keys() != right.keys():
+        raise ValueError("paired task sets differ")
+    for task_id, left_context in left.items():
+        right_context = right[task_id]
+        for name in ("bank_fingerprint", "judge", "language", "consumed_budget"):
+            first = getattr(left_context, name)
+            second = getattr(right_context, name)
+            if type(first) is not type(second) or first != second:
+                raise ValueError(f"paired {name} mismatch for task {task_id}")
+
+    totals = {}
+    overall = [0, 0, 0, 0]
+    for task_id, context in left.items():
+        index = 2 * int(not left_results[task_id]) + int(not right_results[task_id])
+        totals.setdefault(context.language, [0, 0, 0, 0])[index] += 1
+        overall[index] += 1
+    return McNemarPairs(tuple(overall), {
+        language: tuple(counts) for language, counts in sorted(totals.items())
+    })
+
 def aggregate_receipts(
     receipts: Iterable[Any],
     contexts: Iterable[TaskContext],
@@ -55,6 +105,12 @@ def aggregate_receipts(
     All expectations passed to the contract come from detached external
     contexts. Caller-provided validators are deliberately unsupported.
     """
+    return _fitness(*_index_receipts(receipts, contexts))
+
+def _index_receipts(
+    receipts: Iterable[Any],
+    contexts: Iterable[TaskContext],
+) -> tuple[dict[str, TaskContext], dict[str, bool]]:
     contexts = deepcopy(list(contexts))
     receipts = deepcopy(list(receipts))
     expected = {}
@@ -95,9 +151,7 @@ def aggregate_receipts(
     results = {}
     for task_id, context in expected.items():
         receipt = received[task_id]
-        declared_result = receipt.payload["declared_result"]
-        if type(declared_result) is not bool:
-            raise ValueError("declared_result must have exact bool type")
+        declared_result = _coding_success(receipt.payload)
         result = mira_policy_contract.validate_task_receipt_consistency(
             deepcopy(context.policy),
             deepcopy(receipt),
@@ -111,7 +165,18 @@ def aggregate_receipts(
         if result is not None:
             raise ValueError("consistency validator must return None")
         results[task_id] = declared_result
+    return expected, results
 
+
+def _coding_success(payload: Mapping[str, Any]) -> bool:
+    result = payload.get("declared_result")
+    if type(result) is not bool:
+        raise ValueError("declared_result must have exact bool type")
+    return result
+
+def _fitness(
+    expected: Mapping[str, TaskContext], results: Mapping[str, bool],
+) -> Fitness:
     totals = {}
     for task_id, context in expected.items():
         previous = totals.get(context.language, Counts(0, 0))
@@ -138,6 +203,17 @@ def aggregate_synthetic_receipts(
     return None. Exceptions propagate. Languages come from external contexts.
     No banks or judges are accessed; budgets are compared, never accounted.
     """
+    return _fitness(*_index_synthetic_receipts(
+        receipts, contexts, validate_task_receipt_consistency
+    ))
+
+def _index_synthetic_receipts(
+    receipts: Iterable[Mapping[str, Any]],
+    contexts: Iterable[TaskContext],
+    validate_task_receipt_consistency: Callable[
+        [Mapping[str, Any], TaskContext], None
+    ],
+) -> tuple[dict[str, TaskContext], dict[str, bool]]:
     if not callable(validate_task_receipt_consistency):
         raise TypeError("a callable consistency validator is required")
     expected = {}
@@ -170,6 +246,7 @@ def aggregate_synthetic_receipts(
     if received.keys() != expected.keys():
         raise ValueError("missing or additional tasks")
 
+    results = {}
     for task_id, context in expected.items():
         receipt = received[task_id]
         for name in (
@@ -183,8 +260,7 @@ def aggregate_synthetic_receipts(
                 or receipt[name] != value
             ):
                 raise ValueError(f"receipt {name} mismatch")
-        if type(receipt.get("declared_result")) is not bool:
-            raise ValueError("declared_result must have exact bool type")
+        results[task_id] = _coding_success(receipt)
 
     for task_id, context in expected.items():
         result = validate_task_receipt_consistency(
@@ -192,16 +268,4 @@ def aggregate_synthetic_receipts(
         )
         if result is not None:
             raise ValueError("consistency validator must return None")
-
-    totals = {}
-    for task_id, context in expected.items():
-        previous = totals.get(context.language, Counts(0, 0))
-        totals[context.language] = Counts(
-            previous.successes
-            + int(received[task_id]["declared_result"]),
-            previous.tasks + 1,
-        )
-    return Fitness(
-        Counts(sum(item.successes for item in totals.values()), len(expected)),
-        dict(sorted(totals.items())),
-    )
+    return expected, results
