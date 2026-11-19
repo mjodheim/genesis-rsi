@@ -53,6 +53,15 @@ class McNemarPairs:
     overall: tuple[int, ...]
     by_language: Mapping[str, tuple[int, ...]]
 
+    @property
+    def success_rate_difference_by_language(self) -> dict[str, float]:
+        """Return the descriptive paired success rate difference (left minus right)."""
+        differences = {}
+        for language, (both, left_only, right_only, neither) in self.by_language.items():
+            differences[language] = (left_only - right_only) / (
+                both + left_only + right_only + neither
+            )
+        return differences
 
 def mcnemar_exact_pvalue(left_only: int, right_only: int) -> float:
     """Return the descriptive two-sided exact p-value for discordant counts."""

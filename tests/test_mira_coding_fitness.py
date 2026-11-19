@@ -418,7 +418,27 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
         "python": (1, 0, 2, 0),
         "rust": (0, 1, 0, 1),
     }
+    assert counts.success_rate_difference_by_language == {
+        "python": -2 / 3,
+        "rust": 1 / 2,
+    }
+    swapped = count_mcnemar_pairs(right, right_contexts, left, left_contexts)
+    assert swapped.success_rate_difference_by_language == {
+        "python": 2 / 3,
+        "rust": -1 / 2,
+    }
     assert (left, left_contexts, right, right_contexts) == before
+
+
+def test_real_mcnemar_success_rate_difference_with_equal_discordant_counts(real_receipts):
+    left, contexts, make_receipt = real_receipts
+    right = [
+        make_receipt(context, result)
+        for context, result in zip(contexts, (False, True, True))
+    ]
+    counts = count_mcnemar_pairs(left, contexts, right, contexts)
+    assert counts.by_language["python"] == (0, 1, 1, 0)
+    assert counts.success_rate_difference_by_language == {"python": 0.0, "rust": 0.0}
 
 @pytest.mark.parametrize(
     "component,value",
