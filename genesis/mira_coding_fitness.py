@@ -18,6 +18,7 @@ Consistency alone proves neither truth, authenticity, nor judge independence.
 from collections.abc import Callable, Iterable, Mapping
 from copy import deepcopy
 from dataclasses import dataclass
+from math import comb
 from typing import Any
 
 from genesis import mira_policy_contract
@@ -51,6 +52,16 @@ class Fitness:
 class McNemarPairs:
     overall: tuple[int, ...]
     by_language: Mapping[str, tuple[int, ...]]
+
+
+def mcnemar_exact_pvalue(left_only: int, right_only: int) -> float:
+    """Return the descriptive two-sided exact p-value for discordant counts."""
+    if left_only < 0 or right_only < 0:
+        raise ValueError("discordant counts must be nonnegative")
+    discordant = left_only + right_only
+    lower = min(left_only, right_only)
+    tail_count = sum(comb(discordant, k) for k in range(lower + 1))
+    return min(1.0, (2 * tail_count) / (1 << discordant))
 
 def count_mcnemar_pairs(
     left_receipts: Iterable[Any],
