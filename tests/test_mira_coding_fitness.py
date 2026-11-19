@@ -32,10 +32,16 @@ from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy
         (3, 3, 1.0),
         (0, 5, 0.0625),
         (5, 0, 0.0625),
+        (1, 5, 0.21875),
     ],
 )
 def test_mcnemar_exact_pvalue(left_only, right_only, expected):
     assert mcnemar_exact_pvalue(left_only, right_only) == expected
+
+@pytest.mark.parametrize("left_only,right_only", [(-1, 0), (0, -1)])
+def test_mcnemar_exact_pvalue_rejects_negative_counts(left_only, right_only):
+    with pytest.raises(ValueError):
+        mcnemar_exact_pvalue(left_only, right_only)
 
 @pytest.fixture(params=["objects", "envelopes"])
 def real_receipts(request):
