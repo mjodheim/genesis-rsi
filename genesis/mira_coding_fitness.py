@@ -15,6 +15,12 @@ Compatibility with the receipt contract and the results of this correction
 remain unverified. Targeted offline tests require execution and launch evidence;
 neither is attested here.
 Consistency alone proves neither truth, authenticity, nor judge independence.
+
+Milestone 2 is blocked pending verification of an established signature
+primitive in the offline container and of the applicable publication terms.
+The production channel for the independent counter remains unconfirmed.
+Receipt authentication has not been implemented. No offline pytest run or
+pull request result is attested for this milestone.
 """
 
 from collections.abc import Callable, Iterable, Mapping
