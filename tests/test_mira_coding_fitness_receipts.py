@@ -632,7 +632,10 @@ def test_real_mcnemar_rejects_external_context_divergences(real_receipts, field,
         **dict(contexts[0].policy.payload, localization="context-divergence")
     )
     changed = [replace(context, policy=other_policy) for context in contexts]
-    changed[0] = replace(changed[0], **{field: value})
+    if field == "bank_fingerprint":
+        changed = [replace(context, bank_fingerprint=value) for context in changed]
+    else:
+        changed[0] = replace(changed[0], **{field: value})
     right = [
         make_receipt(context, result)
         for context, result in zip(changed, (True, True, False))

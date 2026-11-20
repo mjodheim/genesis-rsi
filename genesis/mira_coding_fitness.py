@@ -275,6 +275,8 @@ def _count_attested_mcnemar_pairs(
     for component in ("models", "tokens", "proposals", "time_seconds"):
         if left_budget[component] != right_budget[component]:
             raise ValueError(f"paired allocated task_budget {component} mismatch")
+    _validate_mcnemar_pairs(left, right)
+    _validate_single_bank(left)
     return _count_mcnemar_pairs(left, left_results, right, right_results)
 
 def count_synthetic_mcnemar_pairs(
@@ -294,15 +296,14 @@ def count_synthetic_mcnemar_pairs(
     right, right_results = _index_synthetic_receipts(
         right_receipts, right_contexts, validate_task_receipt_consistency
     )
+    _validate_mcnemar_pairs(left, right)
     return _count_mcnemar_pairs(left, left_results, right, right_results)
 
 
-def _count_mcnemar_pairs(
+def _validate_mcnemar_pairs(
     left: Mapping[str, TaskContext],
-    left_results: Mapping[str, bool],
     right: Mapping[str, TaskContext],
-    right_results: Mapping[str, bool],
-) -> McNemarPairs:
+) -> None:
     if left.keys() != right.keys():
         raise ValueError("paired task sets differ")
     for task_id, left_context in left.items():
@@ -313,6 +314,13 @@ def _count_mcnemar_pairs(
             if type(first) is not type(second) or first != second:
                 raise ValueError(f"paired {name} mismatch for task {task_id}")
 
+
+def _count_mcnemar_pairs(
+    left: Mapping[str, TaskContext],
+    left_results: Mapping[str, bool],
+    right: Mapping[str, TaskContext],
+    right_results: Mapping[str, bool],
+) -> McNemarPairs:
     totals = {}
     overall = [0, 0, 0, 0]
     for task_id, context in left.items():
@@ -340,9 +348,15 @@ def _aggregate_attested_receipts(
     attestations: ReceiptAttestations,
 ) -> Fitness:
     """Check fingerprints for the expected run before aggregating receipts."""
-    return _fitness(*_index_receipts(
+    expected, results = _index_receipts(
         receipts, contexts, attestations, run_id=run_id
-    ))
+    )
+    _validate_single_bank(expected)
+    return _fitness(expected, results)
+
+def _validate_single_bank(contexts: Mapping[str, TaskContext]) -> None:
+    if len({context.bank_fingerprint for context in contexts.values()}) != 1:
+        raise ValueError("attested task set must have exactly one bank fingerprint")
 
 def _index_receipts(
     receipts: Iterable[Any],
