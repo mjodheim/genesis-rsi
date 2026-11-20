@@ -109,32 +109,57 @@ def real_receipts(request):
     ]
     return receipts, contexts, make_receipt
 
+def expected_attestations(contexts, verdicts=None):
+    if verdicts is None:
+        verdicts = {"a": True, "b": True, "c": False}
+    attestations = {}
+    for context in contexts:
+        key = (
+            context.judge, context.bank_fingerprint, context.policy.sha256,
+            context.task_id,
+        )
+        attestations[key] = BankExternalReceipt.create(
+            policy_sha256=context.policy.sha256,
+            bank_sha256=context.bank_fingerprint,
+            task_id=context.task_id,
+            judge_id=context.judge,
+            consumed_budget=deepcopy(context.consumed_budget),
+            declared_result=verdicts[context.task_id],
+        ).envelope.sha256
+    return attestations
+
 def assert_real_refusal_without_mutation(receipts, contexts):
     before = deepcopy((receipts, contexts))
     with pytest.raises(ValueError):
-        aggregate_receipts(receipts, contexts=contexts)
+        aggregate_receipts(
+            receipts, contexts=contexts, attestations=expected_attestations(contexts)
+        )
     assert (receipts, contexts) == before
 
 def test_real_requires_external_context_registry(real_receipts):
     receipts, _, _ = real_receipts
     with pytest.raises(TypeError, match="contexts"):
-        aggregate_receipts(receipts)
+        aggregate_receipts(receipts, attestations={})
 
-def test_real_positional_and_keyword_context_counts_match(real_receipts):
+def test_real_rejects_positional_contexts(real_receipts):
     receipts, contexts, _ = real_receipts
-    positional = aggregate_receipts(receipts, contexts)
-    keyword = aggregate_receipts(receipts, contexts=contexts)
-    assert positional == keyword
+    with pytest.raises(TypeError, match="positional"):
+        aggregate_receipts(receipts, contexts, attestations=expected_attestations(contexts))
 
 def test_real_rejects_missing_task_context(real_receipts):
     receipts, contexts, _ = real_receipts
     with pytest.raises(ValueError, match="missing or additional tasks"):
-        aggregate_receipts(receipts, contexts=contexts[:-1])
+        aggregate_receipts(
+            receipts, contexts=contexts[:-1], attestations=expected_attestations(contexts)
+        )
 
 def test_real_exact_counts_and_all_permutations(real_receipts):
     receipts, contexts, _ = real_receipts
     before = deepcopy((receipts, contexts))
-    expected = aggregate_receipts(receipts, contexts=contexts)
+    attestations = expected_attestations(contexts)
+    expected = aggregate_receipts(
+        receipts, contexts=contexts, attestations=attestations
+    )
     assert expected.overall == Counts(2, 3)
     assert expected.by_language == {
         "python": Counts(1, 2),
@@ -142,7 +167,9 @@ def test_real_exact_counts_and_all_permutations(real_receipts):
     }
     for receipt_order in permutations(receipts):
         for context_order in permutations(contexts):
-            assert aggregate_receipts(receipt_order, contexts=context_order) == expected
+            assert aggregate_receipts(
+                receipt_order, contexts=context_order, attestations=attestations
+            ) == expected
     assert (receipts, contexts) == before
 
 @pytest.mark.parametrize("side", ["receipts", "contexts"])
@@ -178,7 +205,10 @@ def test_real_context_divergences(real_receipts, field, value):
 def test_real_language_attribution_comes_from_external_contexts(real_receipts):
     receipts, contexts, _ = real_receipts
     before = deepcopy((receipts, contexts))
-    original = aggregate_receipts(receipts, contexts=contexts)
+    attestations = expected_attestations(contexts)
+    original = aggregate_receipts(
+        receipts, contexts=contexts, attestations=attestations
+    )
     assert original.overall == Counts(2, 3)
     assert original.by_language == {
         "python": Counts(1, 2),
@@ -189,7 +219,9 @@ def test_real_language_attribution_comes_from_external_contexts(real_receipts):
         for context in contexts
     ]
     changed_before = deepcopy(changed_contexts)
-    changed = aggregate_receipts(receipts, contexts=changed_contexts)
+    changed = aggregate_receipts(
+        receipts, contexts=changed_contexts, attestations=attestations
+    )
     assert changed.overall == Counts(2, 3)
     assert changed.by_language == {
         "python": Counts(0, 1),
@@ -226,7 +258,9 @@ def test_real_non_boolean_results_rejected(real_receipts, value):
     receipts[0] = make_receipt(contexts[0], value)
     before = deepcopy((receipts, contexts))
     with pytest.raises(ValueError, match="^declared_result must have exact bool type$"):
-        aggregate_receipts(receipts, contexts=contexts)
+        aggregate_receipts(
+            receipts, contexts=contexts, attestations=expected_attestations(contexts)
+        )
     assert (receipts, contexts) == before
 
 @pytest.mark.parametrize(
@@ -372,7 +406,7 @@ def test_real_entry_rejects_synthetic_policy(synthetic):
     receipts, contexts = synthetic
     before = deepcopy(synthetic)
     with pytest.raises(TypeError):
-        aggregate_receipts(receipts, contexts=contexts)
+        aggregate_receipts(receipts, contexts=contexts, attestations={})
     assert synthetic == before
 
 def test_real_entry_rejects_caller_validator(synthetic):
@@ -381,6 +415,7 @@ def test_real_entry_rejects_caller_validator(synthetic):
         aggregate_receipts(
             receipts,
             contexts=contexts,
+            attestations={},
             validate_task_receipt_consistency=synthetic_validator,
         )
 
@@ -389,6 +424,7 @@ def test_real_mcnemar_rejects_caller_validator(real_receipts):
     with pytest.raises(TypeError, match="validate_task_receipt_consistency"):
         count_mcnemar_pairs(
             receipts, contexts, receipts, contexts,
+            attestations=expected_attestations(contexts),
             validate_task_receipt_consistency=synthetic_validator,
         )
 
@@ -402,9 +438,14 @@ def test_real_mcnemar_rejects_mixed_policies(real_receipts, arm):
     mixed_contexts = [replace(contexts[0], policy=other_policy), *contexts[1:]]
     mixed_receipts = [make_receipt(mixed_contexts[0], True), *receipts[1:]]
 
+    attestations = (
+        expected_attestations(contexts) | expected_attestations(mixed_contexts)
+    )
     assert aggregate_receipts(
-        mixed_receipts, contexts=mixed_contexts
-    ) == aggregate_receipts(receipts, contexts=contexts)
+        mixed_receipts, contexts=mixed_contexts, attestations=attestations
+    ) == aggregate_receipts(
+        receipts, contexts=contexts, attestations=attestations
+    )
     paired = (
         (mixed_receipts, mixed_contexts, receipts, contexts)
         if arm == "left"
@@ -412,7 +453,7 @@ def test_real_mcnemar_rejects_mixed_policies(real_receipts, arm):
     )
     before = deepcopy(paired)
     with pytest.raises(ValueError, match=f"{arm} arm.*policy fingerprint"):
-        count_mcnemar_pairs(*paired)
+        count_mcnemar_pairs(*paired, attestations=attestations)
     assert paired == before
 
 def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
@@ -437,9 +478,15 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
         make_receipt(context, result)
         for context, result in zip(right_contexts, (True, False, True, True, False))
     ]
+    attestations = expected_attestations(
+        left_contexts, {"a": True, "b": True, "c": False, "d": False, "e": False}
+    ) | expected_attestations(
+        right_contexts, {"a": True, "b": False, "c": True, "d": True, "e": False}
+    )
     before = deepcopy((left, left_contexts, right, right_contexts))
     counts = count_mcnemar_pairs(
         left, reversed(left_contexts), reversed(right), right_contexts,
+        attestations=attestations,
     )
     assert counts.overall == (1, 1, 2, 1)
     assert counts.by_language == {
@@ -450,7 +497,9 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
         "python": -2 / 3,
         "rust": 1 / 2,
     }
-    swapped = count_mcnemar_pairs(right, right_contexts, left, left_contexts)
+    swapped = count_mcnemar_pairs(
+        right, right_contexts, left, left_contexts, attestations=attestations
+    )
     assert swapped.success_rate_difference_by_language == {
         "python": 2 / 3,
         "rust": -1 / 2,
@@ -460,11 +509,20 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
 
 def test_real_mcnemar_success_rate_difference_with_equal_discordant_counts(real_receipts):
     left, contexts, make_receipt = real_receipts
+    right_policy = CodingPolicy.create(
+        **dict(contexts[0].policy.payload, localization="equal-discordance")
+    )
+    right_contexts = [replace(context, policy=right_policy) for context in contexts]
     right = [
         make_receipt(context, result)
-        for context, result in zip(contexts, (False, True, True))
+        for context, result in zip(right_contexts, (False, True, True))
     ]
-    counts = count_mcnemar_pairs(left, contexts, right, contexts)
+    attestations = expected_attestations(contexts) | expected_attestations(
+        right_contexts, {"a": False, "b": True, "c": True}
+    )
+    counts = count_mcnemar_pairs(
+        left, contexts, right, right_contexts, attestations=attestations
+    )
     assert counts.by_language["python"] == (0, 1, 1, 0)
     assert counts.success_rate_difference_by_language == {"python": 0.0, "rust": 0.0}
 
@@ -490,9 +548,15 @@ def test_real_mcnemar_rejects_allocated_budget_divergences(
         for context, result in zip(right_contexts, (True, True, False))
     ]
 
-    assert aggregate_receipts(right_receipts, contexts=right_contexts).overall == Counts(2, 3)
+    attestations = expected_attestations(contexts) | expected_attestations(right_contexts)
+    assert aggregate_receipts(
+        right_receipts, contexts=right_contexts, attestations=attestations
+    ).overall == Counts(2, 3)
     with pytest.raises(ValueError, match=f"^paired allocated task_budget {component} mismatch$"):
-        count_mcnemar_pairs(receipts, contexts, right_receipts, right_contexts)
+        count_mcnemar_pairs(
+            receipts, contexts, right_receipts, right_contexts,
+            attestations=attestations,
+        )
 
 @pytest.mark.parametrize(
     "field,value",
@@ -510,12 +574,47 @@ def test_real_mcnemar_rejects_external_context_divergences(real_receipts, field,
     receipts, contexts, make_receipt = real_receipts
     if field == "consumed_budget":
         value = dict(contexts[0].consumed_budget, **value)
-    changed = [replace(contexts[0], **{field: value}), *contexts[1:]]
-    right = [make_receipt(changed[0], True), *receipts[1:]]
+    other_policy = CodingPolicy.create(
+        **dict(contexts[0].policy.payload, localization="context-divergence")
+    )
+    changed = [replace(context, policy=other_policy) for context in contexts]
+    changed[0] = replace(changed[0], **{field: value})
+    right = [
+        make_receipt(context, result)
+        for context, result in zip(changed, (True, True, False))
+    ]
 
-    assert aggregate_receipts(right, contexts=changed).overall == Counts(2, 3)
+    attestations = expected_attestations(contexts) | expected_attestations(changed)
+    assert aggregate_receipts(
+        right, contexts=changed, attestations=attestations
+    ).overall == Counts(2, 3)
     with pytest.raises(ValueError, match=f"paired {field} mismatch"):
-        count_mcnemar_pairs(receipts, contexts, right, changed)
+        count_mcnemar_pairs(
+            receipts, contexts, right, changed,
+            attestations=attestations,
+        )
+
+@pytest.mark.parametrize("failure", ["missing", "flipped"])
+def test_real_aggregation_and_mcnemar_require_attested_verdicts(real_receipts, failure):
+    receipts, contexts, make_receipt = real_receipts
+    attestations = expected_attestations(contexts)
+    submitted = list(receipts)
+    if failure == "missing":
+        context = contexts[0]
+        del attestations[
+            (context.judge, context.bank_fingerprint, context.policy.sha256, context.task_id)
+        ]
+        message = "missing receipt attestation"
+    else:
+        submitted[0] = make_receipt(contexts[0], False)
+        message = "receipt attestation fingerprint mismatch"
+
+    with pytest.raises(ValueError, match=message):
+        aggregate_receipts(submitted, contexts=contexts, attestations=attestations)
+    with pytest.raises(ValueError, match=message):
+        count_mcnemar_pairs(
+            submitted, contexts, receipts, contexts, attestations=attestations
+        )
 
 def test_synthetic_validator_refusal_propagates(synthetic):
     def refusing_validator(receipt, context):

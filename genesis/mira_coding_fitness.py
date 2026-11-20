@@ -39,6 +39,8 @@ from typing import Any
 from genesis import mira_policy_contract
 
 
+ReceiptAttestations = Mapping[tuple[str, str, str, str], str]
+
 def resolve_ablation_parent(
     child: mira_policy_contract.CodingPolicy,
     lineage_by_child_sha256: Mapping[str, str],
@@ -234,10 +236,16 @@ def count_mcnemar_pairs(
     left_contexts: Iterable[TaskContext],
     right_receipts: Iterable[Any],
     right_contexts: Iterable[TaskContext],
+    *,
+    attestations: ReceiptAttestations,
 ) -> McNemarPairs:
-    """Count contractual pairs in the order both, left only, right only, neither."""
-    left, left_results = _index_receipts(left_receipts, left_contexts)
-    right, right_results = _index_receipts(right_receipts, right_contexts)
+    """Count contractual pairs in the order both, left only, right only, neither.
+
+    The trusted caller supplies attestations from an authenticated channel
+    outside the lineage. That channel still requires production verification.
+    """
+    left, left_results = _index_receipts(left_receipts, left_contexts, attestations)
+    right, right_results = _index_receipts(right_receipts, right_contexts, attestations)
     for arm, contexts in (("left", left), ("right", right)):
         if len({context.policy.sha256 for context in contexts.values()}) != 1:
             raise ValueError(f"{arm} arm must have exactly one policy fingerprint")
@@ -297,18 +305,25 @@ def _count_mcnemar_pairs(
 
 def aggregate_receipts(
     receipts: Iterable[Any],
+    *,
     contexts: Iterable[TaskContext],
+    attestations: ReceiptAttestations,
 ) -> Fitness:
     """Validate real receipts with the contract before counting their results.
 
     Supply the external task registry as contexts. It must contain one context
     per task and must be prepared independently of the receipts.
+    Pass attested receipt fingerprints keyed by (judge, bank, policy, task).
+    The registry follows the trust requirements of count_mcnemar_pairs.
     """
-    return _fitness(*_index_receipts(receipts, contexts))
+    return _fitness(*_index_receipts(
+        receipts, contexts, attestations
+    ))
 
 def _index_receipts(
     receipts: Iterable[Any],
     contexts: Iterable[TaskContext],
+    attestations: ReceiptAttestations,
 ) -> tuple[dict[str, TaskContext], dict[str, bool]]:
     contexts = deepcopy(list(contexts))
     receipts = deepcopy(list(receipts))
@@ -320,8 +335,10 @@ def _index_receipts(
             value = getattr(context, name)
             if type(value) is not str or not value:
                 raise ValueError(f"explicit nonempty {name} required")
-        if not isinstance(context.policy, mira_policy_contract.CodingPolicy):
+        if type(context.policy) is not mira_policy_contract.CodingPolicy:
             raise TypeError("expected CodingPolicy")
+        if type(context.policy.envelope) is not mira_policy_contract.JsonObjectEnvelope:
+            raise TypeError("expected policy JsonObjectEnvelope")
         if context.consumed_budget is None:
             raise ValueError("explicit consumed budget required")
         if context.task_id in expected:
@@ -336,8 +353,10 @@ def _index_receipts(
             receipt = mira_policy_contract.BankExternalReceipt.from_dict(
                 deepcopy(dict(receipt))
             )
-        if not isinstance(receipt, mira_policy_contract.BankExternalReceipt):
+        if type(receipt) is not mira_policy_contract.BankExternalReceipt:
             raise TypeError("expected BankExternalReceipt or serialized envelope")
+        if type(receipt.envelope) is not mira_policy_contract.JsonObjectEnvelope:
+            raise TypeError("expected receipt JsonObjectEnvelope")
         task_id = receipt.payload["task_id"]
         if type(task_id) is not str or not task_id:
             raise ValueError("invalid task identifier")
@@ -363,6 +382,20 @@ def _index_receipts(
         )
         if result is not None:
             raise ValueError("consistency validator must return None")
+        key = (
+            context.judge,
+            context.bank_fingerprint,
+            context.policy.sha256,
+            task_id,
+        )
+        attested_sha256 = attestations.get(key)
+        if attested_sha256 is None:
+            raise ValueError("missing receipt attestation")
+        if (
+            type(attested_sha256) is not str
+            or receipt.envelope.sha256 != attested_sha256
+        ):
+            raise ValueError("receipt attestation fingerprint mismatch")
         results[task_id] = declared_result
     return expected, results
 
