@@ -669,7 +669,7 @@ def test_real_aggregation_and_mcnemar_require_attested_verdicts(
     key = attestation_key(arm, contexts[0])
     if failure == "missing":
         del attestations[key]
-        message = "missing receipt attestation"
+        message = "receipt attestation coverage mismatch"
     elif failure == "flipped":
         submitted[0] = make_receipt(contexts[0], not original_verdict)
         message = "receipt attestation fingerprint mismatch"
@@ -684,6 +684,35 @@ def test_real_aggregation_and_mcnemar_require_attested_verdicts(
         )
     with pytest.raises(ValueError, match=message):
         count_attested(left, contexts, right, contexts, attestations=attestations)
+
+def test_real_rejects_omitting_registered_failed_task(real_receipts):
+    receipts, contexts, _ = real_receipts
+    attestations = expected_attestations(contexts) | expected_attestations(
+        contexts, run_id="right"
+    )
+    fitness = aggregate_attested(
+        receipts, contexts=contexts, attestations=attestations
+    )
+    assert fitness.overall == Counts(2, 3)
+    assert fitness.by_language == {"python": Counts(1, 2), "rust": Counts(1, 1)}
+
+    full = (receipts, contexts)
+    counts = count_attested(*full, *full, attestations=attestations)
+    assert counts.overall == (2, 0, 0, 1)
+    assert counts.by_language == {"python": (1, 0, 0, 1), "rust": (1, 0, 0, 0)}
+
+    assert contexts[-1].task_id == "c"
+    truncated = (receipts[:-1], contexts[:-1])
+    message = "receipt attestation coverage mismatch"
+    for run_id in ("left", "right"):
+        with pytest.raises(ValueError, match=message):
+            aggregate_attested(
+                truncated[0], contexts=truncated[1], attestations=attestations,
+                run_id=run_id,
+            )
+    for left, right in ((truncated, full), (full, truncated), (truncated, truncated)):
+        with pytest.raises(ValueError, match=message):
+            count_attested(*left, *right, attestations=attestations)
 
 def test_real_mcnemar_requires_distinct_execution_ids(real_receipts):
     receipts, contexts, _ = real_receipts

@@ -408,6 +408,20 @@ def _index_receipts(
     if received.keys() != expected.keys():
         raise ValueError("missing or additional tasks")
 
+    context_keys = {
+        task_id: (
+            run_id,
+            context.judge,
+            context.bank_fingerprint,
+            context.policy.sha256,
+            task_id,
+        )
+        for task_id, context in expected.items()
+    }
+    registry_keys = {key for key in attestations if key[0] == run_id}
+    if registry_keys != set(context_keys.values()):
+        raise ValueError("receipt attestation coverage mismatch")
+
     results = {}
     for task_id, context in expected.items():
         receipt = received[task_id]
@@ -424,14 +438,7 @@ def _index_receipts(
         )
         if result is not None:
             raise ValueError("consistency validator must return None")
-        key = (
-            run_id,
-            context.judge,
-            context.bank_fingerprint,
-            context.policy.sha256,
-            task_id,
-        )
-        attested_sha256 = attestations.get(key)
+        attested_sha256 = attestations.get(context_keys[task_id])
         if attested_sha256 is None:
             raise ValueError("missing receipt attestation")
         if (
