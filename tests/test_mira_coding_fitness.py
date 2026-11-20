@@ -6,11 +6,15 @@ Language attribution comes from external task contexts.
 Negative evidence reference: e7b532ca80d94a168cf7b09eb34669aa.
 Previous failed run reference: 8ae05181d4e64d39b80f2a900bcfb70c.
 Evidence reference for step 4948: 04d5c7765f5848fe98bd3fc476a54606.
-No corrected execution result or capability gain is attested.
-The development judge exercises Python only. Eight-language calibration is pending.
-The untracked tests/test_mira_ed25519_runtime.py still imports cryptography.
-An index-only applicator needs a worker with working-tree access to remove
-that file. The diff-only execution constraint leaves that cleanup pending.
+Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
+including test_development_bank_judges_two_deterministic_policies.
+The development judge exercises Python only. The maximum, minimum, and
+spread cases supply nonempty lists to max and min where called.
+Fresh verification requires a pytest run without network access or model
+use, with exit code 0 and 153 passing fitness tests.
+Evidence 508b49fef5e74d0e866f83aa98221b8d records that cryptography was absent
+from the image used. The image rebuild remains to be confirmed.
+Eight-language calibration and Ed25519 validation remain open.
 """
 
 from collections import Counter

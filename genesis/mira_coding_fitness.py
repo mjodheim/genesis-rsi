@@ -9,18 +9,21 @@ Evidence 66dcca637bf1470bb8a4337d1be558ab covers the baseline only.
 Initial negative evidence 425f5272292041f0a9aba16188c5fc8f: exit code 1,
 TypeError: aggregate_receipts() got an unexpected keyword argument
 'validate_task_receipt_consistency'.
-No new execution results or capability gains are claimed.
 
-Compatibility with the receipt contract and the results of this correction
-remain unverified. Targeted offline tests require execution and launch evidence;
-neither is attested here.
+Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
+including the Python development bank test. Its scope is the reported
+fitness run. The development bank uses nonempty lists for max and min.
+Fresh verification requires a pytest run without network access or model
+use, with exit code 0 and 153 passing fitness tests.
 Consistency alone proves neither truth, authenticity, nor judge independence.
 
-Milestone 2 is blocked pending verification of an established signature
+Evidence 508b49fef5e74d0e866f83aa98221b8d records that cryptography was absent
+from the image used. The image rebuild remains to be confirmed.
+Eight-language calibration and Ed25519 validation remain open.
+Milestone 2 still requires verification of an established signature
 primitive in the offline container and of the applicable publication terms.
 The production channel for the independent counter remains unconfirmed.
-Receipt authentication has not been implemented. No offline pytest run or
-pull request result is attested for this milestone.
+Receipt authentication has not been implemented.
 """
 
 from collections.abc import Callable, Iterable, Mapping
