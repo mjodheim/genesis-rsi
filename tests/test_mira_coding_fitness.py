@@ -94,6 +94,19 @@ def test_non_inferiority_preserves_half_tail_at_smallest_positive_alpha():
         2 * 2**(-1075 / 32) - 1, rel=0, abs=ulp(-1.0)
     )
 
+@pytest.mark.parametrize("size,expected", [(21, False), (22, True)])
+def test_non_inferiority_with_all_favorable_pairs_near_margin(size, expected):
+    delta = 0.5
+    counts = (0, size, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    passed, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=delta, alpha=2**-41
+    )
+    result = results["python"]
+    assert result is not None
+    assert result.passes(delta) is expected
+    assert passed is expected
+
 @pytest.mark.parametrize("rust_count,expected", [(1, False), (10, True)])
 def test_non_inferiority_requires_every_language_to_pass(rust_count, expected):
     pairs = McNemarPairs(

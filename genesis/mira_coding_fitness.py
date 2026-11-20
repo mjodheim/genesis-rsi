@@ -20,7 +20,8 @@ Consistency alone proves neither truth, authenticity, nor judge independence.
 from collections.abc import Callable, Iterable, Mapping
 from copy import deepcopy
 from dataclasses import dataclass
-from math import comb, exp, fsum, log, log1p
+from fractions import Fraction
+from math import comb, inf, nextafter
 from typing import Any
 
 from genesis import mira_policy_contract
@@ -159,7 +160,7 @@ def assess_paired_non_inferiority(
     if pairs.overall != totals:
         raise ValueError("overall pair counts must equal the sum of all language counts")
 
-    log_tail = log(alpha) - log(2)
+    tail = Fraction(alpha) / 2
     results: dict[str, LanguageNonInferiority | None] = {}
     for language in languages:
         counts = pairs.by_language.get(language)
@@ -168,9 +169,15 @@ def assess_paired_non_inferiority(
             continue
         _, left_only, right_only, _ = counts
         size = sum(counts)
-        lower = _binomial_lower_bound(left_only, size, log_tail)
-        upper = 1 - _binomial_lower_bound(size - right_only, size, log_tail)
-        results[language] = LanguageNonInferiority((left_only - right_only) / size, lower - upper)
+        lower_left = _binomial_lower_bound(left_only, size, tail)
+        lower_complement = _binomial_lower_bound(size - right_only, size, tail)
+        exact_lower_bound = Fraction(lower_left) + Fraction(lower_complement) - 1
+        lower_bound = float(exact_lower_bound)
+        if Fraction(lower_bound) > exact_lower_bound:
+            lower_bound = nextafter(lower_bound, -inf)
+        results[language] = LanguageNonInferiority(
+            (left_only - right_only) / size, lower_bound
+        )
     return all(result is not None and result.passes(delta) for result in results.values()), results
 
 def mcnemar_exact_pvalue(left_only: int, right_only: int) -> float:
@@ -189,25 +196,21 @@ def _validate_pair_counts(counts: tuple[int, ...]) -> None:
     ):
         raise ValueError("expected four nonnegative integer pair counts")
 
-def _binomial_lower_bound(count: int, size: int, log_tail: float) -> float:
+def _binomial_lower_bound(count: int, size: int, tail: Fraction) -> float:
     if count == 0:
         return 0.0
-    if count == size:
-        return exp(log_tail / size)
-    weights = [log(comb(size, k)) for k in range(count, size + 1)]
+    weights = [comb(size, k) for k in range(count, size + 1)]
     low, high = 0.0, 1.0
     while True:
         midpoint = (low + high) / 2
         if midpoint == low or midpoint == high:
             return low
-        log_p, log_q = log(midpoint), log1p(-midpoint)
-        log_terms = [
-            weight + k * log_p + (size - k) * log_q
+        a, b = midpoint.as_integer_ratio()
+        numerator = sum(
+            weight * a**k * (b - a)**(size - k)
             for k, weight in enumerate(weights, start=count)
-        ]
-        peak = max(log_terms)
-        log_probability = peak + log(fsum(exp(term - peak) for term in log_terms))
-        if log_probability >= log_tail:
+        )
+        if numerator * tail.denominator >= tail.numerator * b**size:
             high = midpoint
         else:
             low = midpoint
