@@ -5,12 +5,20 @@ Language attribution comes from external task contexts.
 
 Negative evidence reference: e7b532ca80d94a168cf7b09eb34669aa.
 Previous failed run reference: 8ae05181d4e64d39b80f2a900bcfb70c.
+Evidence reference for step 4948: 04d5c7765f5848fe98bd3fc476a54606.
 No corrected execution result or capability gain is attested.
+The development judge exercises Python only. Eight-language calibration is pending.
+The untracked tests/test_mira_ed25519_runtime.py still imports cryptography.
+An index-only applicator needs a worker with working-tree access to remove
+that file. The diff-only execution constraint leaves that cleanup pending.
 """
 
+from collections import Counter
 from copy import deepcopy
 from dataclasses import replace
+from hashlib import sha256
 from itertools import permutations
+from json import dumps
 from math import isfinite, sqrt, ulp
 
 import pytest
@@ -30,6 +38,122 @@ from genesis.mira_coding_fitness import (
 )
 from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy, JsonObjectEnvelope
 
+
+_DEVELOPMENT_BANK = {
+    "sum": [([3, -1, 4], 6), ([], 0)],
+    "maximum": [([-3, -1, -4], -1), ([0], 0)],
+    "minimum": [([3, 1, 4], 1), ([0], 0)],
+    "sorted_values": [([3, 1, 3, 2], [1, 2, 3, 3]), ([], [])],
+    "distinct_count": [([2, 2, 1], 2), ([], 0)],
+    "product": [([2, -3, 4], -24), ([], 1)],
+    "even_count": [([2, -4, 3, 0], 3), ([1], 0)],
+    "running_totals": [([2, -3, 4], [2, -1, 3]), ([], [])],
+    "absolute_values": [([-2, 0, 3], [2, 0, 3]), ([], [])],
+    "spread": [([-4, 1, 2], 6), ([7], 0)],
+    "uppercase": [("aB!", "AB!"), ("", "")],
+    "lowercase": [("Ab!", "ab!"), ("", "")],
+    "reverse_text": [("ab!", "!ba"), ("", "")],
+    "word_count": [(" one\t two\nthree ", 3), ("  ", 0)],
+    "initials": [("Ada  Lovelace", "AL"), ("", "")],
+    "trim": [(" \tword\n", "word"), ("", "")],
+    "palindrome": [("level", True), ("ab", False)],
+    "digit_count": [("a1b23", 3), ("abc", 0)],
+    "collapse_whitespace": [(" one\t two\n ", "one two"), ("  ", "")],
+    "longest_word_length": [("one four seven", 5), (" ", 0)],
+}
+
+def _judge_development_proposal(solution, cases):
+    verdicts = []
+    for value, expected in cases:
+        actual = solution(deepcopy(value))
+        verdicts.append(type(actual) is type(expected) and actual == expected)
+    return all(verdicts), len(verdicts)
+
+def test_development_bank_judges_two_deterministic_policies():
+    from itertools import accumulate
+    from math import prod
+
+    numeric_policy = {
+        "sum": sum,
+        "maximum": max,
+        "minimum": min,
+        "sorted_values": sorted,
+        "distinct_count": lambda values: len(set(values)),
+        "product": prod,
+        "even_count": lambda values: sum(value % 2 == 0 for value in values),
+        "running_totals": lambda values: list(accumulate(values)),
+        "absolute_values": lambda values: list(map(abs, values)),
+        "spread": lambda values: max(values) - min(values),
+    }
+    basic_policy = {
+        "sum": sum,
+        "maximum": max,
+        "minimum": min,
+        "uppercase": str.upper,
+        "lowercase": str.lower,
+        "trim": str.strip,
+    }
+    bank = _DEVELOPMENT_BANK
+    assert len(bank) >= 20
+    bank_fingerprint = sha256(dumps(bank, sort_keys=True).encode("utf-8")).hexdigest()
+    judge = "python-development-io"
+
+    def run_arm(policy_id, proposals):
+        receipts = []
+        contexts = []
+        observations = {}
+        for task_id, cases in bank.items():
+            allocation = {"proposals": 1, "case_evaluations": len(cases)}
+            solution = proposals.get(task_id, lambda value: value)
+            verdict, evaluations = _judge_development_proposal(solution, cases)
+            consumption = {"proposals": 1, "case_evaluations": evaluations}
+            assert consumption == allocation
+            policy = {"id": policy_id, "task_budget": allocation}
+            context = TaskContext(
+                task_id, "python", judge, bank_fingerprint, consumption, policy
+            )
+            contexts.append(context)
+            receipts.append({
+                "task_id": task_id,
+                "language": "python",
+                "judge": judge,
+                "bank_fingerprint": bank_fingerprint,
+                "consumed_budget": deepcopy(consumption),
+                "policy": deepcopy(policy),
+                "declared_result": verdict,
+            })
+            observations[task_id] = verdict
+        return receipts, contexts, observations
+
+    left, left_contexts, left_verdicts = run_arm("numeric", numeric_policy)
+    right, right_contexts, right_verdicts = run_arm("basic", basic_policy)
+    assert left_verdicts.keys() == right_verdicts.keys() == bank.keys()
+    for left_task, right_task in zip(left_contexts, right_contexts):
+        assert left_task.task_id == right_task.task_id
+        assert left_task.bank_fingerprint == right_task.bank_fingerprint == bank_fingerprint
+        assert left_task.policy["task_budget"] == right_task.policy["task_budget"]
+        assert left_task.consumed_budget == right_task.consumed_budget
+
+    left_counts = aggregate(left, left_contexts).overall
+    right_counts = aggregate(right, right_contexts).overall
+    assert left_counts == Counts(sum(left_verdicts.values()), len(bank))
+    assert right_counts == Counts(sum(right_verdicts.values()), len(bank))
+    assert left_counts != right_counts
+
+    observed_pairs = Counter(
+        (left_verdicts[task_id], right_verdicts[task_id]) for task_id in bank
+    )
+    expected = tuple(
+        observed_pairs[pair] for pair in
+        ((True, True), (True, False), (False, True), (False, False))
+    )
+    assert all(expected)
+    paired = count_synthetic_mcnemar_pairs(
+        left, left_contexts, right, right_contexts,
+        validate_task_receipt_consistency=synthetic_validator,
+    )
+    assert paired.overall == expected
+    assert paired.by_language == {"python": expected}
 
 @pytest.mark.parametrize("extra", [{}, {"rust": (0, 0, 0, 0)}])
 def test_non_inferiority_requires_evaluable_languages(extra):
