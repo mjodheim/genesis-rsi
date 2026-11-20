@@ -8,7 +8,7 @@ Previous failed run reference: 8ae05181d4e64d39b80f2a900bcfb70c.
 Evidence reference for step 4948: 04d5c7765f5848fe98bd3fc476a54606.
 Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
 including test_development_bank_judges_two_deterministic_policies.
-The last attested success applies to 4b277d5d.
+The last attested success applies to the commit before the Ed25519 test removal.
 The development bank contains original, public Python stdlib tasks and examples.
 Review covered provenance, nominal and boundary cases, and fixture-only execution.
 Delegated decision for these tasks is PUBLIC_AGPL_COMMERCIAL_OPTION.
