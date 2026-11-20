@@ -150,8 +150,14 @@ def assess_paired_non_inferiority(
     if len(set(languages)) != len(languages):
         raise ValueError("required languages must be unique")
     _validate_pair_counts(pairs.overall)
-    for counts in pairs.by_language.values():
+    language_counts = tuple(pairs.by_language.values())
+    for counts in language_counts:
         _validate_pair_counts(counts)
+    totals = tuple(
+        sum(counts[index] for counts in language_counts) for index in range(4)
+    )
+    if pairs.overall != totals:
+        raise ValueError("overall pair counts must equal the sum of all language counts")
 
     log_tail = log(alpha) - log(2)
     results: dict[str, LanguageNonInferiority | None] = {}

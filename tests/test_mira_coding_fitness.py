@@ -11,7 +11,7 @@ No corrected execution result or capability gain is attested.
 from copy import deepcopy
 from dataclasses import replace
 from itertools import permutations
-from math import isfinite
+from math import isfinite, sqrt, ulp
 
 import pytest
 
@@ -65,6 +65,34 @@ def test_non_inferiority_with_subnormal_alpha():
     assert result is not None
     assert isfinite(result.lower_bound)
     assert not result.passes(0.10)
+
+def test_non_inferiority_rejects_inconsistent_overall_counts():
+    pairs = McNemarPairs((0, 0, 1, 0), {"python": (0, 10, 0, 0)})
+    with pytest.raises(ValueError, match="overall pair counts"):
+        assess_paired_non_inferiority(pairs, ["python"], delta=0.10, alpha=0.05)
+
+def test_non_inferiority_bound_with_one_favorable_pair_out_of_two():
+    counts = (1, 1, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    _, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=0.10, alpha=0.05
+    )
+    result = results["python"]
+    assert result is not None
+    assert result.lower_bound == pytest.approx(sqrt(0.025) - sqrt(0.975))
+
+def test_non_inferiority_preserves_half_tail_at_smallest_positive_alpha():
+    counts = (0, 32, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    _, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=0.10, alpha=2**-1074
+    )
+    result = results["python"]
+    assert result is not None
+    assert result.lower_bound > -1.0
+    assert result.lower_bound == pytest.approx(
+        2 * 2**(-1075 / 32) - 1, rel=0, abs=ulp(-1.0)
+    )
 
 @pytest.mark.parametrize("rust_count,expected", [(1, False), (10, True)])
 def test_non_inferiority_requires_every_language_to_pass(rust_count, expected):
