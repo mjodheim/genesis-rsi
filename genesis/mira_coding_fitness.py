@@ -294,12 +294,13 @@ def _count_mcnemar_pairs(
 
 def aggregate_receipts(
     receipts: Iterable[Any],
+    *,
     contexts: Iterable[TaskContext],
 ) -> Fitness:
     """Validate real receipts with the contract before counting their results.
 
-    All expectations passed to the contract come from detached external
-    contexts. Caller-provided validators are deliberately unsupported.
+    Supply the external task registry as contexts. It must contain one context
+    per task and must be prepared independently of the receipts.
     """
     return _fitness(*_index_receipts(receipts, contexts))
 
