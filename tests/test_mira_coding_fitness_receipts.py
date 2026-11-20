@@ -10,6 +10,7 @@ from itertools import permutations
 
 import pytest
 
+import genesis.mira_coding_fitness as mira_coding_fitness
 from genesis.mira_coding_fitness import (
     _aggregate_attested_receipts,
     _count_attested_mcnemar_pairs,
@@ -489,13 +490,32 @@ def test_real_mcnemar_rejects_caller_validator(real_receipts):
         )
 
 
-def test_production_refuses_counting_without_independent_source(real_receipts):
+@pytest.mark.parametrize(
+    "entry_point",
+    [aggregate_receipts, count_mcnemar_pairs],
+    ids=["aggregate_receipts", "count_mcnemar_pairs"],
+)
+def test_production_refuses_counting_without_independent_source(
+    real_receipts, monkeypatch, entry_point
+):
     receipts, contexts, _ = real_receipts
-    message = "^authenticated independent receipt attestation source required$"
-    with pytest.raises(ValueError, match=message):
-        aggregate_receipts(receipts, contexts=contexts)
-    with pytest.raises(ValueError, match=message):
-        count_mcnemar_pairs(receipts, contexts, receipts, contexts)
+    calls = []
+
+    def unexpected_counting(*args, **kwargs):
+        calls.append((args, kwargs))
+        raise AssertionError("Counting started without independent attestation")
+
+    monkeypatch.setattr(mira_coding_fitness, "_fitness", unexpected_counting)
+    monkeypatch.setattr(mira_coding_fitness, "_count_mcnemar_pairs", unexpected_counting)
+
+    message = "authenticated independent receipt attestation source required"
+    with pytest.raises(ValueError) as exc_info:
+        if entry_point is aggregate_receipts:
+            entry_point(receipts, contexts=contexts)
+        else:
+            entry_point(receipts, contexts, receipts, contexts)
+    assert str(exc_info.value) == message
+    assert calls == []
 
 def test_production_rejects_fingerprints_recomputed_from_receipts(real_receipts):
     receipts, contexts, _ = real_receipts
