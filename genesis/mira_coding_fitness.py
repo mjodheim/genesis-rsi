@@ -13,8 +13,11 @@ TypeError: aggregate_receipts() got an unexpected keyword argument
 Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
 including the Python development bank test. Its scope is the reported
 fitness run. The development bank uses nonempty lists for max and min.
-Fresh verification requires a pytest run without network access or model
-use, with exit code 0 and 153 passing fitness tests.
+Fresh verification requires pytest exit code 0 for both targeted suites,
+tests/test_mira_coding_fitness.py and tests/test_mira_coding_fitness_receipts.py,
+in the offline container without network access or model use. Record the
+observed pass count and the evidence ID for the run against the new commit.
+The 153 passes recorded above are historical.
 Consistency alone proves neither truth, authenticity, nor judge independence.
 
 Evidence 508b49fef5e74d0e866f83aa98221b8d records that cryptography was absent

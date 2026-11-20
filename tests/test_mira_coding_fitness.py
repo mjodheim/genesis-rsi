@@ -13,14 +13,22 @@ The development bank contains original, public Python stdlib tasks and examples.
 Review covered provenance, nominal and boundary cases, and fixture-only execution.
 Delegated decision for these tasks is PUBLIC_AGPL_COMMERCIAL_OPTION.
 The fixture checks the development bench. Mira's coding ability remains unmeasured.
-Fresh verification requires a pytest run in the offline container without model use,
-with exit code 0 and 153 passing fitness tests.
-Record that fresh evidence before committing or updating PR #486.
+Fresh verification requires pytest exit code 0 for both targeted suites,
+tests/test_mira_coding_fitness.py and tests/test_mira_coding_fitness_receipts.py,
+in the offline container without network access or model use. Record the
+observed pass count and the evidence ID for the run against the new commit.
+After publishing the new commit on mira/genesis-99660ab004f9, verify the
+title and description of PR #486. Use the commit title as the PR title.
+The description must state that receipt task identifiers must exactly match
+the external registry and that each receipt is checked for consistency before
+counting. Authentication of verdict origin remains open. Report separately if
+automatic publication retains the previous PR metadata. Merge requires fresh
+approval and a passing CI run on the new head.
 Evidence 508b49fef5e74d0e866f83aa98221b8d records that cryptography was absent
 from the image used. The image rebuild remains to be confirmed.
 Eight-language calibration and Ed25519 validation remain open.
 The receipt aggregation and McNemar tests now live in
-tests/test_mira_coding_fitness_receipts.py; the 153 tests span both files.
+tests/test_mira_coding_fitness_receipts.py. The historical 153 passes span both suites.
 """
 
 from collections import Counter
