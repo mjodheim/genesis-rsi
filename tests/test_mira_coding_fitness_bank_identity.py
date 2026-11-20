@@ -31,6 +31,8 @@ def test_bank_identity_in_attested_aggregation_and_pairing(second_bank):
         TaskContext("a", "python", "judge-a", "a" * 64, budget, policy),
         TaskContext("b", "rust", "judge-b", second_bank, budget, policy),
     ]
+    task_manifest = {"a" * 64: {"a": "python"}}
+    task_manifest.setdefault(second_bank, {})["b"] = "rust"
     attestations = {}
     arms = []
     for run_id, verdicts in (("left", (True, False)), ("right", (True, True))):
@@ -58,21 +60,25 @@ def test_bank_identity_in_attested_aggregation_and_pairing(second_bank):
         for run_id, receipts in (("left", arms[0]), ("right", arms[2])):
             with pytest.raises(ValueError, match="exactly one bank fingerprint"):
                 _aggregate_attested_receipts(
-                    receipts, contexts=contexts, run_id=run_id, attestations=attestations
+                    receipts, contexts=contexts, run_id=run_id,
+                    attestations=attestations, task_manifest=task_manifest,
                 )
         with pytest.raises(ValueError, match="exactly one bank fingerprint"):
             _count_attested_mcnemar_pairs(
-                *arms, left_run_id="left", right_run_id="right", attestations=attestations
+                *arms, left_run_id="left", right_run_id="right",
+                attestations=attestations, task_manifest=task_manifest,
             )
         return
 
     fitness = _aggregate_attested_receipts(
-        arms[0], contexts=contexts, run_id="left", attestations=attestations
+        arms[0], contexts=contexts, run_id="left",
+        attestations=attestations, task_manifest=task_manifest,
     )
     assert fitness.overall == Counts(1, 2)
     assert fitness.by_language == {"python": Counts(1, 1), "rust": Counts(0, 1)}
     pairs = _count_attested_mcnemar_pairs(
-        *arms, left_run_id="left", right_run_id="right", attestations=attestations
+        *arms, left_run_id="left", right_run_id="right",
+        attestations=attestations, task_manifest=task_manifest,
     )
     assert pairs.overall == (1, 0, 1, 0)
     assert pairs.by_language == {"python": (1, 0, 0, 0), "rust": (0, 0, 1, 0)}
