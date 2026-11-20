@@ -16,7 +16,8 @@ fitness run. The development bank uses nonempty lists for max and min.
 Fresh verification requires pytest exit code 0 for both targeted suites,
 tests/test_mira_coding_fitness.py and tests/test_mira_coding_fitness_receipts.py,
 in the offline container without network access or model use. Record the
-observed pass count and the evidence ID for the run against the new commit.
+launch evidence, exit status, pass count, and evidence ID against the new
+commit. Verification of the per-execution fingerprint check is pending.
 The 153 passes recorded above are historical.
 Consistency alone proves neither truth, authenticity, nor judge independence.
 
@@ -25,8 +26,11 @@ from the image used. The image rebuild remains to be confirmed.
 Eight-language calibration and Ed25519 validation remain open.
 Milestone 2 still requires verification of an established signature
 primitive in the offline container and of the applicable publication terms.
-The production channel for the independent counter remains unconfirmed.
-Receipt authentication has not been implemented.
+The per-execution receipt fingerprint check requires submitted task identifiers
+to match the external task registry exactly and checks each receipt for
+contractual consistency before counting. The independent attestation source
+and the origin of verdicts remain unverified. Production receipt entry points
+refuse requests until an authenticated independent source is connected.
 """
 
 from collections.abc import Callable, Iterable, Mapping
@@ -39,7 +43,7 @@ from typing import Any
 from genesis import mira_policy_contract
 
 
-ReceiptAttestations = Mapping[tuple[str, str, str, str], str]
+ReceiptAttestations = Mapping[tuple[str, str, str, str, str], str]
 
 def resolve_ablation_parent(
     child: mira_policy_contract.CodingPolicy,
@@ -239,13 +243,28 @@ def count_mcnemar_pairs(
     *,
     attestations: ReceiptAttestations,
 ) -> McNemarPairs:
-    """Count contractual pairs in the order both, left only, right only, neither.
+    """Require an authenticated independent source before counting real pairs."""
+    raise ValueError("authenticated independent receipt attestation source required")
 
-    The trusted caller supplies attestations from an authenticated channel
-    outside the lineage. That channel still requires production verification.
-    """
-    left, left_results = _index_receipts(left_receipts, left_contexts, attestations)
-    right, right_results = _index_receipts(right_receipts, right_contexts, attestations)
+def _count_attested_mcnemar_pairs(
+    left_receipts: Iterable[Any],
+    left_contexts: Iterable[TaskContext],
+    right_receipts: Iterable[Any],
+    right_contexts: Iterable[TaskContext],
+    *,
+    left_run_id: str,
+    right_run_id: str,
+    attestations: ReceiptAttestations,
+) -> McNemarPairs:
+    """Count pairs after checking receipt fingerprints for each expected run."""
+    if left_run_id == right_run_id:
+        raise ValueError("paired execution identifiers must differ")
+    left, left_results = _index_receipts(
+        left_receipts, left_contexts, attestations, run_id=left_run_id
+    )
+    right, right_results = _index_receipts(
+        right_receipts, right_contexts, attestations, run_id=right_run_id
+    )
     for arm, contexts in (("left", left), ("right", right)):
         if len({context.policy.sha256 for context in contexts.values()}) != 1:
             raise ValueError(f"{arm} arm must have exactly one policy fingerprint")
@@ -309,22 +328,31 @@ def aggregate_receipts(
     contexts: Iterable[TaskContext],
     attestations: ReceiptAttestations,
 ) -> Fitness:
-    """Validate real receipts with the contract before counting their results.
+    """Require an authenticated independent source before aggregating real receipts."""
+    raise ValueError("authenticated independent receipt attestation source required")
 
-    Supply the external task registry as contexts. It must contain one context
-    per task and must be prepared independently of the receipts.
-    Pass attested receipt fingerprints keyed by (judge, bank, policy, task).
-    The registry follows the trust requirements of count_mcnemar_pairs.
-    """
+
+def _aggregate_attested_receipts(
+    receipts: Iterable[Any],
+    *,
+    contexts: Iterable[TaskContext],
+    run_id: str,
+    attestations: ReceiptAttestations,
+) -> Fitness:
+    """Check fingerprints for the expected run before aggregating receipts."""
     return _fitness(*_index_receipts(
-        receipts, contexts, attestations
+        receipts, contexts, attestations, run_id=run_id
     ))
 
 def _index_receipts(
     receipts: Iterable[Any],
     contexts: Iterable[TaskContext],
     attestations: ReceiptAttestations,
+    *,
+    run_id: str,
 ) -> tuple[dict[str, TaskContext], dict[str, bool]]:
+    if type(run_id) is not str or not run_id.strip():
+        raise ValueError("explicit nonempty execution identifier required")
     contexts = deepcopy(list(contexts))
     receipts = deepcopy(list(receipts))
     expected = {}
@@ -383,6 +411,7 @@ def _index_receipts(
         if result is not None:
             raise ValueError("consistency validator must return None")
         key = (
+            run_id,
             context.judge,
             context.bank_fingerprint,
             context.policy.sha256,
