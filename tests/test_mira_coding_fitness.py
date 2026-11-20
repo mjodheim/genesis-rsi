@@ -8,10 +8,14 @@ Previous failed run reference: 8ae05181d4e64d39b80f2a900bcfb70c.
 Evidence reference for step 4948: 04d5c7765f5848fe98bd3fc476a54606.
 Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
 including test_development_bank_judges_two_deterministic_policies.
-The development judge exercises Python only. The maximum, minimum, and
-spread cases supply nonempty lists to max and min where called.
-Fresh verification requires a pytest run without network access or model
-use, with exit code 0 and 153 passing fitness tests.
+The last attested success applies to 4b277d5d.
+The development bank contains original, public Python stdlib tasks and examples.
+Review covered provenance, nominal and boundary cases, and fixture-only execution.
+Delegated decision for these tasks is PUBLIC_AGPL_COMMERCIAL_OPTION.
+The fixture checks the development bench. Mira's coding ability remains unmeasured.
+Fresh verification requires a pytest run in the offline container without model use,
+with exit code 0 and 153 passing fitness tests.
+Record that fresh evidence before committing or updating PR #486.
 Evidence 508b49fef5e74d0e866f83aa98221b8d records that cryptography was absent
 from the image used. The image rebuild remains to be confirmed.
 Eight-language calibration and Ed25519 validation remain open.
@@ -44,72 +48,190 @@ from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy, Json
 
 
 _DEVELOPMENT_BANK = {
-    "sum": [([3, -1, 4], 6), ([], 0)],
-    "maximum": [([-3, -1, -4], -1), ([0], 0)],
-    "minimum": [([3, 1, 4], 1), ([0], 0)],
-    "sorted_values": [([3, 1, 3, 2], [1, 2, 3, 3]), ([], [])],
-    "distinct_count": [([2, 2, 1], 2), ([], 0)],
-    "product": [([2, -3, 4], -24), ([], 1)],
-    "even_count": [([2, -4, 3, 0], 3), ([1], 0)],
-    "running_totals": [([2, -3, 4], [2, -1, 3]), ([], [])],
-    "absolute_values": [([-2, 0, 3], [2, 0, 3]), ([], [])],
-    "spread": [([-4, 1, 2], 6), ([7], 0)],
-    "uppercase": [("aB!", "AB!"), ("", "")],
-    "lowercase": [("Ab!", "ab!"), ("", "")],
-    "reverse_text": [("ab!", "!ba"), ("", "")],
-    "word_count": [(" one\t two\nthree ", 3), ("  ", 0)],
-    "initials": [("Ada  Lovelace", "AL"), ("", "")],
-    "trim": [(" \tword\n", "word"), ("", "")],
-    "palindrome": [("level", True), ("ab", False)],
-    "digit_count": [("a1b23", 3), ("abc", 0)],
-    "collapse_whitespace": [(" one\t two\n ", "one two"), ("  ", "")],
-    "longest_word_length": [("one four seven", 5), (" ", 0)],
+    "email_domain": (
+        "Extract email domain: lower-case the part after the last @, or return empty if absent.",
+        [("Ada@Example.ORG", "example.org"), ("missing-domain", "")],
+    ),
+    "unique_ids": (
+        "Deduplicate IDs: preserve the first occurrence of each integer ID.",
+        [([9, 2, 9, 0, 2], [9, 2, 0]), ([], [])],
+    ),
+    "status_counts": (
+        "Count response statuses: return a dictionary of counts keyed by status string.",
+        [(["200", "404", "200"], {"200": 2, "404": 1}), ([], {})],
+    ),
+    "path_suffix": (
+        "Extract POSIX suffix: return the last filename suffix including its dot, or empty.",
+        [("archive/run.tar.gz", ".gz"), ("/tmp/.env", "")],
+    ),
+    "money_cents": (
+        "Convert money to cents: convert a decimal string with at most two fractional digits to integer cents.",
+        [("19.99", 1999), ("-0.01", -1)],
+    ),
+    "csv_width": (
+        "Validate two-column CSV: require at least one record and exactly two fields per record, honoring quotes.",
+        [('"a,b",c\nx,y\n', True), ("a,b\nc\n", False)],
+    ),
+    "csv_rows": (
+        "Count CSV records: count every record, including the header if present, honoring quoted newlines.",
+        [('name,note\nAda,"one\ntwo"\n', 2), ("", 0)],
+    ),
+    "log_levels": (
+        "Aggregate log levels: count INFO, WARN and ERROR prefixes followed by a space on each line.",
+        [("INFO up\nWARN retry\nINFO done\n", {"INFO": 2, "WARN": 1}), ("INFO\nDEBUG ignored", {})],
+    ),
+    "iso_date": (
+        "Normalize ISO date: validate a dashed YYYY-MM-DD calendar date and return its ISO value or None.",
+        [("2024-02-29", "2024-02-29"), ("2023-02-29", None)],
+    ),
+    "ordinal_date": (
+        "Convert ordinal date: turn a valid YYYY-DDD year and day of year into YYYY-MM-DD.",
+        [("2024-060", "2024-02-29"), ("2023-001", "2023-01-01")],
+    ),
+    "query_values": (
+        "Extract query tags: return decoded values for tag in query order and keep empty values.",
+        [("tag=a%2Bb&other=1&tag=x+y", ["a+b", "x y"]), ("tag=&other=1", [""])],
+    ),
+    "json_keys": (
+        "Sort JSON object keys: return the top-level keys in lexicographic order.",
+        [('{"z":{"inner":1},"a":0}', ["a", "z"]), ("{}", [])],
+    ),
+    "nonblank_lines": (
+        "Clean nonblank lines: strip each line and drop any lines that become empty.",
+        [(" first \n\n  second\t\n", ["first", "second"]), ("\t\n ", [])],
+    ),
+    "first_words": (
+        "Extract first words: return the first whitespace-delimited word from each nonblank line.",
+        [("  job started\n\njob done\nretry now", ["job", "job", "retry"]), ("\n \t", [])],
+    ),
+    "redact_digits": (
+        "Redact ASCII digits: replace each ASCII digit with * and preserve every other character.",
+        [("ref=204", "ref=***"), ("²", "²")],
+    ),
+    "normalize_spaces": (
+        "Normalize whitespace: trim the text and replace each whitespace run with one space.",
+        [(" north\twest\n gate ", "north west gate"), ("\t ", "")],
+    ),
+    "merge_ranges": (
+        "Merge date ranges: merge overlapping closed ordinal-day intervals and return them sorted.",
+        [([[4, 8], [1, 5], [10, 12]], [[1, 8], [10, 12]]), ([], [])],
+    ),
+    "latest_log": (
+        "Select latest timestamp: return the lexicographically latest ISO UTC timestamp or None if empty.",
+        [(["2024-03-01T00:00:00Z", "2024-02-29T23:59:59Z"], "2024-03-01T00:00:00Z"), ([], None)],
+    ),
+    "missing_ids": (
+        "Find missing sequence IDs: return absent integers between the minimum and maximum IDs, sorted.",
+        [([5, 1, 3, 3], [2, 4]), ([9], [])],
+    ),
+    "group_extensions": (
+        "Group filenames by extension: count lower-case final suffixes including the dot, using empty for none.",
+        [(["note.TXT", "log.txt", "README"], {".txt": 2, "": 1}), ([], {})],
+    ),
 }
 
-def _judge_development_proposal(solution, cases):
-    verdicts = []
-    for value, expected in cases:
-        actual = solution(deepcopy(value))
-        verdicts.append(type(actual) is type(expected) and actual == expected)
-    return all(verdicts), len(verdicts)
+@pytest.fixture
+def development_bench():
+    from csv import reader
+    from datetime import date, datetime
+    from decimal import Decimal
+    from io import StringIO
+    from json import loads
+    from pathlib import PurePosixPath
+    from re import sub
+    from urllib.parse import parse_qs
 
-def test_development_bank_judges_two_deterministic_policies():
-    from itertools import accumulate
-    from math import prod
+    def csv_rows(text):
+        return list(reader(StringIO(text, newline=""), strict=True))
 
-    numeric_policy = {
-        "sum": sum,
-        "maximum": max,
-        "minimum": min,
-        "sorted_values": sorted,
-        "distinct_count": lambda values: len(set(values)),
-        "product": prod,
-        "even_count": lambda values: sum(value % 2 == 0 for value in values),
-        "running_totals": lambda values: list(accumulate(values)),
-        "absolute_values": lambda values: list(map(abs, values)),
-        "spread": lambda values: max(values) - min(values),
+    def csv_width(text):
+        rows = csv_rows(text)
+        return bool(rows) and all(len(row) == 2 for row in rows)
+
+    def iso_date(text):
+        try:
+            normalized = date.fromisoformat(text).isoformat()
+        except ValueError:
+            return None
+        return normalized if normalized == text else None
+
+    def log_levels(text):
+        levels = (line.partition(" ") for line in text.splitlines())
+        return dict(Counter(
+            level for level, separator, _ in levels
+            if separator and level in {"INFO", "WARN", "ERROR"}
+        ))
+
+    def identity(value):
+        return value
+
+    common = {
+        "Extract email domain": lambda text: text.rpartition("@")[2].lower() if "@" in text else "",
+        "Deduplicate IDs": lambda ids: list(dict.fromkeys(ids)),
+        "Count response statuses": lambda statuses: dict(Counter(statuses)),
+        "Extract POSIX suffix": lambda path: PurePosixPath(path).suffix,
+        "Convert money to cents": lambda text: int(Decimal(text) * 100),
     }
-    basic_policy = {
-        "sum": sum,
-        "maximum": max,
-        "minimum": min,
-        "uppercase": str.upper,
-        "lowercase": str.lower,
-        "trim": str.strip,
+    structured = {
+        "Validate two-column CSV": csv_width,
+        "Count CSV records": lambda text: len(csv_rows(text)),
+        "Aggregate log levels": log_levels,
+        "Normalize ISO date": iso_date,
+        "Convert ordinal date": lambda text: datetime.strptime(text, "%Y-%j").date().isoformat(),
+        "Extract query tags": lambda text: parse_qs(text, keep_blank_values=True).get("tag", []),
+        "Sort JSON object keys": lambda text: sorted(loads(text)),
+        "Clean nonblank lines": lambda text: text.splitlines(),
     }
+    text_operations = {
+        "Validate two-column CSV": lambda text: bool(text) and all(line.count(",") == 1 for line in text.splitlines()),
+        "Clean nonblank lines": lambda text: [line.strip() for line in text.splitlines() if line.strip()],
+        "Extract first words": lambda text: [line.split()[0] for line in text.splitlines() if line.strip()],
+        "Redact ASCII digits": lambda text: sub(r"[0-9]", "*", text),
+        "Normalize whitespace": lambda text: " ".join(text.split()),
+    }
+
+    def policy(*strategies):
+        def select(prompt):
+            operation = prompt.partition(":")[0]
+            for strategy in strategies:
+                if operation in strategy:
+                    return strategy[operation]
+            return identity
+
+        return select
+
+    trusted = set(common.values()) | set(structured.values()) | set(text_operations.values())
+    trusted.add(identity)
+
+    def judge(proposal, cases):
+        assert proposal in trusted
+        verdicts = []
+        for value, expected in cases:
+            try:
+                actual = proposal(deepcopy(value))
+            except Exception:
+                verdicts.append(False)
+            else:
+                verdicts.append(type(actual) is type(expected) and actual == expected)
+        return all(verdicts), len(verdicts)
+
+    return policy(structured, common), policy(text_operations, common, structured), judge
+
+def test_development_bank_judges_two_deterministic_policies(development_bench):
+    left_policy, right_policy, judge_proposal = development_bench
     bank = _DEVELOPMENT_BANK
     assert len(bank) >= 20
     bank_fingerprint = sha256(dumps(bank, sort_keys=True).encode("utf-8")).hexdigest()
     judge = "python-development-io"
 
-    def run_arm(policy_id, proposals):
+    def run_arm(policy_id, select):
         receipts = []
         contexts = []
         observations = {}
-        for task_id, cases in bank.items():
+        for task_id, (prompt, cases) in bank.items():
             allocation = {"proposals": 1, "case_evaluations": len(cases)}
-            solution = proposals.get(task_id, lambda value: value)
-            verdict, evaluations = _judge_development_proposal(solution, cases)
+            proposal = select(prompt)
+            verdict, evaluations = judge_proposal(proposal, cases)
             consumption = {"proposals": 1, "case_evaluations": evaluations}
             assert consumption == allocation
             policy = {"id": policy_id, "task_budget": allocation}
@@ -129,29 +251,32 @@ def test_development_bank_judges_two_deterministic_policies():
             observations[task_id] = verdict
         return receipts, contexts, observations
 
-    left, left_contexts, left_verdicts = run_arm("numeric", numeric_policy)
-    right, right_contexts, right_verdicts = run_arm("basic", basic_policy)
+    left, left_contexts, left_verdicts = run_arm("structured-first", left_policy)
+    right, right_contexts, right_verdicts = run_arm("text-first", right_policy)
     assert left_verdicts.keys() == right_verdicts.keys() == bank.keys()
+    assert len(left) == len(left_contexts) == len(right) == len(right_contexts) == len(bank)
     for left_task, right_task in zip(left_contexts, right_contexts):
         assert left_task.task_id == right_task.task_id
         assert left_task.bank_fingerprint == right_task.bank_fingerprint == bank_fingerprint
         assert left_task.policy["task_budget"] == right_task.policy["task_budget"]
         assert left_task.consumed_budget == right_task.consumed_budget
+        assert left_task.consumed_budget["proposals"] == 1
+    for contexts in (left_contexts, right_contexts):
+        assert sum(task.consumed_budget["case_evaluations"] for task in contexts) == 40
 
     left_counts = aggregate(left, left_contexts).overall
     right_counts = aggregate(right, right_contexts).overall
-    assert left_counts == Counts(sum(left_verdicts.values()), len(bank))
-    assert right_counts == Counts(sum(right_verdicts.values()), len(bank))
-    assert left_counts != right_counts
+    assert left_counts == Counts(12, 20)
+    assert right_counts == Counts(15, 20)
+    assert sum(left_verdicts.values()) / len(left_verdicts) == 0.60
+    assert sum(right_verdicts.values()) / len(right_verdicts) == 0.75
 
     observed_pairs = Counter(
         (left_verdicts[task_id], right_verdicts[task_id]) for task_id in bank
     )
-    expected = tuple(
-        observed_pairs[pair] for pair in
-        ((True, True), (True, False), (False, True), (False, False))
-    )
-    assert all(expected)
+    pair_order = ((True, True), (True, False), (False, True), (False, False))
+    expected = (11, 1, 4, 4)
+    assert tuple(observed_pairs[pair] for pair in pair_order) == expected
     paired = count_synthetic_mcnemar_pairs(
         left, left_contexts, right, right_contexts,
         validate_task_receipt_consistency=synthetic_validator,
