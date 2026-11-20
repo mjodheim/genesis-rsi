@@ -31,9 +31,11 @@ Milestone 2 still requires verification of an established signature
 primitive in the offline container and of the applicable publication terms.
 The per-execution receipt fingerprint check requires submitted task identifiers
 to match the external task registry exactly and checks each receipt for
-contractual consistency before counting. The independent attestation source
-and the origin of verdicts remain unverified. Production receipt entry points
-refuse requests until an authenticated independent source is connected.
+contractual consistency before counting. Coverage and integrity checks also
+require the language of each task to match the trusted external manifest
+for its bank fingerprint. Both public receipt entry points remain disabled
+until an authenticated independent source is connected. The availability
+of that source and the origin of verdicts remain unverified.
 """
 
 from collections.abc import Callable, Iterable, Mapping
@@ -47,6 +49,7 @@ from genesis import mira_policy_contract
 
 
 ReceiptAttestations = Mapping[tuple[str, str, str, str, str], str]
+TaskManifest = Mapping[str, Mapping[str, str]]
 
 def resolve_ablation_parent(
     child: mira_policy_contract.CodingPolicy,
@@ -256,15 +259,16 @@ def _count_attested_mcnemar_pairs(
     left_run_id: str,
     right_run_id: str,
     attestations: ReceiptAttestations,
+    task_manifest: TaskManifest,
 ) -> McNemarPairs:
-    """Count pairs after checking receipt fingerprints for each expected run."""
+    """Count pairs after checking task languages and receipt attestations."""
     if left_run_id == right_run_id:
         raise ValueError("paired execution identifiers must differ")
     left, left_results = _index_receipts(
-        left_receipts, left_contexts, attestations, run_id=left_run_id
+        left_receipts, left_contexts, attestations, task_manifest, run_id=left_run_id
     )
     right, right_results = _index_receipts(
-        right_receipts, right_contexts, attestations, run_id=right_run_id
+        right_receipts, right_contexts, attestations, task_manifest, run_id=right_run_id
     )
     for arm, contexts in (("left", left), ("right", right)):
         if len({context.policy.sha256 for context in contexts.values()}) != 1:
@@ -346,10 +350,11 @@ def _aggregate_attested_receipts(
     contexts: Iterable[TaskContext],
     run_id: str,
     attestations: ReceiptAttestations,
+    task_manifest: TaskManifest,
 ) -> Fitness:
-    """Check fingerprints for the expected run before aggregating receipts."""
+    """Check task languages and receipt attestations before aggregating."""
     expected, results = _index_receipts(
-        receipts, contexts, attestations, run_id=run_id
+        receipts, contexts, attestations, task_manifest, run_id=run_id
     )
     _validate_single_bank(expected)
     return _fitness(expected, results)
@@ -362,6 +367,7 @@ def _index_receipts(
     receipts: Iterable[Any],
     contexts: Iterable[TaskContext],
     attestations: ReceiptAttestations,
+    task_manifest: TaskManifest,
     *,
     run_id: str,
 ) -> tuple[dict[str, TaskContext], dict[str, bool]]:
@@ -421,6 +427,15 @@ def _index_receipts(
     registry_keys = {key for key in attestations if key[0] == run_id}
     if registry_keys != set(context_keys.values()):
         raise ValueError("receipt attestation coverage mismatch")
+
+    for task_id, context in expected.items():
+        bank_tasks = task_manifest.get(context.bank_fingerprint)
+        if bank_tasks is None:
+            raise ValueError("bank fingerprint absent from task manifest")
+        if task_id not in bank_tasks:
+            raise ValueError(f"task {task_id} absent from bank manifest")
+        if bank_tasks[task_id] != context.language:
+            raise ValueError(f"task manifest language mismatch for task {task_id}")
 
     results = {}
     for task_id, context in expected.items():

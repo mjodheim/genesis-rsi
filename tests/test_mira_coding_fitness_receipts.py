@@ -135,9 +135,17 @@ def expected_attestations(contexts, verdicts=None, *, run_id="left"):
     return attestations
 
 
-def aggregate_attested(receipts, *, contexts, attestations, run_id="left"):
+TASK_MANIFEST = {
+    "a" * 64: {"a": "python", "b": "rust", "c": "python", "d": "python", "e": "rust"},
+    "b" * 64: {"a": "python", "b": "rust", "c": "python"},
+}
+
+def aggregate_attested(
+    receipts, *, contexts, attestations, run_id="left", task_manifest=TASK_MANIFEST
+):
     return _aggregate_attested_receipts(
-        receipts, contexts=contexts, attestations=attestations, run_id=run_id
+        receipts, contexts=contexts, attestations=attestations, run_id=run_id,
+        task_manifest=task_manifest,
     )
 
 def count_attested(
@@ -145,7 +153,7 @@ def count_attested(
 ):
     return _count_attested_mcnemar_pairs(
         *arms, attestations=attestations, left_run_id=left_run_id,
-        right_run_id=right_run_id,
+        right_run_id=right_run_id, task_manifest=TASK_MANIFEST,
     )
 
 def assert_real_refusal_without_mutation(receipts, contexts):
@@ -222,9 +230,8 @@ def test_real_context_divergences(real_receipts, field, value):
     receipts[0] = make_receipt(contexts[0], True, **{field: value})
     assert_real_refusal_without_mutation(receipts, contexts)
 
-def test_real_language_attribution_comes_from_external_contexts(real_receipts):
+def test_real_aggregation_rejects_language_reattribution(real_receipts):
     receipts, contexts, _ = real_receipts
-    before = deepcopy((receipts, contexts))
     attestations = expected_attestations(contexts)
     original = aggregate_attested(
         receipts, contexts=contexts, attestations=attestations
@@ -234,21 +241,56 @@ def test_real_language_attribution_comes_from_external_contexts(real_receipts):
         "python": Counts(1, 2),
         "rust": Counts(1, 1),
     }
-    changed_contexts = [
-        replace(context, language="rust" if context.task_id == "a" else context.language)
-        for context in contexts
-    ]
-    changed_before = deepcopy(changed_contexts)
-    changed = aggregate_attested(
-        receipts, contexts=changed_contexts, attestations=attestations
+    changed_contexts = [replace(contexts[0], language="rust"), *contexts[1:]]
+    inputs = receipts, contexts, changed_contexts, attestations
+    before = deepcopy(inputs)
+    with pytest.raises(ValueError, match="^task manifest language mismatch for task a$"):
+        aggregate_attested(
+            receipts, contexts=changed_contexts, attestations=attestations
+        )
+    assert inputs == before
+
+@pytest.mark.parametrize("change_both_arms", [False, True])
+def test_real_mcnemar_rejects_language_reattribution(real_receipts, change_both_arms):
+    receipts, contexts, make_receipt = real_receipts
+    right = [make_receipt(contexts[0], False), *receipts[1:]]
+    attestations = expected_attestations(contexts) | expected_attestations(
+        contexts, {"a": False, "b": True, "c": False}, run_id="right"
     )
-    assert changed.overall == Counts(2, 3)
-    assert changed.by_language == {
-        "python": Counts(0, 1),
-        "rust": Counts(2, 2),
-    }
-    assert (receipts, contexts) == before
-    assert changed_contexts == changed_before
+    original = count_attested(
+        receipts, contexts, right, contexts, attestations=attestations
+    )
+    assert original.overall == (1, 1, 0, 1)
+    assert original.by_language == {"python": (0, 1, 0, 1), "rust": (1, 0, 0, 0)}
+
+    changed_contexts = [replace(contexts[0], language="rust"), *contexts[1:]]
+    left_contexts = changed_contexts if change_both_arms else contexts
+    inputs = receipts, contexts, right, changed_contexts, attestations
+    before = deepcopy(inputs)
+    with pytest.raises(ValueError, match="^task manifest language mismatch for task a$"):
+        count_attested(
+            receipts, left_contexts, right, changed_contexts, attestations=attestations
+        )
+    assert inputs == before
+
+@pytest.mark.parametrize(
+    "missing,message",
+    [
+        ("bank", "^bank fingerprint absent from task manifest$"),
+        ("task", "^task a absent from bank manifest$"),
+    ],
+)
+def test_real_rejects_missing_manifest_entries(real_receipts, missing, message):
+    receipts, contexts, _ = real_receipts
+    attestations = expected_attestations(contexts)
+    other_bank = TASK_MANIFEST["b" * 64]
+    manifest = {"b" * 64: other_bank}
+    if missing == "task":
+        manifest["a" * 64] = {"b": "rust", "c": "python"}
+    with pytest.raises(ValueError, match=message):
+        aggregate_attested(
+            receipts, contexts=contexts, attestations=attestations, task_manifest=manifest
+        )
 
 def test_real_policy_divergence(real_receipts):
     receipts, contexts, make_receipt = real_receipts
@@ -617,7 +659,6 @@ def test_real_mcnemar_rejects_allocated_budget_divergences(
     [
         ("bank_fingerprint", "b" * 64),
         ("judge", "different-judge"),
-        ("language", "rust"),
         ("consumed_budget", {"models": ["another-offline-test-model"]}),
         ("consumed_budget", {"tokens": 101}),
         ("consumed_budget", {"proposals": 2}),
