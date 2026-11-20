@@ -13,11 +13,14 @@ TypeError: aggregate_receipts() got an unexpected keyword argument
 Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
 including the Python development bank test. Its scope is the reported
 fitness run. The development bank uses nonempty lists for max and min.
-Fresh verification requires pytest exit code 0 for both targeted suites,
-tests/test_mira_coding_fitness.py and tests/test_mira_coding_fitness_receipts.py,
-in the offline container without network access or model use. Record the
-launch evidence, exit status, pass count, and evidence ID against the new
-commit. Verification of the per-execution fingerprint check is pending.
+Fresh verification requires pytest exit code 0 for each targeted suite:
+tests/test_mira_coding_fitness.py,
+tests/test_mira_coding_fitness_receipts.py, and
+tests/test_mira_coding_fitness_mcnemar.py, in the offline container without
+network access or model use. No test launch is attested for this correction.
+Record the observed exit status, pass count, and evidence ID for each suite
+against the new commit.
+Verification of the per-execution fingerprint check is pending.
 The 153 passes recorded above are historical.
 Consistency alone proves neither truth, authenticity, nor judge independence.
 
@@ -240,8 +243,6 @@ def count_mcnemar_pairs(
     left_contexts: Iterable[TaskContext],
     right_receipts: Iterable[Any],
     right_contexts: Iterable[TaskContext],
-    *,
-    attestations: ReceiptAttestations,
 ) -> McNemarPairs:
     """Require an authenticated independent source before counting real pairs."""
     raise ValueError("authenticated independent receipt attestation source required")
@@ -326,7 +327,6 @@ def aggregate_receipts(
     receipts: Iterable[Any],
     *,
     contexts: Iterable[TaskContext],
-    attestations: ReceiptAttestations,
 ) -> Fitness:
     """Require an authenticated independent source before aggregating real receipts."""
     raise ValueError("authenticated independent receipt attestation source required")

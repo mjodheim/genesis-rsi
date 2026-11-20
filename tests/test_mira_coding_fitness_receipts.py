@@ -159,12 +159,12 @@ def assert_real_refusal_without_mutation(receipts, contexts):
 def test_real_requires_external_context_registry(real_receipts):
     receipts, _, _ = real_receipts
     with pytest.raises(TypeError, match="contexts"):
-        aggregate_receipts(receipts, attestations={})
+        aggregate_receipts(receipts)
 
 def test_real_rejects_positional_contexts(real_receipts):
     receipts, contexts, _ = real_receipts
     with pytest.raises(TypeError, match="positional"):
-        aggregate_receipts(receipts, contexts, attestations=expected_attestations(contexts))
+        aggregate_receipts(receipts, contexts)
 
 def test_real_rejects_missing_task_context(real_receipts):
     receipts, contexts, _ = real_receipts
@@ -435,7 +435,6 @@ def test_real_entry_rejects_caller_validator(synthetic):
         aggregate_receipts(
             receipts,
             contexts=contexts,
-            attestations={},
             validate_task_receipt_consistency=synthetic_validator,
         )
 
@@ -444,10 +443,17 @@ def test_real_mcnemar_rejects_caller_validator(real_receipts):
     with pytest.raises(TypeError, match="validate_task_receipt_consistency"):
         count_mcnemar_pairs(
             receipts, contexts, receipts, contexts,
-            attestations=expected_attestations(contexts),
             validate_task_receipt_consistency=synthetic_validator,
         )
 
+
+def test_production_refuses_counting_without_independent_source(real_receipts):
+    receipts, contexts, _ = real_receipts
+    message = "^authenticated independent receipt attestation source required$"
+    with pytest.raises(ValueError, match=message):
+        aggregate_receipts(receipts, contexts=contexts)
+    with pytest.raises(ValueError, match=message):
+        count_mcnemar_pairs(receipts, contexts, receipts, contexts)
 
 def test_production_rejects_fingerprints_recomputed_from_receipts(real_receipts):
     receipts, contexts, _ = real_receipts
@@ -458,11 +464,13 @@ def test_production_rejects_fingerprints_recomputed_from_receipts(real_receipts)
         for run_id in ("left", "right"):
             attestations[attestation_key(run_id, context)] = receipt.envelope.sha256
 
-    message = "authenticated independent receipt attestation source required"
-    with pytest.raises(ValueError, match=message):
+    message = "unexpected keyword argument 'attestations'"
+    with pytest.raises(TypeError, match=message):
         aggregate_receipts(receipts, contexts=contexts, attestations=attestations)
-    with pytest.raises(ValueError, match=message):
-        count_mcnemar_pairs(receipts, contexts, receipts, contexts, attestations=attestations)
+    with pytest.raises(TypeError, match=message):
+        count_mcnemar_pairs(
+            receipts, contexts, receipts, contexts, attestations=attestations
+        )
 
 @pytest.mark.parametrize("arm", ["left", "right"])
 def test_real_mcnemar_rejects_mixed_policies(real_receipts, arm):
