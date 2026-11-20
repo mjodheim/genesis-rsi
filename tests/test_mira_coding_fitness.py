@@ -11,14 +11,18 @@ No corrected execution result or capability gain is attested.
 from copy import deepcopy
 from dataclasses import replace
 from itertools import permutations
+from math import isfinite, sqrt, ulp
 
 import pytest
 
 from genesis.mira_coding_fitness import (
     Counts,
+    LanguageNonInferiority,
+    McNemarPairs,
     TaskContext,
     aggregate_receipts,
     aggregate_synthetic_receipts,
+    assess_paired_non_inferiority,
     count_mcnemar_pairs,
     count_synthetic_mcnemar_pairs,
     mcnemar_exact_pvalue,
@@ -26,6 +30,119 @@ from genesis.mira_coding_fitness import (
 )
 from genesis.mira_policy_contract import BankExternalReceipt, CodingPolicy, JsonObjectEnvelope
 
+
+@pytest.mark.parametrize("extra", [{}, {"rust": (0, 0, 0, 0)}])
+def test_non_inferiority_requires_evaluable_languages(extra):
+    pairs = McNemarPairs((0, 10, 0, 0), {"python": (0, 10, 0, 0), **extra})
+    passed, results = assess_paired_non_inferiority(
+        pairs, ["python", "rust"], delta=0.10, alpha=0.05
+    )
+    assert not passed
+    assert results["python"].passes(0.10)
+    assert results["rust"] is None
+
+@pytest.mark.parametrize("delta", [0.10, 0.975])
+def test_non_inferiority_one_concordant_pair(delta):
+    pairs = McNemarPairs((1, 0, 0, 0), {"python": (1, 0, 0, 0)})
+    passed, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=delta, alpha=0.05
+    )
+    assert not passed
+    assert results["python"].difference == 0
+    assert results["python"].lower_bound == pytest.approx(-0.975)
+
+def test_non_inferiority_rejects_bound_equal_to_negative_margin():
+    assert not LanguageNonInferiority(0.0, -0.975).passes(0.975)
+
+def test_non_inferiority_with_subnormal_alpha():
+    counts = (1, 1, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    passed, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=0.10, alpha=1e-320
+    )
+    result = results["python"]
+    assert not passed
+    assert result is not None
+    assert isfinite(result.lower_bound)
+    assert not result.passes(0.10)
+
+def test_non_inferiority_rejects_inconsistent_overall_counts():
+    pairs = McNemarPairs((0, 0, 1, 0), {"python": (0, 10, 0, 0)})
+    with pytest.raises(ValueError, match="overall pair counts"):
+        assess_paired_non_inferiority(pairs, ["python"], delta=0.10, alpha=0.05)
+
+def test_non_inferiority_bound_with_one_favorable_pair_out_of_two():
+    counts = (1, 1, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    _, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=0.10, alpha=0.05
+    )
+    result = results["python"]
+    assert result is not None
+    assert result.lower_bound == pytest.approx(sqrt(0.025) - sqrt(0.975))
+
+def test_non_inferiority_preserves_half_tail_at_smallest_positive_alpha():
+    counts = (0, 32, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    _, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=0.10, alpha=2**-1074
+    )
+    result = results["python"]
+    assert result is not None
+    assert result.lower_bound > -1.0
+    assert result.lower_bound == pytest.approx(
+        2 * 2**(-1075 / 32) - 1, rel=0, abs=ulp(-1.0)
+    )
+
+@pytest.mark.parametrize("size,expected", [(21, False), (22, True)])
+def test_non_inferiority_with_all_favorable_pairs_near_margin(size, expected):
+    delta = 0.5
+    counts = (0, size, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    passed, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=delta, alpha=2**-41
+    )
+    result = results["python"]
+    assert result is not None
+    assert result.passes(delta) is expected
+    assert passed is expected
+
+@pytest.mark.parametrize("rust_count,expected", [(1, False), (10, True)])
+def test_non_inferiority_requires_every_language_to_pass(rust_count, expected):
+    pairs = McNemarPairs(
+        (rust_count, 10, 0, 0),
+        {"python": (0, 10, 0, 0), "rust": (rust_count, 0, 0, 0)},
+    )
+    passed, results = assess_paired_non_inferiority(
+        pairs, ["python", "rust"], delta=0.40, alpha=0.05
+    )
+    assert results["python"].passes(0.40)
+    assert results["rust"].passes(0.40) is expected
+    assert passed is expected
+
+@pytest.mark.parametrize(
+    "languages,delta,alpha",
+    [
+        ([], 0.10, 0.05),
+        ([""], 0.10, 0.05),
+        (["python", "python"], 0.10, 0.05),
+        ("python", 0.10, 0.05),
+        (["python"], 0, 0.05),
+        (["python"], float("nan"), 0.05),
+        (["python"], 0.10, 1),
+        (["python"], 0.10, True),
+    ],
+)
+def test_non_inferiority_rejects_invalid_parameters(languages, delta, alpha):
+    pairs = McNemarPairs((1, 0, 0, 0), {"python": (1, 0, 0, 0)})
+    with pytest.raises(ValueError):
+        assess_paired_non_inferiority(pairs, languages, delta=delta, alpha=alpha)
+
+@pytest.mark.parametrize("counts", [(1, 0, 0), (1, -1, 0, 0), (1, True, 0, 0)])
+def test_non_inferiority_rejects_invalid_counts(counts):
+    pairs = McNemarPairs((1, 0, 0, 0), {"python": counts})
+    with pytest.raises(ValueError):
+        assess_paired_non_inferiority(pairs, ["python"], delta=0.10, alpha=0.05)
 
 @pytest.fixture
 def ablation_policies():
