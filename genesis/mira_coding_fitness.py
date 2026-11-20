@@ -153,7 +153,7 @@ def assess_paired_non_inferiority(
     for counts in pairs.by_language.values():
         _validate_pair_counts(counts)
 
-    tail = alpha / 2
+    log_tail = log(alpha) - log(2)
     results: dict[str, LanguageNonInferiority | None] = {}
     for language in languages:
         counts = pairs.by_language.get(language)
@@ -162,8 +162,8 @@ def assess_paired_non_inferiority(
             continue
         _, left_only, right_only, _ = counts
         size = sum(counts)
-        lower = _binomial_lower_bound(left_only, size, tail)
-        upper = 1 - _binomial_lower_bound(size - right_only, size, tail)
+        lower = _binomial_lower_bound(left_only, size, log_tail)
+        upper = 1 - _binomial_lower_bound(size - right_only, size, log_tail)
         results[language] = LanguageNonInferiority((left_only - right_only) / size, lower - upper)
     return all(result is not None and result.passes(delta) for result in results.values()), results
 
@@ -183,12 +183,11 @@ def _validate_pair_counts(counts: tuple[int, ...]) -> None:
     ):
         raise ValueError("expected four nonnegative integer pair counts")
 
-def _binomial_lower_bound(count: int, size: int, tail: float) -> float:
-    if count == 0 or tail == 0:
+def _binomial_lower_bound(count: int, size: int, log_tail: float) -> float:
+    if count == 0:
         return 0.0
     if count == size:
-        return tail ** (1 / size)
-    log_tail = log(tail)
+        return exp(log_tail / size)
     weights = [log(comb(size, k)) for k in range(count, size + 1)]
     low, high = 0.0, 1.0
     while True:
@@ -196,11 +195,13 @@ def _binomial_lower_bound(count: int, size: int, tail: float) -> float:
         if midpoint == low or midpoint == high:
             return low
         log_p, log_q = log(midpoint), log1p(-midpoint)
-        scaled_tail = fsum(
-            exp(weight + k * log_p + (size - k) * log_q - log_tail)
+        log_terms = [
+            weight + k * log_p + (size - k) * log_q
             for k, weight in enumerate(weights, start=count)
-        )
-        if scaled_tail >= 1:
+        ]
+        peak = max(log_terms)
+        log_probability = peak + log(fsum(exp(term - peak) for term in log_terms))
+        if log_probability >= log_tail:
             high = midpoint
         else:
             low = midpoint

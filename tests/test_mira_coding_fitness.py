@@ -11,6 +11,7 @@ No corrected execution result or capability gain is attested.
 from copy import deepcopy
 from dataclasses import replace
 from itertools import permutations
+from math import isfinite
 
 import pytest
 
@@ -52,6 +53,18 @@ def test_non_inferiority_one_concordant_pair(delta):
 
 def test_non_inferiority_rejects_bound_equal_to_negative_margin():
     assert not LanguageNonInferiority(0.0, -0.975).passes(0.975)
+
+def test_non_inferiority_with_subnormal_alpha():
+    counts = (1, 1, 0, 0)
+    pairs = McNemarPairs(counts, {"python": counts})
+    passed, results = assess_paired_non_inferiority(
+        pairs, ["python"], delta=0.10, alpha=1e-320
+    )
+    result = results["python"]
+    assert not passed
+    assert result is not None
+    assert isfinite(result.lower_bound)
+    assert not result.passes(0.10)
 
 @pytest.mark.parametrize("rust_count,expected", [(1, False), (10, True)])
 def test_non_inferiority_requires_every_language_to_pass(rust_count, expected):
