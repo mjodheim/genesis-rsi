@@ -120,10 +120,11 @@ def test_real_requires_external_context_registry(real_receipts):
     with pytest.raises(TypeError, match="contexts"):
         aggregate_receipts(receipts)
 
-def test_real_rejects_positional_context_registry(real_receipts):
+def test_real_positional_and_keyword_context_counts_match(real_receipts):
     receipts, contexts, _ = real_receipts
-    with pytest.raises(TypeError, match="positional"):
-        aggregate_receipts(receipts, contexts)
+    positional = aggregate_receipts(receipts, contexts)
+    keyword = aggregate_receipts(receipts, contexts=contexts)
+    assert positional == keyword
 
 def test_real_rejects_missing_task_context(real_receipts):
     receipts, contexts, _ = real_receipts

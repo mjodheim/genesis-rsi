@@ -297,7 +297,6 @@ def _count_mcnemar_pairs(
 
 def aggregate_receipts(
     receipts: Iterable[Any],
-    *,
     contexts: Iterable[TaskContext],
 ) -> Fitness:
     """Validate real receipts with the contract before counting their results.
