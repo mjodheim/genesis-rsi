@@ -319,6 +319,21 @@ def test_mcnemar_exact_pvalue_rejects_negative_counts(left_only, right_only):
     with pytest.raises(ValueError):
         mcnemar_exact_pvalue(left_only, right_only)
 
+@pytest.mark.parametrize(
+    "left_only,right_only",
+    [
+        (True, 0),
+        (False, 0),
+        (1.0, 0),
+        (0, True),
+        (0, False),
+        (0, 1.0),
+    ],
+)
+def test_mcnemar_exact_pvalue_rejects_non_integer_counts(left_only, right_only):
+    with pytest.raises(ValueError):
+        mcnemar_exact_pvalue(left_only, right_only)
+
 @pytest.fixture(params=["objects", "envelopes"])
 def real_receipts(request):
     policy = CodingPolicy.create(

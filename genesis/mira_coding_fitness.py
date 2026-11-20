@@ -188,6 +188,8 @@ def assess_paired_non_inferiority(
 
 def mcnemar_exact_pvalue(left_only: int, right_only: int) -> float:
     """Return the descriptive two-sided exact p-value for discordant counts."""
+    if type(left_only) is not int or type(right_only) is not int:
+        raise ValueError("discordant counts must have exact int type")
     if left_only < 0 or right_only < 0:
         raise ValueError("discordant counts must be nonnegative")
     discordant = left_only + right_only
