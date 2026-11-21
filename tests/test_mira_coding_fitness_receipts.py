@@ -181,7 +181,7 @@ def test_real_refuses_before_iterating_inputs(call_style):
         if call_style == "positional":
             aggregate_receipts(receipts, contexts)
         else:
-            aggregate_receipts(receipts, contexts=contexts)
+            aggregate_receipts(receipts=receipts, contexts=contexts)
     assert str(exc_info.value) == "authenticated independent receipt attestation source required"
 
 def test_real_rejects_missing_task_context(real_receipts):
