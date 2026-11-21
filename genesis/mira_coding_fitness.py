@@ -345,7 +345,6 @@ def _count_mcnemar_pairs(
 
 def aggregate_receipts(
     receipts: Iterable[Any],
-    *,
     contexts: Iterable[TaskContext],
 ) -> Fitness:
     """Raise before counting real receipts pending an authenticated independent source."""

@@ -170,10 +170,19 @@ def test_real_requires_external_context_registry(real_receipts):
     with pytest.raises(TypeError, match="contexts"):
         aggregate_receipts(receipts)
 
-def test_real_rejects_positional_contexts(real_receipts):
-    receipts, contexts, _ = real_receipts
-    with pytest.raises(TypeError, match="positional"):
-        aggregate_receipts(receipts, contexts)
+@pytest.mark.parametrize("call_style", ["positional", "keyword"])
+def test_real_refuses_before_iterating_inputs(call_style):
+    class UnreadableInput:
+        def __iter__(self):
+            raise AssertionError("Public refusal must precede input iteration")
+
+    receipts, contexts = UnreadableInput(), UnreadableInput()
+    with pytest.raises(ValueError) as exc_info:
+        if call_style == "positional":
+            aggregate_receipts(receipts, contexts)
+        else:
+            aggregate_receipts(receipts, contexts=contexts)
+    assert str(exc_info.value) == "authenticated independent receipt attestation source required"
 
 def test_real_rejects_missing_task_context(real_receipts):
     receipts, contexts, _ = real_receipts
