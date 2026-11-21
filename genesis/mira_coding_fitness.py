@@ -1,20 +1,49 @@
-"""Inert receipt aggregation and ablation policy resolution.
+"""Preventive blocking for real receipt counting and ablation policy resolution.
 
-Fingerprints and consistency checks do not establish authenticity.
-This module produces paired counts and assesses non-inferiority using
-parameters set by the external protocol. External judge integration, registry
-authentication, and freezing before evaluation remain unverified.
+Both public real-receipt entry points raise ValueError before any counting.
+Paired non-inferiority uses parameters set by the external protocol.
+External judge integration, registry authentication, and freezing before
+evaluation remain unverified.
 Evidence 66dcca637bf1470bb8a4337d1be558ab covers the baseline only.
 
 Initial negative evidence 425f5272292041f0a9aba16188c5fc8f: exit code 1,
 TypeError: aggregate_receipts() got an unexpected keyword argument
 'validate_task_receipt_consistency'.
-No new execution results or capability gains are claimed.
 
-Compatibility with the receipt contract and the results of this correction
-remain unverified. Targeted offline tests require execution and launch evidence;
-neither is attested here.
+Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
+including the Python development bank test. Its scope is the reported
+fitness run. The development bank uses nonempty lists for max and min.
+Evidence 6b9d375131004cda820ad09ba7b132b4 reports 192 passing tests on the
+pre-correction copy.
+
+Before resubmitting PR #486, verify that its cumulative diff matches the
+announced scope and align its title and description with the preventive block.
+For the SHA to be submitted, rerun each targeted suite in the offline
+container without network access or model use:
+tests/test_mira_coding_fitness.py,
+tests/test_mira_coding_fitness_receipts.py,
+tests/test_mira_coding_fitness_mcnemar.py, and
+tests/test_mira_coding_fitness_bank_identity.py.
+Require pytest exit code 0 for each suite and record the command, observed
+exit code, test count, and evidence ID per suite against the submitted SHA.
+Fresh verification is pending for this correction.
+Verification of the per-execution fingerprint check is pending.
+The 153 passes recorded above are historical.
 Consistency alone proves neither truth, authenticity, nor judge independence.
+
+Evidence 508b49fef5e74d0e866f83aa98221b8d records that cryptography was absent
+from the image used. The image rebuild remains to be confirmed.
+Eight-language calibration and Ed25519 validation remain open.
+Milestone 2 still requires verification of an established signature
+primitive in the offline container and of the applicable publication terms.
+The private receipt helpers check consistency across data supplied by the
+caller. For each execution, the receipt and context task sets must agree,
+and the context keys must exactly match the supplied registry keys for that
+execution. This coverage check rejects omission of a registered failed task.
+Each receipt is checked for contractual consistency and fingerprint agreement
+with the supplied registry. Each task's language must match the supplied
+manifest for its bank fingerprint. The independent provenance of the
+registry and manifest, and the origin of verdicts, remain to be established.
 """
 
 from collections.abc import Callable, Iterable, Mapping
@@ -26,6 +55,9 @@ from typing import Any
 
 from genesis import mira_policy_contract
 
+
+ReceiptAttestations = Mapping[tuple[str, str, str, str, str], str]
+TaskManifest = Mapping[str, Mapping[str, str]]
 
 def resolve_ablation_parent(
     child: mira_policy_contract.CodingPolicy,
@@ -182,6 +214,8 @@ def assess_paired_non_inferiority(
 
 def mcnemar_exact_pvalue(left_only: int, right_only: int) -> float:
     """Return the descriptive two-sided exact p-value for discordant counts."""
+    if type(left_only) is not int or type(right_only) is not int:
+        raise ValueError("discordant counts must have exact int type")
     if left_only < 0 or right_only < 0:
         raise ValueError("discordant counts must be nonnegative")
     discordant = left_only + right_only
@@ -221,9 +255,29 @@ def count_mcnemar_pairs(
     right_receipts: Iterable[Any],
     right_contexts: Iterable[TaskContext],
 ) -> McNemarPairs:
-    """Count contractual pairs in the order both, left only, right only, neither."""
-    left, left_results = _index_receipts(left_receipts, left_contexts)
-    right, right_results = _index_receipts(right_receipts, right_contexts)
+    """Raise before counting real pairs pending an authenticated independent source."""
+    raise ValueError("authenticated independent receipt attestation source required")
+
+def _count_attested_mcnemar_pairs(
+    left_receipts: Iterable[Any],
+    left_contexts: Iterable[TaskContext],
+    right_receipts: Iterable[Any],
+    right_contexts: Iterable[TaskContext],
+    *,
+    left_run_id: str,
+    right_run_id: str,
+    attestations: ReceiptAttestations,
+    task_manifest: TaskManifest,
+) -> McNemarPairs:
+    """Count pairs after consistency checks on caller-supplied data."""
+    if left_run_id == right_run_id:
+        raise ValueError("paired execution identifiers must differ")
+    left, left_results = _index_receipts(
+        left_receipts, left_contexts, attestations, task_manifest, run_id=left_run_id
+    )
+    right, right_results = _index_receipts(
+        right_receipts, right_contexts, attestations, task_manifest, run_id=right_run_id
+    )
     for arm, contexts in (("left", left), ("right", right)):
         if len({context.policy.sha256 for context in contexts.values()}) != 1:
             raise ValueError(f"{arm} arm must have exactly one policy fingerprint")
@@ -233,6 +287,8 @@ def count_mcnemar_pairs(
     for component in ("models", "tokens", "proposals", "time_seconds"):
         if left_budget[component] != right_budget[component]:
             raise ValueError(f"paired allocated task_budget {component} mismatch")
+    _validate_mcnemar_pairs(left, right)
+    _validate_single_bank(left)
     return _count_mcnemar_pairs(left, left_results, right, right_results)
 
 def count_synthetic_mcnemar_pairs(
@@ -252,15 +308,14 @@ def count_synthetic_mcnemar_pairs(
     right, right_results = _index_synthetic_receipts(
         right_receipts, right_contexts, validate_task_receipt_consistency
     )
+    _validate_mcnemar_pairs(left, right)
     return _count_mcnemar_pairs(left, left_results, right, right_results)
 
 
-def _count_mcnemar_pairs(
+def _validate_mcnemar_pairs(
     left: Mapping[str, TaskContext],
-    left_results: Mapping[str, bool],
     right: Mapping[str, TaskContext],
-    right_results: Mapping[str, bool],
-) -> McNemarPairs:
+) -> None:
     if left.keys() != right.keys():
         raise ValueError("paired task sets differ")
     for task_id, left_context in left.items():
@@ -271,6 +326,13 @@ def _count_mcnemar_pairs(
             if type(first) is not type(second) or first != second:
                 raise ValueError(f"paired {name} mismatch for task {task_id}")
 
+
+def _count_mcnemar_pairs(
+    left: Mapping[str, TaskContext],
+    left_results: Mapping[str, bool],
+    right: Mapping[str, TaskContext],
+    right_results: Mapping[str, bool],
+) -> McNemarPairs:
     totals = {}
     overall = [0, 0, 0, 0]
     for task_id, context in left.items():
@@ -285,17 +347,40 @@ def aggregate_receipts(
     receipts: Iterable[Any],
     contexts: Iterable[TaskContext],
 ) -> Fitness:
-    """Validate real receipts with the contract before counting their results.
+    """Raise before counting real receipts pending an authenticated independent source."""
+    raise ValueError("authenticated independent receipt attestation source required")
 
-    All expectations passed to the contract come from detached external
-    contexts. Caller-provided validators are deliberately unsupported.
-    """
-    return _fitness(*_index_receipts(receipts, contexts))
+
+def _aggregate_attested_receipts(
+    receipts: Iterable[Any],
+    *,
+    contexts: Iterable[TaskContext],
+    run_id: str,
+    attestations: ReceiptAttestations,
+    task_manifest: TaskManifest,
+) -> Fitness:
+    """Aggregate receipts after consistency checks on caller-supplied data."""
+    expected, results = _index_receipts(
+        receipts, contexts, attestations, task_manifest, run_id=run_id
+    )
+    _validate_single_bank(expected)
+    return _fitness(expected, results)
+
+def _validate_single_bank(contexts: Mapping[str, TaskContext]) -> None:
+    if len({context.bank_fingerprint for context in contexts.values()}) != 1:
+        raise ValueError("attested task set must have exactly one bank fingerprint")
 
 def _index_receipts(
     receipts: Iterable[Any],
     contexts: Iterable[TaskContext],
+    attestations: ReceiptAttestations,
+    task_manifest: TaskManifest,
+    *,
+    run_id: str,
 ) -> tuple[dict[str, TaskContext], dict[str, bool]]:
+    """Check coverage, languages, and fingerprints against caller-supplied data."""
+    if type(run_id) is not str or not run_id.strip():
+        raise ValueError("explicit nonempty execution identifier required")
     contexts = deepcopy(list(contexts))
     receipts = deepcopy(list(receipts))
     expected = {}
@@ -306,8 +391,10 @@ def _index_receipts(
             value = getattr(context, name)
             if type(value) is not str or not value:
                 raise ValueError(f"explicit nonempty {name} required")
-        if not isinstance(context.policy, mira_policy_contract.CodingPolicy):
+        if type(context.policy) is not mira_policy_contract.CodingPolicy:
             raise TypeError("expected CodingPolicy")
+        if type(context.policy.envelope) is not mira_policy_contract.JsonObjectEnvelope:
+            raise TypeError("expected policy JsonObjectEnvelope")
         if context.consumed_budget is None:
             raise ValueError("explicit consumed budget required")
         if context.task_id in expected:
@@ -322,8 +409,10 @@ def _index_receipts(
             receipt = mira_policy_contract.BankExternalReceipt.from_dict(
                 deepcopy(dict(receipt))
             )
-        if not isinstance(receipt, mira_policy_contract.BankExternalReceipt):
+        if type(receipt) is not mira_policy_contract.BankExternalReceipt:
             raise TypeError("expected BankExternalReceipt or serialized envelope")
+        if type(receipt.envelope) is not mira_policy_contract.JsonObjectEnvelope:
+            raise TypeError("expected receipt JsonObjectEnvelope")
         task_id = receipt.payload["task_id"]
         if type(task_id) is not str or not task_id:
             raise ValueError("invalid task identifier")
@@ -332,6 +421,29 @@ def _index_receipts(
         received[task_id] = receipt
     if received.keys() != expected.keys():
         raise ValueError("missing or additional tasks")
+
+    context_keys = {
+        task_id: (
+            run_id,
+            context.judge,
+            context.bank_fingerprint,
+            context.policy.sha256,
+            task_id,
+        )
+        for task_id, context in expected.items()
+    }
+    registry_keys = {key for key in attestations if key[0] == run_id}
+    if registry_keys != set(context_keys.values()):
+        raise ValueError("receipt attestation coverage mismatch")
+
+    for task_id, context in expected.items():
+        bank_tasks = task_manifest.get(context.bank_fingerprint)
+        if bank_tasks is None:
+            raise ValueError("bank fingerprint absent from task manifest")
+        if task_id not in bank_tasks:
+            raise ValueError(f"task {task_id} absent from bank manifest")
+        if bank_tasks[task_id] != context.language:
+            raise ValueError(f"task manifest language mismatch for task {task_id}")
 
     results = {}
     for task_id, context in expected.items():
@@ -349,6 +461,14 @@ def _index_receipts(
         )
         if result is not None:
             raise ValueError("consistency validator must return None")
+        attested_sha256 = attestations.get(context_keys[task_id])
+        if attested_sha256 is None:
+            raise ValueError("missing receipt attestation")
+        if (
+            type(attested_sha256) is not str
+            or receipt.envelope.sha256 != attested_sha256
+        ):
+            raise ValueError("receipt attestation fingerprint mismatch")
         results[task_id] = declared_result
     return expected, results
 
