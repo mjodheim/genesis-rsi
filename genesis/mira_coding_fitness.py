@@ -1,9 +1,9 @@
-"""Inert receipt aggregation and ablation policy resolution.
+"""Preventive blocking for real receipt counting and ablation policy resolution.
 
-Fingerprints and consistency checks do not establish authenticity.
-This module produces paired counts and assesses non-inferiority using
-parameters set by the external protocol. External judge integration, registry
-authentication, and freezing before evaluation remain unverified.
+Both public real-receipt entry points raise ValueError before any counting.
+Paired non-inferiority uses parameters set by the external protocol.
+External judge integration, registry authentication, and freezing before
+evaluation remain unverified.
 Evidence 66dcca637bf1470bb8a4337d1be558ab covers the baseline only.
 
 Initial negative evidence 425f5272292041f0a9aba16188c5fc8f: exit code 1,
@@ -13,13 +13,20 @@ TypeError: aggregate_receipts() got an unexpected keyword argument
 Evidence 00874e07781f4881a6ad62584478df61 reports 153 passing fitness tests,
 including the Python development bank test. Its scope is the reported
 fitness run. The development bank uses nonempty lists for max and min.
-Fresh verification requires pytest exit code 0 for each targeted suite:
+Evidence 6b9d375131004cda820ad09ba7b132b4 reports 192 passing tests on the
+pre-correction copy.
+
+Before resubmitting PR #486, verify that its cumulative diff matches the
+announced scope and align its title and description with the preventive block.
+For the SHA to be submitted, rerun each targeted suite in the offline
+container without network access or model use:
 tests/test_mira_coding_fitness.py,
-tests/test_mira_coding_fitness_receipts.py, and
-tests/test_mira_coding_fitness_mcnemar.py, in the offline container without
-network access or model use. No test launch is attested for this correction.
-Record the observed exit status, pass count, and evidence ID for each suite
-against the new commit.
+tests/test_mira_coding_fitness_receipts.py,
+tests/test_mira_coding_fitness_mcnemar.py, and
+tests/test_mira_coding_fitness_bank_identity.py.
+Require pytest exit code 0 for each suite and record the command, observed
+exit code, test count, and evidence ID per suite against the submitted SHA.
+Fresh verification is pending for this correction.
 Verification of the per-execution fingerprint check is pending.
 The 153 passes recorded above are historical.
 Consistency alone proves neither truth, authenticity, nor judge independence.
@@ -29,13 +36,14 @@ from the image used. The image rebuild remains to be confirmed.
 Eight-language calibration and Ed25519 validation remain open.
 Milestone 2 still requires verification of an established signature
 primitive in the offline container and of the applicable publication terms.
-The per-execution receipt fingerprint check requires submitted task identifiers
-to match the external task registry exactly and checks each receipt for
-contractual consistency before counting. Coverage and integrity checks also
-require the language of each task to match the trusted external manifest
-for its bank fingerprint. Both public receipt entry points remain disabled
-until an authenticated independent source is connected. The availability
-of that source and the origin of verdicts remain unverified.
+The private receipt helpers check consistency across data supplied by the
+caller. For each execution, the receipt and context task sets must agree,
+and the context keys must exactly match the supplied registry keys for that
+execution. This coverage check rejects omission of a registered failed task.
+Each receipt is checked for contractual consistency and fingerprint agreement
+with the supplied registry. Each task's language must match the supplied
+manifest for its bank fingerprint. The independent provenance of the
+registry and manifest, and the origin of verdicts, remain to be established.
 """
 
 from collections.abc import Callable, Iterable, Mapping
@@ -247,7 +255,7 @@ def count_mcnemar_pairs(
     right_receipts: Iterable[Any],
     right_contexts: Iterable[TaskContext],
 ) -> McNemarPairs:
-    """Require an authenticated independent source before counting real pairs."""
+    """Raise before counting real pairs pending an authenticated independent source."""
     raise ValueError("authenticated independent receipt attestation source required")
 
 def _count_attested_mcnemar_pairs(
@@ -261,7 +269,7 @@ def _count_attested_mcnemar_pairs(
     attestations: ReceiptAttestations,
     task_manifest: TaskManifest,
 ) -> McNemarPairs:
-    """Count pairs after checking task languages and receipt attestations."""
+    """Count pairs after consistency checks on caller-supplied data."""
     if left_run_id == right_run_id:
         raise ValueError("paired execution identifiers must differ")
     left, left_results = _index_receipts(
@@ -340,7 +348,7 @@ def aggregate_receipts(
     *,
     contexts: Iterable[TaskContext],
 ) -> Fitness:
-    """Require an authenticated independent source before aggregating real receipts."""
+    """Raise before counting real receipts pending an authenticated independent source."""
     raise ValueError("authenticated independent receipt attestation source required")
 
 
@@ -352,7 +360,7 @@ def _aggregate_attested_receipts(
     attestations: ReceiptAttestations,
     task_manifest: TaskManifest,
 ) -> Fitness:
-    """Check task languages and receipt attestations before aggregating."""
+    """Aggregate receipts after consistency checks on caller-supplied data."""
     expected, results = _index_receipts(
         receipts, contexts, attestations, task_manifest, run_id=run_id
     )
@@ -371,6 +379,7 @@ def _index_receipts(
     *,
     run_id: str,
 ) -> tuple[dict[str, TaskContext], dict[str, bool]]:
+    """Check coverage, languages, and fingerprints against caller-supplied data."""
     if type(run_id) is not str or not run_id.strip():
         raise ValueError("explicit nonempty execution identifier required")
     contexts = deepcopy(list(contexts))
