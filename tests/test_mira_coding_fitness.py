@@ -724,6 +724,36 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
     assert (left, left_contexts, right, right_contexts) == before
 
 
+def test_real_non_inferiority_rejects_observed_rust_regression(real_receipts):
+    _, (python, rust, _), make_receipt = real_receipts
+    candidate_policy = CodingPolicy.create(
+        **dict(python.policy.payload, localization="candidate-task-context")
+    )
+    assert candidate_policy.sha256 != python.policy.sha256
+    baseline_contexts = [
+        replace(python, task_id=f"python-{i}") for i in range(10)
+    ] + [rust]
+    candidate_contexts = [
+        replace(context, policy=candidate_policy) for context in baseline_contexts
+    ]
+    counts = count_mcnemar_pairs(
+        [make_receipt(context, context.language == "python") for context in candidate_contexts],
+        candidate_contexts,
+        [make_receipt(context, context.language == "rust") for context in baseline_contexts],
+        baseline_contexts,
+    )
+    assert counts.overall == (0, 10, 1, 0)
+    assert counts.by_language == {"python": (0, 10, 0, 0), "rust": (0, 0, 1, 0)}
+    _, candidate_only, baseline_only, _ = counts.overall
+    assert (candidate_only - baseline_only) / sum(counts.overall) == pytest.approx(9 / 11)
+
+    passed, results = assess_paired_non_inferiority(
+        counts, ("python", "rust"), delta=0.40, alpha=0.05
+    )
+    assert results["python"].passes(0.40)
+    assert results["rust"].difference == -1
+    assert not passed
+
 def test_real_mcnemar_success_rate_difference_with_equal_discordant_counts(real_receipts):
     left, contexts, make_receipt = real_receipts
     right = [
