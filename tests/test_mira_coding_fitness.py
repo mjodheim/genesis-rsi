@@ -753,11 +753,7 @@ def test_real_mcnemar_rejects_allocated_budget_divergences(
 )
 def test_real_mcnemar_rejects_external_context_divergences(real_receipts, field, value):
     receipts, contexts, make_receipt = real_receipts
-    budget = dict(contexts[0].consumed_budget, time_seconds=3)
-    changed = [
-        replace(contexts[0], consumed_budget=budget, **{field: value}),
-        *contexts[1:],
-    ]
+    changed = [replace(contexts[0], **{field: value}), *contexts[1:]]
     right = [make_receipt(changed[0], True), *receipts[1:]]
 
     assert aggregate_receipts(right, changed).overall == Counts(2, 3)
