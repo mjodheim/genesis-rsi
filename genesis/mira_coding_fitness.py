@@ -99,6 +99,7 @@ class Fitness:
 class McNemarPairs:
     overall: tuple[int, ...]
     by_language: Mapping[str, tuple[int, ...]]
+    unpaired_budget_mismatch: int = 0
 
     @property
     def success_rate_difference_by_language(self) -> dict[str, float]:
@@ -221,7 +222,10 @@ def count_mcnemar_pairs(
     right_receipts: Iterable[Any],
     right_contexts: Iterable[TaskContext],
 ) -> McNemarPairs:
-    """Count contractual pairs in the order both, left only, right only, neither."""
+    """Count contractual pairs in the order both, left only, right only, neither.
+
+    Report tasks with different consumed budgets in unpaired_budget_mismatch.
+    """
     left, left_results = _index_receipts(left_receipts, left_contexts)
     right, right_results = _index_receipts(right_receipts, right_contexts)
     for arm, contexts in (("left", left), ("right", right)):
@@ -233,7 +237,9 @@ def count_mcnemar_pairs(
     for component in ("models", "tokens", "proposals", "time_seconds"):
         if left_budget[component] != right_budget[component]:
             raise ValueError(f"paired allocated task_budget {component} mismatch")
-    return _count_mcnemar_pairs(left, left_results, right, right_results)
+    return _count_mcnemar_pairs(
+        left, left_results, right, right_results, exclude_budget_mismatches=True
+    )
 
 def count_synthetic_mcnemar_pairs(
     left_receipts: Iterable[Mapping[str, Any]],
@@ -260,26 +266,34 @@ def _count_mcnemar_pairs(
     left_results: Mapping[str, bool],
     right: Mapping[str, TaskContext],
     right_results: Mapping[str, bool],
+    *,
+    exclude_budget_mismatches: bool = False,
 ) -> McNemarPairs:
     if left.keys() != right.keys():
         raise ValueError("paired task sets differ")
+    unpaired = set()
     for task_id, left_context in left.items():
         right_context = right[task_id]
         for name in ("bank_fingerprint", "judge", "language", "consumed_budget"):
             first = getattr(left_context, name)
             second = getattr(right_context, name)
             if type(first) is not type(second) or first != second:
+                if name == "consumed_budget" and exclude_budget_mismatches:
+                    unpaired.add(task_id)
+                    continue
                 raise ValueError(f"paired {name} mismatch for task {task_id}")
 
     totals = {}
     overall = [0, 0, 0, 0]
     for task_id, context in left.items():
+        if task_id in unpaired:
+            continue
         index = 2 * int(not left_results[task_id]) + int(not right_results[task_id])
         totals.setdefault(context.language, [0, 0, 0, 0])[index] += 1
         overall[index] += 1
     return McNemarPairs(tuple(overall), {
         language: tuple(counts) for language, counts in sorted(totals.items())
-    })
+    }, unpaired_budget_mismatch=len(unpaired))
 
 def aggregate_receipts(
     receipts: Iterable[Any],

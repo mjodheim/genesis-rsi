@@ -748,22 +748,79 @@ def test_real_mcnemar_rejects_allocated_budget_divergences(
         ("bank_fingerprint", "b" * 64),
         ("judge", "different-judge"),
         ("language", "rust"),
-        ("consumed_budget", {"models": ["another-offline-test-model"]}),
-        ("consumed_budget", {"tokens": 101}),
-        ("consumed_budget", {"proposals": 2}),
-        ("consumed_budget", {"time_seconds": 3}),
+        ("task_id", "different-task"),
     ],
 )
 def test_real_mcnemar_rejects_external_context_divergences(real_receipts, field, value):
     receipts, contexts, make_receipt = real_receipts
-    if field == "consumed_budget":
-        value = dict(contexts[0].consumed_budget, **value)
-    changed = [replace(contexts[0], **{field: value}), *contexts[1:]]
+    budget = dict(contexts[0].consumed_budget, time_seconds=3)
+    changed = [
+        replace(contexts[0], consumed_budget=budget, **{field: value}),
+        *contexts[1:],
+    ]
     right = [make_receipt(changed[0], True), *receipts[1:]]
 
     assert aggregate_receipts(right, changed).overall == Counts(2, 3)
-    with pytest.raises(ValueError, match=f"paired {field} mismatch"):
+    message = "paired task sets differ" if field == "task_id" else f"paired {field} mismatch"
+    with pytest.raises(ValueError, match=message):
         count_mcnemar_pairs(receipts, contexts, right, changed)
+
+@pytest.mark.parametrize(
+    "changes",
+    [
+        {"models": ["another-offline-test-model"]},
+        {"tokens": 101},
+        {"proposals": 2},
+        {"time_seconds": 3},
+        {"tokens": 101, "proposals": 2, "time_seconds": 3},
+    ],
+)
+def test_real_mcnemar_excludes_consumed_budget_divergences(real_receipts, changes):
+    receipts, contexts, make_receipt = real_receipts
+    budget = dict(contexts[0].consumed_budget, **changes)
+    changed = [replace(contexts[0], consumed_budget=budget), *contexts[1:]]
+    right = [make_receipt(changed[0], True), *receipts[1:]]
+
+    assert aggregate_receipts(right, changed).overall == Counts(2, 3)
+    assert count_mcnemar_pairs(receipts, contexts, right, changed) == McNemarPairs(
+        (1, 0, 0, 1),
+        {"python": (0, 0, 0, 1), "rust": (1, 0, 0, 0)},
+        unpaired_budget_mismatch=1,
+    )
+
+@pytest.mark.parametrize(
+    "right_seconds,right_cap,expected",
+    [
+        (4, 10, McNemarPairs((1, 0, 0, 0), {"python": (1, 0, 0, 0)})),
+        (7, 10, McNemarPairs((0, 0, 0, 0), {}, unpaired_budget_mismatch=1)),
+        (4, 11, None),
+    ],
+)
+def test_real_mcnemar_elapsed_time_under_cap(
+    real_receipts, right_seconds, right_cap, expected
+):
+    _, contexts, make_receipt = real_receipts
+    context = contexts[0]
+    payload = context.policy.payload
+    left_policy = CodingPolicy.create(
+        **dict(payload, task_budget=dict(payload["task_budget"], time_seconds=10))
+    )
+    right_policy = CodingPolicy.create(
+        **dict(payload, task_budget=dict(payload["task_budget"], time_seconds=right_cap))
+    )
+    left = replace(
+        context, policy=left_policy, consumed_budget=dict(context.consumed_budget, time_seconds=4)
+    )
+    right = replace(
+        context, policy=right_policy,
+        consumed_budget=dict(context.consumed_budget, time_seconds=right_seconds),
+    )
+    args = ([make_receipt(left, True)], [left], [make_receipt(right, True)], [right])
+    if expected is None:
+        with pytest.raises(ValueError, match="^paired allocated task_budget time_seconds mismatch$"):
+            count_mcnemar_pairs(*args)
+    else:
+        assert count_mcnemar_pairs(*args) == expected
 
 def test_synthetic_validator_refusal_propagates(synthetic):
     def refusing_validator(receipt, context):
