@@ -373,6 +373,24 @@ def real_receipts(request):
     ]
     return receipts, contexts, make_receipt
 
+def test_ablation_receipts_follow_resolved_parent_policy(
+    ablation_policies, real_receipts
+):
+    child, parent = ablation_policies
+    _, contexts, make_receipt = real_receipts
+    resolved_parent = resolve_ablation_parent(
+        child, {child.sha256: parent.sha256}, {parent.sha256: parent}
+    )
+    context = replace(contexts[0], policy=resolved_parent)
+    parent_receipt = make_receipt(context, True, policy_sha256=parent.sha256)
+    counts = aggregate_receipts([parent_receipt], [context])
+    assert counts.overall == Counts(1, 1)
+    assert counts.by_language == {context.language: Counts(1, 1)}
+
+    child_receipt = make_receipt(context, True, policy_sha256=child.sha256)
+    with pytest.raises(ValueError, match=r"(?i)\bpolicy\b|policy_sha256"):
+        aggregate_receipts([child_receipt], [context])
+
 def assert_real_refusal_without_mutation(receipts, contexts):
     before = deepcopy((receipts, contexts))
     with pytest.raises(ValueError):
