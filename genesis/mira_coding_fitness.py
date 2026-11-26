@@ -221,7 +221,10 @@ def count_mcnemar_pairs(
     right_receipts: Iterable[Any],
     right_contexts: Iterable[TaskContext],
 ) -> McNemarPairs:
-    """Count contractual pairs in the order both, left only, right only, neither."""
+    """Count contractual pairs in the order both, left only, right only, neither.
+
+    Reject the comparison if any task has different consumed budgets.
+    """
     left, left_results = _index_receipts(left_receipts, left_contexts)
     right, right_results = _index_receipts(right_receipts, right_contexts)
     for arm, contexts in (("left", left), ("right", right)):
