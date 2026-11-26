@@ -775,24 +775,48 @@ def test_real_mcnemar_rejects_external_context_divergences(real_receipts, field,
         {"tokens": 101, "proposals": 2, "time_seconds": 3},
     ],
 )
-def test_real_mcnemar_excludes_consumed_budget_divergences(real_receipts, changes):
+def test_real_mcnemar_rejects_consumed_budget_divergences(real_receipts, changes):
     receipts, contexts, make_receipt = real_receipts
     budget = dict(contexts[0].consumed_budget, **changes)
     changed = [replace(contexts[0], consumed_budget=budget), *contexts[1:]]
     right = [make_receipt(changed[0], True), *receipts[1:]]
 
     assert aggregate_receipts(right, changed).overall == Counts(2, 3)
-    assert count_mcnemar_pairs(receipts, contexts, right, changed) == McNemarPairs(
-        (1, 0, 0, 1),
-        {"python": (0, 0, 0, 1), "rust": (1, 0, 0, 0)},
-        unpaired_budget_mismatch=1,
+    with pytest.raises(ValueError, match="^paired consumed_budget mismatch for task a$"):
+        count_mcnemar_pairs(receipts, contexts, right, changed)
+
+    template = contexts[0]
+    matched = [replace(template, task_id=f"matched-{i}") for i in range(20)]
+    matched_receipts = [make_receipt(context, True) for context in matched]
+    left_defeat = replace(template, task_id="defeat", consumed_budget=budget)
+    right_win = replace(template, task_id="defeat")
+    parameters = {"delta": 0.20, "alpha": 0.05}
+
+    matched_counts = count_mcnemar_pairs(
+        matched_receipts, matched, matched_receipts, matched
     )
+    passed, _ = assess_paired_non_inferiority(
+        matched_counts, ("python",), **parameters
+    )
+    assert passed
+
+    with pytest.raises(ValueError, match="^paired consumed_budget mismatch for task defeat$"):
+        assess_paired_non_inferiority(
+            count_mcnemar_pairs(
+                [*matched_receipts, make_receipt(left_defeat, False)],
+                [*matched, left_defeat],
+                [*matched_receipts, make_receipt(right_win, True)],
+                [*matched, right_win],
+            ),
+            ("python",),
+            **parameters,
+        )
 
 @pytest.mark.parametrize(
     "right_seconds,right_cap,expected",
     [
         (4, 10, McNemarPairs((1, 0, 0, 0), {"python": (1, 0, 0, 0)})),
-        (7, 10, McNemarPairs((0, 0, 0, 0), {}, unpaired_budget_mismatch=1)),
+        (7, 10, None),
         (4, 11, None),
     ],
 )
@@ -817,7 +841,12 @@ def test_real_mcnemar_elapsed_time_under_cap(
     )
     args = ([make_receipt(left, True)], [left], [make_receipt(right, True)], [right])
     if expected is None:
-        with pytest.raises(ValueError, match="^paired allocated task_budget time_seconds mismatch$"):
+        message = (
+            "^paired allocated task_budget time_seconds mismatch$"
+            if right_cap != 10
+            else "^paired consumed_budget mismatch for task a$"
+        )
+        with pytest.raises(ValueError, match=message):
             count_mcnemar_pairs(*args)
     else:
         assert count_mcnemar_pairs(*args) == expected
