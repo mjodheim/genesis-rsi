@@ -391,6 +391,33 @@ def test_ablation_receipts_follow_resolved_parent_policy(
     with pytest.raises(ValueError, match=r"(?i)\bpolicy\b|policy_sha256"):
         aggregate_receipts([child_receipt], [context])
 
+def test_mcnemar_pairs_follow_resolved_parent_policy(
+    ablation_policies, real_receipts
+):
+    child, parent = ablation_policies
+    _, contexts, make_receipt = real_receipts
+    resolved_parent = resolve_ablation_parent(
+        child, {child.sha256: parent.sha256}, {parent.sha256: parent}
+    )
+    child_context = replace(contexts[0], policy=child)
+    parent_context = replace(contexts[0], policy=resolved_parent)
+    child_receipt = make_receipt(child_context, True)
+    parent_receipt = make_receipt(parent_context, False)
+
+    counts = count_mcnemar_pairs(
+        [child_receipt], [child_context], [parent_receipt], [parent_context]
+    )
+    assert counts.overall == (0, 1, 0, 0)
+    assert counts.by_language == {child_context.language: (0, 1, 0, 0)}
+
+    wrong_parent_receipt = make_receipt(
+        parent_context, False, policy_sha256=child.sha256
+    )
+    with pytest.raises(ValueError, match=r"(?i)\bpolicy\b|policy_sha256"):
+        count_mcnemar_pairs(
+            [child_receipt], [child_context], [wrong_parent_receipt], [parent_context]
+        )
+
 def assert_real_refusal_without_mutation(receipts, contexts):
     before = deepcopy((receipts, contexts))
     with pytest.raises(ValueError):
