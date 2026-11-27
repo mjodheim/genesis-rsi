@@ -808,6 +808,24 @@ def test_real_non_inferiority_rejects_observed_rust_regression(real_receipts):
     assert results["rust"].difference == -1
     assert not passed
 
+
+def test_real_mcnemar_rejects_rust_task_missing_from_candidate(real_receipts):
+    baseline_receipts, baseline_contexts, _ = real_receipts
+    candidate_receipts = [baseline_receipts[0], baseline_receipts[2]]
+    candidate_contexts = [baseline_contexts[0], baseline_contexts[2]]
+
+    candidate = aggregate_receipts(candidate_receipts, candidate_contexts)
+    baseline = aggregate_receipts(baseline_receipts, baseline_contexts)
+    assert candidate.overall == Counts(1, 2)
+    assert candidate.by_language == {"python": Counts(1, 2)}
+    assert baseline.overall == Counts(2, 3)
+    assert baseline.by_language == {"python": Counts(1, 2), "rust": Counts(1, 1)}
+
+    with pytest.raises(ValueError, match=r"\Apaired task sets differ\Z"):
+        count_mcnemar_pairs(
+            candidate_receipts, candidate_contexts, baseline_receipts, baseline_contexts
+        )
+
 def test_real_mcnemar_success_rate_difference_with_equal_discordant_counts(real_receipts):
     left, contexts, make_receipt = real_receipts
     right = [
