@@ -466,7 +466,13 @@ def test_real_task_set_mismatch(real_receipts, change):
 def test_real_context_divergences(real_receipts, field, value):
     receipts, contexts, make_receipt = real_receipts
     receipts[0] = make_receipt(contexts[0], True, **{field: value})
-    assert_real_refusal_without_mutation(receipts, contexts)
+    if field == "bank_sha256":
+        before = deepcopy((receipts, contexts))
+        with pytest.raises(ValueError, match=r"\ABank differs from external context\Z"):
+            aggregate_receipts(receipts, contexts)
+        assert (receipts, contexts) == before
+    else:
+        assert_real_refusal_without_mutation(receipts, contexts)
 
 def test_real_language_attribution_comes_from_external_contexts(real_receipts):
     receipts, contexts, _ = real_receipts
