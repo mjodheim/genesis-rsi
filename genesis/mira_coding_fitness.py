@@ -240,6 +240,25 @@ def count_mcnemar_pairs(
         left, left_results, right, right_results, require_single_bank=True
     )
 
+
+def assess_receipt_non_inferiority(
+    left_receipts: Iterable[Any],
+    left_contexts: Iterable[TaskContext],
+    right_receipts: Iterable[Any],
+    right_contexts: Iterable[TaskContext],
+    required_languages: Iterable[str],
+    *,
+    delta: float,
+    alpha: float,
+) -> tuple[bool, dict[str, LanguageNonInferiority | None]]:
+    """Check contractual pairing before assessing each required language."""
+    pairs = count_mcnemar_pairs(
+        left_receipts, left_contexts, right_receipts, right_contexts
+    )
+    return assess_paired_non_inferiority(
+        pairs, required_languages, delta=delta, alpha=alpha
+    )
+
 def count_synthetic_mcnemar_pairs(
     left_receipts: Iterable[Mapping[str, Any]],
     left_contexts: Iterable[TaskContext],

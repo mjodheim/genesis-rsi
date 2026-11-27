@@ -23,6 +23,7 @@ from genesis.mira_coding_fitness import (
     aggregate_receipts,
     aggregate_synthetic_receipts,
     assess_paired_non_inferiority,
+    assess_receipt_non_inferiority,
     count_mcnemar_pairs,
     count_synthetic_mcnemar_pairs,
     mcnemar_exact_pvalue,
@@ -753,6 +754,11 @@ def test_real_mcnemar_rejects_multiple_matching_banks(real_receipts):
     }
     with pytest.raises(ValueError, match=r"\Apaired comparison must have exactly one bank fingerprint\Z"):
         count_mcnemar_pairs(left, left_contexts, right, right_contexts)
+    with pytest.raises(ValueError, match=r"\Apaired comparison must have exactly one bank fingerprint\Z"):
+        assess_receipt_non_inferiority(
+            left, left_contexts, right, right_contexts,
+            ("python", "rust"), delta=0.40, alpha=0.05,
+        )
 
 def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
     receipts, contexts, make_receipt = real_receipts
@@ -796,6 +802,23 @@ def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
     }
     assert (left, left_contexts, right, right_contexts) == before
 
+
+@pytest.mark.parametrize("delta", [0.40, 1.0])
+def test_receipt_non_inferiority_matches_explicit_composition(real_receipts, delta):
+    left, contexts, make_receipt = real_receipts
+    right = [
+        make_receipt(context, result)
+        for context, result in zip(contexts, (False, True, False))
+    ]
+    languages = ("python", "rust")
+    expected = assess_paired_non_inferiority(
+        count_mcnemar_pairs(left, contexts, right, contexts),
+        languages, delta=delta, alpha=0.05,
+    )
+    assert assess_receipt_non_inferiority(
+        iter(left), iter(contexts), iter(right), iter(contexts),
+        languages, delta=delta, alpha=0.05,
+    ) == expected
 
 def test_real_non_inferiority_rejects_observed_rust_regression(real_receipts):
     _, (python, rust, _), make_receipt = real_receipts
@@ -844,6 +867,12 @@ def test_real_mcnemar_rejects_rust_task_missing_from_candidate(real_receipts):
         count_mcnemar_pairs(
             candidate_receipts, candidate_contexts, baseline_receipts, baseline_contexts
         )
+    with pytest.raises(ValueError, match=r"\Apaired task sets differ\Z"):
+        assess_receipt_non_inferiority(
+            candidate_receipts, candidate_contexts,
+            baseline_receipts, baseline_contexts,
+            ("python", "rust"), delta=0.40, alpha=0.05,
+        )
 
 def test_real_mcnemar_success_rate_difference_with_equal_discordant_counts(real_receipts):
     left, contexts, make_receipt = real_receipts
@@ -880,6 +909,11 @@ def test_real_mcnemar_rejects_allocated_budget_divergences(
     assert aggregate_receipts(right_receipts, right_contexts).overall == Counts(2, 3)
     with pytest.raises(ValueError, match=f"^paired allocated task_budget {component} mismatch$"):
         count_mcnemar_pairs(receipts, contexts, right_receipts, right_contexts)
+    with pytest.raises(ValueError, match=f"^paired allocated task_budget {component} mismatch$"):
+        assess_receipt_non_inferiority(
+            receipts, contexts, right_receipts, right_contexts,
+            ("python", "rust"), delta=0.40, alpha=0.05,
+        )
 
 @pytest.mark.parametrize(
     "field,value",
@@ -919,6 +953,11 @@ def test_real_mcnemar_rejects_consumed_budget_divergences(real_receipts, changes
     assert aggregate_receipts(right, changed).overall == Counts(2, 3)
     with pytest.raises(ValueError, match="^paired consumed_budget mismatch for task a$"):
         count_mcnemar_pairs(receipts, contexts, right, changed)
+    with pytest.raises(ValueError, match="^paired consumed_budget mismatch for task a$"):
+        assess_receipt_non_inferiority(
+            receipts, contexts, right, changed,
+            ("python", "rust"), delta=0.40, alpha=0.05,
+        )
 
     template = contexts[0]
     matched = [replace(template, task_id=f"matched-{i}") for i in range(20)]
