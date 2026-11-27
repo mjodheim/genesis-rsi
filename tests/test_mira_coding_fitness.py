@@ -719,6 +719,22 @@ def test_real_mcnemar_rejects_mixed_policies(real_receipts, arm):
         count_mcnemar_pairs(*paired)
     assert paired == before
 
+def test_count_mcnemar_pairs_rejects_mixed_policies_within_arm(real_receipts):
+    receipts, contexts, make_receipt = real_receipts
+    right_receipts = receipts[:2]
+    right_contexts = contexts[:2]
+    payload = right_contexts[1].policy.payload
+    budget = dict(payload["task_budget"], tokens=payload["task_budget"]["tokens"] + 1)
+    other_policy = CodingPolicy.create(**dict(payload, task_budget=budget))
+    left_contexts = [right_contexts[0], replace(right_contexts[1], policy=other_policy)]
+    left_receipts = [right_receipts[0], make_receipt(left_contexts[1], True)]
+
+    assert aggregate_receipts(left_receipts, left_contexts) == aggregate_receipts(right_receipts, right_contexts)
+    with pytest.raises(ValueError, match="left arm.*policy fingerprint"):
+        count_mcnemar_pairs(
+            left_receipts, left_contexts, right_receipts, right_contexts
+        )
+
 def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
     receipts, contexts, make_receipt = real_receipts
     other_policy = CodingPolicy.create(
