@@ -164,8 +164,13 @@ def ablation_policies():
 
 def test_resolve_ablation_parent_returns_expected_policy(ablation_policies):
     child, parent = ablation_policies
+    grandparent = CodingPolicy.create(
+        **dict(parent.payload, localization="grandparent-task-context")
+    )
     resolved = resolve_ablation_parent(
-        child, {child.sha256: parent.sha256}, {parent.sha256: parent}
+        child,
+        {child.sha256: parent.sha256, parent.sha256: grandparent.sha256},
+        {grandparent.sha256: grandparent, parent.sha256: parent},
     )
     assert resolved.to_dict() == parent.to_dict()
 
