@@ -223,7 +223,7 @@ def count_mcnemar_pairs(
 ) -> McNemarPairs:
     """Count contractual pairs in the order both, left only, right only, neither.
 
-    Reject the comparison if any task has different consumed budgets.
+    Require one bank fingerprint across tasks and equal consumed budgets per pair.
     """
     left, left_results = _index_receipts(left_receipts, left_contexts)
     right, right_results = _index_receipts(right_receipts, right_contexts)
@@ -236,7 +236,9 @@ def count_mcnemar_pairs(
     for component in ("models", "tokens", "proposals", "time_seconds"):
         if left_budget[component] != right_budget[component]:
             raise ValueError(f"paired allocated task_budget {component} mismatch")
-    return _count_mcnemar_pairs(left, left_results, right, right_results)
+    return _count_mcnemar_pairs(
+        left, left_results, right, right_results, require_single_bank=True
+    )
 
 def count_synthetic_mcnemar_pairs(
     left_receipts: Iterable[Mapping[str, Any]],
@@ -263,6 +265,8 @@ def _count_mcnemar_pairs(
     left_results: Mapping[str, bool],
     right: Mapping[str, TaskContext],
     right_results: Mapping[str, bool],
+    *,
+    require_single_bank: bool = False,
 ) -> McNemarPairs:
     if left.keys() != right.keys():
         raise ValueError("paired task sets differ")
@@ -273,6 +277,9 @@ def _count_mcnemar_pairs(
             second = getattr(right_context, name)
             if type(first) is not type(second) or first != second:
                 raise ValueError(f"paired {name} mismatch for task {task_id}")
+
+    if require_single_bank and len({context.bank_fingerprint for context in left.values()}) != 1:
+        raise ValueError("paired comparison must have exactly one bank fingerprint")
 
     totals = {}
     overall = [0, 0, 0, 0]
