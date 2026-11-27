@@ -735,6 +735,25 @@ def test_count_mcnemar_pairs_rejects_mixed_policies_within_arm(real_receipts):
             left_receipts, left_contexts, right_receipts, right_contexts
         )
 
+def test_real_mcnemar_rejects_multiple_matching_banks(real_receipts):
+    _, contexts, make_receipt = real_receipts
+    left_contexts = [contexts[0], replace(contexts[1], bank_fingerprint="b" * 64)]
+    right_policy = CodingPolicy.create(
+        **dict(contexts[0].policy.payload, localization="paired-task-context")
+    )
+    right_contexts = [replace(context, policy=right_policy) for context in left_contexts]
+    left = [make_receipt(left_contexts[0], True), make_receipt(left_contexts[1], False)]
+    right = [make_receipt(right_contexts[0], False), make_receipt(right_contexts[1], True)]
+
+    assert aggregate_receipts(left, left_contexts).by_language == {
+        "python": Counts(1, 1), "rust": Counts(0, 1),
+    }
+    assert aggregate_receipts(right, right_contexts).by_language == {
+        "python": Counts(0, 1), "rust": Counts(1, 1),
+    }
+    with pytest.raises(ValueError, match=r"\Apaired comparison must have exactly one bank fingerprint\Z"):
+        count_mcnemar_pairs(left, left_contexts, right, right_contexts)
+
 def test_real_mcnemar_counts_with_distinct_policies(real_receipts):
     receipts, contexts, make_receipt = real_receipts
     other_policy = CodingPolicy.create(
